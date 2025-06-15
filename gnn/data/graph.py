@@ -1,740 +1,598 @@
-import json
-from collections import defaultdict
-from typing import Optional
+import os
+import pickle
+from copy import deepcopy
+from typing import Dict, Optional, List, Tuple
 
-import torch
 import matplotlib.pyplot as plt
+import torch
+from sklearn.preprocessing import OneHotEncoder
+
 from torch_geometric.data import HeteroData
 
-from gnn.data.utils.parsers import parse_tcl_directives
-from gnn.data.utils.llvm_defs import (
-    TYPE_ENCODING, TYPE_ENCODING_SIZE, OP_ENCODING, OP_ENCODING_SIZE,
-    MAX_ARRAY_DIMS, TypeID, Opcode
+from gnn.data.kernel.vitis_kernel_info import (
+    VitisKernelInfo,
+    CDFG_NODE_TYPES,
+    CDFG_EDGE_TYPES
+)
+from gnn.data.utils.parsers import (
+    parse_tcl_directives_file,
+    extract_auto_dcts_from_log,
+    extract_forbidden_dcts_from_log,
+    get_ignored_pipeline_indices
 )
 
 
-NODE_TYPES = ['instr', 'var', 'const', 'array', 'region']
-
-EDGE_TYPES = [
-    # Data flow
-    ('instr', 'data', 'var'),
-    ('var', 'data', 'instr'),
-    ('instr', 'data', 'array'),
-    ('array', 'data', 'instr'),
-    ('const', 'data', 'instr'),
-
-    # Control flow
-    ('instr', 'control', 'instr'),
-
-    # Call flow
-    ('instr', 'call', 'instr'),
-
-    # Loop and function hierarchy
-    ('region', 'hrchy', 'region'),
-    ('region', 'hrchy', 'instr'),
-] + [
-    # Self-loops
-    (nt, 'self', nt) for nt in NODE_TYPES
+DIRECTIVES = [
+    "array_partition", "loop_flatten",
+    "loop_merge", "pipeline", "unroll",
+    "dataflow", "inline"
 ]
 
+NODE_TYPES = CDFG_NODE_TYPES
+EDGE_TYPES = CDFG_EDGE_TYPES + [
+    # Reverse edges for hierarchical relationships
+    (dst_nt, "hrchy_rev", src_nt) 
+    for src_nt, rel, dst_nt in CDFG_EDGE_TYPES 
+    if rel == "hrchy"
+] + [
+    # Self-loops
+    (nt, "to", nt) for nt in CDFG_NODE_TYPES
+]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
-INSTR_FEATURE_DIMS = 12
-VAR_FEATURE_DIMS = 7
-CONST_FEATURE_DIMS = 7
-ARRAY_FEATURE_DIMS = 21
-REGION_FEATURE_DIMS = 8
-
+# Feature dimensions for each node type
 NODE_FEATURE_DIMS = {
-    'instr': INSTR_FEATURE_DIMS,
-    'var': VAR_FEATURE_DIMS,
-    'const': CONST_FEATURE_DIMS,
-    'array': ARRAY_FEATURE_DIMS,
-    'region': REGION_FEATURE_DIMS
+    "instr": 85, 
+    "port": 25,
+    "const": 5,
+    "region": 22,
+    "block": 6
 }
 
 
-class Node:
-    def __init__(
-        self, index, node_type, 
-        programl_id=None, ir_id=None,
-        text=None, full_text=None,
-        function_id=None, function_name=None, 
-        features=None
-    ):
-        self.index = index
-        self.type = node_type
-        self.programl_id = programl_id
-        self.ir_id = ir_id
-        self.text = text
-        self.full_text = full_text
-        self.function_id = function_id
-        self.function_name = function_name
-        self.features = features if features is not None else {}
+def extract_base_kernel_info(
+    solution_info_list: List[Tuple[str, str, str]],
+    filtered: bool = False,
+    encoder_output_path: Optional[str] = None,
+) -> Dict[str, VitisKernelInfo]:
+    from gnn.data.kernel.llvm_utils import extract_llvm_ir_array_info
+    
+    kernel_info_dict = {}
+    for sol_dir, kernel_name, top_function in solution_info_list:
+        ir_dir = f"{sol_dir}/IRs" if filtered else f"{sol_dir}/.autopilot/db"
+        array_info_path = f"{ir_dir}/array_info.json"
+        global_array_usage_path = f"{ir_dir}/global_array_usage.json"
 
-    def set_feature(self, key, value):
-        self.features[key] = value
+        extract_llvm_ir_array_info(
+            hls_ir_dir=ir_dir, 
+            array_info_out_path=array_info_path,
+            global_array_usage_out_path=global_array_usage_path
+        )
+        if not os.path.exists(array_info_path):
+            print(f"IR Array info file not found: {array_info_path}")
+            continue
+        if not os.path.exists(global_array_usage_path):
+            print(f"IR Global array usage file not found: {global_array_usage_path}")
+            continue
 
-    def get_feature(self, key):
-        return self.features.get(key, None)
+        kernel_info_dict[kernel_name] = VitisKernelInfo(
+            solution_dir=sol_dir, 
+            top_level_function=top_function, 
+            array_info_path=array_info_path, 
+            global_array_usage_path=global_array_usage_path,
+            kernel_name=kernel_name,
+            filtered=filtered
+        )
+            
+    encoders = fit_one_hot_encoders(kernel_info_dict)
+    if encoder_output_path:
+        save_encoders(encoders, encoder_output_path)
+    
+    for kernel_name in kernel_info_dict:
+        one_hot_encode(kernel_info_dict[kernel_name], encoders)
 
-    def __repr__(self):
-        return f"Node({self.type}, {self.index}, {self.text}, {self.function_id})"
+    return kernel_info_dict
 
 
-def build_graph(
-    llvm_ir_path: str, metadata_path: str, 
+def build_hls_graph_data(
+    base_kernel_info: VitisKernelInfo,
+    solution_dct_tcl_path: str, 
     add_self_loops: bool = True,
-    directive_file_path: Optional[str] = None,
-    output_path: Optional[str] = None
+    add_reversed_edges: bool = True,
+    solution_log_path: Optional[str] = None
 ) -> HeteroData:
-    import programl
+    kernel_info = deepcopy(base_kernel_info)
+    include_directive_info(
+        kernel_info, solution_dct_tcl_path,
+        vitis_log_path=solution_log_path
+    )
+    return kernel_info, to_hetero_data(
+        kernel_info, 
+        add_self_loops=add_self_loops,
+        add_reversed_edges=add_reversed_edges,
+    )
 
-    with open(metadata_path, 'r') as f:
-        metadata = json.load(f)
 
-    with open(llvm_ir_path, 'r') as f:
-        programl_graph = programl.from_llvm_ir(f.read())
-
-    programl_graph_json = programl.to_json(programl_graph)
-
-    programl_nodes = programl_graph_json.get('nodes', [])
-    programl_edges = programl_graph_json.get('links', [])
-    functions = []
-    for function in programl_graph_json.get('graph', {}).get('function', []):
-        functions.append(function['name'])
-
-    nodes, hrchy_edge_dict = build_nodes(programl_nodes, metadata, functions)
-
-    if directive_file_path is not None:
-        include_directives(nodes, directive_file_path)
-
-    edge_dict = build_edges(programl_edges, nodes)
-
-    for et, edges in hrchy_edge_dict.items():
-        if et not in edge_dict:
-            edge_dict[et] = []
-        edge_dict[et].extend(edges)
-
-    hetero_data = HeteroData()
+def to_hetero_data(
+    kernel_info: VitisKernelInfo, 
+    add_self_loops: bool = True,
+    add_reversed_edges: bool = True,
+) -> HeteroData:
+    data = HeteroData()
+    
     for nt in NODE_TYPES:
-        node_feature_list = []
-        for node in nodes[nt]:
-            feature_vector = []
-            for feature in node.features.values():
-                if not isinstance(feature, list):
-                    feature_vector.append(feature)
+        nodes = kernel_info.nodes.get(nt)
+        if not nodes:
+            data[nt].x = torch.empty(
+                (0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32
+            )
+            data[nt].label = []
+            continue
+
+        features = []
+        for node in nodes:
+            attrs = []
+            for attr in node.attrs.values():
+                if isinstance(attr, list):
+                    attrs.extend(attr)
                 else:
-                    feature_vector.extend(feature)
-            feature_vector = torch.tensor(feature_vector, dtype=torch.float)
-            node_feature_list.append(feature_vector)
-
-        if len(node_feature_list) > 0:
-            hetero_data[nt].x = torch.stack(node_feature_list).contiguous()
-        else:
-            hetero_data[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float)
-
-        hetero_data[nt].num_nodes = hetero_data[nt].x.size(0)
-        hetero_data[nt].label = [n.text for n in nodes[nt]]
+                    attrs.append(attr)
+            features.append(
+                torch.tensor(attrs, dtype=torch.float32)
+            )
+        data[nt].x = torch.stack(features, dim=0)
+            
+        data[nt].label = [node.label for node in nodes]
 
     for et in EDGE_TYPES:
-        if et[1] == 'self' and add_self_loops:
-            hetero_data[et] = torch.arange(
-                hetero_data[et[0]].num_nodes, dtype=torch.long
-            ).view(1, -1).repeat(2, 1)
+        edges = kernel_info.edges.get(et)
+        if edges:
+            src, dst = zip(*edges)
+            src = torch.tensor(src, dtype=torch.long)
+            dst = torch.tensor(dst, dtype=torch.long)
+            data[et].edge_index = torch.stack([src, dst], dim=0)
         else:
-            edge_index = edge_dict.get(et, [])
-            if len(edge_index) > 0:
-                edge_index = torch.stack(
-                    [torch.tensor(e, dtype=torch.long) for e in edge_index]
-                ).t().contiguous()
-                hetero_data[et].edge_index = edge_index
-                hetero_data[et].num_edges = edge_index.size(1)
+            data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+
+    if add_reversed_edges:
+        hrchy_edges = {k: v for k, v in data.edge_index_dict.items() if k[1] == "hrchy"}
+        for et, edge_index in hrchy_edges.items():
+            if edge_index.size(1) == 0:
+                data[et[2], "hrchy_rev", et[0]].edge_index = torch.empty((2, 0), dtype=torch.long)
             else:
-                hetero_data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-                hetero_data[et].num_edges = 0
+                src, dst = edge_index[0], edge_index[1]
+                data[et[2], "hrchy_rev", et[0]].edge_index = torch.stack([dst, src], dim=0)
 
-    if output_path is not None:
-        torch.save(hetero_data, output_path)
-
-    return hetero_data
-
-
-def include_directives(nodes, directive_file_path):
-    def find_node(node_type, node_name, function_name):
-        for node in nodes[node_type]:
-            if ((node_name is None or node.text == node_name) 
-                and node.function_name == function_name):
-                return node
-        return None
-    
-    directives = parse_tcl_directives(directive_file_path)
-
-    for directive_type, directive_args in directives:
-        if directive_type in ['pipeline', 'unroll', 'loop_flatten', 'loop_merge']:
-            location = directive_args.get('location')
-            if location is None:
-                continue
-            if '/' in location:
-                function_name, region_name = location.split('/')
+    if add_self_loops:
+        for nt in NODE_TYPES:
+            nodes = kernel_info.nodes.get(nt)
+            if nodes:
+                src = torch.arange(len(nodes), dtype=torch.long)
+                dst = src.clone()
+                data[nt, "to", nt].edge_index = torch.stack([src, dst], dim=0)
             else:
-                function_name, region_name = location, None
+                data[nt, "to", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
 
-            node = find_node('region', region_name, function_name)
-            if node is None:
-                print(f"Warning: Node not found for {directive_type} directive with location {location}")
-                continue
+    return data
 
-            if directive_type == 'unroll':
-                factor = int(directive_args.get('factor', 0))
-                if factor <= 0:
-                    factor = max(1, node.features['trip_count'])
-                node.features['unroll_factor'] = factor
-            elif directive_type == 'pipeline' and 'off' in directive_args:
-                node.features['pipeline_off'] = 1
-            elif directive_type == 'loop_flatten' and 'off' in directive_args:
-                node.features['loop_flatten_off'] = 1
-            else:
-                node.features[directive_type] = 1
+
+def find_array_node(kernel_info, array_name, function_name, ret_node_type=False):
+    if function_name:
+        for node in kernel_info.nodes.get('port', []):
+            if (node.name == array_name 
+                and node.attrs.get('array_partition', 0) == 0
+                and node.function == function_name):
+                return (node, 'port') if ret_node_type else node
             
-        elif directive_type == 'array_partition':
-            function_name = directive_args.get('location', '')
-            array_name = directive_args.get('variable')
-            node = find_node('array', array_name, function_name)
-            if node is None:
-                print(f"Warning: Node not found for array partition directive with "
-                      f"location {function_name} and variable {array_name}")
-                continue
+    for node in kernel_info.nodes.get('instr', []):
+        if (node.opcode in ['alloca', 'GlobalMem']
+            and node.name == array_name 
+            and node.attrs.get('array_partition', 0) == 0
+            and node.function == function_name):
+            return (node, 'instr') if ret_node_type else node
+        
+    # If not found, search for array_name only
+    for node in kernel_info.nodes.get('port', []):
+        if (node.name == array_name 
+            and node.attrs.get('array_partition', 0) == 0):
+            return (node, 'port') if ret_node_type else node
+        
+    for node in kernel_info.nodes.get('instr', []):
+        if (node.opcode in ['alloca', 'GlobalMem']
+            and node.name == array_name 
+            and node.attrs.get('array_partition', 0) == 0):
+            return (node, 'instr') if ret_node_type else node
 
-            partition_dim = min(int(directive_args.get('dim', 0)),
-                                MAX_ARRAY_DIMS)
-            partition_dim_encoding = [0] * (MAX_ARRAY_DIMS + 1)
-            partition_dim_encoding[partition_dim] = 1
-
-            partition_type = directive_args.get('type', 'complete')
-            if partition_type == 'complete':
-                partition_type_encoding = [1, 0, 0]
-            elif partition_type == 'cyclic':
-                partition_type_encoding = [0, 1, 0]
-            else:
-                partition_type_encoding = [0, 0, 1]
-
-            partition_factor = int(directive_args.get('factor', 0))
-            if partition_factor <= 0:
-                array_dims = node.features['dims']
-                if partition_dim == 0:
-                    partition_factor = array_dims[0]
-                    for dim in array_dims[1:]:
-                        partition_factor *= dim
-                else:
-                    partition_factor = array_dims[partition_dim-1]
-
-            node.features['partition_factor'] = partition_factor
-            node.features['partition_dim'] = partition_dim_encoding
-            node.features['partition_type'] = partition_type_encoding
+    return (None, None) if ret_node_type else None
 
 
-def get_instruction_metadata(
-    metadata, function_id, 
-    node_id=None, node_full_text=None
+def find_region_node(kernel_info, region_name, function_name):
+    for node in kernel_info.nodes.get('region', []):
+        if (node.name == region_name
+            and node.function == function_name):
+            return node
+    # If not found, search for region_name only
+    for node in kernel_info.nodes.get('region', []):
+        if node.name == region_name:
+            return node
+    return None
+
+
+def include_directive_info(
+    kernel_info: VitisKernelInfo, 
+    solution_dct_tcl_path: str,
+    vitis_log_path: Optional[str] = None
 ):
-    if node_id is None:
-        if node_full_text is None or '=' not in node_full_text:
-            return None
-        key = 'name'
-        query = node_full_text.split('=')[0].strip(' %@')
-    else:
-        key = 'id'
-        query = node_id
-    
-    for node in metadata['instruction']:
-        if node['functionID'] == function_id and node[key] == query:
-            return node
-    return None
-        
+    if vitis_log_path:
+        if not os.path.exists(vitis_log_path):
+            print(f"Warning: Vitis log file '{vitis_log_path}' does not exist.")
+            vitis_log_path = None
+        # else:
+        #     ignored_pipelines = get_ignored_pipeline_indices(vitis_log_path)
 
-def get_variable_metadata(metadata, function_name, node_full_text):
-    var_name = node_full_text.split('%')[1]
-    if ' ' in var_name:
-        var_name = var_name.split(' ')[0]
-    var_name = var_name.strip()
-    for entity_type in ['port', 'variable']:
-        for node in metadata.get(entity_type, []):
-            is_global = int(node.get('isGlobal', 0)) == 1
-            is_param = int(node.get('isParam', 0)) == 1
-            if is_global and not is_param:
-                if node['name'] == var_name:
-                    return node
+    directives = parse_tcl_directives_file(
+        solution_dct_tcl_path,
+        # exclude_indices=ignored_pipelines if vitis_log_path else None
+        exclude_indices=None
+    )
+
+    def unroll_pipelined_subloops(loop_node):
+        """Completely unroll all subloops of a pipelined loop."""
+        for sub_region in loop_node.sub_regions:
+            node = kernel_info.nodes['region'][sub_region]
+            node.attrs["pipelined_parent"] = 1
+            if not node.is_loop:
+                continue
+            node.attrs["unroll"] = 1
+            trip_count = node.attrs.get("max_trip_count", 1)
+            if trip_count <= 0:
+                trip_count = 1
+            node.attrs["unroll_factor"] = trip_count
+            unroll_pipelined_subloops(node)
+
+    for dct, args in directives:
+        if dct not in DIRECTIVES:
+            continue
+
+        if dct == "array_partition":
+            function_name = args.get("location", "")
+            target_name = args.get("variable")
+            if target_name is None:
+                print("Warning: No variable specified for array partition.")
+                continue
+
+            array_node = find_array_node(kernel_info, target_name, function_name)
+            if array_node is None:
+                print(f"Warning: Variable '{target_name}' "
+                      f"(function '{function_name}') not found in nodes.")
+                continue
+            
+            array_node.attrs["array_partition"] = 1
+
+            partition_factor = int(args.get("factor", 0))
+            if partition_factor <= 0:
+                partition_factor = array_node.total_size
+            array_node.attrs["partition_factor"] = partition_factor
+
+            partition_dim = int(args.get("dim", 0))
+            array_node.attrs["partition_dim"][partition_dim] = 1
+
+            partition_type = args.get("type", "complete")
+            if partition_type == "complete":
+                partition_type = [1, 0, 0]
+            elif partition_type == "block":
+                partition_type = [0, 1, 0]
             else:
-                if node['functionName'] == function_name and node['name'] == var_name:
-                    return node
-    return None
+                partition_type = [0, 0, 1]
+            array_node.attrs["partition_type"] = partition_type
 
+        elif "off" not in args:
+            location = args["location"]
+            if "/" in location:
+                function_name, target_name = location.split("/")
+            else:
+                function_name = location
+                target_name = location
 
-def get_internal_constant_metadata(metadata, function_name, const_name):
-    for node in metadata.get('variable', []):
-        if node['functionName'] == function_name and node['name'] == const_name:
-            return node
-    return None
-
-
-def get_const_node_features(node_text):
-    if node_text[0] == 'i':
-        type_encoding = TYPE_ENCODING[TypeID.INT]
-        bitwidth = int(node_text[1:])
-    elif node_text == 'float':
-        type_encoding = TYPE_ENCODING[TypeID.FLOAT]
-        bitwidth = 32
-    elif node_text == 'double':
-        type_encoding = TYPE_ENCODING[TypeID.DOUBLE]
-        bitwidth = 64
-    elif node_text == 'half':
-        type_encoding = TYPE_ENCODING[TypeID.HALF]
-        bitwidth = 16
-    else:
-        type_encoding = TYPE_ENCODING[TypeID.POINTER]
-        bitwidth = 0
-
-    return {
-        'type': type_encoding,
-        'bitwidth': bitwidth
-    }
-
-
-def build_nodes(programl_nodes, metadata, functions):
-    def create_variable_node(
-        nodes, node_indices, node_metadata,
-        programl_id, function_id, function_name,
-        node_name, full_text
-    ):
-        is_array = int(node_metadata.get('isArray', 0)) == 1
-        if is_array:
-            node_index = node_indices['array']
-            node_indices['array'] += 1
-
-            base_type = int(node_metadata['baseType'])
-            type_encoding = TYPE_ENCODING.get(base_type, [0] * TYPE_ENCODING_SIZE)
-
-            base_bitwidth = int(node_metadata['baseTypeBitwidth'])
-            n_dims = int(node_metadata['numDims'])
-
-            dims = [int(dim) for dim in node_metadata['dimensions']]
-            if n_dims > MAX_ARRAY_DIMS:
-                n_dims = MAX_ARRAY_DIMS
-                remaining_dims = dims[n_dims-1:]
-                remaining_size = 1
-                for dim in remaining_dims:
-                    remaining_size *= dim
-                dims = dims[:n_dims-1] + [remaining_size]
-            elif n_dims < MAX_ARRAY_DIMS:
-                dims += [0] * (MAX_ARRAY_DIMS - n_dims)
+            region_node = find_region_node(kernel_info, target_name, function_name)
+            if region_node is None:
+                print(f"Warning: Region '{target_name}' "
+                      f"(function '{function_name}') not found in nodes.")
+                continue
             
-            features = {
-                'type': type_encoding,
-                'bitwidth': base_bitwidth,
-                'n_dims': n_dims,
-                'dims': dims,
-                'partition_factor': 0,
-                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1),
-                'partition_type': [0, 0, 0]
-            }
-            nodes['array'].append(Node(
-                node_index, 'array', programl_id, 
-                text=node_name, full_text=full_text, 
-                function_id=function_id, 
-                function_name=function_name,
-                features=features
-            ))
-        else:
-            node_index = node_indices['var']
-            node_indices['var'] += 1
+            region_node.attrs[dct] = 1
 
-            var_type = int(node_metadata['type'])
-            bitwidth = int(node_metadata['bitwidth'])
-            type_encoding = TYPE_ENCODING.get(var_type, [0] * TYPE_ENCODING_SIZE)
+            if dct == "pipeline" and region_node.is_loop:
+                # Pipeline pragma in a loop implies the complete
+                # unrolling of all its subloops (if any)
+                unroll_pipelined_subloops(region_node)
 
-            nodes['var'].append(Node(
-                node_index, 'var', 
-                programl_id=programl_id,
-                text=node_name, full_text=full_text, 
-                function_id=function_id, 
-                function_name=function_name,
-                features={'type': type_encoding, 'bitwidth': bitwidth}
-            ))
+            elif dct == "unroll" and region_node.attrs.get("pipelined_parent", 0) == 0:
+                unroll_factor = int(args.get("factor", 0))
+                if unroll_factor <= 0:
+                    unroll_factor = region_node.attrs.get("max_trip_count", 1)
+                region_node.attrs["unroll_factor"] = unroll_factor
 
-    nodes = defaultdict(list)
-    node_indices = defaultdict(int)
-    hrchy_edges = {
-        ('region', 'hrchy', 'region'): [], 
-        ('region', 'hrchy', 'instr'): []
+    if vitis_log_path:
+        auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
+        for dct, dct_info_set in auto_dcts.items():
+            for dct_info in dct_info_set:
+                # if dct == "array_partition":
+                #     array_name = dct_info
+                #     array_node = None
+                #     for nt in ["port", "instr"]:
+                #         for node in kernel_info.nodes.get(nt, []):
+                #             if (node.name == array_name
+                #                 and node.attrs.get("array_partition", 0) == 0):
+                #                 array_node = node
+                #                 break
+                #         if array_node is not None:
+                #             break
+                #     if array_node is None:
+                #         print(f"Warning: Variable '{array_name}' not found in nodes.")
+                #         continue
+
+                #     array_node.attrs["array_partition"] = 1
+                #     array_node.attrs["partition_factor"] = array_node.total_size
+                #     array_node.attrs["partition_dim"] = [1, 0, 0, 0, 0]
+                #     array_node.attrs["partition_type"] = [1, 0, 0]
+
+                if dct == "loop_flatten":
+                    loop_name, function_name = dct_info
+                    for node in kernel_info.nodes.get('region', []):
+                        if (node.name == loop_name 
+                            and node.function == function_name):
+                            print(f"Applying auto directive: {dct} - {dct_info}")
+                            node.attrs["loop_flatten"] = 1
+                            break
+                    # else:
+                    #     print(f"Warning: Loop '{loop_name}' "
+                    #           f"(function '{function_name}') not found in nodes.")
+
+                elif dct == "inline":
+                    function_name = dct_info
+                    for node in kernel_info.nodes.get('region', []):
+                        if node.name == function_name:
+                            print(f"Applying auto directive: {dct} - {dct_info}")
+                            node.attrs["inline"] = 1
+                            break
+                    # else:
+                    #     print(f"Warning: Function '{function_name}' not found in nodes.")
+
+                elif dct == "pipeline":
+                    loop_name = dct_info
+                    for node in kernel_info.nodes.get('region', []):
+                        if node.name == loop_name:
+                            print(f"Applying auto directive: {dct} - {dct_info}")
+                            node.attrs["pipeline"] = 1
+                            if node.is_loop:
+                                unroll_pipelined_subloops(node)
+                            break
+                    # else:
+                    #     print(f"Warning: Loop '{loop_name}' not found in nodes.")
+
+        forbidden_dcts = extract_forbidden_dcts_from_log(vitis_log_path)
+        for dct, dct_info_set in forbidden_dcts.items():
+            for dct_info in dct_info_set:
+                if dct == "loop_merge":
+                    region_name = dct_info
+                    for node in kernel_info.nodes.get('region', []):
+                        if node.function == region_name:
+                            print(f"Removing forbidden directive: {dct} - {dct_info}")
+                            node.attrs["loop_merge"] = 0
+                            break
+                    # else:
+                    #     print(f"Warning: Loop '{loop_name}' "
+                    #         f"(function '{function_name}') not found in nodes.")
+                        
+                elif dct == "loop_flatten":
+                    loop_name, function_name = dct_info
+                    for node in kernel_info.nodes.get('region', []):
+                        if (node.name == loop_name 
+                            and node.function == function_name):
+                            print(f"Removing forbidden directive: {dct} - {dct_info}")
+                            node.attrs["loop_flatten"] = 0
+                            break
+                    # else:
+                    #     print(f"Warning: Loop '{loop_name}' "
+                    #         f"(function '{function_name}') not found in nodes.")
+
+
+def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):
+    categorical_attrs = {
+        "impl": set(), "opcode": set(), "port_type": set(), 
+        "const_type": set(), "base_type": set()
     }
-    ir_id_index_map = {"instr": {}, "region": {}}
+    encoders = {
+        key: OneHotEncoder(handle_unknown='ignore') 
+        for key in categorical_attrs.keys()
+    }
+    for data in hls_data_dict.values():
+        for node_groups in data.nodes.values():
+            for node in node_groups:
+                for key, value in node.attrs.items():
+                    if key in categorical_attrs:
+                        categorical_attrs[key].add(value)
 
-    for node in programl_nodes:
-        if (text := node['text']) == '[external]':
-            continue
-        full_text = node['features']['full_text'][0]
-        programl_id = int(node['id'])
-        function_id = int(node['function'])
-        node_type = int(node['type'])
+    for key, values in categorical_attrs.items():
+        if values:
+            encoders[key].fit([[v] for v in values])
 
-        if node_type == 0: # Instruction
-            if '!id.' not in full_text:
-                continue
-            ir_instr_id = full_text.split('!id.')[1]
-            if ' ' in ir_instr_id:
-                ir_instr_id = ir_instr_id.split(' ')[0]
-            
-            ir_instr_id = int(ir_instr_id.strip())
-
-            node_metadata = get_instruction_metadata(
-                metadata, function_id, ir_instr_id, full_text
-            )
-            if node_metadata is None:
-                continue
-
-            opcode = int(node_metadata['opcode'])
-            opcode = OP_ENCODING.get(opcode, [0] * OP_ENCODING_SIZE)
-
-            node_index = node_indices['instr']
-            node_indices['instr'] += 1
-            ir_id_index_map['instr'][ir_instr_id] = node_index
-
-            function_name = node_metadata.get('functionName')
-
-            nodes['instr'].append(Node(
-                node_index, 'instr', 
-                programl_id=programl_id, ir_id=ir_instr_id,
-                text=text, full_text=full_text, 
-                function_id=function_id, 
-                function_name=function_name, 
-                features={'opcode': opcode}
-            ))
-
-        elif node_type == 1: # Variable
-            function_name = functions[function_id]
-            node_metadata = get_variable_metadata(metadata, function_name, full_text)
-            if node_metadata is None:
-                continue
-
-            function_name = node_metadata.get('functionName')
-            node_name = node_metadata.get('name')
-            create_variable_node(
-                nodes, node_indices, node_metadata,
-                programl_id, function_id, function_name,
-                node_name, full_text
-            )
-
-        elif node_type == 2: # Constant
-            # Check if internal
-            if '=' in full_text:
-                const_name, const_value = full_text.split('=')
-                if 'internal' in const_value:
-                    const_name = const_name.strip(' @')
-                    function_name, const_name = const_name.split('.')
-                    function_id = functions.index(function_name)
-                    node_metadata = get_internal_constant_metadata(
-                        metadata, function_name, const_name
-                    )
-                    if node_metadata is not None:
-                        create_variable_node(
-                            nodes, node_indices, node_metadata,
-                            programl_id, function_id, function_name,
-                            const_name, full_text
-                        )
-                        continue
-
-            node_index = node_indices['const']
-            node_indices['const'] += 1
-            features = get_const_node_features(text)
-            nodes['const'].append(Node(
-                node_index, 'const', 
-                programl_id=programl_id,
-                text=text, full_text=full_text, 
-                function_id=function_id,
-                features=features
-            ))
-
-    regions = metadata.get('region', [])
-
-    for region in regions:
-        node_index = node_indices['region']
-        node_indices['region'] += 1
-
-        ir_region_id = int(region['id'])
-        ir_id_index_map['region'][ir_region_id] = node_index
-
-        is_loop = int(region['isLoop'])
-        trip_count = int(region['tripCount'])
-
-        features = {
-            'is_loop': is_loop,
-            'trip_count': trip_count,
-            'pipeline': 0,
-            'pipeline_off': 0,
-            'loop_flatten': 0,
-            'loop_flatten_off': 0,
-            'loop_merge': 0,
-            'unroll_factor': 0
-        }
-        name = region.get('name')
-        function_id = int(region.get('functionID', -1))
-        function_name = region.get('functionName')
-
-        nodes['region'].append(Node(
-            node_index, 'region',
-            ir_id=ir_region_id,
-            text=name, full_text=name, 
-            function_id=function_id, 
-            function_name=function_name, 
-            features=features
-        ))
-
-    # Ensure that regions with higher IDs are processed first
-    regions.sort(key=lambda x: int(x['id']), reverse=True)
-    instrs_seen = set()
-
-    for region in regions:
-        ir_region_id = int(region['id'])
-        node_index = ir_id_index_map['region'].get(ir_region_id)
-        if node_index is None:
-            continue
-
-        for sub_region_id in region['subRegions']:
-            sub_region_index = ir_id_index_map['region'].get(sub_region_id)
-            if sub_region_index is None:
-                continue
-            hrchy_edges[('region', 'hrchy', 'region')].append(
-                [node_index, sub_region_index]
-            )
-        for instr_id in region['instructions']:
-            if instr_id in instrs_seen:
-                continue
-            instrs_seen.add(instr_id)
-            instr_index = ir_id_index_map['instr'].get(instr_id)
-            if instr_index is None:
-                continue
-            hrchy_edges[('region', 'hrchy', 'instr')].append(
-                [node_index, instr_index]
-            )
-        
-    return nodes, hrchy_edges
+    return encoders
 
 
-def build_edges(programl_edges, nodes):
-    def find_node(programl_id):
-        for nt in ['instr', 'var', 'const', 'array']:
-            for node in nodes[nt]:
-                if node.programl_id == programl_id:
-                    return node
-        return None
-
-    edge_dict = defaultdict(list)
-
-    for edge in programl_edges:
-        src = find_node(edge['source'])
-        dst = find_node(edge['target'])
-        if src is None or dst is None:
-            continue
-        
-        flow = edge['flow']
-        if flow == 0:
-            flow = 'control'
-        elif flow == 1:
-            flow = 'data'
-        else:
-            flow = 'call'
-
-        edge_dict[(src.type, flow, dst.type)].append(
-            [src.index, dst.index]
-        )
-        
-    return edge_dict
+def one_hot_encode(hls_data: VitisKernelInfo, encoders: Dict[str, OneHotEncoder]):
+    for node_groups in hls_data.nodes.values():
+        for node in node_groups:
+            for key, value in node.attrs.items():
+                if key in encoders:
+                    encoded = encoders[key].transform([[value]]).toarray()
+                    node.attrs[key] = encoded[0].flatten().tolist()
 
 
-def plot_graph(hetero_data, plot_types=['full'], batched=False):
+def save_encoders(encoders: Dict[str, OneHotEncoder], path: str):
+    with open(path, 'wb') as f:
+        pickle.dump(encoders, f)
+
+
+def load_encoders(path: str) -> Dict[str, OneHotEncoder]:
+    with open(path, 'rb') as f:
+        encoders = pickle.load(f)
+    return encoders 
+                    
+
+def plot_data(
+    data: HeteroData,
+    plt_type: str = "full",
+    batched: bool = False
+):
     import networkx as nx
     from torch_geometric.utils import to_networkx
     from matplotlib.lines import Line2D
     from matplotlib.patches import Patch
 
-    node_colors = {
-        "instr": "#2489d0",
-        "var": "#1fbfa2",
-        "const": "#8e6df0",
-        "array": "#c79037",
-        "region": "#c65551"
+    node_color_dict = {
+        "instr": "#419ada",
+        "port": "#1ecf89",
+        "const": "#aa6df0",
+        "block": "#c9a24e",
+        "region": "#d84c4c",
     }
-    edge_colors = {
-        "data": "#0d7ca1",
-        "control": "#08924b",
-        "call": "#9148e4",
-        "hrchy": "#5c5f63"
+    edge_color_dict = {
+        ("const", "data", "instr"): "#5fdde0",
+        ("instr", "data", "instr"): "#00bcd4",
+        ("port", "data", "instr"): "#00a1b3",
+        ("instr", "data", "const"): "#249741",
+        ("port", "data", "const"): "#249741",
+        ("block", "control", "instr"): "#ddb753",
+        ("block", "control", "block"): "#ddb753",
+        ("instr", "mem", "instr"): "#e73939",
+        ("instr", "call", "instr"): "#8040c9",
+        ("region", "hrchy", "region"): "#aab2b9",
+        ("region", "hrchy", "block"): "#aab2b9",
+        ("block", "hrchy", "instr"): "#aab2b9"
     }
-
-    def plot(plot_type):
-        if plot_type == "full":
-            ntypes = NODE_TYPES
-            etypes = [et for et in EDGE_TYPES if et[1] != "self"]
-        elif plot_type == "call":
-            ntypes = ["instr"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "call"]
-        elif plot_type == "control":
-            ntypes = ["instr"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "control"]
-        elif plot_type == "data":
-            ntypes = ["instr", "const", "var", "array"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "data"]
-        elif plot_type == "hrchy":
-            ntypes = ["instr", "region"]
-            etypes = [et for et in EDGE_TYPES if et[1] == "hrchy"]
-        else:
-            raise ValueError(f"Unknown plot_type: {plot_type}")
-
-        data_trans = HeteroData()
-        for nt, x in hetero_data.x_dict.items():
-            if nt not in ntypes:
-                data_trans[nt].x = torch.empty((0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32)
-            else:
-                data_trans[nt].x = x
-
-            data_trans[nt].label = hetero_data[nt].label
-
-        for et, edge_index in hetero_data.edge_index_dict.items():
-            if et not in etypes:
-                data_trans[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-            else:
-                data_trans[et].edge_index = edge_index
-
-        G = to_networkx(data_trans, remove_self_loops=True, node_attrs=['x', 'label'])
-        
-        ncolors, nlabels = [], {}
-        for node, attrs in G.nodes(data=True):
-            nt = attrs.get("type")
-            if nt is None or nt not in ntypes:
-                continue
-            ncolors.append(node_colors[nt])
-            nlabels[node] = attrs["label"]
-
-        ecolors = []
-        for src, dst, attrs in G.edges(data=True):
-            et = attrs.get("type")
-            if et is None or et not in etypes:
-                continue
-            ecolor = edge_colors[et[1]]
-            ecolors.append(ecolor)
-            G.edges[src, dst]["color"] = ecolor
-
-        node_legend = [Patch(color=color, label=nt) for nt, color in node_colors.items()]
-        edge_legend = [
-            Line2D([0], [0], color=color, lw=2, label=et)
-            for et, color in edge_colors.items()
-        ]
-
-        if plot_type in ["full", "data", "hrchy"] and not batched:
-            pos = nx.kamada_kawai_layout(G, scale=2)
-        else:
-            pos = nx.spring_layout(G, scale=2)
-
-        plt.figure(figsize=(12, 8))
-        nx.draw_networkx(
-            G, pos, labels=nlabels, node_color=ncolors, 
-            edge_color=ecolors, style="dashed", node_size=150, 
-            font_size=8, arrowsize=9, width=.8, alpha=.8
-        )
-        plt.legend(
-            handles=node_legend + edge_legend, loc='lower center', 
-            bbox_to_anchor=(0.5, -0.1), ncol=3, fontsize=8, frameon=False
-        )
-        plt.show()
-
-    if not isinstance(plot_types, list):
-        plot_types = [plot_types]
-
-    for plot_type in plot_types:
-        plot(plot_type)
-
-
-if __name__ == '__main__':
-    import subprocess
-    from pathlib import Path
-    from os import environ
-    from sys import exit, argv
-
-    try:
-        DSE_LIB = environ['DSE_LIB']
-        OPT = environ['OPT']
-        CLANG = environ['CLANG']
-        LLVM_LINK = environ['LLVM_LINK']
-    except KeyError as error:
-        print(f"Error: environment variable {error.args[0]} not defined.")
-        exit(1)
-
-    def run_opt(src_path: Path, dst_path: Path, opt_args: Path, output_ll=True):
-        try:
-            if output_ll:
-                opt_args += " -S"
-            subprocess.check_output(
-                f"{OPT} -load {DSE_LIB} {opt_args} < {src_path.as_posix()} > {dst_path.as_posix()};", 
-                shell=True, stderr=subprocess.STDOUT
-            )
-        except subprocess.CalledProcessError as e:
-            print(f"Error processing {src_path}: {e}")
-            dst_path.unlink(missing_ok=True)
-            raise e
-
-    def process_ir(src_path: Path, dst_path: Path, metadata_path: Path):
-        tmp1 = src_path.parent / "tmp1.ll"
-        tmp2 = src_path.parent / "tmp2.ll"
-        default_clean = "-lowerswitch -lowerinvoke -indirectbr-expand" 
-        default_opt = "-mem2reg -indvars -loop-simplify -scalar-evolution"
-        try:
-            run_opt(src_path, tmp1, default_clean)
-            run_opt(tmp1, tmp2, "-clear-intrinsics")
-            run_opt(tmp2, tmp1, default_opt)
-            run_opt(tmp1, tmp2, "-assign-ids")
-            subprocess.check_output(
-                f"{OPT} -load {DSE_LIB} -extract-md -out {metadata_path.as_posix()} < {tmp2.as_posix()};", 
-                shell=True, stderr=subprocess.STDOUT
-            )
-            run_opt(tmp2, dst_path, "-debugify -strip-debug")
-        except subprocess.CalledProcessError as e:
-            print(f"Error processing {src_path}: {e}")
-            tmp1.unlink(missing_ok=True)
-            tmp2.unlink(missing_ok=True)
-            dst_path.unlink(missing_ok=True)
-            metadata_path.unlink(missing_ok=True)
-            raise e
-        finally:
-            tmp1.unlink(missing_ok=True)
-            tmp2.unlink(missing_ok=True)
-
-    ir_path = Path(argv[1])
-    transformed_ir_path = ir_path.parent / "transformed.ll"
-    metadata_path = ir_path.parent / "metadata.json"
-
-    try:
-        process_ir(ir_path, transformed_ir_path, metadata_path)
-    except Exception as e:
-        print(f"Error processing {ir_path}: {e}")
-        exit(1)
-
-    if len(argv) > 2:
-        directive_file_path = Path(argv[2])
-        if not directive_file_path.exists():
-            print(f"Error: Directive file {directive_file_path} does not exist.")
-            exit(1)
+    
+    if plt_type == "full":
+        edge_types = node_color_dict.keys()
+        node_types = edge_color_dict.keys()
     else:
-        directive_file_path = None
+        edge_types = [
+            et for et in edge_color_dict.keys() 
+            if et[1] == plt_type
+        ]
+        node_types = set()
+        for et in edge_types:
+            node_types.add(et[0])
+            node_types.add(et[2])
+        node_types = list(node_types)
 
-    hetero_data = build_graph(
-        transformed_ir_path, metadata_path, 
-        directive_file_path=directive_file_path,
-        output_path=ir_path.parent / "graph.pt"
-    )
-    print(hetero_data)
+    filtered_data = HeteroData()
+    for nt, x in data.x_dict.items():
+        if nt not in node_types:
+            x = torch.empty((0, NODE_FEATURE_DIMS[nt]), 
+                            dtype=torch.float32)
+        filtered_data[nt].x = x
+        filtered_data[nt].label = data[nt].label
 
-    plot_graph(
-        hetero_data, 
-        plot_types=['full', 'data', 'control', 'call', 'hrchy']
+    for et, edge_index in data.edge_index_dict.items():
+        if et not in edge_types:
+            edge_index = torch.empty((2, 0), dtype=torch.long)
+        filtered_data[et].edge_index = edge_index
+
+    G = to_networkx(
+        data=filtered_data, 
+        node_attrs=['x', 'label'], 
+        remove_self_loops=True
     )
+    
+    ncolors, nlabels = [], {}
+    for node, attrs in G.nodes(data=True):
+        nt = attrs.get("type")
+        if nt is None:
+            continue
+        ncolor = node_color_dict.get(nt)
+        if ncolor is None:
+            print(f"Warning: No color defined for node type '{nt}'")
+            ncolor = "#FFFFFF"
+        ncolors.append(ncolor)
+        nlabels[node] = attrs["label"]
+
+    ecolors = []
+    for src, dst, attrs in G.edges(data=True):
+        et = attrs.get("type")
+        if et is None:
+            continue
+        ecolor = edge_color_dict.get(et)
+        if ecolor is None:
+            print(f"Warning: No color defined for edge type '{et}'")
+            ecolor = "#FFFFFF"
+        ecolors.append(ecolor)
+        G.edges[src, dst]["color"] = ecolor
+
+    node_legend = [
+        Patch(color=color, label=nt) 
+        for nt, color in node_color_dict.items() 
+        if nt in node_types
+    ]
+    edge_legend = [
+        Line2D([0], [0], color=color, lw=2, label=f"{et[1]}: {et[0]}→{et[2]}")
+        for et, color in edge_color_dict.items() 
+        if et in edge_types
+    ]
+
+    if plt_type in ["full", "data", "hrchy"] and not batched:
+        # Non-batched large graphs
+        pos = nx.kamada_kawai_layout(G, scale=2)
+    elif plt_type in ["mem", "call", "alloca"]:
+        # Small graphs (batched or not)
+        pos = nx.planar_layout(G, scale=2)
+    else:
+        # Batched large graphs
+        pos = nx.spring_layout(G, scale=2)
+
+    plt.figure(figsize=(12, 8))
+    nx.draw_networkx(
+        G, pos, labels=nlabels, node_color=ncolors, 
+        edge_color=ecolors, style="dashed", node_size=150, 
+        font_size=8, arrowsize=9, width=.8, alpha=.8
+    )
+    plt.legend(
+        handles=node_legend + edge_legend, loc='lower center', 
+        bbox_to_anchor=(0.5, -0.1), ncol=3, fontsize=8, frameon=False
+    )
+    plt.show()
+    
+
+if __name__ == "__main__":
+    from argparse import ArgumentParser
+
+    parser = ArgumentParser()
+    parser.add_argument("solution_dir", nargs=1, type=str)
+    parser.add_argument("-t", "--top-fn")
+    parser.add_argument("-d", "--directive-config-dir")
+    parser.add_argument("-k", "--kernel", default="")
+    parser.add_argument("-p", "--plot-type", default="full")
+    parser.add_argument("-f", "--filtered", action="store_true")
+    args = parser.parse_args()
+
+    sol_dir = args.solution_dir[0]
+    top_fn_name = args.top_fn
+    dct_config_dir = args.directive_config_dir
+    kernel_name = args.kernel
+    plt_type = args.plot_type
+    filtered = args.filtered
+
+    sol_info_list = [(sol_dir, kernel_name, top_fn_name)]
+
+    kernel_info = extract_base_kernel_info(
+        solution_info_list=sol_info_list, 
+        hls_dct_config_dir=dct_config_dir,
+        filtered=filtered
+    )[kernel_name]
+
+    data = to_hetero_data(kernel_info)
+
+    plot_data(data, plt_type, batched=False)
+
+    

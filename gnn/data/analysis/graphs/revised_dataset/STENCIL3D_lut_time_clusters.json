@@ -1,0 +1,2508 @@
+{
+  "clusters": [
+    {
+      "id": 0,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.02857142857142857
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.05714285714285714
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.02857142857142857
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.02857142857142857
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.02857142857142857
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.04285714285714286
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.02857142857142857
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.04285714285714286
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.02857142857142857
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.014285714285714285
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.05714285714285714
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.04285714285714286
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.04285714285714286
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.04285714285714286
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.04285714285714286
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.02857142857142857
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.04285714285714286
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.02857142857142857
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.04285714285714286
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.014285714285714285
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.02857142857142857
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.04285714285714286
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.014285714285714285
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.02857142857142857
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.04285714285714286
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.2698412698412698
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.19047619047619047
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.14285714285714285
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.15873015873015872
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.031746031746031744
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.1746031746031746
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.3492063492063492
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.15873015873015872
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.047619047619047616
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.2698412698412698
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.2857142857142857
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.3492063492063492
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.6349206349206349
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.3492063492063492
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.09523809523809523
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.20634920634920634
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.2857142857142857
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.20634920634920634
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.06349206349206349
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.5873015873015873
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.25396825396825395
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.19047619047619047
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.14285714285714285
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.2698412698412698
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.5238095238095238
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.4126984126984127
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.19047619047619047
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.5396825396825397
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.09523809523809523
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.38095238095238093
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.015873015873015872
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.5873015873015873
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.6349206349206349
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.6666666666666666
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.6349206349206349
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.30158730158730157
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.5714285714285714
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.031746031746031744
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.6666666666666666
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.3333333333333333
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.6190476190476191
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.14285714285714285
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.14285714285714285
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.09523809523809523
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.14285714285714285
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.06349206349206349
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.19047619047619047
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.06349206349206349
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.09523809523809523
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.07936507936507936
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.15873015873015872
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.09523809523809523
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.07936507936507936
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.09523809523809523
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.1746031746031746
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.24193548387096775
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.1935483870967742
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.25806451612903225
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.11290322580645161
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.08064516129032258
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.0967741935483871
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.4032258064516129
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.14516129032258066
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.14516129032258066
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.3548387096774194
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.1774193548387097
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.11290322580645161
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.14516129032258066
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.4032258064516129
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.11290322580645161
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.24193548387096775
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.25806451612903225
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.22580645161290322
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.25806451612903225
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.5161290322580645
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.20967741935483872
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.532258064516129
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.3064516129032258
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.22580645161290322
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.0967741935483871
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.16129032258064516
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.0967741935483871
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.25806451612903225
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.3548387096774194
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.22580645161290322
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.03225806451612903
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.08064516129032258
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.04838709677419355
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.8387096774193549
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.03225806451612903
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.12903225806451613
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.16129032258064516
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.5645161290322581
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.6451612903225806
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.3548387096774194
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.4838709677419355
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.5967741935483871
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.04838709677419355
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.08064516129032258
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.6935483870967742
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.11290322580645161
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.0967741935483871
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.0967741935483871
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.11290322580645161
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.11290322580645161
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.14516129032258066
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.16129032258064516
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.11290322580645161
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.08064516129032258
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.1935483870967742
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.08064516129032258
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.1774193548387097
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.04838709677419355
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.12903225806451613
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.08064516129032258
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.08064516129032258
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.04838709677419355
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.20253164556962025
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.17721518987341772
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.21518987341772153
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.24050632911392406
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.5949367088607594
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.3037974683544304
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.22784810126582278
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.20253164556962025
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.08860759493670886
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.16455696202531644
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.0
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.6455696202531646
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.189873417721519
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.17721518987341772
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.17721518987341772
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.34177215189873417
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.17721518987341772
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.3291139240506329
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.34177215189873417
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.06329113924050633
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.5189873417721519
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.1518987341772152
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.12658227848101267
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.3291139240506329
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.20253164556962025
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.24050632911392406
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.3670886075949367
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.12658227848101267
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.620253164556962
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.17721518987341772
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.012658227848101266
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.45569620253164556
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.02531645569620253
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.08860759493670886
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.3037974683544304
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.4430379746835443
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.45569620253164556
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.4810126582278481
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.5063291139240507
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.4810126582278481
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.5949367088607594
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.45569620253164556
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.27848101265822783
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.10126582278481013
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.10126582278481013
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.11392405063291139
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.1518987341772152
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.05063291139240506
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.11392405063291139
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.11392405063291139
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.12658227848101267
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.0759493670886076
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.13924050632911392
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.10126582278481013
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.08860759493670886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.08860759493670886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.0759493670886076
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.12658227848101267
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.12658227848101267
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.12359550561797752
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.16853932584269662
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.24719101123595505
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.16853932584269662
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.07865168539325842
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.3146067415730337
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.30337078651685395
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.15730337078651685
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.1797752808988764
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.2247191011235955
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.19101123595505617
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.20224719101123595
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.38202247191011235
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.12359550561797752
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.1797752808988764
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.24719101123595505
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.21348314606741572
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.1348314606741573
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.10112359550561797
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.07865168539325842
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.0449438202247191
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.39325842696629215
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.42696629213483145
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.23595505617977527
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.1797752808988764
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.16853932584269662
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.20224719101123595
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.0449438202247191
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.06741573033707865
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.4943820224719101
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.07865168539325842
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.15730337078651685
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.0898876404494382
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.24719101123595505
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.15730337078651685
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.033707865168539325
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.011235955056179775
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.19101123595505617
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.5168539325842697
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.5280898876404494
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.7640449438202247
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.6853932584269663
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.48314606741573035
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.10112359550561797
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.24719101123595505
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.033707865168539325
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.0898876404494382
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.06741573033707865
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.0898876404494382
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.10112359550561797
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.12359550561797752
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.12359550561797752
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.14606741573033707
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.15730337078651685
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.12359550561797752
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.11235955056179775
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.0898876404494382
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.0898876404494382
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.0898876404494382
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.11235955056179775
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.06741573033707865
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.1797752808988764
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.2962962962962963
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.35185185185185186
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.5370370370370371
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.37037037037037035
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.12962962962962962
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.18518518518518517
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.42592592592592593
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.35185185185185186
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.05555555555555555
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.25925925925925924
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.2962962962962963
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.12962962962962962
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.05555555555555555
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.37037037037037035
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.6296296296296297
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.18518518518518517
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.2037037037037037
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.2037037037037037
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.18518518518518517
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.7777777777777778
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.6481481481481481
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.037037037037037035
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.4444444444444444
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.07407407407407407
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.037037037037037035
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.6851851851851852
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.46296296296296297
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.4444444444444444
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.6666666666666666
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.5370370370370371
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.42592592592592593
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.5
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.2962962962962963
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.6481481481481481
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.09259259259259259
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.018518518518518517
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.18518518518518517
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.09259259259259259
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.037037037037037035
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.18518518518518517
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.12962962962962962
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.14814814814814814
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.17543859649122806
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.3508771929824561
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.21052631578947367
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.14035087719298245
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.05263157894736842
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.10526315789473684
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.5263157894736842
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.17543859649122806
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.21052631578947367
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.15789473684210525
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.24561403508771928
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.03508771929824561
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.05263157894736842
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.47368421052631576
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.19298245614035087
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.17543859649122806
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.24561403508771928
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.14035087719298245
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.15789473684210525
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.03508771929824561
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.15789473684210525
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.43859649122807015
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.43859649122807015
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.22807017543859648
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.07017543859649122
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.15789473684210525
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.3508771929824561
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.42105263157894735
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.43859649122807015
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.14035087719298245
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.017543859649122806
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.15789473684210525
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.03508771929824561
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.03508771929824561
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.05263157894736842
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.49122807017543857
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.45614035087719296
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.43859649122807015
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.543859649122807
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.5789473684210527
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.45614035087719296
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.017543859649122806
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.17543859649122806
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.49122807017543857
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.08771929824561403
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.15789473684210525
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.08771929824561403
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.07017543859649122
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.15789473684210525
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.05263157894736842
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.14035087719298245
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.15789473684210525
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.17543859649122806
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.12280701754385964
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.12280701754385964
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.05263157894736842
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.14035087719298245
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.10526315789473684
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.12280701754385964
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.08771929824561403
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "groups": [
+        {
+          "unroll height_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_col\"": 0.1388888888888889
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_col\"": 0.1527777777777778
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/height_bound_col\"": 0.1527777777777778
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_col\"": 0.25
+            }
+          ]
+        },
+        {
+          "unroll height_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/height_bound_row\"": 0.5694444444444444
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/height_bound_row\"": 0.3194444444444444
+            },
+            {
+              "set_directive_unroll \"stencil3d/height_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll col_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_height\"": 0.1388888888888889
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_height\"": 0.18055555555555555
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/col_bound_height\"": 0.19444444444444445
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_height\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "unroll col_bound_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/col_bound_row\"": 0.5972222222222222
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/col_bound_row\"": 0.3611111111111111
+            },
+            {
+              "set_directive_unroll \"stencil3d/col_bound_row\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll row_bound_height": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_height\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_height\"": 0.20833333333333334
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_height\"": 0.20833333333333334
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_height\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "unroll row_bound_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/row_bound_col\"": 0.2638888888888889
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/row_bound_col\"": 0.4166666666666667
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/row_bound_col\"": 0.1388888888888889
+            },
+            {
+              "set_directive_unroll \"stencil3d/row_bound_col\"": 0.041666666666666664
+            }
+          ]
+        },
+        {
+          "unroll loop_height": [
+            {
+              "set_directive_unroll \"stencil3d/loop_height\"": 0.5277777777777778
+            }
+          ]
+        },
+        {
+          "unroll loop_col": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_col\"": 0.1388888888888889
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_col\"": 0.2361111111111111
+            },
+            {
+              "set_directive_unroll -factor 8 \"stencil3d/loop_col\"": 0.20833333333333334
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_col\"": 0.125
+            }
+          ]
+        },
+        {
+          "unroll loop_row": [
+            {
+              "set_directive_unroll -factor 2 \"stencil3d/loop_row\"": 0.05555555555555555
+            },
+            {
+              "set_directive_unroll -factor 4 \"stencil3d/loop_row\"": 0.1527777777777778
+            },
+            {
+              "set_directive_unroll \"stencil3d/loop_row\"": 0.375
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_col\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline height_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/height_bound_row\"": 0.7638888888888888
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_height\"": 0.013888888888888888
+            }
+          ]
+        },
+        {
+          "pipeline col_bound_row": [
+            {
+              "set_directive_pipeline \"stencil3d/col_bound_row\"": 0.5416666666666666
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_height": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_height\"": 0.041666666666666664
+            }
+          ]
+        },
+        {
+          "pipeline row_bound_col": [
+            {
+              "set_directive_pipeline \"stencil3d/row_bound_col\"": 0.4444444444444444
+            }
+          ]
+        },
+        {
+          "pipeline loop_height": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_height\"": 0.027777777777777776
+            }
+          ]
+        },
+        {
+          "pipeline loop_col": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_col\"": 0.1388888888888889
+            }
+          ]
+        },
+        {
+          "pipeline loop_row": [
+            {
+              "set_directive_pipeline \"stencil3d/loop_row\"": 0.06944444444444445
+            }
+          ]
+        },
+        {
+          "loop_merge height_bound_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/height_bound_col\"": 0.5277777777777778
+            }
+          ]
+        },
+        {
+          "loop_merge col_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/col_bound_height\"": 0.4583333333333333
+            }
+          ]
+        },
+        {
+          "loop_merge row_bound_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/row_bound_height\"": 0.5694444444444444
+            }
+          ]
+        },
+        {
+          "loop_merge loop_height": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_height\"": 0.4444444444444444
+            }
+          ]
+        },
+        {
+          "loop_merge loop_col": [
+            {
+              "set_directive_loop_merge \"stencil3d/loop_col\"": 0.6666666666666666
+            }
+          ]
+        },
+        {
+          "loop_flatten height_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/height_bound_row\"": 0.4166666666666667
+            }
+          ]
+        },
+        {
+          "loop_flatten col_bound_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/col_bound_row\"": 0.5416666666666666
+            }
+          ]
+        },
+        {
+          "loop_flatten row_bound_col": [
+            {
+              "set_directive_loop_flatten \"stencil3d/row_bound_col\"": 0.375
+            }
+          ]
+        },
+        {
+          "loop_flatten loop_row": [
+            {
+              "set_directive_loop_flatten \"stencil3d/loop_row\"": 0.041666666666666664
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d orig": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" orig": 0.18055555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" orig": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" orig": 0.09722222222222222
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" orig": 0.09722222222222222
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" orig": 0.06944444444444445
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" orig": 0.09722222222222222
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" orig": 0.06944444444444445
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" orig": 0.09722222222222222
+            }
+          ]
+        },
+        {
+          "array_partition stencil3d sol": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 1 \"stencil3d\" sol": 0.09722222222222222
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 1 \"stencil3d\" sol": 0.1527777777777778
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"stencil3d\" sol": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"stencil3d\" sol": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 1 \"stencil3d\" sol": 0.125
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"stencil3d\" sol": 0.09722222222222222
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"stencil3d\" sol": 0.09722222222222222
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"stencil3d\" sol": 0.041666666666666664
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

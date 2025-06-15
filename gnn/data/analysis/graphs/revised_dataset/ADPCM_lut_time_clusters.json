@@ -1,0 +1,1162 @@
+{
+  "Cluster 0": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.35
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.65
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.85
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.35
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.55
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.6
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.8
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.45
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.7
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.65
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.55
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.75
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.3
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.4
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.2,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.15,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.25
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.1,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.45,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.05
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.3,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.45
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.35,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.25,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.15
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.6
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.45,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.0
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.4
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.35
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.3,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.45
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.6,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.15,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.1
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.1,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.4
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.55,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.2
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.15,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.35,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.3,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.05
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.25,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.15
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.5
+    }
+  },
+  "Cluster 1": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.667
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.593
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.0
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.667
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.333
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.556
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.259
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.481
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.704
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.185
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.259
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.333
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.704
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.444
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.259,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.148,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.074
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.259,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.37
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.593,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.111,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.0
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.074,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.148,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.259
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.444,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.148
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.667
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.296,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.074,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.296
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.296,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.296,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.111
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.481,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.185
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.111,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.185,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.296
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.222,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.296
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.111,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.407
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.111,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.111,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.148,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.148
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.222,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.259,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.074,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.111,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.185
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.556
+    }
+  },
+  "Cluster 2": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.718
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.564
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.385
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.615
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.462
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.615
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.641
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.59
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.769
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.487
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.462
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.333
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.641
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.564
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.282,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.026,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.205
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.282,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.051,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.205
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.128,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.128,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.103
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.128,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.205,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.282
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.308,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.205
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.179,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.41
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.231,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.128,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.308
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.154,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.231,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.154
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.179,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.359
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.128,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.231,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.179
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.333,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.256
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.179,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.282
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.154,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.154,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.051,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.231,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.154
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.205,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.154,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.026,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.205,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.128
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.615
+    }
+  },
+  "Cluster 3": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.364
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.5
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.659
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.614
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.523
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.523
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.545
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.432
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.432
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.523
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.591
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.409
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.409
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.5
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.136,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.273,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.136
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.159,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.273,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.136
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.091,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.182,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.205
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.227,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.273,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.091
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.114,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.273
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.318,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.136
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.227,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.159,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.182
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.159,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.227,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.318
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.159,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.409
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.318,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.136,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.114
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.273,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.159
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.295,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.25
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.068,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.091,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.25,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.091,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.114
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.114,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.091,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.205,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.045,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.182
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.318
+    }
+  },
+  "Cluster 4": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.3
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.3
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.4
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.5
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.5
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.25
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.1
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.5
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.4
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.3
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.25
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.3
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.45
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.5
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.1,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.2,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.25
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.1,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.05,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.3
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.3,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.1,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.1
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.3,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.3,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.1
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.3
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.25,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.1
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.3,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.05
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.15
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.05,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.45
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.2,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.1,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.2
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.35,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.15
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.2,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.15
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.3,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.1,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.1,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.2
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.15,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.15
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.3
+    }
+  },
+  "Cluster 5": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.7
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.7
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.5
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.8
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.8
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.9
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.8
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.7
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.8
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.6
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.8
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.8
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.6
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.8
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.4,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.2,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.1
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.4,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.2
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.3,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.3
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.3,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.4,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.1
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.4
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.1,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.2
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.3,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.3,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.0
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.5,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.2,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.1
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.4
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.3,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.3
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.3,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.2
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.4,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.1
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.1,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.2,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.3,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.2
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.3,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.1,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.0
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.7
+    }
+  },
+  "Cluster 6": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.5
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.5
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 1.0
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.0
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.0
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.5
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 1.0
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.0
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.0
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.5
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 1.0
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 1.0
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.0
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.0
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.0,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.5,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.0
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.0,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 1.0,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.0
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.0,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.5
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.0,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.0
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 1.0
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.5,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.0
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.5,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.0
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.0,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.5,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.0
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.0,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.5
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.5,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.0,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.0
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 1.0,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.0
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.0,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 1.0,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.0
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.5,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.0,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.5
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.0,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.5,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.5
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.0
+    }
+  },
+  "Cluster 7": {
+    "pipeline encode_label0": {
+      "set_directive_pipeline \"encode/encode_label0\"": 0.0
+    },
+    "pipeline encode_label1": {
+      "set_directive_pipeline \"encode/encode_label1\"": 0.012
+    },
+    "pipeline decode_label2": {
+      "set_directive_pipeline \"decode/decode_label2\"": 0.012
+    },
+    "pipeline decode_label3": {
+      "set_directive_pipeline \"decode/decode_label3\"": 0.012
+    },
+    "pipeline reset_label4": {
+      "set_directive_pipeline \"reset/reset_label4\"": 0.012
+    },
+    "pipeline reset_label5": {
+      "set_directive_pipeline \"reset/reset_label5\"": 0.012
+    },
+    "pipeline reset_label6": {
+      "set_directive_pipeline \"reset/reset_label6\"": 0.012
+    },
+    "pipeline reset_label7": {
+      "set_directive_pipeline \"reset/reset_label7\"": 0.012
+    },
+    "pipeline filtez_label8": {
+      "set_directive_pipeline \"filtez/filtez_label8\"": 0.012
+    },
+    "pipeline quantl_label9": {
+      "set_directive_pipeline \"quantl/quantl_label9\"": 0.012
+    },
+    "pipeline upzero_label10": {
+      "set_directive_pipeline \"upzero/upzero_label10\"": 0.012
+    },
+    "pipeline upzero_label11": {
+      "set_directive_pipeline \"upzero/upzero_label11\"": 0.012
+    },
+    "pipeline adpcm_main_label12": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label12\"": 0.012
+    },
+    "pipeline adpcm_main_label13": {
+      "set_directive_pipeline \"adpcm_main/adpcm_main_label13\"": 0.012
+    },
+    "unroll encode_label0": {
+      "set_directive_unroll \"encode/encode_label0\"": 0.012,
+      "set_directive_unroll -factor 2 \"encode/encode_label0\"": 0.012,
+      "set_directive_unroll -factor 4 \"encode/encode_label0\"": 0.012,
+      "set_directive_unroll -factor 8 \"encode/encode_label0\"": 0.012
+    },
+    "unroll encode_label1": {
+      "set_directive_unroll \"encode/encode_label1\"": 0.012,
+      "set_directive_unroll -factor 2 \"encode/encode_label1\"": 0.012,
+      "set_directive_unroll -factor 4 \"encode/encode_label1\"": 0.012,
+      "set_directive_unroll -factor 8 \"encode/encode_label1\"": 0.012
+    },
+    "unroll decode_label2": {
+      "set_directive_unroll \"decode/decode_label2\"": 0.012,
+      "set_directive_unroll -factor 2 \"decode/decode_label2\"": 0.012,
+      "set_directive_unroll -factor 4 \"decode/decode_label2\"": 0.012,
+      "set_directive_unroll -factor 8 \"decode/decode_label2\"": 0.012
+    },
+    "unroll decode_label3": {
+      "set_directive_unroll \"decode/decode_label3\"": 0.012,
+      "set_directive_unroll -factor 2 \"decode/decode_label3\"": 0.012,
+      "set_directive_unroll -factor 4 \"decode/decode_label3\"": 0.012,
+      "set_directive_unroll -factor 8 \"decode/decode_label3\"": 0.012
+    },
+    "unroll reset_label4": {
+      "set_directive_unroll \"reset/reset_label4\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label4\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label4\"": 0.012
+    },
+    "unroll reset_label5": {
+      "set_directive_unroll \"reset/reset_label5\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label5\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label5\"": 0.012
+    },
+    "unroll reset_label6": {
+      "set_directive_unroll \"reset/reset_label6\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label6\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label6\"": 0.012,
+      "set_directive_unroll -factor 8 \"reset/reset_label6\"": 0.012
+    },
+    "unroll reset_label7": {
+      "set_directive_unroll \"reset/reset_label7\"": 0.012,
+      "set_directive_unroll -factor 2 \"reset/reset_label7\"": 0.012,
+      "set_directive_unroll -factor 4 \"reset/reset_label7\"": 0.012,
+      "set_directive_unroll -factor 8 \"reset/reset_label7\"": 0.012
+    },
+    "unroll filtez_label8": {
+      "set_directive_unroll \"filtez/filtez_label8\"": 0.012,
+      "set_directive_unroll -factor 2 \"filtez/filtez_label8\"": 0.012,
+      "set_directive_unroll -factor 4 \"filtez/filtez_label8\"": 0.012
+    },
+    "unroll quantl_label9": {
+      "set_directive_unroll \"quantl/quantl_label9\"": 0.012,
+      "set_directive_unroll -factor 2 \"quantl/quantl_label9\"": 0.012,
+      "set_directive_unroll -factor 4 \"quantl/quantl_label9\"": 0.012,
+      "set_directive_unroll -factor 8 \"quantl/quantl_label9\"": 0.012
+    },
+    "unroll upzero_label10": {
+      "set_directive_unroll \"upzero/upzero_label10\"": 0.012,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label10\"": 0.012,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label10\"": 0.012
+    },
+    "unroll upzero_label11": {
+      "set_directive_unroll \"upzero/upzero_label11\"": 0.012,
+      "set_directive_unroll -factor 2 \"upzero/upzero_label11\"": 0.012,
+      "set_directive_unroll -factor 4 \"upzero/upzero_label11\"": 0.012
+    },
+    "unroll adpcm_main_label12": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label12\"": 0.012,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label12\"": 0.012
+    },
+    "unroll adpcm_main_label13": {
+      "set_directive_unroll \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 2 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 4 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 8 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 16 \"adpcm_main/adpcm_main_label13\"": 0.012,
+      "set_directive_unroll -factor 32 \"adpcm_main/adpcm_main_label13\"": 0.012
+    },
+    "array_partition adpcm_main encoded": {
+      "set_directive_array_partition -type complete -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type block -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 1 \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 1  \"adpcm_main\" encoded": 0.0,
+      "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"adpcm_main\" encoded": 0.0
+    },
+    "loop_merge reset": {
+      "set_directive_loop_merge \"reset\"": 0.012
+    }
+  }
+}

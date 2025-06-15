@@ -1,0 +1,2148 @@
+{
+  "clusters": [
+    {
+      "id": 0,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.5
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.7307692307692307
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.4230769230769231
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.38461538461538464
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.2692307692307692
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.07692307692307693
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.8076923076923077
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.46153846153846156
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.2692307692307692
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.15384615384615385
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.19230769230769232
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.2692307692307692
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.19230769230769232
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.038461538461538464
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.11538461538461539
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.46153846153846156
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.46153846153846156
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.038461538461538464
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.15384615384615385
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.8461538461538461
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.23076923076923078
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.5
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.4230769230769231
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.11538461538461539
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.6538461538461539
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.8076923076923077
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.2692307692307692
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.19230769230769232
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.07692307692307693
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.11538461538461539
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.07692307692307693
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.07692307692307693
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.038461538461538464
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.038461538461538464
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.038461538461538464
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.038461538461538464
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.07692307692307693
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.07692307692307693
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.07692307692307693
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.038461538461538464
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.07692307692307693
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.5769230769230769
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.2777777777777778
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.5
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.5555555555555556
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.1111111111111111
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.3333333333333333
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.3888888888888889
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.2777777777777778
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.16666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.0
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.3333333333333333
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.3888888888888889
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.05555555555555555
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.05555555555555555
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.2222222222222222
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.36363636363636365
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.24242424242424243
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.030303030303030304
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.09090909090909091
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.21212121212121213
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.24242424242424243
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.7878787878787878
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.24242424242424243
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.15151515151515152
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.06060606060606061
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.42424242424242425
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.06060606060606061
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.12121212121212122
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.030303030303030304
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.2727272727272727
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.09090909090909091
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.24242424242424243
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.24242424242424243
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.24242424242424243
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.3939393939393939
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.15151515151515152
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.09090909090909091
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.15151515151515152
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.45454545454545453
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.06060606060606061
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.09090909090909091
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.48484848484848486
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.3939393939393939
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.12121212121212122
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.15151515151515152
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.30303030303030304
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.09090909090909091
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.06060606060606061
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.06060606060606061
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.18181818181818182
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.030303030303030304
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.09090909090909091
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.06060606060606061
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.09090909090909091
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.030303030303030304
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.06060606060606061
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.06060606060606061
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.12121212121212122
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.42424242424242425
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.64
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.4
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.24
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.04
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.16
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.24
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.84
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.16
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.28
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.16
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.88
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.24
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.12
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.32
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.56
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.04
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.28
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.36
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.24
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.52
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.16
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.0
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.72
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.2
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.48
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.52
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.28
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.28
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.28
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.08
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.08
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.08
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.12
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.08
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.08
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.04
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.12
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.04
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.04
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.08
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.76
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.43478260869565216
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.4782608695652174
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.34782608695652173
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.2608695652173913
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.43478260869565216
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.2608695652173913
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.34782608695652173
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.391304347826087
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.17391304347826086
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.6086956521739131
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.08695652173913043
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.7391304347826086
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.17391304347826086
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.08695652173913043
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.2608695652173913
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.34782608695652173
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.2608695652173913
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.17391304347826086
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.6521739130434783
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.2608695652173913
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.08695652173913043
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.5217391304347826
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.6296296296296297
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.4074074074074074
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.8518518518518519
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.2962962962962963
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.1111111111111111
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.25925925925925924
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.18518518518518517
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.7777777777777778
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.037037037037037035
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.37037037037037035
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.18518518518518517
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.7777777777777778
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.37037037037037035
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.18518518518518517
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.3333333333333333
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.2962962962962963
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.18518518518518517
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.8148148148148148
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.4444444444444444
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.037037037037037035
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.5185185185185185
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.48148148148148145
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.07407407407407407
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.4074074074074074
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.016666666666666666
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.016666666666666666
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.016666666666666666
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "groups": [
+        {
+          "pipeline local_memcpy_label3": [
+            {
+              "set_directive_pipeline \"local_memcpy/local_memcpy_label3\"": 0.2857142857142857
+            }
+          ]
+        },
+        {
+          "unroll local_memcpy_label3": [
+            {
+              "set_directive_unroll \"local_memcpy/local_memcpy_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge sha_transform": [
+            {
+              "set_directive_loop_merge \"sha_transform\"": 0.6428571428571429
+            }
+          ]
+        },
+        {
+          "pipeline sha_update_label4": [
+            {
+              "set_directive_pipeline \"sha_update/sha_update_label4\"": 1.0
+            }
+          ]
+        },
+        {
+          "unroll sha_update_label4": [
+            {
+              "set_directive_unroll -factor 8 \"sha_update/sha_update_label4\"": 0.35714285714285715
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_update/sha_update_label4\"": 0.2857142857142857
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_update/sha_update_label4\"": 0.0
+            },
+            {
+              "set_directive_unroll \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label1": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label1\"": 0.21428571428571427
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label1": [
+            {
+              "set_directive_unroll -factor 2 \"sha_transform/sha_transform_label1\"": 0.6428571428571429
+            },
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label1\"": 0.07142857142857142
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label1\"": 0.14285714285714285
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label1\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label2": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label2": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label2\"": 0.35714285714285715
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label2\"": 0.14285714285714285
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label2\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 32 \"sha_transform/sha_transform_label2\"": 0.14285714285714285
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label2\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label3": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label3\"": 1.0
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label3": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label3\"": 0.35714285714285715
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label3\"": 0.21428571428571427
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label3\"": 0.07142857142857142
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label3\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label4": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label4\"": 0.5714285714285714
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label4": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label4\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label4\"": 0.35714285714285715
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label4\"": 0.2857142857142857
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label5": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label5\"": 0.21428571428571427
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label5": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label5\"": 0.35714285714285715
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label5\"": 0.35714285714285715
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label5\"": 0.07142857142857142
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label5\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline sha_transform_label6": [
+            {
+              "set_directive_pipeline \"sha_transform/sha_transform_label6\"": 0.7142857142857143
+            }
+          ]
+        },
+        {
+          "unroll sha_transform_label6": [
+            {
+              "set_directive_unroll -factor 4 \"sha_transform/sha_transform_label6\"": 0.07142857142857142
+            },
+            {
+              "set_directive_unroll -factor 8 \"sha_transform/sha_transform_label6\"": 0.21428571428571427
+            },
+            {
+              "set_directive_unroll -factor 16 \"sha_transform/sha_transform_label6\"": 0.2857142857142857
+            },
+            {
+              "set_directive_unroll \"sha_transform/sha_transform_label6\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition sha_transform W": [
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 20 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 1 \"sha_transform\" W": 0.07142857142857142
+            },
+            {
+              "set_directive_array_partition -type block -factor 40 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 1 \"sha_transform\" W": 0.21428571428571427
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 1 \"sha_transform\" W": 0.07142857142857142
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 1 \"sha_transform\" W": 0.14285714285714285
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 20 -dim 1 \"sha_transform\" W": 0.2857142857142857
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 40 -dim 1 \"sha_transform\" W": 0.07142857142857142
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 1 \"sha_transform\" W": 0.0
+            },
+            {
+              "set_directive_array_partition -type complete -dim 1 \"sha_transform\" W": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_stream": [
+            {
+              "set_directive_inline \"sha_stream\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memset": [
+            {
+              "set_directive_inline \"local_memset\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline local_memcpy": [
+            {
+              "set_directive_inline \"local_memcpy\"": 0.0
+            }
+          ]
+        },
+        {
+          "inline sha_update_label4": [
+            {
+              "set_directive_inline \"sha_update/sha_update_label4\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll local_memset_label0": [
+            {
+              "set_directive_unroll  \"local_memset/local_memset_label0\"": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

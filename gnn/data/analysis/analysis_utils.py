@@ -1,51 +1,73 @@
 import os
 import json
-from typing import Union, Optional, Tuple
+from typing import Union, Optional, Tuple, List
 
 import numpy as np
 import pandas as pd
-from sklearn.cluster import KMeans, AgglomerativeClustering
-from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+from sklearn.cluster import (
+    KMeans, 
+    AgglomerativeClustering
+)
+from sklearn.metrics import (
+    silhouette_score, 
+    davies_bouldin_score, 
+    calinski_harabasz_score
+)
 from sklearn.decomposition import PCA
 from numpy.typing import NDArray
 
 from gnn.data.utils.parsers import (
     extract_metrics,
     parse_tcl_directives_file,
-    _parse_directive_cmd
+    parse_directive_cmd
 )
+
 
 def cluster_by_directive(
     directives: NDArray[np.int_],
     n_clusters: int = 8,
     max_iter: int = 1000,
     cluster_method: str = 'kmeans',
-    n_components: Union[int, float] = 0.8
+    n_components: Union[int, float] = 0.85,
+    metrics: Optional[NDArray[np.float_]] = None,
+    log_transform_metrics: bool = True
 ) -> NDArray[np.int_]:
     if directives.ndim > 2:
         directives = directives.reshape(directives.shape[0], -1)
 
-    # Perform PCA for dimensionality reduction
+    if metrics is not None:
+        if log_transform_metrics:
+            metrics = np.log1p(metrics)
+        directives = np.append(directives, metrics, axis=1)
+
     pca = PCA(n_components=n_components)
     directives = pca.fit_transform(directives)
 
     if cluster_method == 'kmeans':
-        model = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=20, tol=1e-8)
+        model = KMeans(
+            n_clusters=n_clusters, 
+            max_iter=max_iter, 
+            n_init=20, 
+            tol=1e-8
+        )
     elif cluster_method == 'aggl':
-        model = AgglomerativeClustering(n_clusters=n_clusters, linkage='complete', compute_full_tree=True)
+        model = AgglomerativeClustering(
+            n_clusters=n_clusters, 
+            linkage='complete', 
+            compute_full_tree=True
+        )
     else:
-        raise ValueError(f"Unknown clustering method: {cluster_method}")
+        raise ValueError(f"Unknown clustering method: "
+                         f"{cluster_method}")
     
     clusters = model.fit_predict(directives)
-
+    
     if len(np.unique(clusters)) > 1:
         sil_score = silhouette_score(directives, clusters)
-        print(f'Silhouette score: {sil_score:.2f}')
-
         db_score = davies_bouldin_score(directives, clusters)
-        print(f'Davies-Bouldin score: {db_score:.2f}')
-
         ch_score = calinski_harabasz_score(directives, clusters)
+        print(f'Silhouette score: {sil_score:.2f}')
+        print(f'Davies-Bouldin score: {db_score:.2f}')
         print(f'Calinski-Harabasz score: {ch_score:.2f}')
 
     return clusters
@@ -55,74 +77,164 @@ def collate_data_for_analysis(
     data_dir: str, 
     benchmark: str, 
     filtered: bool = False,
-    directive_config_path: Optional[str] = None,
-    process_base_solution: bool = False
+    dct_config_path: Optional[str] = None,
+    include_base_solution: bool = False
 ) -> Tuple[pd.DataFrame, Optional[NDArray[np.int_]]]:
     metrics = []
-    directives = [] if directive_config_path else None
+    directives = [] if dct_config_path else None
+
     bench_dir = f"{data_dir}/{benchmark}"
-
     solutions = os.listdir(bench_dir)
-    solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
+    solutions = sorted(
+        solutions, key=lambda s: int(s.split("solution")[1])
+    )
 
-    for solution in solutions:
-        if not process_base_solution and solution == 'solution0':
+    for sol in solutions:
+        if not include_base_solution and sol == 'solution0':
             continue
-        solution_dir = os.path.join(bench_dir, solution)
-        report = extract_metrics(solution_dir, filtered)
+        sol_dir = os.path.join(bench_dir, sol)
+        report = extract_metrics(sol_dir, filtered)
         if report is None:
             continue
+
         report['benchmark'] = benchmark
-        report['solution'] = solution
+        report['solution'] = sol
         metrics.append(report)
-        if directive_config_path is not None:
-            tcl_path = f'{solution_dir}/directives.tcl'
+
+        if dct_config_path is not None:
+            tcl_path = f'{sol_dir}/directives.tcl'
             directives.append(
-                parse_and_encode_directives(directive_config_path, tcl_path)
+                encode_directives(dct_config_path, tcl_path)
             )
     if directives is not None:
         directives = np.stack(directives)
-    metrics = pd.DataFrame(metrics)
-    return metrics, directives
+
+    return pd.DataFrame(metrics), directives
     
 
-def parse_and_encode_directives(directive_config_path, tcl_path) -> NDArray[np.int_]:
-    if not os.path.exists(tcl_path):
-        raise ValueError(f"Directives file not found: {tcl_path}")
-    if not os.path.exists(directive_config_path):
-        raise ValueError(f"Directive configuration file not found: {directive_config_path}")
-    
-    with open(directive_config_path, "r") as f:
-        directive_groups = json.load(f)
+def encode_directives(
+    dct_config_path, 
+    solution_dct_tcl_path,
+    return_feat_names: bool = False,
+    default_partition_factor: int = 16,
+    default_unroll_factor: int = 16,
+    max_array_size: int = 2 # In our dataset, this is the max size
+) -> Union[NDArray[np.int_], Tuple[NDArray[np.int_], List[str]]]:
+    def encode_ap_dct_info(ap_dct_args):
+        ap_factor = int(ap_dct_args.get("factor", 0))
+        if ap_factor == 0:
+            ap_factor = default_partition_factor
 
-    available_directives = {
-        "pipeline", "unroll", "loop_merge", "loop_flatten", "array_partition"
+        ap_dim_idx = int(ap_dct_args.get("dim", 0))
+        ap_dim = [0] * (max_array_size + 1)
+        ap_dim[ap_dim_idx] = 1
+
+        ap_type = ap_dct_args.get("type", "complete")
+        if ap_type == "complete":
+            ap_type = [1, 0, 0]
+        elif ap_type == "block":
+            ap_type = [0, 1, 0]
+        else:
+            ap_type = [0, 0, 1]
+
+        return [1, ap_factor] + ap_dim + ap_type
+
+    def get_dct_feat_name(dct, label):
+        dct_id = f"{dct}_{label}"
+        if dct == "array_partition":
+            return [
+                dct_id, f"{dct_id}_factor",
+                f"{dct_id}_d0", f"{dct_id}_d1", f"{dct_id}_d2",
+                f"{dct_id}_cp", f"{dct_id}_bl", f"{dct_id}_cy"
+            ]
+        if dct == "unroll":
+            return [dct_id, f"{dct_id}_factor"]
+        return [dct_id]
+
+    if not os.path.exists(solution_dct_tcl_path):
+        raise ValueError(f"Directives file not found: "
+                         f"{solution_dct_tcl_path}")
+    if not os.path.exists(dct_config_path):
+        raise ValueError(f"Directive configuration file not found: "
+                         f"{dct_config_path}")
+    
+    with open(dct_config_path, "r") as f:
+        dct_json = json.load(f)
+    
+    dct_dict = dct_json.get("directives")
+    if dct_dict is None:
+        raise ValueError(f"Directives not found in "
+                         f"{dct_config_path}")
+
+    available_dcts = {
+        "pipeline", "unroll", "loop_merge", 
+        "loop_flatten", "array_partition", 
+        "dataflow", "inline"
     }
-    directives = parse_tcl_directives_file(tcl_path)
-    directives = [d for d in directives if d[0] in available_directives]
 
-    directive_configs = []
-    for group in directive_groups["directives"].values():
-        if len(group["possible_directives"]) <= 1:
+    dcts = []
+    for group in dct_dict.values():
+        possible_dcts = group.get("possible_directives")
+        if possible_dcts is None or len(possible_dcts) == 0:
             continue
-        group_directives = []
-        for directive_cmd in group["possible_directives"][1:]:
-            dir_type, dir_args = _parse_directive_cmd(directive_cmd)
-            if dir_type in available_directives:
-                group_directives.append((dir_type, dir_args))
-        directive_configs.append(group_directives)
+        group_dcts = []
+        first_dct_cmd = possible_dcts[1]
+        dct_type, dct_args = parse_directive_cmd(first_dct_cmd)
+        if dct_type not in available_dcts:
+            continue
+        if dct_type == "array_partition":
+            label = group.get("variable")
+        else:
+            label = group.get("label")
+            if not label:
+                label = group.get("function")
+        group_dcts.append(dct_args)
+        if len(possible_dcts) == 1:
+            dcts.append((dct_type, label, group_dcts))
+            continue
+        for dct_cmd in possible_dcts[2:]:
+            _, dct_args = parse_directive_cmd(dct_cmd)
+            if dct_type in available_dcts:
+                group_dcts.append(dct_args)
+        dcts.append((dct_type, label, group_dcts))
 
-    max_group_size = max(len(group) for group in directive_configs)
-    directive_indices = [[0] * max_group_size for _ in range(len(directive_configs))]
+    sol_dcts = parse_tcl_directives_file(solution_dct_tcl_path)
+    sol_dcts = [
+        dct for dct in sol_dcts 
+        if dct[0] in available_dcts
+    ]
 
-    for dir_type, dir_args in directives:
-        for i, group in enumerate(directive_configs):
-            found = False
-            for j, (group_dir_type, group_dir_args) in enumerate(group):
-                if group_dir_type == dir_type and group_dir_args == dir_args:
-                    directive_indices[i][j] = 1
-                    found = True
-            if found:
+    feat_names = []
+    encoded_dcts = []
+    for dct_type, label, group_dcts in dcts:
+        enc_dct = None
+        for dct_args in group_dcts:
+            for sol_dct_type, sol_dct_args in sol_dcts:
+                if (sol_dct_type == dct_type 
+                    and sol_dct_args == dct_args):
+                    if dct_type == "array_partition":
+                        enc_dct = encode_ap_dct_info(dct_args)
+                    elif dct_type == "unroll":
+                        factor = int(dct_args.get("factor", 0))
+                        if factor == 0:
+                            factor = default_unroll_factor
+                        enc_dct = [1, factor]
+                    elif "off" not in dct_args:
+                        enc_dct = [1]
+                    break
+            if enc_dct is not None:
                 break
+        if enc_dct is None:
+            if dct_type == "array_partition":
+                enc_dct = [0] * 8
+            elif dct_type == "unroll":
+                enc_dct = [0, 0]
+            else:
+                enc_dct = [0]
+        encoded_dcts.extend(enc_dct)
+        feat_names.extend(get_dct_feat_name(dct_type, label))
 
-    return np.array(directive_indices, dtype=np.int_)
+    encoded_dcts = np.array(encoded_dcts, dtype=np.int_)
+    if return_feat_names:
+        return encoded_dcts, feat_names
+    return encoded_dcts

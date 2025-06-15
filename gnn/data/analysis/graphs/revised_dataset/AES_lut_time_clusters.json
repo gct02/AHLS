@@ -1,0 +1,1162 @@
+{
+  "Cluster 0": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.611
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.417
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.417
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.5
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.222
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.167
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.583
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.0
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.889
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.583
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.083
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.194,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.5
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.417,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.056,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.278,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.056,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.167,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.028,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.056,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.056,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.056,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.139
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.167,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.083,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.139,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.139,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.111,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.028,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.083,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.222
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.028,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.083,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.056,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.194,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.028,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.139,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.139,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.194,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.056
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.306
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.528
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.528
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.444
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.556
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.222
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.25
+    }
+  },
+  "Cluster 1": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.545
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.491
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.582
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.582
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.418
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.527
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.218
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.091
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.618
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.745
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.509
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.291,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.782
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.382,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.036,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.218,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.055,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.127,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.109,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.073,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.073,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.145,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.164
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.018,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.109,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.091,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.073,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.127,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.164,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.145,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.109,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.055
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.073,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.127,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.145,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.145,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.091,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.145,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.073,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.073,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.055
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.473
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.545
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.655
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.673
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.655
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.491
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.109
+    }
+  },
+  "Cluster 2": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.439
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.61
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.39
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.488
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.659
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.878
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.0
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 1.0
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.0
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.195
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.78
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.585,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.39
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.317,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.098,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.024,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.122,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.073,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.171,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.098,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.146,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.122,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.098
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.098,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.098,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.122,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.049,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.098,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.122,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.098,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.073,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.098
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.171,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.024,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.073,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.171,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.098,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.0,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.098,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.073,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.195
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.61
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.561
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.537
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.537
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.585
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.537
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.171
+    }
+  },
+  "Cluster 3": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.016
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.016
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.016
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.016
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.016
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.016
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.016
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.016
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.016
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.016
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.016
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.016
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.031
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.031
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.016
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.016
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.016
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.016,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.016
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.016
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.016,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.016
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.0,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.031,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.016
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.031,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.016
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.016,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.031
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.016
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.016
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.016
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.016
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.016
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.031
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.016
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.016
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.016
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.016
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.016
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.016
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.016
+    }
+  },
+  "Cluster 4": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.606
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.818
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.727
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.848
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.727
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.697
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.091
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.97
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.0
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.788
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.545
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.455,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.758
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.394,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.091,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.091,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.03,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.061,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.121,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.091,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.212,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.212,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.03
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.03,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.242,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.121,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.121,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.182,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.061,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.091,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.03,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.091
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.03,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.121,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.121,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.121,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.121,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.091,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.061,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.212,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.0
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.576
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.545
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.636
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.727
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.697
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.606
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.152
+    }
+  },
+  "Cluster 5": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.342
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.566
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.474
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.487
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.461
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.5
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.171
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.776
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.079
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.539
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.474
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.237,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.526
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.316,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.066,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.105,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.079,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.132,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.053,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.092,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.105,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.145,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.092
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.079,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.079,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.132,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.105,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.118,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.132,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.118,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.105,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.053
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.118,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.079,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.053,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.079,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.079,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.118,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.118,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.132,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.118
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.5
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.526
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.539
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.592
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.434
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.539
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.158
+    }
+  },
+  "Cluster 6": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.212
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.333
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.455
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.242
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.515
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.545
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.152
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.697
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.0
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.212
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.455
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.303,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.152
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.212,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.061,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.091,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.091,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.091,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.152,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.121,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.121,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.061,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.121
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.061,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.061,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.091,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.182,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.061,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.152,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.152,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.091,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.061
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.061,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.091,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.152,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.061,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.212,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.061,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.03,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.061,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.121
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.455
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.455
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.212
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.242
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.303
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.333
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.061
+    }
+  },
+  "Cluster 7": {
+    "loop_merge MixColumn_AddRoundKey": {
+      "set_directive_loop_merge \"MixColumn_AddRoundKey\"": 0.419
+    },
+    "loop_merge AddRoundKey_InversMixColumn": {
+      "set_directive_loop_merge \"AddRoundKey_InversMixColumn\"": 0.302
+    },
+    "loop_flatten AddRoundKey_InversMixColumn_label0": {
+      "set_directive_loop_flatten \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label0": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.349
+    },
+    "unroll AddRoundKey_InversMixColumn_label0": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label1": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "unroll AddRoundKey_InversMixColumn_label1": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label2": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.256
+    },
+    "unroll AddRoundKey_InversMixColumn_label2": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2\"": 0.0
+    },
+    "pipeline AddRoundKey_InversMixColumn_label3": {
+      "set_directive_pipeline \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.488
+    },
+    "unroll AddRoundKey_InversMixColumn_label3": {
+      "set_directive_unroll \"AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3\"": 0.0
+    },
+    "unroll encrypt_label1": {
+      "set_directive_unroll \"encrypt/encrypt_label1\"": 0.372
+    },
+    "pipeline encrypt_label1": {
+      "set_directive_pipeline \"encrypt/encrypt_label1\"": 0.302
+    },
+    "unroll decrypt_label4": {
+      "set_directive_unroll \"decrypt/decrypt_label4\"": 0.093
+    },
+    "pipeline decrypt_label4": {
+      "set_directive_pipeline \"decrypt/decrypt_label4\"": 0.372
+    },
+    "loop_merge KeySchedule_label7": {
+      "set_directive_loop_merge \"KeySchedule/KeySchedule_label7\"": 0.372
+    },
+    "pipeline KeySchedule_label8": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label8\"": 0.465
+    },
+    "unroll KeySchedule_label8": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label8\"": 0.302,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label8\"": 0.0
+    },
+    "pipeline KeySchedule_label9": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label9\"": 0.512
+    },
+    "unroll KeySchedule_label9": {
+      "set_directive_unroll -factor 2 \"KeySchedule/KeySchedule_label9\"": 0.233,
+      "set_directive_unroll \"KeySchedule/KeySchedule_label9\"": 0.0
+    },
+    "array_partition ByteSub_ShiftRow Sbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.047,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.047,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.07,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.14,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.163,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.093,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.07,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.093,
+      "set_directive_array_partition -type complete -dim 0 \"ByteSub_ShiftRow\" Sbox": 0.186
+    },
+    "array_partition InversShiftRow_ByteSub invSbox": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.14,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.116,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.07,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.116,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.047,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.07,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.07,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.14,
+      "set_directive_array_partition -type complete -dim 0 \"InversShiftRow_ByteSub\" invSbox": 0.186
+    },
+    "array_partition aes_main statemt": {
+      "set_directive_array_partition -type block -factor 2 -dim 0 \"aes_main\" statemt": 0.186,
+      "set_directive_array_partition -type block -factor 4 -dim 0 \"aes_main\" statemt": 0.14,
+      "set_directive_array_partition -type block -factor 8 -dim 0 \"aes_main\" statemt": 0.07,
+      "set_directive_array_partition -type block -factor 16 -dim 0 \"aes_main\" statemt": 0.163,
+      "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"aes_main\" statemt": 0.116,
+      "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"aes_main\" statemt": 0.093,
+      "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"aes_main\" statemt": 0.023,
+      "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"aes_main\" statemt": 0.023,
+      "set_directive_array_partition -type complete -dim 0 \"aes_main\" statemt": 0.07
+    },
+    "dataflow AddRoundKey": {
+      "set_directive_dataflow \"AddRoundKey\"": 0.0
+    },
+    "pipeline AddRoundKey_label0": {
+      "set_directive_pipeline \"AddRoundKey/AddRoundKey_label0\"": 0.558
+    },
+    "unroll AddRoundKey_label0": {
+      "set_directive_unroll \"AddRoundKey/AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label0": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.326
+    },
+    "unroll MixColumn_AddRoundKey_label0": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0\"": 0.0
+    },
+    "pipeline MixColumn_AddRoundKey_label1": {
+      "set_directive_pipeline \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.302
+    },
+    "unroll MixColumn_AddRoundKey_label1": {
+      "set_directive_unroll \"MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1\"": 0.0
+    },
+    "inline aes_main": {
+      "set_directive_inline \"aes_main\"": 0.0
+    },
+    "pipeline KeySchedule_label4": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label4\"": 0.419
+    },
+    "unroll KeySchedule_label4": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label4\"": 0.0
+    },
+    "loop_flatten KeySchedule_label5": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label5": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label5\"": 0.256
+    },
+    "unroll KeySchedule_label5": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label5\"": 0.0
+    },
+    "pipeline KeySchedule_label6": {
+      "set_directive_pipeline \"KeySchedule/KeySchedule_label6\"": 0.0
+    },
+    "unroll KeySchedule_label6": {
+      "set_directive_unroll \"KeySchedule/KeySchedule_label6\"": 0.442
+    },
+    "loop_flatten KeySchedule_label9": {
+      "set_directive_loop_flatten \"KeySchedule/KeySchedule_label9\"": 0.163
+    }
+  }
+}

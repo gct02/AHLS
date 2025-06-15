@@ -1,0 +1,2708 @@
+{
+  "clusters": [
+    {
+      "id": 0,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.6888888888888889
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.17777777777777778
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.06666666666666667
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.022222222222222223
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.08888888888888889
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.15555555555555556
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.15555555555555556
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.08888888888888889
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.15555555555555556
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.24444444444444444
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.08888888888888889
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.2
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.1111111111111111
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.17777777777777778
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.022222222222222223
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.35555555555555557
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.044444444444444446
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.08888888888888889
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.022222222222222223
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.13333333333333333
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.07547169811320754
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.04716981132075472
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.03773584905660377
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.018867924528301886
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.018867924528301886
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.018867924528301886
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.05660377358490566
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.03773584905660377
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.03773584905660377
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.0660377358490566
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.018867924528301886
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.03773584905660377
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.04716981132075472
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.04716981132075472
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.03773584905660377
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.04716981132075472
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.03773584905660377
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.02830188679245283
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.018867924528301886
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.05660377358490566
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.009433962264150943
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.03773584905660377
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.009433962264150943
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.02830188679245283
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.018867924528301886
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.009433962264150943
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.03333333333333333
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.1
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.16666666666666666
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.3333333333333333
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.03333333333333333
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.13333333333333333
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.5666666666666667
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.43333333333333335
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.9666666666666667
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.2
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.16666666666666666
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.23333333333333334
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.2
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.2
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.2
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.26666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.3
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.1
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.1
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.1
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.03333333333333333
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.23333333333333334
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.9666666666666667
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.5333333333333333
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.23333333333333334
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.13333333333333333
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.2
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.16666666666666666
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.26666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.13333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.16666666666666666
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.1
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.03333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.043478260869565216
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.21739130434782608
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.30434782608695654
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.043478260869565216
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.6956521739130435
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.30434782608695654
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 1.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.17391304347826086
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.17391304347826086
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.2608695652173913
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.08695652173913043
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.2608695652173913
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.043478260869565216
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.08333333333333333
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.1388888888888889
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.05555555555555555
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.2222222222222222
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.1388888888888889
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.2777777777777778
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.16666666666666666
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.2222222222222222
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.1388888888888889
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.2222222222222222
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.027777777777777776
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.1111111111111111
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.05555555555555555
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.16666666666666666
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.19444444444444445
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.05555555555555555
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.027777777777777776
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.1388888888888889
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.08333333333333333
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.05555555555555555
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.027777777777777776
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.027777777777777776
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.14814814814814814
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.18518518518518517
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.2962962962962963
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.1111111111111111
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.5925925925925926
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.037037037037037035
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.037037037037037035
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.18518518518518517
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.07407407407407407
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.07407407407407407
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.18518518518518517
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.14814814814814814
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.037037037037037035
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.2222222222222222
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.25925925925925924
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.07407407407407407
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.14814814814814814
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.1111111111111111
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.07407407407407407
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.037037037037037035
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.0
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "groups": [
+        {
+          "unroll loop_i": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_i\"": 0.08695652173913043
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_i\"": 0.17391304347826086
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_i\"": 0.08695652173913043
+            },
+            {
+              "set_directive_unroll -factor 16 \"md_kernel/loop_i\"": 0.17391304347826086
+            },
+            {
+              "set_directive_unroll -factor 32 \"md_kernel/loop_i\"": 0.13043478260869565
+            },
+            {
+              "set_directive_unroll -factor 64 \"md_kernel/loop_i\"": 0.17391304347826086
+            }
+          ]
+        },
+        {
+          "unroll loop_j": [
+            {
+              "set_directive_unroll \"md_kernel/loop_i\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 2 \"md_kernel/loop_j\"": 1.0
+            },
+            {
+              "set_directive_unroll -factor 4 \"md_kernel/loop_j\"": 0.0
+            },
+            {
+              "set_directive_unroll -factor 8 \"md_kernel/loop_j\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_i": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        },
+        {
+          "pipeline loop_j": [
+            {
+              "set_directive_pipeline \"md_kernel/loop_j\"": 0.34782608695652173
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_x": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_x": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_x": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_x": 0.08695652173913043
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_y": 0.17391304347826086
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel force_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" force_z": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" force_z": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" force_z": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" force_z": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" force_z": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" force_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" force_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" force_z": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" force_z": 0.08695652173913043
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_x": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_x": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_x": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_x": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_x": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_x": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_x": 0.21739130434782608
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_x": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_y": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_y": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_y": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_y": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_y": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_y": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_y": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_y": 0.043478260869565216
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel position_z": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" position_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" position_z": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" position_z": 0.17391304347826086
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" position_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" position_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" position_z": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" position_z": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" position_z": 0.0
+            }
+          ]
+        },
+        {
+          "array_partition md_kernel NL": [
+            {
+              "set_directive_array_partition -type block -factor 2 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 4 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 8 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type block -factor 16 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 32 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type block -factor 64 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type block -factor 128 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 2 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 4 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 8 -dim 0 \"md_kernel\" NL": 0.043478260869565216
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 16 -dim 0 \"md_kernel\" NL": 0.0
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 32 -dim 0 \"md_kernel\" NL": 0.08695652173913043
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 64 -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type cyclic -factor 128 -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            },
+            {
+              "set_directive_array_partition -type complete -dim 0 \"md_kernel\" NL": 0.13043478260869565
+            }
+          ]
+        },
+        {
+          "loop_merge loop_i": [
+            {
+              "set_directive_loop_merge \"md_kernel/loop_i\"": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
