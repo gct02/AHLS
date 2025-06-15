@@ -9,7 +9,9 @@ from torch_geometric.nn import (
     LayerNorm,
     HGTConv,
     JumpingKnowledge,
-    global_add_pool
+    global_add_pool,
+    global_mean_pool,
+    global_max_pool
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
@@ -24,8 +26,7 @@ class HGTJK(nn.Module):
         num_layers: int,
         out_channels: int,
         metadata: Metadata,
-        heads: Union[int, List[int]],
-        dropout: float = 0.0
+        heads: Union[int, List[int]]
     ):
         super().__init__()
 
@@ -56,15 +57,13 @@ class HGTJK(nn.Module):
             self.convs.append(conv)
             self.norm_dicts.append(norm_dict)
 
-        # self.dropout = nn.Dropout(dropout)
-
         self.jk_dict = nn.ModuleDict({
             nt: JumpingKnowledge(mode='cat')
             for nt in metadata[0]
         })
 
         self.out_lin = HeteroDictLinear(
-            sum(hidden_channels[-3:]),
+            sum(hidden_channels),
             out_channels,
             types=metadata[0]
         )
@@ -93,17 +92,15 @@ class HGTJK(nn.Module):
 
         for i in range(self.num_layers):
             x_dict = self.convs[i](x_dict, edge_index_dict)
-            for nt, x in x_dict.items():
-                # x = self.dropout(x)
-                x = self.norm_dicts[i][nt](
-                    x, batch_dict[nt],
+            x_dict = {
+                nt: self.norm_dicts[i][nt](
+                    x, batch_dict[nt], 
                     batch_size=batch_size
                 )
-                x_dict[nt] = x
-
-            if i >= self.num_layers - 3:
-                for nt, x in x_dict.items():
-                    xs_dict[nt].append(x)
+                for nt, x in x_dict.items()
+            }
+            for nt, x in x_dict.items():
+                xs_dict[nt].append(x)
 
         x_dict = {
             nt: self.jk_dict[nt](xs)
@@ -129,8 +126,7 @@ class HLSQoREstimator(nn.Module):
         metadata (Metadata): Metadata containing node and edge types.
         heads (Union[int, List[int]]): Number of attention heads for GNN (HGTConv) 
             layers. Default is 1.
-        dropout_gnn (float, optional): Dropout rate for GNN layers. Default is 0.0.
-        dropout_mlp (float, optional): Dropout rate for MLP layers. Default is 0.0.
+        dropout (float, optional): Dropout rate for MLP layers. Default is 0.0.
     """
     def __init__(
         self,
@@ -140,8 +136,7 @@ class HLSQoREstimator(nn.Module):
         num_layers: int,
         metadata: Metadata,
         heads: Union[int, List[int]] = 1,
-        dropout_gnn: float = 0.0,
-        dropout_mlp: float = 0.0
+        dropout: float = 0.0
     ):
         super().__init__()
 
@@ -157,11 +152,13 @@ class HLSQoREstimator(nn.Module):
         if isinstance(heads, int):
             heads = [heads] * num_layers
 
-        self.proj_lin_dict = nn.ModuleDict({
-            nt: Linear(
-                in_channels=in_channels[nt], 
-                out_channels=hidden_channels[0]
-            ) 
+        self.proj_lin_dict = HeteroDictLinear(
+            in_channels,
+            hidden_channels[0],
+            types=self.node_types
+        )
+        self.proj_ln_dict = nn.ModuleDict({
+            nt: LayerNorm(hidden_channels[0])
             for nt in self.node_types
         })
 
@@ -169,10 +166,9 @@ class HLSQoREstimator(nn.Module):
             in_channels=hidden_channels[0],
             hidden_channels=hidden_channels,
             num_layers=num_layers,
-            out_channels=96,
+            out_channels=hidden_channels[-1],
             metadata=metadata,
-            heads=heads,
-            dropout=dropout_gnn
+            heads=heads
         )
 
         # Small MLP to process y_base
@@ -182,19 +178,26 @@ class HLSQoREstimator(nn.Module):
             Linear(16, 16)
         )
 
-        self.mlp = nn.Sequential(
-            Linear(len(self.node_types) * 96 + 16, 128), 
-            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout_mlp),
-            Linear(128, 64),
-            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout_mlp),
+        self.node_type_mlp = nn.ModuleDict({
+            nt: nn.Sequential(
+                Linear(hidden_channels[-1] * 3, hidden_channels[-1]),
+                nn.LayerNorm(hidden_channels[-1]), nn.GELU(), nn.Dropout(dropout),
+                Linear(hidden_channels[-1], 32)
+            ) for nt in self.node_types
+        })
+
+        self.graph_mlp = nn.Sequential(
+            Linear(len(self.node_types) * 32 + 16, 64), 
+            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
             Linear(64, TARGET_SIZE_PER_TYPE[target_metric])
         )
         self.reset_parameters()
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
-        for lin in self.proj_lin_dict.values():
-            lin.reset_parameters()
+        self.proj_lin_dict.reset_parameters()
+        for proj_ln in self.proj_ln_dict.values():
+            proj_ln.reset_parameters()
 
         self.gnn.reset_parameters()
 
@@ -202,7 +205,12 @@ class HLSQoREstimator(nn.Module):
             if hasattr(m, 'reset_parameters'):
                 m.reset_parameters()
 
-        for m in self.mlp.modules():
+        for nt in self.node_types:
+            for m in self.node_type_mlp[nt].modules():
+                if hasattr(m, 'reset_parameters'):
+                    m.reset_parameters()
+
+        for m in self.graph_mlp.modules():
             if hasattr(m, 'reset_parameters'):
                 m.reset_parameters()
 
@@ -229,12 +237,18 @@ class HLSQoREstimator(nn.Module):
 
         :rtype: :obj:`torch.Tensor` - The output prediction tensor.
         """
-        batch_size = _compute_batch_size(batch_dict)
+        batch_size = self._compute_batch_size(batch_dict)
 
+        x_dict = self.proj_lin_dict(x_dict)
         x_dict = {
-            nt: self.proj_lin_dict[nt](x) if nt in self.proj_lin_dict else x
+            nt: self.proj_ln_dict[nt](
+                x, batch_dict[nt],
+                batch_size=batch_size
+            ) 
+            if x is not None else None
             for nt, x in x_dict.items()
         }
+
         x_dict = self.gnn(
             x_dict, edge_index_dict, batch_dict,
             batch_size=batch_size
@@ -242,22 +256,25 @@ class HLSQoREstimator(nn.Module):
     
         x_pooled_list = []
         for nt, x in x_dict.items():
-            x_pooled = global_add_pool(x, batch_dict[nt], size=batch_size)
-            x_pooled_list.append(x_pooled.view(batch_size, -1))
+            batch = batch_dict[nt]
+            x_pooled = torch.cat([
+                global_add_pool(x, batch, size=batch_size),
+                global_mean_pool(x, batch, size=batch_size),
+                global_max_pool(x, batch, size=batch_size)
+            ], dim=-1)
+            x_pooled_list.append(self.node_type_mlp[nt](x_pooled))
 
         x_aggr = torch.cat(x_pooled_list, dim=1)
 
         y_base_processed = self.y_base_mlp(y_base)
         x_out = torch.cat([x_aggr, y_base_processed], dim=1)
 
-        out = self.mlp(x_out)
-
-        return out.squeeze(1)
+        return self.graph_mlp(x_out)
     
 
-def _compute_batch_size(batch_dict: Dict[NodeType, Tensor]) -> int:
-    batch_size = 0
-    for batch in batch_dict.values():
-        if batch.numel() > 0:
-            batch_size = max(batch_size, int(batch.max().item()))
-    return batch_size + 1
+    def _compute_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
+        batch_size = 0
+        for batch in batch_dict.values():
+            if batch.numel() > 0:
+                batch_size = max(batch_size, int(batch.max().item()))
+        return batch_size + 1

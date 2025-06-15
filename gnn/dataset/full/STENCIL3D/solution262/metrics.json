@@ -1,0 +1,16 @@
+{
+  "lut": 3812,
+  "ff": 1076,
+  "dsp": 3,
+  "bram": 0,
+  "snru": 0.5494395694187865,
+  "wns": 2.665,
+  "tns": 0.0,
+  "target_clk": 8.0,
+  "achieved_clk": 5.335,
+  "total_power": 2.253,
+  "dynamic_power": 0.04,
+  "static_power": 2.213,
+  "cc": 3693,
+  "time": 19702.155
+}

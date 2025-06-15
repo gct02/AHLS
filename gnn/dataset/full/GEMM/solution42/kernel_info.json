@@ -1,0 +1,4102 @@
+{
+  "name": "GEMM",
+  "top_level_function": "bbgemm",
+  "metrics": {
+    "lut": 847,
+    "bram": 0,
+    "ff": 988,
+    "dsp": 11,
+    "snru": 0.3386526869878263,
+    "wns": 2.306,
+    "tns": 0.0,
+    "target_clk": 8.0,
+    "achieved_clk": 5.694,
+    "total_power": 2.246,
+    "dynamic_power": 0.033,
+    "static_power": 2.213,
+    "cc": 2990225,
+    "time": 17026341.15
+  },
+  "utilization": {
+    "bbgemm": {
+      "local_BRAM": 0,
+      "local_DSP": 0,
+      "local_FF": 411,
+      "local_LUT": 40,
+      "BRAM": 0,
+      "DSP": 11,
+      "FF": 988,
+      "LUT": 847
+    },
+    "dadd_64ns_64ns_64_4_full_dsp_1_U1": {
+      "BRAM": 0,
+      "DSP": 3,
+      "FF": 366,
+      "LUT": 707
+    },
+    "dmul_64ns_64ns_64_4_max_dsp_1_U2": {
+      "BRAM": 0,
+      "DSP": 8,
+      "FF": 211,
+      "LUT": 100
+    }
+  },
+  "cdfgs": {
+    "bbgemm": {
+      "name": "bbgemm",
+      "ret_bitwidth": 0,
+      "is_top_level": true,
+      "function_calls": [],
+      "resource_estimates": {
+        "dadd_64ns_64ns_64_4_full_dsp_1_U1": {
+          "BRAM": 0,
+          "LUT": 708,
+          "DSP": 3,
+          "FF": 430
+        },
+        "dmul_64ns_64ns_64_4_max_dsp_1_U2": {
+          "BRAM": 0,
+          "LUT": 108,
+          "DSP": 8,
+          "FF": 275
+        },
+        "add_ln15_fu_201_p2": {
+          "BRAM": 0,
+          "LUT": 14,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln17_fu_223_p2": {
+          "BRAM": 0,
+          "LUT": 14,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln19_fu_217_p2": {
+          "BRAM": 0,
+          "LUT": 14,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln21_fu_235_p2": {
+          "BRAM": 0,
+          "LUT": 12,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln25_fu_259_p2": {
+          "BRAM": 0,
+          "LUT": 13,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln26_fu_291_p2": {
+          "BRAM": 0,
+          "LUT": 12,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln28_fu_301_p2": {
+          "BRAM": 0,
+          "LUT": 13,
+          "DSP": 0,
+          "FF": 0
+        },
+        "icmp_ln19_fu_211_p2": {
+          "BRAM": 0,
+          "LUT": 15,
+          "DSP": 0,
+          "FF": 0
+        },
+        "icmp_ln21_fu_229_p2": {
+          "BRAM": 0,
+          "LUT": 12,
+          "DSP": 0,
+          "FF": 0
+        },
+        "icmp_ln26_fu_285_p2": {
+          "BRAM": 0,
+          "LUT": 12,
+          "DSP": 0,
+          "FF": 0
+        },
+        "ap_NS_fsm": {
+          "BRAM": 0,
+          "LUT": 86,
+          "DSP": 0,
+          "FF": 0
+        },
+        "i_reg_127": {
+          "BRAM": 0,
+          "LUT": 9,
+          "DSP": 0,
+          "FF": 0
+        },
+        "j_reg_150": {
+          "BRAM": 0,
+          "LUT": 9,
+          "DSP": 0,
+          "FF": 0
+        },
+        "jj_fu_72": {
+          "BRAM": 0,
+          "LUT": 9,
+          "DSP": 0,
+          "FF": 0
+        },
+        "k_reg_139": {
+          "BRAM": 0,
+          "LUT": 9,
+          "DSP": 0,
+          "FF": 0
+        },
+        "kk_reg_115": {
+          "BRAM": 0,
+          "LUT": 9,
+          "DSP": 0,
+          "FF": 0
+        },
+        "prod_address0": {
+          "BRAM": 0,
+          "LUT": 14,
+          "DSP": 0,
+          "FF": 0
+        },
+        "add_ln19_reg_371": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 7
+        },
+        "add_ln21_reg_384": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 4
+        },
+        "add_ln26_reg_417": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 4
+        },
+        "add_ln28_reg_422": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 6
+        },
+        "add_reg_462": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 64
+        },
+        "ap_CS_fsm": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 17
+        },
+        "m2_load_reg_432": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 64
+        },
+        "mul_reg_447": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 64
+        },
+        "prod_addr_reg_442": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 12
+        },
+        "prod_load_reg_452": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 64
+        },
+        "temp_x_reg_409": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 64
+        },
+        "tmp_1_reg_394": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 3
+        },
+        "trunc_ln15_reg_355": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 6
+        },
+        "trunc_ln17_reg_363": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 6
+        },
+        "trunc_ln24_reg_389": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 3
+        },
+        "trunc_ln25_reg_399": {
+          "BRAM": 0,
+          "LUT": 0,
+          "DSP": 0,
+          "FF": 6
+        }
+      },
+      "nodes": {
+        "instr": [
+          {
+            "name": "jj",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "alloca",
+            "is_array": false,
+            "attributes": {
+              "opcode": 2,
+              "impl": 0,
+              "bitwidth": 7,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "jj_write_ln11",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "store",
+            "is_array": false,
+            "attributes": {
+              "opcode": 34,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.38,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln15",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "jj_1",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "load",
+            "is_array": false,
+            "attributes": {
+              "opcode": 20,
+              "impl": 0,
+              "bitwidth": 7,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "tmp",
+            "rtl_name": "tmp_fu_177_p3",
+            "function": "bbgemm",
+            "opcode": "bitselect",
+            "is_array": false,
+            "attributes": {
+              "opcode": 6,
+              "impl": 0,
+              "bitwidth": 1,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln15",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "trunc_ln15",
+            "rtl_name": "trunc_ln15_fu_185_p1",
+            "function": "bbgemm",
+            "opcode": "trunc",
+            "is_array": false,
+            "attributes": {
+              "opcode": 37,
+              "impl": 0,
+              "bitwidth": 6,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln17",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.38,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "kk",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "phi",
+            "is_array": false,
+            "attributes": {
+              "opcode": 26,
+              "impl": 0,
+              "bitwidth": 7,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "tmp_2",
+            "rtl_name": "tmp_2_fu_189_p3",
+            "function": "bbgemm",
+            "opcode": "bitselect",
+            "is_array": false,
+            "attributes": {
+              "opcode": 6,
+              "impl": 0,
+              "bitwidth": 1,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln17",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "trunc_ln17",
+            "rtl_name": "trunc_ln17_fu_197_p1",
+            "function": "bbgemm",
+            "opcode": "trunc",
+            "is_array": false,
+            "attributes": {
+              "opcode": 37,
+              "impl": 0,
+              "bitwidth": 6,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln19",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.38,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "i",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "phi",
+            "is_array": false,
+            "attributes": {
+              "opcode": 26,
+              "impl": 0,
+              "bitwidth": 7,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "icmp_ln19",
+            "rtl_name": "icmp_ln19_fu_211_p2",
+            "function": "bbgemm",
+            "opcode": "icmp",
+            "is_array": false,
+            "attributes": {
+              "opcode": 18,
+              "impl": 2,
+              "bitwidth": 1,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln19",
+            "rtl_name": "add_ln19_fu_217_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 7,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln19",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln21",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.38,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "k",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "phi",
+            "is_array": false,
+            "attributes": {
+              "opcode": 26,
+              "impl": 0,
+              "bitwidth": 4,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "icmp_ln21",
+            "rtl_name": "icmp_ln21_fu_229_p2",
+            "function": "bbgemm",
+            "opcode": "icmp",
+            "is_array": false,
+            "attributes": {
+              "opcode": 18,
+              "impl": 2,
+              "bitwidth": 1,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln21",
+            "rtl_name": "add_ln21_fu_235_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 4,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln21",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "zext_ln21",
+            "rtl_name": "zext_ln21_fu_241_p1",
+            "function": "bbgemm",
+            "opcode": "zext",
+            "is_array": false,
+            "attributes": {
+              "opcode": 40,
+              "impl": 0,
+              "bitwidth": 6,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "trunc_ln24",
+            "rtl_name": "trunc_ln24_fu_245_p1",
+            "function": "bbgemm",
+            "opcode": "trunc",
+            "is_array": false,
+            "attributes": {
+              "opcode": 37,
+              "impl": 0,
+              "bitwidth": 3,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "tmp_1",
+            "rtl_name": "tmp_1_reg_394",
+            "function": "bbgemm",
+            "opcode": "partselect",
+            "is_array": false,
+            "attributes": {
+              "opcode": 25,
+              "impl": 0,
+              "bitwidth": 3,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln25",
+            "rtl_name": "add_ln25_fu_259_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 6,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "trunc_ln25",
+            "rtl_name": "trunc_ln25_fu_264_p1",
+            "function": "bbgemm",
+            "opcode": "trunc",
+            "is_array": false,
+            "attributes": {
+              "opcode": 37,
+              "impl": 0,
+              "bitwidth": 6,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln25_1",
+            "rtl_name": "add_ln25_1_fu_268_p3",
+            "function": "bbgemm",
+            "opcode": "bitconcatenate",
+            "is_array": false,
+            "attributes": {
+              "opcode": 5,
+              "impl": 0,
+              "bitwidth": 12,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "zext_ln25",
+            "rtl_name": "zext_ln25_fu_276_p1",
+            "function": "bbgemm",
+            "opcode": "zext",
+            "is_array": false,
+            "attributes": {
+              "opcode": 40,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "m1_addr",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "getelementptr",
+            "is_array": false,
+            "attributes": {
+              "opcode": 17,
+              "impl": 0,
+              "bitwidth": 12,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "m1_load",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "load",
+            "is_array": false,
+            "attributes": {
+              "opcode": 20,
+              "impl": 13,
+              "bitwidth": 64,
+              "delay": 1.64,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "temp_x",
+            "rtl_name": "temp_x_fu_281_p1",
+            "function": "bbgemm",
+            "opcode": "bitcast",
+            "is_array": false,
+            "attributes": {
+              "opcode": 4,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln26",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.38,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "j",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "phi",
+            "is_array": false,
+            "attributes": {
+              "opcode": 26,
+              "impl": 0,
+              "bitwidth": 4,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "icmp_ln26",
+            "rtl_name": "icmp_ln26_fu_285_p2",
+            "function": "bbgemm",
+            "opcode": "icmp",
+            "is_array": false,
+            "attributes": {
+              "opcode": 18,
+              "impl": 2,
+              "bitwidth": 1,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln26",
+            "rtl_name": "add_ln26_fu_291_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 4,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln26",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "zext_ln26",
+            "rtl_name": "zext_ln26_fu_297_p1",
+            "function": "bbgemm",
+            "opcode": "zext",
+            "is_array": false,
+            "attributes": {
+              "opcode": 40,
+              "impl": 0,
+              "bitwidth": 6,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln28",
+            "rtl_name": "add_ln28_fu_301_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 6,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln28_1",
+            "rtl_name": "add_ln28_1_fu_306_p4",
+            "function": "bbgemm",
+            "opcode": "bitconcatenate",
+            "is_array": false,
+            "attributes": {
+              "opcode": 5,
+              "impl": 0,
+              "bitwidth": 12,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "zext_ln28",
+            "rtl_name": "zext_ln28_fu_314_p1",
+            "function": "bbgemm",
+            "opcode": "zext",
+            "is_array": false,
+            "attributes": {
+              "opcode": 40,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "m2_addr",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "getelementptr",
+            "is_array": false,
+            "attributes": {
+              "opcode": 17,
+              "impl": 0,
+              "bitwidth": 12,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "m2_load",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "load",
+            "is_array": false,
+            "attributes": {
+              "opcode": 20,
+              "impl": 13,
+              "bitwidth": 64,
+              "delay": 1.64,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "bitcast_ln28",
+            "rtl_name": "grp_fu_165_p1",
+            "function": "bbgemm",
+            "opcode": "bitcast",
+            "is_array": false,
+            "attributes": {
+              "opcode": 4,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "mul",
+            "rtl_name": "dmul_64ns_64ns_64_4_max_dsp_1_U2",
+            "function": "bbgemm",
+            "opcode": "dmul",
+            "is_array": false,
+            "attributes": {
+              "opcode": 13,
+              "impl": 6,
+              "bitwidth": 64,
+              "delay": 4.5,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 100,
+              "DSP": 8,
+              "FF": 211
+            }
+          },
+          {
+            "name": "add_ln29_1",
+            "rtl_name": "add_ln29_1_fu_323_p3",
+            "function": "bbgemm",
+            "opcode": "bitconcatenate",
+            "is_array": false,
+            "attributes": {
+              "opcode": 5,
+              "impl": 0,
+              "bitwidth": 12,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "zext_ln29",
+            "rtl_name": "zext_ln29_fu_329_p1",
+            "function": "bbgemm",
+            "opcode": "zext",
+            "is_array": false,
+            "attributes": {
+              "opcode": 40,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "prod_addr",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "getelementptr",
+            "is_array": false,
+            "attributes": {
+              "opcode": 17,
+              "impl": 0,
+              "bitwidth": 12,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "prod_load",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "load",
+            "is_array": false,
+            "attributes": {
+              "opcode": 20,
+              "impl": 13,
+              "bitwidth": 64,
+              "delay": 1.64,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "bitcast_ln29",
+            "rtl_name": "grp_fu_161_p0",
+            "function": "bbgemm",
+            "opcode": "bitcast",
+            "is_array": false,
+            "attributes": {
+              "opcode": 4,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add",
+            "rtl_name": "dadd_64ns_64ns_64_4_full_dsp_1_U1",
+            "function": "bbgemm",
+            "opcode": "dadd",
+            "is_array": false,
+            "attributes": {
+              "opcode": 10,
+              "impl": 3,
+              "bitwidth": 64,
+              "delay": 4.33,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 707,
+              "DSP": 3,
+              "FF": 366
+            }
+          },
+          {
+            "name": "bitcast_ln29_1",
+            "rtl_name": "prod_d0",
+            "function": "bbgemm",
+            "opcode": "bitcast",
+            "is_array": false,
+            "attributes": {
+              "opcode": 4,
+              "impl": 0,
+              "bitwidth": 64,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "prod_addr_write_ln29",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "store",
+            "is_array": false,
+            "attributes": {
+              "opcode": 34,
+              "impl": 13,
+              "bitwidth": 0,
+              "delay": 1.64,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln26",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln21",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln19",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln17",
+            "rtl_name": "add_ln17_fu_223_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 7,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln17",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "add_ln15",
+            "rtl_name": "add_ln15_fu_201_p2",
+            "function": "bbgemm",
+            "opcode": "add",
+            "is_array": false,
+            "attributes": {
+              "opcode": 1,
+              "impl": 1,
+              "bitwidth": 7,
+              "delay": 0.7,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "jj_write_ln11",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "store",
+            "is_array": false,
+            "attributes": {
+              "opcode": 34,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.38,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "br_ln15",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "br",
+            "is_array": false,
+            "attributes": {
+              "opcode": 7,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          },
+          {
+            "name": "_ln35",
+            "rtl_name": "",
+            "function": "bbgemm",
+            "opcode": "ret",
+            "is_array": false,
+            "attributes": {
+              "opcode": 28,
+              "impl": 0,
+              "bitwidth": 0,
+              "delay": 0.0,
+              "base_type": 0,
+              "dims": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0,
+              "BRAM": 0,
+              "LUT": 0,
+              "DSP": 0,
+              "FF": 0
+            }
+          }
+        ],
+        "port": [
+          {
+            "name": "bbgemm/m1",
+            "is_array": true,
+            "attributes": {
+              "direction": 0,
+              "top_level": 1,
+              "bitwidth": 64,
+              "port_type": 1,
+              "base_type": 3,
+              "dims": [
+                4096,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0
+            }
+          },
+          {
+            "name": "bbgemm/m2",
+            "is_array": true,
+            "attributes": {
+              "direction": 0,
+              "top_level": 1,
+              "bitwidth": 64,
+              "port_type": 1,
+              "base_type": 3,
+              "dims": [
+                4096,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 1,
+              "partition_type": 2,
+              "partition_dim": 0,
+              "partition_factor": 2
+            }
+          },
+          {
+            "name": "bbgemm/prod",
+            "is_array": true,
+            "attributes": {
+              "direction": 2,
+              "top_level": 1,
+              "bitwidth": 64,
+              "port_type": 1,
+              "base_type": 3,
+              "dims": [
+                4096,
+                1,
+                1,
+                1
+              ],
+              "array_partition": 0,
+              "partition_type": -1,
+              "partition_dim": -1,
+              "partition_factor": 0
+            }
+          }
+        ],
+        "const": [
+          {
+            "name": "empty",
+            "content": "1",
+            "attributes": {
+              "bitwidth": 32,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "0",
+            "attributes": {
+              "bitwidth": 7,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "6",
+            "attributes": {
+              "bitwidth": 32,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "64",
+            "attributes": {
+              "bitwidth": 7,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "1",
+            "attributes": {
+              "bitwidth": 7,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "0",
+            "attributes": {
+              "bitwidth": 4,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "8",
+            "attributes": {
+              "bitwidth": 4,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "1",
+            "attributes": {
+              "bitwidth": 4,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "3",
+            "attributes": {
+              "bitwidth": 32,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "5",
+            "attributes": {
+              "bitwidth": 32,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "0",
+            "attributes": {
+              "bitwidth": 64,
+              "const_type": 0
+            }
+          },
+          {
+            "name": "empty",
+            "content": "8",
+            "attributes": {
+              "bitwidth": 7,
+              "const_type": 0
+            }
+          }
+        ],
+        "block": [
+          {
+            "name": "bbgemm/entry",
+            "instructions": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "name": "bbgemm/loopkk",
+            "instructions": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "name": "bbgemm/loopkk.split",
+            "instructions": [
+              6,
+              7
+            ]
+          },
+          {
+            "name": "bbgemm/loopi",
+            "instructions": [
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "name": "bbgemm/loopi.split",
+            "instructions": [
+              11,
+              12
+            ]
+          },
+          {
+            "name": "bbgemm/loopk",
+            "instructions": [
+              13,
+              14,
+              15,
+              16
+            ]
+          },
+          {
+            "name": "bbgemm/loopk.split",
+            "instructions": [
+              17
+            ]
+          },
+          {
+            "name": "bbgemm/loopj",
+            "instructions": [
+              18,
+              19,
+              20,
+              21
+            ]
+          },
+          {
+            "name": "bbgemm/loopj.split",
+            "instructions": [
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32
+            ]
+          },
+          {
+            "name": "bbgemm/for.inc",
+            "instructions": [
+              33,
+              34,
+              35,
+              36
+            ]
+          },
+          {
+            "name": "bbgemm/for.inc.split",
+            "instructions": [
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53
+            ]
+          },
+          {
+            "name": "bbgemm/for.inc27",
+            "instructions": [
+              54
+            ]
+          },
+          {
+            "name": "bbgemm/for.inc30",
+            "instructions": [
+              55
+            ]
+          },
+          {
+            "name": "bbgemm/for.inc33",
+            "instructions": [
+              56,
+              57
+            ]
+          },
+          {
+            "name": "bbgemm/for.inc36",
+            "instructions": [
+              58,
+              59,
+              60
+            ]
+          },
+          {
+            "name": "bbgemm/for.end38",
+            "instructions": [
+              61
+            ]
+          }
+        ],
+        "region": [
+          {
+            "name": "bbgemm",
+            "attributes": {
+              "min_latency": 2990225,
+              "max_latency": 2990225,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 2990225.0,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 847,
+              "local_LUT": 847,
+              "DSP": 11,
+              "local_DSP": 11,
+              "FF": 988,
+              "local_FF": 988
+            },
+            "sub_regions": [
+              1,
+              2,
+              15
+            ],
+            "blocks": [],
+            "instructions": []
+          },
+          {
+            "name": "bbgemm/Entry",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              0
+            ],
+            "instructions": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "name": "bbgemm/loopjj",
+            "attributes": {
+              "min_latency": 2990224,
+              "max_latency": 2990224,
+              "min_trip_count": 8,
+              "max_trip_count": 8,
+              "loop_depth": 1,
+              "ii": 373778.0,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [
+              3,
+              4,
+              14
+            ],
+            "blocks": [],
+            "instructions": []
+          },
+          {
+            "name": "bbgemm/Region_1",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              1,
+              2
+            ],
+            "instructions": [
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "name": "bbgemm/loopkk",
+            "attributes": {
+              "min_latency": 373776,
+              "max_latency": 373776,
+              "min_trip_count": 8,
+              "max_trip_count": 8,
+              "loop_depth": 1,
+              "ii": 46722.0,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [
+              5,
+              6,
+              13
+            ],
+            "blocks": [],
+            "instructions": []
+          },
+          {
+            "name": "bbgemm/Region_2",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              3,
+              4
+            ],
+            "instructions": [
+              8,
+              9,
+              10,
+              11,
+              12
+            ]
+          },
+          {
+            "name": "bbgemm/loopi",
+            "attributes": {
+              "min_latency": 46720,
+              "max_latency": 46720,
+              "min_trip_count": 64,
+              "max_trip_count": 64,
+              "loop_depth": 1,
+              "ii": 730.0,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [
+              7,
+              8,
+              12
+            ],
+            "blocks": [],
+            "instructions": []
+          },
+          {
+            "name": "bbgemm/Region_3",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              5,
+              6
+            ],
+            "instructions": [
+              13,
+              14,
+              15,
+              16,
+              17
+            ]
+          },
+          {
+            "name": "bbgemm/loopk",
+            "attributes": {
+              "min_latency": 728,
+              "max_latency": 728,
+              "min_trip_count": 8,
+              "max_trip_count": 8,
+              "loop_depth": 1,
+              "ii": 91.0,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [
+              9,
+              10,
+              11
+            ],
+            "blocks": [],
+            "instructions": []
+          },
+          {
+            "name": "bbgemm/Region_4",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              7,
+              8
+            ],
+            "instructions": [
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32
+            ]
+          },
+          {
+            "name": "bbgemm/loopj",
+            "attributes": {
+              "min_latency": 88,
+              "max_latency": 88,
+              "min_trip_count": 8,
+              "max_trip_count": 8,
+              "loop_depth": 1,
+              "ii": 11.0,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              9,
+              10
+            ],
+            "instructions": [
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53
+            ]
+          },
+          {
+            "name": "bbgemm/Region_5",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              11
+            ],
+            "instructions": [
+              54
+            ]
+          },
+          {
+            "name": "bbgemm/Region_6",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              12
+            ],
+            "instructions": [
+              55
+            ]
+          },
+          {
+            "name": "bbgemm/Region_7",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              13
+            ],
+            "instructions": [
+              56,
+              57
+            ]
+          },
+          {
+            "name": "bbgemm/Region_8",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              14
+            ],
+            "instructions": [
+              58,
+              59,
+              60
+            ]
+          },
+          {
+            "name": "bbgemm/Return",
+            "attributes": {
+              "min_latency": 1,
+              "max_latency": 1,
+              "min_trip_count": 1,
+              "max_trip_count": 1,
+              "loop_depth": 0,
+              "ii": 1,
+              "pipeline": 0,
+              "pipelined_parent": 0,
+              "unroll": 0,
+              "unroll_factor": 0,
+              "loop_merge": 0,
+              "loop_flatten": 0,
+              "dataflow": 0,
+              "inline": 0,
+              "BRAM": 0,
+              "local_BRAM": 0,
+              "LUT": 0,
+              "local_LUT": 0,
+              "DSP": 0,
+              "local_DSP": 0,
+              "FF": 0,
+              "local_FF": 0
+            },
+            "sub_regions": [],
+            "blocks": [
+              15
+            ],
+            "instructions": [
+              61
+            ]
+          }
+        ]
+      },
+      "edges": {
+        "const__data__instr": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            3,
+            14
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            5,
+            18
+          ],
+          [
+            6,
+            19
+          ],
+          [
+            7,
+            20
+          ],
+          [
+            8,
+            24
+          ],
+          [
+            9,
+            24
+          ],
+          [
+            10,
+            29
+          ],
+          [
+            5,
+            33
+          ],
+          [
+            6,
+            34
+          ],
+          [
+            7,
+            35
+          ],
+          [
+            10,
+            41
+          ],
+          [
+            10,
+            47
+          ],
+          [
+            11,
+            56
+          ],
+          [
+            11,
+            58
+          ]
+        ],
+        "instr__data__instr": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            56,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            15,
+            13
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            14,
+            16
+          ],
+          [
+            20,
+            18
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            18,
+            20
+          ],
+          [
+            19,
+            21
+          ],
+          [
+            18,
+            22
+          ],
+          [
+            18,
+            23
+          ],
+          [
+            8,
+            24
+          ],
+          [
+            11,
+            25
+          ],
+          [
+            22,
+            25
+          ],
+          [
+            13,
+            26
+          ],
+          [
+            26,
+            27
+          ],
+          [
+            25,
+            27
+          ],
+          [
+            27,
+            28
+          ],
+          [
+            28,
+            29
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            30,
+            31
+          ],
+          [
+            35,
+            33
+          ],
+          [
+            33,
+            34
+          ],
+          [
+            33,
+            35
+          ],
+          [
+            34,
+            36
+          ],
+          [
+            33,
+            37
+          ],
+          [
+            6,
+            38
+          ],
+          [
+            37,
+            38
+          ],
+          [
+            24,
+            39
+          ],
+          [
+            23,
+            39
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            39,
+            40
+          ],
+          [
+            40,
+            41
+          ],
+          [
+            41,
+            42
+          ],
+          [
+            42,
+            43
+          ],
+          [
+            31,
+            44
+          ],
+          [
+            43,
+            44
+          ],
+          [
+            26,
+            45
+          ],
+          [
+            38,
+            45
+          ],
+          [
+            45,
+            46
+          ],
+          [
+            46,
+            47
+          ],
+          [
+            47,
+            48
+          ],
+          [
+            48,
+            49
+          ],
+          [
+            49,
+            50
+          ],
+          [
+            44,
+            50
+          ],
+          [
+            50,
+            51
+          ],
+          [
+            51,
+            52
+          ],
+          [
+            47,
+            52
+          ],
+          [
+            8,
+            56
+          ],
+          [
+            3,
+            58
+          ],
+          [
+            58,
+            59
+          ],
+          [
+            0,
+            59
+          ]
+        ],
+        "port__data__instr": [
+          [
+            0,
+            29
+          ],
+          [
+            1,
+            41
+          ],
+          [
+            2,
+            47
+          ]
+        ],
+        "instr__mem__instr": [
+          [
+            48,
+            52
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            59
+          ],
+          [
+            3,
+            59
+          ]
+        ],
+        "instr__data__const": [],
+        "port__data__const": [],
+        "block__control__instr": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            15,
+            5
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            13,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            14,
+            10
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            4,
+            13
+          ],
+          [
+            6,
+            16
+          ],
+          [
+            13,
+            16
+          ],
+          [
+            7,
+            17
+          ],
+          [
+            11,
+            18
+          ],
+          [
+            6,
+            18
+          ],
+          [
+            8,
+            21
+          ],
+          [
+            12,
+            21
+          ],
+          [
+            9,
+            32
+          ],
+          [
+            10,
+            33
+          ],
+          [
+            8,
+            33
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            11,
+            36
+          ],
+          [
+            9,
+            53
+          ],
+          [
+            7,
+            54
+          ],
+          [
+            5,
+            55
+          ],
+          [
+            3,
+            57
+          ],
+          [
+            1,
+            60
+          ]
+        ],
+        "block__control__block": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            14
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        "instr__call__instr": [],
+        "region__hrchy__region": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            14
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            13
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "region__hrchy__block": [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ]
+        ],
+        "region__hrchy__instr": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            7,
+            13
+          ],
+          [
+            7,
+            14
+          ],
+          [
+            7,
+            15
+          ],
+          [
+            7,
+            16
+          ],
+          [
+            7,
+            17
+          ],
+          [
+            9,
+            18
+          ],
+          [
+            9,
+            19
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            9,
+            21
+          ],
+          [
+            9,
+            22
+          ],
+          [
+            9,
+            23
+          ],
+          [
+            9,
+            24
+          ],
+          [
+            9,
+            25
+          ],
+          [
+            9,
+            26
+          ],
+          [
+            9,
+            27
+          ],
+          [
+            9,
+            28
+          ],
+          [
+            9,
+            29
+          ],
+          [
+            9,
+            30
+          ],
+          [
+            9,
+            31
+          ],
+          [
+            9,
+            32
+          ],
+          [
+            10,
+            33
+          ],
+          [
+            10,
+            34
+          ],
+          [
+            10,
+            35
+          ],
+          [
+            10,
+            36
+          ],
+          [
+            10,
+            37
+          ],
+          [
+            10,
+            38
+          ],
+          [
+            10,
+            39
+          ],
+          [
+            10,
+            40
+          ],
+          [
+            10,
+            41
+          ],
+          [
+            10,
+            42
+          ],
+          [
+            10,
+            43
+          ],
+          [
+            10,
+            44
+          ],
+          [
+            10,
+            45
+          ],
+          [
+            10,
+            46
+          ],
+          [
+            10,
+            47
+          ],
+          [
+            10,
+            48
+          ],
+          [
+            10,
+            49
+          ],
+          [
+            10,
+            50
+          ],
+          [
+            10,
+            51
+          ],
+          [
+            10,
+            52
+          ],
+          [
+            10,
+            53
+          ],
+          [
+            11,
+            54
+          ],
+          [
+            12,
+            55
+          ],
+          [
+            13,
+            56
+          ],
+          [
+            13,
+            57
+          ],
+          [
+            14,
+            58
+          ],
+          [
+            14,
+            59
+          ],
+          [
+            14,
+            60
+          ],
+          [
+            15,
+            61
+          ]
+        ],
+        "block__hrchy__instr": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            6,
+            17
+          ],
+          [
+            7,
+            18
+          ],
+          [
+            7,
+            19
+          ],
+          [
+            7,
+            20
+          ],
+          [
+            7,
+            21
+          ],
+          [
+            8,
+            22
+          ],
+          [
+            8,
+            23
+          ],
+          [
+            8,
+            24
+          ],
+          [
+            8,
+            25
+          ],
+          [
+            8,
+            26
+          ],
+          [
+            8,
+            27
+          ],
+          [
+            8,
+            28
+          ],
+          [
+            8,
+            29
+          ],
+          [
+            8,
+            30
+          ],
+          [
+            8,
+            31
+          ],
+          [
+            8,
+            32
+          ],
+          [
+            9,
+            33
+          ],
+          [
+            9,
+            34
+          ],
+          [
+            9,
+            35
+          ],
+          [
+            9,
+            36
+          ],
+          [
+            10,
+            37
+          ],
+          [
+            10,
+            38
+          ],
+          [
+            10,
+            39
+          ],
+          [
+            10,
+            40
+          ],
+          [
+            10,
+            41
+          ],
+          [
+            10,
+            42
+          ],
+          [
+            10,
+            43
+          ],
+          [
+            10,
+            44
+          ],
+          [
+            10,
+            45
+          ],
+          [
+            10,
+            46
+          ],
+          [
+            10,
+            47
+          ],
+          [
+            10,
+            48
+          ],
+          [
+            10,
+            49
+          ],
+          [
+            10,
+            50
+          ],
+          [
+            10,
+            51
+          ],
+          [
+            10,
+            52
+          ],
+          [
+            10,
+            53
+          ],
+          [
+            11,
+            54
+          ],
+          [
+            12,
+            55
+          ],
+          [
+            13,
+            56
+          ],
+          [
+            13,
+            57
+          ],
+          [
+            14,
+            58
+          ],
+          [
+            14,
+            59
+          ],
+          [
+            14,
+            60
+          ],
+          [
+            15,
+            61
+          ]
+        ]
+      }
+    }
+  }
+}

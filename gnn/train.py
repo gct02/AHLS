@@ -236,12 +236,11 @@ def main(args: Dict[str, Any]):
     model_args = {
         'target_metric': target_metric,
         'in_channels': NODE_FEATURE_DIMS,
-        'hidden_channels': [256, 192, 128, 64],
-        'num_layers': 4,
+        'hidden_channels': [128, 128, 128],
+        'num_layers': 3,
         'metadata': METADATA,
-        'heads': [4, 4, 4, 4],
-        'dropout_gnn': 0.0,
-        'dropout_mlp': 0.1
+        'heads': [4, 4, 4],
+        'dropout': 0.1
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -302,8 +301,6 @@ def main(args: Dict[str, Any]):
     model_path = f"{pretrained_dir}/{target_metric.upper()}_estimator.pt"
     torch.save(obj=evaluate.best_model, f=model_path)
 
-    indices = [data.solution_index for data in test_loader.dataset]
-
     avail_resources = torch.tensor(
         [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS[target_metric]],
         dtype=torch.float32,
@@ -330,6 +327,8 @@ def main(args: Dict[str, Any]):
             preds.extend(compute_time(pred).tolist())
         else:
             preds.extend(compute_power(pred).tolist())
+
+    indices = [data.solution_index for data in test_loader.dataset]
 
     with open(f"{model_info_dir}/predictions.csv", 'w') as f:
         f.write("Index,Target,Prediction\n")
