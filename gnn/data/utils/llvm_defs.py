@@ -36,26 +36,21 @@ class Opcode(IntEnum):
     FCMP = 52
     PHI = 53
     CALL = 54
+    UNKNOWN = 0
 
 # Type IDs from LLVM (v7.0)
 class TypeID(IntEnum):
-    VOID = 0
     HALF = 1
     FLOAT = 2
     DOUBLE = 3
     X86_FP80 = 4
     FP128 = 5
     PPC_FP128 = 6
-    LABEL = 7
-    METADATA = 8
-    X86_MMX = 9
-    TOKEN = 10
     INT = 11
-    FUNCTION = 12
     STRUCT = 13
     ARRAY = 14
     POINTER = 15
-    VECTOR = 16
+    UNKNOWN = 0
 
 # Hierarchical "one-hot-like" encoding of LLVM operations (12 bits)
 # The first 5 bits represent the instruction category
@@ -105,9 +100,10 @@ OP_ENCODING = {
     Opcode.CALL:    [0,0,0,0,1, 0,0,1,0,0, 0,0],
     Opcode.PHI:     [0,0,0,0,1, 0,0,0,1,0, 0,0],
     Opcode.ICMP:    [0,0,0,0,1, 0,0,0,0,1, 0,0],
-    Opcode.FCMP:    [0,0,0,0,1, 0,0,0,0,1, 1,0]
+    Opcode.FCMP:    [0,0,0,0,1, 0,0,0,0,1, 1,0],
+
+    Opcode.UNKNOWN: [0,0,0,0,0, 0,0,0,0,0, 0,0]
 }
-OP_ENCODING_SIZE = len(OP_ENCODING[Opcode.ADD])
 
 TYPE_ENCODING = {
     TypeID.INT:       [1,0,0,0,0,0],
@@ -117,18 +113,18 @@ TYPE_ENCODING = {
     TypeID.X86_FP80:  [0,1,0,0,0,0],
     TypeID.FP128:     [0,1,0,0,0,0],
     TypeID.PPC_FP128: [0,1,0,0,0,0],
+
     TypeID.POINTER:   [0,0,1,0,0,0],
-    TypeID.STRUCT:    [0,0,0,1,0,0],
-    TypeID.VECTOR:    [0,0,0,0,1,0],
-    
-    TypeID.ARRAY:     [0,0,0,0,0,1],
-    TypeID.VOID:      [0,0,0,0,0,1],
-    TypeID.LABEL:     [0,0,0,0,0,1],
-    TypeID.METADATA:  [0,0,0,0,0,1],
-    TypeID.X86_MMX:   [0,0,0,0,0,1],
-    TypeID.TOKEN:     [0,0,0,0,0,1],
-    TypeID.FUNCTION:  [0,0,0,0,0,1]
+
+    TypeID.ARRAY:     [0,0,0,1,0,0],
+    TypeID.STRUCT:    [0,0,0,0,1,0],
+    TypeID.VECTOR:    [0,0,0,0,0,1],
+
+    TypeID.UNKNOWN:   [0,0,0,0,0,0]
 }
+
+OP_ENCODING_SIZE = len(OP_ENCODING[Opcode.ADD])
 TYPE_ENCODING_SIZE = len(TYPE_ENCODING[TypeID.INT])
 
-MAX_ARRAY_DIMS = 4 # Maximum number of dimensions for arrays
+# Maximum number of dimensions for arrays
+MAX_ARRAY_DIMS = 4

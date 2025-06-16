@@ -569,13 +569,14 @@ struct ExtractMetadataPass : public ModulePass {
         AU.addRequired<ScalarEvolutionWrapperPass>();
     }
 
-    // ~ExtractMetadataPass() override {
-    //     for (auto& item : metadataDict) {
-    //         for (auto* md : item.second) {
-    //             delete md;
-    //         }
-    //     }
-    // }
+    ~ExtractMetadataPass() override {
+        for (auto& ModuleMDEntry : ModuleMetadata) {
+            for (auto* MD : ModuleMDEntry.second) {
+                delete MD; // Clean up allocated metadata
+            }
+        }
+        ModuleMetadata.clear();
+    }
 }; 
 // End struct ExtractMetadataPass
 

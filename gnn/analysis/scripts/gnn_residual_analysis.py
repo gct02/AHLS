@@ -8,14 +8,17 @@ def mad(residuals):
 
 
 def parse_residuals(log_file):
-    residuals = []
     with open(log_file, 'r') as file:
-        for line in file:
-            parts = line.split(';')
-            target = float(parts[0].split(' ')[-1])
-            pred = float(parts[-1].split(' ')[-1])
-            residuals.append(target - pred)
+        lines = file.readlines()
+    lines = lines[1:]  # Skip header
+
+    residuals = []
+    for line in lines:
+        _, target, pred = map(float, line.strip().split(','))
+        residuals.append(target - pred)
+
     residuals = np.array(residuals)
+
     return residuals
 
 

@@ -35,8 +35,6 @@
 *.i*86
 *.x86_64
 *.hex
-client/client
-server/server
 
 # Debug files
 *.dSYM/
@@ -44,44 +42,33 @@ server/server
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-# Config files
-*.cfg
-*.conf
-
-# Logs
-*.log
-
-# IDE specific files
-.vscode/
-.idea/
-
 # Environment specific files
+.vscode/
 __pycache__/
 *__pycache__/
 .venv/
 
 # Build folders
-build/
+*build/
 
 # Approximate Computing project files (on hold)
 approx/
+llvm/profiler/
+llvm/utils/
+llvm/clang_plugins/
 
-# Test files and statistics
-pretrained/
-run_info/
-test/
+gnn/models/
 
-# The dataset to train the estimator (too large for git)
-dataset/
+gnn/dataset/test/
+gnn/dataset/train/
+gnn/fine_tuning/dataset/
 
-# Scripts
-scripts/*.sh
+hls_config.tcl
+vitis_hls.log
+
+process_dataset.sh
+test_model.sh
+
+detect_broken_designs.py
+detect_redundant_designs.py
+detect_outliers.py
