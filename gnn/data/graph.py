@@ -16,9 +16,7 @@ from gnn.data.kernel.vitis_kernel_info import (
 )
 from gnn.data.utils.parsers import (
     parse_tcl_directives_file,
-    extract_auto_dcts_from_log,
-    extract_forbidden_dcts_from_log,
-    get_ignored_pipeline_indices
+    extract_auto_dcts_from_log
 )
 
 
@@ -45,7 +43,7 @@ NODE_FEATURE_DIMS = {
     "instr": 85, 
     "port": 25,
     "const": 5,
-    "region": 22,
+    "region": 21,
     "block": 6
 }
 
@@ -227,28 +225,22 @@ def include_directive_info(
         if not os.path.exists(vitis_log_path):
             print(f"Warning: Vitis log file '{vitis_log_path}' does not exist.")
             vitis_log_path = None
-        # else:
-        #     ignored_pipelines = get_ignored_pipeline_indices(vitis_log_path)
 
-    directives = parse_tcl_directives_file(
-        solution_dct_tcl_path,
-        # exclude_indices=ignored_pipelines if vitis_log_path else None
-        exclude_indices=None
-    )
+    directives = parse_tcl_directives_file(solution_dct_tcl_path)
 
-    def unroll_pipelined_subloops(loop_node):
-        """Completely unroll all subloops of a pipelined loop."""
-        for sub_region in loop_node.sub_regions:
-            node = kernel_info.nodes['region'][sub_region]
-            node.attrs["pipelined_parent"] = 1
-            if not node.is_loop:
-                continue
-            node.attrs["unroll"] = 1
-            trip_count = node.attrs.get("max_trip_count", 1)
-            if trip_count <= 0:
-                trip_count = 1
-            node.attrs["unroll_factor"] = trip_count
-            unroll_pipelined_subloops(node)
+    # def unroll_pipelined_subloops(loop_node):
+    #     """Completely unroll all subloops of a pipelined loop."""
+    #     for sub_region in loop_node.sub_regions:
+    #         node = kernel_info.nodes['region'][sub_region]
+    #         node.attrs["pipelined_parent"] = 1
+    #         if not node.is_loop:
+    #             continue
+    #         node.attrs["unroll"] = 1
+    #         trip_count = node.attrs.get("max_trip_count", 1)
+    #         if trip_count <= 0:
+    #             trip_count = 1
+    #         node.attrs["unroll_factor"] = trip_count
+    #         unroll_pipelined_subloops(node)
 
     for dct, args in directives:
         if dct not in DIRECTIVES:
@@ -302,12 +294,12 @@ def include_directive_info(
             
             region_node.attrs[dct] = 1
 
-            if dct == "pipeline" and region_node.is_loop:
-                # Pipeline pragma in a loop implies the complete
-                # unrolling of all its subloops (if any)
-                unroll_pipelined_subloops(region_node)
+            # if dct == "pipeline" and region_node.is_loop:
+            #     # Pipeline pragma in a loop implies the complete
+            #     # unrolling of all its subloops (if any)
+            #     unroll_pipelined_subloops(region_node)
 
-            elif dct == "unroll" and region_node.attrs.get("pipelined_parent", 0) == 0:
+            if dct == "unroll":
                 unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
@@ -315,28 +307,9 @@ def include_directive_info(
 
     if vitis_log_path:
         auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
+
         for dct, dct_info_set in auto_dcts.items():
             for dct_info in dct_info_set:
-                # if dct == "array_partition":
-                #     array_name = dct_info
-                #     array_node = None
-                #     for nt in ["port", "instr"]:
-                #         for node in kernel_info.nodes.get(nt, []):
-                #             if (node.name == array_name
-                #                 and node.attrs.get("array_partition", 0) == 0):
-                #                 array_node = node
-                #                 break
-                #         if array_node is not None:
-                #             break
-                #     if array_node is None:
-                #         print(f"Warning: Variable '{array_name}' not found in nodes.")
-                #         continue
-
-                #     array_node.attrs["array_partition"] = 1
-                #     array_node.attrs["partition_factor"] = array_node.total_size
-                #     array_node.attrs["partition_dim"] = [1, 0, 0, 0, 0]
-                #     array_node.attrs["partition_type"] = [1, 0, 0]
-
                 if dct == "loop_flatten":
                     loop_name, function_name = dct_info
                     for node in kernel_info.nodes.get('region', []):
@@ -345,9 +318,6 @@ def include_directive_info(
                             print(f"Applying auto directive: {dct} - {dct_info}")
                             node.attrs["loop_flatten"] = 1
                             break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' "
-                    #           f"(function '{function_name}') not found in nodes.")
 
                 elif dct == "inline":
                     function_name = dct_info
@@ -356,8 +326,6 @@ def include_directive_info(
                             print(f"Applying auto directive: {dct} - {dct_info}")
                             node.attrs["inline"] = 1
                             break
-                    # else:
-                    #     print(f"Warning: Function '{function_name}' not found in nodes.")
 
                 elif dct == "pipeline":
                     loop_name = dct_info
@@ -365,37 +333,8 @@ def include_directive_info(
                         if node.name == loop_name:
                             print(f"Applying auto directive: {dct} - {dct_info}")
                             node.attrs["pipeline"] = 1
-                            if node.is_loop:
-                                unroll_pipelined_subloops(node)
+                            # unroll_pipelined_subloops(node)
                             break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' not found in nodes.")
-
-        forbidden_dcts = extract_forbidden_dcts_from_log(vitis_log_path)
-        for dct, dct_info_set in forbidden_dcts.items():
-            for dct_info in dct_info_set:
-                if dct == "loop_merge":
-                    region_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if node.function == region_name:
-                            print(f"Removing forbidden directive: {dct} - {dct_info}")
-                            node.attrs["loop_merge"] = 0
-                            break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' "
-                    #         f"(function '{function_name}') not found in nodes.")
-                        
-                elif dct == "loop_flatten":
-                    loop_name, function_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if (node.name == loop_name 
-                            and node.function == function_name):
-                            print(f"Removing forbidden directive: {dct} - {dct_info}")
-                            node.attrs["loop_flatten"] = 0
-                            break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' "
-                    #         f"(function '{function_name}') not found in nodes.")
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):

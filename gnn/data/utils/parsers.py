@@ -243,57 +243,6 @@ def extract_auto_dcts_from_log(hls_log_path):
     return auto_dcts 
 
 
-def extract_forbidden_dcts_from_log(hls_log_path):
-    forbidden_flatten_code = '[HLS 200-960]'
-    forbidden_merge_code = '[HLS 200-946]'
-
-    with open(hls_log_path, "r") as f:
-        log_lines = f.readlines()
-
-    forbidden_dcts = {
-        "loop_flatten": set(),
-        "loop_merge": set()
-    }
-
-    for line in log_lines:
-        if forbidden_flatten_code in line:
-            if 'Cannot flatten loop \'' not in line or 'in function \'' not in line:
-                continue
-            loop = line.split('Cannot flatten loop \'')[1].split('\'')[0].strip()
-            function = line.split('in function \'')[1].split('\'')[0].strip()
-            forbidden_dcts['loop_flatten'].add((loop, function)) 
-
-        elif forbidden_merge_code in line:
-            if 'Cannot merge loops in region \'':
-                continue
-            region = line.split('Cannot merge loops in region \'')[1].split('\'')[0].strip()
-            forbidden_dcts['loop_merge'].add(region)
-
-    return forbidden_dcts
-
-
-def get_ignored_pipeline_indices(hls_log_path):
-    ignored_pipeline_code = '[XFORM 203-505]'
-
-    with open(hls_log_path, "r") as f:
-        log_lines = f.readlines()
-
-    ignored_pipelines = set()
-
-    for line in log_lines:
-        if ignored_pipeline_code in line:
-            line = line.split('WARNING: [XFORM 203-505] ')[1]
-            tcl_line_number = line.split('(')[1].split(')')[0].split(':')[1].strip()
-            try:
-                tcl_line_number = int(tcl_line_number)
-            except ValueError:
-                continue
-            if tcl_line_number > 0:
-                ignored_pipelines.add(tcl_line_number - 1) # Convert to 0-based index
-
-    return ignored_pipelines
-
-
 def export_directives_as_tcl(
     solution_data_json_path: Union[str, Path],
     output_path: Union[str, Path]
@@ -306,17 +255,15 @@ def export_directives_as_tcl(
         f.write(directives)
 
 
-def parse_tcl_directives_file(
-    tcl_path,
-    exclude_indices: List[int] = None
-) -> List[Tuple[str, Dict[str, str]]]:
+def parse_tcl_directives_file(tcl_path,) -> List[Tuple[str, Dict[str, str]]]:
     if not os.path.exists(tcl_path):
         raise ValueError(f"Directives file not found: {tcl_path}")
     with open(tcl_path, "r") as f:
         lines = f.readlines()
     directives = []
-    for i, line in enumerate(lines):
-        if exclude_indices and i in exclude_indices:
+    for line in lines:
+        if (not line.startswith('set_directive_')
+            or line.startswith('set_directive_top')):
             continue
         directives.append(parse_directive_cmd(line))
     return directives

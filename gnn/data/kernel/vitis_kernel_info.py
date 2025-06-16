@@ -144,7 +144,6 @@ class RegionNode(Node):
             'ii': ii, 
 
             'pipeline': 0,
-            'pipelined_parent': 0,
             'unroll': 0,
             'unroll_factor': 0,
             'loop_merge': 0,
@@ -273,7 +272,6 @@ class InstructionNode(CDFGNode):
         self, 
         element: ET.Element, 
         function: str,
-        resource_estimates: Optional[Dict[str, int]] = None,
         utilization: Optional[Dict[str, int]] = None,
         array_info: Optional[ArrayInfo] = None
     ):
@@ -324,13 +322,6 @@ class InstructionNode(CDFGNode):
             int(edge.text) 
             for edge in element.find('oprand_edges').findall('item')
         ]
-
-        # if resource_estimates is not None:
-        #     for res in RESOURCES:
-        #         self.attrs[f"{res}_estimate"] = resource_estimates.get(res, 0)
-        # else:
-        #     for res in RESOURCES:
-        #         self.attrs[f"{res}_estimate"] = 0
 
         if utilization is not None:
             for res in RESOURCES:
@@ -446,8 +437,6 @@ class CDFG:
         self.is_top_level = self.name == top_level_function
         self.function_calls = []
 
-        self._get_resource_estimate_map(root)
-
         try:
             self._parse_nodes(cdfg, cdfg_regions, array_info_list, utilization)
             self._parse_edges(cdfg)
@@ -485,7 +474,6 @@ class CDFG:
             
             name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
-            resource_estimates = self._resource_estimate_map.get(rtl_name) if rtl_name else None
             utilization_info = utilization.get(rtl_name) if rtl_name else None
             opcode = elem.findtext('opcode', '')
 
@@ -495,7 +483,6 @@ class CDFG:
             )
             node = InstructionNode(
                 elem, self.name, 
-                resource_estimates=resource_estimates,
                 utilization=utilization_info,
                 array_info=array_info
             )
@@ -648,31 +635,12 @@ class CDFG:
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
 
-    def _get_resource_estimate_map(self, root):
-        res_items = root.findall('*/res/*/item')
-        rx = re.compile(' \(.*\)')
-
-        self._resource_estimate_map = {}
-        
-        for item in res_items:
-            rtl_name = re.sub(rx, '', item.find('first').text).strip()
-            rtl_resources = item.find('second')
-            if rtl_resources is None or rtl_name in self._resource_estimate_map:
-                continue
-            res_map = {res: 0 for res in RESOURCES}
-            for res in rtl_resources.iter('item'):
-                res_name = res.findtext('first')
-                if res_name in res_map:
-                    res_map[res_name] = findint(res, 'second')
-            self._resource_estimate_map[rtl_name] = res_map
-
     def as_dict(self):
         return {
             'name': self.name,
             'ret_bitwidth': self.ret_bitwidth,
             'is_top_level': self.is_top_level,
             'function_calls': self.function_calls,
-            'resource_estimates': self._resource_estimate_map,
             'nodes': {
                 nt: [n.as_dict() for n in nodes] 
                 for nt, nodes in self.nodes.items()
@@ -712,22 +680,7 @@ class VitisKernelInfo:
         self._offsets = {nt: 0 for nt in CDFG_NODE_TYPES}
         self._cdfgs = {}
 
-        with open(array_info_path, 'r') as f:
-            array_info_json = json.load(f)
-
-        if not array_info_json:
-            raise ValueError("Array info is empty")
-        
-        array_info_list = array_info_json.get('ArrayInfo')
-        
-        for i in range(len(array_info_list)):
-            for key, value in array_info_list[i].items():
-                if isinstance(value, str) and key not in ['Name', 'FunctionName']:
-                    array_info_list[i][key] = int(value.strip())
-                elif isinstance(value, list):
-                    for j in range(len(value)):
-                        if isinstance(value[j], str):
-                            value[j] = int(value[j].strip())
+        self._parse_array_info(array_info_path)
 
         with open(global_array_usage_path, 'r') as f:
             global_array_usage = json.load(f)
@@ -738,14 +691,34 @@ class VitisKernelInfo:
         global_array_usage = global_array_usage.get('GlobalArrayUsageInfo')
 
         try:
-            self._process_adb_files(solution_dir, filtered, array_info_list)
+            self._process_adb_files(solution_dir, filtered)
             self._include_call_flow()
             self._complement_cdfg_edges(global_array_usage)
         except Exception as e:
             print(f"Error processing ADB files: {e}")
             raise
 
-    def _process_adb_files(self, solution_dir, filtered, array_info_list):
+    def _parse_array_info(self, array_info_path):
+        with open(array_info_path, 'r') as f:
+            array_info_json = json.load(f)
+
+        if not array_info_json:
+            raise ValueError("Array info is empty")
+        
+        self.array_info = array_info_json.get('ArrayInfo')
+        if not self.array_info:
+            raise ValueError("Array info list is empty")
+
+        for i in range(len(self.array_info)):
+            for key, value in self.array_info[i].items():
+                if isinstance(value, str) and key not in ['Name', 'FunctionName']:
+                    self.array_info[i][key] = int(value.strip())
+                elif isinstance(value, list):
+                    for j in range(len(value)):
+                        if isinstance(value[j], str):
+                            value[j] = int(value[j].strip())
+
+    def _process_adb_files(self, solution_dir, filtered):
         try:
             adb_file_list = collect_adb_files(solution_dir, filtered)
         except FileNotFoundError as e:
@@ -763,7 +736,7 @@ class VitisKernelInfo:
             cdfg = CDFG(
                 root=root, 
                 top_level_function=self.top_level_function, 
-                array_info_list=array_info_list, 
+                array_info_list=self.array_info, 
                 utilization=self.utilization,
                 offsets=self._offsets
             )
@@ -817,7 +790,7 @@ class VitisKernelInfo:
                 if store_idx >= 0:
                     store_count = 0
                     for instr_node in instr_nodes:
-                        if instr_node.attrs.get('opcode', '') == 'store':
+                        if instr_node.opcode == 'store':
                             if store_count == store_idx:
                                 instr_id = instr_node.id
                                 break
@@ -825,7 +798,7 @@ class VitisKernelInfo:
                 elif instr_name:
                     for instr_node in instr_nodes:
                         if (instr_node.name == instr_name
-                            and instr_node.attrs.get('opcode', '') in ['load', 'getelementptr']):
+                            and instr_node.opcode in ['load', 'getelementptr']):
                             instr_id = instr_node.id
                             break
                 

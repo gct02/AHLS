@@ -1,9 +1,9 @@
 import os
 import argparse
 import random
-import copy
 import pickle
 import json
+import shutil
 from typing import List, Dict, Tuple, Optional, Union, Any
 
 import matplotlib
@@ -36,12 +36,15 @@ from gnn.analysis import (
     compute_time,
     compute_power
 )
-from gnn.data.utils.parsers import (
-    AVAILABLE_RESOURCES
-)
-
+from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
+AVAILABLE_RESOURCES_TENSOR = torch.tensor(
+    [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS['area']],
+    dtype=torch.float32,
+    device=DEVICE
+)
 
 
 def static_vars(**kwargs):
@@ -55,18 +58,17 @@ def static_vars(**kwargs):
 @static_vars(
     min_mre=float('inf'), 
     best_epoch=-1, 
-    best_preds=None,
-    best_model=None
+    best_preds=None
 )
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
     epoch: int,
+    target_metric: str = 'area',
     exp_adjust: bool = False,
     output_dir: Optional[str] = None
 ) -> float:
     targets, preds = [], []
-    
     for data in loader:
         data = data.to(DEVICE)
         pred = model(
@@ -84,22 +86,32 @@ def evaluate(
         targets = torch.expm1(targets)
         preds = torch.expm1(preds)
 
+    targets = aggregate_qor_metrics(targets, target_metric)
+    preds = aggregate_qor_metrics(preds, target_metric)
+
     mre = percentage_diff(preds, targets).mean().item()
+
     if mre < evaluate.min_mre:
-        if output_dir: # Save model only after 20 epochs
-            model_path = f"{output_dir}/best_model.pt"
+        if output_dir and epoch > 20: # Avoid saving model at the first few epochs
+            model_path = f"{output_dir}/model.pt"
+            preds_path = f"{output_dir}/predictions.pt"
             torch.save(obj=model.state_dict(), f=model_path)
-            indices = [data.solution_index for data in loader.dataset]
-            with open(f"{output_dir}/best_predictions.csv", "w") as f:
+            indices = [
+                data.solution_index 
+                for data in loader.dataset
+            ]
+            with open(preds_path, "w") as f:
                 f.write(f"index,target,prediction\n")
-                for i, index in enumerate(indices):
-                    for target, pred in zip(targets[i, :].tolist(), preds[i, :].tolist()):
-                        f.write(f"{index},{target},{pred}\n")
+                for index, target, pred in zip(
+                    indices, 
+                    targets.tolist(), 
+                    preds.tolist()
+                ):
+                    f.write(f"{index},{target},{pred}\n")
                     
         evaluate.min_mre = mre
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
-        evaluate.best_model = copy.deepcopy(model.state_dict())
 
     print(f"\nMRE at epoch {epoch + 1}: {mre:.2f}%")
     print(f"Best MRE so far: {evaluate.min_mre:.2f}%"
@@ -116,6 +128,7 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     max_norm: float = 5.0,
+    target_metric: str = 'area',
     scheduler: Optional[LRScheduler] = None,
     exp_adjust: bool = False,
     output_dir: Optional[str] = None
@@ -130,7 +143,7 @@ def train_model(
             # torch.cuda.empty_cache()
             optimizer.zero_grad()
             data = data.to(DEVICE)
-            
+
             pred = model(
                 data.x_dict, 
                 data.edge_index_dict, 
@@ -158,6 +171,8 @@ def train_model(
             targets = torch.expm1(targets)
             preds = torch.expm1(preds)
 
+        targets = aggregate_qor_metrics(targets, target_metric)
+        preds = aggregate_qor_metrics(preds, target_metric)
         train_mre = percentage_diff(preds, targets).mean().item()
         train_mres.append(train_mre)
 
@@ -167,6 +182,7 @@ def train_model(
                 model=model, 
                 loader=test_loader, 
                 epoch=epoch,
+                target_metric=target_metric,
                 exp_adjust=exp_adjust,
                 output_dir=output_dir
             )
@@ -184,6 +200,7 @@ def main(args: Dict[str, Any]):
     seed = int(args['seed'])
     learning_rate = float(args['learning_rate'])
     betas = tuple(map(float, args['betas']))
+    weight_decay = float(args['weight_decay'])
     max_norm = float(args['max_norm'])
     loss = args['loss']
     log_scale = args['log_scale']
@@ -209,7 +226,7 @@ def main(args: Dict[str, Any]):
     benches = sorted(os.listdir(full_dataset_dir))
     train_benches = [b for b in benches if b != test_bench]
 
-    model_dir = f"{output_dir}/models/{target_metric.upper()}_{test_bench}"
+    model_dir = f"{output_dir}/models/{target_metric}/{test_bench.lower()}_out"
 
     run_number = 1
     while os.path.exists(f"{model_dir}/run_{run_number}"):
@@ -220,14 +237,14 @@ def main(args: Dict[str, Any]):
 
     pretrained_dir = f"{model_dir}/pretrained"
     model_info_dir = f"{model_dir}/model_info"
-    training_info_dir = f"{model_dir}/training_info"
     checkpoint_dir = f"{model_dir}/checkpoint"
+    training_info_dir = f"{model_dir}/training_info"
     graphs_dir = f"{training_info_dir}/graphs"
 
     os.makedirs(model_info_dir, exist_ok=True)
     os.makedirs(pretrained_dir, exist_ok=True)
-    os.makedirs(training_info_dir, exist_ok=True)
     os.makedirs(checkpoint_dir, exist_ok=True)
+    os.makedirs(training_info_dir, exist_ok=True)
     os.makedirs(graphs_dir, exist_ok=True)
 
     with open(f"{training_info_dir}/training_args.json", 'w') as f:
@@ -244,7 +261,7 @@ def main(args: Dict[str, Any]):
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
-    model_args_path = f"{model_info_dir}/{target_metric.upper()}_estimator_args.json"
+    model_args_path = f"{model_info_dir}/model_args.json"
     with open(model_args_path, 'w') as f:
         json.dump(model_args, f, indent=2)
 
@@ -271,7 +288,7 @@ def main(args: Dict[str, Any]):
 
     grouped_params = get_optimizer_param_groups(
         model=model,
-        weight_decay_val=1e-4
+        weight_decay_val=weight_decay
     )
     optimizer = torch.optim.AdamW(
         grouped_params,
@@ -293,45 +310,24 @@ def main(args: Dict[str, Any]):
         model, loss_fn, optimizer, 
         train_loader, test_loader, epochs, 
         scheduler=scheduler, 
+        target_metric=target_metric,
         max_norm=max_norm,
         exp_adjust=log_scale,
         output_dir=checkpoint_dir
     )
 
-    model_path = f"{pretrained_dir}/{target_metric.upper()}_estimator.pt"
-    torch.save(obj=evaluate.best_model, f=model_path)
-
-    avail_resources = torch.tensor(
-        [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS[target_metric]],
-        dtype=torch.float32,
-        device=DEVICE
-    )
-
+    indices = [
+        data.solution_index 
+        for data in test_loader.dataset
+    ]
     targets = []
     for data in test_loader:
-        target = data.y.to(DEVICE)
-        if target_metric == 'area':
-            targets.extend(compute_snru(target, avail_resources).tolist())
-        elif target_metric == 'timing':
-            targets.extend(compute_time(target).tolist())
-        else:
-            targets.extend(compute_power(target).tolist())
-
-    preds = []
-    best_preds = evaluate.best_preds.to(DEVICE)
-    for i in range(best_preds.size(0)):
-        pred = evaluate.best_preds[i]
-        if target_metric == 'area':
-            preds.extend(compute_snru(pred, avail_resources).tolist())
-        elif target_metric == 'timing':
-            preds.extend(compute_time(pred).tolist())
-        else:
-            preds.extend(compute_power(pred).tolist())
-
-    indices = [data.solution_index for data in test_loader.dataset]
+        target = aggregate_qor_metrics(data.y.to(DEVICE), target_metric)
+        targets.extend(target.tolist())
+    preds = evaluate.best_preds.tolist()
 
     with open(f"{model_info_dir}/predictions.csv", 'w') as f:
-        f.write("Index,Target,Prediction\n")
+        f.write("index,target,prediction\n")
         for index, target, pred in zip(indices, targets, preds):
             f.write(f"{index},{target},{pred}\n")
 
@@ -351,6 +347,13 @@ def main(args: Dict[str, Any]):
         train_errors=train_errors,
         output_dir=graphs_dir
     )
+
+    checkpoint_model_path = f"{checkpoint_dir}/model.pt"
+    model_path = f"{pretrained_dir}/{target_metric}_estimator.pt"
+    if os.path.exists(checkpoint_model_path):
+        shutil.copyfile(checkpoint_model_path, model_path)
+    else:
+        torch.save(obj=model.state_dict(), f=model_path)
 
 
 def save_training_artifacts(
@@ -475,6 +478,17 @@ def prepare_data_loaders(
             train_dataset.feature_ranges)
 
 
+def aggregate_qor_metrics(values: Tensor, target_metric: str) -> Tensor:
+    if target_metric == 'area':
+        return compute_snru(values, AVAILABLE_RESOURCES_TENSOR)
+    elif target_metric == 'timing':
+        return compute_time(values)
+    elif target_metric == 'power':
+        return compute_power(values)
+    else:
+        raise ValueError(f"Unsupported target metric: {target_metric}")
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dataset-dir', type=str, required=True, 
@@ -495,6 +509,8 @@ def parse_arguments():
                         help='The learning rate for the optimizer (default: 5e-4).')
     parser.add_argument('-bs', '--betas', type=float, nargs=2, default=(0.9, 0.999),
                         help='The betas for the Adam optimizer (default: 0.9, 0.999).')
+    parser.add_argument('-wd', '--weight-decay', type=float, default=1e-4,
+                        help='Weight decay for the optimizer (default: 1e-4).')
     parser.add_argument('-mn', '--max-norm', type=float, default=5.0,
                         help='Maximum norm for gradient clipping (default: 5.0).')
     parser.add_argument('-ls', '--log-scale', action='store_true',
