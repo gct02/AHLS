@@ -9,7 +9,7 @@ import torch
 from gnn.data.graph import (
     initialize_graph_structure, 
     generate_hetero_graph, 
-    BaseGraph
+    HeteroGraph
 )
 from gnn.data.utils.parsers import (
     extract_metrics,
@@ -22,7 +22,7 @@ def process_base_solutions(
     dataset: Path, 
     benchmarks: List[str], 
     output_dir: Path
-) -> Dict[str, BaseGraph]:
+) -> Dict[str, HeteroGraph]:
     base_graphs = {}
     for benchmark in benchmarks:
         if not (dataset / benchmark).is_dir():

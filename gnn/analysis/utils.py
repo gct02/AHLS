@@ -16,7 +16,7 @@ from numpy.typing import NDArray
 
 from gnn.data.utils.parsers import (
     extract_metrics,
-    parse_tcl_directives_file,
+    parse_tcl_directives,
     parse_directive_cmd
 )
 
@@ -196,7 +196,7 @@ def encode_directives(
                 group_dcts.append(dct_args)
         dcts.append((dct_type, label, group_dcts))
 
-    sol_dcts = parse_tcl_directives_file(solution_dct_tcl_path)
+    sol_dcts = parse_tcl_directives(solution_dct_tcl_path)
     sol_dcts = [
         dct for dct in sol_dcts 
         if dct[0] in available_dcts

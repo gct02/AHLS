@@ -210,8 +210,7 @@ class HLSDataset(Dataset):
 
 def _compute_feature_ranges(
     dataset_dir: str,
-    benchmarks: Optional[Union[str, List[str]]] = None,
-    # metric: str = "snru"
+    benchmarks: Optional[Union[str, List[str]]] = None
 ) -> Dict[NodeType, Tuple[Tensor, Tensor]]:
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))

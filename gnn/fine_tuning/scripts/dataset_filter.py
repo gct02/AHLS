@@ -8,7 +8,7 @@ import numpy as np
 from gnn.data.graph import find_region_node
 from gnn.data.kernel.vitis_kernel_info import VitisKernelInfo
 
-from gnn.data.utils.parsers import parse_tcl_directives_file
+from gnn.data.utils.parsers import parse_tcl_directives
 
 
 DIRECTIVES = {
@@ -95,7 +95,7 @@ def filter_solutions(
         if not os.path.exists(dct_file):
             continue
 
-        dcts = parse_tcl_directives_file(dct_file)
+        dcts = parse_tcl_directives(dct_file)
         critical_dcts = 0
 
         for dct_type, dct in dcts:

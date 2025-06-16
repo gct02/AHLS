@@ -115,8 +115,8 @@ class HLSQoREstimator(nn.Module):
     r"""Model for estimating HLS QoR using a heterogeneous graph neural network.
 
     Args:
-        target_metric (str): The target metric to learn. Should be one of the metrics
-            defined in the dataset ("area", "timing" or "power").
+        target_metric (str): The target metric to learn. Should be one of
+            {'area', 'power', 'timing'}.
         in_channels (Union[int, Dict[NodeType, int]]): Input feature dimension or 
             a dictionary mapping node types to their input feature dimensions.
         hidden_channels (Union[int, List[int]]): Hidden feature dimension for the 

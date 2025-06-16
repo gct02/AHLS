@@ -254,10 +254,10 @@ def export_directives_as_tcl(
         f.write(directives)
 
 
-def parse_tcl_directives_file(tcl_path,) -> List[Tuple[str, Dict[str, str]]]:
-    if not os.path.exists(tcl_path):
-        raise ValueError(f"Directives file not found: {tcl_path}")
-    with open(tcl_path, "r") as f:
+def parse_tcl_directives(dct_tcl_path) -> List[Tuple[str, Dict[str, str]]]:
+    if not os.path.exists(dct_tcl_path):
+        raise ValueError(f"Directives file not found: {dct_tcl_path}")
+    with open(dct_tcl_path, "r") as f:
         lines = f.readlines()
     directives = []
     for line in lines:
@@ -271,7 +271,7 @@ def parse_tcl_directives_file(tcl_path,) -> List[Tuple[str, Dict[str, str]]]:
 def parse_directive_cmd(directive_cmd) -> Tuple[str, Dict[str, str]]:
     cmd = directive_cmd.split(' ')[0].split('set_directive_')[1]
     args = directive_cmd.split(' ')[1:]
-    parsed_args = _parse_directive_options(args)
+    parsed_args = _parse_directive_args(args)
     return cmd, parsed_args
 
 
@@ -376,29 +376,29 @@ def _find_line_containing(lines: List[str], *search_string) -> int:
     return -1
 
 
-def _parse_directive_options(directive_options: List[str]) -> Dict[str, str]:
+def _parse_directive_args(dct_args: List[str]) -> Dict[str, str]:
     parsed_args = {}
 
     is_loc_parsed = False
     i = 0
-    while i < len(directive_options):
-        if not directive_options[i]:
+    while i < len(dct_args):
+        if not dct_args[i]:
             i += 1
             continue
-        if directive_options[i].startswith('-'):
-            if directive_options[i].find('=') != -1:
-                key, value = directive_options[i].split('=')
+        if dct_args[i].startswith('-'):
+            if dct_args[i].find('=') != -1:
+                key, value = dct_args[i].split('=')
                 parsed_args[key[1:]] = value
-            elif directive_options[i] == '-off':
+            elif dct_args[i] == '-off':
                 parsed_args['off'] = "true"
             else:
-                parsed_args[directive_options[i][1:]] = directive_options[i+1]
+                parsed_args[dct_args[i][1:]] = dct_args[i+1]
                 i += 1
         elif not is_loc_parsed:
-            parsed_args['location'] = directive_options[i]
+            parsed_args['location'] = dct_args[i]
             is_loc_parsed = True
         else:
-            parsed_args['variable'] = directive_options[i]
+            parsed_args['variable'] = dct_args[i]
         i += 1
 
     for key, args in parsed_args.items():

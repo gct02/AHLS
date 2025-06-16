@@ -121,7 +121,9 @@ class InstructionNode(Node):
 
 class VariableNode(Node):
     def __init__(self, index, pgml_id, var_type, bitwidth, 
-                 function_name=None, node_name=None, array_features=None):
+                 function_name=None, node_name=None, 
+                 is_param=False, is_interface=False,
+                 is_global=False, array_features=None):
         super().__init__(index, 'var', function_name)
         self.pgml_id = pgml_id
         self.node_name = node_name
@@ -134,15 +136,28 @@ class VariableNode(Node):
         )
         self.set_feature('type', encoded_var_type)
         self.set_feature('bitwidth', self.bitwidth)
+        self.set_feature('is_param', int(is_param))
+        self.set_feature('is_interface', int(is_interface))
+        self.set_feature('is_global', int(is_global))
 
         self.is_array = array_features is not None
-        if self.is_array:
-            self.extend_features(array_features)
+        if not self.is_array:
+            array_features = {
+                'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
+                'base_bitwidth': 0,
+                'dimensions': [0] * (MAX_ARRAY_DIMS + 1),
+                'partition_factor': 0,
+                'partition_type': [0, 0, 0],
+                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
+            }
+        self.extend_features(array_features)
 
 
 class ConstantNode(Node):
     def __init__(self, index, pgml_id, const_type, bitwidth, 
-                 function_name=None, node_name=None, array_features=None):
+                 function_name=None, node_name=None, 
+                 is_param=False, is_interface=False,
+                 is_global=False, array_features=None):
         super().__init__(index, 'const', function_name)
         self.pgml_id = pgml_id
         self.node_name = node_name
@@ -155,10 +170,21 @@ class ConstantNode(Node):
         )
         self.set_feature('type', encoded_const_type)
         self.set_feature('bitwidth', self.bitwidth)
+        self.set_feature('is_param', int(is_param))
+        self.set_feature('is_interface', int(is_interface))
+        self.set_feature('is_global', int(is_global))
 
         self.is_array = array_features is not None
-        if self.is_array:
-            self.extend_features(array_features)
+        if not self.is_array:
+            array_features = {
+                'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
+                'base_bitwidth': 0,
+                'dimensions': [1] * (MAX_ARRAY_DIMS + 1),
+                'partition_factor': 0,
+                'partition_type': [0, 0, 0],
+                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
+            }
+        self.extend_features(array_features)
 
 
 class RegionNode(Node):
@@ -176,7 +202,7 @@ class RegionNode(Node):
         self.set_feature('inline', 0)
 
 
-BaseGraph = Tuple[
+HeteroGraph = Tuple[
     Dict[NodeType, List[Node]], 
     Dict[EdgeType, List[Tuple[int, int]]]
 ]
@@ -184,8 +210,9 @@ BaseGraph = Tuple[
 
 def initialize_graph_structure(
     ir_filepath: str, 
-    ir_metadata_filepath: str
-) -> BaseGraph:
+    ir_metadata_filepath: str,
+    top_level_function: str
+) -> HeteroGraph:
     import programl
 
     with open(ir_metadata_filepath, 'r') as f:
@@ -204,7 +231,10 @@ def initialize_graph_structure(
         if 'name' in f
     ]
 
-    node_dict, hrchy_edge_dict = build_nodes(pgml_nodes, pgml_functions, ir_metadata)
+    node_dict, hrchy_edge_dict = build_nodes(
+        pgml_nodes, pgml_functions, ir_metadata, 
+        top_level_function
+    )
     edge_dict = build_edges(pgml_edges, node_dict)
 
     for et, edges in hrchy_edge_dict.items():
@@ -241,7 +271,8 @@ def to_hetero_data(
                 (0, FEATURE_SIZE_BY_TYPE[nt]), dtype=torch.float32
             )
         data[nt].label = [
-            node.name if hasattr(node, 'name') and node.name else node.index
+            node.name 
+            if hasattr(node, 'name') and node.name else node.index
             for node in nodes
         ]
 
@@ -260,12 +291,13 @@ def to_hetero_data(
     if add_self_loops:
         for nt in NODE_TYPES:
             nodes = node_dict.get(nt)
+            et = (nt, 'self', nt)
             if nodes:
                 src = torch.arange(len(nodes), dtype=torch.long)
                 dst = src.clone()
-                data[nt, "self", nt].edge_index = torch.stack([src, dst], dim=0)
+                data[et].edge_index = torch.stack([src, dst], dim=0)
             else:
-                data[nt, "self", nt].edge_index = torch.empty((2, 0), dtype=torch.long)
+                data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
 
     if output_path is not None:
         torch.save(data, output_path)
@@ -440,29 +472,24 @@ def extract_type_info(node_full_text):
 
 
 def parse_array_features(metadata):
-    if int(metadata.get('isArray', 0)) == 1:
-        base_type_encoding = TYPE_ENCODING.get(
-            int(metadata['baseType']), 
-            TYPE_ENCODING[TypeID.UNKNOWN]
-        )
-        base_bitwidth = int(metadata['baseTypeBitwidth'])
+    base_type_encoding = TYPE_ENCODING.get(
+        int(metadata['baseType']), 
+        TYPE_ENCODING[TypeID.UNKNOWN]
+    )
+    base_bitwidth = int(metadata['baseTypeBitwidth'])
 
-        dims = [
-            int(dim) for dim in metadata['dimensions']
-        ]
-        num_dims = int(metadata['numDims'])
-        if num_dims > MAX_ARRAY_DIMS:
-            remaining_dims = dims[MAX_ARRAY_DIMS-1:]
-            remaining_size = 1
-            for dim in remaining_dims:
-                remaining_size *= dim
-            dims = dims[:MAX_ARRAY_DIMS-1] + [remaining_size]
-        elif num_dims < MAX_ARRAY_DIMS:
-            dims += [1] * (MAX_ARRAY_DIMS - num_dims)
-    else:
-        base_type_encoding = TYPE_ENCODING[TypeID.UNKNOWN],
-        base_bitwidth = 0,
-        dims = [1] * (MAX_ARRAY_DIMS + 1),
+    dims = [
+        int(dim) for dim in metadata['dimensions']
+    ]
+    num_dims = int(metadata['numDims'])
+    if num_dims > MAX_ARRAY_DIMS:
+        remaining_dims = dims[MAX_ARRAY_DIMS-1:]
+        remaining_size = 1
+        for dim in remaining_dims:
+            remaining_size *= dim
+        dims = dims[:MAX_ARRAY_DIMS-1] + [remaining_size]
+    elif num_dims < MAX_ARRAY_DIMS:
+        dims += [1] * (MAX_ARRAY_DIMS - num_dims)
 
     feature_dict = {
         'base_type': base_type_encoding,
@@ -475,7 +502,8 @@ def parse_array_features(metadata):
     return feature_dict
 
 
-def build_nodes(pgml_nodes, pgml_functions, ir_metadata):
+def build_nodes(pgml_nodes, pgml_functions, 
+                ir_metadata, top_level_function):
     node_dict = defaultdict(list)
     node_indices = defaultdict(int)
     id_to_index_mapping = {"instr": {}, "region": {}}
@@ -524,20 +552,30 @@ def build_nodes(pgml_nodes, pgml_functions, ir_metadata):
             if metadata is None:
                 continue
 
+            is_global = int(metadata.get('isGlobal', 0)) == 1
+            is_param = int(metadata.get('isParam', 0)) == 1
+            is_interface = is_param and function_name == top_level_function
+            array_features = None
+            if int(metadata.get('isArray', 0)) == 1:
+                array_features = parse_array_features(metadata)
+
             node_index = node_indices['var']
             node_indices['var'] += 1
 
-            array_features = parse_array_features(metadata)
             node = VariableNode(
                 node_index, pgml_id=pgml_node_id,
                 var_type=metadata['type'], 
                 bitwidth=metadata['bitwidth'],
                 node_name=metadata.get('name'),
                 function_name=function_name,
+                is_global=is_global,
+                is_param=is_param,
+                is_interface=is_interface,
                 array_features=array_features
             )
 
         elif node_type == 2: # Constant
+            array_features = None
             # Check if internal
             if '=' in node_full_text:
                 const_name, const_value = node_full_text.split('=')
@@ -547,19 +585,16 @@ def build_nodes(pgml_nodes, pgml_functions, ir_metadata):
                 )
                 if metadata is None:
                     continue
-                array_features = parse_array_features(metadata)
+                is_global = int(metadata.get('isGlobal', 0)) == 1
+                is_param = int(metadata.get('isParam', 0)) == 1
+                is_interface = is_param and function_name == top_level_function
                 const_type = metadata['type']
                 bitwidth = metadata['bitwidth']
                 node_name = metadata.get('name')
+                if int(metadata.get('isArray', 0)) == 1:
+                    array_features = parse_array_features(metadata)
             else:
-                array_features = {
-                    'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
-                    'base_bitwidth': 0,
-                    'dimensions': [1] * (MAX_ARRAY_DIMS + 1),
-                    'array_partition': 0,
-                    'partition_type': [0, 0, 0],
-                    'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
-                }
+                is_global = is_param = is_interface = False
                 const_features = extract_type_info(node_full_text)
                 const_type = const_features['type']
                 bitwidth = const_features['bitwidth']
@@ -574,6 +609,9 @@ def build_nodes(pgml_nodes, pgml_functions, ir_metadata):
                 bitwidth=bitwidth,
                 node_name=node_name,
                 function_name=function_name,
+                is_global=is_global,
+                is_param=is_param,
+                is_interface=is_interface,
                 array_features=array_features
             )
             node_dict['const'].append(node)
