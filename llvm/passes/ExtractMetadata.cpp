@@ -17,6 +17,10 @@
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/JSON.h"
+#include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/FileSystem.h"
+#include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
@@ -103,6 +107,7 @@ struct ExtractMetadataPass : public ModulePass {
     ExtractMetadataPass() : ModulePass(ID) {}
 
     std::map<std::string, std::vector<EntityMetadata*>> ModuleMetadata;
+    std::map<uint32_t, RegionMetadata*> RegionIDMap;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
@@ -111,11 +116,12 @@ struct ExtractMetadataPass : public ModulePass {
             errs() << "Output file not specified.\n";
             return false;
         }
+        const DataLayout &DL = M.getDataLayout();
 
-        extractMetadataFromGlobals(M);
+        extractMetadataFromGlobals(M, DL);
+        extractMetadataFromParams(M, DL);
+        extractMetadataFromInstrs(M, DL);
         extractMetadataFromRegions(M);
-        extractMetadataFromParams(M);
-        extractMetadataFromInstrs(M);
 
         writeMetadataToFile(M);
         
@@ -123,92 +129,113 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     void writeMetadataToFile(Module& M) {
-        std::ofstream OutStream(OutputPath.c_str());
-        if (!OutStream.is_open()) {
-            errs() << "Error opening file: " << OutputPath << "\n";
+        // The top-level structure is a JSON Object.
+        json::Object RootObject;
+
+        // Iterate over the main map ("variable", "region", etc.)
+        for (const auto& Item : ModuleMetadata) {
+            std::string Key = Item.first;
+            const std::vector<EntityMetadata*>& MDList = Item.second;
+            json::Array EntityArray;
+
+            for (const auto* MD : MDList) {
+                json::Object EntityObject;
+
+                EntityObject["name"] = MD->Name;
+                EntityObject["functionName"] = MD->FunctionName;
+
+                for (const auto& Attr : MD->Attributes) {
+                    EntityObject[Attr.first] = static_cast<int64_t>(Attr.second);
+                }
+
+                if (const auto* RegionMD = dyn_cast<RegionMetadata>(MD)) {
+                    json::Array SubRegionsArray;
+                    for (uint32_t SubRegionID : RegionMD->SubRegions) {
+                        SubRegionsArray.push_back(static_cast<int64_t>(SubRegionID));
+                    }
+                    EntityObject["subRegions"] = std::move(SubRegionsArray);
+
+                    json::Array InstructionsArray;
+                    for (uint32_t InstrID : RegionMD->Instructions) {
+                        InstructionsArray.push_back(static_cast<int64_t>(InstrID));
+                    }
+                    EntityObject["instructions"] = std::move(InstructionsArray);
+
+                } else if (const auto* ArrayMD = dyn_cast<ArrayMetadata>(MD)) {
+                    json::Array DimensionsArray;
+                    for (uint32_t DimSize : ArrayMD->Dimensions) {
+                        DimensionsArray.push_back(static_cast<int64_t>(DimSize));
+                    }
+                    EntityObject["dimensions"] = std::move(DimensionsArray);
+                }
+                EntityArray.push_back(std::move(EntityObject));
+            }
+            RootObject[Key] = std::move(EntityArray);
+        }
+        std::string JsonString;
+        raw_string_ostream SS(JsonString);
+        SS << formatv("{0:2}", json::Value(std::move(RootObject)));
+        SS.flush();
+
+        std::ofstream OFS(OutputPath.c_str());
+        if (!OFS.is_open()) {
+            errs() << "Error: Could not open file '" << OutputPath.c_str() << "' for writing.\n";
             return;
         }
-
-        OutStream << "{\n";
-        bool FirstTy = true;
-        for (const auto& ModuleMDEntry : ModuleMetadata) {
-             if (!FirstTy) OutStream << ",\n";
-             FirstTy = false;
-
-            std::string Ty = ModuleMDEntry.first;
-            std::vector<EntityMetadata*> MD = ModuleMDEntry.second;
-
-            OutStream << "  \"" << Ty << "\": [\n";
-            bool FirstMD = true;
-            for (auto* MDEntry : MD) {
-                if (!FirstMD) OutStream << ",\n";
-                FirstMD = false;
-
-                OutStream << "    {\n";
-                OutStream << "      \"name\": \"" << MDEntry->Name << "\",\n";
-                OutStream << "      \"functionName\": \"" << MDEntry->FunctionName << "\"";
-
-                for (auto MDAttrEntry : MDEntry->Attributes) {
-                    OutStream << ",\n      \"" << MDAttrEntry.first << "\": " << MDAttrEntry.second;
-                }
-
-                if (auto* RegionMDEntry = dyn_cast<RegionMetadata>(MDEntry)) {
-                    OutStream << ",\n      \"subRegions\": [";
-                    bool FirstSub = true;
-                    for (auto SubRegionID : RegionMDEntry->SubRegions) {
-                         if (!FirstSub) OutStream << ",";
-                         FirstSub = false;
-                         OutStream << SubRegionID;
-                    }
-                    OutStream << "]";
-                    OutStream << ",\n      \"instructions\": [";
-                    bool FirstInstr = true;
-                    for (auto InstrID : RegionMDEntry->Instructions) {
-                         if (!FirstInstr) OutStream << ",";
-                         FirstInstr = false;
-                         OutStream << InstrID;
-                    }
-                    OutStream << "]";
-                } else if (auto* ArrayMDEntry = dyn_cast<ArrayMetadata>(MDEntry)) {
-                    OutStream << ",\n      \"dimensions\": [";
-                    bool FirstDim = true;
-                    for (auto DimSize : ArrayMDEntry->Dimensions) {
-                         if (!FirstDim) OutStream << ",";
-                         FirstDim = false;
-                         OutStream << DimSize;
-                    }
-                    OutStream << "]";
-                }
-                OutStream << "\n    }"; // Close object braces
-            }
-             OutStream << "\n  ]"; // Close array
-        }
-        OutStream << "\n}"; // Close metadata map
-
-        OutStream.close();
+        OFS << JsonString;
+        OFS.close();
     }
 
-    void extractMetadataFromGlobals(Module& M) {
+    void extractMetadataFromGlobals(Module& M, const DataLayout& DL) {
         for (GlobalObject& G : M.getGlobalList()) {
             Type* Ty = G.getValueType();
             std::string Name = G.getName().str();
             std::string FunctionName = "";
-            uint32_t IsParam = 0;
+            uint32_t IsInternalConst = 0;
 
-            Optional<uint32_t> IDOpt = getGlobalID(&G);
+            Optional<uint32_t> IDOpt = getIDFromMetadata(&G);
             if (!IDOpt.hasValue()) continue;
             uint32_t ID = IDOpt.getValue();
 
-            // Check if the global variable is a function parameter
+            // Check if the global variable is an internal constant
+            // restricted to a function scope
             if (auto* DbgMDNode = G.getMetadata("dbg")) {
                 if (auto* DbgVarExpr = dyn_cast<DIGlobalVariableExpression>(DbgMDNode)) {
                     if (auto* DbgVar = DbgVarExpr->getVariable()) {
                         Name = DbgVar->getName().str();
                         if (auto* DbgScope = DbgVar->getScope()) {
                             FunctionName = DbgScope->getName().str();
-                            if (FunctionName.empty() == false) IsParam = 1;
+                            if (!FunctionName.empty()) {
+                                IsInternalConst = 1;
+                            }
                         }
                     }
+                }
+            }
+            if (IsInternalConst == 0) {
+                // If the global variable name has the format <function_name>.<variable_name>,
+                // extract the function name from it and check if the function exists
+                size_t DotPos = Name.find('.');
+                if (DotPos != std::string::npos) {
+                    FunctionName = Name.substr(0, DotPos);
+                    if (M.getFunction(FunctionName) == nullptr) {
+                        FunctionName = "";
+                    } else {
+                        Name = Name.substr(DotPos + 1);
+                        IsInternalConst = 1;
+                    }
+                }
+            }
+
+            uint32_t FunctionID = 0;
+            if (!FunctionName.empty()) {
+                Function* F = M.getFunction(FunctionName);
+                if (!F || F->isIntrinsic() || !F->hasName()) {
+                    FunctionName = "";
+                } else {
+                    FunctionName = F->getName().str();
+                    Optional<uint32_t> FunctionIDOpt = searchFunctionID(M, FunctionName);
+                    FunctionID = FunctionIDOpt.hasValue() ? FunctionIDOpt.getValue() : 0;
                 }
             }
 
@@ -217,34 +244,22 @@ struct ExtractMetadataPass : public ModulePass {
                 BaseTy = Ty->getPointerElementType();
             }
             if (BaseTy->isArrayTy()) {
-                ArrayMetadata* MD = getArrayMetadata(BaseTy, Name, FunctionName);
+                ArrayMetadata* MD = getArrayMetadata(BaseTy, Name, DL, FunctionName);
                 MD->setAttribute("id", ID);
-                MD->setAttribute("isParam", IsParam);
+                MD->setAttribute("bitwidth", DL.getTypeAllocSizeInBits(Ty));
+                MD->setAttribute("type", Ty->getTypeID());
+                MD->setAttribute("isInternalConst", IsInternalConst);
                 MD->setAttribute("isGlobal", 1);
-                if (IsParam == 1) {
-                    Optional<uint32_t> FunctionIDOpt = searchFunctionID(M, FunctionName);
-                    if (FunctionIDOpt.hasValue()) {
-                        MD->setAttribute("functionId", FunctionIDOpt.getValue());
-                    } else {
-                        MD->setAttribute("functionId", 0);
-                    }
-                }
+                MD->setAttribute("functionId", FunctionID);
                 ModuleMetadata["variable"].push_back(MD);
             } else {
                 EntityMetadata* MD = new EntityMetadata(Name, FunctionName);
                 MD->setAttribute("id", ID);
-                MD->setAttribute("bitwidth", Ty->getPrimitiveSizeInBits());
+                MD->setAttribute("bitwidth", DL.getTypeAllocSizeInBits(Ty));
                 MD->setAttribute("type", Ty->getTypeID());
-                MD->setAttribute("isParam", IsParam);
+                MD->setAttribute("isInternalConst", IsInternalConst);
                 MD->setAttribute("isGlobal", 1);
-                if (IsParam == 1) {
-                    Optional<uint32_t> FunctionIDOpt = searchFunctionID(M, FunctionName);
-                    if (FunctionIDOpt.hasValue()) {
-                        MD->setAttribute("functionId", FunctionIDOpt.getValue());
-                    } else {
-                        MD->setAttribute("functionId", 0);
-                    }
-                }
+                MD->setAttribute("functionId", FunctionID);
                 ModuleMetadata["variable"].push_back(MD);
             }
         }
@@ -259,7 +274,7 @@ struct ExtractMetadataPass : public ModulePass {
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
 
-            Optional<uint32_t> FunctionIDOpt = getFunctionID(&F);
+            Optional<uint32_t> FunctionIDOpt = getIDFromMetadata(&F);
             if (!FunctionIDOpt.hasValue()) continue;
             uint32_t FunctionID = FunctionIDOpt.getValue();
 
@@ -273,13 +288,14 @@ struct ExtractMetadataPass : public ModulePass {
             
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    Optional<uint32_t> InstrIDOpt = getInstructionID(&I);
+                    Optional<uint32_t> InstrIDOpt = getIDFromMetadata(&I);
                     if (!InstrIDOpt.hasValue()) continue;
                     uint32_t InstrID = InstrIDOpt.getValue();
                     FunctionMD->addInstruction(InstrID);
                 }
             }
             ModuleMetadata["region"].push_back(FunctionMD);
+            RegionIDMap[FunctionID] = FunctionMD;
             
             LoopInfo& LI = getAnalysis<LoopInfoWrapperPass>(F).getLoopInfo();
             ScalarEvolution& SE = getAnalysis<ScalarEvolutionWrapperPass>(F).getSE();
@@ -310,13 +326,14 @@ struct ExtractMetadataPass : public ModulePass {
 
                         addSubRegion(ParentID, LoopID);
                         ModuleMetadata["region"].push_back(LoopMD);
+                        RegionIDMap[LoopID] = LoopMD;
 
                         for (Loop* SubLoop : CurrLoop->getSubLoops()) {
                             LoopStack.push({SubLoop, LoopID});
                         }
                         for (BasicBlock* BB : CurrLoop->getBlocks()) {
                             for (Instruction& I : *BB) {
-                                Optional<uint32_t> InstrIDOpt = getInstructionID(&I);
+                                Optional<uint32_t> InstrIDOpt = getIDFromMetadata(&I);
                                 if (!InstrIDOpt.hasValue()) continue;
                                 uint32_t InstrID = InstrIDOpt.getValue();
                                 LoopMD->addInstruction(InstrID);
@@ -336,11 +353,11 @@ struct ExtractMetadataPass : public ModulePass {
         }
     }
 
-    void extractMetadataFromParams(Module& M) {
+    void extractMetadataFromParams(Module& M, const DataLayout& DL) {
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
 
-            Optional<uint32_t> FunctionIDOpt = getFunctionID(&F);
+            Optional<uint32_t> FunctionIDOpt = getIDFromMetadata(&F);
             if (!FunctionIDOpt.hasValue()) continue;
             uint32_t FunctionID = FunctionIDOpt.getValue();
 
@@ -359,13 +376,17 @@ struct ExtractMetadataPass : public ModulePass {
                     }
                 }
                 if (BaseTy->isArrayTy()) {
-                    ArrayMetadata* MD = getArrayMetadata(BaseTy, ParamName, FunctionName);
+                    ArrayMetadata* MD = getArrayMetadata(BaseTy, ParamName, DL, FunctionName);
+                    MD->setAttribute("id", A.getArgNo());
+                    MD->setAttribute("bitwidth", DL.getTypeAllocSizeInBits(Ty));
+                    MD->setAttribute("type", Ty->getTypeID());
                     MD->setAttribute("functionId", FunctionID);
                     MD->setAttribute("isParam", 1);
                     ModuleMetadata["variable"].push_back(MD);
                 } else {
                     EntityMetadata* MD = new EntityMetadata(ParamName, FunctionName);
-                    MD->setAttribute("bitwidth", Ty->getPrimitiveSizeInBits());
+                    MD->setAttribute("id", A.getArgNo());
+                    MD->setAttribute("bitwidth", DL.getTypeAllocSizeInBits(Ty));
                     MD->setAttribute("type", Ty->getTypeID());
                     MD->setAttribute("functionId", FunctionID);
                     MD->setAttribute("isParam", 1);
@@ -375,11 +396,11 @@ struct ExtractMetadataPass : public ModulePass {
         }
     }
 
-    void extractMetadataFromInstrs(Module& M) {
+    void extractMetadataFromInstrs(Module& M, const DataLayout& DL) {
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
 
-            Optional<uint32_t> FunctionIDOpt = getFunctionID(&F);
+            Optional<uint32_t> FunctionIDOpt = getIDFromMetadata(&F);
             if (!FunctionIDOpt.hasValue()) continue;
             uint32_t FunctionID = FunctionIDOpt.getValue();
 
@@ -387,38 +408,38 @@ struct ExtractMetadataPass : public ModulePass {
 
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
-                    Optional<uint32_t> InstrIDOpt = getInstructionID(&I);
+                    Optional<uint32_t> InstrIDOpt = getIDFromMetadata(&I);
                     if (!InstrIDOpt.hasValue()) continue;
                     uint32_t InstrID = InstrIDOpt.getValue();
 
-                    std::string InstrName = I.hasName() ? I.getName().str() : I.getOpcodeName();
-                    EntityMetadata* InstrMD = new EntityMetadata(InstrName, FunctionName);
-                    InstrMD->setAttribute("id", InstrID);
-                    InstrMD->setAttribute("functionId", FunctionID);
-                    InstrMD->setAttribute("opcode", I.getOpcode());
-                    ModuleMetadata["instruction"].push_back(InstrMD);
+                    std::string Name = I.hasName() ? I.getName().str() : I.getOpcodeName();
+                    EntityMetadata* IMD = new EntityMetadata(Name, FunctionName);
+                    IMD->setAttribute("id", InstrID);
+                    IMD->setAttribute("functionId", FunctionID);
+                    IMD->setAttribute("opcode", I.getOpcode());
+                    ModuleMetadata["instruction"].push_back(IMD);
 
-                    Type* Ty = I.getType();
+                    Type* Ty = nullptr;
+                    if (auto *AI = dyn_cast<AllocaInst>(&I)) {
+                        Ty = AI->getAllocatedType();
+                    } else {
+                        Ty = I.getType();
+                    }
                     if (!Ty->isVoidTy()) {
-                        DEBUG(dbgs() << "Instruction: " << I << "\n");
-                        DEBUG(dbgs() << "Instruction type: " << I.getType()->getTypeID() << "\n");
-                        Type* BaseTy = Ty;
-                        if (BaseTy->isPointerTy()) {
-                            BaseTy = BaseTy->getPointerElementType();
-                        }
-                        if (BaseTy->isArrayTy()) {
-                            DEBUG(dbgs() << "Array type found: " << BaseTy->getTypeID() << "\n");
-                            ArrayMetadata* ArrayMD = getArrayMetadata(BaseTy, InstrName, FunctionName);
-                            ArrayMD->setAttribute("id", InstrID);
-                            ArrayMD->setAttribute("functionID", FunctionID);
-                            ModuleMetadata["variable"].push_back(ArrayMD);
+                        if (Ty->isArrayTy()) {
+                            ArrayMetadata* VMD = getArrayMetadata(Ty, Name, DL, FunctionName);
+                            VMD->setAttribute("id", InstrID);
+                            VMD->setAttribute("bitwidth", DL.getTypeAllocSizeInBits(Ty));
+                            VMD->setAttribute("type", Ty->getTypeID());
+                            VMD->setAttribute("functionID", FunctionID);
+                            ModuleMetadata["variable"].push_back(VMD);
                         } else {
-                            EntityMetadata* ValueMD = new EntityMetadata(InstrName, FunctionName);
-                            ValueMD->setAttribute("id", InstrID);
-                            ValueMD->setAttribute("bitwidth", Ty->getPrimitiveSizeInBits());
-                            ValueMD->setAttribute("type", Ty->getTypeID());
-                            ValueMD->setAttribute("functionId", FunctionID);
-                            ModuleMetadata["variable"].push_back(ValueMD);
+                            EntityMetadata* VMD = new EntityMetadata(Name, FunctionName);
+                            VMD->setAttribute("id", InstrID);
+                            VMD->setAttribute("bitwidth", DL.getTypeAllocSizeInBits(Ty));
+                            VMD->setAttribute("type", Ty->getTypeID());
+                            VMD->setAttribute("functionId", FunctionID);
+                            ModuleMetadata["variable"].push_back(VMD);
                         }
                     }
                 }
@@ -430,7 +451,7 @@ struct ExtractMetadataPass : public ModulePass {
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
             if (F.hasName() && F.getName().str() == FunctionName) {
-                Optional<uint32_t> FunctionIDOpt = getFunctionID(&F);
+                Optional<uint32_t> FunctionIDOpt = getIDFromMetadata(&F);
                 if (FunctionIDOpt.hasValue()) return FunctionIDOpt;
             }
         }
@@ -453,15 +474,8 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     void addSubRegion(uint32_t ParentID, uint32_t SubRegionID) {
-        for (auto* MD : ModuleMetadata["region"]) {
-            if (auto* RegionMD = dyn_cast<RegionMetadata>(MD)) {
-                Optional<uint32_t> RegionIDOpt = RegionMD->getAttribute("id");
-                if (!RegionIDOpt.hasValue()) continue;
-                uint32_t RegionID = RegionIDOpt.getValue();
-                if (RegionID == ParentID) {
-                    RegionMD->addSubRegion(SubRegionID);
-                }
-            }
+        if (RegionIDMap.count(ParentID)) {
+            RegionIDMap[ParentID]->addSubRegion(SubRegionID);
         }
     }
 
@@ -484,6 +498,7 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     ArrayMetadata* getArrayMetadata(Type* ArrayTy, const std::string& ArrayName, 
+                                    const DataLayout& DL, 
                                     const std::string& FunctionName = "") {
         if (!ArrayTy->isArrayTy()) {
             errs() << "Error: Type is not an array type.\n";
@@ -491,76 +506,50 @@ struct ExtractMetadataPass : public ModulePass {
         }
         ArrayMetadata* MD = new ArrayMetadata(ArrayName, FunctionName);
 
-        uint32_t NumDims = 1;
         uint32_t TotalSize = 1;
         Type* BaseTy = ArrayTy;
-        do {
+        while (BaseTy->isArrayTy()) {
             uint32_t DimSize = BaseTy->getArrayNumElements();
             MD->addDimension(DimSize);
             TotalSize *= DimSize;
-            NumDims++;
             BaseTy = BaseTy->getArrayElementType();
-        } while (BaseTy->isArrayTy());
+        }
 
         MD->setAttribute("isArray", 1);
         MD->setAttribute("baseType", BaseTy->getTypeID());
-        MD->setAttribute("baseTypeBitwidth", BaseTy->getPrimitiveSizeInBits());
-        MD->setAttribute("numDims", NumDims);
+        MD->setAttribute("baseTypeBitwidth", DL.getTypeAllocSizeInBits(BaseTy));
+        MD->setAttribute("numDims", MD->Dimensions.size());
         MD->setAttribute("totalSize", TotalSize);
 
         return MD;
     }
 
-    Optional<uint32_t> getFunctionID(const Function* F) {
-        if (MDNode* IDMDNode = F->getMetadata("id")) {
-            if (IDMDNode->getNumOperands() > 0) {
-                if (ConstantAsMetadata* CAM = dyn_cast<ConstantAsMetadata>(IDMDNode->getOperand(0))) {
-                    if (ConstantInt* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
-                        return (uint32_t)CI->getZExtValue();
-                    }
+    Optional<uint32_t> extractIDFromMDNode(MDNode* MD, unsigned Idx) {
+        if (MD && MD->getNumOperands() > Idx) {
+            if (auto* CAM = dyn_cast<ConstantAsMetadata>(MD->getOperand(Idx))) {
+                if (auto* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
+                    return static_cast<uint32_t>(CI->getZExtValue());
                 }
             }
         }
-        return Optional<uint32_t>();
+        return None;
+    }
+
+    Optional<uint32_t> getIDFromMetadata(const Value* V, unsigned Idx = 0) {
+        if (const auto* F = dyn_cast<Function>(V)) {
+            return extractIDFromMDNode(F->getMetadata("id"), Idx);
+        }
+        if (const auto* I = dyn_cast<Instruction>(V)) {
+            return extractIDFromMDNode(I->getMetadata("id"), Idx);
+        }
+        if (const auto* G = dyn_cast<GlobalObject>(V)) {
+            return extractIDFromMDNode(G->getMetadata("id"), Idx);
+        }
+        return None;
     }
 
     Optional<uint32_t> getLoopID(const Loop* L) {
-        if (MDNode* IDMDNode = L->getLoopID()) {
-            if (IDMDNode->getNumOperands() > 0) {
-                if (ConstantAsMetadata* CAM = dyn_cast<ConstantAsMetadata>(IDMDNode->getOperand(1))) {
-                    if (ConstantInt* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
-                        return (uint32_t)CI->getZExtValue();
-                    }
-                }
-            }
-        }
-        return Optional<uint32_t>();
-    }
-
-    Optional<uint32_t> getInstructionID(const Instruction* I) {
-        if (MDNode* IDMDNode = I->getMetadata("id")) {
-            if (IDMDNode->getNumOperands() > 0) {
-                if (ConstantAsMetadata* CAM = dyn_cast<ConstantAsMetadata>(IDMDNode->getOperand(0))) {
-                    if (ConstantInt* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
-                        return (uint32_t)CI->getZExtValue();
-                    }
-                }
-            }
-        }
-        return Optional<uint32_t>();
-    }
-
-    Optional<uint32_t> getGlobalID(const GlobalObject* G) {
-        if (MDNode* IDMDNode = G->getMetadata("id")) {
-            if (IDMDNode->getNumOperands() > 0) {
-                if (ConstantAsMetadata* CAM = dyn_cast<ConstantAsMetadata>(IDMDNode->getOperand(0))) {
-                    if (ConstantInt* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
-                        return (uint32_t)CI->getZExtValue();
-                    }
-                }
-            }
-        }
-        return Optional<uint32_t>();
+        return extractIDFromMDNode(L->getLoopID(), 1);
     }
 
     void getAnalysisUsage(AnalysisUsage& AU) const override {

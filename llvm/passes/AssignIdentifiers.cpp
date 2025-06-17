@@ -43,7 +43,7 @@ struct AssignIdentifiersPass : public ModulePass {
         };
 
         LLVMContext& Ctx = M.getContext();
-        uint32_t RegionID = 0;
+        uint32_t RegionID = 1;
 
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
@@ -82,11 +82,12 @@ struct AssignIdentifiersPass : public ModulePass {
                 }
             }
         }
+        DEBUG(dbgs() << "Total Regions: " << RegionID - 1 << "\n");
     }
 
     void setInstructionAndGlobalIDs(Module& M) {
         LLVMContext& Ctx = M.getContext();
-        uint32_t ID = 0;
+        uint32_t ID = 1;
         for (Function& F : M) {
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
@@ -98,6 +99,8 @@ struct AssignIdentifiersPass : public ModulePass {
                 }
             }
         }
+        DEBUG(dbgs() << "Total Instructions: " << ID - 1 << "\n");
+        ID = 1; // Reset ID for globals
         for (GlobalObject& G : M.getGlobalList()) {
             DEBUG(dbgs() << "Global: " << G.getName() << "\n");
             ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(Ctx), ID);
@@ -105,6 +108,7 @@ struct AssignIdentifiersPass : public ModulePass {
             G.setMetadata("id", MDNode::get(Ctx, {ConstantAsMetadata::get(CI)}));
             ID++;
         }
+        DEBUG(dbgs() << "Total Globals: " << ID - 1 << "\n");
     }
 
     void getAnalysisUsage(AnalysisUsage& AU) const override {

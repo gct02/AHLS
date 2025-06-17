@@ -409,10 +409,9 @@ def include_directives(node_dict, dct_tcl_filepath):
             node.features['partition_factor'] = max(1, partition_factor)
 
 
-def find_instruction_metadata(ir_metadata, instruction_id, function_name):
+def find_instruction_metadata(ir_metadata, instruction_id):
     for node in ir_metadata.get('instruction', []):
-        if (node['functionName'] == function_name 
-            and node['id'] == instruction_id):
+        if node['id'] == instruction_id:
             return node
     return None
         
@@ -434,17 +433,18 @@ def find_variable_metadata(metadata, node_full_text, function_name):
     return None
 
 
-def find_internal_const_metadata(metadata, const_name, const_value, function_name):
+def find_global_metadata(metadata, const_name, const_value, function_name):
     if 'internal' in const_value and '.' in const_name:
         function_name, const_name = const_name.split('.')
         for node in metadata.get('variable', []):
-            if (node['name'] == const_name 
+            if (int(node.get('isInternalConst', 0)) == 1
+                and node['name'] == const_name 
                 and node['functionName'] == function_name):
                 return node
     else:
         for node in metadata.get('variable', []):
-            is_global = int(node.get('isGlobal', 0)) == 1
-            if is_global and node['name'] == const_name:
+            if (int(node.get('isGlobal', 0)) == 1 
+                and node['name'] == const_name):
                 return node
     return None
 
@@ -452,7 +452,7 @@ def find_internal_const_metadata(metadata, const_name, const_value, function_nam
 def extract_type_info(node_full_text):
     if '*' in node_full_text:
         type_encoding = TYPE_ENCODING[TypeID.POINTER]
-        bitwidth = 0
+        bitwidth = 64
     elif node_full_text[0] == 'i':
         type_encoding = TYPE_ENCODING[TypeID.INT]
         bitwidth = int(node_full_text[1:])
@@ -528,9 +528,7 @@ def build_nodes(pgml_nodes, pgml_functions,
                 instruction_id = instruction_id.split(' ')[0]
             instruction_id = int(instruction_id.strip())
 
-            metadata = find_instruction_metadata(
-                ir_metadata, instruction_id, function_name
-            )
+            metadata = find_instruction_metadata(ir_metadata, instruction_id)
             if metadata is None:
                 continue
 
@@ -580,7 +578,7 @@ def build_nodes(pgml_nodes, pgml_functions,
             if '=' in node_full_text:
                 const_name, const_value = node_full_text.split('=')
                 const_name = const_name.strip(' @')
-                metadata = find_internal_const_metadata(
+                metadata = find_global_metadata(
                     ir_metadata, const_name, const_value, function_name
                 )
                 if metadata is None:
@@ -615,6 +613,10 @@ def build_nodes(pgml_nodes, pgml_functions,
                 array_features=array_features
             )
             node_dict['const'].append(node)
+
+        else:
+            print(f"Warning: Unknown node type {node_type}")
+            continue
 
     regions = ir_metadata.get('region', [])
     for region in regions:
