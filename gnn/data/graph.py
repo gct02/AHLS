@@ -202,7 +202,7 @@ class RegionNode(Node):
         self.set_feature('inline', 0)
 
 
-HeteroGraph = Tuple[
+GraphStructure = Tuple[
     Dict[NodeType, List[Node]], 
     Dict[EdgeType, List[Tuple[int, int]]]
 ]
@@ -212,7 +212,7 @@ def initialize_graph_structure(
     ir_filepath: str, 
     ir_metadata_filepath: str,
     top_level_function: str
-) -> HeteroGraph:
+) -> GraphStructure:
     import programl
 
     with open(ir_metadata_filepath, 'r') as f:

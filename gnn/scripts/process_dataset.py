@@ -9,7 +9,7 @@ import torch
 from gnn.data.graph import (
     initialize_graph_structure, 
     generate_hetero_graph, 
-    HeteroGraph
+    GraphStructure
 )
 from gnn.data.utils.parsers import (
     extract_metrics,
@@ -21,8 +21,9 @@ from gnn.data.utils.transforms import process_ir
 def process_base_solutions(
     dataset: Path, 
     benchmarks: List[str], 
+    top_level: Dict[str, str],
     output_dir: Path
-) -> Dict[str, HeteroGraph]:
+) -> Dict[str, GraphStructure]:
     base_graphs = {}
     for benchmark in benchmarks:
         if not (dataset / benchmark).is_dir():
@@ -40,6 +41,11 @@ def process_base_solutions(
         if not ir_path.exists():
             print(f"Intermediate representation not found for base solution on {benchmark}")
             continue
+
+        if benchmark not in top_level:
+            print(f"Top-level function not found for {benchmark}")
+            continue
+        top_level_function = top_level[benchmark]
 
         metrics = extract_metrics(base_solution_dir, filtered=False)
         if metrics is None:
@@ -59,7 +65,7 @@ def process_base_solutions(
             print(f"Error processing {ir_path}")
             continue
 
-        base_graph = initialize_graph_structure(ir_mod_path, md_path)
+        base_graph = initialize_graph_structure(ir_mod_path, md_path, top_level_function)
         base_graphs[benchmark] = base_graph
 
     return base_graphs
@@ -68,8 +74,21 @@ def process_base_solutions(
 def main(args: Dict[str, str]):
     dataset_dir = Path(args['dataset'])
     output_dir = Path(args['output'])
+    top_level_json_path = Path(args['top_level'])
     filtered = args['filtered']
     benchmarks = args['benchmarks']
+
+    if not dataset_dir.is_dir():
+        raise ValueError(f"Dataset directory {dataset_dir} does not exist or is not a directory")
+    
+    if not top_level_json_path.exists():
+        raise ValueError(f"Top-level JSON file {top_level_json_path} does not exist")
+    
+    if not output_dir.is_dir():
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+    with open(top_level_json_path, 'r') as f:
+        top_level = json.load(f)
 
     if benchmarks is None:
         benchmarks = [
@@ -77,7 +96,7 @@ def main(args: Dict[str, str]):
             for benchmark_dir in dataset_dir.iterdir() 
             if benchmark_dir.is_dir()
         ]
-    base_graphs = process_base_solutions(dataset_dir, benchmarks, output_dir)
+    base_graphs = process_base_solutions(dataset_dir, benchmarks, top_level, output_dir)
 
     for benchmark, (node_dict, edge_dict) in base_graphs.items():
         benchmark_dir = dataset_dir / benchmark
@@ -128,6 +147,8 @@ def parse_args():
                         help="Path to the source dataset directory containing HLS solutions")
     parser.add_argument("-o", "--output", required=True,
                         help="Path to the output directory")
+    parser.add_argument("-tl", "--top-level", required=True,
+                        help="Path to the JSON file containing the name of the top-level function for each benchmark")
     parser.add_argument("-f", "--filtered", action="store_true",
                         help="Signal that the dataset is filtered")
     parser.add_argument("-b", "--benchmarks", nargs="+", default=None,

@@ -1,0 +1,6 @@
+set_directive_pipeline -off kernel_gramschmidt/loop1
+set_directive_pipeline -off kernel_gramschmidt/loop2
+set_directive_pipeline -off kernel_gramschmidt/loop3
+set_directive_pipeline -off kernel_gramschmidt/loop4
+set_directive_pipeline -off kernel_gramschmidt/loop5
+set_directive_pipeline -off kernel_gramschmidt/loop6

@@ -31,7 +31,7 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> OutputPath(
+static cl::opt<std::string> OutputFilePath(
     "out", 
     cl::desc("Path to the file to write metadata to"), 
     cl::value_desc("filepath")
@@ -112,7 +112,7 @@ struct ExtractMetadataPass : public ModulePass {
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-md"
 
-        if (OutputPath.empty()) {
+        if (OutputFilePath.empty()) {
             errs() << "Output file not specified.\n";
             return false;
         }
@@ -129,13 +129,11 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     void writeMetadataToFile(Module& M) {
-        // The top-level structure is a JSON Object.
         json::Object RootObject;
 
-        // Iterate over the main map ("variable", "region", etc.)
-        for (const auto& Item : ModuleMetadata) {
-            std::string Key = Item.first;
-            const std::vector<EntityMetadata*>& MDList = Item.second;
+        for (const auto& It : ModuleMetadata) {
+            std::string Key = It.first;
+            const std::vector<EntityMetadata*>& MDList = It.second;
             json::Array EntityArray;
 
             for (const auto* MD : MDList) {
@@ -177,9 +175,9 @@ struct ExtractMetadataPass : public ModulePass {
         SS << formatv("{0:2}", json::Value(std::move(RootObject)));
         SS.flush();
 
-        std::ofstream OFS(OutputPath.c_str());
+        std::ofstream OFS(OutputFilePath.c_str());
         if (!OFS.is_open()) {
-            errs() << "Error: Could not open file '" << OutputPath.c_str() << "' for writing.\n";
+            errs() << "Error: Could not open file '" << OutputFilePath.c_str() << "' for writing.\n";
             return;
         }
         OFS << JsonString;

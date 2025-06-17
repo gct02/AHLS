@@ -60,8 +60,10 @@ void Autocorrelation(
         scalauto = 4 - gsm_norm((longword)smax << 16);  /* sub(4,..) */
 
     if (scalauto > 0 && scalauto <= 4) {
+        Autocorrelation_label1:
         n = scalauto;
         for (k = 0; k <= 159; k++) {
+            #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
             s[k] = GSM_MULT_R(s[k], 16384 >> (n - 1));
         }
     }
@@ -73,7 +75,9 @@ void Autocorrelation(
     #define STEP(k) L_ACF[k] += ((longword)sl * sp[-(k)]);
     #define NEXTI sl = *++sp
 
+    Autocorrelation_label2:
     for (k = 8; k >= 0; k--) {
+        #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
         L_ACF[k] = 0;
     }
 
@@ -121,7 +125,9 @@ void Autocorrelation(
     STEP(6);
     STEP(7);
 
+    Autocorrelation_label3:
     for (i = 8; i <= 159; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=152 max=152 avg=152
         NEXTI;
         STEP(0);
         STEP(1);
@@ -134,13 +140,17 @@ void Autocorrelation(
         STEP(8);
     }
 
+    Autocorrelation_label4:
     for (k = 8; k >= 0; k--) {
+        #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
         L_ACF[k] <<= 1;
     }
 
     /* Rescaling of the array s[0..159] */
     if (scalauto > 0) {
+        Autocorrelation_label5:
         for (k = 159; k >= 0; k--) {
+            #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
             *s++ <<= scalauto;
         }
     }
@@ -234,7 +244,9 @@ void Transformation_to_Log_Area_Ratios(register word *r /* 0..7 IN/OUT */)
     register int i;
 
     /* Computation of the LAR[0..7] from the r[0..7] */
+    Transformation_to_Log_Area_Ratios_label0:
     for (i = 1; i <= 8; i++, r++) {
+        #pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
         temp = *r;
         temp = GSM_ABS(temp);
 

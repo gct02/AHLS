@@ -59,12 +59,11 @@ void local_memset(unsigned int *s, int c, int n, int e) {
 
     local_memset_label0:
     while (e-- > 0) {
-        #pragma HLS LOOP_TRIPCOUNT max=63
         p++;
     }
     local_memset_label1:
     while (m-- > 0) {
-        #pragma HLS LOOP_TRIPCOUNT max=16
+        #pragma HLS LOOP_TRIPCOUNT max=14
         *p++ = uc;
     }
 }
@@ -90,7 +89,7 @@ void local_memcpy(unsigned int *s1, const unsigned char *s2, int n) {
 }
 
 /* Perform SHA transformation */
-static void sha_transform() {
+void sha_transform() {
     int i;
     unsigned int temp, A, B, C, D, E, W[80];
 
@@ -116,15 +115,19 @@ static void sha_transform() {
 
     /* Main computation loop */
     sha_transform_label3: for (i = 0; i < 20; ++i) {
+        #pragma HLS LOOP_TRIPCOUNT min=20 max=20 avg=20
         FUNC(1, i);
     }
     sha_transform_label4: for (i = 20; i < 40; ++i) {
+        #pragma HLS LOOP_TRIPCOUNT min=20 max=20 avg=20
         FUNC(2, i);
     }
     sha_transform_label5: for (i = 40; i < 60; ++i) {
+        #pragma HLS LOOP_TRIPCOUNT min=20 max=20 avg=20
         FUNC(3, i);
     }
     sha_transform_label6: for (i = 60; i < 80; ++i) {
+        #pragma HLS LOOP_TRIPCOUNT min=20 max=20 avg=20
         FUNC(4, i);
     }
 
@@ -198,8 +201,11 @@ void sha_stream(
     int i, j;
     const unsigned char *p;
 
+    sha_stream_label1:
     for (i = 0; i < NUM_BLOCKS; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=2 max=2 avg=2
         for (j = 0; j < BLOCK_SIZE; j++) {
+            #pragma HLS LOOP_TRIPCOUNT min=8192 max=8192 avg=8192
             local_indata[i][j] = indata[i][j];
         }
     }
@@ -215,8 +221,9 @@ void sha_stream(
     }
 
     sha_final();
-
+    sha_stream_label2:
     for (i = 0; i < DIGEST_SIZE; i++) {
+        #pragma HLS LOOP_TRIPCOUNT min=5 max=5 avg=5
         outdata[i] = sha_info_digest[i];
     }
 }
