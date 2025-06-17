@@ -17,10 +17,10 @@
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/CommandLine.h"
-#include "llvm/Support/JSON.h"
-#include "llvm/Support/raw_ostream.h"
-#include "llvm/Support/FileSystem.h"
-#include "llvm/Support/FormatVariadic.h"
+// #include "llvm/Support/JSON.h"
+// #include "llvm/Support/raw_ostream.h"
+// #include "llvm/Support/FileSystem.h"
+// #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
@@ -129,60 +129,126 @@ struct ExtractMetadataPass : public ModulePass {
     }
 
     void writeMetadataToFile(Module& M) {
-        json::Object RootObject;
-
-        for (const auto& It : ModuleMetadata) {
-            std::string Key = It.first;
-            const std::vector<EntityMetadata*>& MDList = It.second;
-            json::Array EntityArray;
-
-            for (const auto* MD : MDList) {
-                json::Object EntityObject;
-
-                EntityObject["name"] = MD->Name;
-                EntityObject["functionName"] = MD->FunctionName;
-
-                for (const auto& Attr : MD->Attributes) {
-                    EntityObject[Attr.first] = static_cast<int64_t>(Attr.second);
-                }
-
-                if (const auto* RegionMD = dyn_cast<RegionMetadata>(MD)) {
-                    json::Array SubRegionsArray;
-                    for (uint32_t SubRegionID : RegionMD->SubRegions) {
-                        SubRegionsArray.push_back(static_cast<int64_t>(SubRegionID));
-                    }
-                    EntityObject["subRegions"] = std::move(SubRegionsArray);
-
-                    json::Array InstructionsArray;
-                    for (uint32_t InstrID : RegionMD->Instructions) {
-                        InstructionsArray.push_back(static_cast<int64_t>(InstrID));
-                    }
-                    EntityObject["instructions"] = std::move(InstructionsArray);
-
-                } else if (const auto* ArrayMD = dyn_cast<ArrayMetadata>(MD)) {
-                    json::Array DimensionsArray;
-                    for (uint32_t DimSize : ArrayMD->Dimensions) {
-                        DimensionsArray.push_back(static_cast<int64_t>(DimSize));
-                    }
-                    EntityObject["dimensions"] = std::move(DimensionsArray);
-                }
-                EntityArray.push_back(std::move(EntityObject));
-            }
-            RootObject[Key] = std::move(EntityArray);
-        }
-        std::string JsonString;
-        raw_string_ostream SS(JsonString);
-        SS << formatv("{0:2}", json::Value(std::move(RootObject)));
-        SS.flush();
-
         std::ofstream OFS(OutputFilePath.c_str());
         if (!OFS.is_open()) {
-            errs() << "Error: Could not open file '" << OutputFilePath.c_str() << "' for writing.\n";
+            errs() << "Error opening file: " << OutputFilePath << "\n";
             return;
         }
-        OFS << JsonString;
+
+        OFS << "{\n";
+        bool FirstTy = true;
+        for (const auto& It : ModuleMetadata) {
+             if (!FirstTy) OFS << ",\n";
+             FirstTy = false;
+
+            std::string Ty = It.first;
+            std::vector<EntityMetadata*> MDList = It.second;
+
+            OFS << "  \"" << Ty << "\": [\n";
+            bool FirstMD = true;
+            for (auto* MD : MDList) {
+                if (!FirstMD) OFS << ",\n";
+                FirstMD = false;
+
+                OFS << "    {\n";
+                OFS << "      \"name\": \"" << MD->Name << "\",\n";
+                OFS << "      \"functionName\": \"" << MD->FunctionName << "\"";
+
+                for (auto Attr : MD->Attributes) {
+                    OFS << ",\n      \"" << Attr.first << "\": " << Attr.second;
+                }
+
+                if (auto* RegionMD = dyn_cast<RegionMetadata>(MD)) {
+                    OFS << ",\n      \"subRegions\": [";
+                    bool FirstSub = true;
+                    for (auto SubRegionID : RegionMD->SubRegions) {
+                         if (!FirstSub) OFS << ",";
+                         FirstSub = false;
+                         OFS << SubRegionID;
+                    }
+                    OFS << "]";
+                    OFS << ",\n      \"instructions\": [";
+                    bool FirstInstr = true;
+                    for (auto InstrID : RegionMD->Instructions) {
+                         if (!FirstInstr) OFS << ",";
+                         FirstInstr = false;
+                         OFS << InstrID;
+                    }
+                    OFS << "]";
+                } else if (auto* ArrayMD = dyn_cast<ArrayMetadata>(MD)) {
+                    OFS << ",\n      \"dimensions\": [";
+                    bool FirstDim = true;
+                    for (auto DimSize : ArrayMD->Dimensions) {
+                         if (!FirstDim) OFS << ",";
+                         FirstDim = false;
+                         OFS << DimSize;
+                    }
+                    OFS << "]";
+                }
+                OFS << "\n    }"; // Close object braces
+            }
+            OFS << "\n  ]"; // Close array
+        }
+        OFS << "\n}"; // Close metadata map
+
         OFS.close();
-    }
+    } 
+
+    // void writeMetadataToFile(Module& M) {
+    //     json::Object RootObject;
+
+    //     for (const auto& It : ModuleMetadata) {
+    //         std::string Key = It.first;
+    //         const std::vector<EntityMetadata*>& MDList = It.second;
+    //         json::Array EntityArray;
+
+    //         for (const auto* MD : MDList) {
+    //             json::Object EntityObject;
+
+    //             EntityObject["name"] = MD->Name;
+    //             EntityObject["functionName"] = MD->FunctionName;
+
+    //             for (const auto& Attr : MD->Attributes) {
+    //                 EntityObject[Attr.first] = static_cast<int64_t>(Attr.second);
+    //             }
+
+    //             if (const auto* RegionMD = dyn_cast<RegionMetadata>(MD)) {
+    //                 json::Array SubRegionsArray;
+    //                 for (uint32_t SubRegionID : RegionMD->SubRegions) {
+    //                     SubRegionsArray.push_back(static_cast<int64_t>(SubRegionID));
+    //                 }
+    //                 EntityObject["subRegions"] = std::move(SubRegionsArray);
+
+    //                 json::Array InstructionsArray;
+    //                 for (uint32_t InstrID : RegionMD->Instructions) {
+    //                     InstructionsArray.push_back(static_cast<int64_t>(InstrID));
+    //                 }
+    //                 EntityObject["instructions"] = std::move(InstructionsArray);
+
+    //             } else if (const auto* ArrayMD = dyn_cast<ArrayMetadata>(MD)) {
+    //                 json::Array DimensionsArray;
+    //                 for (uint32_t DimSize : ArrayMD->Dimensions) {
+    //                     DimensionsArray.push_back(static_cast<int64_t>(DimSize));
+    //                 }
+    //                 EntityObject["dimensions"] = std::move(DimensionsArray);
+    //             }
+    //             EntityArray.push_back(std::move(EntityObject));
+    //         }
+    //         RootObject[Key] = std::move(EntityArray);
+    //     }
+    //     std::string JsonString;
+    //     raw_string_ostream SS(JsonString);
+    //     SS << formatv("{0:2}", json::Value(std::move(RootObject)));
+    //     SS.flush();
+
+    //     std::ofstream OFS(OutputFilePath.c_str());
+    //     if (!OFS.is_open()) {
+    //         errs() << "Error: Could not open file '" << OutputFilePath.c_str() << "' for writing.\n";
+    //         return;
+    //     }
+    //     OFS << JsonString;
+    //     OFS.close();
+    // }
 
     void extractMetadataFromGlobals(Module& M, const DataLayout& DL) {
         for (GlobalObject& G : M.getGlobalList()) {

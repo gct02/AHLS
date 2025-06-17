@@ -57,7 +57,7 @@ def process_base_solutions(
         with open(benchmark_out_dir / "base_metrics.json", "w") as f:
             json.dump(metrics, f, indent=2)
 
-        ir_mod_path = ir_dir / "a.g.ld.0.mod.ll"
+        ir_mod_path = ir_dir / ir_path.name.replace(".bc", ".mod.ll")
         md_path = ir_dir / "metadata.json"
         try:
             process_ir(ir_path, ir_mod_path, md_path, preserve_temp_files=True)
@@ -72,17 +72,21 @@ def process_base_solutions(
 
 
 def main(args: Dict[str, str]):
-    dataset_dir = Path(args['dataset'])
-    output_dir = Path(args['output'])
+    dataset_dir = Path(args['dataset_dir'])
+    output_dir = Path(args['output_dir'])
     top_level_json_path = Path(args['top_level'])
     filtered = args['filtered']
     benchmarks = args['benchmarks']
+    max_instances = args['max_instances']
 
     if not dataset_dir.is_dir():
         raise ValueError(f"Dataset directory {dataset_dir} does not exist or is not a directory")
     
     if not top_level_json_path.exists():
         raise ValueError(f"Top-level JSON file {top_level_json_path} does not exist")
+    
+    if max_instances <= 0:
+        raise ValueError("Maximum instances must be a positive integer")
     
     if not output_dir.is_dir():
         output_dir.mkdir(parents=True, exist_ok=True)
@@ -107,6 +111,7 @@ def main(args: Dict[str, str]):
         benchmark_out_dir = output_dir / benchmark
         benchmark_out_dir.mkdir(parents=True, exist_ok=True)
 
+        instance_count = 0
         for solution_dir in benchmark_dir.iterdir():
             if not solution_dir.is_dir() or not solution_dir.stem.startswith("solution"):
                 continue
@@ -138,6 +143,11 @@ def main(args: Dict[str, str]):
             )
             torch.save(data, solution_out_dir / f"graph.pt")
 
+            instance_count += 1
+            if instance_count >= max_instances:
+                print(f"Reached maximum instances ({max_instances}) for benchmark {benchmark}")
+                break
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -145,7 +155,7 @@ def parse_args():
     )
     parser.add_argument("-d", "--dataset-dir", required=True,
                         help="Path to the source dataset directory containing HLS solutions")
-    parser.add_argument("-o", "--output", required=True,
+    parser.add_argument("-o", "--output-dir", required=True,
                         help="Path to the output directory")
     parser.add_argument("-tl", "--top-level", required=True,
                         help="Path to the JSON file containing the name of the top-level function for each benchmark")
@@ -153,6 +163,8 @@ def parse_args():
                         help="Signal that the dataset is filtered")
     parser.add_argument("-b", "--benchmarks", nargs="+", default=None,
                         help="List of benchmarks to process")
+    parser.add_argument("-mi", "--max-instances", type=int, default=9999,
+                        help="Maximum number of instances to consider for each benchmark (default: 9999)")
     return vars(parser.parse_args())
 
 

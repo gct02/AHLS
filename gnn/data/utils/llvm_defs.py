@@ -106,21 +106,20 @@ OP_ENCODING = {
 }
 
 TYPE_ENCODING = {
-    TypeID.INT:       [1,0,0,0,0,0],
-    TypeID.HALF:      [0,1,0,0,0,0],
-    TypeID.FLOAT:     [0,1,0,0,0,0],
-    TypeID.DOUBLE:    [0,1,0,0,0,0],
-    TypeID.X86_FP80:  [0,1,0,0,0,0],
-    TypeID.FP128:     [0,1,0,0,0,0],
-    TypeID.PPC_FP128: [0,1,0,0,0,0],
+    TypeID.INT:       [1,0,0,0,0],
+    TypeID.HALF:      [0,1,0,0,0],
+    TypeID.FLOAT:     [0,1,0,0,0],
+    TypeID.DOUBLE:    [0,1,0,0,0],
+    TypeID.X86_FP80:  [0,1,0,0,0],
+    TypeID.FP128:     [0,1,0,0,0],
+    TypeID.PPC_FP128: [0,1,0,0,0],
 
-    TypeID.POINTER:   [0,0,1,0,0,0],
+    TypeID.POINTER:   [0,0,1,0,0],
 
-    TypeID.ARRAY:     [0,0,0,1,0,0],
-    TypeID.STRUCT:    [0,0,0,0,1,0],
-    TypeID.VECTOR:    [0,0,0,0,0,1],
+    TypeID.ARRAY:     [0,0,0,1,0],
+    TypeID.STRUCT:    [0,0,0,0,1],
 
-    TypeID.UNKNOWN:   [0,0,0,0,0,0]
+    TypeID.UNKNOWN:   [0,0,0,0,0]
 }
 
 OP_ENCODING_SIZE = len(OP_ENCODING[Opcode.ADD])

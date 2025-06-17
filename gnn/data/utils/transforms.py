@@ -25,7 +25,6 @@ def process_ir(
     ir1 = src_path.parent / f"{src_path.stem}.1.clean.bc"
     ir2 = src_path.parent / f"{src_path.stem}.2.opt.bc"
     ir3 = src_path.parent / f"{src_path.stem}.3.md.bc"
-
     try:
         run_opt(src_path, "-lowerswitch -lowerinvoke -indirectbr-expand", ir1)
         run_opt(ir1, "-mem2reg -indvars -loop-simplify -scalar-evolution", ir2)
@@ -34,13 +33,10 @@ def process_ir(
         run_opt(ir3, "-strip-debug", dst_path, output_ll=True)
     except subprocess.CalledProcessError as e:
         print(f"Error processing {src_path}: {e}")
-        ir1.unlink(missing_ok=True)
-        ir2.unlink(missing_ok=True)
-        ir3.unlink(missing_ok=True)
         dst_path.unlink(missing_ok=True)
         md_output_path.unlink(missing_ok=True)
         raise e
-    else:
+    finally:
         if not preserve_temp_files:
             ir1.unlink(missing_ok=True)
             ir2.unlink(missing_ok=True)

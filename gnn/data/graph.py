@@ -45,8 +45,8 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 FEATURE_SIZE_BY_TYPE = {
     'instr': 12,
-    'var': 27,
-    'const': 27,
+    'var': 28,
+    'const': 28,
     'region': 8
 }
 
@@ -126,7 +126,7 @@ class VariableNode(Node):
                  is_global=False, array_features=None):
         super().__init__(index, 'var', function_name)
         self.pgml_id = pgml_id
-        self.node_name = node_name
+        self.name = node_name
 
         self.var_type = int(var_type)
         self.bitwidth = int(bitwidth)
@@ -145,7 +145,7 @@ class VariableNode(Node):
             array_features = {
                 'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
                 'base_bitwidth': 0,
-                'dimensions': [0] * (MAX_ARRAY_DIMS + 1),
+                'dimensions': [0] * MAX_ARRAY_DIMS,
                 'partition_factor': 0,
                 'partition_type': [0, 0, 0],
                 'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
@@ -160,7 +160,7 @@ class ConstantNode(Node):
                  is_global=False, array_features=None):
         super().__init__(index, 'const', function_name)
         self.pgml_id = pgml_id
-        self.node_name = node_name
+        self.name = node_name
 
         self.const_type = int(const_type)
         self.bitwidth = int(bitwidth)
@@ -179,7 +179,7 @@ class ConstantNode(Node):
             array_features = {
                 'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
                 'base_bitwidth': 0,
-                'dimensions': [1] * (MAX_ARRAY_DIMS + 1),
+                'dimensions': [0] * MAX_ARRAY_DIMS,
                 'partition_factor': 0,
                 'partition_type': [0, 0, 0],
                 'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
@@ -191,7 +191,7 @@ class RegionNode(Node):
     def __init__(self, index, trip_count=0, depth=0, 
                  function_name=None, node_name=None):
         super().__init__(index, 'region', function_name)
-        self.node_name = node_name
+        self.name = node_name
         self.set_feature('trip_count', trip_count)
         self.set_feature('depth', depth)
         self.set_feature('pipeline', 0)
@@ -328,23 +328,22 @@ def include_directives(node_dict, dct_tcl_filepath):
         for node in node_dict['region']:
             if node.name == node_name:
                 if (node.function_name == function_name
-                    or not node.function_name
-                    or not function_name):
+                    or not node.function_name):
                     return node
         return None
     
     def find_array(node_name, function_name):
         for nt in ['var', 'const']:
             for node in node_dict[nt]:
-                if node.node_name == node_name:
+                if node.name == node_name:
                     if (node.function_name == function_name
-                        or not node.function_name
-                        or not function_name):
+                        or not node.function_name):
                         return node
-        # If not found, search for the array name only
+        # If not found, search for the node name only
+        # This is a fallback for cases where the function name is not specified
         for nt in ['var', 'const']:
             for node in node_dict[nt]:
-                if node.text == node_name:
+                if node.name == node_name:
                     return node
         return None
     
@@ -372,10 +371,10 @@ def include_directives(node_dict, dct_tcl_filepath):
             if dct_type == 'unroll':
                 factor = int(dct_args.get('factor', 0))
                 if factor <= 0:
-                    factor = max(1, node.features['trip_count'])
-                node.features['unroll_factor'] = factor
+                    factor = max(1, node.feature_dict['trip_count'])
+                node.feature_dict['unroll_factor'] = factor
             else:
-                node.features[dct_type] = 1
+                node.feature_dict[dct_type] = 1
         else:
             function_name = dct_args.get('location', '')
             array_name = dct_args.get('variable')
@@ -387,26 +386,26 @@ def include_directives(node_dict, dct_tcl_filepath):
                 continue
 
             partition_dim = min(int(dct_args.get('dim', 0)), MAX_ARRAY_DIMS)
-            node.features['partition_dim'] [partition_dim] = 1
+            node.feature_dict['partition_dim'][partition_dim] = 1
 
             partition_type = dct_args.get('type', 'complete')
             if partition_type == 'complete':
-                node.features['partition_type'][0] = 1
+                node.feature_dict['partition_type'][0] = 1
             elif partition_type == 'cyclic':
-                node.features['partition_type'][1] = 1
+                node.feature_dict['partition_type'][1] = 1
             else:
-                node.features['partition_type'][2] = 1
+                node.feature_dict['partition_type'][2] = 1
 
             partition_factor = int(dct_args.get('factor', 0))
             if partition_factor <= 0 or partition_type == 'complete':
-                dims = node.features['dimensions']
+                dims = node.feature_dict['dimensions']
                 if partition_dim == 0:
                     partition_factor = 1
                     for dim in dims:
                         partition_factor *= dim
                 else:
                     partition_factor = dims[partition_dim-1]
-            node.features['partition_factor'] = max(1, partition_factor)
+            node.feature_dict['partition_factor'] = max(1, partition_factor)
 
 
 def find_instruction_metadata(ir_metadata, instruction_id):
@@ -417,58 +416,55 @@ def find_instruction_metadata(ir_metadata, instruction_id):
         
 
 def find_variable_metadata(metadata, node_full_text, function_name):
-    def is_global_variable(node):
-        return (int(node.get('isGlobal', 0)) == 1 and 
-                int(node.get('isParam', 0)) == 0)
-    
     var_name = node_full_text.split('%')[1]
     if ' ' in var_name:
         var_name = var_name.split(' ')[0]
     var_name = var_name.strip()
     for node in metadata.get('variable', []):
         if node['name'] == var_name:
-            if (is_global_variable(node) 
+            if (int(node.get('isGlobal', 0)) == 1
                 or node['functionName'] == function_name):
                 return node
     return None
 
 
-def find_global_metadata(metadata, const_name, const_value, function_name):
-    if 'internal' in const_value and '.' in const_name:
-        function_name, const_name = const_name.split('.')
+def find_global_metadata(metadata, name, value):
+    if 'internal constant' in value and '.' in name:
+        function_name, const_name = name.split('.')
+        const_name = const_name.strip()
+        function_name = function_name.strip()
         for node in metadata.get('variable', []):
-            if (int(node.get('isInternalConst', 0)) == 1
-                and node['name'] == const_name 
+            if (node['name'] == const_name 
                 and node['functionName'] == function_name):
                 return node
     else:
         for node in metadata.get('variable', []):
             if (int(node.get('isGlobal', 0)) == 1 
-                and node['name'] == const_name):
+                and node['name'] == name):
                 return node
     return None
 
 
 def extract_type_info(node_full_text):
     if '*' in node_full_text:
-        type_encoding = TYPE_ENCODING[TypeID.POINTER]
+        type_id = TypeID.POINTER
         bitwidth = 64
     elif node_full_text[0] == 'i':
-        type_encoding = TYPE_ENCODING[TypeID.INT]
-        bitwidth = int(node_full_text[1:])
+        type_id = TypeID.INT
+        bitwidth = int(node_full_text[1:node_full_text.index(' ')])
     elif node_full_text == 'float':
-        type_encoding = TYPE_ENCODING[TypeID.FLOAT]
+        type_id = TypeID.FLOAT
         bitwidth = 32
     elif node_full_text == 'double':
-        type_encoding = TYPE_ENCODING[TypeID.DOUBLE]
+        type_id = TypeID.DOUBLE
         bitwidth = 64
     elif node_full_text == 'half':
-        type_encoding = TYPE_ENCODING[TypeID.HALF]
+        type_id = TypeID.HALF
         bitwidth = 16
     else: # Placeholder for other types
-        type_encoding = TYPE_ENCODING[TypeID.UNKNOWN]
+        type_id = TypeID.UNKNOWN
         bitwidth = 0
-    return {'type': type_encoding, 'bitwidth': bitwidth}
+    return {'type': type_id, 'bitwidth': bitwidth}
 
 
 def parse_array_features(metadata):
@@ -551,10 +547,13 @@ def build_nodes(pgml_nodes, pgml_functions,
                 continue
 
             is_global = int(metadata.get('isGlobal', 0)) == 1
+            if is_global:
+                function_name = metadata.get('functionName', '')
             is_param = int(metadata.get('isParam', 0)) == 1
             is_interface = is_param and function_name == top_level_function
             array_features = None
             if int(metadata.get('isArray', 0)) == 1:
+                # print(f"Found array variable: {metadata['name']} in {function_name}")
                 array_features = parse_array_features(metadata)
 
             node_index = node_indices['var']
@@ -564,39 +563,41 @@ def build_nodes(pgml_nodes, pgml_functions,
                 node_index, pgml_id=pgml_node_id,
                 var_type=metadata['type'], 
                 bitwidth=metadata['bitwidth'],
-                node_name=metadata.get('name'),
+                node_name=metadata['name'],
                 function_name=function_name,
                 is_global=is_global,
                 is_param=is_param,
                 is_interface=is_interface,
                 array_features=array_features
             )
+            node_dict['var'].append(node)
 
         elif node_type == 2: # Constant
             array_features = None
-            # Check if internal
             if '=' in node_full_text:
-                const_name, const_value = node_full_text.split('=')
-                const_name = const_name.strip(' @')
-                metadata = find_global_metadata(
-                    ir_metadata, const_name, const_value, function_name
-                )
+                # Named constant (local or global)
+                name, value = node_full_text.split('=')
+                name = name.strip(' @')
+                metadata = find_global_metadata(ir_metadata, name, value)
                 if metadata is None:
                     continue
+                node_name = metadata['name']
+                function_name = metadata['functionName']
                 is_global = int(metadata.get('isGlobal', 0)) == 1
                 is_param = int(metadata.get('isParam', 0)) == 1
                 is_interface = is_param and function_name == top_level_function
                 const_type = metadata['type']
                 bitwidth = metadata['bitwidth']
-                node_name = metadata.get('name')
                 if int(metadata.get('isArray', 0)) == 1:
+                    # print(f"Found array constant: {node_name} in {function_name}")
                     array_features = parse_array_features(metadata)
             else:
+                # Unnamed constant (e.g., literal)
                 is_global = is_param = is_interface = False
                 const_features = extract_type_info(node_full_text)
                 const_type = const_features['type']
                 bitwidth = const_features['bitwidth']
-                node_name = None
+                node_name = ''
                     
             node_index = node_indices['const']
             node_indices['const'] += 1

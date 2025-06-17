@@ -59,8 +59,7 @@ llvm/clang_plugins/
 
 gnn/models/
 
-gnn/dataset/test/
-gnn/dataset/train/
+gnn/dataset/
 gnn/fine_tuning/dataset/
 
 hls_config.tcl
