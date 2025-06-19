@@ -37,6 +37,7 @@ from gnn.analysis.utils import (
     compute_power
 )
 from gnn.data.utils.parsers import AVAILABLE_RESOURCES
+from gnn.utils import static_vars
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
@@ -45,14 +46,6 @@ AVAILABLE_RESOURCES_TENSOR = torch.tensor(
     dtype=torch.float32,
     device=DEVICE
 )
-
-
-def static_vars(**kwargs):
-    def decorate(func):
-        for k in kwargs:
-            setattr(func, k, kwargs[k])
-        return func
-    return decorate
 
 
 @static_vars(
@@ -90,7 +83,7 @@ def evaluate(
     preds = aggregate_qor_metrics(preds, target_metric)
 
     mre = percentage_diff(preds, targets).mean().item()
-
+    
     if mre < evaluate.min_mre:
         if output_dir and epoch > 20: # Avoid saving model at the first few epochs
             model_path = f"{output_dir}/model.pt"
@@ -446,18 +439,18 @@ def prepare_data_loaders(
     train_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
-        scale_features=True, 
+        standardize=True, 
         benchmarks=train_benches, 
-        log_scale=log_scale,
+        apply_log_transform=log_scale,
         mode="train"
     )
     test_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric,
-        scale_features=True,
-        feature_ranges=train_dataset.feature_ranges,
+        standardize=True,
+        scaling_stats=train_dataset.scaling_stats,
         benchmarks=test_benches,
-        log_scale=log_scale,
+        apply_log_transform=log_scale,
         mode="test"
     )
     train_loader = DataLoader(
@@ -475,7 +468,7 @@ def prepare_data_loaders(
         pin_memory=True
     )
     return (train_loader, test_loader, 
-            train_dataset.feature_ranges)
+            train_dataset.scaling_stats)
 
 
 def aggregate_qor_metrics(values: Tensor, target_metric: str) -> Tensor:

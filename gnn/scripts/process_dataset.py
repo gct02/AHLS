@@ -4,12 +4,10 @@ import json
 from pathlib import Path
 from typing import Dict, List
 
-import torch
-
 from gnn.data.graph import (
-    initialize_graph_structure, 
-    generate_hetero_graph, 
-    GraphStructure
+    CDFG,
+    generate_base_design_graph,
+    generate_optimized_design_graph
 )
 from gnn.data.utils.parsers import (
     extract_metrics,
@@ -18,19 +16,19 @@ from gnn.data.utils.parsers import (
 from gnn.data.utils.transforms import process_ir
 
 
-def process_base_solutions(
-    dataset: Path, 
+def generate_base_design_graphs(
+    dataset_dir: Path, 
     benchmarks: List[str], 
     top_level: Dict[str, str],
     output_dir: Path
-) -> Dict[str, GraphStructure]:
+) -> Dict[str, CDFG]:
     base_graphs = {}
     for benchmark in benchmarks:
-        if not (dataset / benchmark).is_dir():
+        if not (dataset_dir / benchmark).is_dir():
             print(f"Benchmark {benchmark} not found in dataset")
             continue
 
-        benchmark_dir = dataset / benchmark
+        benchmark_dir = dataset_dir / benchmark
         base_solution_dir = benchmark_dir / "solution0"
         if not base_solution_dir.is_dir():
             print(f"Base solution not found for {benchmark}")
@@ -65,7 +63,9 @@ def process_base_solutions(
             print(f"Error processing {ir_path}")
             continue
 
-        base_graph = initialize_graph_structure(ir_mod_path, md_path, top_level_function)
+        base_graph = generate_base_design_graph(
+            ir_mod_path, md_path, top_level_function
+        )
         base_graphs[benchmark] = base_graph
 
     return base_graphs
@@ -80,10 +80,12 @@ def main(args: Dict[str, str]):
     max_instances = args['max_instances']
 
     if not dataset_dir.is_dir():
-        raise ValueError(f"Dataset directory {dataset_dir} does not exist or is not a directory")
+        raise ValueError(f"Dataset directory {dataset_dir} "
+                         f"does not exist or is not a directory")
     
     if not top_level_json_path.exists():
-        raise ValueError(f"Top-level JSON file {top_level_json_path} does not exist")
+        raise ValueError(f"Top-level JSON file {top_level_json_path} "
+                         f"does not exist")
     
     if max_instances <= 0:
         raise ValueError("Maximum instances must be a positive integer")
@@ -100,9 +102,11 @@ def main(args: Dict[str, str]):
             for benchmark_dir in dataset_dir.iterdir() 
             if benchmark_dir.is_dir()
         ]
-    base_graphs = process_base_solutions(dataset_dir, benchmarks, top_level, output_dir)
+    base_graphs = generate_base_design_graphs(
+        dataset_dir, benchmarks, top_level, output_dir
+    )
 
-    for benchmark, (node_dict, edge_dict) in base_graphs.items():
+    for benchmark, base_graph in base_graphs.items():
         benchmark_dir = dataset_dir / benchmark
         if not benchmark_dir.is_dir():
             print(f"Benchmark {benchmark} not found in dataset")
@@ -113,13 +117,15 @@ def main(args: Dict[str, str]):
 
         instance_count = 0
         for solution_dir in benchmark_dir.iterdir():
-            if not solution_dir.is_dir() or not solution_dir.stem.startswith("solution"):
+            if (not solution_dir.is_dir() or 
+                not solution_dir.stem.startswith("solution")):
                 continue
 
             solution_name = solution_dir.stem
             hls_data_json_path = solution_dir / f"{solution_name}_data.json"
             if not hls_data_json_path.exists():
-                print(f"Directives JSON file not found for base solution on {benchmark}")
+                print(f"Directives JSON file not found "
+                      f"for base solution on {benchmark}")
                 continue
 
             dct_tcl_path = solution_dir / f"directives.tcl"
@@ -136,16 +142,11 @@ def main(args: Dict[str, str]):
             with open(solution_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
-            data = generate_hetero_graph(
-                node_dict, edge_dict,
-                dct_tcl_filepath=dct_tcl_path,
-                add_self_loops=True
-            )
-            torch.save(data, solution_out_dir / f"graph.pt")
+            graph = generate_optimized_design_graph(base_graph, dct_tcl_path)
+            graph.to_json(solution_out_dir / "graph.json")
 
             instance_count += 1
             if instance_count >= max_instances:
-                print(f"Reached maximum instances ({max_instances}) for benchmark {benchmark}")
                 break
 
 

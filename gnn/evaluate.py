@@ -86,10 +86,10 @@ def prepare_data_loader(
         root=dataset_dir, 
         metric=target_metric, 
         mode="test", 
-        scale_features=True, 
+        standardize=True, 
         feature_ranges=feature_ranges,
         benchmarks=benchmarks, 
-        log_scale=log_scale
+        apply_log_transform=log_scale
     )
     loader = DataLoader(dataset, batch_size=16, shuffle=False)
 

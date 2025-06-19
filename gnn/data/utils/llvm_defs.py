@@ -106,24 +106,23 @@ OP_ENCODING = {
 }
 
 TYPE_ENCODING = {
-    TypeID.INT:       [1,0,0,0,0],
-    TypeID.HALF:      [0,1,0,0,0],
-    TypeID.FLOAT:     [0,1,0,0,0],
-    TypeID.DOUBLE:    [0,1,0,0,0],
-    TypeID.X86_FP80:  [0,1,0,0,0],
-    TypeID.FP128:     [0,1,0,0,0],
-    TypeID.PPC_FP128: [0,1,0,0,0],
+    TypeID.INT:       [1,0,0,0],
+    TypeID.HALF:      [0,1,0,0],
+    TypeID.FLOAT:     [0,1,0,0],
+    TypeID.DOUBLE:    [0,1,0,0],
+    TypeID.X86_FP80:  [0,1,0,0],
+    TypeID.FP128:     [0,1,0,0],
+    TypeID.PPC_FP128: [0,1,0,0],
 
-    TypeID.POINTER:   [0,0,1,0,0],
+    TypeID.POINTER:   [0,0,1,0],
+    TypeID.STRUCT:    [0,0,0,1],
 
-    TypeID.ARRAY:     [0,0,0,1,0],
-    TypeID.STRUCT:    [0,0,0,0,1],
-
-    TypeID.UNKNOWN:   [0,0,0,0,0]
+    TypeID.UNKNOWN:   [0,0,0,0]
 }
 
 OP_ENCODING_SIZE = len(OP_ENCODING[Opcode.ADD])
 TYPE_ENCODING_SIZE = len(TYPE_ENCODING[TypeID.INT])
 
-# Maximum number of dimensions for arrays
-MAX_ARRAY_DIMS = 4
+# Constants to allow one-hot encoding of small numeric features
+MAX_ARRAY_DIMS = 4 # Maximum number of dimensions for arrays
+MAX_LOOP_DEPTH = 5 # Maximum loop depth

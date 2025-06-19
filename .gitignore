@@ -61,6 +61,7 @@ gnn/models/
 
 gnn/dataset/
 gnn/fine_tuning/dataset/
+data/base_solutions
 
 hls_config.tcl
 vitis_hls.log

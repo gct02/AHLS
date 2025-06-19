@@ -1,6 +1,7 @@
 import json
+import copy
 from collections import defaultdict
-from typing import Optional, Tuple, Dict, List
+from typing import Optional, Tuple, Dict, List, Any
 
 import torch
 import matplotlib.pyplot as plt
@@ -10,9 +11,11 @@ from torch_geometric.typing import NodeType, EdgeType
 
 from gnn.data.utils.parsers import parse_tcl_directives
 from gnn.data.utils.llvm_defs import (
-    TYPE_ENCODING, OP_ENCODING, 
+    TypeID, Opcode,
+    TYPE_ENCODING, 
+    OP_ENCODING, 
     MAX_ARRAY_DIMS, 
-    TypeID, Opcode
+    MAX_LOOP_DEPTH
 )
 
 NODE_TYPES = [
@@ -34,7 +37,7 @@ EDGE_TYPES = [
     ('region', 'hrchy', 'region'),
     ('region', 'hrchy', 'instr'),
 
-    # Hierarchy reverse edges
+    # Reversed hierarchy edges
     ('region', 'hrchy_rev', 'region'),
     ('instr', 'hrchy_rev', 'region'),
 ] + [
@@ -45,9 +48,9 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 FEATURE_SIZE_BY_TYPE = {
     'instr': 12,
-    'var': 28,
-    'const': 28,
-    'region': 8
+    'var': 27,
+    'const': 27,
+    'region': 14
 }
 
 DIRECTIVES = [
@@ -91,19 +94,6 @@ class Node:
             else:
                 feature_vector.append(feature)
         return torch.tensor(feature_vector, dtype=torch.float32)
-    
-    def as_dict(self):
-        return {
-            'index': self.index,
-            'type': self.node_type,
-            'features': self.feature_dict
-        }
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return str(self)
 
 
 class InstructionNode(Node):
@@ -118,101 +108,327 @@ class InstructionNode(Node):
         )
         self.set_feature('opcode', encoded_opcode)
 
+    def to_dict(self):
+        return {
+            'index': self.index,
+            'pgml_id': self.pgml_id,
+            'opcode': self.opcode,
+            'function_name': self.function_name
+        }
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            index=data['index'],
+            pgml_id=data['pgml_id'],
+            opcode=data['opcode'],
+            function_name=data.get('function_name', None)
+        )
+    
 
-class VariableNode(Node):
-    def __init__(self, index, pgml_id, var_type, bitwidth, 
+class DataNode(Node):
+    def __init__(self, index, node_type, pgml_id, data_type, bitwidth, 
                  function_name=None, node_name=None, 
                  is_param=False, is_interface=False,
                  is_global=False, array_features=None):
-        super().__init__(index, 'var', function_name)
+        super().__init__(index, node_type, function_name)
         self.pgml_id = pgml_id
         self.name = node_name
 
-        self.var_type = int(var_type)
-        self.bitwidth = int(bitwidth)
-        encoded_var_type = TYPE_ENCODING.get(
-            self.var_type, 
+        self.data_type = int(data_type)
+        encoded_data_type = TYPE_ENCODING.get(
+            self.data_type, 
             TYPE_ENCODING[TypeID.UNKNOWN]
         )
-        self.set_feature('type', encoded_var_type)
-        self.set_feature('bitwidth', self.bitwidth)
+        self.set_feature('type', encoded_data_type)
         self.set_feature('is_param', int(is_param))
         self.set_feature('is_interface', int(is_interface))
         self.set_feature('is_global', int(is_global))
 
-        self.is_array = array_features is not None
-        if not self.is_array:
+        if array_features is None:
+            self.set_feature('primitive_bitwidth', bitwidth)
+            self.set_feature('is_array', 0)
             array_features = {
                 'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
-                'base_bitwidth': 0,
                 'dimensions': [0] * MAX_ARRAY_DIMS,
-                'partition_factor': 0,
-                'partition_type': [0, 0, 0],
-                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
+                'array_partition': 0,
+                'array_partition_factor': 0,
+                'array_partition_type': [0, 0, 0],
+                'array_partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
             }
+        else:
+            self.set_feature('primitive_bitwidth', 
+                             array_features.get('primitive_bitwidth', 64))
+            self.set_feature('is_array', 1)
         self.extend_features(array_features)
 
+    def to_dict(self):
+        return {
+            'index': self.index,
+            'pgml_id': self.pgml_id,
+            'data_type': self.data_type,
+            'bitwidth': self.get_feature('primitive_bitwidth'),
+            'function_name': self.function_name,
+            'node_name': self.name,
+            'is_param': self.get_feature('is_param'),
+            'is_interface': self.get_feature('is_interface'),
+            'is_global': self.get_feature('is_global'),
+            'array_features': {
+                'base_type': self.get_feature('base_type'),
+                'primitive_bitwidth': self.get_feature('primitive_bitwidth'),
+                'dimensions': self.get_feature('dimensions'),
+                'array_partition': self.get_feature('array_partition'),
+                'array_partition_factor': self.get_feature('array_partition_factor'),
+                'array_partition_type': self.get_feature('array_partition_type'),
+                'array_partition_dim': self.get_feature('array_partition_dim')
+            }
+        }
 
-class ConstantNode(Node):
-    def __init__(self, index, pgml_id, const_type, bitwidth, 
+
+class VariableNode(DataNode):
+    def __init__(self, index, pgml_id, data_type, bitwidth, 
                  function_name=None, node_name=None, 
                  is_param=False, is_interface=False,
                  is_global=False, array_features=None):
-        super().__init__(index, 'const', function_name)
-        self.pgml_id = pgml_id
-        self.name = node_name
-
-        self.const_type = int(const_type)
-        self.bitwidth = int(bitwidth)
-        encoded_const_type = TYPE_ENCODING.get(
-            self.const_type, 
-            TYPE_ENCODING[TypeID.UNKNOWN]
+        super().__init__(index, 'var', pgml_id, data_type, bitwidth, 
+                         function_name, node_name, 
+                         is_param, is_interface, is_global, 
+                         array_features)
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            index=data['index'],
+            pgml_id=data['pgml_id'],
+            data_type=data['data_type'],
+            bitwidth=data['bitwidth'],
+            function_name=data.get('function_name'),
+            node_name=data.get('node_name'),
+            is_param=data.get('is_param', False),
+            is_interface=data.get('is_interface', False),
+            is_global=data.get('is_global', False),
+            array_features=data.get('array_features')
         )
-        self.set_feature('type', encoded_const_type)
-        self.set_feature('bitwidth', self.bitwidth)
-        self.set_feature('is_param', int(is_param))
-        self.set_feature('is_interface', int(is_interface))
-        self.set_feature('is_global', int(is_global))
 
-        self.is_array = array_features is not None
-        if not self.is_array:
-            array_features = {
-                'base_type': TYPE_ENCODING[TypeID.UNKNOWN],
-                'base_bitwidth': 0,
-                'dimensions': [0] * MAX_ARRAY_DIMS,
-                'partition_factor': 0,
-                'partition_type': [0, 0, 0],
-                'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)
-            }
-        self.extend_features(array_features)
+
+class ConstantNode(DataNode):
+    def __init__(self, index, pgml_id, data_type, bitwidth, 
+                 function_name=None, node_name=None, 
+                 is_param=False, is_interface=False,
+                 is_global=False, array_features=None):
+        super().__init__(index, 'const', pgml_id, data_type, bitwidth, 
+                         function_name, node_name, 
+                         is_param, is_interface, is_global, 
+                         array_features)
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            index=data['index'],
+            pgml_id=data['pgml_id'],
+            data_type=data['data_type'],
+            bitwidth=data['bitwidth'],
+            function_name=data.get('function_name'),
+            node_name=data.get('node_name'),
+            is_param=data.get('is_param', False),
+            is_interface=data.get('is_interface', False),
+            is_global=data.get('is_global', False),
+            array_features=data.get('array_features')
+        )
 
 
 class RegionNode(Node):
-    def __init__(self, index, trip_count=0, depth=0, 
-                 function_name=None, node_name=None):
+    def __init__(self, index, is_loop=False,
+                 trip_count=0, depth=0, 
+                 function_name=None, node_name=None,
+                 directive_features=None):
         super().__init__(index, 'region', function_name)
         self.name = node_name
-        self.set_feature('trip_count', trip_count)
-        self.set_feature('depth', depth)
-        self.set_feature('pipeline', 0)
-        self.set_feature('loop_flatten', 0)
-        self.set_feature('loop_merge', 0)
-        self.set_feature('unroll_factor', 0)
-        self.set_feature('dataflow', 0)
-        self.set_feature('inline', 0)
+
+        self.set_feature('is_loop', int(is_loop))
+        self.set_feature('trip_count', int(trip_count))
+
+        depth_encoded = [0] * MAX_LOOP_DEPTH
+        if depth >= MAX_LOOP_DEPTH:
+            depth = MAX_LOOP_DEPTH - 1
+        depth_encoded[max(0, int(depth))] = 1
+        self.set_feature('depth', depth_encoded)
+
+        if not directive_features:
+            directive_features = {
+                'pipeline': 0,
+                'loop_flatten': 0,
+                'loop_merge': 0,
+                'unroll': 0,
+                'unroll_factor': 0,
+                'dataflow': 0,
+                'inline': 0
+            }
+        self.extend_features(directive_features)
+
+    def to_dict(self):
+        return {
+            'index': self.index,
+            'is_loop': self.get_feature('is_loop'),
+            'trip_count': self.get_feature('trip_count'),
+            'depth': (self.get_feature('depth').index(1) 
+                      if 1 in self.get_feature('depth') else 0),
+            'function_name': self.function_name,
+            'node_name': self.name,
+            'directive_features': {
+                'pipeline': self.get_feature('pipeline'),
+                'loop_flatten': self.get_feature('loop_flatten'),
+                'loop_merge': self.get_feature('loop_merge'),
+                'unroll': self.get_feature('unroll'),
+                'unroll_factor': self.get_feature('unroll_factor'),
+                'dataflow': self.get_feature('dataflow'),
+                'inline': self.get_feature('inline')
+            }
+        }
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            index=data['index'],
+            is_loop=data.get('is_loop', 0),
+            trip_count=data.get('trip_count', 0),
+            depth=data.get('depth', 0),
+            function_name=data.get('function_name'),
+            node_name=data.get('node_name'),
+            directive_features=data.get('directive_features')
+        )
 
 
-GraphStructure = Tuple[
-    Dict[NodeType, List[Node]], 
-    Dict[EdgeType, List[Tuple[int, int]]]
-]
+NodeDict = Dict[NodeType, List[Node]]
+EdgeDict = Dict[EdgeType, List[Tuple[int, int]]]
 
 
-def initialize_graph_structure(
+CLASS_MAP = {
+    'instr': InstructionNode,
+    'var': VariableNode,
+    'const': ConstantNode,
+    'region': RegionNode,
+}
+
+def create_node_from_dict(node_type: str, node_data: Dict[str, Any]) -> Node:
+    """
+    Factory function to create a Node object from its type string and data dictionary.
+    """
+    node_class = CLASS_MAP.get(node_type)
+    if node_class is None:
+        raise ValueError(f"Unknown node type specified: '{node_type}'")
+    
+    return node_class.from_dict(node_data)
+
+
+class CDFG:
+    def __init__(self, 
+                 nodes: Optional[NodeDict] = None, 
+                 edges: Optional[EdgeDict] = None):
+        self.nodes = nodes or {}
+        self.edges = edges or {}
+
+        for nt in NODE_TYPES:
+            if nt not in self.nodes:
+                self.nodes[nt] = []
+
+        for et in EDGE_TYPES:
+            if et not in self.edges:
+                self.edges[et] = []
+
+    def add_node(self, node: Node):
+        if node.node_type not in self.nodes:
+            self.nodes[node.node_type] = []
+        self.nodes[node.node_type].append(node)
+
+    def add_edge(self, src: Node, dst: Node, rel_type: str):
+        edge_type = (src.node_type, rel_type, dst.node_type)
+        if edge_type not in self.edges:
+            self.edges[edge_type] = []
+        self.edges[edge_type].append((src.index, dst.index))
+
+    def to_dict(self):
+        return {
+            'nodes': {
+                nt: [node.to_dict() for node in nodes] 
+                for nt, nodes in self.nodes.items()
+            },
+            'edges': {
+                '__'.join(list(et)): edges 
+                for et, edges in self.edges.items()
+            }
+        }
+    
+    def to_json(self, filepath: str):
+        with open(filepath, 'w') as f:
+            json.dump(self.to_dict(), f, indent=2)
+
+    @classmethod
+    def from_json(cls, filepath: str):
+        with open(filepath, 'r') as f:
+            data = json.load(f)
+        
+        nodes = {
+            nt: [create_node_from_dict(nt, node) for node in node_list] 
+            for nt, node_list in data['nodes'].items()
+        }
+        edges = {
+            tuple(et.split('__')): [
+                (int(edge[0]), int(edge[1])) for edge in edge_list
+            ] 
+            for et, edge_list in data['edges'].items()
+        }
+        return cls(nodes=nodes, edges=edges)
+    
+    def to_pyg_hetero_data(self, add_self_loops: bool = True) -> HeteroData:
+        data = HeteroData()
+        for nt in NODE_TYPES:
+            nodes = self.nodes.get(nt, [])
+            feature_vectors = []
+            for node in nodes:
+                feature_vectors.append(node.get_feature_vector())
+            if len(feature_vectors) > 0:
+                data[nt].x = torch.stack(feature_vectors, dim=0)
+            else:
+                data[nt].x = torch.empty(
+                    (0, FEATURE_SIZE_BY_TYPE[nt]), dtype=torch.float32
+                )
+            data[nt].label = [
+                node.name 
+                if hasattr(node, 'name') and node.name else node.index
+                for node in nodes
+            ]
+
+        for et in EDGE_TYPES:
+            if et[1] == 'self':
+                continue
+            edges = self.edges.get(et)
+            if edges:
+                src, dst = zip(*edges)
+                src = torch.tensor(src, dtype=torch.long)
+                dst = torch.tensor(dst, dtype=torch.long)
+                data[et].edge_index = torch.stack([src, dst], dim=0)
+            else:
+                data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+
+        if add_self_loops:
+            for nt in NODE_TYPES:
+                nodes = self.nodes.get(nt)
+                et = (nt, 'self', nt)
+                if nodes:
+                    src = torch.arange(len(nodes), dtype=torch.long)
+                    dst = src.clone()
+                    data[et].edge_index = torch.stack([src, dst], dim=0)
+                else:
+                    data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
+        return data
+
+
+def generate_base_design_graph(
     ir_filepath: str, 
     ir_metadata_filepath: str,
     top_level_function: str
-) -> GraphStructure:
+) -> CDFG:
     import programl
 
     with open(ir_metadata_filepath, 'r') as f:
@@ -249,83 +465,20 @@ def initialize_graph_structure(
             rev_edges = [(dst, src) for src, dst in edges]
             edge_dict[rev_et].extend(rev_edges)
 
-    return node_dict, edge_dict
-
-
-def to_hetero_data(
-    node_dict: Dict[NodeType, List[Node]],
-    edge_dict: Dict[EdgeType, List[Tuple[int, int]]],
-    add_self_loops: bool = True,
-    output_path: Optional[str] = None
-) -> HeteroData:
-    data = HeteroData()
-    for nt in NODE_TYPES:
-        nodes = node_dict.get(nt, [])
-        feature_vectors = []
-        for node in nodes:
-            feature_vectors.append(node.get_feature_vector())
-        if len(feature_vectors) > 0:
-            data[nt].x = torch.stack(feature_vectors, dim=0)
-        else:
-            data[nt].x = torch.empty(
-                (0, FEATURE_SIZE_BY_TYPE[nt]), dtype=torch.float32
-            )
-        data[nt].label = [
-            node.name 
-            if hasattr(node, 'name') and node.name else node.index
-            for node in nodes
-        ]
-
-    for et in EDGE_TYPES:
-        if et[1] == 'self':
-            continue
-        edges = edge_dict.get(et)
-        if edges:
-            src, dst = zip(*edges)
-            src = torch.tensor(src, dtype=torch.long)
-            dst = torch.tensor(dst, dtype=torch.long)
-            data[et].edge_index = torch.stack([src, dst], dim=0)
-        else:
-            data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-
-    if add_self_loops:
-        for nt in NODE_TYPES:
-            nodes = node_dict.get(nt)
-            et = (nt, 'self', nt)
-            if nodes:
-                src = torch.arange(len(nodes), dtype=torch.long)
-                dst = src.clone()
-                data[et].edge_index = torch.stack([src, dst], dim=0)
-            else:
-                data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
-
-    if output_path is not None:
-        torch.save(data, output_path)
-
-    return data
-
-
-def generate_hetero_graph(
-    node_dict: Dict[NodeType, List[Node]],
-    edge_dict: Dict[EdgeType, List[Tuple[int, int]]],
-    dct_tcl_filepath: Optional[str] = None,
-    add_self_loops: bool = True,
-    output_path: Optional[str] = None
-) -> HeteroData:
-    if dct_tcl_filepath is not None:
-        include_directives(node_dict, dct_tcl_filepath)
-
-    data = to_hetero_data(
-        node_dict, edge_dict, 
-        add_self_loops=add_self_loops,
-        output_path=output_path
+    return CDFG(
+        nodes=node_dict, 
+        edges=edge_dict
     )
-    return data
 
 
-def include_directives(node_dict, dct_tcl_filepath):
+def generate_optimized_design_graph(
+    base_design_graph: CDFG, 
+    dct_tcl_filepath: str
+) -> CDFG:
+    cdfg = copy.deepcopy(base_design_graph)
+
     def find_region(node_name, function_name):
-        for node in node_dict['region']:
+        for node in cdfg.nodes['region']:
             if node.name == node_name:
                 if (node.function_name == function_name
                     or not node.function_name):
@@ -334,7 +487,7 @@ def include_directives(node_dict, dct_tcl_filepath):
     
     def find_array(node_name, function_name):
         for nt in ['var', 'const']:
-            for node in node_dict[nt]:
+            for node in cdfg.nodes[nt]:
                 if node.name == node_name:
                     if (node.function_name == function_name
                         or not node.function_name):
@@ -342,7 +495,7 @@ def include_directives(node_dict, dct_tcl_filepath):
         # If not found, search for the node name only
         # This is a fallback for cases where the function name is not specified
         for nt in ['var', 'const']:
-            for node in node_dict[nt]:
+            for node in cdfg.nodes[nt]:
                 if node.name == node_name:
                     return node
         return None
@@ -352,6 +505,7 @@ def include_directives(node_dict, dct_tcl_filepath):
     for dct_type, dct_args in directives:
         if dct_type not in DIRECTIVES or 'off' in dct_args:
             continue
+
         if dct_type != 'array_partition':
             location = dct_args.get('location')
             if location is None:
@@ -373,8 +527,6 @@ def include_directives(node_dict, dct_tcl_filepath):
                 if factor <= 0:
                     factor = max(1, node.feature_dict['trip_count'])
                 node.feature_dict['unroll_factor'] = factor
-            else:
-                node.feature_dict[dct_type] = 1
         else:
             function_name = dct_args.get('location', '')
             array_name = dct_args.get('variable')
@@ -386,116 +538,30 @@ def include_directives(node_dict, dct_tcl_filepath):
                 continue
 
             partition_dim = min(int(dct_args.get('dim', 0)), MAX_ARRAY_DIMS)
-            node.feature_dict['partition_dim'][partition_dim] = 1
+            node.feature_dict['array_partition_dim'][partition_dim] = 1
 
             partition_type = dct_args.get('type', 'complete')
             if partition_type == 'complete':
-                node.feature_dict['partition_type'][0] = 1
+                node.feature_dict['array_partition_type'][0] = 1
             elif partition_type == 'cyclic':
-                node.feature_dict['partition_type'][1] = 1
+                node.feature_dict['array_partition_type'][1] = 1
             else:
-                node.feature_dict['partition_type'][2] = 1
+                node.feature_dict['array_partition_type'][2] = 1
 
-            partition_factor = int(dct_args.get('factor', 0))
-            if partition_factor <= 0 or partition_type == 'complete':
+            factor = int(dct_args.get('factor', 0))
+            if factor <= 0 or partition_type == 'complete':
                 dims = node.feature_dict['dimensions']
                 if partition_dim == 0:
-                    partition_factor = 1
+                    factor = 1
                     for dim in dims:
-                        partition_factor *= dim
+                        factor *= dim
                 else:
-                    partition_factor = dims[partition_dim-1]
-            node.feature_dict['partition_factor'] = max(1, partition_factor)
+                    factor = dims[partition_dim-1]
+            node.feature_dict['array_partition_factor'] = max(1, factor)
 
+        node.feature_dict[dct_type] = 1
 
-def find_instruction_metadata(ir_metadata, instruction_id):
-    for node in ir_metadata.get('instruction', []):
-        if node['id'] == instruction_id:
-            return node
-    return None
-        
-
-def find_variable_metadata(metadata, node_full_text, function_name):
-    var_name = node_full_text.split('%')[1]
-    if ' ' in var_name:
-        var_name = var_name.split(' ')[0]
-    var_name = var_name.strip()
-    for node in metadata.get('variable', []):
-        if node['name'] == var_name:
-            if (int(node.get('isGlobal', 0)) == 1
-                or node['functionName'] == function_name):
-                return node
-    return None
-
-
-def find_global_metadata(metadata, name, value):
-    if 'internal constant' in value and '.' in name:
-        function_name, const_name = name.split('.')
-        const_name = const_name.strip()
-        function_name = function_name.strip()
-        for node in metadata.get('variable', []):
-            if (node['name'] == const_name 
-                and node['functionName'] == function_name):
-                return node
-    else:
-        for node in metadata.get('variable', []):
-            if (int(node.get('isGlobal', 0)) == 1 
-                and node['name'] == name):
-                return node
-    return None
-
-
-def extract_type_info(node_full_text):
-    if '*' in node_full_text:
-        type_id = TypeID.POINTER
-        bitwidth = 64
-    elif node_full_text[0] == 'i':
-        type_id = TypeID.INT
-        bitwidth = int(node_full_text[1:node_full_text.index(' ')])
-    elif node_full_text == 'float':
-        type_id = TypeID.FLOAT
-        bitwidth = 32
-    elif node_full_text == 'double':
-        type_id = TypeID.DOUBLE
-        bitwidth = 64
-    elif node_full_text == 'half':
-        type_id = TypeID.HALF
-        bitwidth = 16
-    else: # Placeholder for other types
-        type_id = TypeID.UNKNOWN
-        bitwidth = 0
-    return {'type': type_id, 'bitwidth': bitwidth}
-
-
-def parse_array_features(metadata):
-    base_type_encoding = TYPE_ENCODING.get(
-        int(metadata['baseType']), 
-        TYPE_ENCODING[TypeID.UNKNOWN]
-    )
-    base_bitwidth = int(metadata['baseTypeBitwidth'])
-
-    dims = [
-        int(dim) for dim in metadata['dimensions']
-    ]
-    num_dims = int(metadata['numDims'])
-    if num_dims > MAX_ARRAY_DIMS:
-        remaining_dims = dims[MAX_ARRAY_DIMS-1:]
-        remaining_size = 1
-        for dim in remaining_dims:
-            remaining_size *= dim
-        dims = dims[:MAX_ARRAY_DIMS-1] + [remaining_size]
-    elif num_dims < MAX_ARRAY_DIMS:
-        dims += [1] * (MAX_ARRAY_DIMS - num_dims)
-
-    feature_dict = {
-        'base_type': base_type_encoding,
-        'base_bitwidth': base_bitwidth,
-        'dimensions': dims,
-        'partition_factor': 0,
-        'partition_type': [0, 0, 0],  # complete, cyclic, block
-        'partition_dim': [0] * (MAX_ARRAY_DIMS + 1)  # One-hot encoding
-    }
-    return feature_dict
+    return cdfg
 
 
 def build_nodes(pgml_nodes, pgml_functions, 
@@ -553,16 +619,18 @@ def build_nodes(pgml_nodes, pgml_functions,
             is_interface = is_param and function_name == top_level_function
             array_features = None
             if int(metadata.get('isArray', 0)) == 1:
-                # print(f"Found array variable: {metadata['name']} in {function_name}")
                 array_features = parse_array_features(metadata)
+                bitwidth = array_features['primitive_bitwidth']
+            else:
+                bitwidth = int(metadata['bitwidth'])
 
             node_index = node_indices['var']
             node_indices['var'] += 1
 
             node = VariableNode(
                 node_index, pgml_id=pgml_node_id,
-                var_type=metadata['type'], 
-                bitwidth=metadata['bitwidth'],
+                data_type=metadata['type'], 
+                bitwidth=bitwidth,
                 node_name=metadata['name'],
                 function_name=function_name,
                 is_global=is_global,
@@ -589,12 +657,14 @@ def build_nodes(pgml_nodes, pgml_functions,
                 const_type = metadata['type']
                 bitwidth = metadata['bitwidth']
                 if int(metadata.get('isArray', 0)) == 1:
-                    # print(f"Found array constant: {node_name} in {function_name}")
                     array_features = parse_array_features(metadata)
+                    bitwidth = array_features['primitive_bitwidth']
+                else:
+                    bitwidth = int(metadata['bitwidth'])
             else:
                 # Unnamed constant (e.g., literal)
                 is_global = is_param = is_interface = False
-                const_features = extract_type_info(node_full_text)
+                const_features = extract_const_data_info(pgml_node)
                 const_type = const_features['type']
                 bitwidth = const_features['bitwidth']
                 node_name = ''
@@ -604,7 +674,7 @@ def build_nodes(pgml_nodes, pgml_functions,
 
             node = ConstantNode(
                 node_index, pgml_id=pgml_node_id,
-                const_type=const_type, 
+                data_type=const_type, 
                 bitwidth=bitwidth,
                 node_name=node_name,
                 function_name=function_name,
@@ -627,15 +697,16 @@ def build_nodes(pgml_nodes, pgml_functions,
         region_id = int(region['id'])
         id_to_index_mapping['region'][region_id] = node_index
 
+        is_loop = int(region.get('isLoop', 0)) == 1
         trip_count = int(region['tripCount'])
         depth = int(region['depth'])
-        if int(region['isLoop']) == 1:
+        if is_loop:
             trip_count = max(1, trip_count)
         else:
             trip_count = 0
 
         node = RegionNode(
-            node_index, trip_count=trip_count, 
+            node_index, is_loop, trip_count=trip_count, 
             depth=depth, node_name=region.get('name', ''),
             function_name=region.get('functionName', '')
         )
@@ -696,6 +767,98 @@ def build_edges(pgml_edges, graph_nodes):
         edge_dict[edge_type].append((src.index, dst.index))
         
     return edge_dict
+
+
+def parse_array_features(array_metadata):
+    base_type_encoding = TYPE_ENCODING.get(
+        int(array_metadata['baseType']), 
+        TYPE_ENCODING[TypeID.UNKNOWN]
+    )
+    base_bitwidth = int(array_metadata['baseTypeBitwidth'])
+
+    dims = [
+        int(dim) for dim in array_metadata['dimensions']
+    ]
+    num_dims = int(array_metadata['numDims'])
+    if num_dims > MAX_ARRAY_DIMS:
+        remaining_dims = dims[MAX_ARRAY_DIMS-1:]
+        remaining_size = 1
+        for dim in remaining_dims:
+            remaining_size *= dim
+        dims = dims[:MAX_ARRAY_DIMS-1] + [remaining_size]
+    elif num_dims < MAX_ARRAY_DIMS:
+        dims += [1] * (MAX_ARRAY_DIMS - num_dims)
+
+    feature_dict = {
+        'base_type': base_type_encoding,
+        'primitive_bitwidth': base_bitwidth,
+        'dimensions': dims,
+        'array_partition': 0,
+        'array_partition_factor': 0,
+        'array_partition_type': [0, 0, 0],  # complete, cyclic, block
+        'array_partition_dim': [0] * (MAX_ARRAY_DIMS + 1)  # One-hot encoding
+    }
+    return feature_dict
+
+
+def find_instruction_metadata(ir_metadata, instruction_id):
+    for node in ir_metadata.get('instruction', []):
+        if node['id'] == instruction_id:
+            return node
+    return None
+        
+
+def find_variable_metadata(metadata, node_full_text, function_name):
+    var_name = node_full_text.split('%')[1]
+    if ' ' in var_name:
+        var_name = var_name.split(' ')[0]
+    var_name = var_name.strip()
+    for node in metadata.get('variable', []):
+        if node['name'] == var_name:
+            if (int(node.get('isGlobal', 0)) == 1
+                or node['functionName'] == function_name):
+                return node
+    return None
+
+
+def find_global_metadata(metadata, name, value):
+    if 'internal constant' in value and '.' in name:
+        function_name, const_name = name.split('.')
+        const_name = const_name.strip()
+        function_name = function_name.strip()
+        for node in metadata.get('variable', []):
+            if (node['name'] == const_name 
+                and node['functionName'] == function_name):
+                return node
+    else:
+        for node in metadata.get('variable', []):
+            if (int(node.get('isGlobal', 0)) == 1 
+                and node['name'] == name):
+                return node
+    return None
+
+
+def extract_const_data_info(pgml_node):
+    full_text = pgml_node['features']['full_text'][0]
+    if '*' in full_text:
+        type_id = TypeID.POINTER
+        bitwidth = 64
+    elif full_text[0] == 'i':
+        type_id = TypeID.INT
+        bitwidth = int(full_text[1:full_text.index(' ')])
+    elif full_text == 'float':
+        type_id = TypeID.FLOAT
+        bitwidth = 32
+    elif full_text == 'double':
+        type_id = TypeID.DOUBLE
+        bitwidth = 64
+    elif full_text == 'half':
+        type_id = TypeID.HALF
+        bitwidth = 16
+    else: # Placeholder for other types
+        type_id = TypeID.UNKNOWN
+        bitwidth = 0
+    return {'type': type_id, 'bitwidth': bitwidth}
 
 
 def plot_graph(data, plot_type, batched=False):

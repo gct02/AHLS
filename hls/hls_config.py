@@ -35,6 +35,7 @@ _TEMPLATE = """open_project $PRJ_NAME
 add_files { $SRC_FILES }
 set_top $TOP_FN
 open_solution -reset $SOL_NAME
+config_compile -pipeline_loops 999
 config_array_partition -throughput_driven off
 set_part $DEVICE
 create_clock -period $CLOCK_PERIOD -name default

@@ -2,13 +2,16 @@ import os
 import torch
 import shutil
 import json
+import math
 from collections import defaultdict
 from typing import Union, Optional, List, Dict, Tuple
 
+import numpy as np
 from torch import Tensor
-from torch_geometric.data import Dataset, HeteroData
+from torch_geometric.data import Dataset
 from torch_geometric.typing import NodeType
 
+from gnn.data.graph import CDFG
 from gnn.data.utils.parsers import METRICS
 
 TARGET_AREA_METRICS = ['lut', 'ff', 'dsp', 'bram']
@@ -20,7 +23,6 @@ TARGET_METRICS = {
     'timing': TARGET_TIMING_METRICS,
     'power': TARGET_POWER_METRICS
 }
-
 TARGET_SIZE_PER_TYPE = {
     key: len(value) 
     for key, value in TARGET_METRICS.items()
@@ -32,11 +34,11 @@ class HLSDataset(Dataset):
         self, 
         root: str, 
         target_metric: str,
-        scale_features: bool = False,
-        feature_ranges: Optional[Dict[NodeType, Tuple[Tensor, Tensor]]] = None,
-        benchmarks: Optional[Union[str, List[str]]] = None,
-        log_scale: bool = False,
         mode: str = "train",
+        standardize: bool = False,
+        scaling_stats: Optional[Dict[str, Dict[str, float]]] = None,
+        benchmarks: Optional[Union[str, List[str]]] = None,
+        apply_log_transform: bool = False,
         **kwargs
     ):
         target_metric = target_metric.lower()
@@ -45,16 +47,13 @@ class HLSDataset(Dataset):
                 f"Invalid target metric '{target_metric}'. "
                 f"Available options are: {list(TARGET_METRICS.keys())}"
             )
-        self._metric = TARGET_METRICS[target_metric]
-        
-        self._true_root = root
-        self._full_dir = os.path.join(root, "full")
-
-        self.log_transform = log_scale
+        self.evaluation_metrics = TARGET_METRICS[target_metric]
+        self.full_dataset_dir = os.path.join(root, "full")
         self.root = os.path.join(root, mode)
+        self.log_transform = apply_log_transform
 
         if not benchmarks:
-            benchmarks = sorted(os.listdir(self._full_dir))
+            benchmarks = sorted(os.listdir(self.full_dataset_dir))
         elif not isinstance(benchmarks, list):
             benchmarks = [benchmarks]
 
@@ -62,7 +61,7 @@ class HLSDataset(Dataset):
         self.benchmarks = []
         self.base_targets = {}
         for benchmark in benchmarks:
-            benchmark_dir = os.path.join(self._full_dir, benchmark)
+            benchmark_dir = os.path.join(self.full_dataset_dir, benchmark)
             if not os.path.isdir(benchmark_dir):
                 print(f"Skipping {benchmark} (directory not found)")
                 continue
@@ -80,7 +79,7 @@ class HLSDataset(Dataset):
                 continue
 
             base_target = []
-            for metric in self._metric:
+            for metric in self.evaluation_metrics:
                 base_target.append(float(base_metrics[metric]))
             base_target = torch.tensor(base_target).unsqueeze(0)
             if self.log_transform:
@@ -89,13 +88,15 @@ class HLSDataset(Dataset):
             self.base_targets[benchmark] = base_target
             self.benchmarks.append(benchmark)
 
-        self.feature_ranges = None
-        if scale_features:
-            if not feature_ranges:
-                feature_ranges = _compute_feature_ranges(
-                    self._full_dir, self.benchmarks
+        self.standardize = standardize
+        self.scaling_stats = None
+        if standardize:
+            if not scaling_stats:
+                scaling_stats = compute_scaling_stats(
+                    self.full_dataset_dir, 
+                    benchmarks=self.benchmarks
                 )
-            self.feature_ranges = feature_ranges
+            self.scaling_stats = scaling_stats
 
         self._raw_file_names = []
         self._processed_file_names = []
@@ -110,16 +111,16 @@ class HLSDataset(Dataset):
         return self._processed_file_names
     
     def download(self):
-        if not os.path.exists(self._full_dir):
+        if not os.path.exists(self.full_dataset_dir):
             raise FileNotFoundError(
-                f"Directory {self._full_dir} does not exist."
+                f"Directory {self.full_dataset_dir} does not exist."
             )
         if os.path.exists(self.raw_dir):
             shutil.rmtree(self.raw_dir)
         os.makedirs(self.raw_dir)
             
         for bench in self.benchmarks:
-            src = os.path.join(self._full_dir, bench)
+            src = os.path.join(self.full_dataset_dir, bench)
             dst = os.path.join(self.raw_dir, bench)
             shutil.copytree(src, dst)
     
@@ -150,7 +151,7 @@ class HLSDataset(Dataset):
                 continue
 
             for benchmark, solution_dir in solution_dirs.items():
-                graph_path = os.path.join(solution_dir, "graph.pt")
+                graph_path = os.path.join(solution_dir, "graph.json")
                 if not os.path.exists(graph_path):
                     print(f"Skipping {idx} (graph file not found)")
                     continue
@@ -168,20 +169,21 @@ class HLSDataset(Dataset):
                     continue
 
                 target = []
-                for metric in self._metric:
+                for metric in self.evaluation_metrics:
                     target.append(float(metrics[metric]))
                 target = torch.tensor(target).unsqueeze(0)
                 if self.log_transform:
                     target = torch.log1p(target)
 
-                data = torch.load(graph_path)
+                graph = CDFG.from_json(graph_path)
+                if self.standardize:
+                    self._standardize_features(graph)
+
+                data = graph.to_pyg_hetero_data()
                 data.y = target
                 data.y_base = self.base_targets[benchmark]
-
                 data.solution_index = idx
                 data.benchmark = benchmark
-                if self.feature_ranges is not None:
-                    data = self._scale_features(data)
 
                 output_path = os.path.join(self.processed_dir, f"{benchmark}_{idx}.pt")
                 torch.save(data, output_path)
@@ -197,16 +199,110 @@ class HLSDataset(Dataset):
         data = torch.load(self.processed_paths[ind])
         return data 
     
-    def _scale_features(self, data: HeteroData) -> HeteroData:
-        for nt, x in data.x_dict.items():
-            if x.size(0) == 0:
+    def _standardize_features(self, graph: CDFG):
+        def log_transform(value):
+            if isinstance(value, (list, tuple)):
+                return [math.log1p(float(v)) for v in value]
+            else:
+                return math.log1p(float(value))
+            
+        def scale(key, value, mean, std):
+            if key in ['dimensions', 'trip_count', 'unroll_factor', 
+                       'array_partition_factor']:
+                 value = log_transform(value)
+            if isinstance(value, (list, tuple)):
+                return [(float(v) - mean) / std for v in value]
+            else:
+                return (float(value) - mean) / std
+            
+        for nt in ['var', 'const', 'region']:
+            if nt not in graph.nodes:
                 continue
-            mins, maxs = self.feature_ranges[nt]
-            diffs = maxs - mins
-            diffs[diffs == 0] = 1
-            data.x_dict[nt] = (x - mins) / diffs
-        return data
-    
+            for node in graph.nodes[nt]:
+                for key, value in node.feature_dict.items():
+                    if key not in self.scaling_stats:
+                        continue
+                    mean = self.scaling_stats[key]['mean']
+                    std = self.scaling_stats[key]['std']
+                    if std == 0:
+                        std = 1
+                    node.feature_dict[key] = scale(key, value, mean, std)
+
+
+def compute_scaling_stats(
+    dataset_dir: str,
+    benchmarks: Optional[Union[str, List[str]]] = None
+) -> Dict[str, Dict[str, float]]:
+    feature_values = {
+        'primitive_bitwidth': [],
+        'dimensions': [],
+        'trip_count': [],
+        'unroll_factor': [],
+        'array_partition_factor': []
+    }
+    if benchmarks is None:
+        benchmarks = sorted(os.listdir(dataset_dir))
+    elif isinstance(benchmarks, str):
+        benchmarks = [benchmarks]
+
+    for bench in benchmarks:
+        bench_dir = os.path.join(dataset_dir, bench)
+        if not os.path.isdir(bench_dir):
+            print(f"Skipping {bench} (directory not found)")
+            continue
+
+        solutions = [s for s in os.listdir(bench_dir) if "solution" in s]
+        solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
+
+        for sol in solutions:
+            sol_dir = os.path.join(bench_dir, sol)
+            graph_path = os.path.join(sol_dir, "graph.json")
+            if not os.path.exists(graph_path):
+                print(f"Skipping {sol} (graph file not found)")
+                continue
+
+            graph = CDFG.from_json(graph_path)
+            for nt, nodes in graph.nodes.items():
+                if nt in ["var", "const"]:
+                    for node in nodes:
+                        primitive_bitwidth = node.feature_dict.get('primitive_bitwidth', 0)
+                        if primitive_bitwidth <= 0:
+                            continue
+                        feature_values['primitive_bitwidth'].append(primitive_bitwidth)
+                        if node.feature_dict.get('is_array', 0) == 0:
+                            continue
+                        for dim in node.feature_dict.get('dimensions', []):
+                            if dim > 1:
+                                feature_values['dimensions'].append(math.log1p(float(dim)))
+                        if node.feature_dict.get('array_partition', 0) == 1:
+                            factor = node.feature_dict.get('array_partition_factor', 1)
+                            if factor > 1:
+                                feature_values['array_partition_factor'].append(
+                                    math.log1p(float(factor))
+                                )
+
+                elif nt == "region" and node.feature_dict.get('is_loop', 0) == 1:
+                    trip_count = node.feature_dict.get('trip_count', 0)
+                    if trip_count > 0:
+                        feature_values['trip_count'].append(math.log1p(trip_count))
+                    if node.feature_dict.get('unroll', 0) == 1:
+                        factor = node.feature_dict.get('unroll_factor', 1)
+                        if factor > 1:
+                            feature_values['unroll_factor'].append(
+                                math.log1p(float(factor))
+                            )
+    scaling_stats = {}
+    for key, values in feature_values.items():
+        if not values:
+            continue
+        mean = np.mean(values)
+        std = np.std(values)
+        if std == 0:
+            std = 1
+        scaling_stats[key] = {'mean': mean, 'std': std}
+
+    return scaling_stats
+
 
 def _compute_feature_ranges(
     dataset_dir: str,
