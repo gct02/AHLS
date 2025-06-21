@@ -58,10 +58,11 @@ llvm/utils/
 llvm/clang_plugins/
 
 gnn/models/
-
 gnn/dataset/
 gnn/fine_tuning/dataset/
 data/base_solutions
+
+references/
 
 hls_config.tcl
 vitis_hls.log

@@ -243,7 +243,7 @@ def percentage_diff(pred, target):
     avg = (torch.abs(pred) + torch.abs(target)) / 2
     return torch.where(
         target == 0, 
-        torch.abs(pred - target) / avg, 
+        torch.abs(pred - target) / (avg + 1e-8),  # Avoid division by zero
         torch.abs(pred - target) / torch.abs(target)
     ) * 100
 

@@ -77,7 +77,7 @@ def extract_utilization(solution_dir, filtered=False) -> Dict[str, int]:
     return {m: -1 for m in AREA_METRICS}
 
 
-def extract_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
+def extract_hls_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
     if filtered:
         rpt_path = Path(solution_dir) / 'reports/csynth.xml'
     else:
@@ -95,6 +95,31 @@ def extract_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
         default=-1
     )
     return {'cc': cc}
+
+
+def extract_hls_area_estimates(solution_dir, filtered=False) -> Dict[str, int]:
+    if filtered:
+        rpt_path = Path(solution_dir) / 'reports/csynth.xml'
+    else:
+        rpt_path = Path(solution_dir) / 'syn/report/csynth.xml'
+
+    if not os.path.exists(rpt_path):
+        print(f'Area estimates report not found in {solution_dir}')
+        return {m: -1 for m in AREA_METRICS}
+
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+    area_estimates = root.find('AreaEstimates/Resources')
+    if area_estimates is None:
+        print(f'Area estimates not found in {rpt_path}')
+        return {m: -1 for m in AREA_METRICS}
+    
+    return {
+        'lut': findint(area_estimates, 'LUT', -1),
+        'ff': findint(area_estimates, 'FF', -1),
+        'dsp': findint(area_estimates, 'DSP', -1),
+        'bram': findint(area_estimates, 'BRAM_18K', -1)
+    }
 
 
 def extract_power_report(solution_dir, filtered=False) -> Dict[str, float]:
@@ -137,7 +162,7 @@ def extract_metrics(solution_dir, filtered=False) -> Dict[str, Union[float, int]
 
     metrics.update(extract_timing_summary(solution_dir, filtered))
     metrics.update(extract_power_report(solution_dir, filtered))
-    metrics.update(extract_cc_report(solution_dir, filtered))
+    metrics.update(extract_hls_cc_report(solution_dir, filtered))
 
     achieved_clk = metrics.get('achieved_clk', -1.0)
     cc = metrics.get('cc', -1)
