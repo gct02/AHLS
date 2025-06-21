@@ -78,9 +78,9 @@ def extract_base_kernel_info(
         kernel_info_dict[kernel_name] = VitisKernelInfo(
             solution_dir=sol_dir, 
             top_level_function=top_function, 
-            array_info_path=array_info_path, 
+            array_metadata_path=array_info_path, 
             global_array_usage_path=global_array_usage_path,
-            kernel_name=kernel_name,
+            benchmark_name=kernel_name,
             filtered=filtered
         )
             

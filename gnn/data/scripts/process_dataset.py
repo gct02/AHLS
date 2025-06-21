@@ -73,7 +73,7 @@ def main(args: Dict[str, Any]):
 
         kernel_info.save_as_json(bench_out_dir / "kernel_info.json")
 
-        base_metrics = kernel_info.metrics
+        base_metrics = kernel_info.design_metrics
         with open(bench_out_dir / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 
