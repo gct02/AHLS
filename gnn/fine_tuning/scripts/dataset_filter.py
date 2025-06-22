@@ -1,15 +1,12 @@
 import os
 import json
 import shutil
-import pickle
+from typing import List, Tuple
 
 import numpy as np
 
-from gnn.data.graph import find_region_node
-from gnn.data.kernel.vitis_kernel_info import VitisKernelInfo
-
+from gnn.data.kernel.kernel_info import KernelInfo
 from gnn.data.utils.parsers import parse_tcl_directives
-
 
 DIRECTIVES = {
     "pipeline", "unroll", "array_partition", 
@@ -18,9 +15,9 @@ DIRECTIVES = {
 
 
 def extract_critical_dct_groups(
-    dct_config_path: str,
-    kernel_info: VitisKernelInfo
-):
+    dct_config_path: str, 
+    kernel_info: KernelInfo
+) -> List[Tuple[str, str]]:
     if not os.path.exists(dct_config_path):
         raise ValueError(f"Directive configuration file not found: "
                          f"{dct_config_path}")
@@ -33,27 +30,25 @@ def extract_critical_dct_groups(
         raise ValueError(f"Directive configuration file does not contain "
                          f"directives: {dct_config_path}")
     
-    loop_nodes = [
-        node for node in kernel_info.nodes.get("region", []) 
-        if node.is_loop
-    ]
+    kernel_regions = {}
+    for module in kernel_info.modules:
+        for region_name, region_info in module.regions.items():
+            if f"{module.name}/{region_name}" not in kernel_regions:
+                kernel_regions[f"{module.name}/{region_name}"] = region_info
 
-    loop_lats = [node.attrs.get("max_lat", 0) for node in loop_nodes]
-    if not loop_lats:
-        mean_loop_lat = 0
-    else:
-        mean_loop_lat = np.mean(loop_lats)
+    loop_lats = [
+        region_info.get("latency", 0) 
+        for region_info in kernel_regions.values()
+    ]
+    mean_loop_lat = np.mean(loop_lats) if loop_lats else 0
 
     filtered_dct_groups = []
-
     for group in dct_dict.values():
         dct_type = group["directive_type"]
-
         if dct_type not in DIRECTIVES:
             continue
 
         label = group.get("label", "")
-        function = group.get("function", "")
         variable = group.get("variable", "")
 
         if dct_type == "loop_merge":
@@ -61,11 +56,13 @@ def extract_critical_dct_groups(
         elif dct_type == "array_partition":
             filtered_dct_groups.append((dct_type, variable))
         else:
-            node = find_region_node(kernel_info, label, function)
-            if node is not None:
-                lat = node.attrs.get("max_lat", 0)
-                if lat > mean_loop_lat:
-                    filtered_dct_groups.append((dct_type, label))
+            function = group.get("function", "")
+            location = f"{function}/{label}" if function else label
+            region_info = kernel_regions.get(location, None)
+            if region_info is None:
+                continue
+            if region_info.get('latency', 0) > mean_loop_lat:
+                filtered_dct_groups.append((dct_type, label))
 
     return filtered_dct_groups
 
@@ -73,7 +70,6 @@ def extract_critical_dct_groups(
 def filter_solutions(
     benchmark_dir: str,
     dct_config_path: str,
-    kernel_info: VitisKernelInfo,
     output_dir: str,
     num_solutions: int = 30
 ):
@@ -82,6 +78,13 @@ def filter_solutions(
 
     if not os.path.exists(dct_config_path):
         raise ValueError(f"Directive configuration file not found: {dct_config_path}")
+    
+    benchmark_name = os.path.basename(benchmark_dir)
+    solution0_dir = os.path.join(benchmark_dir, "solution0")
+    if not os.path.exists(solution0_dir):
+        raise ValueError(f"Solution0 directory not found in benchmark: {benchmark_name}")
+    
+    kernel_info = KernelInfo(solution0_dir, benchmark_name) 
 
     filtered_dct_groups = extract_critical_dct_groups(dct_config_path, kernel_info)
     critical_dct_count = {}
@@ -141,22 +144,15 @@ if __name__ == "__main__":
                         help="Path to the benchmark directory containing solutions.")
     parser.add_argument("-d", "--dct_config_path", type=str, required=True, 
                         help="Path to the directive configuration file.")
-    parser.add_argument("-k", "--kernel_info_path", type=str, required=True, 
-                        help="Path to the kernel info JSON file.")
     parser.add_argument("-o", "--output_dir", type=str, required=True, 
                         help="Directory to save filtered solutions.")
     parser.add_argument("-n", "--num_solutions", type=int, default=30, 
                         help="Number of solutions to keep.")
-
     args = parser.parse_args()
-
-    with open(args.kernel_info_path, "rb") as f:
-        kernel_info = pickle.load(f)
         
     filter_solutions(
         args.benchmark_dir,
         args.dct_config_path,
-        kernel_info,
         args.output_dir,
         args.num_solutions
     )

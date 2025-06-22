@@ -7,7 +7,6 @@ from random import randint
 
 from hls.hls_config import gen_design_config_tcl   
 
-
 NUM_INSTANCES = 15
 
 

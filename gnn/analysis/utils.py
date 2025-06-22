@@ -279,7 +279,7 @@ def plot_learning_curves(
         fontsize=14
     )
     plt.xlabel('Epoch', fontsize=12)
-    plt.ylabel('Mean Relative Error', fontsize=12)
+    plt.ylabel('MAPE', fontsize=12)
     plt.legend()
 
     if best_epoch is not None:
@@ -327,13 +327,15 @@ def plot_prediction_scatter(
 
     if mean_error is None:
         if errors is None:
-            errors = percentage_diff(preds, targets)
+            errors = percentage_diff(preds, targets).tolist()
+        else:
+            errors = errors.tolist()
         mean_error = np.mean(errors)
             
     r2 = r2_score(targets, preds)
     plt.text(
         min_val*1.05, max_val*0.9, 
-        f'Mean Relative Error: {mean_error:.2f}\nR²: {r2:.2f}', 
+        f'MAPE: {mean_error:.2f}\nR²: {r2:.2f}', 
         bbox=dict(facecolor='white', alpha=0.8)
     )
     
@@ -401,7 +403,7 @@ def plot_prediction_bars(
     )
 
     ax.text(
-        0.12, 0.95, f"Mean Relative Error: {mean_error:.2f}%", 
+        0.12, 0.95, f"MAPE: {mean_error:.2f}%", 
         transform=ax.transAxes, fontsize=11, ha='center'
     )
     ax.set_title(f"Predictions for {benchmark.upper()} ({metric.upper()})", fontsize=14)

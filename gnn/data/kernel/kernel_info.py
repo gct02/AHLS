@@ -3,6 +3,9 @@ import xml.etree.ElementTree as ET
 from typing import Dict
 
 from gnn.data.utils.parsers import extract_utilization_per_module
+from gnn.data.utils.xml_utils import findint
+
+RESOURCES = {'bram', 'dsp', 'ff', 'lut'}
 
 
 class ModuleInfo:
@@ -38,9 +41,11 @@ class ModuleInfo:
             if not rtl_name or not name:
                 continue
 
-            utilization = utilization_dict.get(rtl_name, {})
-            if not utilization:
-                continue
+            utilization = utilization_dict.get(
+                rtl_name, {r: 0 for r in RESOURCES}
+            )
+            latency = findint(obj, 'latency', 0)
+            utilization['latency'] = latency
             parsed_nodes[name] = utilization
 
         return parsed_nodes

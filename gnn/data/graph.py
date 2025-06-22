@@ -70,8 +70,8 @@ class Node:
     def set_feature(self, key, value):
         self.feature_dict[key] = value
 
-    def get_feature(self, key):
-        return self.feature_dict.get(key, None)
+    def get_feature(self, key, default=None):
+        return self.feature_dict.get(key, default)
     
     def extend_features(self, features):
         if isinstance(features, dict):

@@ -304,63 +304,6 @@ def compute_scaling_stats(
     return scaling_stats
 
 
-def _compute_feature_ranges(
-    dataset_dir: str,
-    benchmarks: Optional[Union[str, List[str]]] = None
-) -> Dict[NodeType, Tuple[Tensor, Tensor]]:
-    if benchmarks is None:
-        benchmarks = sorted(os.listdir(dataset_dir))
-    elif isinstance(benchmarks, str):
-        benchmarks = [benchmarks]
-
-    feat_ranges = {}
-    for bench in benchmarks:
-        bench_dir = os.path.join(dataset_dir, bench)
-        if not os.path.isdir(bench_dir):
-            print(f"Skipping {bench} (directory not found)")
-            continue
-
-        solutions = [s for s in os.listdir(bench_dir) if "solution" in s]
-        solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
-
-        for sol in solutions:
-            sol_dir = os.path.join(bench_dir, sol)
-            graph_path = os.path.join(sol_dir, "graph.pt")
-            if not os.path.exists(graph_path):
-                print(f"Skipping {sol} (graph file not found)")
-                continue
-
-            metrics_path = os.path.join(sol_dir, "metrics.json")
-            if not os.path.exists(metrics_path):
-                print(f"Skipping {sol} (metrics file not found)")
-                continue
-
-            with open(metrics_path, 'r') as f:
-                metrics = json.load(f)
-
-            if not metrics or not _all_metrics_present(metrics):
-                print(f"Skipping {sol} (missing metrics)")
-                continue
-
-            data = torch.load(graph_path)
-
-            for nt, x in data.x_dict.items():
-                if x.size(0) == 0:
-                    continue
-                mins = torch.min(x, dim=0).values
-                maxs = torch.max(x, dim=0).values
-                if nt not in feat_ranges:
-                    feat_ranges[nt] = (mins, maxs)
-                else:
-                    ranges = feat_ranges[nt]
-                    feat_ranges[nt] = (
-                        torch.minimum(ranges[0], mins), 
-                        torch.maximum(ranges[1], maxs)
-                    )
-
-    return feat_ranges
-
-
 def _all_metrics_present(metrics: Dict[str, float]) -> bool:
     for metric in METRICS:
         if metric not in metrics or float(metrics[metric]) < -1e-6:

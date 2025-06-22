@@ -49,7 +49,7 @@ AVAILABLE_RESOURCES_TENSOR = torch.tensor(
 
 
 @static_vars(
-    min_mre=float('inf'), 
+    min_mape=float('inf'), 
     best_epoch=-1, 
     best_preds=None
 )
@@ -82,9 +82,9 @@ def evaluate(
     targets = aggregate_qor_metrics(targets, target_metric)
     preds = aggregate_qor_metrics(preds, target_metric)
 
-    mre = percentage_diff(preds, targets).mean().item()
+    mape = percentage_diff(preds, targets).mean().item()
     
-    if mre < evaluate.min_mre:
+    if mape < evaluate.min_mape:
         if output_dir and epoch > 20: # Avoid saving model at the first few epochs
             model_path = f"{output_dir}/model.pt"
             preds_path = f"{output_dir}/predictions.pt"
@@ -102,15 +102,15 @@ def evaluate(
                 ):
                     f.write(f"{index},{target},{pred}\n")
                     
-        evaluate.min_mre = mre
+        evaluate.min_mape = mape
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
 
-    print(f"\nMRE at epoch {epoch + 1}: {mre:.2f}%")
-    print(f"Best MRE so far: {evaluate.min_mre:.2f}%"
+    print(f"\nMAPE at epoch {epoch + 1}: {mape:.2f}%")
+    print(f"Best MAPE so far: {evaluate.min_mape:.2f}%"
           f" at epoch {evaluate.best_epoch + 1}\n")
     
-    return mre
+    return mape
 
 
 def train_model(
@@ -126,7 +126,7 @@ def train_model(
     exp_adjust: bool = False,
     output_dir: Optional[str] = None
 ) -> Tuple[List[float], List[float]]:
-    train_mres, test_mres = [], []
+    train_mapes, test_mapes = [], []
 
     for epoch in range(epochs):
         targets, preds = [], []
@@ -136,7 +136,6 @@ def train_model(
             # torch.cuda.empty_cache()
             optimizer.zero_grad()
             data = data.to(DEVICE)
-
             pred = model(
                 data.x_dict, 
                 data.edge_index_dict, 
@@ -151,12 +150,11 @@ def train_model(
                 max_norm=max_norm
             )
             optimizer.step()
+            if scheduler is not None:
+                scheduler.step()
 
             targets.append(data.y)
             preds.append(pred)
-        
-        if scheduler is not None:
-            scheduler.step()
 
         targets = torch.cat(targets, dim=0)
         preds = torch.cat(preds, dim=0)
@@ -166,12 +164,12 @@ def train_model(
 
         targets = aggregate_qor_metrics(targets, target_metric)
         preds = aggregate_qor_metrics(preds, target_metric)
-        train_mre = percentage_diff(preds, targets).mean().item()
-        train_mres.append(train_mre)
+        train_mape = percentage_diff(preds, targets).mean().item()
+        train_mapes.append(train_mape)
 
         model.eval()
         with torch.no_grad():
-            test_mre = evaluate(
+            test_mape = evaluate(
                 model=model, 
                 loader=test_loader, 
                 epoch=epoch,
@@ -179,9 +177,9 @@ def train_model(
                 exp_adjust=exp_adjust,
                 output_dir=output_dir
             )
-            test_mres.append(test_mre)
+            test_mapes.append(test_mape)
 
-    return train_mres, test_mres
+    return train_mapes, test_mapes
 
 
 def main(args: Dict[str, Any]):
@@ -246,10 +244,10 @@ def main(args: Dict[str, Any]):
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [128, 128, 128],
-        'num_layers': 3,
+        'hidden_channels': [128, 128, 128, 128],
+        'num_layers': 4,
         'metadata': METADATA,
-        'heads': [4, 4, 4],
+        'heads': [4, 4, 4, 4],
         'dropout': 0.1
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
@@ -289,14 +287,17 @@ def main(args: Dict[str, Any]):
         betas=betas,
     )
 
+    steps_per_epoch = len(train_loader)
+    warmup_steps = 10 * steps_per_epoch
+    annealing_steps = 100 * steps_per_epoch
     warmup = torch.optim.lr_scheduler.LinearLR(
-        optimizer, start_factor=0.1, end_factor=1.0, total_iters=10
+        optimizer, start_factor=0.1, end_factor=1.0, total_iters=warmup_steps
     )
     cosine = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
-        optimizer, T_0=100, T_mult=1, eta_min=1e-6
+        optimizer, T_0=annealing_steps, T_mult=1, eta_min=1e-6
     )
     scheduler = torch.optim.lr_scheduler.SequentialLR(
-        optimizer, schedulers=[warmup, cosine], milestones=[10]
+        optimizer, schedulers=[warmup, cosine], milestones=[warmup_steps]
     )
 
     train_errors, test_errors = train_model(
@@ -315,7 +316,12 @@ def main(args: Dict[str, Any]):
     ]
     targets = []
     for data in test_loader:
-        target = aggregate_qor_metrics(data.y.to(DEVICE), target_metric)
+        data = data.to(DEVICE)
+        if log_scale:
+            target = torch.expm1(data.y)
+        else:
+            target = data.y
+        target = aggregate_qor_metrics(target, target_metric)
         targets.extend(target.tolist())
     preds = evaluate.best_preds.tolist()
 
@@ -331,7 +337,7 @@ def main(args: Dict[str, Any]):
         benchmark=test_bench, 
         metric=target_metric, 
         output_path=f"{graphs_dir}/predictions.png", 
-        mean_error=evaluate.min_mre
+        mean_error=evaluate.min_mape
     )
     save_training_artifacts(
         test_targets=targets,
@@ -369,7 +375,7 @@ def save_training_artifacts(
         targets=test_targets, 
         preds=test_preds, 
         output_path=scatter_path, 
-        mean_error=evaluate.min_mre
+        mean_error=evaluate.min_mape
     )
     
 

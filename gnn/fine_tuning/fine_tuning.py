@@ -13,7 +13,6 @@ from torch_geometric.nn import LayerNorm
 from gnn.models import HLSQoREstimator
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
 
-
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
@@ -23,20 +22,20 @@ def fine_tune(
     optimizer: torch.optim.Optimizer,
     loader: DataLoader,
     epochs: int,
-    max_norm: float = 10.0
+    max_norm: float = 5.0
 ):
     model.train()
     for _ in range(epochs):
-        for batch in loader:
+        for data in loader:
             optimizer.zero_grad()
-            batch = batch.to(DEVICE)
+            data = data.to(DEVICE)
             pred = model(
-                batch.x_dict,
-                batch.edge_index_dict,
-                batch.batch_dict,
-                batch.y_base
+                data.x_dict,
+                data.edge_index_dict,
+                data.batch_dict,
+                data.y_base
             )
-            loss = loss_fn(pred, batch.y)
+            loss = loss_fn(pred, data.y)
             loss.backward()
             clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
@@ -45,21 +44,23 @@ def fine_tune(
 def prepare_data_loader(
     dataset_dir: str, 
     target_metric: str,
-    base_metrics_path: str,
     scale_features: bool = True,
-    feature_ranges: Dict[str, tuple] = None
+    feature_ranges: Dict[str, tuple] = None,
+    log_transform: bool = False
 ) -> DataLoader:
     dataset = HLSFineTuningDataset(
         root=dataset_dir,
-        metric=target_metric, 
-        base_metrics_path=base_metrics_path,
-        scale_features=scale_features,
-        feature_ranges=feature_ranges
+        target_metric=target_metric, 
+        standardize=scale_features,
+        scaling_stats=feature_ranges,
+        apply_log_transform=log_transform
     )
     loader = DataLoader(
         dataset, 
-        batch_size=16, 
-        shuffle=True
+        batch_size=4, 
+        shuffle=True,
+        num_workers=4,
+        pin_memory=True
     )
     return loader
 
@@ -76,9 +77,6 @@ def load_model(
     edge_types = metadata[1]
     edge_type_tuples = [(et[0], et[1], et[2]) for et in edge_types]
     model_args["metadata"] = (node_types, edge_type_tuples)
-
-    # model_args["dropout_gnn"] = 0.0
-    model_args["dropout_mlp"] = 0.0
     
     model = HLSQoREstimator(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
@@ -89,7 +87,6 @@ def main(args: Dict[str, str]):
     dataset_dir = args.get("dataset_dir")
     model_path = args.get("model")
     model_args_path = args.get("model_args")
-    base_metrics_path = args.get("base_metrics")
     pretraining_args_path = args.get("pretraining_args", "")
     feature_ranges_path = args.get("feature_ranges", "")
     target_metric = args.get("target", "snru")
@@ -112,16 +109,6 @@ def main(args: Dict[str, str]):
     else:
         scale_features = False
         feature_ranges = None
-    
-    # Load the dataset
-    loader = prepare_data_loader(
-        dataset_dir, target_metric, base_metrics_path,
-        scale_features=scale_features,
-        feature_ranges=feature_ranges
-    )
-    
-    # Load the model
-    model = load_model(model_path, model_args_path)
 
     if pretraining_args_path:
         with open(pretraining_args_path, 'r') as f:
@@ -129,11 +116,24 @@ def main(args: Dict[str, str]):
 
         betas = pretraining_args.get('betas', (0.9, 0.999))
         weight_decay = pretraining_args.get('weight_decay', 1e-4)
-        max_norm = pretraining_args.get('max_norm', 10.0)
+        max_norm = pretraining_args.get('max_norm', 5.0)
+        log_scale = pretraining_args.get('log_scale', False)
     else:
         betas = (0.9, 0.999)
         weight_decay = 1e-4
-        max_norm = 10.0
+        max_norm = 5.0
+        log_scale = False
+    
+    # Load the dataset
+    loader = prepare_data_loader(
+        dataset_dir, target_metric,
+        scale_features=scale_features,
+        feature_ranges=feature_ranges,
+        log_transform=log_scale
+    )
+    
+    # Load the model
+    model = load_model(model_path, model_args_path)
 
     for param in model.parameters():
         param.requires_grad = True
@@ -175,11 +175,13 @@ def get_optimizer_param_groups(model, weight_decay_val):
     
     no_decay_param_names = set()
 
-    # Find all modules that are PReLU or LayerNorm and add their parameters to the exclusion set
+    # Find all modules that are PReLU or LayerNorm and add 
+    # their parameters to the exclusion set
     for module_name, module in model.named_modules():
         if isinstance(module, (nn.PReLU, nn.LayerNorm, LayerNorm)):
             for param_name, _ in module.named_parameters():
-                # Add the full parameter name like "gnn.convs.0.norm_dict.instr.weight"
+                # Add the full parameter name like 
+                # "gnn.convs.0.norm_dict.instr.weight"
                 no_decay_param_names.add(f"{module_name}.{param_name}")
 
     # Also add all bias terms to the exclusion set
@@ -221,8 +223,6 @@ if __name__ == "__main__":
                         help="Path to the pre-trained model.")
     parser.add_argument("-ma", "--model_args", type=str, required=True, 
                         help="Path to the serialized model arguments.")
-    parser.add_argument("-bm", "--base_metrics", type=str, required=True,
-                        help="Path to the reported metrics of the base solution.")
     parser.add_argument("-pa", "--pretraining_args", type=str, required=True,
                         help="Path to the arguments used for pre-training the model.")
     parser.add_argument("-fr", "--feature_ranges", type=str, default="",

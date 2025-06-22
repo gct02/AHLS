@@ -7,12 +7,19 @@ from gnn.data.utils.parsers import (
     extract_utilization,
     extract_hls_area_estimates
 )
-from gnn.analysis.utils import percentage_diff
+from gnn.data.utils.parsers import AVAILABLE_RESOURCES
+from gnn.data.dataset import TARGET_METRICS
+from gnn.analysis.utils import percentage_diff, compute_snru
+
+AVAILABLE_RESOURCES_TENSOR = torch.tensor(
+    [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS['area']],
+    dtype=torch.float32
+)
 
 
 def compute_baseline_error(
     dataset_dir: Union[str, Path],
-    metrics: List[str] = ["lut", "ff", "bram"]
+    metrics: List[str] = ["lut", "ff", "bram", "dsp"]
 ):
     error_list = []
 
@@ -39,6 +46,8 @@ def compute_baseline_error(
             # Calculate error
             ground_truth = torch.tensor([utilization[key] for key in metrics])
             estimates = torch.tensor([area_estimates[key] for key in metrics])
+            ground_truth = compute_snru(ground_truth, AVAILABLE_RESOURCES_TENSOR)
+            estimates = compute_snru(estimates, AVAILABLE_RESOURCES_TENSOR)
             error = percentage_diff(estimates, ground_truth)
             error_list.append(error)
 
