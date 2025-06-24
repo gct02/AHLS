@@ -5,8 +5,8 @@ from typing import Optional
 
 def extract_llvm_ir_array_info(
     hls_ir_dir: str, 
-    array_info_out_path: str,
-    global_array_usage_out_path: str,
+    array_md_out_path: str,
+    array_access_info_out_path: str,
     opt_path: str = '/usr/bin/opt', 
     dse_lib_path: Optional[str] = None
 ):
@@ -21,21 +21,25 @@ def extract_llvm_ir_array_info(
     if not os.path.exists(hls_ir_dir):
         raise FileNotFoundError(f"HLS IR directory not found: {hls_ir_dir}")
     
-    ir_1 = os.path.join(hls_ir_dir, "a.g.ld.5.gdce.bc")
-    ir_2 = os.path.join(hls_ir_dir, "a.o.3.bc")
-
+    ir_base = os.path.join(hls_ir_dir, "a.g.ld.5.gdce.bc")
+    ir_lowered = os.path.join(hls_ir_dir, "a.o.3.bc")
+    if not os.path.exists(ir_base) or not os.path.exists(ir_lowered):
+        raise FileNotFoundError(f"Required IR files not found in {hls_ir_dir}")
+    
     try:
         subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-array-info -out-info {array_info_out_path} < {ir_1}", 
+            f"{opt} -load {dse_lib} -extract-array-md -out-md "
+            f"{array_md_out_path} < {ir_base}", 
             shell=True, stderr=subprocess.STDOUT
         )
         subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-global-array-uses -out-usage {global_array_usage_out_path} < {ir_2}", 
+            f"{opt} -load {dse_lib} -extract-array-access-info -out-access-info "
+            f"{array_access_info_out_path} < {ir_lowered}",
             shell=True, stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:
-        if os.path.exists(array_info_out_path):
-            os.remove(array_info_out_path)
-        if os.path.exists(global_array_usage_out_path):
-            os.remove(global_array_usage_out_path)
+        if os.path.exists(array_md_out_path):
+            os.remove(array_md_out_path)
+        if os.path.exists(array_access_info_out_path):
+            os.remove(array_access_info_out_path)
         raise RuntimeError(f"Error processing IR: {e.output.decode()}")

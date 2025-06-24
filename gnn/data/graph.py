@@ -9,18 +9,15 @@ from sklearn.preprocessing import OneHotEncoder
 
 from torch_geometric.data import HeteroData
 
-from gnn.data.kernel.vitis_kernel_info import (
+from gnn.data.kernel.kernel_info import (
     VitisKernelInfo,
     CDFG_NODE_TYPES,
     CDFG_EDGE_TYPES
 )
 from gnn.data.utils.parsers import (
     parse_tcl_directives_file,
-    extract_auto_dcts_from_log,
-    extract_forbidden_dcts_from_log,
-    get_ignored_pipeline_indices
+    extract_auto_dcts_from_log
 )
-
 
 DIRECTIVES = [
     "array_partition", "loop_flatten",
@@ -51,66 +48,50 @@ NODE_FEATURE_DIMS = {
 
 
 def extract_base_kernel_info(
-    solution_info_list: List[Tuple[str, str, str]],
+    solution_info_list: List[Tuple[str, str, str]], # (Directory, Benchmark Name, Top Level Name)
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
 ) -> Dict[str, VitisKernelInfo]:
     from gnn.data.kernel.llvm_utils import extract_llvm_ir_array_info
     
     kernel_info_dict = {}
-    for sol_dir, kernel_name, top_function in solution_info_list:
+    for sol_dir, bench_name, top_level_name in solution_info_list:
         ir_dir = f"{sol_dir}/IRs" if filtered else f"{sol_dir}/.autopilot/db"
-        array_info_path = f"{ir_dir}/array_info.json"
-        global_array_usage_path = f"{ir_dir}/global_array_usage.json"
+        array_md_path = f"{ir_dir}/array_md.json"
+        array_access_info_path = f"{ir_dir}/array_access_info.json"
 
-        extract_llvm_ir_array_info(
-            hls_ir_dir=ir_dir, 
-            array_info_out_path=array_info_path,
-            global_array_usage_out_path=global_array_usage_path
-        )
-        if not os.path.exists(array_info_path):
-            print(f"IR Array info file not found: {array_info_path}")
-            continue
-        if not os.path.exists(global_array_usage_path):
-            print(f"IR Global array usage file not found: {global_array_usage_path}")
+        try:
+            extract_llvm_ir_array_info(
+                hls_ir_dir=ir_dir, 
+                array_md_out_path=array_md_path,
+                array_access_info_out_path=array_access_info_path
+            )
+        except Exception as e:
+            print(f"Error extracting array info for {bench_name} in {sol_dir}: {e}")
             continue
 
-        kernel_info_dict[kernel_name] = VitisKernelInfo(
+        if not os.path.exists(array_md_path) or not os.path.exists(array_access_info_path):
+            print(f"Error extracting array info for {bench_name} in {sol_dir}: "
+                  f"Files were not created.")
+            continue
+
+        kernel_info_dict[bench_name] = VitisKernelInfo(
             solution_dir=sol_dir, 
-            top_level_function=top_function, 
-            array_metadata_path=array_info_path, 
-            global_array_usage_path=global_array_usage_path,
-            benchmark_name=kernel_name,
+            top_level_name=top_level_name, 
+            array_md_path=array_md_path, 
+            array_access_info_path=array_access_info_path,
+            benchmark_name=bench_name,
             filtered=filtered
         )
-            
+        
     encoders = fit_one_hot_encoders(kernel_info_dict)
     if encoder_output_path:
         save_encoders(encoders, encoder_output_path)
     
-    for kernel_name in kernel_info_dict:
-        one_hot_encode(kernel_info_dict[kernel_name], encoders)
+    for bench_name in kernel_info_dict:
+        one_hot_encode(kernel_info_dict[bench_name], encoders)
 
     return kernel_info_dict
-
-
-def build_hls_graph_data(
-    base_kernel_info: VitisKernelInfo,
-    solution_dct_tcl_path: str, 
-    add_self_loops: bool = True,
-    add_reversed_edges: bool = True,
-    solution_log_path: Optional[str] = None
-) -> HeteroData:
-    kernel_info = deepcopy(base_kernel_info)
-    include_directive_info(
-        kernel_info, solution_dct_tcl_path,
-        vitis_log_path=solution_log_path
-    )
-    return kernel_info, to_hetero_data(
-        kernel_info, 
-        add_self_loops=add_self_loops,
-        add_reversed_edges=add_reversed_edges,
-    )
 
 
 def to_hetero_data(
@@ -218,37 +199,23 @@ def find_region_node(kernel_info, region_name, function_name):
     return None
 
 
-def include_directive_info(
-    kernel_info: VitisKernelInfo, 
+def update_with_directives(
+    base_kernel_info: VitisKernelInfo, 
     solution_dct_tcl_path: str,
     vitis_log_path: Optional[str] = None
-):
-    if vitis_log_path:
-        if not os.path.exists(vitis_log_path):
-            print(f"Warning: Vitis log file '{vitis_log_path}' does not exist.")
-            vitis_log_path = None
-        # else:
-        #     ignored_pipelines = get_ignored_pipeline_indices(vitis_log_path)
+) -> VitisKernelInfo:
+    # def unroll_pipelined_subloops(loop_node):
+    #     """Completely unroll all subloops of a pipelined loop."""
+    #     for sub_region in loop_node.sub_regions:
+    #         node = kernel_info.nodes['region'][sub_region]
+    #         if node.is_loop:
+    #             trip_count = max(1, node.attrs.get("max_trip_count", 0))
+    #             node.attrs["unroll_factor"] = trip_count
+    #             node.attrs["unroll"] = 1
+    #         unroll_pipelined_subloops(node)
 
-    directives = parse_tcl_directives_file(
-        solution_dct_tcl_path,
-        # exclude_indices=ignored_pipelines if vitis_log_path else None
-        exclude_indices=None
-    )
-
-    def unroll_pipelined_subloops(loop_node):
-        """Completely unroll all subloops of a pipelined loop."""
-        for sub_region in loop_node.sub_regions:
-            node = kernel_info.nodes['region'][sub_region]
-            node.attrs["pipelined_parent"] = 1
-            if not node.is_loop:
-                continue
-            node.attrs["unroll"] = 1
-            trip_count = node.attrs.get("max_trip_count", 1)
-            if trip_count <= 0:
-                trip_count = 1
-            node.attrs["unroll_factor"] = trip_count
-            unroll_pipelined_subloops(node)
+    kernel_info = deepcopy(base_kernel_info)
+    directives = parse_tcl_directives_file(solution_dct_tcl_path)
 
     for dct, args in directives:
         if dct not in DIRECTIVES:
@@ -299,108 +266,62 @@ def include_directive_info(
                 print(f"Warning: Region '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
                 continue
-            
-            region_node.attrs[dct] = 1
 
-            if dct == "pipeline" and region_node.is_loop:
-                # Pipeline pragma in a loop implies the complete
-                # unrolling of all its subloops (if any)
-                unroll_pipelined_subloops(region_node)
+            # if dct == "pipeline" and region_node.is_loop:
+            #     # Pipeline pragma in a loop implies the complete
+            #     # unrolling of all its subloops (if any)
+            #     unroll_pipelined_subloops(region_node)
 
-            elif dct == "unroll" and region_node.attrs.get("pipelined_parent", 0) == 0:
+            if dct == "unroll" and region_node.attrs.get("unroll", 0) == 0:
                 unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
                 region_node.attrs["unroll_factor"] = unroll_factor
 
-    if vitis_log_path:
-        auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
-        for dct, dct_info_set in auto_dcts.items():
-            for dct_info in dct_info_set:
-                # if dct == "array_partition":
-                #     array_name = dct_info
-                #     array_node = None
-                #     for nt in ["port", "instr"]:
-                #         for node in kernel_info.nodes.get(nt, []):
-                #             if (node.name == array_name
-                #                 and node.attrs.get("array_partition", 0) == 0):
-                #                 array_node = node
-                #                 break
-                #         if array_node is not None:
-                #             break
-                #     if array_node is None:
-                #         print(f"Warning: Variable '{array_name}' not found in nodes.")
-                #         continue
+            region_node.attrs[dct] = 1
 
-                #     array_node.attrs["array_partition"] = 1
-                #     array_node.attrs["partition_factor"] = array_node.total_size
-                #     array_node.attrs["partition_dim"] = [1, 0, 0, 0, 0]
-                #     array_node.attrs["partition_type"] = [1, 0, 0]
+    if not vitis_log_path:
+        return kernel_info
+    
+    if not os.path.exists(vitis_log_path):
+        print(f"Warning: Vitis log file '{vitis_log_path}' does not exist.")
+        return kernel_info
+    
+    auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
 
-                if dct == "loop_flatten":
-                    loop_name, function_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if (node.name == loop_name 
-                            and node.function == function_name):
-                            print(f"Applying auto directive: {dct} - {dct_info}")
-                            node.attrs["loop_flatten"] = 1
-                            break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' "
-                    #           f"(function '{function_name}') not found in nodes.")
+    for dct, dct_info_set in auto_dcts.items():
+        for dct_info in dct_info_set:
+            if dct == "loop_flatten":
+                loop_name, function_name = dct_info
+                for node in kernel_info.nodes.get('region', []):
+                    if (node.name == loop_name 
+                        and node.function == function_name):
+                        print(f"Applying auto directive: {dct} - {dct_info}")
+                        node.attrs["loop_flatten"] = 1
+                        break
+            elif dct == "inline":
+                function_name = dct_info
+                for node in kernel_info.nodes.get('region', []):
+                    if node.name == function_name:
+                        print(f"Applying auto directive: {dct} - {dct_info}")
+                        node.attrs["inline"] = 1
+                        break
+            elif dct == "pipeline":
+                loop_name = dct_info
+                for node in kernel_info.nodes.get('region', []):
+                    if node.name == loop_name:
+                        print(f"Applying auto directive: {dct} - {dct_info}")
+                        node.attrs["pipeline"] = 1
+                        # if node.is_loop:
+                        #     unroll_pipelined_subloops(node)
+                        break
 
-                elif dct == "inline":
-                    function_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if node.name == function_name:
-                            print(f"Applying auto directive: {dct} - {dct_info}")
-                            node.attrs["inline"] = 1
-                            break
-                    # else:
-                    #     print(f"Warning: Function '{function_name}' not found in nodes.")
-
-                elif dct == "pipeline":
-                    loop_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if node.name == loop_name:
-                            print(f"Applying auto directive: {dct} - {dct_info}")
-                            node.attrs["pipeline"] = 1
-                            if node.is_loop:
-                                unroll_pipelined_subloops(node)
-                            break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' not found in nodes.")
-
-        forbidden_dcts = extract_forbidden_dcts_from_log(vitis_log_path)
-        for dct, dct_info_set in forbidden_dcts.items():
-            for dct_info in dct_info_set:
-                if dct == "loop_merge":
-                    region_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if node.function == region_name:
-                            print(f"Removing forbidden directive: {dct} - {dct_info}")
-                            node.attrs["loop_merge"] = 0
-                            break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' "
-                    #         f"(function '{function_name}') not found in nodes.")
-                        
-                elif dct == "loop_flatten":
-                    loop_name, function_name = dct_info
-                    for node in kernel_info.nodes.get('region', []):
-                        if (node.name == loop_name 
-                            and node.function == function_name):
-                            print(f"Removing forbidden directive: {dct} - {dct_info}")
-                            node.attrs["loop_flatten"] = 0
-                            break
-                    # else:
-                    #     print(f"Warning: Loop '{loop_name}' "
-                    #         f"(function '{function_name}') not found in nodes.")
+    return kernel_info
 
 
 def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):
     categorical_attrs = {
-        "impl": set(), "opcode": set(), "port_type": set(), 
+        "impl": set(), "opcode": set(), "if_type": set(), 
         "const_type": set(), "base_type": set()
     }
     encoders = {

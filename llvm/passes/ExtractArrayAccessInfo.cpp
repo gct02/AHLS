@@ -19,55 +19,46 @@
 using namespace llvm;
 
 static cl::opt<std::string> OutputFilePath(
-    "out-md", 
-    cl::desc("Path to the file to write the array metadata to"),
+    "out-access-info", 
+    cl::desc("Path to the file to write the array access info to"),
     cl::value_desc("filepath")
 );
 
 namespace {
 
-struct ArrayMetadata {
+struct ArrayAccessInfo {
     std::string Name;
     std::string FunctionName;
-    std::map<std::string, uint32_t> Attributes;
-    std::vector<uint32_t> Dimensions;
+    std::vector<std::pair<std::string, std::string>> Loads;
+    std::vector<std::pair<std::string, uint32_t>> Stores;
 
-    ArrayMetadata(const std::string& Name,
-                  const std::string& FunctionName = "",
-                  const std::map<std::string, uint32_t>& Attributes = {},
-                  const std::vector<uint32_t>& Dimensions = {})
-        : Name(Name), FunctionName(FunctionName), Attributes(Attributes),
-          Dimensions(Dimensions) {}
+    ArrayAccessInfo(const std::string& Name,
+                    const std::string& FunctionName)
+          : Name(Name), FunctionName(FunctionName) {}
 
-    Optional<uint32_t> getAttribute(const std::string& Key) const {
-        auto It = Attributes.find(Key);
-        if (It != Attributes.end()) return It->second;
-        return Optional<uint32_t>();
+    void addLoad(const std::string& FunctionName, const std::string& LoadInstName) {
+        Loads.emplace_back(FunctionName, LoadInstName);
     }
 
-    void setAttribute(const std::string& Key, uint32_t Value) {
-        Attributes[Key] = Value;
-    }
-
-    void addDimension(uint32_t DimSize) {
-        Dimensions.push_back(DimSize);
+    void addStore(const std::string& FunctionName, uint32_t StoreInstIndex) {
+        Stores.emplace_back(FunctionName, StoreInstIndex);
     }
 };
 
-struct ExtractArrayMetadataPass : public ModulePass {
+struct ExtractArrayAccessInfoPass : public ModulePass {
     static char ID;
-    ExtractArrayMetadataPass() : ModulePass(ID) {}
+    ExtractArrayAccessInfoPass() : ModulePass(ID) {}
 
-    std::vector<ArrayMetadata*> ModuleArrayMetadata;
+    std::vector<ArrayAccessInfo*> ModuleArrayAccessInfo;
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "extract-array-md"
+        #define DEBUG_TYPE "extract-array-access-info"
 
         if (OutputFilePath.empty()) {
             errs() << "Output file not specified.\n";
             return false;
         }
-        extractArrayMetadata(M);
+        extractArrayAccessInfo(M);
         serializeArrayMetadataToJson(M);
 
         return false; // Module is not modified
@@ -80,10 +71,10 @@ struct ExtractArrayMetadataPass : public ModulePass {
             return;
         }
 
-        OFS << "{\n  \"ArrayMetadata\": [\n";
+        OFS << "{\n  \"ArrayAccessInfo\": [\n";
 
         bool FirstEntry = true;
-        for (const auto* It : ModuleArrayMetadata) {
+        for (const auto* It : ModuleArrayAccessInfo) {
             if (!FirstEntry)
                 OFS << ",\n";
             FirstEntry = false;
@@ -92,18 +83,22 @@ struct ExtractArrayMetadataPass : public ModulePass {
             OFS << "      \"Name\": \"" << It->Name << "\",\n";
             OFS << "      \"FunctionName\": \"" << It->FunctionName << "\"";
 
-            for (const auto& MDItem : It->Attributes) {
-                OFS << ",\n";
-                OFS << "      \"" << MDItem.first << "\": " << MDItem.second;
-            }
-
-            OFS << ",\n";
-            OFS << "      \"Dimensions\": [";
-            for (size_t i = 0; i < It->Dimensions.size(); ++i) {
+            OFS << "      \"Stores\": [";
+            for (size_t i = 0; i < It->Stores.size(); ++i) {
                 if (i > 0) OFS << ", ";
-                OFS << It->Dimensions[i];
+                OFS << "{ \"FunctionName\": \"" << It->Stores[i].first
+                    << "\", \"StoreInstIndex\": " << It->Stores[i].second << " }";
             }
-            OFS << "],\n";
+            OFS << "]\n";
+
+            OFS << "      \"Loads\": [";
+            for (size_t i = 0; i < It->Loads.size(); ++i) {
+                if (i > 0) OFS << ", ";
+                OFS << "{ \"FunctionName\": \"" << It->Loads[i].first
+                    << "\", \"LoadInstName\": \"" << It->Loads[i].second << "\" }";
+            }
+            OFS << "]\n";
+
             OFS << "    }";
         }
 
@@ -111,12 +106,12 @@ struct ExtractArrayMetadataPass : public ModulePass {
         OFS << "}\n";
     }
 
-    void extractArrayMetadata(Module& M) {
-        extractGlobalArrayMetadata(M);
-        extractLocalArrayMetadata(M);
+    void extractArrayAccessInfo(Module& M) {
+        extractGlobalArrayAccessInfo(M);
+        extractLocalArrayAccessInfo(M);
     }
 
-    void extractGlobalArrayMetadata(Module& M) {
+    void extractGlobalArrayAccessInfo(Module& M) {
         for (GlobalObject& G : M.getGlobalList()) {
             Type* Ty = G.getValueType();
             if (Ty->isPointerTy()) {
@@ -126,7 +121,6 @@ struct ExtractArrayMetadataPass : public ModulePass {
 
             std::string Name = G.getName().str();
             std::string FunctionName = "";
-            uint32_t IsInternalConst = 0;
 
             // Check if the global variable is an internal constant
             // restricted to a function scope
@@ -136,16 +130,11 @@ struct ExtractArrayMetadataPass : public ModulePass {
                         Name = DbgVar->getName().str();
                         if (auto* DbgScope = DbgVar->getScope()) {
                             FunctionName = DbgScope->getName().str();
-                            if (!FunctionName.empty()) {
-                                IsInternalConst = 1;
-                            }
                         }
                     }
                 }
             }
-            if (IsInternalConst == 0) {
-                // If the global variable name has the format <function_name>.<variable_name>,
-                // extract the function name from it and check if the function exists
+            if (FunctionName.empty()) {
                 size_t DotPos = Name.find('.');
                 if (DotPos != std::string::npos) {
                     FunctionName = Name.substr(0, DotPos);
@@ -153,18 +142,16 @@ struct ExtractArrayMetadataPass : public ModulePass {
                         FunctionName = "";
                     } else {
                         Name = Name.substr(DotPos + 1);
-                        IsInternalConst = 1;
                     }
                 }
             }
-            ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
-            MD->setAttribute("IsInternalConst", IsInternalConst);
-            MD->setAttribute("IsGlobal", 1);
-            ModuleArrayMetadata.push_back(MD);
+            ArrayAccessInfo* AccessInfo = new ArrayAccessInfo(Name, FunctionName);
+            collectArrayUses(AccessInfo, &G);
+            ModuleArrayAccessInfo.push_back(AccessInfo);
         }
     }
 
-    void extractLocalArrayMetadata(Module& M) {
+    void extractLocalArrayAccessInfo(Module& M) {
         // Arrays allocated in the function body
         for (Function& F : M) {
             if (F.isIntrinsic() || F.size() == 0) continue;
@@ -178,8 +165,9 @@ struct ExtractArrayMetadataPass : public ModulePass {
                         }
                         if (Ty->isArrayTy()) {
                             std::string Name = I.hasName() ? I.getName().str() : "";
-                            ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
-                            ModuleArrayMetadata.push_back(MD);
+                            ArrayAccessInfo* AccessInfo = new ArrayAccessInfo(Name, FunctionName);
+                            collectArrayUses(AccessInfo, AI);
+                            ModuleArrayAccessInfo.push_back(AccessInfo);
                         }
                     }
                 }
@@ -201,35 +189,74 @@ struct ExtractArrayMetadataPass : public ModulePass {
                 }
                 if (Ty->isArrayTy()) {
                     std::string Name = A.getName().str();
-                    ArrayMetadata* MD = getArrayMetadata(Ty, Name, FunctionName);
-                    MD->setAttribute("IsParam", 1);
-                    ModuleArrayMetadata.push_back(MD);
+                    ArrayAccessInfo* AccessInfo = new ArrayAccessInfo(Name, FunctionName);
+                    collectArrayUses(AccessInfo, &A);
+                    ModuleArrayAccessInfo.push_back(AccessInfo);
                 }
             }
         }
     }
 
-    ArrayMetadata* getArrayMetadata(Type* ArrayTy, std::string ArrayName, 
-                                    std::string FunctionName = "") {
-        if (!ArrayTy->isArrayTy()) {
-            errs() << "Error: Type is not an array type.\n";
-            return nullptr;
+    void collectArrayUses(ArrayAccessInfo* AccessInfo, Value* ArrayVal) {
+        for (auto& U : ArrayVal->uses()) {
+            if (auto* I = dyn_cast<Instruction>(U.getUser())) {
+                // If the instruction is a GEPOperator, we need to check its users
+                // to find the actual load/store instructions that use the array.
+                if (auto* GEP = dyn_cast<GEPOperator>(I)) {
+                    for (auto Use : GEP->users()) {
+                        if (auto* Inst = dyn_cast<Instruction>(Use)) {
+                            getArrayUseMetadata(AccessInfo, Inst);
+                        }
+                    }
+                } else {
+                    getArrayUseMetadata(AccessInfo, I);
+                }
+            }
         }
-        ArrayMetadata* MD = new ArrayMetadata(ArrayName, FunctionName);
+    }
 
-        uint32_t TotalSize = 1;
-        Type* BaseTy = ArrayTy;
-        while (BaseTy->isArrayTy()) {
-            uint32_t DimSize = BaseTy->getArrayNumElements();
-            MD->addDimension(DimSize);
-            TotalSize *= DimSize;
-            BaseTy = BaseTy->getArrayElementType();
+    void getArrayUseMetadata(ArrayAccessInfo* AccessInfo, Instruction* Instr) {
+        std::string FunctionName = "";
+        if (auto* F = Instr->getFunction()) {
+            if (F->hasName()) {
+                FunctionName = F->getName().str();
+            }
         }
-        MD->setAttribute("BaseType", BaseTy->getTypeID());
-        MD->setAttribute("BaseBitwidth", BaseTy->getPrimitiveSizeInBits());
-        MD->setAttribute("NumDimensions", MD->Dimensions.size());
-        MD->setAttribute("TotalSize", TotalSize);
-        return MD;
+        if (FunctionName.empty()) return;
+        Optional<uint32_t> StoreIdx = getStoreIndex(*Instr);
+        if (StoreIdx.hasValue()) {
+            AccessInfo->addStore(FunctionName, StoreIdx.getValue());
+        } else {
+            std::string LoadInstName = Instr->hasName() ? Instr->getName().str() : "";
+            AccessInfo->addLoad(FunctionName, LoadInstName);
+        }
+    }
+
+    void assignIndicesToStores(Module& M) {
+        LLVMContext& Ctx = M.getContext();
+        for (Function& F : M) {
+            uint32_t Idx = 0;
+            for (BasicBlock& BB : F) {
+                for (Instruction& I : BB) {
+                    if (auto* SI = dyn_cast<StoreInst>(&I)) {
+                        ConstantInt* CI = ConstantInt::get(Type::getInt32Ty(Ctx), Idx++);
+                        MDNode* MD = MDNode::get(Ctx, {ConstantAsMetadata::get(CI)});
+                        SI->setMetadata("storeIdx", MD);
+                    }
+                }
+            }
+        }
+    }
+
+    Optional<uint32_t> getStoreIndex(const Instruction& I) const {
+        if (auto* MD = I.getMetadata("storeIdx")) {
+            if (auto* CAM = dyn_cast<ConstantAsMetadata>(MD->getOperand(0))) {
+                if (auto* CI = dyn_cast<ConstantInt>(CAM->getValue())) {
+                    return CI->getSExtValue();
+                }
+            }
+        }
+        return Optional<uint32_t>();
     }
 
     uint32_t getArgumentAttributeValue(const Argument* Arg, StringRef AttrName) {
@@ -248,15 +275,15 @@ struct ExtractArrayMetadataPass : public ModulePass {
     }
 
 };
-// End struct ExtractArrayMetadataPass
+// End struct ExtractArrayAccessInfoPass
 
 }
 // End namespace
 
-char ExtractArrayMetadataPass::ID = 0;
-static RegisterPass<ExtractArrayMetadataPass> X(
-    "extract-array-md", 
-    "Extract array metadata from the module",
+char ExtractArrayAccessInfoPass::ID = 0;
+static RegisterPass<ExtractArrayAccessInfoPass> X(
+    "extract-array-access-info",
+    "Extracts array access information from the module",
     false /* Only looks at CFG */,
     false /* Analysis Pass */
 );

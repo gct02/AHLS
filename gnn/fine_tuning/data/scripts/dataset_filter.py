@@ -6,8 +6,7 @@ import pickle
 import numpy as np
 
 from gnn.data.graph import find_region_node
-from gnn.data.kernel.vitis_kernel_info import VitisKernelInfo
-
+from gnn.data.kernel.kernel_info import VitisKernelInfo
 from gnn.data.utils.parsers import parse_tcl_directives_file
 
 
