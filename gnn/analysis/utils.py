@@ -417,6 +417,7 @@ def plot_prediction_bars(
 
 
 def compute_snru(util_resources: Tensor, avail_resources: Tensor) -> Tensor:
+    """Compute the SNRU (Sum of Normalized Resource Utilization) metric."""
     if util_resources.dim() == 1:
         util_resources = util_resources.unsqueeze(0)
     if avail_resources.dim() == 1:

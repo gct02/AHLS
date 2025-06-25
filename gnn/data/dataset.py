@@ -41,7 +41,7 @@ class HLSDataset(Dataset):
         apply_log_transform: bool = False,
         **kwargs
     ):
-        target_metric = target_metric.lower()
+        self.target_metric = target_metric.lower()
         if target_metric not in TARGET_METRICS:
             raise ValueError(
                 f"Invalid target metric '{target_metric}'. "

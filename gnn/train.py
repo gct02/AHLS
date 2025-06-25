@@ -1,7 +1,6 @@
 import os
 import argparse
 import random
-import pickle
 import json
 import shutil
 from typing import List, Dict, Tuple, Optional, Union, Any
@@ -57,7 +56,6 @@ def evaluate(
     model: nn.Module,
     loader: DataLoader,
     epoch: int,
-    target_metric: str = 'area',
     exp_adjust: bool = False,
     output_dir: Optional[str] = None
 ) -> float:
@@ -78,16 +76,15 @@ def evaluate(
     if exp_adjust:
         targets = torch.expm1(targets)
         preds = torch.expm1(preds)
-
-    targets = aggregate_qor_metrics(targets, target_metric)
-    preds = aggregate_qor_metrics(preds, target_metric)
+    targets = aggregate_qor_metrics(targets, loader.dataset.target_metric)
+    preds = aggregate_qor_metrics(preds, loader.dataset.target_metric)
 
     mape = percentage_diff(preds, targets).mean().item()
     
     if mape < evaluate.min_mape:
         if output_dir and epoch > 20: # Avoid saving model at the first few epochs
             model_path = f"{output_dir}/model.pt"
-            preds_path = f"{output_dir}/predictions.pt"
+            preds_path = f"{output_dir}/predictions.csv"
             torch.save(obj=model.state_dict(), f=model_path)
             indices = [
                 data.solution_index 
@@ -101,7 +98,6 @@ def evaluate(
                     preds.tolist()
                 ):
                     f.write(f"{index},{target},{pred}\n")
-                    
         evaluate.min_mape = mape
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
@@ -121,7 +117,6 @@ def train_model(
     test_loader: DataLoader,
     epochs: int,
     max_norm: float = 5.0,
-    target_metric: str = 'area',
     scheduler: Optional[LRScheduler] = None,
     exp_adjust: bool = False,
     output_dir: Optional[str] = None
@@ -133,7 +128,6 @@ def train_model(
                 
         model.train()
         for data in train_loader:
-            # torch.cuda.empty_cache()
             optimizer.zero_grad()
             data = data.to(DEVICE)
             pred = model(
@@ -161,9 +155,9 @@ def train_model(
         if exp_adjust:
             targets = torch.expm1(targets)
             preds = torch.expm1(preds)
+        targets = aggregate_qor_metrics(targets, train_loader.dataset.target_metric)
+        preds = aggregate_qor_metrics(preds, train_loader.dataset.target_metric)
 
-        targets = aggregate_qor_metrics(targets, target_metric)
-        preds = aggregate_qor_metrics(preds, target_metric)
         train_mape = percentage_diff(preds, targets).mean().item()
         train_mapes.append(train_mape)
 
@@ -173,7 +167,6 @@ def train_model(
                 model=model, 
                 loader=test_loader, 
                 epoch=epoch,
-                target_metric=target_metric,
                 exp_adjust=exp_adjust,
                 output_dir=output_dir
             )
@@ -194,7 +187,7 @@ def main(args: Dict[str, Any]):
     weight_decay = float(args['weight_decay'])
     max_norm = float(args['max_norm'])
     loss = args['loss']
-    log_scale = args['log_scale']
+    log_transform = args['log_transform']
     output_dir = args['output_dir']
 
     if not dataset_dir:
@@ -217,30 +210,6 @@ def main(args: Dict[str, Any]):
     benches = sorted(os.listdir(full_dataset_dir))
     train_benches = [b for b in benches if b != test_bench]
 
-    model_dir = f"{output_dir}/models/{target_metric}/{test_bench.lower()}_out"
-
-    run_number = 1
-    while os.path.exists(f"{model_dir}/run_{run_number}"):
-        run_number += 1
-
-    model_dir = f"{model_dir}/run_{run_number}"
-    os.makedirs(model_dir, exist_ok=True)
-
-    pretrained_dir = f"{model_dir}/pretrained"
-    model_info_dir = f"{model_dir}/model_info"
-    checkpoint_dir = f"{model_dir}/checkpoint"
-    training_info_dir = f"{model_dir}/training_info"
-    graphs_dir = f"{training_info_dir}/graphs"
-
-    os.makedirs(model_info_dir, exist_ok=True)
-    os.makedirs(pretrained_dir, exist_ok=True)
-    os.makedirs(checkpoint_dir, exist_ok=True)
-    os.makedirs(training_info_dir, exist_ok=True)
-    os.makedirs(graphs_dir, exist_ok=True)
-
-    with open(f"{training_info_dir}/training_args.json", 'w') as f:
-        json.dump(args, f, indent=2)
-
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
@@ -252,30 +221,48 @@ def main(args: Dict[str, Any]):
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
-    model_args_path = f"{model_info_dir}/model_args.json"
-    with open(model_args_path, 'w') as f:
-        json.dump(model_args, f, indent=2)
-
     if loss == 'mse':
         loss_fn = nn.MSELoss()
     elif loss == 'l1':
         loss_fn = nn.L1Loss()
     elif loss == 'huber':
-        huber_delta = float(args['huber_delta'])
-        loss_fn = nn.HuberLoss(delta=huber_delta)
+        loss_fn = nn.HuberLoss(delta=float(args['huber_delta']))
     else:
         raise ValueError(f"Unsupported loss function: {loss}")
     
-    train_loader, test_loader, feat_ranges = prepare_data_loaders(
+    model_dir = f"{output_dir}/models/{target_metric}/{test_bench}"
+    run_number = 1
+    while os.path.exists(f"{model_dir}/run_{run_number}"):
+        run_number += 1
+    model_dir = f"{model_dir}/run_{run_number}"
+    os.makedirs(model_dir, exist_ok=True)
+
+    pretrained_dir = f"{model_dir}/pretrained"
+    model_info_dir = f"{model_dir}/model_info"
+    checkpoint_dir = f"{model_dir}/checkpoint"
+    plots_dir = f"{model_info_dir}/plots"
+
+    os.makedirs(model_info_dir, exist_ok=True)
+    os.makedirs(pretrained_dir, exist_ok=True)
+    os.makedirs(checkpoint_dir, exist_ok=True)
+    os.makedirs(plots_dir, exist_ok=True)
+
+    with open(f"{model_info_dir}/training_args.json", 'w') as f:
+        json.dump(args, f, indent=2)
+
+    with open(f"{model_info_dir}/model_args.json", 'w') as f:
+        json.dump(model_args, f, indent=2)
+    
+    train_loader, test_loader, scaling_stats = prepare_data_loaders(
         dataset_dir=dataset_dir, 
         target_metric=target_metric, 
         test_benches=test_bench, 
         train_benches=train_benches, 
         batch_size=batch_size, 
-        log_scale=log_scale
+        log_transform=log_transform
     )
-    with open(f"{model_info_dir}/feature_ranges.pkl", 'wb') as f:
-        pickle.dump(feat_ranges, f)
+    with open(f"{model_info_dir}/scaling_stats.json", 'w') as f:
+        json.dump(scaling_stats, f, indent=2)
 
     grouped_params = get_optimizer_param_groups(
         model=model,
@@ -290,6 +277,7 @@ def main(args: Dict[str, Any]):
     steps_per_epoch = len(train_loader)
     warmup_steps = 10 * steps_per_epoch
     annealing_steps = 100 * steps_per_epoch
+
     warmup = torch.optim.lr_scheduler.LinearLR(
         optimizer, start_factor=0.1, end_factor=1.0, total_iters=warmup_steps
     )
@@ -304,9 +292,8 @@ def main(args: Dict[str, Any]):
         model, loss_fn, optimizer, 
         train_loader, test_loader, epochs, 
         scheduler=scheduler, 
-        target_metric=target_metric,
         max_norm=max_norm,
-        exp_adjust=log_scale,
+        exp_adjust=log_transform,
         output_dir=checkpoint_dir
     )
 
@@ -314,16 +301,16 @@ def main(args: Dict[str, Any]):
         data.solution_index 
         for data in test_loader.dataset
     ]
+    preds = evaluate.best_preds.tolist()
     targets = []
     for data in test_loader:
         data = data.to(DEVICE)
-        if log_scale:
+        if log_transform:
             target = torch.expm1(data.y)
         else:
             target = data.y
         target = aggregate_qor_metrics(target, target_metric)
         targets.extend(target.tolist())
-    preds = evaluate.best_preds.tolist()
 
     with open(f"{model_info_dir}/predictions.csv", 'w') as f:
         f.write("index,target,prediction\n")
@@ -336,7 +323,7 @@ def main(args: Dict[str, Any]):
         indices=indices, 
         benchmark=test_bench, 
         metric=target_metric, 
-        output_path=f"{graphs_dir}/predictions.png", 
+        output_path=f"{plots_dir}/predictions.png", 
         mean_error=evaluate.min_mape
     )
     save_training_artifacts(
@@ -344,7 +331,7 @@ def main(args: Dict[str, Any]):
         test_preds=preds,
         test_errors=test_errors,
         train_errors=train_errors,
-        output_dir=graphs_dir
+        output_dir=plots_dir
     )
 
     checkpoint_model_path = f"{checkpoint_dir}/model.pt"
@@ -362,19 +349,16 @@ def save_training_artifacts(
     train_errors: List[float],
     output_dir: str
 ):
-    learning_curve_path = f"{output_dir}/learning_curve.png"
-    scatter_path = f"{output_dir}/predictions_scatter.png"
-
     plot_learning_curves(
         train_errors=train_errors, 
         test_errors=test_errors, 
-        output_path=learning_curve_path,
+        output_path=f"{output_dir}/learning_curve.png",
         best_epoch=evaluate.best_epoch
     )
     plot_prediction_scatter(
         targets=test_targets, 
         preds=test_preds, 
-        output_path=scatter_path, 
+        output_path=f"{output_dir}/predictions_scatter.png", 
         mean_error=evaluate.min_mape
     )
     
@@ -440,14 +424,14 @@ def prepare_data_loaders(
     test_benches: Union[List[str], str],
     train_benches: Union[List[str], str],
     batch_size: int = 32,
-    log_scale: bool = False
-) -> Tuple[DataLoader, DataLoader, Dict[str, Tuple[Tensor, Tensor]]]:
+    log_transform: bool = False
+) -> Tuple[DataLoader, DataLoader, Dict[str, Dict[str, float]]]:
     train_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
         standardize=True, 
         benchmarks=train_benches, 
-        apply_log_transform=log_scale,
+        apply_log_transform=log_transform,
         mode="train"
     )
     test_dataset = HLSDataset(
@@ -456,7 +440,7 @@ def prepare_data_loaders(
         standardize=True,
         scaling_stats=train_dataset.scaling_stats,
         benchmarks=test_benches,
-        apply_log_transform=log_scale,
+        apply_log_transform=log_transform,
         mode="test"
     )
     train_loader = DataLoader(
@@ -473,8 +457,7 @@ def prepare_data_loaders(
         num_workers=4,
         pin_memory=True
     )
-    return (train_loader, test_loader, 
-            train_dataset.scaling_stats)
+    return train_loader, test_loader, train_dataset.scaling_stats
 
 
 def aggregate_qor_metrics(values: Tensor, target_metric: str) -> Tensor:
@@ -512,7 +495,7 @@ def parse_arguments():
                         help='Weight decay for the optimizer (default: 1e-4).')
     parser.add_argument('-mn', '--max-norm', type=float, default=5.0,
                         help='Maximum norm for gradient clipping (default: 5.0).')
-    parser.add_argument('-ls', '--log-scale', action='store_true',
+    parser.add_argument('-lt', '--log-transform', action='store_true',
                         help='Apply log transformation to the target variable.')
     parser.add_argument('-hd', '--huber-delta', type=float, default=1.0,
                         help='Delta parameter for Huber loss (default: 1.0). Only used if loss is set to "huber".')
