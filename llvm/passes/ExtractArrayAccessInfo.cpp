@@ -81,7 +81,7 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
 
             OFS << "    {\n";
             OFS << "      \"Name\": \"" << It->Name << "\",\n";
-            OFS << "      \"FunctionName\": \"" << It->FunctionName << "\"";
+            OFS << "      \"FunctionName\": \"" << It->FunctionName << "\",\n";
 
             OFS << "      \"Stores\": [";
             for (size_t i = 0; i < It->Stores.size(); ++i) {
@@ -89,7 +89,7 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
                 OFS << "{ \"FunctionName\": \"" << It->Stores[i].first
                     << "\", \"StoreInstIndex\": " << It->Stores[i].second << " }";
             }
-            OFS << "]\n";
+            OFS << "],\n";
 
             OFS << "      \"Loads\": [";
             for (size_t i = 0; i < It->Loads.size(); ++i) {

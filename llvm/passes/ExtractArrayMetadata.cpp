@@ -103,7 +103,7 @@ struct ExtractArrayMetadataPass : public ModulePass {
                 if (i > 0) OFS << ", ";
                 OFS << It->Dimensions[i];
             }
-            OFS << "],\n";
+            OFS << "]\n";
             OFS << "    }";
         }
 

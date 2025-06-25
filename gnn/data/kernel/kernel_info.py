@@ -1,5 +1,4 @@
 import os
-import re
 import json
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
@@ -9,7 +8,8 @@ from typing import Optional, Dict, Union, List, Tuple
 from gnn.data.utils.xml_utils import findint, findfloat
 from gnn.data.utils.parsers import (
     extract_metrics,
-    extract_utilization_per_module
+    extract_utilization_per_module,
+    AREA_METRICS
 )
 
 CDFG_NODE_TYPES = [
@@ -42,7 +42,7 @@ CDFG_EDGE_TYPES = [
     ("region", "hrchy", "instr"),
     ("block", "hrchy", "instr"),
 ]
-AREA_METRICS = {'FF', 'LUT', 'DSP', 'BRAM'}
+
 MAX_ARRAY_DIM = 4
 MAX_LOOP_DEPTH = 5
 
@@ -107,8 +107,7 @@ class RegionNode(Node):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str,
-        utilization: Optional[Dict[str, int]] = None
+        function_name: str
     ):
         self.id = findint(element, 'mId')
         if self.id is None:
@@ -140,19 +139,10 @@ class RegionNode(Node):
             'min_trip_count': min_tc, 'max_trip_count': max_tc,
             'is_loop': int(self.is_loop), 
             'loop_depth': encoded_loop_depth, 'ii': ii, 
-            'pipeline': 0,'unroll': 0,'unroll_factor': 0,
+            'pipeline': 0, 'unroll': 0, 'unroll_factor': 0,
             'loop_merge': 0, 'loop_flatten': 0,
             'dataflow': 0, 'inline': 0,
         }
-
-        if utilization is not None:
-            for res in AREA_METRICS:
-                self.attrs[res] = utilization.get(res, 0)
-                self.attrs[f"local_{res}"] = utilization.get(f"local_{res}", 0)
-        else:
-            for res in AREA_METRICS:
-                self.attrs[res] = 0
-                self.attrs[f"local_{res}"] = 0
 
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
@@ -229,7 +219,6 @@ class PortNode(CDFGNode):
             'is_top_level': int(is_top_level),
             'primitive_bitwidth': primitive_bitwidth,
             'if_type': element.findtext('if_type', '-1'),
-            'is_array': int(self.is_array),
             'base_type': str(base_type),
             'dims': dims,
             'array_partition': 0,
@@ -387,7 +376,8 @@ class BlockNode(CDFGNode):
     def as_dict(self):
         return {
             'name': self.label, 
-            'instructions': self.instrs
+            'instructions': self.instrs,
+            'attributes': self.attrs
         }
     
     def __str__(self):
@@ -443,7 +433,7 @@ class CDFG:
         self._process_ports(ports, array_md_list)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(regions, module_util_map)
+        self._process_regions(regions)
 
     def _process_instrs(self, instrs, array_md_list, module_util_map):
         # Note: the 'nodes' section contains instructions and global variables
@@ -483,8 +473,7 @@ class CDFG:
                 raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
             name = obj.findtext('name', '')
 
-            array_md = fetch_array_md(array_md_list, 
-                                                  name, self.function_name)
+            array_md = fetch_array_md(array_md_list, name, self.function_name)
             node = PortNode(
                 elem, self.function_name, self.is_top_level, 
                 array_md=array_md
@@ -524,19 +513,13 @@ class CDFG:
                 if instr_id in self._node_id_map
             ]
             node.attrs = {'num_instrs': len(node.instrs)}
+            self.nodes['block'].append(node)
 
-    def _process_regions(self, regions, module_util_map):
+    def _process_regions(self, regions):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            region_name = elem.findtext('mTag', '')
-            if region_name:
-                util = module_util_map.get(region_name, {})
-            else:
-                util = None
-
-            node = RegionNode(elem, self.function_name, utilization=util)
+            node = RegionNode(elem, self.function_name)
             node.id += offset - 1
-            
             node.sub_regions = [
                 sub_region_id + offset - 1
                 for sub_region_id in node.sub_regions
@@ -664,10 +647,16 @@ class VitisKernelInfo:
             )
         
         with open(array_md_path, 'r') as f:
-            self.array_md = json.load(f)
+            array_md = json.load(f)
+        if "ArrayMetadata" not in array_md:
+            raise ValueError("Array metadata file does not contain 'ArrayMetadata' key")
+        self.array_md = array_md['ArrayMetadata']
 
         with open(array_access_info_path, 'r') as f:
-            self.array_access_info = json.load(f)
+            array_access_info = json.load(f)
+        if "ArrayAccessInfo" not in array_access_info:
+            raise ValueError("Array access info file does not contain 'ArrayAccessInfo' key")
+        self.array_access_info = array_access_info['ArrayAccessInfo']
 
     def _process_adb_files(self, solution_dir, filtered):
         try:

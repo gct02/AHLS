@@ -1,46 +1,8 @@
-# Prerequisites
-*.d
-
-# Object files
 *.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
 *.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
 *.so
-*.so.*
-*.dylib
-
-# Executables
 *.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+*.log
 
 # Environment specific files
 .vscode/
@@ -57,17 +19,17 @@ llvm/profiler/
 llvm/utils/
 llvm/clang_plugins/
 
-data/base_solutions/
-gnn/models/
-gnn/dataset/
-gnn/fine_tuning/dataset/
+models/
+dataset/
+data/base_solutions
 
 hls_config.tcl
-vitis_hls.log
-
 process_dataset.sh
 test_model.sh
+
+dct_filter.py
 
 detect_broken_designs.py
 detect_redundant_designs.py
 detect_outliers.py
+inspect_gramschmidt.py

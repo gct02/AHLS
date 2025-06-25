@@ -18,14 +18,17 @@ def main(args: Dict[str, Any]):
     dataset_dir = Path(args['dataset_dir'])
     output_dir = Path(args['output_dir'])
     top_level_path = Path(args['top_level_path'])
+    base_solutions_dir = Path(args['base_solutions_dir'])
     filtered = args['filtered']
     max_instances = args.get('max_instances', 10000)
 
-    if not dataset_dir.exists():
+    if not dataset_dir.exists() or not dataset_dir.is_dir():
         raise FileNotFoundError(f"Dataset directory not found: {dataset_dir}")
-    if not dataset_dir.is_dir():
-        raise NotADirectoryError(f"Dataset path is not a directory: {dataset_dir}")
-    if not top_level_path.exists():
+    
+    if not base_solutions_dir.exists() or not base_solutions_dir.is_dir():
+        raise FileNotFoundError(f"Base solutions directory not found: {base_solutions_dir}")
+    
+    if not top_level_path.exists() or not top_level_path.is_file():
         raise FileNotFoundError(f"Top level function config file not found: {top_level_path}")
 
     if not output_dir.exists():
@@ -34,8 +37,9 @@ def main(args: Dict[str, Any]):
     with open(top_level_path, "r") as f:
         top_level_fn_dict = json.load(f)
 
-    benchmark_info_list, benches = [], []
-    for bench in dataset_dir.iterdir():
+    bench_info_list = []
+    bench_directories = []
+    for bench in base_solutions_dir.iterdir():
         if not bench.is_dir():
             continue
 
@@ -44,32 +48,40 @@ def main(args: Dict[str, Any]):
             print(f"Top-level function not found for {bench.name}")
             continue
 
-        base_sol_dir = dataset_dir / bench.name / "solution0"
+        base_sol_dir = base_solutions_dir / bench.name / "solution0"
         if not base_sol_dir.exists():
             print(f"Base solution directory not found for {bench.name}")
             continue
 
-        benchmark_info_list.append((base_sol_dir, bench.name, top_level_fn))
-        benches.append(bench)
+        bench_dir = dataset_dir / bench.name
+        if not bench_dir.exists():
+            print(f"Benchmark directory not found for {bench.name}")
+            continue
 
-    kernel_info_dict = extract_base_kernel_info(benchmark_info_list)
+        bench_info_list.append((base_sol_dir, bench.name, top_level_fn))
+        bench_directories.append(bench_dir)
 
-    for bench in benches:
-        bench_out_dir = output_dir / bench.name
+    kernel_info_dict = extract_base_kernel_info(bench_info_list)
+
+    for bench_dir in bench_directories:
+        bench_out_dir = output_dir / bench_dir.name
         bench_out_dir.mkdir(parents=True, exist_ok=True)
 
-        kernel_info = kernel_info_dict.get(bench.name)
+        kernel_info = kernel_info_dict.get(bench_dir.name)
         if not kernel_info:
-            print(f"Could not parse kernel info for {bench.name}")
+            print(f"Could not parse kernel info for {bench_dir.name}")
             continue
-        kernel_info.save_as_json(bench_out_dir / "vitis_kernel_info.json")
+
+        kernel_info.save_as_json(bench_out_dir / "base_vitis_kernel_info.json")
+        with open(bench_out_dir / "base_vitis_kernel_info.pkl", "wb") as f:
+            pickle.dump(kernel_info, f)
 
         base_metrics = kernel_info.qor_metrics
         with open(bench_out_dir / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 
         instance_count = 0
-        for sol in bench.iterdir():
+        for sol in bench_dir.iterdir():
             if not sol.is_dir():
                 continue
 
@@ -99,14 +111,14 @@ def main(args: Dict[str, Any]):
             updated_kernel_info = update_with_directives(
                 kernel_info, dct_tcl_path, hls_log_path
             )
-            with open(sol_out_dir / "vitis_kernel_info.json", "wb") as f:
+            with open(sol_out_dir / "vitis_kernel_info.pkl", "wb") as f:
                 pickle.dump(updated_kernel_info, f)
 
             instance_count += 1
             if instance_count >= max_instances:
                 break
 
-        print(f"Processed {bench.name}: {instance_count} instances")
+        print(f"Processed {bench_dir.name}: {instance_count} instances")
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -118,10 +130,12 @@ def parse_args():
                         help="Path to the output directory")
     parser.add_argument("-f", "--filtered", action="store_true",
                         help="Signal that the dataset is filtered")
+    parser.add_argument("-tl", "--top-level-path", required=True,
+                        help="Path to the file containing top-level function configurations")
+    parser.add_argument("-bs", "--base-solutions-dir", required=True,
+                        help="Path to the directory containing the base solutions for the benchmarks")
     parser.add_argument("-b", "--benchmarks", nargs="+", default=None,
                         help="List of benchmarks to process")
-    parser.add_argument("-tl", "--top-level-path", default=None,
-                        help="Path to the file containing top-level function configurations")
     parser.add_argument("-mi", "--max-instances", type=int, default=10000,
                         help="Maximum number of instances to process per benchmark")
     return vars(parser.parse_args())

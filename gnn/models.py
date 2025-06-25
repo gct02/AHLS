@@ -21,7 +21,7 @@ from gnn.data.dataset import TARGET_SIZE_PER_TYPE
 class HGTJK(nn.Module):
     def __init__(
         self,
-        in_channels: int,
+        in_channels: Union[int, Dict[NodeType, int]],
         hidden_channels: Union[int, List[int]],
         num_layers: int,
         out_channels: int,
@@ -63,7 +63,7 @@ class HGTJK(nn.Module):
         })
 
         self.out_lin = HeteroDictLinear(
-            sum(hidden_channels),
+            sum(hidden_channels[1:]),
             out_channels,
             types=metadata[0]
         )
@@ -99,8 +99,9 @@ class HGTJK(nn.Module):
                 )
                 for nt, x in x_dict.items()
             }
-            for nt, x in x_dict.items():
-                xs_dict[nt].append(x)
+            if i > 0:
+                for nt, x in x_dict.items():
+                    xs_dict[nt].append(x)
 
         x_dict = {
             nt: self.jk_dict[nt](xs)
@@ -111,13 +112,12 @@ class HGTJK(nn.Module):
         return x_dict
 
 
-
 class HLSQoREstimator(nn.Module):
     r"""Model for estimating HLS QoR using a heterogeneous graph neural network.
 
     Args:
-        target_metric (str): The target metric to learn. Should be one of the metrics
-            defined in the dataset ("area", "timing" or "power").
+        target_metric (str): The target metric to learn. Should be one of
+            {'area', 'power', 'timing'}.
         in_channels (Union[int, Dict[NodeType, int]]): Input feature dimension or 
             a dictionary mapping node types to their input feature dimensions.
         hidden_channels (Union[int, List[int]]): Hidden feature dimension for the 
@@ -152,18 +152,18 @@ class HLSQoREstimator(nn.Module):
         if isinstance(heads, int):
             heads = [heads] * num_layers
 
-        self.proj_lin_dict = HeteroDictLinear(
-            in_channels,
-            hidden_channels[0],
-            types=self.node_types
-        )
-        self.proj_ln_dict = nn.ModuleDict({
-            nt: LayerNorm(hidden_channels[0])
-            for nt in self.node_types
-        })
+        # self.proj_lin_dict = HeteroDictLinear(
+        #     in_channels,
+        #     hidden_channels[0],
+        #     types=self.node_types
+        # )
+        # self.proj_ln_dict = nn.ModuleDict({
+        #     nt: LayerNorm(hidden_channels[0])
+        #     for nt in self.node_types
+        # })
 
         self.gnn = HGTJK(
-            in_channels=hidden_channels[0],
+            in_channels=in_channels,
             hidden_channels=hidden_channels,
             num_layers=num_layers,
             out_channels=hidden_channels[-1],
@@ -195,9 +195,9 @@ class HLSQoREstimator(nn.Module):
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
-        self.proj_lin_dict.reset_parameters()
-        for proj_ln in self.proj_ln_dict.values():
-            proj_ln.reset_parameters()
+        # self.proj_lin_dict.reset_parameters()
+        # for proj_ln in self.proj_ln_dict.values():
+        #     proj_ln.reset_parameters()
 
         self.gnn.reset_parameters()
 
@@ -239,15 +239,15 @@ class HLSQoREstimator(nn.Module):
         """
         batch_size = self._compute_batch_size(batch_dict)
 
-        x_dict = self.proj_lin_dict(x_dict)
-        x_dict = {
-            nt: self.proj_ln_dict[nt](
-                x, batch_dict[nt],
-                batch_size=batch_size
-            ) 
-            if x is not None else None
-            for nt, x in x_dict.items()
-        }
+        # x_dict = self.proj_lin_dict(x_dict)
+        # x_dict = {
+        #     nt: self.proj_ln_dict[nt](
+        #         x, batch_dict[nt],
+        #         batch_size=batch_size
+        #     ) 
+        #     if x is not None else None
+        #     for nt, x in x_dict.items()
+        # }
 
         x_dict = self.gnn(
             x_dict, edge_index_dict, batch_dict,
@@ -271,7 +271,6 @@ class HLSQoREstimator(nn.Module):
 
         return self.graph_mlp(x_out)
     
-
     def _compute_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         batch_size = 0
         for batch in batch_dict.values():

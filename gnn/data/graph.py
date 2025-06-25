@@ -15,7 +15,7 @@ from gnn.data.kernel.kernel_info import (
     CDFG_EDGE_TYPES
 )
 from gnn.data.utils.parsers import (
-    parse_tcl_directives_file,
+    parse_tcl_directives,
     extract_auto_dcts_from_log
 )
 
@@ -38,12 +38,12 @@ EDGE_TYPES = CDFG_EDGE_TYPES + [
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
-NODE_FEATURE_DIMS = {
+FEATURE_SIZE_BY_TYPE = {
     "instr": 85, 
     "port": 25,
     "const": 5,
-    "region": 22,
-    "block": 6
+    "region": 18,
+    "block": 1
 }
 
 
@@ -59,7 +59,6 @@ def extract_base_kernel_info(
         ir_dir = f"{sol_dir}/IRs" if filtered else f"{sol_dir}/.autopilot/db"
         array_md_path = f"{ir_dir}/array_md.json"
         array_access_info_path = f"{ir_dir}/array_access_info.json"
-
         try:
             extract_llvm_ir_array_info(
                 hls_ir_dir=ir_dir, 
@@ -100,12 +99,11 @@ def to_hetero_data(
     add_reversed_edges: bool = True,
 ) -> HeteroData:
     data = HeteroData()
-    
     for nt in NODE_TYPES:
         nodes = kernel_info.nodes.get(nt)
         if not nodes:
             data[nt].x = torch.empty(
-                (0, NODE_FEATURE_DIMS[nt]), dtype=torch.float32
+                (0, FEATURE_SIZE_BY_TYPE[nt]), dtype=torch.float32
             )
             data[nt].label = []
             continue
@@ -162,14 +160,14 @@ def find_array_node(kernel_info, array_name, function_name, ret_node_type=False)
         for node in kernel_info.nodes.get('port', []):
             if (node.name == array_name 
                 and node.attrs.get('array_partition', 0) == 0
-                and node.function == function_name):
+                and node.function_name == function_name):
                 return (node, 'port') if ret_node_type else node
             
     for node in kernel_info.nodes.get('instr', []):
         if (node.opcode in ['alloca', 'GlobalMem']
             and node.name == array_name 
             and node.attrs.get('array_partition', 0) == 0
-            and node.function == function_name):
+            and node.function_name == function_name):
             return (node, 'instr') if ret_node_type else node
         
     # If not found, search for array_name only
@@ -190,7 +188,7 @@ def find_array_node(kernel_info, array_name, function_name, ret_node_type=False)
 def find_region_node(kernel_info, region_name, function_name):
     for node in kernel_info.nodes.get('region', []):
         if (node.name == region_name
-            and node.function == function_name):
+            and node.function_name == function_name):
             return node
     # If not found, search for region_name only
     for node in kernel_info.nodes.get('region', []):
@@ -215,7 +213,7 @@ def update_with_directives(
     #         unroll_pipelined_subloops(node)
 
     kernel_info = deepcopy(base_kernel_info)
-    directives = parse_tcl_directives_file(solution_dct_tcl_path)
+    directives = parse_tcl_directives(solution_dct_tcl_path)
 
     for dct, args in directives:
         if dct not in DIRECTIVES:
@@ -295,22 +293,19 @@ def update_with_directives(
                 loop_name, function_name = dct_info
                 for node in kernel_info.nodes.get('region', []):
                     if (node.name == loop_name 
-                        and node.function == function_name):
-                        print(f"Applying auto directive: {dct} - {dct_info}")
+                        and node.function_name == function_name):
                         node.attrs["loop_flatten"] = 1
                         break
             elif dct == "inline":
                 function_name = dct_info
                 for node in kernel_info.nodes.get('region', []):
                     if node.name == function_name:
-                        print(f"Applying auto directive: {dct} - {dct_info}")
                         node.attrs["inline"] = 1
                         break
             elif dct == "pipeline":
                 loop_name = dct_info
                 for node in kernel_info.nodes.get('region', []):
                     if node.name == loop_name:
-                        print(f"Applying auto directive: {dct} - {dct_info}")
                         node.attrs["pipeline"] = 1
                         # if node.is_loop:
                         #     unroll_pipelined_subloops(node)
@@ -411,7 +406,7 @@ def plot_data(
     filtered_data = HeteroData()
     for nt, x in data.x_dict.items():
         if nt not in node_types:
-            x = torch.empty((0, NODE_FEATURE_DIMS[nt]), 
+            x = torch.empty((0, FEATURE_SIZE_BY_TYPE[nt]), 
                             dtype=torch.float32)
         filtered_data[nt].x = x
         filtered_data[nt].label = data[nt].label
