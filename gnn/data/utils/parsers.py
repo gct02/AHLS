@@ -77,7 +77,7 @@ def extract_utilization(solution_dir, filtered=False) -> Dict[str, int]:
     return {m: -1 for m in AREA_METRICS}
 
 
-def extract_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
+def extract_hls_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
     if filtered:
         rpt_path = Path(solution_dir) / 'reports/csynth.xml'
     else:
@@ -95,6 +95,31 @@ def extract_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
         default=-1
     )
     return {'cc': cc}
+
+
+def extract_hls_area_estimates(solution_dir, filtered=False) -> Dict[str, int]:
+    if filtered:
+        rpt_path = Path(solution_dir) / 'reports/csynth.xml'
+    else:
+        rpt_path = Path(solution_dir) / 'syn/report/csynth.xml'
+
+    if not os.path.exists(rpt_path):
+        print(f'Area estimates report not found in {solution_dir}')
+        return {m: -1 for m in AREA_METRICS}
+
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+    area_estimates = root.find('AreaEstimates/Resources')
+    if area_estimates is None:
+        print(f'Area estimates not found in {rpt_path}')
+        return {m: -1 for m in AREA_METRICS}
+    
+    return {
+        'lut': findint(area_estimates, 'LUT', -1),
+        'ff': findint(area_estimates, 'FF', -1),
+        'dsp': findint(area_estimates, 'DSP', -1),
+        'bram': findint(area_estimates, 'BRAM_18K', -1)
+    }
 
 
 def extract_power_report(solution_dir, filtered=False) -> Dict[str, float]:
@@ -137,7 +162,7 @@ def extract_metrics(solution_dir, filtered=False) -> Dict[str, Union[float, int]
 
     metrics.update(extract_timing_summary(solution_dir, filtered))
     metrics.update(extract_power_report(solution_dir, filtered))
-    metrics.update(extract_cc_report(solution_dir, filtered))
+    metrics.update(extract_hls_cc_report(solution_dir, filtered))
 
     achieved_clk = metrics.get('achieved_clk', -1.0)
     cc = metrics.get('cc', -1)
@@ -178,7 +203,7 @@ def extract_utilization_per_module(solution_dir, filtered=False):
 
             for res in RESOURCES:
                 res_elem = int(local_resources.get(res, default=0))
-                module_resources[f"local_{res.lower()}"] = res_elem
+                module_resources[f"local_{res}"] = res_elem
         else:
             module_name = module.get('DISPNAME')
 
@@ -190,7 +215,7 @@ def extract_utilization_per_module(solution_dir, filtered=False):
 
         for res in RESOURCES:
             res_elem = int(resources.get(res, default=0))
-            module_resources[res.lower()] = res_elem
+            module_resources[res] = res_elem
 
         module_utilization[module_name] = module_resources
 
@@ -241,6 +266,7 @@ def extract_auto_dcts_from_log(hls_log_path):
 
     return auto_dcts 
 
+
 def export_directives_as_tcl(
     solution_data_json_path: Union[str, Path],
     output_path: Union[str, Path]
@@ -270,7 +296,7 @@ def parse_tcl_directives(dct_tcl_path) -> List[Tuple[str, Dict[str, str]]]:
 def parse_directive_cmd(directive_cmd) -> Tuple[str, Dict[str, str]]:
     cmd = directive_cmd.split(' ')[0].split('set_directive_')[1]
     args = directive_cmd.split(' ')[1:]
-    parsed_args = _parse_directive_options(args)
+    parsed_args = _parse_directive_args(args)
     return cmd, parsed_args
 
 
@@ -375,33 +401,32 @@ def _find_line_containing(lines: List[str], *search_string) -> int:
     return -1
 
 
-def _parse_directive_options(directive_options: List[str]) -> Dict[str, str]:
+def _parse_directive_args(dct_args: List[str]) -> Dict[str, str]:
     parsed_args = {}
 
     is_loc_parsed = False
     i = 0
-    while i < len(directive_options):
-        if not directive_options[i]:
+    while i < len(dct_args):
+        if not dct_args[i]:
             i += 1
             continue
-        if directive_options[i].startswith('-'):
-            if directive_options[i].find('=') != -1:
-                key, value = directive_options[i].split('=')
+        if dct_args[i].startswith('-'):
+            if dct_args[i].find('=') != -1:
+                key, value = dct_args[i].split('=')
                 parsed_args[key[1:]] = value
-            elif directive_options[i] == '-off':
+            elif dct_args[i] == '-off':
                 parsed_args['off'] = "true"
             else:
-                parsed_args[directive_options[i][1:]] = directive_options[i+1]
+                parsed_args[dct_args[i][1:]] = dct_args[i+1]
                 i += 1
         elif not is_loc_parsed:
-            parsed_args['location'] = directive_options[i]
+            parsed_args['location'] = dct_args[i]
             is_loc_parsed = True
         else:
-            parsed_args['variable'] = directive_options[i]
+            parsed_args['variable'] = dct_args[i]
         i += 1
 
     for key, args in parsed_args.items():
         parsed_args[key] = args.strip('" \n')
 
     return parsed_args
-

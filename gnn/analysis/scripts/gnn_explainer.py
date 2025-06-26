@@ -5,7 +5,7 @@ import xgboost as xgb
 import matplotlib.pyplot as plt
 import shap
 
-from gnn.data.analysis.analysis_utils import encode_directives
+from gnn.analysis.utils import encode_directives
 
 
 def extract_errors(predictions_path):
@@ -147,4 +147,3 @@ if __name__ == "__main__":
 
     # shap_interaction_values = explain_model_with_interactions(model, X_dct)
     # plot_interaction_summary(shap_interaction_values, X_dct, feat_names)
-

@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from numpy.typing import NDArray
 
-from gnn.data.analysis.analysis_utils import collate_data_for_analysis
+from gnn.analysis.utils import collate_data_for_analysis
 
 
 def extract_metric_from_data(

@@ -238,7 +238,7 @@ def encode_directives(
     return encoded_dcts
 
 
-def percentage_diff(pred, target):
+def robust_mape(pred: Tensor, target: Tensor) -> Tensor:
     pred, target = map(torch.as_tensor, (pred, target))
     avg = (torch.abs(pred) + torch.abs(target)) / 2
     return torch.where(
@@ -246,6 +246,33 @@ def percentage_diff(pred, target):
         torch.abs(pred - target) / (avg + 1e-8),  # Avoid division by zero
         torch.abs(pred - target) / torch.abs(target)
     ) * 100
+
+
+def bounded_mape(pred: Tensor, target: Tensor, floor: float = 0.1) -> Tensor:
+    """
+    Computes a bounded version of the Mean Absolute Percentage Error (MAPE).
+
+    This version is designed to be more stable when targets are close to or are zero.
+    The error is calculated as:
+    100 * mean(abs((targets - estimates) / max(abs(targets), floor)))
+
+    By setting a 'floor' for the denominator (default is 0.1), it prevents the
+    error from becoming excessively large for small deviations when the target
+    is near zero.
+
+    Args:
+        pred (torch.Tensor): The tensor of predicted values.
+        target (torch.Tensor): The tensor of ground truth values.
+        floor (float): The minimum value for the denominator. Defaults to 0.1.
+
+    Returns:
+        torch.Tensor: A single-value tensor representing the bounded MAPE in percentage.
+    """
+    pred, target = pred.float(), target.float()
+    floor_tensor = torch.full_like(target, floor)
+    denominator = torch.max(torch.abs(target), floor_tensor)
+    bounded_mape = torch.mean(torch.abs((target - pred) / denominator)) * 100.0
+    return bounded_mape
 
 
 def plot_learning_curves(
@@ -327,7 +354,7 @@ def plot_prediction_scatter(
 
     if mean_error is None:
         if errors is None:
-            errors = percentage_diff(preds, targets).tolist()
+            errors = robust_mape(preds, targets).tolist()
         else:
             errors = errors.tolist()
         mean_error = np.mean(errors)
@@ -365,7 +392,7 @@ def plot_prediction_bars(
         raise ValueError("Mismatch in number of targets, predictions and indices")
     
     if errors is None:
-        errors = [percentage_diff(p, t).item() for p, t in zip(preds, targets)]
+        errors = [robust_mape(p, t).item() for p, t in zip(preds, targets)]
 
     if mean_error is None:
         mean_error = np.mean(errors)

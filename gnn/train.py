@@ -30,7 +30,7 @@ from gnn.analysis.utils import (
     plot_prediction_bars,
     plot_prediction_scatter,
     plot_learning_curves,
-    percentage_diff,
+    robust_mape,
     compute_snru,
     compute_time,
     compute_power
@@ -79,7 +79,7 @@ def evaluate(
     targets = aggregate_qor_metrics(targets, loader.dataset.target_metric)
     preds = aggregate_qor_metrics(preds, loader.dataset.target_metric)
 
-    mape = percentage_diff(preds, targets).mean().item()
+    mape = robust_mape(preds, targets).mean().item()
     
     if mape < evaluate.min_mape:
         if output_dir and epoch > 20: # Avoid saving model at the first few epochs
@@ -158,7 +158,7 @@ def train_model(
         targets = aggregate_qor_metrics(targets, train_loader.dataset.target_metric)
         preds = aggregate_qor_metrics(preds, train_loader.dataset.target_metric)
 
-        train_mape = percentage_diff(preds, targets).mean().item()
+        train_mape = robust_mape(preds, targets).mean().item()
         train_mapes.append(train_mape)
 
         model.eval()

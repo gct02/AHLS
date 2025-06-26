@@ -16,7 +16,7 @@ from gnn.data.dataset import (
 )
 from gnn.analysis.utils import (
     plot_prediction_bars,
-    percentage_diff,
+    robust_mape,
     compute_snru,
     compute_time,
     compute_power
@@ -59,7 +59,7 @@ def evaluate(
     preds = aggregate_qor_metrics(preds, loader.dataset.target_metric)
     targets = aggregate_qor_metrics(targets, loader.dataset.target_metric)
 
-    mre = percentage_diff(preds, targets).mean().item()
+    mre = robust_mape(preds, targets).mean().item()
 
     for p, t in zip(preds.tolist(), targets.tolist()):
         print(f"Target: {t}; Prediction: {p}")
