@@ -1,4 +1,3 @@
-import pickle
 import json
 import os
 from typing import Optional, Union, List
@@ -10,32 +9,22 @@ from torch import Tensor
 from torch_geometric.loader import DataLoader
 
 from gnn.models import HLSQoREstimator
-from gnn.data.dataset import (
-    HLSDataset,
-    TARGET_METRICS
-)
+from gnn.data.dataset import HLSDataset, TARGET_METRICS
+from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 from gnn.analysis.utils import (
     plot_prediction_bars,
     robust_mape,
-    compute_snru,
-    compute_time,
-    compute_power
+    aggregate_qor_metrics
 )
-from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-AVAILABLE_RESOURCES_TENSOR = torch.tensor(
-    [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS['area']],
-    dtype=torch.float32,
-    device=DEVICE
-)
 
 
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
-    exp_adjust: bool = False
+    exp_adjust: bool = False,
+    available_resources: Optional[Tensor] = None
 ):
     preds, targets = [], []
     model.eval()
@@ -56,14 +45,20 @@ def evaluate(
     if exp_adjust:
         preds = preds.expm1()
         targets = targets.expm1()
-    preds = aggregate_qor_metrics(preds, loader.dataset.target_metric)
-    targets = aggregate_qor_metrics(targets, loader.dataset.target_metric)
 
-    mre = robust_mape(preds, targets).mean().item()
+    preds = aggregate_qor_metrics(
+        preds, loader.dataset.target_metric,
+        available_resources=available_resources
+    )
+    targets = aggregate_qor_metrics(
+        targets, loader.dataset.target_metric,
+        available_resources=available_resources
+    )
+    mape = robust_mape(preds, targets).mean().item()
 
     for p, t in zip(preds.tolist(), targets.tolist()):
         print(f"Target: {t}; Prediction: {p}")
-    print(f"MAPE: {mre:.2f}%")
+    print(f"MAPE: {mape:.2f}%")
     
     return preds.tolist(), targets.tolist()
 
@@ -73,13 +68,14 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
         model_args = json.load(f)
 
     metadata = model_args["metadata"]
-    node_types = metadata[0]
-    edge_types = metadata[1]
-    edge_type_tuples = [(et[0], et[1], et[2]) for et in edge_types]
-    model_args["metadata"] = (node_types, edge_type_tuples)
-
+    model_args["metadata"] = (
+        metadata[0], 
+        [(et[0], et[1], et[2]) for et in metadata[1]]
+    )
     model = HLSQoREstimator(**model_args)
-    model.load_state_dict(torch.load(model_path, map_location=DEVICE))
+    model.load_state_dict(
+        torch.load(model_path, map_location=DEVICE)
+    )
     return model
 
 
@@ -89,13 +85,11 @@ def prepare_data_loader(
     benchmarks: Union[str, List[str]],
     log_transform: bool = False,
     batch_size: int = 16,
-    scaling_stats_path: Optional[str] = ""
+    scaling_stats_path: Optional[str] = None
 ) -> DataLoader:
     if scaling_stats_path:
-        # with open(scaling_stats_path, 'r') as f:
-        #     scaling_stats = json.load(f)
-        with open(scaling_stats_path, 'rb') as f:
-            scaling_stats = pickle.load(f)
+        with open(scaling_stats_path, 'r') as f:
+            scaling_stats = json.load(f)
     else:
         scaling_stats = None
 
@@ -108,7 +102,7 @@ def prepare_data_loader(
         standardize=True, 
         scaling_stats=scaling_stats,
         benchmarks=benchmarks, 
-        apply_log_transform=log_transform,
+        log_transform=log_transform,
         mode="test"
     )
     loader = DataLoader(
@@ -119,17 +113,6 @@ def prepare_data_loader(
         pin_memory=True
     )
     return loader
-
-
-def aggregate_qor_metrics(values: Tensor, target_metric: str) -> Tensor:
-    if target_metric == 'area':
-        return compute_snru(values, AVAILABLE_RESOURCES_TENSOR)
-    elif target_metric == 'timing':
-        return compute_time(values)
-    elif target_metric == 'power':
-        return compute_power(values)
-    else:
-        raise ValueError(f"Unsupported target metric: {target_metric}")
 
 
 def main(args):
@@ -153,7 +136,20 @@ def main(args):
     )
     model = load_model(model_path, model_args_path).to(DEVICE)
 
-    preds, targets = evaluate(model, loader, exp_adjust=log_transform)
+    if target_metric == "area":
+        available_resources = torch.tensor(
+            [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS['area']],
+            dtype=torch.float32,
+            device=DEVICE
+        )
+    else:
+        available_resources = None
+
+    preds, targets = evaluate(
+        model, loader, 
+        exp_adjust=log_transform,
+        available_resources=available_resources
+    )
 
     indices = [data.solution_index for data in loader.dataset]
 

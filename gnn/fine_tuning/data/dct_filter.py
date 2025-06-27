@@ -15,13 +15,11 @@ from gnn.data.kernel.kernel_info import (
 )
 from gnn.data.utils.parsers import parse_directive_cmd
 
-
-DirectiveGroup = Dict[str, Union[str, List[str]]]
-
-
 # Including only directives whose features in the GNN were 
 # recurrently pointed as important by Shapley values
 DIRECTIVES = {"pipeline", "unroll", "array_partition", "loop_merge"}
+
+DirectiveGroup = Dict[str, Union[str, List[str]]]
 
 
 def filter_directives(

@@ -18,10 +18,7 @@ from torch_geometric.loader import DataLoader
 from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
-from gnn.data.dataset import (
-    HLSDataset,
-    TARGET_METRICS
-)
+from gnn.data.dataset import HLSDataset
 from gnn.data.graph import (
     METADATA,
     FEATURE_SIZE_BY_TYPE
@@ -31,20 +28,11 @@ from gnn.analysis.utils import (
     plot_prediction_scatter,
     plot_learning_curves,
     robust_mape,
-    compute_snru,
-    compute_time,
-    compute_power
+    aggregate_qor_metrics
 )
-from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 from gnn.utils import static_vars
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-AVAILABLE_RESOURCES_TENSOR = torch.tensor(
-    [AVAILABLE_RESOURCES[r] for r in TARGET_METRICS['area']],
-    dtype=torch.float32,
-    device=DEVICE
-)
 
 
 @static_vars(
@@ -57,7 +45,8 @@ def evaluate(
     loader: DataLoader,
     epoch: int,
     exp_adjust: bool = False,
-    output_dir: Optional[str] = None
+    output_dir: Optional[str] = None,
+    available_resources: Optional[Tensor] = None
 ) -> float:
     targets, preds = [], []
     for data in loader:
@@ -76,8 +65,15 @@ def evaluate(
     if exp_adjust:
         targets = torch.expm1(targets)
         preds = torch.expm1(preds)
-    targets = aggregate_qor_metrics(targets, loader.dataset.target_metric)
-    preds = aggregate_qor_metrics(preds, loader.dataset.target_metric)
+
+    targets = aggregate_qor_metrics(
+        targets, loader.dataset.target_metric,
+        available_resources=available_resources
+    )
+    preds = aggregate_qor_metrics(
+        preds, loader.dataset.target_metric,
+        available_resources=available_resources
+    )
 
     mape = robust_mape(preds, targets).mean().item()
     
@@ -119,7 +115,8 @@ def train_model(
     max_norm: float = 5.0,
     scheduler: Optional[LRScheduler] = None,
     exp_adjust: bool = False,
-    output_dir: Optional[str] = None
+    output_dir: Optional[str] = None,
+    available_resources: Optional[Tensor] = None
 ) -> Tuple[List[float], List[float]]:
     train_mapes, test_mapes = [], []
 
@@ -155,9 +152,15 @@ def train_model(
         if exp_adjust:
             targets = torch.expm1(targets)
             preds = torch.expm1(preds)
-        targets = aggregate_qor_metrics(targets, train_loader.dataset.target_metric)
-        preds = aggregate_qor_metrics(preds, train_loader.dataset.target_metric)
 
+        targets = aggregate_qor_metrics(
+            targets, train_loader.dataset.target_metric,
+            available_resources=available_resources
+        )
+        preds = aggregate_qor_metrics(
+            preds, train_loader.dataset.target_metric,
+            available_resources=available_resources
+        )
         train_mape = robust_mape(preds, targets).mean().item()
         train_mapes.append(train_mape)
 
@@ -213,10 +216,10 @@ def main(args: Dict[str, Any]):
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [128, 128, 128, 128],
-        'num_layers': 4,
+        'hidden_channels': [128, 128, 128],
+        'num_layers': 3,
         'metadata': METADATA,
-        'heads': [4, 4, 4, 4],
+        'heads': [4, 4, 4],
         'dropout': 0.1
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
@@ -288,13 +291,29 @@ def main(args: Dict[str, Any]):
         optimizer, schedulers=[warmup, cosine], milestones=[warmup_steps]
     )
 
+    if target_metric == 'area':
+        from gnn.data.utils.parsers import AVAILABLE_RESOURCES
+        from gnn.data.dataset import TARGET_AREA_METRICS
+
+        available_resources = torch.tensor(
+            [
+                AVAILABLE_RESOURCES[metric] 
+                for metric in TARGET_AREA_METRICS
+            ],
+            dtype=torch.float32,
+            device=DEVICE
+        )
+    else:
+        available_resources = None
+
     train_errors, test_errors = train_model(
         model, loss_fn, optimizer, 
         train_loader, test_loader, epochs, 
         scheduler=scheduler, 
         max_norm=max_norm,
         exp_adjust=log_transform,
-        output_dir=checkpoint_dir
+        output_dir=checkpoint_dir,
+        available_resources=available_resources
     )
 
     indices = [
@@ -458,17 +477,6 @@ def prepare_data_loaders(
         pin_memory=True
     )
     return train_loader, test_loader, train_dataset.scaling_stats
-
-
-def aggregate_qor_metrics(values: Tensor, target_metric: str) -> Tensor:
-    if target_metric == 'area':
-        return compute_snru(values, AVAILABLE_RESOURCES_TENSOR)
-    elif target_metric == 'timing':
-        return compute_time(values)
-    elif target_metric == 'power':
-        return compute_power(values)
-    else:
-        raise ValueError(f"Unsupported target metric: {target_metric}")
 
 
 def parse_arguments():

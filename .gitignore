@@ -20,8 +20,9 @@ llvm/utils/
 llvm/clang_plugins/
 
 models/
+results/
 dataset/
-data/base_solutions
+base_solutions/
 
 hls_config.tcl
 process_dataset.sh

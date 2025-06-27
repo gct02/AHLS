@@ -174,8 +174,7 @@ def extract_metrics(solution_dir, filtered=False) -> Dict[str, Union[float, int]
     return metrics
 
 
-def extract_utilization_per_module(solution_dir, filtered=False):
-    RESOURCES = ['BRAM', 'DSP', 'FF', 'LUT']
+def extract_utilization_per_operation(solution_dir, filtered=False):
     if filtered:
         rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
     else:
@@ -191,35 +190,66 @@ def extract_utilization_per_module(solution_dir, filtered=False):
     root = tree.getroot()
 
     modules = root.findall('RtlModules/RtlModule')
-    module_utilization = {}
+    op_util_dict = {}
     for module in modules:
-        module_resources = {}
-        module_type = module.get('TYPE')
-        if module_type == 'function':
-            module_name = module.get('MODULENAME')
-            local_resources = module.find('LocalResources')
-            if module_name is None or local_resources is None:
-                continue
+        if module.get('TYPE', '') != 'resource':
+            continue
 
-            for res in RESOURCES:
-                res_elem = int(local_resources.get(res, default=0))
-                module_resources[f"local_{res}"] = res_elem
-        else:
-            module_name = module.get('DISPNAME')
+        module_name = module.get('DISPNAME')
+        if module_name is None:
+            continue
 
         resources = module.find('Resources')
         if resources is None:
-            resources = module.find('LocalResources')
-            if resources is None:
-                continue
+            continue
 
-        for res in RESOURCES:
-            res_elem = int(resources.get(res, default=0))
-            module_resources[res] = res_elem
+        op_util = {}
+        for res in ['BRAM', 'DSP', 'FF', 'LUT']:
+            elem = int(resources.get(res, default=0))
+            op_util[res.lower()] = elem
 
-        module_utilization[module_name] = module_resources
+        op_util_dict[module_name] = op_util
 
-    return module_utilization
+    return op_util_dict
+
+
+def extract_utilization_per_module(solution_dir, filtered=False):
+    if filtered:
+        rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
+    else:
+        rpt_path = Path(solution_dir) / 'impl/report/verilog/export_impl.xml'
+        if not rpt_path.is_file():
+            rpt_path = Path(solution_dir) / 'impl/verilog/report/vivado_impl.xml'
+
+    if not rpt_path.is_file():
+        print(f'Utilization report not found in {solution_dir}')
+        return {}
+    
+    tree = ET.parse(rpt_path)
+    root = tree.getroot()
+
+    modules = root.findall('RtlModules/RtlModule')
+    module_util_dict = {}
+    for module in modules:
+        if module.get('TYPE', '') != 'function':
+            continue
+
+        module_name = module.get('MODULENAME')
+        if module_name is None:
+            continue
+
+        resources = module.find('Resources')
+        if resources is None:
+            continue
+
+        module_util = {}
+        for res in ['BRAM', 'DSP', 'FF', 'LUT']:
+            elem = int(resources.get(res, default=0))
+            module_util[res.lower()] = elem
+
+        module_util_dict[module_name] = module_util
+
+    return module_util_dict
 
 
 def extract_auto_dcts_from_log(hls_log_path):

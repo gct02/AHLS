@@ -15,7 +15,7 @@ from torch_geometric.nn import (
 )
 from torch_geometric.typing import Metadata, NodeType, EdgeType
 
-from gnn.data.dataset import TARGET_SIZE_PER_TYPE
+from gnn.data.dataset import METRIC_SIZES_BY_CATEGORY
 
 
 class HGTJK(nn.Module):
@@ -63,7 +63,7 @@ class HGTJK(nn.Module):
         })
 
         self.out_lin = HeteroDictLinear(
-            sum(hidden_channels[1:]),
+            sum(hidden_channels),
             out_channels,
             types=metadata[0]
         )
@@ -99,9 +99,8 @@ class HGTJK(nn.Module):
                 )
                 for nt, x in x_dict.items()
             }
-            if i > 0:
-                for nt, x in x_dict.items():
-                    xs_dict[nt].append(x)
+            for nt, x in x_dict.items():
+                xs_dict[nt].append(x)
 
         x_dict = {
             nt: self.jk_dict[nt](xs)
@@ -152,18 +151,18 @@ class HLSQoREstimator(nn.Module):
         if isinstance(heads, int):
             heads = [heads] * num_layers
 
-        # self.proj_lin_dict = HeteroDictLinear(
-        #     in_channels,
-        #     hidden_channels[0],
-        #     types=self.node_types
-        # )
-        # self.proj_ln_dict = nn.ModuleDict({
-        #     nt: LayerNorm(hidden_channels[0])
-        #     for nt in self.node_types
-        # })
+        self.proj_lin_dict = HeteroDictLinear(
+            in_channels,
+            hidden_channels[0],
+            types=self.node_types
+        )
+        self.proj_ln_dict = nn.ModuleDict({
+            nt: LayerNorm(hidden_channels[0])
+            for nt in self.node_types
+        })
 
         self.gnn = HGTJK(
-            in_channels=in_channels,
+            in_channels=hidden_channels[0],
             hidden_channels=hidden_channels,
             num_layers=num_layers,
             out_channels=hidden_channels[-1],
@@ -173,7 +172,7 @@ class HLSQoREstimator(nn.Module):
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
-            Linear(TARGET_SIZE_PER_TYPE[target_metric], 16), 
+            Linear(METRIC_SIZES_BY_CATEGORY[target_metric], 16), 
             nn.PReLU(16),
             Linear(16, 16)
         )
@@ -189,15 +188,15 @@ class HLSQoREstimator(nn.Module):
         self.graph_mlp = nn.Sequential(
             Linear(len(self.node_types) * 32 + 16, 64), 
             nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
-            Linear(64, TARGET_SIZE_PER_TYPE[target_metric])
+            Linear(64, METRIC_SIZES_BY_CATEGORY[target_metric])
         )
         self.reset_parameters()
 
     def reset_parameters(self):
         """Reinitializes model parameters."""
-        # self.proj_lin_dict.reset_parameters()
-        # for proj_ln in self.proj_ln_dict.values():
-        #     proj_ln.reset_parameters()
+        self.proj_lin_dict.reset_parameters()
+        for proj_ln in self.proj_ln_dict.values():
+            proj_ln.reset_parameters()
 
         self.gnn.reset_parameters()
 
@@ -239,16 +238,14 @@ class HLSQoREstimator(nn.Module):
         """
         batch_size = self._compute_batch_size(batch_dict)
 
-        # x_dict = self.proj_lin_dict(x_dict)
-        # x_dict = {
-        #     nt: self.proj_ln_dict[nt](
-        #         x, batch_dict[nt],
-        #         batch_size=batch_size
-        #     ) 
-        #     if x is not None else None
-        #     for nt, x in x_dict.items()
-        # }
-
+        x_dict = self.proj_lin_dict(x_dict)
+        x_dict = {
+            nt: self.proj_ln_dict[nt](
+                x, batch_dict[nt],
+                batch_size=batch_size
+            )
+            for nt, x in x_dict.items()
+        }
         x_dict = self.gnn(
             x_dict, edge_index_dict, batch_dict,
             batch_size=batch_size
@@ -257,11 +254,14 @@ class HLSQoREstimator(nn.Module):
         x_pooled_list = []
         for nt, x in x_dict.items():
             batch = batch_dict[nt]
-            x_pooled = torch.cat([
-                global_add_pool(x, batch, size=batch_size),
-                global_mean_pool(x, batch, size=batch_size),
-                global_max_pool(x, batch, size=batch_size)
-            ], dim=-1)
+            x_pooled = torch.cat(
+                [
+                    global_add_pool(x, batch, size=batch_size),
+                    global_mean_pool(x, batch, size=batch_size),
+                    global_max_pool(x, batch, size=batch_size)
+                ], 
+                dim=-1
+            )
             x_pooled_list.append(self.node_type_mlp[nt](x_pooled))
 
         x_aggr = torch.cat(x_pooled_list, dim=1)

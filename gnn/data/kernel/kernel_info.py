@@ -8,6 +8,7 @@ from typing import Optional, Dict, Union, List, Tuple
 from gnn.data.utils.xml_utils import findint, findfloat
 from gnn.data.utils.parsers import (
     extract_metrics,
+    extract_utilization_per_operation,
     extract_utilization_per_module,
     AREA_METRICS
 )
@@ -107,7 +108,8 @@ class RegionNode(Node):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str
+        function_name: str,
+        utilization: Optional[Dict[str, int]] = None
     ):
         self.id = findint(element, 'mId')
         if self.id is None:
@@ -143,6 +145,12 @@ class RegionNode(Node):
             'loop_merge': 0, 'loop_flatten': 0,
             'dataflow': 0, 'inline': 0,
         }
+        if utilization is not None:
+            for res in AREA_METRICS:
+                self.attrs[f"region_{res}"] = utilization.get(res, 0)
+        else:
+            for res in AREA_METRICS:
+                self.attrs[f"region_{res}"] = 0
 
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
@@ -393,6 +401,7 @@ class CDFG:
         root: ET.Element, 
         top_level_name: str, 
         array_md_list: List[ArrayMetadata],
+        op_util_map: Dict[str, Dict[str, int]],
         module_util_map: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
@@ -415,11 +424,13 @@ class CDFG:
         self.is_top_level = self.function_name == top_level_name
         self.function_calls = []
 
-        self._parse_nodes(cdfg, cdfg_regions, array_md_list, module_util_map)
+        self._parse_nodes(cdfg, cdfg_regions, array_md_list, 
+                          op_util_map, module_util_map)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
 
-    def _parse_nodes(self, cdfg, regions, array_md_list, module_util_map):
+    def _parse_nodes(self, cdfg, regions, array_md_list,
+                     op_util_map, module_util_map):
         if (consts := cdfg.find('consts')) is None:
             raise ValueError("CDFG does not contain 'consts' section")
         if (instrs := cdfg.find('nodes')) is None:
@@ -429,13 +440,13 @@ class CDFG:
         if (blocks := cdfg.find('blocks')) is None:
             raise ValueError("CDFG does not contain 'blocks' section")
         
-        self._process_instrs(instrs, array_md_list, module_util_map)
+        self._process_instrs(instrs, array_md_list, op_util_map)
         self._process_ports(ports, array_md_list)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(regions)
+        self._process_regions(regions, module_util_map)
 
-    def _process_instrs(self, instrs, array_md_list, module_util_map):
+    def _process_instrs(self, instrs, array_md_list, op_util_map):
         # Note: the 'nodes' section contains instructions and global variables
         # (represented as instructions with a 'GlobalMem' opcode)
         offset = self._offsets['instr']
@@ -448,7 +459,7 @@ class CDFG:
             
             name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
-            util = module_util_map.get(rtl_name) if rtl_name else None
+            util = op_util_map.get(rtl_name) if rtl_name else None
             opcode = elem.findtext('opcode', '')
 
             array_md = fetch_array_md(
@@ -503,22 +514,45 @@ class CDFG:
 
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
+        instr_offset = self._offsets['instr']
         for i, elem in enumerate(blocks.findall('item')):
             node = BlockNode(elem, self.function_name)
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
+            
             node.instrs = [
                 self._node_id_map[instr_id][0]
                 for instr_id in node.instrs
                 if instr_id in self._node_id_map
             ]
             node.attrs = {'num_instrs': len(node.instrs)}
+
+            resource_util_sum = {res: 0 for res in AREA_METRICS}
+            num_loads = 0
+            num_stores = 0
+            for instr_id in node.instrs:
+                instr_node = self.nodes['instr'][instr_id - instr_offset]
+                for res in AREA_METRICS:
+                    resource_util_sum[res] += instr_node.attrs.get(res, 0)
+                if instr_node.opcode.startswith('load'):
+                    num_loads += 1
+                elif instr_node.opcode.startswith('store'):
+                    num_stores += 1
+
+            for res, value in resource_util_sum.items():
+                node.attrs[f"{res}_sum"] = value
+            node.attrs['num_loads'] = num_loads
+            node.attrs['num_stores'] = num_stores
+
             self.nodes['block'].append(node)
 
-    def _process_regions(self, regions):
+    def _process_regions(self, regions, module_util_map):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            node = RegionNode(elem, self.function_name)
+            name = elem.findtext('mTag', self.function_name)
+            utilization = module_util_map.get(name, None)
+            node = RegionNode(elem, self.function_name,
+                              utilization=utilization)
             node.id += offset - 1
             node.sub_regions = [
                 sub_region_id + offset - 1
@@ -624,6 +658,9 @@ class VitisKernelInfo:
 
         # Parse post-implementation QoR metrics (design and module-level)
         self.qor_metrics = extract_metrics(solution_dir, filtered=filtered)
+        self.op_util_map = extract_utilization_per_operation(
+            solution_dir, filtered=filtered
+        )
         self.module_util_map = extract_utilization_per_module(
             solution_dir, filtered=filtered
         )
@@ -677,6 +714,7 @@ class VitisKernelInfo:
                 root=root, 
                 top_level_name=self.top_level_name, 
                 array_md_list=self.array_md, 
+                op_util_map=self.op_util_map,
                 module_util_map=self.module_util_map,
                 offsets=self._offsets
             )
@@ -763,7 +801,7 @@ class VitisKernelInfo:
             'name': self.benchmark_name,
             'top_level_name': self.top_level_name,
             'qor_metrics': self.qor_metrics,
-            'utilization': self.module_util_map,
+            'utilization': self.op_util_map,
             'cdfgs': {
                 name: cdfg.as_dict() 
                 for name, cdfg in self._cdfgs.items()

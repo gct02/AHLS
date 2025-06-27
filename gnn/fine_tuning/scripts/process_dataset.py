@@ -1,12 +1,11 @@
 import argparse
 import json
 import pickle
+import sys
 from pathlib import Path
 from typing import Dict
 
-import torch
-
-from gnn.data.graph import build_hls_graph_data
+from gnn.data.graph import update_with_directives
 from gnn.data.utils.parsers import (
     extract_metrics,
     export_directives_as_tcl
@@ -19,6 +18,17 @@ def main(args: Dict[str, str]):
     filtered = args['filtered']
     vitis_kernel_info_path = Path(args['vitis_kernel_info'])
 
+    if not dataset_dir.exists() or not dataset_dir.is_dir():
+        print(f"Dataset directory {dataset_dir} does not exist or is not a directory.")
+        sys.exit(1)
+
+    if not vitis_kernel_info_path.exists():
+        print(f"Vitis kernel info file {vitis_kernel_info_path} does not exist.")
+        sys.exit(1)
+
+    if not output_dir.exists():
+        output_dir.mkdir(parents=True, exist_ok=True)
+
     with open(vitis_kernel_info_path, "rb") as f:
         kernel_info = pickle.load(f)
 
@@ -27,9 +37,7 @@ def main(args: Dict[str, str]):
         raw_output_dir.mkdir(parents=True, exist_ok=True)
         
     for sol in dataset_dir.iterdir():
-        if (not sol.is_dir() 
-            or not sol.name.startswith("solution")
-            or sol.name == "solution0"):
+        if not sol.is_dir() or not sol.name.startswith("solution"):
             continue
 
         hls_log_path = sol / f"{sol.name}.log"
@@ -41,9 +49,7 @@ def main(args: Dict[str, str]):
         if not dct_tcl_path.exists():
             hls_data_json_path = sol / f"{sol.name}.json"
             if not hls_data_json_path.exists():
-                print(
-                    f"Neither directives.tcl nor {sol.name}.json found in {sol}"
-                )
+                print(f"Neither directives.tcl nor {sol.name}.json found in {sol}")
                 continue
             export_directives_as_tcl(hls_data_json_path, dct_tcl_path)
 
@@ -54,11 +60,12 @@ def main(args: Dict[str, str]):
         with open(sol_out_dir / "metrics.json", "w") as f:
             json.dump(metrics, f, indent=2)
 
-        data = build_hls_graph_data(
+        data = update_with_directives(
             kernel_info, dct_tcl_path,
-            solution_log_path=hls_log_path
+            vitis_log_path=hls_log_path
         )
-        torch.save(data, sol_out_dir / "graph.pt")
+        with open(sol_out_dir / "vitis_kernel_info.pkl", "wb") as f:
+            pickle.dump(data, f)
 
 
 def parse_args():

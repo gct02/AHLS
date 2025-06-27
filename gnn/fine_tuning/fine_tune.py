@@ -1,8 +1,9 @@
 import os
-import pickle
 import json
+import random
 from typing import Dict
 
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
@@ -13,7 +14,6 @@ from torch_geometric.nn import LayerNorm
 from gnn.models import HLSQoREstimator
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
 
-
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
@@ -23,20 +23,20 @@ def fine_tune(
     optimizer: torch.optim.Optimizer,
     loader: DataLoader,
     epochs: int,
-    max_norm: float = 10.0
+    max_norm: float = 5.0
 ):
     model.train()
     for _ in range(epochs):
-        for batch in loader:
+        for data in loader:
             optimizer.zero_grad()
-            batch = batch.to(DEVICE)
+            data = data.to(DEVICE)
             pred = model(
-                batch.x_dict,
-                batch.edge_index_dict,
-                batch.batch_dict,
-                batch.y_base
+                data.x_dict,
+                data.edge_index_dict,
+                data.batch_dict,
+                data.y_base
             )
-            loss = loss_fn(pred, batch.y)
+            loss = loss_fn(pred, data.y)
             loss.backward()
             clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
@@ -45,98 +45,113 @@ def fine_tune(
 def prepare_data_loader(
     dataset_dir: str, 
     target_metric: str,
-    base_metrics_path: str,
-    scale_features: bool = True,
-    feature_ranges: Dict[str, tuple] = None
+    batch_size: int = 16,
+    scaling_stats: Dict[str, Dict[str, float]] = None,
+    log_transform: bool = False
 ) -> DataLoader:
     dataset = HLSFineTuningDataset(
         root=dataset_dir,
-        metric=target_metric, 
-        base_metrics_path=base_metrics_path,
-        scale_features=scale_features,
-        feature_ranges=feature_ranges
+        target_metric=target_metric, 
+        standardize=True,
+        scaling_stats=scaling_stats,
+        log_transform=log_transform
     )
     loader = DataLoader(
         dataset, 
-        batch_size=16, 
-        shuffle=True
+        batch_size=batch_size, 
+        shuffle=True,
+        num_workers=4,
+        pin_memory=True
     )
     return loader
 
 
-def load_model(
-    model_path: str, 
-    model_args_path: str
-) -> nn.Module:
+def load_model(model_path: str, model_args_path: str) -> nn.Module:
     with open(model_args_path, 'r') as f:
         model_args = json.load(f)
 
     metadata = model_args["metadata"]
-    node_types = metadata[0]
-    edge_types = metadata[1]
-    edge_type_tuples = [(et[0], et[1], et[2]) for et in edge_types]
-    model_args["metadata"] = (node_types, edge_type_tuples)
-
-    # model_args["dropout_gnn"] = 0.0
-    model_args["dropout_mlp"] = 0.0
-    
+    model_args["metadata"] = (
+        metadata[0], 
+        [(et[0], et[1], et[2]) for et in metadata[1]]
+    )
     model = HLSQoREstimator(**model_args)
-    model.load_state_dict(torch.load(model_path, map_location=DEVICE))
-    return model.to(DEVICE)
+    model.load_state_dict(
+        torch.load(model_path, map_location=DEVICE)
+    )
+    return model
 
 
 def main(args: Dict[str, str]):
     dataset_dir = args.get("dataset_dir")
     model_path = args.get("model")
     model_args_path = args.get("model_args")
-    base_metrics_path = args.get("base_metrics")
-    pretraining_args_path = args.get("pretraining_args", "")
-    feature_ranges_path = args.get("feature_ranges", "")
-    target_metric = args.get("target", "snru")
+    pretraining_args_path = args.get("pretraining_args")
+    scaling_stats_path = args.get("scaling_stats")
+    batch_size = int(args.get("batch_size", 16))
     epochs = int(args.get("epochs", 15))
-    lr = float(args.get("learning_rate", 1e-5))
     output_dir = args.get("output_dir", "")
+    lr = float(args.get("learning_rate", 1e-5))
 
     if not dataset_dir or not model_path or not model_args_path:
         raise ValueError("Dataset directory, model path and model args path are required.")
+    
+    if not pretraining_args_path or not os.path.exists(pretraining_args_path):
+        raise ValueError("Pretraining arguments file does not exist.")
+    
+    if scaling_stats_path:
+        with open(scaling_stats_path, 'r') as f:
+            scaling_stats = json.load(f)
+    else:
+        scaling_stats = None
 
     if not output_dir:
         output_dir = os.path.dirname(model_path)
-
-    if feature_ranges_path:
-        scale_features = True
-        with open(feature_ranges_path, 'rb') as f:
-            feature_ranges = pickle.load(f)
-        if not isinstance(feature_ranges, dict):
-            raise ValueError("Feature ranges must be a dictionary.")
-    else:
-        scale_features = False
-        feature_ranges = None
     
+    with open(pretraining_args_path, 'r') as f:
+        pretraining_args = json.load(f)
+
+    target_metric = pretraining_args.get('target')
+    if not target_metric:
+        raise ValueError("Target metric must be specified in pretraining arguments.")
+
+    betas = pretraining_args.get('betas', (0.9, 0.999))
+    weight_decay = pretraining_args.get('weight_decay', 1e-4)
+    max_norm = pretraining_args.get('max_norm', 5.0)
+    log_transform = pretraining_args.get('log_transform', False)
+    seed = pretraining_args.get('seed', 42)
+    loss = pretraining_args.get('loss', 'l1')
+
+    set_random_seeds(seed)
+
     # Load the dataset
     loader = prepare_data_loader(
-        dataset_dir, target_metric, base_metrics_path,
-        scale_features=scale_features,
-        feature_ranges=feature_ranges
+        dataset_dir, target_metric,
+        batch_size=batch_size,
+        scaling_stats=scaling_stats,
+        log_transform=log_transform
     )
     
     # Load the model
-    model = load_model(model_path, model_args_path)
+    model = load_model(model_path, model_args_path).to(DEVICE)
 
-    if pretraining_args_path:
-        with open(pretraining_args_path, 'r') as f:
-            pretraining_args = json.load(f)
-
-        betas = pretraining_args.get('betas', (0.9, 0.999))
-        weight_decay = pretraining_args.get('weight_decay', 1e-4)
-        max_norm = pretraining_args.get('max_norm', 10.0)
-    else:
-        betas = (0.9, 0.999)
-        weight_decay = 1e-4
-        max_norm = 10.0
-
+    # Set model to training mode and enable gradients for fine-tuning
+    model.train()
     for param in model.parameters():
-        param.requires_grad = True
+        param.requires_grad = False
+
+    # for module in model.modules():
+    #     if isinstance(module, (nn.LayerNorm, LayerNorm)):
+    #         for param in module.parameters():
+    #             param.requires_grad = True
+
+    for module in model.graph_mlp.modules():
+        for param in module.parameters():
+            param.requires_grad = True
+
+    for module in model.y_base_mlp.modules():
+        for param in module.parameters():
+            param.requires_grad = True
 
     grouped_params = get_optimizer_param_groups(model, weight_decay)
 
@@ -145,10 +160,8 @@ def main(args: Dict[str, str]):
         lr=lr,
         betas=betas
     )
+    loss_fn = nn.L1Loss()
 
-    loss_fn = nn.MSELoss()
-    
-    # Fine-tune the model
     fine_tune(
         model=model,
         loss_fn=loss_fn,
@@ -157,10 +170,8 @@ def main(args: Dict[str, str]):
         epochs=epochs,
         max_norm=max_norm
     )
-
     model_name = os.path.basename(model_path).split('.')[0]
     new_model_path = os.path.join(output_dir, f"{model_name}_fine_tuned.pt")
-
     torch.save(model.state_dict(), new_model_path)
     print(f"Fine-tuned model saved to {new_model_path}")
 
@@ -175,11 +186,13 @@ def get_optimizer_param_groups(model, weight_decay_val):
     
     no_decay_param_names = set()
 
-    # Find all modules that are PReLU or LayerNorm and add their parameters to the exclusion set
+    # Find all modules that are PReLU or LayerNorm and add 
+    # their parameters to the exclusion set
     for module_name, module in model.named_modules():
         if isinstance(module, (nn.PReLU, nn.LayerNorm, LayerNorm)):
             for param_name, _ in module.named_parameters():
-                # Add the full parameter name like "gnn.convs.0.norm_dict.instr.weight"
+                # Add the full parameter name like 
+                # "gnn.convs.0.norm_dict.instr.weight"
                 no_decay_param_names.add(f"{module_name}.{param_name}")
 
     # Also add all bias terms to the exclusion set
@@ -210,6 +223,13 @@ def get_optimizer_param_groups(model, weight_decay_val):
     return optimizer_grouped_parameters
 
 
+def set_random_seeds(seed: int):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+
 
 if __name__ == "__main__":
     import argparse
@@ -221,20 +241,18 @@ if __name__ == "__main__":
                         help="Path to the pre-trained model.")
     parser.add_argument("-ma", "--model_args", type=str, required=True, 
                         help="Path to the serialized model arguments.")
-    parser.add_argument("-bm", "--base_metrics", type=str, required=True,
-                        help="Path to the reported metrics of the base solution.")
     parser.add_argument("-pa", "--pretraining_args", type=str, required=True,
                         help="Path to the arguments used for pre-training the model.")
-    parser.add_argument("-fr", "--feature_ranges", type=str, default="",
-                        help="Path to the serialized feature ranges for min-max scaling.")
-    parser.add_argument("-t", "--target", type=str, default="snru", 
-                        help="Target metric for fine-tuning.")
-    parser.add_argument("-e", "--epochs", type=int, default=10, 
+    parser.add_argument("-ss", "--scaling_stats", type=str, required=True,
+                        help="Path to the statistics for standardization.")
+    parser.add_argument("-e", "--epochs", type=int, default=15, 
                         help="Number of epochs for fine-tuning.")
-    parser.add_argument("-lr", "--learning_rate", type=float, default=1e-5,
-                        help="Learning rate for the optimizer.")
+    parser.add_argument("-bs", "--batch_size", type=int, default=16,
+                        help="Batch size for fine-tuning.")
     parser.add_argument("-o", "--output_dir", type=str, default="", 
                         help="Directory to save the fine-tuned model.")
-
+    parser.add_argument("-lr", "--learning_rate", type=float, default=1e-5,
+                        help="Learning rate for the optimizer.")
+    
     args = vars(parser.parse_args())
     main(args)

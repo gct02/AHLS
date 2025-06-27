@@ -1,14 +1,14 @@
 import os
 import json
 import shutil
+import sys
 import pickle
 
 import numpy as np
 
 from gnn.data.graph import find_region_node
 from gnn.data.kernel.kernel_info import VitisKernelInfo
-from gnn.data.utils.parsers import parse_tcl_directives_file
-
+from gnn.data.utils.parsers import parse_tcl_directives
 
 DIRECTIVES = {
     "pipeline", "unroll", "array_partition", 
@@ -81,6 +81,9 @@ def filter_solutions(
 
     if not os.path.exists(dct_config_path):
         raise ValueError(f"Directive configuration file not found: {dct_config_path}")
+    
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     filtered_dct_groups = extract_critical_dct_groups(dct_config_path, kernel_info)
     critical_dct_count = {}
@@ -94,7 +97,7 @@ def filter_solutions(
         if not os.path.exists(dct_file):
             continue
 
-        dcts = parse_tcl_directives_file(dct_file)
+        dcts = parse_tcl_directives(dct_file)
         critical_dcts = 0
 
         for dct_type, dct in dcts:
@@ -141,13 +144,28 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dct_config_path", type=str, required=True, 
                         help="Path to the directive configuration file.")
     parser.add_argument("-k", "--kernel_info_path", type=str, required=True, 
-                        help="Path to the kernel info JSON file.")
+                        help="Path to the file containing the serialized kernel info.")
     parser.add_argument("-o", "--output_dir", type=str, required=True, 
                         help="Directory to save filtered solutions.")
     parser.add_argument("-n", "--num_solutions", type=int, default=30, 
                         help="Number of solutions to keep.")
 
     args = parser.parse_args()
+
+    if not os.path.exists(args.benchmark_dir):
+        print(f"Benchmark directory {args.benchmark_dir} does not exist.")
+        sys.exit(1)
+
+    if not os.path.exists(args.dct_config_path):
+        print(f"Directive configuration file {args.dct_config_path} does not exist.")
+        sys.exit(1)
+
+    if not os.path.exists(args.kernel_info_path):
+        print(f"Kernel info file {args.kernel_info_path} does not exist.")
+        sys.exit(1)
+
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
 
     with open(args.kernel_info_path, "rb") as f:
         kernel_info = pickle.load(f)

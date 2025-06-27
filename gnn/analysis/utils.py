@@ -478,3 +478,18 @@ def compute_power(power_metrics: Tensor) -> Tensor:
             f"Expected power metrics with 2 values, got {power_metrics.size(1)}"
         )
     return torch.sum(power_metrics, dim=1)
+
+
+def aggregate_qor_metrics(
+    values: Tensor, 
+    target_metric: str,
+    available_resources: Optional[Tensor] = None
+) -> Tensor:
+    if target_metric == 'area':
+        return compute_snru(values, available_resources)
+    elif target_metric == 'timing':
+        return compute_time(values)
+    elif target_metric == 'power':
+        return compute_power(values)
+    else:
+        raise ValueError(f"Unsupported target metric: {target_metric}")
