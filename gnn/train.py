@@ -171,7 +171,8 @@ def train_model(
                 loader=test_loader, 
                 epoch=epoch,
                 exp_adjust=exp_adjust,
-                output_dir=output_dir
+                output_dir=output_dir,
+                available_resources=available_resources
             )
             test_mapes.append(test_mape)
 
