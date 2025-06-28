@@ -227,6 +227,7 @@ class HLSDataset(Dataset):
         if self.log_transform:
             for metric in TARGET_AREA_METRICS:
                 log_scaling_keys.append(metric)
+                log_scaling_keys.append(f'{metric}_sum')
             
         for nodes in kernel_info.nodes.values():
             for node in nodes:
@@ -272,12 +273,11 @@ def compute_scaling_stats(
         'num_getelementptrs': [],
         'num_phis': [],
         'num_calls': [],
-
-        'lut': [],
-        'ff': [],
-        'dsp': [],
-        'bram': []
     }
+    for metric in TARGET_AREA_METRICS:
+        numerical_feats[metric] = []
+        numerical_feats[f'{metric}_sum'] = []
+
     log_scaling_keys = [
         'trip_count', 'latency', 'ii', 'dims',
         'num_instrs', 'num_loads', 'num_stores',
@@ -287,6 +287,7 @@ def compute_scaling_stats(
     if log_transform:
         for metric in TARGET_AREA_METRICS:
             log_scaling_keys.append(metric)
+            log_scaling_keys.append(f'{metric}_sum')
 
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))

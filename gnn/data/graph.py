@@ -39,11 +39,12 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 FEATURE_SIZE_BY_TYPE = {
-    "instr": 85, 
+    "instr": 69, 
     "port": 25,
     "const": 5,
     "region": 18,
-    "block": 7
+    "block": 14,
+    "array": 24
 }
 
 
@@ -155,32 +156,24 @@ def to_hetero_data(
     return data
 
 
-def find_array_node(kernel_info, array_name, function_name, ret_node_type=False):
+def find_array_node(
+    kernel_info, array_name, function_name, 
+    ret_node_type=False
+):
     if function_name:
-        for node in kernel_info.nodes.get('port', []):
-            if (node.name == array_name 
-                and node.attrs.get('array_partition', 0) == 0
-                and node.function_name == function_name):
-                return (node, 'port') if ret_node_type else node
-            
-    for node in kernel_info.nodes.get('instr', []):
-        if (node.opcode in ['alloca', 'GlobalMem']
-            and node.name == array_name 
-            and node.attrs.get('array_partition', 0) == 0
-            and node.function_name == function_name):
-            return (node, 'instr') if ret_node_type else node
-        
+        for nt in ['port', 'array']:
+            for node in kernel_info.nodes.get(nt, []):
+                if (node.name == array_name 
+                    and node.function_name == function_name
+                    and node.attrs.get('array_partition', 0) == 0):
+                    return (node, nt) if ret_node_type else node
+
     # If not found, search for array_name only
-    for node in kernel_info.nodes.get('port', []):
-        if (node.name == array_name 
-            and node.attrs.get('array_partition', 0) == 0):
-            return (node, 'port') if ret_node_type else node
-        
-    for node in kernel_info.nodes.get('instr', []):
-        if (node.opcode in ['alloca', 'GlobalMem']
-            and node.name == array_name 
-            and node.attrs.get('array_partition', 0) == 0):
-            return (node, 'instr') if ret_node_type else node
+    for nt in ['port', 'array']:
+        for node in kernel_info.nodes.get(nt, []):
+            if (node.name == array_name 
+                and node.attrs.get('array_partition', 0) == 0):
+                return (node, nt) if ret_node_type else node
 
     return (None, None) if ret_node_type else None
 
@@ -202,15 +195,15 @@ def update_with_directives(
     solution_dct_tcl_path: str,
     vitis_log_path: Optional[str] = None
 ) -> VitisKernelInfo:
-    # def unroll_pipelined_subloops(loop_node):
-    #     """Completely unroll all subloops of a pipelined loop."""
-    #     for sub_region in loop_node.sub_regions:
-    #         node = kernel_info.nodes['region'][sub_region]
-    #         if node.is_loop:
-    #             trip_count = max(1, node.attrs.get("max_trip_count", 0))
-    #             node.attrs["unroll_factor"] = trip_count
-    #             node.attrs["unroll"] = 1
-    #         unroll_pipelined_subloops(node)
+    def unroll_pipelined_subloops(loop_node):
+        """Completely unroll all subloops of a pipelined loop."""
+        for sub_region in loop_node.sub_regions:
+            node = kernel_info.nodes['region'][sub_region]
+            if node.is_loop:
+                trip_count = node.attrs.get("max_trip_count", 0)
+                node.attrs["unroll_factor"] = trip_count
+                node.attrs["unroll"] = 1
+            unroll_pipelined_subloops(node)
 
     kernel_info = deepcopy(base_kernel_info)
     directives = parse_tcl_directives(solution_dct_tcl_path)
@@ -265,10 +258,10 @@ def update_with_directives(
                       f"(function '{function_name}') not found in nodes.")
                 continue
 
-            # if dct == "pipeline" and region_node.is_loop:
-            #     # Pipeline pragma in a loop implies the complete
-            #     # unrolling of all its subloops (if any)
-            #     unroll_pipelined_subloops(region_node)
+            if dct == "pipeline" and region_node.is_loop:
+                # Pipeline pragma in a loop implies the complete
+                # unrolling of all its subloops (if any)
+                unroll_pipelined_subloops(region_node)
 
             if dct == "unroll" and region_node.attrs.get("unroll", 0) == 0:
                 unroll_factor = int(args.get("factor", 0))
@@ -307,8 +300,8 @@ def update_with_directives(
                 for node in kernel_info.nodes.get('region', []):
                     if node.name == loop_name:
                         node.attrs["pipeline"] = 1
-                        # if node.is_loop:
-                        #     unroll_pipelined_subloops(node)
+                        if node.is_loop:
+                            unroll_pipelined_subloops(node)
                         break
 
     return kernel_info
@@ -368,30 +361,36 @@ def plot_data(
     from matplotlib.patches import Patch
 
     node_color_dict = {
-        "instr": "#419ada",
-        "port": "#1ecf89",
-        "const": "#aa6df0",
-        "block": "#c9a24e",
-        "region": "#d84c4c",
+        "instr": "#449ad8",
+        "port": "#1ac983",
+        "const": "#9a59e4",
+        "array": "#f06db9",
+        "block": "#c99d3e",
+        "region": "#d84c4c"
     }
     edge_color_dict = {
-        ("const", "data", "instr"): "#5fdde0",
-        ("instr", "data", "instr"): "#00bcd4",
-        ("port", "data", "instr"): "#00a1b3",
+        ("const", "data", "instr"): "#4bd2d4",
+        ("instr", "data", "instr"): "#27a4b4",
+        ("port", "data", "instr"): "#1f8a96",
+        ('array', 'data', 'instr'): "#057581",
+        ("instr", "alloca", "array"): "#f06db9",
+        ("instr", "store", "array"): "#c01579",
+        ("instr", "store", "instr"): "#c01579",
+        ("instr", "store", "port"): "#c01579",
         ("instr", "data", "const"): "#249741",
         ("port", "data", "const"): "#249741",
-        ("block", "control", "instr"): "#ddb753",
-        ("block", "control", "block"): "#ddb753",
+        ('array', 'data', 'const'): "#249741",
+        ("block", "control", "instr"): "#c5882d",
+        ("block", "control", "block"): "#c5882d",
         ("instr", "mem", "instr"): "#e73939",
         ("instr", "call", "instr"): "#8040c9",
-        ("region", "hrchy", "region"): "#aab2b9",
-        ("region", "hrchy", "block"): "#aab2b9",
-        ("block", "hrchy", "instr"): "#aab2b9"
+        ("region", "hrchy", "region"): "#979b9e",
+        ("region", "hrchy", "block"): "#979b9e",
+        ("block", "hrchy", "instr"): "#979b9e"
     }
-    
     if plt_type == "full":
-        edge_types = node_color_dict.keys()
-        node_types = edge_color_dict.keys()
+        edge_types = edge_color_dict.keys()
+        node_types = node_color_dict.keys()
     else:
         edge_types = [
             et for et in edge_color_dict.keys() 
@@ -401,48 +400,50 @@ def plot_data(
         for et in edge_types:
             node_types.add(et[0])
             node_types.add(et[2])
-        node_types = list(node_types)
 
     filtered_data = HeteroData()
-    for nt, x in data.x_dict.items():
-        if nt not in node_types:
-            x = torch.empty((0, FEATURE_SIZE_BY_TYPE[nt]), 
-                            dtype=torch.float32)
-        filtered_data[nt].x = x
-        filtered_data[nt].label = data[nt].label
-
+    node_indices = {nt: set() for nt in node_types}
     for et, edge_index in data.edge_index_dict.items():
-        if et not in edge_types:
-            edge_index = torch.empty((2, 0), dtype=torch.long)
-        filtered_data[et].edge_index = edge_index
+        if et in edge_types:
+            filtered_data[et].edge_index = edge_index
+            node_indices[et[0]].update(edge_index[0].tolist())
+            node_indices[et[2]].update(edge_index[1].tolist())
+
+    node_indices = {
+        nt: list(indices) 
+        for nt, indices in node_indices.items()
+    }
+    for nt, x in data.x_dict.items():
+        if nt in node_types:
+            if len(node_indices[nt]) == 0:
+                filtered_data[nt].x = torch.empty(
+                    (0, x.size(1)), dtype=x.dtype
+                )
+                filtered_data[nt].label = []
+            else:
+                filtered_data[nt].x = x[node_indices[nt]]
+                filtered_data[nt].label = [
+                    data[nt].label[i] 
+                    for i in node_indices[nt]
+                ]
 
     G = to_networkx(
         data=filtered_data, 
         node_attrs=['x', 'label'], 
         remove_self_loops=True
     )
-    
     ncolors, nlabels = [], {}
     for node, attrs in G.nodes(data=True):
-        nt = attrs.get("type")
-        if nt is None:
+        if (nt := attrs.get("type")) is None:
             continue
-        ncolor = node_color_dict.get(nt)
-        if ncolor is None:
-            print(f"Warning: No color defined for node type '{nt}'")
-            ncolor = "#FFFFFF"
-        ncolors.append(ncolor)
-        nlabels[node] = attrs["label"]
+        ncolors.append(node_color_dict.get(nt, "#ffffff"))
+        nlabels[node] = attrs.get("label", "")
 
     ecolors = []
     for src, dst, attrs in G.edges(data=True):
-        et = attrs.get("type")
-        if et is None:
+        if (et := attrs.get("type")) is None:
             continue
-        ecolor = edge_color_dict.get(et)
-        if ecolor is None:
-            print(f"Warning: No color defined for edge type '{et}'")
-            ecolor = "#FFFFFF"
+        ecolor = edge_color_dict.get(et, "#ffffff")
         ecolors.append(ecolor)
         G.edges[src, dst]["color"] = ecolor
 
@@ -457,15 +458,15 @@ def plot_data(
         if et in edge_types
     ]
 
-    if plt_type in ["full", "data", "hrchy"] and not batched:
-        # Non-batched large graphs
-        pos = nx.kamada_kawai_layout(G, scale=2)
-    elif plt_type in ["mem", "call", "alloca"]:
-        # Small graphs (batched or not)
-        pos = nx.planar_layout(G, scale=2)
+    if plt_type in ["full", "data", "control", "hrchy", "hrchy_rev"]:
+        # Large graphs
+        if batched:
+            pos = nx.spring_layout(G, scale=2)
+        else:
+            pos = nx.kamada_kawai_layout(G, scale=2)
     else:
-        # Batched large graphs
-        pos = nx.spring_layout(G, scale=2)
+        # Small graphs
+        pos = nx.planar_layout(G, scale=2)
 
     plt.figure(figsize=(12, 8))
     nx.draw_networkx(
@@ -475,7 +476,7 @@ def plot_data(
     )
     plt.legend(
         handles=node_legend + edge_legend, loc='lower center', 
-        bbox_to_anchor=(0.5, -0.1), ncol=3, fontsize=8, frameon=False
+        bbox_to_anchor=(0.5, -0.13), ncol=3, fontsize=8, frameon=False
     )
     plt.show()
     
@@ -485,25 +486,20 @@ if __name__ == "__main__":
 
     parser = ArgumentParser()
     parser.add_argument("solution_dir", nargs=1, type=str)
-    parser.add_argument("-t", "--top-fn")
-    parser.add_argument("-d", "--directive-config-dir")
-    parser.add_argument("-k", "--kernel", default="")
+    parser.add_argument("-t", "--top-level")
+    parser.add_argument("-b", "--benchmark", default="")
     parser.add_argument("-p", "--plot-type", default="full")
     parser.add_argument("-f", "--filtered", action="store_true")
     args = parser.parse_args()
 
     sol_dir = args.solution_dir[0]
-    top_fn_name = args.top_fn
-    dct_config_dir = args.directive_config_dir
-    kernel_name = args.kernel
+    top_fn_name = args.top_level
+    kernel_name = args.benchmark
     plt_type = args.plot_type
     filtered = args.filtered
 
-    sol_info_list = [(sol_dir, kernel_name, top_fn_name)]
-
     kernel_info = extract_base_kernel_info(
-        solution_info_list=sol_info_list, 
-        hls_dct_config_dir=dct_config_dir,
+        solution_info_list=[(sol_dir, kernel_name, top_fn_name)], 
         filtered=filtered
     )[kernel_name]
 
