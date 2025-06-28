@@ -329,7 +329,10 @@ def main(args: Dict[str, Any]):
             target = torch.expm1(data.y)
         else:
             target = data.y
-        target = aggregate_qor_metrics(target, target_metric)
+        target = aggregate_qor_metrics(
+            target, target_metric,
+            available_resources=available_resources
+        )
         targets.extend(target.tolist())
 
     with open(f"{model_info_dir}/predictions.csv", 'w') as f:

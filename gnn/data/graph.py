@@ -42,7 +42,7 @@ FEATURE_SIZE_BY_TYPE = {
     "instr": 85, 
     "port": 25,
     "const": 5,
-    "region": 22,
+    "region": 18,
     "block": 7
 }
 

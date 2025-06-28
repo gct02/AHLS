@@ -77,10 +77,10 @@ class HLSDataset(Dataset):
                 print(f"Skipping {benchmark} (missing metrics in base solution)")
                 continue
 
-            base_target = []
-            for metric in self.evaluation_metrics:
-                base_target.append(float(base_metrics[metric]))
-            base_target = torch.tensor(base_target).unsqueeze(0)
+            base_target = torch.tensor([
+                float(base_metrics[metric]) 
+                for metric in self.evaluation_metrics
+            ]).unsqueeze(0)
             if self.log_transform:
                 base_target = torch.log1p(base_target)
             
@@ -88,7 +88,6 @@ class HLSDataset(Dataset):
             self.benchmarks.append(benchmark)
 
         self.standardize = standardize
-        self.scaling_stats = None
         if standardize:
             if not scaling_stats:
                 scaling_stats = compute_scaling_stats(
@@ -97,9 +96,12 @@ class HLSDataset(Dataset):
                     log_transform=log_transform
                 )
             self.scaling_stats = scaling_stats
+        else:
+            self.scaling_stats = None
 
         self._raw_file_names = []
         self._processed_file_names = []
+
         super(HLSDataset, self).__init__(self.root, **kwargs)
     
     @property
@@ -168,10 +170,10 @@ class HLSDataset(Dataset):
                     print(f"Skipping {idx} (missing metrics)")
                     continue
 
-                target = []
-                for metric in self.evaluation_metrics:
-                    target.append(float(metrics[metric]))
-                target = torch.tensor(target).unsqueeze(0)
+                target = torch.tensor([
+                    float(metrics[metric]) 
+                    for metric in self.evaluation_metrics
+                ]).unsqueeze(0)
                 if self.log_transform:
                     target = torch.log1p(target)
 
@@ -202,42 +204,41 @@ class HLSDataset(Dataset):
         return data 
     
     def _standardize_features(self, kernel_info: VitisKernelInfo):
-        TO_LOG_TRANSFORM_KEYS = [
-            'min_trip_count', 'max_trip_count',
-            'min_latency', 'max_latency', 'ii' 'dims',
-            'num_instrs', 'num_loads', 'num_stores',
-            'unroll_factor', 'partition_factor'
-        ]
-        if self.log_transform:
-            for area_metric in TARGET_AREA_METRICS:
-                TO_LOG_TRANSFORM_KEYS.append(area_metric)
-                TO_LOG_TRANSFORM_KEYS.append(f"{area_metric}_sum")
-                TO_LOG_TRANSFORM_KEYS.append(f"region_{area_metric}")
-
         def log_transform(value):
             if isinstance(value, (list, tuple)):
                 return [math.log1p(float(v)) for v in value]
             else:
                 return math.log1p(float(value))
             
-        def scale(key, value, mean, std):
-            if key in TO_LOG_TRANSFORM_KEYS:
-                 value = log_transform(value)
+        def scale(value, mean, std):
             if isinstance(value, (list, tuple)):
                 return [(float(v) - mean) / std for v in value]
             else:
                 return (float(value) - mean) / std
             
-        for nt, nodes in kernel_info.nodes.items():
+        log_scaling_keys = [
+            'min_trip_count', 'max_trip_count',
+            'min_latency', 'max_latency', 'ii',
+            'num_instrs', 'num_loads', 'num_stores',
+            'num_allocas', 'num_getelementptrs', 
+            'num_phis', 'num_calls', 'dims',
+            'unroll_factor', 'partition_factor'
+        ]
+        if self.log_transform:
+            for metric in TARGET_AREA_METRICS:
+                log_scaling_keys.append(metric)
+            
+        for nodes in kernel_info.nodes.values():
             for node in nodes:
                 for key, value in node.attrs.items():
-                    if key not in self.scaling_stats:
-                        continue
-                    mean = self.scaling_stats[key]['mean']
-                    std = self.scaling_stats[key]['std']
-                    if std == 0:
-                        std = 1
-                    node.attrs[key] = scale(key, value, mean, std)
+                    if key in log_scaling_keys:
+                        value = log_transform(value)
+                    if key in self.scaling_stats:
+                        mean = self.scaling_stats[key]['mean']
+                        std = self.scaling_stats[key]['std']
+                        if std < 1e-8:
+                            std = 1.0
+                        node.attrs[key] = scale(value, mean, std)
 
 
 def compute_scaling_stats(
@@ -245,23 +246,47 @@ def compute_scaling_stats(
     benchmarks: Optional[Union[str, List[str]]] = None,
     log_transform: bool = False
 ) -> Dict[str, Dict[str, float]]:
-    feature_values = {
+    """Compute statistics (mean and std deviation) for numerical features in the dataset.
+    Args:
+        dataset_dir (str): Path to the dataset directory.
+        benchmarks (Optional[Union[str, List[str]]]): Specific benchmarks to compute stats for.
+        log_transform (bool): Whether to apply log transformation to certain metrics.
+    Returns:
+        Dict[str, Dict[str, float]]: Scaling statistics for each numerical feature.
+    """
+    numerical_feats = {
         'primitive_bitwidth': [],
-        'dims': [],
         'delay': [],
-        'trip_count': [],
-        'latency': [],
+        'dims': [],
+        'partition_factor': [],
+
         'ii': [],
+        'latency': [],
+        'trip_count': [],
+        'unroll_factor': [],
+
         'num_instrs': [],
         'num_loads': [],
         'num_stores': [],
-        'unroll_factor': [],
-        'partition_factor': [],
+        'num_allocas': [],
+        'num_getelementptrs': [],
+        'num_phis': [],
+        'num_calls': [],
+
+        'lut': [],
+        'ff': [],
+        'dsp': [],
+        'bram': []
     }
-    for area_metric in TARGET_AREA_METRICS:
-        feature_values[area_metric] = []
-        feature_values[f"{area_metric}_sum"] = []
-        feature_values[f"region_{area_metric}"] = []
+    log_scaling_keys = [
+        'trip_count', 'latency', 'ii', 'dims',
+        'num_instrs', 'num_loads', 'num_stores',
+        'num_allocas', 'num_getelementptrs', 'num_phis', 
+        'num_calls', 'unroll_factor', 'partition_factor'
+    ]
+    if log_transform:
+        for metric in TARGET_AREA_METRICS:
+            log_scaling_keys.append(metric)
 
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
@@ -287,127 +312,49 @@ def compute_scaling_stats(
             with open(kernel_info_path, 'rb') as f:
                 kernel_info: VitisKernelInfo = pickle.load(f)
 
-            for nt, nodes in kernel_info.nodes.items():
-                if nt in ["instr", "port", "const"]:
-                    for node in nodes:
-                        bitwidth = node.attrs.get('primitive_bitwidth', 0)
-                        if bitwidth <= 0:
-                            continue
-                        feature_values['primitive_bitwidth'].append(bitwidth)
-
-                        if nt == "const" or not node.is_array:
-                            continue
-
-                        for dim in node.attrs.get('dims', []):
-                            if dim > 1:
-                                feature_values['dims'].append(math.log1p(float(dim)))
-
-                        if node.attrs.get('array_partition', 0) == 1:
-                            factor = node.attrs.get('partition_factor', 1)
-                            if factor > 1:
-                                feature_values['partition_factor'].append(
-                                    math.log1p(float(factor))
-                                )
-
-                        if nt != "instr":
-                            continue
-
-                        delay = node.attrs.get('delay', 0)
-                        if delay > 0:
-                            feature_values['delay'].append(delay)
+            for nodes in kernel_info.nodes.values():
+                for node in nodes:
+                    for key, value in node.attrs.items():
+                        if 'trip_count' in key:
+                            base_key = 'trip_count'
+                        elif 'latency' in key:
+                            base_key = 'latency'
+                        else:
+                            base_key = key
                         
-                        for area_metric in TARGET_AREA_METRICS:
-                            area_value = node.attrs.get(area_metric, 0)
-                            if area_value > 0:
-                                area_value = float(area_value)
-                                if log_transform:
-                                    area_value = math.log1p(area_value)
-                                feature_values[area_metric].append(area_value)
-                                
-                elif nt == "region":
-                    for node in nodes:
-                        min_latency = node.attrs.get('min_latency', 0)
-                        if min_latency > 0:
-                            feature_values['latency'].append(
-                                math.log1p(float(min_latency))
-                            )
-                        max_latency = node.attrs.get('max_latency', 0)
-                        if max_latency > 0:
-                            feature_values['latency'].append(
-                                math.log1p(float(max_latency))
-                            )
+                        if base_key in numerical_feats:
+                            if base_key == 'dims':
+                                for dim in value:
+                                    if float(dim) > 1:
+                                        numerical_feats[base_key].append(float(dim))
+                            elif float(value) > 1e-6:
+                                numerical_feats[base_key].append(float(value))
 
-                        for area_metric in TARGET_AREA_METRICS:
-                            area_value = node.attrs.get(f"region_{area_metric}", 0)
-                            if area_value > 0:
-                                area_value = float(area_value)
-                                if log_transform:
-                                    area_value = math.log1p(area_value)
-                                feature_values[f"region_{area_metric}"].append(area_value)
-
-                        if not node.is_loop:
-                            continue
-
-                        min_trip_count = node.attrs.get('min_trip_count', 0)
-                        if min_trip_count > 0:
-                            feature_values['trip_count'].append(
-                                math.log1p(float(min_trip_count))
-                            )
-                        max_trip_count = node.attrs.get('max_trip_count', 0)
-                        if max_trip_count > 0:
-                            feature_values['trip_count'].append(
-                                math.log1p(float(max_trip_count))
-                            )
-                        ii = node.attrs.get('ii', 0)
-                        if ii > 0:
-                            feature_values['ii'].append(math.log1p(float(ii)))
-                        if node.attrs.get('unroll', 0) == 1:
-                            unroll_factor = node.attrs.get('unroll_factor', 1)
-                            if unroll_factor > 1:
-                                feature_values['unroll_factor'].append(
-                                    math.log1p(float(unroll_factor))
-                                )
-
-                elif nt == "block":
-                    for node in nodes:
-                        num_instrs = node.attrs.get('num_instrs', 0)
-                        if num_instrs > 0:
-                            feature_values['num_instrs'].append(
-                                math.log1p(float(num_instrs))
-                            )
-                        num_loads = node.attrs.get('num_loads', 0)
-                        if num_loads > 0:
-                            feature_values['num_loads'].append(
-                                math.log1p(float(num_loads))
-                            )
-                        num_stores = node.attrs.get('num_stores', 0)
-                        if num_stores > 0:
-                            feature_values['num_stores'].append(
-                                math.log1p(float(num_stores))
-                            )
-                        for area_metric in TARGET_AREA_METRICS:
-                            area_value = node.attrs.get(f"{area_metric}_sum", 0)
-                            if area_value > 0:
-                                area_value = float(area_value)
-                                if log_transform:
-                                    area_value = math.log1p(area_value)
-                                feature_values[f"{area_metric}_sum"].append(area_value)
-    
     scaling_stats = {}
-    for key, values in feature_values.items():
+    for key, values in numerical_feats.items():
         if not values:
-            mean = 0
-            std = 1
-        else:
-            mean = np.mean(values)
-            std = np.std(values)
-            if std == 0:
-                std = 1
-        if key in ['latency', 'trip_count']:
-            scaling_stats[f"min_{key}"] = {'mean': mean, 'std': std}
-            scaling_stats[f"max_{key}"] = {'mean': mean, 'std': std}
-        else:
-            scaling_stats[key] = {'mean': mean, 'std': std}
+            scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
+            continue
+
+        values_arr = np.array(values, dtype=np.float64)
+
+        if key in log_scaling_keys:
+            values_arr = np.log1p(values_arr)
+
+        mean = np.mean(values_arr)
+        std = np.std(values_arr)
+
+        if std < 1e-8:
+            std = 1.0
+
+        scaling_stats[key] = {'mean': mean, 'std': std}
+
+    if 'latency' in scaling_stats:
+        scaling_stats['min_latency'] = scaling_stats['latency']
+        scaling_stats['max_latency'] = scaling_stats['latency']
+    if 'trip_count' in scaling_stats:
+        scaling_stats['min_trip_count'] = scaling_stats['trip_count']
+        scaling_stats['max_trip_count'] = scaling_stats['trip_count']
 
     return scaling_stats
 

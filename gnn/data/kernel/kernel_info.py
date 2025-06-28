@@ -8,8 +8,7 @@ from typing import Optional, Dict, Union, List, Tuple
 from gnn.data.utils.xml_utils import findint, findfloat
 from gnn.data.utils.parsers import (
     extract_metrics,
-    extract_utilization_per_operation,
-    extract_utilization_per_module,
+    extract_module_utilization,
     AREA_METRICS
 )
 
@@ -43,18 +42,11 @@ CDFG_EDGE_TYPES = [
     ("region", "hrchy", "instr"),
     ("block", "hrchy", "instr"),
 ]
-
 MAX_ARRAY_DIM = 4
 MAX_LOOP_DEPTH = 5
 
 
 ArrayMetadata = Dict[str, Union[str, int, List[int]]]
-
-
-class PortDirection(IntEnum):
-    IN = 0
-    OUT = 1
-    BI = 2
 
 
 class Node(ABC):
@@ -86,17 +78,20 @@ class CDFGNode(Node):
         self.rtl_name = obj.findtext('rtlName', '')
         self.function_name = function
         self.attrs = {}
-        self.label = self.name
+        self.label = f"{self.function_name}/{self.name}"
 
     def as_dict(self):
         attributes = {}
-        for key, value in self.attributes.items():
-            if isinstance(value, list):
+        for key, value in self.attrs.items():
+            if isinstance(value, list) and key != 'dims':
                 attributes[key] = value.index(1) if 1 in value else -1
             else:
                 attributes[key] = value
-        return {'name': self.label, 'attributes': attributes}
-    
+        return {
+            'label': self.label, 
+            'attributes': attributes
+        }
+
     def __str__(self):
         return json.dumps(self.as_dict(), indent=2)
     
@@ -108,8 +103,7 @@ class RegionNode(Node):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str,
-        utilization: Optional[Dict[str, int]] = None
+        function_name: str
     ):
         self.id = findint(element, 'mId')
         if self.id is None:
@@ -123,18 +117,15 @@ class RegionNode(Node):
         self.label = self.label.replace(' ', '_')
 
         self.is_loop = findint(element, 'mType', 0) == 1
-        loop_depth = findint(element, 'mDepth', 0)
-        loop_depth = max(1, loop_depth) if self.is_loop else 0
+        loop_depth = max(0, findint(element, 'mDepth', 0))
         encoded_loop_depth = [0] * MAX_LOOP_DEPTH
         encoded_loop_depth[min(loop_depth, MAX_LOOP_DEPTH - 1)] = 1
 
-        min_lat = max(1, findint(element, 'mMinLatency', 0))
-        max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
-        min_tc = max(1, findint(element, 'mMinTripCount', 0))
-        max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
-
-        if (ii := findint(element, 'mII', 0)) <= 0:
-            ii = max(1, max_lat / max_tc)
+        min_lat = max(0, findint(element, 'mMinLatency', 0))
+        max_lat = max(0, findint(element, 'mMaxLatency', 0))
+        min_tc = max(0, findint(element, 'mMinTripCount', 0))
+        max_tc = max(0, findint(element, 'mMaxTripCount', 0))
+        ii = max(0, findint(element, 'mII', 0))
 
         self.attrs = {
             'min_latency': min_lat, 'max_latency': max_lat,
@@ -145,12 +136,6 @@ class RegionNode(Node):
             'loop_merge': 0, 'loop_flatten': 0,
             'dataflow': 0, 'inline': 0,
         }
-        if utilization is not None:
-            for res in AREA_METRICS:
-                self.attrs[f"region_{res}"] = utilization.get(res, 0)
-        else:
-            for res in AREA_METRICS:
-                self.attrs[f"region_{res}"] = 0
 
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
@@ -170,11 +155,10 @@ class RegionNode(Node):
             else:
                 attributes[key] = value
         return {
-            'name': self.label, 
+            'label': self.label, 
             'attributes': attributes,
             'sub_regions': self.sub_regions,
-            'blocks': self.blocks,
-            'instructions': self.instrs
+            'blocks': self.blocks
         }
     
     def __str__(self):
@@ -182,6 +166,12 @@ class RegionNode(Node):
     
     def __repr__(self):
         return self.__str__()
+    
+
+class PortDirection(IntEnum):
+    IN = 0
+    OUT = 1
+    BI = 2
 
 
 class PortNode(CDFGNode):
@@ -196,31 +186,32 @@ class PortNode(CDFGNode):
 
         self.label = f'{self.function_name}/{self.name}'
         self.is_top_level = is_top_level
-
-        direction_idx = findint(element, 'direction', PortDirection.BI)
-        direction = [0, 0, 0]
-        direction[direction_idx] = 1
-        
         self.is_array = array_md is not None
+        
         if self.is_array:
+            self.total_size = max(1, array_md.get('TotalSize', 1))
             primitive_bitwidth = array_md.get('BaseBitwidth', 0)
             base_type = array_md.get('BaseType', -1)
-            self.total_size = max(1, array_md.get('TotalSize', 1))
             dims = array_md.get('Dimensions', [])
+
             num_dims = len(dims)
             if num_dims > MAX_ARRAY_DIM:
                 # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
                 # by the product of the remaining dimensions
                 for i in range(num_dims - 1, MAX_ARRAY_DIM - 1, -1):
-                    dims[i-1] *= dims[i]
+                    dims[i - 1] *= dims[i]
                     dims.pop()
             elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
                 dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
         else:
+            self.total_size = 0
             primitive_bitwidth = findint(element, 'Value/bitwidth', 0)
             base_type = -1
-            self.total_size = 0
             dims = [0] * MAX_ARRAY_DIM
+
+        direction_idx = findint(element, 'direction', PortDirection.BI)
+        direction = [0, 0, 0]
+        direction[direction_idx] = 1
 
         self.attrs.update({
             'direction': direction,
@@ -235,25 +226,6 @@ class PortNode(CDFGNode):
             'partition_factor': 0
         })
 
-    def as_dict(self):
-        attributes = {}
-        for key, value in self.attrs.items():
-            if isinstance(value, list) and key != 'dims':
-                attributes[key] = value.index(1) if 1 in value else -1
-            else:
-                attributes[key] = value
-        return {
-            'name': self.label, 
-            'is_array': self.is_array,
-            'attributes': attributes
-        }
-
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return self.__str__()
-
 
 class InstructionNode(CDFGNode):
     def __init__(
@@ -265,14 +237,16 @@ class InstructionNode(CDFGNode):
     ):
         super().__init__(element, function_name)
 
+        self.label = f'{self.function_name}/{self.name}'
         self.opcode = element.findtext('opcode', '')
-
         self.is_array = array_md is not None
+
         if self.is_array:
+            self.total_size = max(1, array_md.get('TotalSize', 1))
             primitive_bitwidth = array_md.get('BaseBitwidth', 0)
             base_type = array_md.get('BaseType', -1)
-            self.total_size = max(1, array_md.get('TotalSize', 1))
             dims = array_md.get('Dimensions', [])
+
             num_dims = len(dims)
             if num_dims > MAX_ARRAY_DIM:
                 # Truncate to MAX_ARRAY_DIM, multiplying the last dimension
@@ -282,19 +256,19 @@ class InstructionNode(CDFGNode):
                     dims.pop()
             elif num_dims < MAX_ARRAY_DIM: # Pad with 1s
                 dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
-            self.label = self.name
         else:
+            self.total_size = 0
             primitive_bitwidth = findint(element, 'Value/bitwidth', 0)
             base_type = -1
-            self.total_size = 0
             dims = [0] * MAX_ARRAY_DIM
-            self.label = 'gep' if self.opcode == 'getelementptr' else self.opcode
 
         self.attrs.update({
             'opcode': self.opcode,
             'impl': element.findtext('Value/Obj/coreName', ''),
             'primitive_bitwidth': primitive_bitwidth,
             'delay': findfloat(element, 'm_delay', 0.0),
+            'is_on_critical_path': int(findint(element, 'm_isOnCriticalPath', 0)),
+            'is_start_of_path': int(findint(element, 'm_isStartOfPath', 0)),
             'base_type': str(base_type),
             'dims': dims,
             'array_partition': 0,
@@ -302,70 +276,41 @@ class InstructionNode(CDFGNode):
             'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
             'partition_factor': 0
         })
+        self.attrs.update({res: 0 for res in AREA_METRICS})
+
+        if utilization is not None:
+            for res in AREA_METRICS:
+                self.attrs[res] = utilization.get(res, 0)
 
         self.operand_edges = [
             int(edge.text) 
             for edge in element.find('oprand_edges').findall('item')
         ]
 
-        if utilization is not None:
-            for res in AREA_METRICS:
-                self.attrs[res] = utilization.get(res, 0)
-        else:
-            for res in AREA_METRICS:
-                self.attrs[res] = 0
-
     def as_dict(self):
-        attributes = {}
-        for key, value in self.attrs.items():
-            if isinstance(value, list) and key != 'dims':
-                attributes[key] = value.index(1) if 1 in value else -1
-            else:
-                attributes[key] = value
-        return {
-            'name': self.name, 
-            'rtl_name': self.rtl_name,
-            'function': self.function_name,
+        node_dict = super().as_dict()
+        node_dict.update({
             'opcode': self.opcode,
-            'is_array': self.is_array,
-            'attributes': attributes
-        }
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return self.__str__()
+            'rtl_name': self.rtl_name
+        })
+        return node_dict
 
 
 class ConstantNode(CDFGNode):
     def __init__(self, element: ET.Element, function_name: str):
         super().__init__(element, function_name)
 
-        self.label = element.findtext('content', '')
+        self.label = f'{self.function_name}/{self.name}'
+        self.content = element.findtext('content', '')
+
         self.attrs.update({
             'primitive_bitwidth': findint(element, 'Value/bitwidth', 0),
             'const_type': element.findtext('const_type', '-1'),
         })
 
     def as_dict(self):
-        attributes = {}
-        for key, value in self.attrs.items():
-            if isinstance(value, list):
-                attributes[key] = value.index(1) if 1 in value else -1
-            else:
-                attributes[key] = value
-        return {
-            'name': self.name, 
-            'content': self.label,
-            'attributes': attributes
-        }
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return self.__str__()
+        node_dict = super().as_dict()
+        node_dict.update({'content': self.content})
 
 
 class BlockNode(CDFGNode):
@@ -382,17 +327,9 @@ class BlockNode(CDFGNode):
         ]
 
     def as_dict(self):
-        return {
-            'name': self.label, 
-            'instructions': self.instrs,
-            'attributes': self.attrs
-        }
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-    
-    def __repr__(self):
-        return self.__str__()
+        node_dict = super().as_dict()
+        node_dict.update({'instructions': self.instrs})
+        return node_dict
 
 
 class CDFG:
@@ -401,7 +338,6 @@ class CDFG:
         root: ET.Element, 
         top_level_name: str, 
         array_md_list: List[ArrayMetadata],
-        op_util_map: Dict[str, Dict[str, int]],
         module_util_map: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
@@ -424,13 +360,11 @@ class CDFG:
         self.is_top_level = self.function_name == top_level_name
         self.function_calls = []
 
-        self._parse_nodes(cdfg, cdfg_regions, array_md_list, 
-                          op_util_map, module_util_map)
+        self._parse_nodes(cdfg, cdfg_regions, array_md_list, module_util_map)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
 
-    def _parse_nodes(self, cdfg, regions, array_md_list,
-                     op_util_map, module_util_map):
+    def _parse_nodes(self, cdfg, regions, array_md_list, module_util_map):
         if (consts := cdfg.find('consts')) is None:
             raise ValueError("CDFG does not contain 'consts' section")
         if (instrs := cdfg.find('nodes')) is None:
@@ -440,13 +374,13 @@ class CDFG:
         if (blocks := cdfg.find('blocks')) is None:
             raise ValueError("CDFG does not contain 'blocks' section")
         
-        self._process_instrs(instrs, array_md_list, op_util_map)
+        self._process_instrs(instrs, array_md_list, module_util_map)
         self._process_ports(ports, array_md_list)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(regions, module_util_map)
+        self._process_regions(regions)
 
-    def _process_instrs(self, instrs, array_md_list, op_util_map):
+    def _process_instrs(self, instrs, array_md_list, module_util_map):
         # Note: the 'nodes' section contains instructions and global variables
         # (represented as instructions with a 'GlobalMem' opcode)
         offset = self._offsets['instr']
@@ -459,7 +393,7 @@ class CDFG:
             
             name = obj.findtext('name', '')
             rtl_name = obj.findtext('rtlName', '')
-            util = op_util_map.get(rtl_name) if rtl_name else None
+            util = module_util_map.get(rtl_name) if rtl_name else None
             opcode = elem.findtext('opcode', '')
 
             array_md = fetch_array_md(
@@ -515,44 +449,57 @@ class CDFG:
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
         instr_offset = self._offsets['instr']
+
         for i, elem in enumerate(blocks.findall('item')):
             node = BlockNode(elem, self.function_name)
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
-            
+
             node.instrs = [
                 self._node_id_map[instr_id][0]
                 for instr_id in node.instrs
                 if instr_id in self._node_id_map
             ]
-            node.attrs = {'num_instrs': len(node.instrs)}
 
-            resource_util_sum = {res: 0 for res in AREA_METRICS}
-            num_loads = 0
-            num_stores = 0
+            node.attrs.update({res: 0 for res in AREA_METRICS})
+            num_instrs_by_type = {
+                'load': 0, 'store': 0, 
+                'alloca': 0, 'getelementptr': 0,
+                'phi': 0, 'call': 0
+            }
+            is_on_critical_path = False
+            is_start_of_path = False
+            is_terminal = False
+
             for instr_id in node.instrs:
-                instr_node = self.nodes['instr'][instr_id - instr_offset]
+                instr = self.nodes['instr'][instr_id - instr_offset]
+
                 for res in AREA_METRICS:
-                    resource_util_sum[res] += instr_node.attrs.get(res, 0)
-                if instr_node.opcode.startswith('load'):
-                    num_loads += 1
-                elif instr_node.opcode.startswith('store'):
-                    num_stores += 1
+                    node.attrs[res] += instr.attrs.get(res, 0)
 
-            for res, value in resource_util_sum.items():
-                node.attrs[f"{res}_sum"] = value
-            node.attrs['num_loads'] = num_loads
-            node.attrs['num_stores'] = num_stores
+                if instr.opcode in num_instrs_by_type:
+                    num_instrs_by_type[instr.opcode] += 1
+                elif instr.opcode == 'ret':
+                    is_terminal = True
 
+                if instr.attrs['is_on_critical_path']:
+                    is_on_critical_path = True
+                if instr.attrs['is_start_of_path']:
+                    is_start_of_path = True
+
+            for opcode, count in num_instrs_by_type.items():
+                node.attrs[f'num_{opcode}s'] = count
+
+            node.attrs['is_on_critical_path'] = int(is_on_critical_path)
+            node.attrs['is_start_of_path'] = int(is_start_of_path)
+            node.attrs['is_terminal'] = int(is_terminal)
+            node.attrs['num_instrs'] = len(node.instrs)
             self.nodes['block'].append(node)
 
-    def _process_regions(self, regions, module_util_map):
+    def _process_regions(self, regions):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            name = elem.findtext('mTag', self.function_name)
-            utilization = module_util_map.get(name, None)
-            node = RegionNode(elem, self.function_name,
-                              utilization=utilization)
+            node = RegionNode(elem, self.function_name)
             node.id += offset - 1
             node.sub_regions = [
                 sub_region_id + offset - 1
@@ -658,10 +605,7 @@ class VitisKernelInfo:
 
         # Parse post-implementation QoR metrics (design and module-level)
         self.qor_metrics = extract_metrics(solution_dir, filtered=filtered)
-        self.op_util_map = extract_utilization_per_operation(
-            solution_dir, filtered=filtered
-        )
-        self.module_util_map = extract_utilization_per_module(
+        self.module_util_map = extract_module_utilization(
             solution_dir, filtered=filtered
         )
 
@@ -713,8 +657,7 @@ class VitisKernelInfo:
             cdfg = CDFG(
                 root=root, 
                 top_level_name=self.top_level_name, 
-                array_md_list=self.array_md, 
-                op_util_map=self.op_util_map,
+                array_md_list=self.array_md,
                 module_util_map=self.module_util_map,
                 offsets=self._offsets
             )
@@ -798,13 +741,16 @@ class VitisKernelInfo:
 
     def as_dict(self):
         return {
-            'name': self.benchmark_name,
-            'top_level_name': self.top_level_name,
+            'benchmark_name': self.benchmark_name,
+            'top_level_function': self.top_level_name,
             'qor_metrics': self.qor_metrics,
-            'utilization': self.op_util_map,
-            'cdfgs': {
-                name: cdfg.as_dict() 
-                for name, cdfg in self._cdfgs.items()
+            'nodes': {
+                nt: [n.as_dict() for n in nodes] 
+                for nt, nodes in self.nodes.items()
+            },
+            'edges': {
+                f"{et[0]}__{et[1]}__{et[2]}": edges 
+                for et, edges in self.edges.items()
             }
         }
 
@@ -836,10 +782,6 @@ def fetch_array_md(
             if (md['Name'] == array_name and
                 md.get('IsGlobal', False)):
                 return md
-    # If no entry is found, search for the array name only
-    # for md in array_md_list:
-    #     if md['Name'] == array_name:
-    #         return md
     return None
 
 

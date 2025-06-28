@@ -174,7 +174,7 @@ def extract_metrics(solution_dir, filtered=False) -> Dict[str, Union[float, int]
     return metrics
 
 
-def extract_utilization_per_operation(solution_dir, filtered=False):
+def extract_module_utilization(solution_dir, filtered=False):
     if filtered:
         rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
     else:
@@ -189,67 +189,23 @@ def extract_utilization_per_operation(solution_dir, filtered=False):
     tree = ET.parse(rpt_path)
     root = tree.getroot()
 
-    modules = root.findall('RtlModules/RtlModule')
-    op_util_dict = {}
-    for module in modules:
-        if module.get('TYPE', '') != 'resource':
-            continue
-
+    module_util_map = {}
+    for module in root.findall('RtlModules/RtlModule'):
+        module_type = module.get('TYPE', '')
         module_name = module.get('DISPNAME')
-        if module_name is None:
-            continue
-
-        resources = module.find('Resources')
-        if resources is None:
-            continue
-
-        op_util = {}
-        for res in ['BRAM', 'DSP', 'FF', 'LUT']:
-            elem = int(resources.get(res, default=0))
-            op_util[res.lower()] = elem
-
-        op_util_dict[module_name] = op_util
-
-    return op_util_dict
-
-
-def extract_utilization_per_module(solution_dir, filtered=False):
-    if filtered:
-        rpt_path = Path(solution_dir) / 'reports/export_impl.xml'
-    else:
-        rpt_path = Path(solution_dir) / 'impl/report/verilog/export_impl.xml'
-        if not rpt_path.is_file():
-            rpt_path = Path(solution_dir) / 'impl/verilog/report/vivado_impl.xml'
-
-    if not rpt_path.is_file():
-        print(f'Utilization report not found in {solution_dir}')
-        return {}
-    
-    tree = ET.parse(rpt_path)
-    root = tree.getroot()
-
-    modules = root.findall('RtlModules/RtlModule')
-    module_util_dict = {}
-    for module in modules:
-        if module.get('TYPE', '') != 'function':
-            continue
-
-        module_name = module.get('MODULENAME')
-        if module_name is None:
-            continue
-
-        resources = module.find('Resources')
-        if resources is None:
+        module_resources = module.find('Resources')
+        if (module_type != 'resource' 
+            or module_name is None 
+            or module_resources is None):
             continue
 
         module_util = {}
         for res in ['BRAM', 'DSP', 'FF', 'LUT']:
-            elem = int(resources.get(res, default=0))
-            module_util[res.lower()] = elem
+            util = int(module_resources.get(res, default=0))
+            module_util[res.lower()] = util
+        module_util_map[module_name] = module_util
 
-        module_util_dict[module_name] = module_util
-
-    return module_util_dict
+    return module_util_map
 
 
 def extract_auto_dcts_from_log(hls_log_path):
