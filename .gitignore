@@ -28,7 +28,8 @@ hls_config.tcl
 process_dataset.sh
 test_model.sh
 
-dct_filter.py
+directive_filter.py
+select_instances.py
 
 detect_broken_designs.py
 detect_redundant_designs.py
