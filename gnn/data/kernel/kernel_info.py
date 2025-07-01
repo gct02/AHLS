@@ -31,9 +31,12 @@ CDFG_EDGE_TYPES = [
     ("instr", "store", "instr"),
     ("instr", "store", "port"),
 
-    # Edges representing relationships between load and 
-    # store instructions that access the same memory
+    # Edges representing relationships between load and store 
+    # instructions that access the same memory
     ("instr", "mem", "instr"),
+
+    # Edges representing conditional memory accesses
+    ("instr", "cond_mem", "instr"),
 
     # Edges representing constant pointers to global arrays
     ("instr", "data", "const"),
@@ -54,10 +57,10 @@ CDFG_EDGE_TYPES = [
     ("block", "hrchy", "instr"),
 ]
 MAX_ARRAY_DIM = 4
-MAX_LOOP_DEPTH = 5
+LOOP_DEPTH_LIM = 5
 
 
-ArrayMetadata = Dict[str, Union[str, int, List[int]]]
+Metadata = Dict[str, Union[str, int, List[int]]]
 
 
 class Node(ABC):
@@ -115,7 +118,8 @@ class RegionNode(Node):
     def __init__(
         self, 
         element: ET.Element, 
-        function_name: str
+        function_name: str,
+        loop_md: Optional[Metadata] = None
     ):
         self.id = findint(element, 'mId')
         if self.id is None:
@@ -123,21 +127,43 @@ class RegionNode(Node):
         
         self.name = element.findtext('mTag')
         self.function_name = function_name
+
         self.label = (f"{self.function_name}/{self.name}" 
                       if self.name and self.name != self.function_name
-                      else self.function_name)
-        self.label = self.label.replace(' ', '_')
+                      else self.function_name).replace(' ', '_')
 
         self.is_loop = findint(element, 'mType', 0) == 1
-        loop_depth = max(0, findint(element, 'mDepth', 0))
-        encoded_loop_depth = [0] * MAX_LOOP_DEPTH
-        encoded_loop_depth[min(loop_depth, MAX_LOOP_DEPTH - 1)] = 1
 
         min_lat = max(0, findint(element, 'mMinLatency', 0))
-        max_lat = max(0, findint(element, 'mMaxLatency', 0))
-        min_tc = max(0, findint(element, 'mMinTripCount', 0))
-        max_tc = max(0, findint(element, 'mMaxTripCount', 0))
-        ii = max(0, findint(element, 'mII', 0))
+        max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
+
+        if self.is_loop:
+            if loop_md is not None:
+                loop_depth = loop_md.get('LoopDepth', 1)
+                if loop_depth <= 0:
+                    loop_depth = 1
+                elif loop_depth >= LOOP_DEPTH_LIM:
+                    loop_depth = LOOP_DEPTH_LIM - 1
+            else:
+                loop_depth = 1
+
+            min_tc = max(0, findint(element, 'mMinTripCount', 0))
+            max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
+
+            ii = findint(element, 'mII', 0)
+            if ii <= 0:
+                if max_tc > 0:
+                    ii = max_lat // max_tc
+                else:
+                    ii = 1
+        else:
+            loop_depth = 0
+            min_tc = 0
+            max_tc = 0
+            ii = 0
+
+        encoded_loop_depth = [0] * LOOP_DEPTH_LIM
+        encoded_loop_depth[loop_depth] = 1
 
         self.attrs = {
             'min_latency': min_lat, 'max_latency': max_lat,
@@ -192,7 +218,7 @@ class PortNode(CDFGNode):
         element: ET.Element, 
         function_name: str,
         is_top_level: bool,
-        array_md: Optional[ArrayMetadata] = None
+        array_md: Optional[Metadata] = None
     ):
         super().__init__(element, function_name)
 
@@ -244,7 +270,7 @@ class ArrayNode(CDFGNode):
         self,
         element: ET.Element,
         function_name: str,
-        array_md: ArrayMetadata,
+        array_md: Metadata,
         is_global_mem: bool = False,
         utilization: Optional[Dict[str, int]] = None
     ):
@@ -360,7 +386,8 @@ class CDFG:
         self, 
         root: ET.Element, 
         top_level_name: str, 
-        array_md_list: List[ArrayMetadata],
+        array_md_list: List[Metadata],
+        loop_md_list: List[Metadata],
         module_util_map: Dict[str, Dict[str, int]],
         offsets: Optional[Dict[str, int]] = None,
     ):
@@ -376,18 +403,40 @@ class CDFG:
         cdfg_regions = root.find('syndb/cdfg_regions')
         if cdfg_regions is None:
             raise ValueError("CDFG regions not found in the XML file")
+        
+        self._extract_function_name(cdfg)
 
         # Extract function information
-        self.function_name = cdfg.findtext('name')
+        self.name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth', 0)
         self.is_top_level = self.function_name == top_level_name
         self.function_calls = []
 
-        self._parse_nodes(cdfg, cdfg_regions, array_md_list, module_util_map)
+        self._parse_nodes(cdfg, cdfg_regions, array_md_list, 
+                          loop_md_list, module_util_map)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
 
-    def _parse_nodes(self, cdfg, regions, array_md_list, module_util_map):
+    def _extract_function_name(self, cdfg):
+        if (instrs := cdfg.find('nodes')) is None:
+            raise ValueError("CDFG does not contain 'nodes' section")
+        
+        self.function_name = ''
+        for elem in instrs.findall('item'):
+            value = elem.find('Value')
+            obj = elem.find('Obj') if value is None else value.find('Obj')
+            if obj is None:
+                continue
+            name = obj.findtext('contextFuncName', '')
+            if name:
+                self.function_name = name
+                break
+
+        if not self.function_name:
+            print("CDFG does not contain 'contextFuncName' in any node")
+            self.function_name = cdfg.findtext('name')
+
+    def _parse_nodes(self, cdfg, regions, array_md_list, loop_md_list, module_util_map):
         if (consts := cdfg.find('consts')) is None:
             raise ValueError("CDFG does not contain 'consts' section")
         if (instrs := cdfg.find('nodes')) is None:
@@ -401,7 +450,7 @@ class CDFG:
         self._process_ports(ports, array_md_list)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(regions)
+        self._process_regions(regions, loop_md_list)
 
     def _process_instrs(self, instrs, array_md_list, module_util_map):
         # Note: the 'nodes' section contains instructions and global variables
@@ -550,10 +599,19 @@ class CDFG:
             node.attrs['num_instrs'] = len(node.instrs)
             self.nodes['block'].append(node)
 
-    def _process_regions(self, regions):
+    def _process_regions(self, regions, loop_md_list):
         offset = self._offsets['region']
         for elem in regions.findall('item'):
-            node = RegionNode(elem, self.function_name)
+            loop_md = None
+            if findint(elem, 'mType', 0) == 1:
+                loop_name = elem.findtext('mTag', '')
+                for md in loop_md_list:
+                    if (md.get('Name', '') == loop_name 
+                        and md.get('FunctionName', '') == self.function_name):
+                        loop_md = md
+                        break    
+
+            node = RegionNode(elem, self.function_name, loop_md=loop_md)
             node.id += offset - 1
             node.sub_regions = [
                 sub_region_id + offset - 1
@@ -653,7 +711,7 @@ class CDFG:
                     self.edges[("instr", "store", "instr")].append((dst_instr, src_instr))
 
     def _map_edge_type(self, edge_type):
-        return {'1': 'data', '2': 'control', '4': 'mem'}.get(edge_type, '')
+        return {'1': 'data', '2': 'control', '3': 'cond_mem', '4': 'mem'}.get(edge_type, '')
 
     def _build_hierarchy_edges(self):
         block_offset = self._offsets['block']
@@ -698,6 +756,7 @@ class VitisKernelInfo:
         solution_dir: str, 
         top_level_name: str, 
         array_md_path: str,
+        loop_md_path: str,
         array_access_info_path: str,
         benchmark_name: Optional[str] = None,
         filtered: bool = False
@@ -712,14 +771,26 @@ class VitisKernelInfo:
         self.module_util_map = extract_module_utilization(
             solution_dir, filtered=filtered
         )
-
         self._offsets = {nt: 0 for nt in CDFG_NODE_TYPES}
         self._cdfgs = {}
 
         self._parse_array_info(array_md_path, array_access_info_path)
+        self._parse_loop_info(loop_md_path)
         self._process_adb_files(solution_dir, filtered)
         self._include_call_flow()
         self._update_array_access_edges()
+
+    def _parse_loop_info(self, loop_md_path):
+        if not os.path.exists(loop_md_path):
+            raise FileNotFoundError(
+                f"Loop metadata file not found: {loop_md_path}"
+            )
+        
+        with open(loop_md_path, 'r') as f:
+            loop_md = json.load(f)
+        if "LoopMetadata" not in loop_md:
+            raise ValueError("Loop metadata file does not contain 'LoopMetadata' key")
+        self.loop_md_list = loop_md['LoopMetadata']
 
     def _parse_array_info(self, array_md_path, array_access_info_path):
         if not os.path.exists(array_md_path):
@@ -862,11 +933,11 @@ class VitisKernelInfo:
     
 
 def fetch_array_md(
-    array_md_list: List[ArrayMetadata],
+    array_md_list: List[Metadata],
     array_name: str,
     function_name: str,
     is_global_mem: bool = False
-) -> Optional[ArrayMetadata]:
+) -> Optional[Metadata]:
     for md in array_md_list:
         if (md['Name'] == array_name 
             and md.get('FunctionName', '') == function_name):

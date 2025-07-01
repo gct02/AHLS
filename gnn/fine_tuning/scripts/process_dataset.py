@@ -47,7 +47,7 @@ def main(args: Dict[str, str]):
         
         dct_tcl_path = sol / "directives.tcl"
         if not dct_tcl_path.exists():
-            hls_data_json_path = sol / f"{sol.name}.json"
+            hls_data_json_path = sol / f"{sol.name}_data.json"
             if not hls_data_json_path.exists():
                 print(f"Neither directives.tcl nor {sol.name}.json found in {sol}")
                 continue
