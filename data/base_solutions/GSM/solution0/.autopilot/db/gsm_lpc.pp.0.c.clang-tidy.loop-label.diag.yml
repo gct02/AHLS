@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GSM/solution0/.autopilot/db/gsm_lpc.pp.0.c
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_65_1:  '
+    FileOffset:      65
+    FilePath:        /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GSM/solution0/.autopilot/db/gsm_lpc.pp.0.c
+        Offset:          8988
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_65_1: '
+...

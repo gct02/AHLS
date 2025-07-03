@@ -1,0 +1,625 @@
+
+
+================================================================
+== Vitis HLS Report for 'Autocorrelation'
+================================================================
+* Date:           Wed Jul  2 18:28:22 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        GSM
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.651 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+------+------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min   |    max    |  min |  max |   Type  |
+    +---------+---------+----------+-----------+------+------+---------+
+    |     1128|     1456|  9.024 us|  11.648 us|  1128|  1456|       no|
+    +---------+---------+----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |         Loop Name        |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Autocorrelation_label0  |      320|      320|         2|          -|          -|   160|        no|
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 23
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 4 
+3 --> 2 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%smax = alloca i32 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:41]   --->   Operation 24 'alloca' 'smax' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%k = alloca i32 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 25 'alloca' 'k' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%p_loc24 = alloca i64 1"   --->   Operation 26 'alloca' 'p_loc24' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%p_loc23 = alloca i64 1"   --->   Operation 27 'alloca' 'p_loc23' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%p_loc22 = alloca i64 1"   --->   Operation 28 'alloca' 'p_loc22' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%p_loc21 = alloca i64 1"   --->   Operation 29 'alloca' 'p_loc21' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%p_loc20 = alloca i64 1"   --->   Operation 30 'alloca' 'p_loc20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%p_loc19 = alloca i64 1"   --->   Operation 31 'alloca' 'p_loc19' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%p_loc18 = alloca i64 1"   --->   Operation 32 'alloca' 'p_loc18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%p_loc17 = alloca i64 1"   --->   Operation 33 'alloca' 'p_loc17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%p_loc = alloca i64 1"   --->   Operation 34 'alloca' 'p_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %indata, void @empty_9, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%specpipeline_ln11 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GSM/temp/directives.tcl:11]   --->   Operation 36 'specpipeline' 'specpipeline_ln11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.38ns)   --->   "%store_ln39 = store i8 0, i8 %k" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 37 'store' 'store_ln39' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 38 [1/1] (0.38ns)   --->   "%store_ln41 = store i16 0, i16 %smax" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:41]   --->   Operation 38 'store' 'store_ln41' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%br_ln49 = br void %for.body" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 39 'br' 'br_ln49' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.42>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%k_5 = load i8 %k" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 40 'load' 'k_5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.70ns)   --->   "%icmp_ln49 = icmp_eq  i8 %k_5, i8 160" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 41 'icmp' 'icmp_ln49' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 42 [1/1] (0.70ns)   --->   "%add_ln49 = add i8 %k_5, i8 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 42 'add' 'add_ln49' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 43 [1/1] (0.00ns)   --->   "%br_ln49 = br i1 %icmp_ln49, void %for.body.split_ifconv, void %for.end" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 43 'br' 'br_ln49' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 44 [1/1] (0.00ns)   --->   "%zext_ln49 = zext i8 %k_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 44 'zext' 'zext_ln49' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%indata_addr = getelementptr i16 %indata, i64 0, i64 %zext_ln49" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 45 'getelementptr' 'indata_addr' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+ST_2 : Operation 46 [2/2] (1.17ns)   --->   "%indata_load = load i8 %indata_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 46 'load' 'indata_load' <Predicate = (!icmp_ln49)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 47 [1/1] (0.38ns)   --->   "%store_ln39 = store i8 %add_ln49, i8 %k" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 47 'store' 'store_ln39' <Predicate = (!icmp_ln49)> <Delay = 0.38>
+ST_2 : Operation 48 [1/1] (0.00ns)   --->   "%smax_load = load i16 %smax" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:57]   --->   Operation 48 'load' 'smax_load' <Predicate = (icmp_ln49)> <Delay = 0.00>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "%L_ACF_addr = getelementptr i64 %L_ACF, i64 0, i64 0" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 49 'getelementptr' 'L_ACF_addr' <Predicate = (icmp_ln49)> <Delay = 0.00>
+ST_2 : Operation 50 [1/1] (0.78ns)   --->   "%icmp_ln57 = icmp_eq  i16 %smax_load, i16 0" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:57]   --->   Operation 50 'icmp' 'icmp_ln57' <Predicate = (icmp_ln49)> <Delay = 0.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 51 [1/1] (0.38ns)   --->   "%br_ln57 = br i1 %icmp_ln57, void %if.else, void %if.end10" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:57]   --->   Operation 51 'br' 'br_ln57' <Predicate = (icmp_ln49)> <Delay = 0.38>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i16.i16, i16 %smax_load, i16 0" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60]   --->   Operation 52 'bitconcatenate' 'shl_ln' <Predicate = (icmp_ln49 & !icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 53 [1/1] (0.00ns)   --->   "%sext_ln60 = sext i32 %shl_ln" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60]   --->   Operation 53 'sext' 'sext_ln60' <Predicate = (icmp_ln49 & !icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 54 [2/2] (1.51ns)   --->   "%tmp_1 = call i6 @gsm_norm, i64 %sext_ln60, i4 %bitoff" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60]   --->   Operation 54 'call' 'tmp_1' <Predicate = (icmp_ln49 & !icmp_ln57)> <Delay = 1.51> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 3.62>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%smax_load_1 = load i16 %smax" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:52]   --->   Operation 55 'load' 'smax_load_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%speclooptripcount_ln50 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 160, i64 160, i64 160" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:50]   --->   Operation 56 'speclooptripcount' 'speclooptripcount_ln50' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%specloopname_ln54 = specloopname void @_ssdm_op_SpecLoopName, void @empty_15" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:54]   --->   Operation 57 'specloopname' 'specloopname_ln54' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 58 [1/2] (1.17ns)   --->   "%indata_load = load i8 %indata_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 58 'load' 'indata_load' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_3 : Operation 59 [1/1] (0.00ns) (grouped into LUT with out node temp)   --->   "%tmp_26 = bitselect i1 @_ssdm_op_BitSelect.i1.i16.i32, i16 %indata_load, i32 15" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 59 'bitselect' 'tmp_26' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.78ns)   --->   "%icmp_ln67 = icmp_eq  i16 %indata_load, i16 32768" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 60 'icmp' 'icmp_ln67' <Predicate = true> <Delay = 0.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 61 [1/1] (0.78ns)   --->   "%sub_ln67 = sub i16 0, i16 %indata_load" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 61 'sub' 'sub_ln67' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 62 [1/1] (0.00ns) (grouped into LUT with out node temp)   --->   "%select_ln67 = select i1 %icmp_ln67, i16 32767, i16 %sub_ln67" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 62 'select' 'select_ln67' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 63 [1/1] (0.24ns) (out node of the LUT)   --->   "%temp = select i1 %tmp_26, i16 %select_ln67, i16 %indata_load" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51]   --->   Operation 63 'select' 'temp' <Predicate = true> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 64 [1/1] (0.78ns)   --->   "%icmp_ln52 = icmp_sgt  i16 %temp, i16 %smax_load_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:52]   --->   Operation 64 'icmp' 'icmp_ln52' <Predicate = true> <Delay = 0.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 65 [1/1] (0.24ns)   --->   "%smax_1 = select i1 %icmp_ln52, i16 %temp, i16 %smax_load_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:52]   --->   Operation 65 'select' 'smax_1' <Predicate = true> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 66 [1/1] (0.38ns)   --->   "%store_ln41 = store i16 %smax_1, i16 %smax" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:41]   --->   Operation 66 'store' 'store_ln41' <Predicate = true> <Delay = 0.38>
+ST_3 : Operation 67 [1/1] (0.00ns)   --->   "%br_ln49 = br void %for.body" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:49]   --->   Operation 67 'br' 'br_ln49' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 2> <Delay = 4.51>
+ST_4 : Operation 68 [1/2] (1.87ns)   --->   "%tmp_1 = call i6 @gsm_norm, i64 %sext_ln60, i4 %bitoff" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60]   --->   Operation 68 'call' 'tmp_1' <Predicate = (!icmp_ln57)> <Delay = 1.87> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 69 [1/1] (0.00ns)   --->   "%sext_ln60_1 = sext i6 %tmp_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60]   --->   Operation 69 'sext' 'sext_ln60_1' <Predicate = (!icmp_ln57)> <Delay = 0.00>
+ST_4 : Operation 70 [1/1] (0.70ns)   --->   "%scalauto = sub i7 4, i7 %sext_ln60_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60]   --->   Operation 70 'sub' 'scalauto' <Predicate = (!icmp_ln57)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 71 [1/1] (0.38ns)   --->   "%br_ln0 = br void %if.end10"   --->   Operation 71 'br' 'br_ln0' <Predicate = (!icmp_ln57)> <Delay = 0.38>
+ST_4 : Operation 72 [1/1] (0.00ns)   --->   "%scalauto_2 = phi i7 %scalauto, void %if.else, i7 0, void %for.end"   --->   Operation 72 'phi' 'scalauto_2' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 73 [1/1] (0.70ns)   --->   "%icmp_ln62 = icmp_sgt  i7 %scalauto_2, i7 0" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 73 'icmp' 'icmp_ln62' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 74 [1/1] (0.70ns)   --->   "%add_ln62 = add i7 %scalauto_2, i7 127" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 74 'add' 'add_ln62' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_27 = partselect i5 @_ssdm_op_PartSelect.i5.i7.i32.i32, i7 %add_ln62, i32 2, i32 6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 75 'partselect' 'tmp_27' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 76 [1/1] (0.70ns)   --->   "%icmp_ln62_1 = icmp_eq  i5 %tmp_27, i5 0" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 76 'icmp' 'icmp_ln62_1' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 77 [1/1] (0.00ns)   --->   "%br_ln62 = br i1 %icmp_ln62_1, void %if.end32, void %VITIS_LOOP_65_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 77 'br' 'br_ln62' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 78 [1/1] (0.00ns)   --->   "%sub24_cast = zext i7 %add_ln62" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 78 'zext' 'sub24_cast' <Predicate = (icmp_ln62_1)> <Delay = 0.00>
+ST_4 : Operation 79 [1/1] (0.84ns)   --->   "%b_assign_11 = lshr i32 16384, i32 %sub24_cast" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62]   --->   Operation 79 'lshr' 'b_assign_11' <Predicate = (icmp_ln62_1)> <Delay = 0.84> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 80 [1/1] (0.00ns)   --->   "%trunc_ln65 = trunc i32 %b_assign_11" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:65]   --->   Operation 80 'trunc' 'trunc_ln65' <Predicate = (icmp_ln62_1)> <Delay = 0.00>
+ST_4 : Operation 81 [2/2] (0.00ns)   --->   "%call_ln65 = call void @Autocorrelation_Pipeline_VITIS_LOOP_65_1, i16 %indata, i1 0, i15 %trunc_ln65" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:65]   --->   Operation 81 'call' 'call_ln65' <Predicate = (icmp_ln62_1)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 3> <Delay = 0.00>
+ST_5 : Operation 82 [1/2] (0.00ns)   --->   "%call_ln65 = call void @Autocorrelation_Pipeline_VITIS_LOOP_65_1, i16 %indata, i1 0, i15 %trunc_ln65" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:65]   --->   Operation 82 'call' 'call_ln65' <Predicate = (icmp_ln62_1)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 83 [1/1] (0.00ns)   --->   "%br_ln0 = br void %if.end32"   --->   Operation 83 'br' 'br_ln0' <Predicate = (icmp_ln62_1)> <Delay = 0.00>
+ST_5 : Operation 84 [2/2] (0.00ns)   --->   "%call_ln0 = call void @Autocorrelation_Pipeline_Autocorrelation_label2, i64 %L_ACF"   --->   Operation 84 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 4> <Delay = 1.17>
+ST_6 : Operation 85 [1/1] (0.00ns)   --->   "%indata_addr_2 = getelementptr i16 %indata, i64 0, i64 0" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:73]   --->   Operation 85 'getelementptr' 'indata_addr_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 86 [2/2] (1.17ns)   --->   "%sl = load i8 %indata_addr_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:73]   --->   Operation 86 'load' 'sl' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_6 : Operation 87 [1/2] (0.00ns)   --->   "%call_ln0 = call void @Autocorrelation_Pipeline_Autocorrelation_label2, i64 %L_ACF"   --->   Operation 87 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 5> <Delay = 1.17>
+ST_7 : Operation 88 [1/2] (1.17ns)   --->   "%sl = load i8 %indata_addr_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:73]   --->   Operation 88 'load' 'sl' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_7 : Operation 89 [1/1] (0.00ns)   --->   "%indata_addr_4 = getelementptr i16 %indata, i64 0, i64 2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:88]   --->   Operation 89 'getelementptr' 'indata_addr_4' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 90 [2/2] (1.17ns)   --->   "%sl_2 = load i8 %indata_addr_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:88]   --->   Operation 90 'load' 'sl_2' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_7 : Operation 91 [1/1] (0.00ns)   --->   "%indata_addr_5 = getelementptr i16 %indata, i64 0, i64 3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:92]   --->   Operation 91 'getelementptr' 'indata_addr_5' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 92 [2/2] (1.17ns)   --->   "%sl_3 = load i8 %indata_addr_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:92]   --->   Operation 92 'load' 'sl_3' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+
+State 8 <SV = 6> <Delay = 1.17>
+ST_8 : Operation 93 [1/2] (1.17ns)   --->   "%sl_2 = load i8 %indata_addr_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:88]   --->   Operation 93 'load' 'sl_2' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_8 : Operation 94 [1/2] (1.17ns)   --->   "%sl_3 = load i8 %indata_addr_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:92]   --->   Operation 94 'load' 'sl_3' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_8 : Operation 95 [1/1] (0.00ns)   --->   "%indata_addr_6 = getelementptr i16 %indata, i64 0, i64 4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:97]   --->   Operation 95 'getelementptr' 'indata_addr_6' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 96 [2/2] (1.17ns)   --->   "%sl_4 = load i8 %indata_addr_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:97]   --->   Operation 96 'load' 'sl_4' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_8 : Operation 97 [1/1] (0.00ns)   --->   "%indata_addr_7 = getelementptr i16 %indata, i64 0, i64 5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:103]   --->   Operation 97 'getelementptr' 'indata_addr_7' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 98 [2/2] (1.17ns)   --->   "%sl_5 = load i8 %indata_addr_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:103]   --->   Operation 98 'load' 'sl_5' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+
+State 9 <SV = 7> <Delay = 1.17>
+ST_9 : Operation 99 [2/2] (0.71ns)   --->   "%L_ACF_load = load i4 %L_ACF_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84]   --->   Operation 99 'load' 'L_ACF_load' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_9 : Operation 100 [1/2] (1.17ns)   --->   "%sl_4 = load i8 %indata_addr_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:97]   --->   Operation 100 'load' 'sl_4' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_9 : Operation 101 [1/2] (1.17ns)   --->   "%sl_5 = load i8 %indata_addr_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:103]   --->   Operation 101 'load' 'sl_5' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_9 : Operation 102 [1/1] (0.00ns)   --->   "%indata_addr_8 = getelementptr i16 %indata, i64 0, i64 6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:110]   --->   Operation 102 'getelementptr' 'indata_addr_8' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 103 [2/2] (1.17ns)   --->   "%sl_6 = load i8 %indata_addr_8" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:110]   --->   Operation 103 'load' 'sl_6' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_9 : Operation 104 [1/1] (0.00ns)   --->   "%indata_addr_9 = getelementptr i16 %indata, i64 0, i64 7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:118]   --->   Operation 104 'getelementptr' 'indata_addr_9' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 105 [2/2] (1.17ns)   --->   "%sl_7 = load i8 %indata_addr_9" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:118]   --->   Operation 105 'load' 'sl_7' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+
+State 10 <SV = 8> <Delay = 4.56>
+ST_10 : Operation 106 [1/1] (0.00ns)   --->   "%sext_ln84 = sext i16 %sl" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84]   --->   Operation 106 'sext' 'sext_ln84' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 107 [1/2] (0.71ns)   --->   "%L_ACF_load = load i4 %L_ACF_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84]   --->   Operation 107 'load' 'L_ACF_load' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_10 : Operation 108 [1/1] (0.00ns)   --->   "%indata_addr_3 = getelementptr i16 %indata, i64 0, i64 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:85]   --->   Operation 108 'getelementptr' 'indata_addr_3' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 109 [2/2] (1.17ns)   --->   "%sl_1 = load i8 %indata_addr_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:85]   --->   Operation 109 'load' 'sl_1' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_10 : Operation 110 [1/1] (0.00ns)   --->   "%L_ACF_addr_2 = getelementptr i64 %L_ACF, i64 0, i64 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:87]   --->   Operation 110 'getelementptr' 'L_ACF_addr_2' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 111 [2/2] (0.71ns)   --->   "%L_ACF_load_2 = load i4 %L_ACF_addr_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:87]   --->   Operation 111 'load' 'L_ACF_load_2' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_10 : Operation 112 [1/1] (0.00ns)   --->   "%sext_ln89 = sext i16 %sl_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 112 'sext' 'sext_ln89' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 113 [1/1] (0.00ns)   --->   "%sext_ln89_1 = sext i16 %sl_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 113 'sext' 'sext_ln89_1' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 114 [1/1] (0.00ns)   --->   "%L_ACF_addr_3 = getelementptr i64 %L_ACF, i64 0, i64 2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:91]   --->   Operation 114 'getelementptr' 'L_ACF_addr_3' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 115 [2/2] (0.71ns)   --->   "%L_ACF_load_3 = load i4 %L_ACF_addr_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:91]   --->   Operation 115 'load' 'L_ACF_load_3' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_10 : Operation 116 [1/1] (0.00ns)   --->   "%sext_ln93 = sext i16 %sl_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:93]   --->   Operation 116 'sext' 'sext_ln93' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 117 [1/1] (0.00ns)   --->   "%sext_ln93_1 = sext i16 %sl_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:93]   --->   Operation 117 'sext' 'sext_ln93_1' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 118 [1/1] (0.00ns)   --->   "%sext_ln98 = sext i16 %sl_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 118 'sext' 'sext_ln98' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 119 [1/1] (0.00ns)   --->   "%sext_ln98_1 = sext i16 %sl_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 119 'sext' 'sext_ln98_1' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 120 [1/1] (0.00ns)   --->   "%sext_ln104_1 = sext i16 %sl_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 120 'sext' 'sext_ln104_1' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 121 [1/2] (1.17ns)   --->   "%sl_6 = load i8 %indata_addr_8" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:110]   --->   Operation 121 'load' 'sl_6' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_10 : Operation 122 [1/1] (0.00ns)   --->   "%sext_ln111 = sext i16 %sl_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 122 'sext' 'sext_ln111' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 123 [1/1] (1.69ns) (grouped into DSP with root node add_ln120_2)   --->   "%tmp = add i17 %sext_ln111, i17 %sext_ln98_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 123 'add' 'tmp' <Predicate = true> <Delay = 1.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 124 [1/1] (0.00ns) (grouped into DSP with root node add_ln120_2)   --->   "%tmp_cast = sext i17 %tmp" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 124 'sext' 'tmp_cast' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 125 [3/3] (0.99ns) (grouped into DSP with root node add_ln120_2)   --->   "%tmp18 = mul i33 %tmp_cast, i33 %sext_ln104_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 125 'mul' 'tmp18' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 126 [1/1] (1.69ns) (grouped into DSP with root node add_ln121_2)   --->   "%tmp23 = add i17 %sext_ln111, i17 %sext_ln89" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 126 'add' 'tmp23' <Predicate = true> <Delay = 1.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 127 [1/1] (0.00ns) (grouped into DSP with root node add_ln121_2)   --->   "%tmp23_cast = sext i17 %tmp23" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 127 'sext' 'tmp23_cast' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 128 [3/3] (0.99ns) (grouped into DSP with root node add_ln121_2)   --->   "%tmp24 = mul i33 %tmp23_cast, i33 %sext_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 128 'mul' 'tmp24' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 129 [1/1] (2.39ns) (grouped into DSP with root node tmp28)   --->   "%tmp27 = add i17 %sext_ln111, i17 %sext_ln84" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 129 'add' 'tmp27' <Predicate = true> <Delay = 2.39> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 130 [1/1] (0.00ns) (grouped into DSP with root node tmp28)   --->   "%tmp27_cast = sext i17 %tmp27" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 130 'sext' 'tmp27_cast' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 131 [4/4] (0.99ns) (root node of the DSP)   --->   "%tmp28 = mul i33 %tmp27_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 131 'mul' 'tmp28' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 132 [1/2] (1.17ns)   --->   "%sl_7 = load i8 %indata_addr_9" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:118]   --->   Operation 132 'load' 'sl_7' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_10 : Operation 133 [1/1] (0.00ns)   --->   "%sext_ln119_1 = sext i16 %sl_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 133 'sext' 'sext_ln119_1' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 134 [3/3] (0.99ns) (grouped into DSP with root node add_ln119_5)   --->   "%mul_ln119 = mul i32 %sext_ln119_1, i32 %sext_ln119_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 134 'mul' 'mul_ln119' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 135 [3/3] (0.99ns) (grouped into DSP with root node add_ln123_2)   --->   "%mul_ln123 = mul i32 %sext_ln119_1, i32 %sext_ln93_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 135 'mul' 'mul_ln123' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 136 [3/3] (0.99ns) (grouped into DSP with root node add_ln124_2)   --->   "%mul_ln124 = mul i32 %sext_ln119_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 136 'mul' 'mul_ln124' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 11 <SV = 9> <Delay = 3.86>
+ST_11 : Operation 137 [1/2] (1.17ns)   --->   "%sl_1 = load i8 %indata_addr_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:85]   --->   Operation 137 'load' 'sl_1' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_11 : Operation 138 [1/1] (0.00ns)   --->   "%sext_ln86 = sext i16 %sl_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:86]   --->   Operation 138 'sext' 'sext_ln86' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 139 [1/1] (0.00ns)   --->   "%sext_ln86_1 = sext i16 %sl_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:86]   --->   Operation 139 'sext' 'sext_ln86_1' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 140 [1/1] (0.00ns)   --->   "%sext_ln86_2 = sext i16 %sl_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:86]   --->   Operation 140 'sext' 'sext_ln86_2' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 141 [1/2] (0.71ns)   --->   "%L_ACF_load_2 = load i4 %L_ACF_addr_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:87]   --->   Operation 141 'load' 'L_ACF_load_2' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_11 : Operation 142 [3/3] (0.99ns) (grouped into DSP with root node add_ln119_2)   --->   "%mul_ln89 = mul i32 %sext_ln89_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 142 'mul' 'mul_ln89' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 143 [1/2] (0.71ns)   --->   "%L_ACF_load_3 = load i4 %L_ACF_addr_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:91]   --->   Operation 143 'load' 'L_ACF_load_3' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_11 : Operation 144 [1/1] (0.00ns)   --->   "%L_ACF_addr_4 = getelementptr i64 %L_ACF, i64 0, i64 3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:96]   --->   Operation 144 'getelementptr' 'L_ACF_addr_4' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 145 [2/2] (0.71ns)   --->   "%L_ACF_load_4 = load i4 %L_ACF_addr_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:96]   --->   Operation 145 'load' 'L_ACF_load_4' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_11 : Operation 146 [1/1] (0.00ns)   --->   "%sext_ln98_2 = sext i16 %sl_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 146 'sext' 'sext_ln98_2' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 147 [3/3] (0.99ns) (grouped into DSP with root node add_ln119_4)   --->   "%mul_ln98 = mul i32 %sext_ln98_2, i32 %sext_ln98_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 147 'mul' 'mul_ln98' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 148 [1/1] (0.00ns)   --->   "%L_ACF_addr_5 = getelementptr i64 %L_ACF, i64 0, i64 4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:102]   --->   Operation 148 'getelementptr' 'L_ACF_addr_5' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 149 [2/2] (0.71ns)   --->   "%L_ACF_load_5 = load i4 %L_ACF_addr_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:102]   --->   Operation 149 'load' 'L_ACF_load_5' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_11 : Operation 150 [1/1] (0.00ns)   --->   "%sext_ln104 = sext i16 %sl_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 150 'sext' 'sext_ln104' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 151 [1/1] (0.00ns)   --->   "%sext_ln104_2 = sext i16 %sl_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 151 'sext' 'sext_ln104_2' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 152 [3/3] (0.99ns) (grouped into DSP with root node add_ln119_6)   --->   "%mul_ln104 = mul i32 %sext_ln104_2, i32 %sext_ln104_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 152 'mul' 'mul_ln104' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 153 [3/3] (0.99ns) (grouped into DSP with root node add_ln123_3)   --->   "%mul_ln108 = mul i32 %sext_ln104_2, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:108]   --->   Operation 153 'mul' 'mul_ln108' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 154 [2/3] (0.99ns) (grouped into DSP with root node add_ln120_2)   --->   "%tmp18 = mul i33 %tmp_cast, i33 %sext_ln104_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 154 'mul' 'tmp18' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 155 [1/1] (1.69ns) (grouped into DSP with root node add_ln120_3)   --->   "%tmp19 = add i17 %sext_ln98_1, i17 %sext_ln89" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 155 'add' 'tmp19' <Predicate = true> <Delay = 1.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 156 [1/1] (0.00ns) (grouped into DSP with root node add_ln120_3)   --->   "%tmp19_cast = sext i17 %tmp19" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 156 'sext' 'tmp19_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 157 [3/3] (0.99ns) (grouped into DSP with root node add_ln120_3)   --->   "%tmp20 = mul i33 %tmp19_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 157 'mul' 'tmp20' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 158 [1/1] (2.39ns) (grouped into DSP with root node tmp22)   --->   "%tmp21 = add i17 %sext_ln89, i17 %sext_ln84" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 158 'add' 'tmp21' <Predicate = true> <Delay = 2.39> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 159 [1/1] (0.00ns) (grouped into DSP with root node tmp22)   --->   "%tmp21_cast = sext i17 %tmp21" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 159 'sext' 'tmp21_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 160 [4/4] (0.99ns) (root node of the DSP)   --->   "%tmp22 = mul i33 %tmp21_cast, i33 %sext_ln86_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 160 'mul' 'tmp22' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 161 [2/3] (0.99ns) (grouped into DSP with root node add_ln121_2)   --->   "%tmp24 = mul i33 %tmp23_cast, i33 %sext_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 161 'mul' 'tmp24' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 162 [1/1] (1.69ns) (grouped into DSP with root node add_ln121_3)   --->   "%tmp25 = add i17 %sext_ln104, i17 %sext_ln86" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 162 'add' 'tmp25' <Predicate = true> <Delay = 1.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 163 [1/1] (0.00ns) (grouped into DSP with root node add_ln121_3)   --->   "%tmp25_cast = sext i17 %tmp25" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 163 'sext' 'tmp25_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 164 [3/3] (0.99ns) (grouped into DSP with root node add_ln121_3)   --->   "%tmp26 = mul i33 %tmp25_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 164 'mul' 'tmp26' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 165 [3/4] (0.99ns) (root node of the DSP)   --->   "%tmp28 = mul i33 %tmp27_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 165 'mul' 'tmp28' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 166 [1/1] (0.00ns)   --->   "%sext_ln119 = sext i16 %sl_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 166 'sext' 'sext_ln119' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 167 [2/3] (0.99ns) (grouped into DSP with root node add_ln119_5)   --->   "%mul_ln119 = mul i32 %sext_ln119_1, i32 %sext_ln119_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 167 'mul' 'mul_ln119' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 168 [1/1] (1.69ns) (grouped into DSP with root node add_ln122_2)   --->   "%tmp29 = add i17 %sext_ln119, i17 %sext_ln86" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 168 'add' 'tmp29' <Predicate = true> <Delay = 1.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 169 [1/1] (0.00ns) (grouped into DSP with root node add_ln122_2)   --->   "%tmp29_cast = sext i17 %tmp29" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 169 'sext' 'tmp29_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 170 [3/3] (0.99ns) (grouped into DSP with root node add_ln122_2)   --->   "%tmp30 = mul i33 %tmp29_cast, i33 %sext_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 170 'mul' 'tmp30' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 171 [2/3] (0.99ns) (grouped into DSP with root node add_ln123_2)   --->   "%mul_ln123 = mul i32 %sext_ln119_1, i32 %sext_ln93_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 171 'mul' 'mul_ln123' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 172 [2/3] (0.99ns) (grouped into DSP with root node add_ln124_2)   --->   "%mul_ln124 = mul i32 %sext_ln119_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 172 'mul' 'mul_ln124' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 173 [3/3] (0.99ns) (grouped into DSP with root node add_ln125_1)   --->   "%mul_ln125 = mul i32 %sext_ln119_1, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 173 'mul' 'mul_ln125' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 12 <SV = 10> <Delay = 2.58>
+ST_12 : Operation 174 [2/3] (0.99ns) (grouped into DSP with root node add_ln119_2)   --->   "%mul_ln89 = mul i32 %sext_ln89_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 174 'mul' 'mul_ln89' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 175 [1/2] (0.71ns)   --->   "%L_ACF_load_4 = load i4 %L_ACF_addr_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:96]   --->   Operation 175 'load' 'L_ACF_load_4' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_12 : Operation 176 [2/3] (0.99ns) (grouped into DSP with root node add_ln119_4)   --->   "%mul_ln98 = mul i32 %sext_ln98_2, i32 %sext_ln98_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 176 'mul' 'mul_ln98' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 177 [1/2] (0.71ns)   --->   "%L_ACF_load_5 = load i4 %L_ACF_addr_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:102]   --->   Operation 177 'load' 'L_ACF_load_5' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_12 : Operation 178 [2/3] (0.99ns) (grouped into DSP with root node add_ln119_6)   --->   "%mul_ln104 = mul i32 %sext_ln104_2, i32 %sext_ln104_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 178 'mul' 'mul_ln104' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 179 [2/3] (0.99ns) (grouped into DSP with root node add_ln123_3)   --->   "%mul_ln108 = mul i32 %sext_ln104_2, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:108]   --->   Operation 179 'mul' 'mul_ln108' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 180 [1/1] (0.00ns)   --->   "%L_ACF_addr_6 = getelementptr i64 %L_ACF, i64 0, i64 5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:109]   --->   Operation 180 'getelementptr' 'L_ACF_addr_6' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 181 [2/2] (0.71ns)   --->   "%L_ACF_load_6 = load i4 %L_ACF_addr_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:109]   --->   Operation 181 'load' 'L_ACF_load_6' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_12 : Operation 182 [1/1] (0.00ns)   --->   "%sext_ln111_1 = sext i16 %sl_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 182 'sext' 'sext_ln111_1' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 183 [1/1] (1.94ns)   --->   "%mul_ln111 = mul i32 %sext_ln111_1, i32 %sext_ln111_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 183 'mul' 'mul_ln111' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 184 [1/1] (0.00ns)   --->   "%mul_ln111_cast = sext i32 %mul_ln111" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 184 'sext' 'mul_ln111_cast' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 185 [1/3] (0.00ns) (grouped into DSP with root node add_ln120_2)   --->   "%tmp18 = mul i33 %tmp_cast, i33 %sext_ln104_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 185 'mul' 'tmp18' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 186 [2/3] (0.99ns) (grouped into DSP with root node add_ln120_3)   --->   "%tmp20 = mul i33 %tmp19_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 186 'mul' 'tmp20' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 187 [3/4] (0.99ns) (root node of the DSP)   --->   "%tmp22 = mul i33 %tmp21_cast, i33 %sext_ln86_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 187 'mul' 'tmp22' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 188 [1/3] (0.00ns) (grouped into DSP with root node add_ln121_2)   --->   "%tmp24 = mul i33 %tmp23_cast, i33 %sext_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 188 'mul' 'tmp24' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 189 [2/3] (0.99ns) (grouped into DSP with root node add_ln121_3)   --->   "%tmp26 = mul i33 %tmp25_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 189 'mul' 'tmp26' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 190 [2/4] (0.99ns) (root node of the DSP)   --->   "%tmp28 = mul i33 %tmp27_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 190 'mul' 'tmp28' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 191 [1/1] (1.94ns)   --->   "%mul_ln115 = mul i32 %sext_ln111_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:115]   --->   Operation 191 'mul' 'mul_ln115' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 192 [1/1] (0.00ns)   --->   "%sext_ln116 = sext i32 %mul_ln115" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:116]   --->   Operation 192 'sext' 'sext_ln116' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 193 [1/1] (1.94ns)   --->   "%mul_ln116 = mul i32 %sext_ln111_1, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:116]   --->   Operation 193 'mul' 'mul_ln116' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 194 [1/1] (0.00ns)   --->   "%sext_ln117 = sext i32 %mul_ln116" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:117]   --->   Operation 194 'sext' 'sext_ln117' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 195 [1/1] (0.00ns)   --->   "%L_ACF_addr_7 = getelementptr i64 %L_ACF, i64 0, i64 6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:117]   --->   Operation 195 'getelementptr' 'L_ACF_addr_7' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 196 [2/2] (0.71ns)   --->   "%L_ACF_load_7 = load i4 %L_ACF_addr_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:117]   --->   Operation 196 'load' 'L_ACF_load_7' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_12 : Operation 197 [1/3] (0.00ns) (grouped into DSP with root node add_ln119_5)   --->   "%mul_ln119 = mul i32 %sext_ln119_1, i32 %sext_ln119_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 197 'mul' 'mul_ln119' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 198 [1/1] (0.00ns) (grouped into DSP with root node add_ln119_5)   --->   "%sext_ln119_2 = sext i32 %mul_ln119" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 198 'sext' 'sext_ln119_2' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 199 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_5 = add i33 %mul_ln111_cast, i33 %sext_ln119_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 199 'add' 'add_ln119_5' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 200 [1/1] (1.94ns)   --->   "%mul_ln120 = mul i32 %sext_ln119_1, i32 %sext_ln111_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 200 'mul' 'mul_ln120' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 201 [1/1] (0.00ns)   --->   "%sext_ln120 = sext i32 %mul_ln120" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 201 'sext' 'sext_ln120' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 202 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln120_2 = add i33 %tmp18, i33 %sext_ln120" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 202 'add' 'add_ln120_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 203 [1/1] (1.94ns)   --->   "%mul_ln121 = mul i32 %sext_ln119_1, i32 %sext_ln104_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 203 'mul' 'mul_ln121' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 204 [1/1] (0.00ns)   --->   "%sext_ln121 = sext i32 %mul_ln121" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 204 'sext' 'sext_ln121' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 205 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln121_2 = add i33 %tmp24, i33 %sext_ln121" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 205 'add' 'add_ln121_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 206 [2/3] (0.99ns) (grouped into DSP with root node add_ln122_2)   --->   "%tmp30 = mul i33 %tmp29_cast, i33 %sext_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 206 'mul' 'tmp30' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 207 [1/3] (0.00ns) (grouped into DSP with root node add_ln123_2)   --->   "%mul_ln123 = mul i32 %sext_ln119_1, i32 %sext_ln93_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 207 'mul' 'mul_ln123' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 208 [1/1] (0.00ns) (grouped into DSP with root node add_ln123_2)   --->   "%sext_ln123 = sext i32 %mul_ln123" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 208 'sext' 'sext_ln123' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 209 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln123_2 = add i33 %sext_ln116, i33 %sext_ln123" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 209 'add' 'add_ln123_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 210 [1/3] (0.00ns) (grouped into DSP with root node add_ln124_2)   --->   "%mul_ln124 = mul i32 %sext_ln119_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 210 'mul' 'mul_ln124' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 211 [1/1] (0.00ns) (grouped into DSP with root node add_ln124_2)   --->   "%sext_ln124 = sext i32 %mul_ln124" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 211 'sext' 'sext_ln124' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 212 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln124_2 = add i33 %sext_ln117, i33 %sext_ln124" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 212 'add' 'add_ln124_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 213 [2/3] (0.99ns) (grouped into DSP with root node add_ln125_1)   --->   "%mul_ln125 = mul i32 %sext_ln119_1, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 213 'mul' 'mul_ln125' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 13 <SV = 11> <Delay = 3.08>
+ST_13 : Operation 214 [1/1] (0.00ns)   --->   "%sext_ln84_1 = sext i16 %sl" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84]   --->   Operation 214 'sext' 'sext_ln84_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 215 [1/1] (1.94ns)   --->   "%mul_ln84 = mul i32 %sext_ln84_1, i32 %sext_ln84_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84]   --->   Operation 215 'mul' 'mul_ln84' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 216 [1/1] (0.00ns)   --->   "%sext_ln84_2 = sext i32 %mul_ln84" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84]   --->   Operation 216 'sext' 'sext_ln84_2' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 217 [1/1] (1.94ns)   --->   "%mul_ln86 = mul i32 %sext_ln86_2, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:86]   --->   Operation 217 'mul' 'mul_ln86' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 218 [1/1] (0.00ns)   --->   "%sext_ln87 = sext i32 %mul_ln86" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:87]   --->   Operation 218 'sext' 'sext_ln87' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 219 [1/3] (0.00ns) (grouped into DSP with root node add_ln119_2)   --->   "%mul_ln89 = mul i32 %sext_ln89_1, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 219 'mul' 'mul_ln89' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 220 [1/1] (0.00ns) (grouped into DSP with root node add_ln119_2)   --->   "%sext_ln91 = sext i32 %mul_ln89" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:91]   --->   Operation 220 'sext' 'sext_ln91' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 221 [1/1] (1.94ns)   --->   "%mul_ln91 = mul i32 %sext_ln89_1, i32 %sext_ln84_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:91]   --->   Operation 221 'mul' 'mul_ln91' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 222 [1/1] (1.94ns)   --->   "%mul_ln93 = mul i32 %sext_ln93_1, i32 %sext_ln93_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:93]   --->   Operation 222 'mul' 'mul_ln93' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 223 [1/1] (0.00ns)   --->   "%sext_ln96 = sext i32 %mul_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:96]   --->   Operation 223 'sext' 'sext_ln96' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 224 [1/3] (0.00ns) (grouped into DSP with root node add_ln119_4)   --->   "%mul_ln98 = mul i32 %sext_ln98_2, i32 %sext_ln98_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 224 'mul' 'mul_ln98' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 225 [1/1] (0.00ns) (grouped into DSP with root node add_ln119_4)   --->   "%sext_ln102 = sext i32 %mul_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:102]   --->   Operation 225 'sext' 'sext_ln102' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 226 [1/1] (1.94ns)   --->   "%mul_ln102 = mul i32 %sext_ln98_2, i32 %sext_ln84_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:102]   --->   Operation 226 'mul' 'mul_ln102' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 227 [1/3] (0.00ns) (grouped into DSP with root node add_ln119_6)   --->   "%mul_ln104 = mul i32 %sext_ln104_2, i32 %sext_ln104_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 227 'mul' 'mul_ln104' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 228 [1/1] (0.00ns) (grouped into DSP with root node add_ln119_6)   --->   "%sext_ln107 = sext i32 %mul_ln104" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:107]   --->   Operation 228 'sext' 'sext_ln107' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 229 [1/1] (1.94ns)   --->   "%mul_ln107 = mul i32 %sext_ln104_2, i32 %sext_ln89_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:107]   --->   Operation 229 'mul' 'mul_ln107' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 230 [1/3] (0.00ns) (grouped into DSP with root node add_ln123_3)   --->   "%mul_ln108 = mul i32 %sext_ln104_2, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:108]   --->   Operation 230 'mul' 'mul_ln108' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 231 [1/1] (0.00ns) (grouped into DSP with root node add_ln123_3)   --->   "%sext_ln109 = sext i32 %mul_ln108" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:109]   --->   Operation 231 'sext' 'sext_ln109' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 232 [1/1] (1.94ns)   --->   "%mul_ln109 = mul i32 %sext_ln104_2, i32 %sext_ln84_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:109]   --->   Operation 232 'mul' 'mul_ln109' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 233 [1/1] (0.00ns)   --->   "%sext_ln109_1 = sext i32 %mul_ln109" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:109]   --->   Operation 233 'sext' 'sext_ln109_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 234 [1/2] (0.71ns)   --->   "%L_ACF_load_6 = load i4 %L_ACF_addr_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:109]   --->   Operation 234 'load' 'L_ACF_load_6' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_13 : Operation 235 [1/3] (0.00ns) (grouped into DSP with root node add_ln120_3)   --->   "%tmp20 = mul i33 %tmp19_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 235 'mul' 'tmp20' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 236 [1/1] (0.00ns) (grouped into DSP with root node add_ln120_3)   --->   "%tmp20_cast = sext i33 %tmp20" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:98]   --->   Operation 236 'sext' 'tmp20_cast' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 237 [2/4] (0.99ns) (root node of the DSP)   --->   "%tmp22 = mul i33 %tmp21_cast, i33 %sext_ln86_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 237 'mul' 'tmp22' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 238 [1/3] (0.00ns) (grouped into DSP with root node add_ln121_3)   --->   "%tmp26 = mul i33 %tmp25_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 238 'mul' 'tmp26' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 239 [1/1] (0.00ns) (grouped into DSP with root node add_ln121_3)   --->   "%tmp26_cast = sext i33 %tmp26" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104]   --->   Operation 239 'sext' 'tmp26_cast' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 240 [1/4] (0.00ns) (root node of the DSP)   --->   "%tmp28 = mul i33 %tmp27_cast, i33 %sext_ln93" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111]   --->   Operation 240 'mul' 'tmp28' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 241 [1/1] (0.00ns)   --->   "%sext_ln115 = sext i33 %tmp28" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:115]   --->   Operation 241 'sext' 'sext_ln115' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 242 [1/1] (1.94ns)   --->   "%mul_ln117 = mul i32 %sext_ln111_1, i32 %sext_ln84_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:117]   --->   Operation 242 'mul' 'mul_ln117' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 243 [1/1] (0.00ns)   --->   "%sext_ln117_1 = sext i32 %mul_ln117" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:117]   --->   Operation 243 'sext' 'sext_ln117_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 244 [1/2] (0.71ns)   --->   "%L_ACF_load_7 = load i4 %L_ACF_addr_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:117]   --->   Operation 244 'load' 'L_ACF_load_7' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_13 : Operation 245 [1/1] (1.14ns)   --->   "%add_ln119_1 = add i64 %L_ACF_load, i64 %sext_ln84_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 245 'add' 'add_ln119_1' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 246 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_2 = add i33 %sext_ln87, i33 %sext_ln91" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 246 'add' 'add_ln119_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 247 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_4 = add i33 %sext_ln96, i33 %sext_ln102" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 247 'add' 'add_ln119_4' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 248 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_5 = add i33 %mul_ln111_cast, i33 %sext_ln119_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 248 'add' 'add_ln119_5' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 249 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_6 = add i33 %add_ln119_5, i33 %sext_ln107" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 249 'add' 'add_ln119_6' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 250 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln120_2 = add i33 %tmp18, i33 %sext_ln120" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 250 'add' 'add_ln120_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 251 [1/1] (0.00ns)   --->   "%sext_ln120_1 = sext i33 %add_ln120_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 251 'sext' 'sext_ln120_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 252 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln120_3 = add i34 %sext_ln120_1, i34 %tmp20_cast" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 252 'add' 'add_ln120_3' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 253 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln121_2 = add i33 %tmp24, i33 %sext_ln121" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 253 'add' 'add_ln121_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 254 [1/1] (0.00ns)   --->   "%sext_ln121_1 = sext i33 %add_ln121_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 254 'sext' 'sext_ln121_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 255 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln121_3 = add i34 %sext_ln121_1, i34 %tmp26_cast" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 255 'add' 'add_ln121_3' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 256 [1/3] (0.00ns) (grouped into DSP with root node add_ln122_2)   --->   "%tmp30 = mul i33 %tmp29_cast, i33 %sext_ln98" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 256 'mul' 'tmp30' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 257 [1/1] (0.00ns) (grouped into DSP with root node add_ln122_2)   --->   "%sext_ln122 = sext i33 %tmp30" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:122]   --->   Operation 257 'sext' 'sext_ln122' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 258 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln122_2 = add i34 %sext_ln115, i34 %sext_ln122" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:122]   --->   Operation 258 'add' 'add_ln122_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 259 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln123_2 = add i33 %sext_ln116, i33 %sext_ln123" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 259 'add' 'add_ln123_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 260 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln123_3 = add i33 %add_ln123_2, i33 %sext_ln109" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 260 'add' 'add_ln123_3' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 261 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln124_1 = add i64 %L_ACF_load_6, i64 %sext_ln109_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 261 'add' 'add_ln124_1' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 262 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln124_2 = add i33 %sext_ln117, i33 %sext_ln124" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 262 'add' 'add_ln124_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 263 [1/1] (0.00ns)   --->   "%sext_ln124_1 = sext i33 %add_ln124_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 263 'sext' 'sext_ln124_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 264 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln124 = add i64 %sext_ln124_1, i64 %add_ln124_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:124]   --->   Operation 264 'add' 'add_ln124' <Predicate = true> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 265 [1/3] (0.00ns) (grouped into DSP with root node add_ln125_1)   --->   "%mul_ln125 = mul i32 %sext_ln119_1, i32 %sext_ln86_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 265 'mul' 'mul_ln125' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 266 [1/1] (0.00ns) (grouped into DSP with root node add_ln125_1)   --->   "%sext_ln125 = sext i32 %mul_ln125" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 266 'sext' 'sext_ln125' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 267 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln125_1 = add i33 %sext_ln117_1, i33 %sext_ln125" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 267 'add' 'add_ln125_1' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 268 [1/1] (1.94ns)   --->   "%mul_ln126 = mul i32 %sext_ln119_1, i32 %sext_ln84_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:126]   --->   Operation 268 'mul' 'mul_ln126' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 269 [1/1] (0.00ns)   --->   "%L_ACF_addr_8 = getelementptr i64 %L_ACF, i64 0, i64 7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:126]   --->   Operation 269 'getelementptr' 'L_ACF_addr_8' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 270 [2/2] (0.71ns)   --->   "%L_ACF_load_8 = load i4 %L_ACF_addr_8" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:126]   --->   Operation 270 'load' 'L_ACF_load_8' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_13 : Operation 271 [1/1] (0.00ns)   --->   "%L_ACF_addr_9 = getelementptr i64 %L_ACF, i64 0, i64 8"   --->   Operation 271 'getelementptr' 'L_ACF_addr_9' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 272 [2/2] (0.71ns)   --->   "%L_ACF_load_9 = load i4 %L_ACF_addr_9" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 272 'load' 'L_ACF_load_9' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+
+State 14 <SV = 12> <Delay = 2.76>
+ST_14 : Operation 273 [1/1] (0.00ns)   --->   "%sext_ln91_1 = sext i32 %mul_ln91" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:91]   --->   Operation 273 'sext' 'sext_ln91_1' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 274 [1/1] (0.00ns)   --->   "%sext_ln102_1 = sext i32 %mul_ln102" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:102]   --->   Operation 274 'sext' 'sext_ln102_1' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 275 [1/1] (0.00ns)   --->   "%sext_ln108 = sext i32 %mul_ln107" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:108]   --->   Operation 275 'sext' 'sext_ln108' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 276 [1/4] (0.00ns) (root node of the DSP)   --->   "%tmp22 = mul i33 %tmp21_cast, i33 %sext_ln86_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 276 'mul' 'tmp22' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 277 [1/1] (0.00ns)   --->   "%tmp22_cast = sext i33 %tmp22" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:89]   --->   Operation 277 'sext' 'tmp22_cast' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 278 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_2 = add i33 %sext_ln87, i33 %sext_ln91" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 278 'add' 'add_ln119_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 279 [1/1] (0.00ns)   --->   "%sext_ln119_3 = sext i33 %add_ln119_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 279 'sext' 'sext_ln119_3' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 280 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln119_3 = add i64 %sext_ln119_3, i64 %add_ln119_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 280 'add' 'add_ln119_3' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 281 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_4 = add i33 %sext_ln96, i33 %sext_ln102" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 281 'add' 'add_ln119_4' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 282 [1/1] (0.00ns)   --->   "%sext_ln119_4 = sext i33 %add_ln119_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 282 'sext' 'sext_ln119_4' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 283 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln119_6 = add i33 %add_ln119_5, i33 %sext_ln107" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 283 'add' 'add_ln119_6' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 284 [1/1] (0.00ns)   --->   "%sext_ln119_5 = sext i33 %add_ln119_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 284 'sext' 'sext_ln119_5' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 285 [1/1] (0.89ns)   --->   "%add_ln119_7 = add i34 %sext_ln119_5, i34 %sext_ln119_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 285 'add' 'add_ln119_7' <Predicate = true> <Delay = 0.89> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.89> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 286 [1/1] (0.00ns)   --->   "%sext_ln119_6 = sext i34 %add_ln119_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 286 'sext' 'sext_ln119_6' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 287 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln119 = add i64 %sext_ln119_6, i64 %add_ln119_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119]   --->   Operation 287 'add' 'add_ln119' <Predicate = true> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 288 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln120_1 = add i64 %L_ACF_load_2, i64 %tmp22_cast" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 288 'add' 'add_ln120_1' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 289 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln120_3 = add i34 %sext_ln120_1, i34 %tmp20_cast" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 289 'add' 'add_ln120_3' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 290 [1/1] (0.00ns)   --->   "%sext_ln120_2 = sext i34 %add_ln120_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 290 'sext' 'sext_ln120_2' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 291 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln120 = add i64 %sext_ln120_2, i64 %add_ln120_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:120]   --->   Operation 291 'add' 'add_ln120' <Predicate = true> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 292 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln121_1 = add i64 %L_ACF_load_3, i64 %sext_ln91_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 292 'add' 'add_ln121_1' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 293 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln121_3 = add i34 %sext_ln121_1, i34 %tmp26_cast" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 293 'add' 'add_ln121_3' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 294 [1/1] (0.00ns)   --->   "%sext_ln121_2 = sext i34 %add_ln121_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 294 'sext' 'sext_ln121_2' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 295 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln121 = add i64 %sext_ln121_2, i64 %add_ln121_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:121]   --->   Operation 295 'add' 'add_ln121' <Predicate = true> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 296 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln122_1 = add i64 %L_ACF_load_4, i64 %sext_ln108" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:122]   --->   Operation 296 'add' 'add_ln122_1' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 297 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln122_2 = add i34 %sext_ln115, i34 %sext_ln122" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:122]   --->   Operation 297 'add' 'add_ln122_2' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 298 [1/1] (0.00ns)   --->   "%sext_ln122_1 = sext i34 %add_ln122_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:122]   --->   Operation 298 'sext' 'sext_ln122_1' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 299 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln122 = add i64 %sext_ln122_1, i64 %add_ln122_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:122]   --->   Operation 299 'add' 'add_ln122' <Predicate = true> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 300 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln123_1 = add i64 %L_ACF_load_5, i64 %sext_ln102_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 300 'add' 'add_ln123_1' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 301 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln123_3 = add i33 %add_ln123_2, i33 %sext_ln109" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 301 'add' 'add_ln123_3' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 302 [1/1] (0.00ns)   --->   "%sext_ln123_1 = sext i33 %add_ln123_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 302 'sext' 'sext_ln123_1' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 303 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln123 = add i64 %sext_ln123_1, i64 %add_ln123_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:123]   --->   Operation 303 'add' 'add_ln123' <Predicate = true> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.42> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 304 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln125_1 = add i33 %sext_ln117_1, i33 %sext_ln125" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 304 'add' 'add_ln125_1' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 305 [1/1] (0.00ns)   --->   "%sext_ln125_1 = sext i33 %add_ln125_1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 305 'sext' 'sext_ln125_1' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 306 [1/1] (1.14ns)   --->   "%add_ln125 = add i64 %sext_ln125_1, i64 %L_ACF_load_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:125]   --->   Operation 306 'add' 'add_ln125' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 307 [1/1] (0.00ns)   --->   "%sext_ln126 = sext i32 %mul_ln126" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:126]   --->   Operation 307 'sext' 'sext_ln126' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 308 [1/2] (0.71ns)   --->   "%L_ACF_load_8 = load i4 %L_ACF_addr_8" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:126]   --->   Operation 308 'load' 'L_ACF_load_8' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_14 : Operation 309 [1/1] (1.14ns)   --->   "%add_ln126 = add i64 %L_ACF_load_8, i64 %sext_ln126" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:126]   --->   Operation 309 'add' 'add_ln126' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 310 [1/2] (0.71ns)   --->   "%L_ACF_load_9 = load i4 %L_ACF_addr_9" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 310 'load' 'L_ACF_load_9' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_14 : Operation 311 [2/2] (0.38ns)   --->   "%call_ln140 = call void @Autocorrelation_Pipeline_Autocorrelation_label3, i64 %L_ACF_load_9, i64 %add_ln126, i64 %add_ln125, i64 %add_ln124, i64 %add_ln123, i64 %add_ln122, i64 %add_ln121, i64 %add_ln120, i64 %add_ln119, i16 %indata, i64 %p_loc, i64 %p_loc17, i64 %p_loc18, i64 %p_loc19, i64 %p_loc20, i64 %p_loc21, i64 %p_loc22, i64 %p_loc23, i64 %p_loc24" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 311 'call' 'call_ln140' <Predicate = true> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 15 <SV = 13> <Delay = 0.00>
+ST_15 : Operation 312 [1/2] (0.00ns)   --->   "%call_ln140 = call void @Autocorrelation_Pipeline_Autocorrelation_label3, i64 %L_ACF_load_9, i64 %add_ln126, i64 %add_ln125, i64 %add_ln124, i64 %add_ln123, i64 %add_ln122, i64 %add_ln121, i64 %add_ln120, i64 %add_ln119, i16 %indata, i64 %p_loc, i64 %p_loc17, i64 %p_loc18, i64 %p_loc19, i64 %p_loc20, i64 %p_loc21, i64 %p_loc22, i64 %p_loc23, i64 %p_loc24" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 312 'call' 'call_ln140' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 16 <SV = 14> <Delay = 0.71>
+ST_16 : Operation 313 [1/1] (0.00ns)   --->   "%p_loc23_load = load i64 %p_loc23"   --->   Operation 313 'load' 'p_loc23_load' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 314 [1/1] (0.00ns)   --->   "%p_loc24_load = load i64 %p_loc24"   --->   Operation 314 'load' 'p_loc24_load' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 315 [1/1] (0.71ns)   --->   "%store_ln132 = store i64 %p_loc24_load, i4 %L_ACF_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 315 'store' 'store_ln132' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_16 : Operation 316 [1/1] (0.71ns)   --->   "%store_ln133 = store i64 %p_loc23_load, i4 %L_ACF_addr_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 316 'store' 'store_ln133' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+
+State 17 <SV = 15> <Delay = 0.71>
+ST_17 : Operation 317 [1/1] (0.00ns)   --->   "%p_loc21_load = load i64 %p_loc21"   --->   Operation 317 'load' 'p_loc21_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 318 [1/1] (0.00ns)   --->   "%p_loc22_load = load i64 %p_loc22"   --->   Operation 318 'load' 'p_loc22_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 319 [1/1] (0.71ns)   --->   "%store_ln134 = store i64 %p_loc22_load, i4 %L_ACF_addr_3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 319 'store' 'store_ln134' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_17 : Operation 320 [1/1] (0.71ns)   --->   "%store_ln135 = store i64 %p_loc21_load, i4 %L_ACF_addr_4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 320 'store' 'store_ln135' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+
+State 18 <SV = 16> <Delay = 0.71>
+ST_18 : Operation 321 [1/1] (0.00ns)   --->   "%p_loc19_load = load i64 %p_loc19"   --->   Operation 321 'load' 'p_loc19_load' <Predicate = true> <Delay = 0.00>
+ST_18 : Operation 322 [1/1] (0.00ns)   --->   "%p_loc20_load = load i64 %p_loc20"   --->   Operation 322 'load' 'p_loc20_load' <Predicate = true> <Delay = 0.00>
+ST_18 : Operation 323 [1/1] (0.71ns)   --->   "%store_ln136 = store i64 %p_loc20_load, i4 %L_ACF_addr_5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 323 'store' 'store_ln136' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_18 : Operation 324 [1/1] (0.71ns)   --->   "%store_ln137 = store i64 %p_loc19_load, i4 %L_ACF_addr_6" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 324 'store' 'store_ln137' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+
+State 19 <SV = 17> <Delay = 0.71>
+ST_19 : Operation 325 [1/1] (0.00ns)   --->   "%p_loc17_load = load i64 %p_loc17"   --->   Operation 325 'load' 'p_loc17_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 326 [1/1] (0.00ns)   --->   "%p_loc18_load = load i64 %p_loc18"   --->   Operation 326 'load' 'p_loc18_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 327 [1/1] (0.71ns)   --->   "%store_ln138 = store i64 %p_loc18_load, i4 %L_ACF_addr_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 327 'store' 'store_ln138' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+ST_19 : Operation 328 [1/1] (0.71ns)   --->   "%store_ln139 = store i64 %p_loc17_load, i4 %L_ACF_addr_8" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 328 'store' 'store_ln139' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+
+State 20 <SV = 18> <Delay = 0.71>
+ST_20 : Operation 329 [1/1] (0.00ns)   --->   "%p_loc_load = load i64 %p_loc"   --->   Operation 329 'load' 'p_loc_load' <Predicate = true> <Delay = 0.00>
+ST_20 : Operation 330 [1/1] (0.71ns)   --->   "%store_ln140 = store i64 %p_loc_load, i4 %L_ACF_addr_9" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 330 'store' 'store_ln140' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 9> <RAM>
+
+State 21 <SV = 19> <Delay = 0.00>
+ST_21 : Operation 331 [2/2] (0.00ns)   --->   "%call_ln0 = call void @Autocorrelation_Pipeline_Autocorrelation_label4, i64 %L_ACF"   --->   Operation 331 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 22 <SV = 20> <Delay = 0.00>
+ST_22 : Operation 332 [1/2] (0.00ns)   --->   "%call_ln0 = call void @Autocorrelation_Pipeline_Autocorrelation_label4, i64 %L_ACF"   --->   Operation 332 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_22 : Operation 333 [1/1] (0.00ns)   --->   "%br_ln150 = br i1 %icmp_ln62, void %if.end344, void %Autocorrelation_label5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:150]   --->   Operation 333 'br' 'br_ln150' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 334 [1/1] (0.00ns)   --->   "%trunc_ln152 = trunc i7 %scalauto_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 334 'trunc' 'trunc_ln152' <Predicate = (icmp_ln62)> <Delay = 0.00>
+ST_22 : Operation 335 [2/2] (0.00ns)   --->   "%call_ln152 = call void @Autocorrelation_Pipeline_Autocorrelation_label5, i16 %indata, i6 %trunc_ln152" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 335 'call' 'call_ln152' <Predicate = (icmp_ln62)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 23 <SV = 21> <Delay = 0.00>
+ST_23 : Operation 336 [1/2] (0.00ns)   --->   "%call_ln152 = call void @Autocorrelation_Pipeline_Autocorrelation_label5, i16 %indata, i6 %trunc_ln152" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:152]   --->   Operation 336 'call' 'call_ln152' <Predicate = (icmp_ln62)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_23 : Operation 337 [1/1] (0.00ns)   --->   "%br_ln0 = br void %if.end344"   --->   Operation 337 'br' 'br_ln0' <Predicate = (icmp_ln62)> <Delay = 0.00>
+ST_23 : Operation 338 [1/1] (0.00ns)   --->   "%ret_ln157 = ret" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:157]   --->   Operation 338 'ret' 'ret_ln157' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	'alloca' operation 8 bit ('k', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:39) [5]  (0.000 ns)
+	'store' operation 0 bit ('store_ln39', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:39) of constant 0 on local variable 'k', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:39 [17]  (0.387 ns)
+
+ <State 2>: 2.420ns
+The critical path consists of the following:
+	'load' operation 16 bit ('smax_load', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:57) on local variable 'smax', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:41 [43]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln57', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:57) [45]  (0.785 ns)
+	'call' operation 6 bit ('tmp_1', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60) to 'gsm_norm' [50]  (1.513 ns)
+	blocking operation 0.122 ns on control path)
+
+ <State 3>: 3.620ns
+The critical path consists of the following:
+	'load' operation 16 bit ('a', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51) on array 'indata' [31]  (1.177 ns)
+	'sub' operation 16 bit ('sub_ln67', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51) [34]  (0.785 ns)
+	'select' operation 16 bit ('select_ln67', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51) [35]  (0.000 ns)
+	'select' operation 16 bit ('temp', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c:67->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:51) [36]  (0.243 ns)
+	'icmp' operation 1 bit ('icmp_ln52', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:52) [37]  (0.785 ns)
+	'select' operation 16 bit ('smax', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:52) [38]  (0.243 ns)
+	'store' operation 0 bit ('store_ln41', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:41) of variable 'smax', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:52 on local variable 'smax', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:41 [40]  (0.387 ns)
+
+ <State 4>: 4.517ns
+The critical path consists of the following:
+	'call' operation 6 bit ('tmp_1', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60) to 'gsm_norm' [50]  (1.874 ns)
+	'sub' operation 7 bit ('scalauto', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60) [52]  (0.706 ns)
+	multiplexor before 'phi' operation 7 bit ('scalauto') with incoming values : ('scalauto', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60) [55]  (0.387 ns)
+	'phi' operation 7 bit ('scalauto') with incoming values : ('scalauto', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:60) [55]  (0.000 ns)
+	'add' operation 7 bit ('add_ln62', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62) [57]  (0.706 ns)
+	'lshr' operation 32 bit ('b_assign_11', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:62) [63]  (0.844 ns)
+
+ <State 5>: 0.000ns
+The critical path consists of the following:
+
+ <State 6>: 1.177ns
+The critical path consists of the following:
+	'getelementptr' operation 8 bit ('indata_addr_2', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:73) [68]  (0.000 ns)
+	'load' operation 16 bit ('sl', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:73) on array 'indata' [69]  (1.177 ns)
+
+ <State 7>: 1.177ns
+The critical path consists of the following:
+	'load' operation 16 bit ('sl', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:73) on array 'indata' [69]  (1.177 ns)
+
+ <State 8>: 1.177ns
+The critical path consists of the following:
+	'load' operation 16 bit ('sl', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:88) on array 'indata' [86]  (1.177 ns)
+
+ <State 9>: 1.177ns
+The critical path consists of the following:
+	'load' operation 16 bit ('sl', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:97) on array 'indata' [104]  (1.177 ns)
+
+ <State 10>: 4.569ns
+The critical path consists of the following:
+	'load' operation 16 bit ('sl', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:110) on array 'indata' [130]  (1.177 ns)
+	'add' operation 17 bit of DSP[155] ('tmp27', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111) [153]  (2.396 ns)
+	'mul' operation 33 bit of DSP[155] ('tmp28', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111) [155]  (0.996 ns)
+
+ <State 11>: 3.869ns
+The critical path consists of the following:
+	'load' operation 16 bit ('sl', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:85) on array 'indata' [77]  (1.177 ns)
+	'add' operation 17 bit of DSP[196] ('tmp25', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104) [149]  (1.696 ns)
+	'mul' operation 33 bit of DSP[196] ('tmp26', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:104) [151]  (0.996 ns)
+
+ <State 12>: 2.585ns
+The critical path consists of the following:
+	'mul' operation 32 bit ('mul_ln111', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:111) [133]  (1.940 ns)
+	'add' operation 33 bit of DSP[177] ('add_ln119_5', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119) [177]  (0.645 ns)
+
+ <State 13>: 3.087ns
+The critical path consists of the following:
+	'mul' operation 32 bit ('mul_ln84', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:84) [73]  (1.940 ns)
+	'add' operation 64 bit ('add_ln119_1', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119) [171]  (1.147 ns)
+
+ <State 14>: 2.765ns
+The critical path consists of the following:
+	'add' operation 33 bit of DSP[175] ('add_ln119_4', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119) [175]  (0.645 ns)
+	'add' operation 34 bit ('add_ln119_7', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119) [180]  (0.890 ns)
+	'add' operation 64 bit ('add_ln119', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:119) [182]  (0.843 ns)
+	'call' operation 0 bit ('call_ln140', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140) to 'Autocorrelation_Pipeline_Autocorrelation_label3' [232]  (0.387 ns)
+
+ <State 15>: 0.000ns
+The critical path consists of the following:
+
+ <State 16>: 0.714ns
+The critical path consists of the following:
+	'load' operation 64 bit ('p_loc24_load') on local variable 'p_loc24' [241]  (0.000 ns)
+	'store' operation 0 bit ('store_ln132', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:132) of variable 'p_loc24_load' on array 'L_ACF' [242]  (0.714 ns)
+
+ <State 17>: 0.714ns
+The critical path consists of the following:
+	'load' operation 64 bit ('p_loc22_load') on local variable 'p_loc22' [239]  (0.000 ns)
+	'store' operation 0 bit ('store_ln134', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:134) of variable 'p_loc22_load' on array 'L_ACF' [244]  (0.714 ns)
+
+ <State 18>: 0.714ns
+The critical path consists of the following:
+	'load' operation 64 bit ('p_loc20_load') on local variable 'p_loc20' [237]  (0.000 ns)
+	'store' operation 0 bit ('store_ln136', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:136) of variable 'p_loc20_load' on array 'L_ACF' [246]  (0.714 ns)
+
+ <State 19>: 0.714ns
+The critical path consists of the following:
+	'load' operation 64 bit ('p_loc18_load') on local variable 'p_loc18' [235]  (0.000 ns)
+	'store' operation 0 bit ('store_ln138', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:138) of variable 'p_loc18_load' on array 'L_ACF' [248]  (0.714 ns)
+
+ <State 20>: 0.714ns
+The critical path consists of the following:
+	'load' operation 64 bit ('p_loc_load') on local variable 'p_loc' [233]  (0.000 ns)
+	'store' operation 0 bit ('store_ln140', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c:140) of variable 'p_loc_load' on array 'L_ACF' [250]  (0.714 ns)
+
+ <State 21>: 0.000ns
+The critical path consists of the following:
+
+ <State 22>: 0.000ns
+The critical path consists of the following:
+
+ <State 23>: 0.000ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,49 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "loop_height",
+      "FunctionName": "stencil3d",
+      "Depth": 1
+    },
+    {
+      "Name": "loop_col",
+      "FunctionName": "stencil3d",
+      "Depth": 2
+    },
+    {
+      "Name": "loop_row",
+      "FunctionName": "stencil3d",
+      "Depth": 3
+    },
+    {
+      "Name": "row_bound_height",
+      "FunctionName": "stencil3d",
+      "Depth": 1
+    },
+    {
+      "Name": "row_bound_col",
+      "FunctionName": "stencil3d",
+      "Depth": 2
+    },
+    {
+      "Name": "col_bound_height",
+      "FunctionName": "stencil3d",
+      "Depth": 1
+    },
+    {
+      "Name": "col_bound_row",
+      "FunctionName": "stencil3d",
+      "Depth": 2
+    },
+    {
+      "Name": "height_bound_col",
+      "FunctionName": "stencil3d",
+      "Depth": 1
+    },
+    {
+      "Name": "height_bound_row",
+      "FunctionName": "stencil3d",
+      "Depth": 2
+    }
+  ]
+}

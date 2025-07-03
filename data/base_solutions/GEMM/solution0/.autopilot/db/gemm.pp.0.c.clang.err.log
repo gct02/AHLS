@@ -1,0 +1,52 @@
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/hls_script.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=name=bbgemm_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE TOP name=bbgemm
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:6:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:1:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:7:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gemm/gemm.c:16:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=min=8 max=8 avg=8_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:2:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:8:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gemm/gemm.c:18:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=min=8 max=8 avg=8_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:3:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gemm/gemm.c:20:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:4:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gemm/gemm.c:22:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=min=8 max=8 avg=8_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:11:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/temp/directives.tcl:5:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gemm/gemm.c:27:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=min=8 max=8 avg=8_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=8 max=8 avg=8
+        ^
+17 warnings generated.

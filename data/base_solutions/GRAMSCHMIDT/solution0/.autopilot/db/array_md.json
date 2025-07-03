@@ -1,0 +1,72 @@
+{
+  "ArrayMetadata": [
+    {
+      "Name": "llvm.global_ctors",
+      "FunctionName": "",
+      "BaseBitwidth": 0,
+      "BaseType": 13,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 0,
+      "Dimensions": [0]
+    },
+    {
+      "Name": "A.addr",
+      "FunctionName": "kernel_gramschmidt",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512]
+    },
+    {
+      "Name": "R.addr",
+      "FunctionName": "kernel_gramschmidt",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512]
+    },
+    {
+      "Name": "Q.addr",
+      "FunctionName": "kernel_gramschmidt",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512]
+    },
+    {
+      "Name": "A",
+      "FunctionName": "kernel_gramschmidt",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 2,
+      "TotalSize": 262144,
+      "Dimensions": [512, 512]
+    },
+    {
+      "Name": "R",
+      "FunctionName": "kernel_gramschmidt",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 2,
+      "TotalSize": 262144,
+      "Dimensions": [512, 512]
+    },
+    {
+      "Name": "Q",
+      "FunctionName": "kernel_gramschmidt",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 2,
+      "TotalSize": 262144,
+      "Dimensions": [512, 512]
+    }
+  ]
+}

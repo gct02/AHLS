@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Jul  2 18:15:21 2025
+# Process ID: 1111593
+# Current directory: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/solution0/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/solution0/impl/ip/vivado.log
+# Journal file: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GEMM/solution0/impl/ip/vivado.jou
+# Running On: H410M-H-V3, OS: Linux, CPU Frequency: 2900.000 MHz, CPU Physical cores: 6, Host memory: 33513 MB
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip'...
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  2 18:15:31 2025...

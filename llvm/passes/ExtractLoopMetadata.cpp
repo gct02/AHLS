@@ -92,7 +92,7 @@ struct ExtractLoopMetadataPass : public ModulePass {
                 OFS << ",\n";
                 OFS << "      \"" << MDItem.first << "\": " << MDItem.second;
             }
-            OFS << ",\n    }";
+            OFS << "\n    }";
         }
         OFS << "\n  ]\n";
         OFS << "}\n";

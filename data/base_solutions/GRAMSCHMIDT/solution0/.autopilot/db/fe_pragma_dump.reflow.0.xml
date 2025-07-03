@@ -1,0 +1,21 @@
+<pragmas>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="7" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="1" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="8" pragmaType="loop_flatten" parentfunction="kernel_gramschmidt" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="87" pragmaType="loop_tripcount" parentfunction="kernel_gramschmidt" min="512" max="512" avg="512"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="2" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="9" pragmaType="loop_flatten" parentfunction="kernel_gramschmidt" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="91" pragmaType="loop_tripcount" parentfunction="kernel_gramschmidt" min="512" max="512" avg="512"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="3" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="10" pragmaType="loop_flatten" parentfunction="kernel_gramschmidt" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="97" pragmaType="loop_tripcount" parentfunction="kernel_gramschmidt" min="512" max="512" avg="512"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="4" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="11" pragmaType="loop_flatten" parentfunction="kernel_gramschmidt" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="102" pragmaType="loop_tripcount" parentfunction="kernel_gramschmidt" min="1" max="511" avg="256"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="5" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="12" pragmaType="loop_flatten" parentfunction="kernel_gramschmidt" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="106" pragmaType="loop_tripcount" parentfunction="kernel_gramschmidt" min="512" max="512" avg="512"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="6" pragmaType="pipeline" parentfunction="kernel_gramschmidt" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="13" pragmaType="loop_flatten" parentfunction="kernel_gramschmidt" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c" line="111" pragmaType="loop_tripcount" parentfunction="kernel_gramschmidt" min="512" max="512" avg="512"/>
+</pragmas>

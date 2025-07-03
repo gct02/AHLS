@@ -1,0 +1,45 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Wed Jul  2 18:28:39 2025
+| Host         : H410M-H-V3 running 64-bit Linux Mint 20.2
+| Command      : report_utilization -hierarchical -hierarchical_depth 5 -file ./report/kernel_gramschmidt_utilization_hierarchical_routed.rpt
+| Design       : bd_0_wrapper
+| Device       : xcu50-fsvh2104-2-e
+| Speed File   : -2
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------------------------------------------------+--------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+|                               Instance                               |                                  Module                                  | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP Blocks |
++----------------------------------------------------------------------+--------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+| bd_0_wrapper                                                         |                                                                    (top) |       6135 |       6054 |       0 |   81 | 3609 |      0 |      0 |    0 |         11 |
+|   bd_0_i                                                             |                                                                     bd_0 |       6135 |       6054 |       0 |   81 | 3609 |      0 |      0 |    0 |         11 |
+|     hls_inst                                                         |                                                          bd_0_hls_inst_0 |       6135 |       6054 |       0 |   81 | 3609 |      0 |      0 |    0 |         11 |
+|       inst                                                           |                                       bd_0_hls_inst_0_kernel_gramschmidt |       6135 |       6054 |       0 |   81 | 3609 |      0 |      0 |    0 |         11 |
+|         (inst)                                                       |                                       bd_0_hls_inst_0_kernel_gramschmidt |        321 |        321 |       0 |    0 |  991 |      0 |      0 |    0 |          0 |
+|         dadddsub_64ns_64ns_64_4_full_dsp_1_U1                        |    bd_0_hls_inst_0_kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1 |        769 |        769 |       0 |    0 |  367 |      0 |      0 |    0 |          3 |
+|           (dadddsub_64ns_64ns_64_4_full_dsp_1_U1)                    |    bd_0_hls_inst_0_kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1 |         64 |         64 |       0 |    0 |  129 |      0 |      0 |    0 |          0 |
+|           kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u | bd_0_hls_inst_0_kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip |        705 |        705 |       0 |    0 |  238 |      0 |      0 |    0 |          3 |
+|         ddiv_64ns_64ns_64_14_no_dsp_1_U3                             |         bd_0_hls_inst_0_kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1 |       3203 |       3147 |       0 |   56 | 1330 |      0 |      0 |    0 |          0 |
+|           (ddiv_64ns_64ns_64_14_no_dsp_1_U3)                         |         bd_0_hls_inst_0_kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1 |          0 |          0 |       0 |    0 |  128 |      0 |      0 |    0 |          0 |
+|           kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u      |      bd_0_hls_inst_0_kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip |       3203 |       3147 |       0 |   56 | 1202 |      0 |      0 |    0 |          0 |
+|         dmul_64ns_64ns_64_4_max_dsp_1_U2                             |         bd_0_hls_inst_0_kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1 |        164 |        164 |       0 |    0 |  211 |      0 |      0 |    0 |          8 |
+|           (dmul_64ns_64ns_64_4_max_dsp_1_U2)                         |         bd_0_hls_inst_0_kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1 |         64 |         64 |       0 |    0 |  128 |      0 |      0 |    0 |          0 |
+|           kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip_u      |      bd_0_hls_inst_0_kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip |        100 |        100 |       0 |    0 |   83 |      0 |      0 |    0 |          8 |
+|         dsqrt_64ns_64ns_64_12_no_dsp_1_U4                            |        bd_0_hls_inst_0_kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1 |       1678 |       1653 |       0 |   25 |  710 |      0 |      0 |    0 |          0 |
+|           (dsqrt_64ns_64ns_64_12_no_dsp_1_U4)                        |        bd_0_hls_inst_0_kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1 |          0 |          0 |       0 |    0 |   64 |      0 |      0 |    0 |          0 |
+|           kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u     |     bd_0_hls_inst_0_kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip |       1678 |       1653 |       0 |   25 |  646 |      0 |      0 |    0 |          0 |
++----------------------------------------------------------------------+--------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

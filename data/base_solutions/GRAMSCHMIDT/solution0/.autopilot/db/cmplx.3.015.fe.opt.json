@@ -1,0 +1,17 @@
+{
+  "0": {
+    "basicblocks": 19,
+    "calls": "",
+    "file": "gramschmidt.c",
+    "fileloc": 75,
+    "instructions": 111,
+    "loads": {
+      "T": 6
+    },
+    "name": "kernel_gramschmidt",
+    "stores": {
+      "T": 5
+    },
+    "total_instructions": 111
+  }
+}

@@ -22,23 +22,10 @@ CDFG_EDGE_TYPES = [
     ("instr", "data", "instr"),
     ("port", "data", "instr"),
     ("array", "data", "instr"),
+    ("instr", "data", "port"),
+    ("instr", "data", "array"),
 
-    # Edges for array allocations
-    ("instr", "alloca", "array"),
-
-    # Edges for store instructions
-    ("instr", "store", "array"),
-    ("instr", "store", "instr"),
-    ("instr", "store", "port"),
-
-    # Edges representing relationships between load and store 
-    # instructions that access the same memory
-    ("instr", "mem", "instr"),
-
-    # Edges representing conditional memory accesses
-    ("instr", "cond_mem", "instr"),
-
-    # Edges representing constant pointers to global arrays
+    # Data flow edges representing constant pointers
     ("instr", "data", "const"),
     ("port", "data", "const"),
     ("array", "data", "const"),
@@ -152,15 +139,15 @@ class RegionNode(Node):
 
             ii = findint(element, 'mII', 0)
             if ii <= 0:
-                if max_tc > 0:
-                    ii = max_lat // max_tc
-                else:
-                    ii = 1
+                ii = max_lat // max_tc if max_tc > 0 else 1
         else:
             loop_depth = 0
             min_tc = 0
             max_tc = 0
-            ii = 0
+            ii = findint(element, 'mII', 0)
+            if ii <= 0:
+                ii = max_lat if max_lat > 0 else 1
+
 
         encoded_loop_depth = [0] * LOOP_DEPTH_LIM
         encoded_loop_depth[loop_depth] = 1
@@ -403,11 +390,9 @@ class CDFG:
         cdfg_regions = root.find('syndb/cdfg_regions')
         if cdfg_regions is None:
             raise ValueError("CDFG regions not found in the XML file")
-        
-        self._extract_function_name(cdfg)
 
         # Extract function information
-        self.name = cdfg.findtext('name')
+        self.function_name = cdfg.findtext('name')
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth', 0)
         self.is_top_level = self.function_name == top_level_name
         self.function_calls = []
@@ -416,25 +401,6 @@ class CDFG:
                           loop_md_list, module_util_map)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
-
-    def _extract_function_name(self, cdfg):
-        if (instrs := cdfg.find('nodes')) is None:
-            raise ValueError("CDFG does not contain 'nodes' section")
-        
-        self.function_name = ''
-        for elem in instrs.findall('item'):
-            value = elem.find('Value')
-            obj = elem.find('Obj') if value is None else value.find('Obj')
-            if obj is None:
-                continue
-            name = obj.findtext('contextFuncName', '')
-            if name:
-                self.function_name = name
-                break
-
-        if not self.function_name:
-            print("CDFG does not contain 'contextFuncName' in any node")
-            self.function_name = cdfg.findtext('name')
 
     def _parse_nodes(self, cdfg, regions, array_md_list, loop_md_list, module_util_map):
         if (consts := cdfg.find('consts')) is None:
@@ -500,7 +466,7 @@ class CDFG:
             self.nodes['instr'].append(instr_node)
 
             if array_md is not None and opcode == 'alloca':
-                self.edges[('instr', 'alloca', 'array')].append(
+                self.edges[('instr', 'data', 'array')].append(
                     (instr_node.id, array_node.id)
                 )
                 self._alloca_array_map[instr_node.id] = array_node.id
@@ -701,17 +667,19 @@ class CDFG:
             for array, instr in self.edges.get((nt, "data", "instr"), []):
                 instr_node = self.nodes['instr'][instr - instr_offset]
                 if instr_node.opcode == 'store':
-                    self.edges[("instr", "store", nt)].append((instr, array))
+                    self.edges[("instr", "data", nt)].append((instr, array))
 
         for src_instr, dst_instr in self.edges.get(("instr", "data", "instr"), []):
             dst_node = self.nodes['instr'][dst_instr - instr_offset]
             if dst_node.opcode == 'store':
                 src_node = self.nodes['instr'][src_instr - instr_offset]
                 if src_node.opcode == 'alloca':
-                    self.edges[("instr", "store", "instr")].append((dst_instr, src_instr))
+                    self.edges[("instr", "data", "instr")].append((dst_instr, src_instr))
 
     def _map_edge_type(self, edge_type):
-        return {'1': 'data', '2': 'control', '3': 'cond_mem', '4': 'mem'}.get(edge_type, '')
+        if str(edge_type).isdigit() and int(edge_type) == 2:
+            return 'control'
+        return 'data'
 
     def _build_hierarchy_edges(self):
         block_offset = self._offsets['block']
@@ -790,7 +758,7 @@ class VitisKernelInfo:
             loop_md = json.load(f)
         if "LoopMetadata" not in loop_md:
             raise ValueError("Loop metadata file does not contain 'LoopMetadata' key")
-        self.loop_md_list = loop_md['LoopMetadata']
+        self.loop_md = loop_md['LoopMetadata']
 
     def _parse_array_info(self, array_md_path, array_access_info_path):
         if not os.path.exists(array_md_path):
@@ -833,6 +801,7 @@ class VitisKernelInfo:
                 root=root, 
                 top_level_name=self.top_level_name, 
                 array_md_list=self.array_md,
+                loop_md_list=self.loop_md,
                 module_util_map=self.module_util_map,
                 offsets=self._offsets
             )
@@ -977,40 +946,3 @@ def _edge_exists(edges, src: int, dst: int, et: Tuple[str, str, str]) -> bool:
         src == edge[0] and dst == edge[1] 
         for edge in edges.get(et, [])
     )
-
-
-if __name__ == "__main__":
-    # Example usage
-    import sys
-
-    from gnn.data.kernel.llvm_utils import extract_llvm_ir_array_info
-
-    solution_dir = sys.argv[1] if len(sys.argv) > 1 else "data/base_instances/ADPCM/solution0"
-    top_level_name = sys.argv[2] if len(sys.argv) > 2 else "adpcm_main"
-    output_path = sys.argv[3] if len(sys.argv) > 3 else "kernel_info.json"
-    kernel_name = sys.argv[4] if len(sys.argv) > 4 else "ADPCM"
-
-    ir_dir = os.path.join(solution_dir, ".autopilot/db")
-    if not os.path.exists(ir_dir):
-        print(f"Directory {ir_dir} not found")
-        sys.exit(1)
-
-    array_info_path = os.path.join(ir_dir, "array_info.json")
-
-    # Extract array info from LLVM IR files
-    extract_llvm_ir_array_info(ir_dir, array_info_path)
-
-    if not os.path.exists(array_info_path):
-        print(f"Array info file {array_info_path} not found")
-        sys.exit(1)
-
-    kernel_info = VitisKernelInfo(
-        solution_dir, 
-        top_level_name, 
-        array_info_path,
-        benchmark_name=kernel_name,
-        filtered=False
-    )
-    
-    print(kernel_info)
-    kernel_info.save_as_json(output_path)

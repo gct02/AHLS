@@ -1,0 +1,209 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "soft_max_loop2",
+      "FunctionName": "soft_max",
+      "Depth": 1
+    },
+    {
+      "Name": "soft_max_loop1",
+      "FunctionName": "soft_max",
+      "Depth": 1
+    },
+    {
+      "Name": "RELU_loop1",
+      "FunctionName": "RELU",
+      "Depth": 1
+    },
+    {
+      "Name": "add_bias_to_activations_loop1",
+      "FunctionName": "add_bias_to_activations",
+      "Depth": 1
+    },
+    {
+      "Name": "matrix_vector_product_with_bias_input_layer_loop1",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "Depth": 1
+    },
+    {
+      "Name": "matrix_vector_product_with_bias_input_layer_loop1_1",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "Depth": 2
+    },
+    {
+      "Name": "matrix_vector_product_with_bias_second_layer_loop1",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "Depth": 1
+    },
+    {
+      "Name": "matrix_vector_product_with_bias_second_layer_loop1_1",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "Depth": 2
+    },
+    {
+      "Name": "matrix_vector_product_with_bias_output_layer_loop1",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "Depth": 1
+    },
+    {
+      "Name": "matrix_vector_product_with_bias_output_layer_loop1_1",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "Depth": 2
+    },
+    {
+      "Name": "take_difference_loop1",
+      "FunctionName": "take_difference",
+      "Depth": 1
+    },
+    {
+      "Name": "get_delta_matrix_weights3_loop1",
+      "FunctionName": "get_delta_matrix_weights3",
+      "Depth": 1
+    },
+    {
+      "Name": "get_delta_matrix_weights3_loop1_1",
+      "FunctionName": "get_delta_matrix_weights3",
+      "Depth": 2
+    },
+    {
+      "Name": "get_oracle_activations2_loop1",
+      "FunctionName": "get_oracle_activations2",
+      "Depth": 1
+    },
+    {
+      "Name": "get_oracle_activations2_loop1_1",
+      "FunctionName": "get_oracle_activations2",
+      "Depth": 2
+    },
+    {
+      "Name": "get_delta_matrix_weights2_loop1",
+      "FunctionName": "get_delta_matrix_weights2",
+      "Depth": 1
+    },
+    {
+      "Name": "get_delta_matrix_weights2_loop1_1",
+      "FunctionName": "get_delta_matrix_weights2",
+      "Depth": 2
+    },
+    {
+      "Name": "get_oracle_activations1_loop1",
+      "FunctionName": "get_oracle_activations1",
+      "Depth": 1
+    },
+    {
+      "Name": "get_oracle_activations1_loop1_1",
+      "FunctionName": "get_oracle_activations1",
+      "Depth": 2
+    },
+    {
+      "Name": "get_delta_matrix_weights1_loop1",
+      "FunctionName": "get_delta_matrix_weights1",
+      "Depth": 1
+    },
+    {
+      "Name": "get_delta_matrix_weights1_loop1_1",
+      "FunctionName": "get_delta_matrix_weights1",
+      "Depth": 2
+    },
+    {
+      "Name": "update_weights_loop12",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop11",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop11_1",
+      "FunctionName": "update_weights",
+      "Depth": 2
+    },
+    {
+      "Name": "update_weights_loop10",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop9",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop9_1",
+      "FunctionName": "update_weights",
+      "Depth": 2
+    },
+    {
+      "Name": "update_weights_loop8",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop7",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop7_1",
+      "FunctionName": "update_weights",
+      "Depth": 2
+    },
+    {
+      "Name": "update_weights_loop6",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop5",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop5_1",
+      "FunctionName": "update_weights",
+      "Depth": 2
+    },
+    {
+      "Name": "update_weights_loop4",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop3",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop3_1",
+      "FunctionName": "update_weights",
+      "Depth": 2
+    },
+    {
+      "Name": "update_weights_loop2",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop1",
+      "FunctionName": "update_weights",
+      "Depth": 1
+    },
+    {
+      "Name": "update_weights_loop1_1",
+      "FunctionName": "update_weights",
+      "Depth": 2
+    },
+    {
+      "Name": "backprop_loop1",
+      "FunctionName": "backprop",
+      "Depth": 1
+    },
+    {
+      "Name": "backprop_loop1_1",
+      "FunctionName": "backprop",
+      "Depth": 2
+    }
+  ]
+}

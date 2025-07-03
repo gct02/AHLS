@@ -1,0 +1,163 @@
+
+
+================================================================
+== Vitis HLS Report for 'backprop_Pipeline_backprop_loop1_1'
+================================================================
+* Date:           Wed Jul  2 18:04:22 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        BACKPROP
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  1.807 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       66|       66|  0.528 us|  0.528 us|   66|   66|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- backprop_loop1_1  |       64|       64|         1|          1|          1|    64|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|      49|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|      54|    -|
+|Register             |        -|     -|      201|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|      201|     103|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln359_fu_166_p2   |         +|   0|  0|  14|           7|           1|
+    |ap_condition_100      |       and|   0|  0|   2|           1|           1|
+    |ap_condition_82       |       and|   0|  0|   2|           1|           1|
+    |ap_condition_91       |       and|   0|  0|   2|           1|           1|
+    |icmp_ln359_fu_160_p2  |      icmp|   0|  0|  15|           7|           8|
+    |icmp_ln363_fu_178_p2  |      icmp|   0|  0|  14|           7|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  49|          24|          14|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |activations3_0_1_fu_58  |   9|          2|   64|        128|
+    |activations3_1_1_fu_62  |   9|          2|   64|        128|
+    |activations3_2_1_fu_66  |   9|          2|   64|        128|
+    |ap_done_int             |   9|          2|    1|          2|
+    |ap_sig_allocacmp_j_8    |   9|          2|    7|         14|
+    |j_fu_54                 |   9|          2|    7|         14|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   |  54|         12|  207|        414|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------+----+----+-----+-----------+
+    |          Name          | FF | LUT| Bits| Const Bits|
+    +------------------------+----+----+-----+-----------+
+    |activations3_0_1_fu_58  |  64|   0|   64|          0|
+    |activations3_1_1_fu_62  |  64|   0|   64|          0|
+    |activations3_2_1_fu_66  |  64|   0|   64|          0|
+    |ap_CS_fsm               |   1|   0|    1|          0|
+    |ap_done_reg             |   1|   0|    1|          0|
+    |j_fu_54                 |   7|   0|    7|          0|
+    +------------------------+----+----+-----+-----------+
+    |Total                   | 201|   0|  201|          0|
+    +------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+------------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |            Source Object           |    C Type    |
++-----------------------------+-----+-----+------------+------------------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  backprop_Pipeline_backprop_loop1_1|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  backprop_Pipeline_backprop_loop1_1|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  backprop_Pipeline_backprop_loop1_1|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  backprop_Pipeline_backprop_loop1_1|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  backprop_Pipeline_backprop_loop1_1|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  backprop_Pipeline_backprop_loop1_1|  return value|
+|activations3_2_0             |   in|   64|     ap_none|                    activations3_2_0|        scalar|
+|activations3_1_0             |   in|   64|     ap_none|                    activations3_1_0|        scalar|
+|activations3_0_0             |   in|   64|     ap_none|                    activations3_0_0|        scalar|
+|activations1_address0        |  out|    6|   ap_memory|                        activations1|         array|
+|activations1_ce0             |  out|    1|   ap_memory|                        activations1|         array|
+|activations1_we0             |  out|    1|   ap_memory|                        activations1|         array|
+|activations1_d0              |  out|   64|   ap_memory|                        activations1|         array|
+|activations2_address0        |  out|    6|   ap_memory|                        activations2|         array|
+|activations2_ce0             |  out|    1|   ap_memory|                        activations2|         array|
+|activations2_we0             |  out|    1|   ap_memory|                        activations2|         array|
+|activations2_d0              |  out|   64|   ap_memory|                        activations2|         array|
+|activations3_2_1_out         |  out|   64|      ap_vld|                activations3_2_1_out|       pointer|
+|activations3_2_1_out_ap_vld  |  out|    1|      ap_vld|                activations3_2_1_out|       pointer|
+|activations3_1_1_out         |  out|   64|      ap_vld|                activations3_1_1_out|       pointer|
+|activations3_1_1_out_ap_vld  |  out|    1|      ap_vld|                activations3_1_1_out|       pointer|
+|activations3_0_1_out         |  out|   64|      ap_vld|                activations3_0_1_out|       pointer|
+|activations3_0_1_out_ap_vld  |  out|    1|      ap_vld|                activations3_0_1_out|       pointer|
++-----------------------------+-----+-----+------------+------------------------------------+--------------+
+

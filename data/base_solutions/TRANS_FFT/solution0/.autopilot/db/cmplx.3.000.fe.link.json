@@ -1,0 +1,391 @@
+{
+  "0": {
+    "basicblocks": 56,
+    "calls": "16 29 16 29",
+    "file": "transposed_fft.c",
+    "fileloc": 114,
+    "instructions": 2706,
+    "loads": {
+      "G": 16,
+      "L": 436,
+      "T": 16
+    },
+    "name": "fft1D_512",
+    "stores": {
+      "L": 334,
+      "T": 16
+    },
+    "total_instructions": 46750
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 485,
+    "instructions": 8,
+    "name": "expv",
+    "total_instructions": 109
+  },
+  "10": {
+    "basicblocks": 1,
+    "calls": "21",
+    "file": "hls_hotbm_double.cpp",
+    "fileloc": 143,
+    "instructions": 2,
+    "name": "cos",
+    "total_instructions": 10955
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 246,
+    "instructions": 257,
+    "name": "__cxx_global_var_init.1470",
+    "total_instructions": 4353
+  },
+  "12": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 209,
+    "instructions": 257,
+    "name": "__cxx_global_var_init.1289",
+    "total_instructions": 4353
+  },
+  "13": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_normalize.h",
+    "fileloc": 79,
+    "instructions": 9,
+    "name": "clz",
+    "total_instructions": 68
+  },
+  "14": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 189,
+    "instructions": 129,
+    "name": "__cxx_global_var_init.1160",
+    "total_instructions": 2177
+  },
+  "15": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 170,
+    "instructions": 129,
+    "name": "__cxx_global_var_init.1031",
+    "total_instructions": 2177
+  },
+  "16": {
+    "basicblocks": 6,
+    "calls": "23 19",
+    "file": "transposed_fft.c",
+    "fileloc": 23,
+    "instructions": 51,
+    "loads": {
+      "L": 5
+    },
+    "name": "twiddles8",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 21965
+  },
+  "17": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_normalize.h",
+    "fileloc": 69,
+    "instructions": 29,
+    "name": "clz<61, 124, 0>",
+    "total_instructions": 198
+  },
+  "18": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 283,
+    "instructions": 257,
+    "name": "__cxx_global_var_init.1707",
+    "total_instructions": 4353
+  },
+  "19": {
+    "basicblocks": 1,
+    "calls": "20",
+    "file": "sincosdouble.cpp",
+    "fileloc": 7,
+    "instructions": 2,
+    "name": "sin",
+    "total_instructions": 10957
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "9",
+    "file": "x_hls_utils.h",
+    "fileloc": 494,
+    "instructions": 14,
+    "loads": {
+      "L": 1
+    },
+    "name": "to_double",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 292
+  },
+  "20": {
+    "basicblocks": 1,
+    "calls": "21",
+    "file": "hls_hotbm_double.cpp",
+    "fileloc": 139,
+    "instructions": 2,
+    "name": "sin",
+    "total_instructions": 10955
+  },
+  "21": {
+    "basicblocks": 27,
+    "calls": "27 28 25 30 34 27 3",
+    "file": "hls_hotbm.h",
+    "fileloc": 209,
+    "instructions": 238,
+    "loads": {
+      "G": 4,
+      "L": 14
+    },
+    "name": "sin_or_cos<double>",
+    "stores": {
+      "L": 14
+    },
+    "total_instructions": 10953
+  },
+  "22": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 320,
+    "instructions": 257,
+    "name": "__cxx_global_var_init.1962",
+    "total_instructions": 4353
+  },
+  "23": {
+    "basicblocks": 1,
+    "calls": "10",
+    "file": "sincosdouble.cpp",
+    "fileloc": 12,
+    "instructions": 2,
+    "name": "cos",
+    "total_instructions": 10957
+  },
+  "24": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 357,
+    "instructions": 257,
+    "name": "__cxx_global_var_init.2217",
+    "total_instructions": 4353
+  },
+  "25": {
+    "basicblocks": 9,
+    "calls": "27 1 32 17",
+    "file": "hls_range_redux.h",
+    "fileloc": 431,
+    "instructions": 200,
+    "loads": {
+      "L": 10
+    },
+    "name": "range_redux_payne_hanek_hotbm<61, double, 63, 63>",
+    "stores": {
+      "L": 10
+    },
+    "total_instructions": 2173
+  },
+  "26": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 499,
+    "instructions": 24,
+    "loads": {
+      "L": 1
+    },
+    "name": "set_mantissa",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 106
+  },
+  "27": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 456,
+    "instructions": 55,
+    "loads": {
+      "L": 1
+    },
+    "name": "fp_struct",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 312
+  },
+  "28": {
+    "basicblocks": 9,
+    "calls": "27 1 17",
+    "file": "hls_range_redux.h",
+    "fileloc": 543,
+    "instructions": 202,
+    "loads": {
+      "L": 9
+    },
+    "name": "range_redux_payne_hanek_hotbm_pi<61, double, 63, 63>",
+    "stores": {
+      "L": 10
+    },
+    "total_instructions": 2556
+  },
+  "29": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "transposed_fft.c",
+    "fileloc": 103,
+    "instructions": 57,
+    "loads": {
+      "L": 8
+    },
+    "name": "loady8",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 57
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "2",
+    "file": "x_hls_utils.h",
+    "fileloc": 509,
+    "instructions": 2,
+    "name": "to_ieee",
+    "total_instructions": 294
+  },
+  "30": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "hls_hotbm_double.cpp",
+    "fileloc": 8,
+    "instructions": 222,
+    "loads": {
+      "G": 2
+    },
+    "name": "sin_or_cos_approximation<63, 63>",
+    "total_instructions": 2752
+  },
+  "31": {
+    "basicblocks": 1,
+    "calls": "7",
+    "file": "sincoshotbmdouble.pp.cpp",
+    "fileloc": 0,
+    "instructions": 2,
+    "name": "",
+    "total_instructions": 173
+  },
+  "32": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "hls_range_redux.h",
+    "fileloc": 393,
+    "instructions": 64,
+    "loads": {
+      "G": 1,
+      "L": 2
+    },
+    "name": "table_lookup_4oPi_hotbm<52, 61>",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 275
+  },
+  "33": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 454,
+    "instructions": 4,
+    "name": "fp_struct",
+    "total_instructions": 4
+  },
+  "34": {
+    "basicblocks": 25,
+    "calls": "33 13 26 3",
+    "file": "x_hls_float_utils.h",
+    "fileloc": 389,
+    "instructions": 240,
+    "loads": {
+      "L": 9
+    },
+    "name": "scaled_fixed2ieee<63, 1>",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 1550
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "8 6 5 15 14 12 11 18 22 24",
+    "file": "hls_hotbm_double.pp.cpp",
+    "fileloc": 0,
+    "instructions": 11,
+    "name": "",
+    "total_instructions": 32661
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 151,
+    "instructions": 129,
+    "name": "__cxx_global_var_init.902",
+    "total_instructions": 2177
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 132,
+    "instructions": 129,
+    "name": "__cxx_global_var_init.773",
+    "total_instructions": 2177
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_float_utils.h",
+    "fileloc": 35,
+    "instructions": 11,
+    "name": "__cxx_global_var_init.3",
+    "total_instructions": 171
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_hotbm_tables_double.h",
+    "fileloc": 113,
+    "instructions": 129,
+    "name": "__cxx_global_var_init.644",
+    "total_instructions": 2177
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 475,
+    "instructions": 32,
+    "name": "data",
+    "total_instructions": 274
+  }
+}

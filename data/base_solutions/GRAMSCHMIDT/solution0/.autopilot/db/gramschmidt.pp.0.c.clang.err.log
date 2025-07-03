@@ -1,0 +1,61 @@
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/hls_script.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=name=kernel_gramschmidt_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE TOP name=kernel_gramschmidt
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:7:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:1:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:8:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c:87:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=min=512 avg=512 max=512_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:2:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c:91:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=min=512 avg=512 max=512_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:3:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c:97:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=min=512 avg=512 max=512_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:11:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:4:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c:102:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=min=1 avg=256 max=511_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=1 avg=256 max=511
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:12:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:5:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c:106:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=min=512 avg=512 max=512_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:13:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GRAMSCHMIDT/temp/directives.tcl:6:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gramschmidt/gramschmidt.c:111:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=kernel_gramschmidt_XLX_SEP_ PragmaOptions=min=512 avg=512 max=512_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
+        ^
+20 warnings generated.

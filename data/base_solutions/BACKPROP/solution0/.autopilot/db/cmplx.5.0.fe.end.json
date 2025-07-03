@@ -1,0 +1,383 @@
+{
+    "1": {
+        "name": "backprop_Pipeline_RELU_loop12",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "372",
+        "instructions": "65",
+        "total_instructions": "65",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "10"
+        },
+        "stores": {
+            "L": "14"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "matrix_vector_product_with_bias_input_layer",
+        "file": "backprop.c",
+        "fileloc": "54",
+        "instructions": "49",
+        "total_instructions": "71",
+        "calls": "6",
+        "basicblocks": "7",
+        "loads": {
+            "L": "2",
+            "T": "2"
+        },
+        "stores": {
+            "L": "5"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "3": {
+        "name": "matrix_vector_product_with_bias_output_layer.1_Pipeline_add_bias_to_activations_",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "105",
+        "instructions": "45",
+        "total_instructions": "45",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "7",
+            "T": "1"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "matrix_vector_product_with_bias_output_layer.1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "94",
+        "instructions": "65",
+        "total_instructions": "110",
+        "calls": "3",
+        "basicblocks": "11",
+        "loads": {
+            "L": "8",
+            "T": "1"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "5": {
+        "name": "matrix_vector_product_with_bias_second_layer",
+        "file": "backprop.c",
+        "fileloc": "72",
+        "instructions": "41",
+        "total_instructions": "63",
+        "calls": "18",
+        "basicblocks": "7",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "6": {
+        "name": "matrix_vector_product_with_bias_input_layer.1_Pipeline_add_bias_to_activations_l",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "69",
+        "instructions": "22",
+        "total_instructions": "22",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "get_delta_matrix_weights2",
+        "file": "backprop.c",
+        "fileloc": "153",
+        "instructions": "35",
+        "total_instructions": "35",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "8": {
+        "name": "backprop_Pipeline_soft_max_loop1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "373",
+        "instructions": "28",
+        "total_instructions": "28",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "9": {
+        "name": "get_oracle_activations2.1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "139",
+        "instructions": "45",
+        "total_instructions": "45",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "10": {
+        "name": "backprop_Pipeline_RELU_loop11",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "370",
+        "instructions": "27",
+        "total_instructions": "27",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "11": {
+        "name": "get_delta_matrix_weights1",
+        "file": "backprop.c",
+        "fileloc": "186",
+        "instructions": "39",
+        "total_instructions": "39",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "12": {
+        "name": "get_delta_matrix_weights3",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "123",
+        "instructions": "38",
+        "total_instructions": "38",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "13": {
+        "name": "backprop_Pipeline_RELU_loop1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "368",
+        "instructions": "27",
+        "total_instructions": "27",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "14": {
+        "name": "backprop_Pipeline_soft_max_loop2",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "373",
+        "instructions": "45",
+        "total_instructions": "45",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "15": {
+        "name": "backprop_Pipeline_backprop_loop1_1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "338",
+        "instructions": "43",
+        "total_instructions": "43",
+        "calls": "",
+        "basicblocks": "9",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "10"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "16": {
+        "name": "backprop_Pipeline_take_difference_loop1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "374",
+        "instructions": "56",
+        "total_instructions": "56",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "4",
+            "T": "1"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "17": {
+        "name": "update_weights.1",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "213",
+        "instructions": "366",
+        "total_instructions": "366",
+        "calls": "",
+        "basicblocks": "55",
+        "loads": {
+            "L": "29",
+            "T": "12"
+        },
+        "stores": {
+            "L": "36",
+            "T": "12"
+        },
+        "loops": {
+            "L": "12",
+            "N": "6"
+        }
+    },
+    "0": {
+        "name": "backprop",
+        "file": "backprop.c",
+        "fileloc": "330",
+        "instructions": "135",
+        "total_instructions": "1235",
+        "calls": "15 2 13 5 10 4 1 8 14 16 12 9 7 19 11 17",
+        "basicblocks": "4",
+        "loads": {
+            "L": "30"
+        },
+        "stores": {
+            "L": "16"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "18": {
+        "name": "matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "87",
+        "instructions": "22",
+        "total_instructions": "22",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "19": {
+        "name": "get_oracle_activations1",
+        "file": "backprop.c",
+        "fileloc": "168",
+        "instructions": "42",
+        "total_instructions": "42",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    }
+}

@@ -1,0 +1,199 @@
+
+
+================================================================
+== Vitis HLS Report for 'matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s'
+================================================================
+* Date:           Wed Jul  2 18:04:20 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        BACKPROP
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.048 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |       12|       12|  96.000 ns|  96.000 ns|   12|   12|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                 |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |            Loop Name            |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- add_bias_to_activations_loop1  |       10|       10|         5|          3|          1|     3|       yes|
+        +---------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 3, depth = 5
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 1
+  Pipeline-0 : II = 3, D = 5, States = { 1 2 3 4 5 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.21>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 8 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%activations2_2 = alloca i32 1"   --->   Operation 9 'alloca' 'activations2_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%activations12_2 = alloca i32 1"   --->   Operation 10 'alloca' 'activations12_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%activations_2 = alloca i32 1"   --->   Operation 11 'alloca' 'activations_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases3, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%activations2_0_read = read i64 @_ssdm_op_Read.ap_auto.double, i64 %activations2_0"   --->   Operation 13 'read' 'activations2_0_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%activations12_0_read = read i64 @_ssdm_op_Read.ap_auto.double, i64 %activations12_0"   --->   Operation 14 'read' 'activations12_0_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%activations_0_read = read i64 @_ssdm_op_Read.ap_auto.double, i64 %activations_0"   --->   Operation 15 'read' 'activations_0_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %activations_0_read, i64 %activations_2"   --->   Operation 16 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 17 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %activations12_0_read, i64 %activations12_2"   --->   Operation 17 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 18 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %activations2_0_read, i64 %activations2_2"   --->   Operation 18 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 19 [1/1] (0.38ns)   --->   "%store_ln46 = store i2 0, i2 %i" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 19 'store' 'store_ln46' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc.i"   --->   Operation 20 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%i_25 = load i2 %i" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 21 'load' 'i_25' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.43ns)   --->   "%icmp_ln48 = icmp_eq  i2 %i_25, i2 3" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 22 'icmp' 'icmp_ln48' <Predicate = true> <Delay = 0.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 3, i64 3, i64 3"   --->   Operation 23 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.43ns)   --->   "%add_ln48 = add i2 %i_25, i2 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 24 'add' 'add_ln48' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.43> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%br_ln48 = br i1 %icmp_ln48, void %for.inc.i.split, void %add_bias_to_activations.exit.exitStub" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 25 'br' 'br_ln48' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln48 = zext i2 %i_25" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 26 'zext' 'zext_ln48' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%biases3_addr = getelementptr i64 %biases3, i64 0, i64 %zext_ln48" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 27 'getelementptr' 'biases3_addr' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+ST_1 : Operation 28 [2/2] (0.71ns)   --->   "%biases3_load = load i2 %biases3_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 28 'load' 'biases3_load' <Predicate = (!icmp_ln48)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 3> <RAM>
+ST_1 : Operation 29 [1/1] (0.66ns)   --->   "%switch_ln50 = switch i2 %i_25, void %branch2, i2 0, void %for.inc.i.split.for.inc.i.split5_crit_edge, i2 1, void %for.inc.i.split.for.inc.i.split5_crit_edge5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 29 'switch' 'switch_ln50' <Predicate = (!icmp_ln48)> <Delay = 0.66>
+ST_1 : Operation 30 [1/1] (0.38ns)   --->   "%store_ln46 = store i2 %add_ln48, i2 %i" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 30 'store' 'store_ln46' <Predicate = (!icmp_ln48)> <Delay = 0.38>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%br_ln48 = br void %for.inc.i" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 31 'br' 'br_ln48' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 5.04>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%activations2_2_load_1 = load i64 %activations2_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 32 'load' 'activations2_2_load_1' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%activations12_2_load_1 = load i64 %activations12_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 33 'load' 'activations12_2_load_1' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%activations_2_load_1 = load i64 %activations_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 34 'load' 'activations_2_load_1' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (0.41ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %activations_2_load_1, i64 %activations12_2_load_1, i64 %activations2_2_load_1, i2 %i_25" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 35 'mux' 'tmp' <Predicate = (!icmp_ln48)> <Delay = 0.41> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 36 [1/2] (0.71ns)   --->   "%biases3_load = load i2 %biases3_addr" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 36 'load' 'biases3_load' <Predicate = (!icmp_ln48)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 3> <RAM>
+ST_2 : Operation 37 [1/1] (0.00ns)   --->   "%bitcast_ln50 = bitcast i64 %biases3_load" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 37 'bitcast' 'bitcast_ln50' <Predicate = (!icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 38 [4/4] (4.33ns)   --->   "%add_i = dadd i64 %tmp, i64 %bitcast_ln50" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 38 'dadd' 'add_i' <Predicate = (!icmp_ln48)> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 50 [1/1] (0.00ns)   --->   "%activations2_2_load = load i64 %activations2_2"   --->   Operation 50 'load' 'activations2_2_load' <Predicate = (icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 51 [1/1] (0.00ns)   --->   "%activations12_2_load = load i64 %activations12_2"   --->   Operation 51 'load' 'activations12_2_load' <Predicate = (icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 52 [1/1] (0.00ns)   --->   "%activations_2_load = load i64 %activations_2"   --->   Operation 52 'load' 'activations_2_load' <Predicate = (icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 53 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.doubleP0A, i64 %activations_2_out, i64 %activations_2_load"   --->   Operation 53 'write' 'write_ln0' <Predicate = (icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 54 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.doubleP0A, i64 %activations12_2_out, i64 %activations12_2_load"   --->   Operation 54 'write' 'write_ln0' <Predicate = (icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 55 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.doubleP0A, i64 %activations2_2_out, i64 %activations2_2_load"   --->   Operation 55 'write' 'write_ln0' <Predicate = (icmp_ln48)> <Delay = 0.00>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 56 'ret' 'ret_ln0' <Predicate = (icmp_ln48)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 4.33>
+ST_3 : Operation 39 [3/4] (4.33ns)   --->   "%add_i = dadd i64 %tmp, i64 %bitcast_ln50" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 39 'dadd' 'add_i' <Predicate = (!icmp_ln48)> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 4.33>
+ST_4 : Operation 40 [2/4] (4.33ns)   --->   "%add_i = dadd i64 %tmp, i64 %bitcast_ln50" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 40 'dadd' 'add_i' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 4.72>
+ST_5 : Operation 41 [1/1] (0.00ns)   --->   "%specpipeline_ln46 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_42" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 41 'specpipeline' 'specpipeline_ln46' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 42 [1/1] (0.00ns)   --->   "%specloopname_ln48 = specloopname void @_ssdm_op_SpecLoopName, void @empty" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 42 'specloopname' 'specloopname_ln48' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 43 [1/4] (4.33ns)   --->   "%add_i = dadd i64 %tmp, i64 %bitcast_ln50" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 43 'dadd' 'add_i' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 44 [1/1] (0.38ns)   --->   "%store_ln50 = store i64 %add_i, i64 %activations12_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 44 'store' 'store_ln50' <Predicate = (i_25 == 1)> <Delay = 0.38>
+ST_5 : Operation 45 [1/1] (0.00ns)   --->   "%br_ln50 = br void %for.inc.i.split5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 45 'br' 'br_ln50' <Predicate = (i_25 == 1)> <Delay = 0.00>
+ST_5 : Operation 46 [1/1] (0.38ns)   --->   "%store_ln50 = store i64 %add_i, i64 %activations_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 46 'store' 'store_ln50' <Predicate = (i_25 == 0)> <Delay = 0.38>
+ST_5 : Operation 47 [1/1] (0.00ns)   --->   "%br_ln50 = br void %for.inc.i.split5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 47 'br' 'br_ln50' <Predicate = (i_25 == 0)> <Delay = 0.00>
+ST_5 : Operation 48 [1/1] (0.38ns)   --->   "%store_ln50 = store i64 %add_i, i64 %activations2_2" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 48 'store' 'store_ln50' <Predicate = (i_25 != 0 & i_25 != 1)> <Delay = 0.38>
+ST_5 : Operation 49 [1/1] (0.00ns)   --->   "%br_ln50 = br void %for.inc.i.split5" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105]   --->   Operation 49 'br' 'br_ln50' <Predicate = (i_25 != 0 & i_25 != 1)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 1.210ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln46', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) of constant 0 on local variable 'i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105 [19]  (0.387 ns)
+	'load' operation 2 bit ('i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) on local variable 'i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105 [22]  (0.000 ns)
+	'add' operation 2 bit ('add_ln48', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) [25]  (0.436 ns)
+	'store' operation 0 bit ('store_ln46', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) of variable 'add_ln48', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:48->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105 on local variable 'i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:46->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105 [50]  (0.387 ns)
+
+ <State 2>: 5.048ns
+The critical path consists of the following:
+	'load' operation 64 bit ('biases3_load', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) on array 'biases3' [36]  (0.714 ns)
+	'dadd' operation 64 bit ('add_i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) [38]  (4.334 ns)
+
+ <State 3>: 4.334ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add_i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) [38]  (4.334 ns)
+
+ <State 4>: 4.334ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add_i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) [38]  (4.334 ns)
+
+ <State 5>: 4.721ns
+The critical path consists of the following:
+	'dadd' operation 64 bit ('add_i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) [38]  (4.334 ns)
+	'store' operation 0 bit ('store_ln50', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105) of variable 'add_i', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:50->/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/backprop/backprop.c:105 on local variable 'activations2_2' [47]  (0.387 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,1288 @@
+INFO-FLOW: Workspace /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0 opened at Wed Jul 02 17:51:39 -03 2025
+Execute       send_msg_by_id INFO @200-1505@%s%s default  vivado 
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Execute     set_part xcu50-fsvh2104-2-e 
+INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2-e 
+Execute       create_platform xcu50-fsvh2104-2-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2023.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2023.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu50-fsvh2104-2-e'
+Command       create_platform done; 0.81 sec.
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.91 sec.
+Execute     create_clock -period 8 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 8 -name default 
+Execute       ap_set_clock -name default -period 8 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 8ns.
+Execute     config_array_partition -throughput_driven off 
+INFO: [HLS 200-1510] Running: config_array_partition -throughput_driven off 
+Execute     source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/temp/directives.tcl 
+Execute       set_directive_pipeline -off encode/encode_label0 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off encode/encode_label0 
+Execute       set_directive_pipeline -off encode/encode_label1 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off encode/encode_label1 
+Execute       set_directive_pipeline -off decode/decode_label2 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off decode/decode_label2 
+Execute       set_directive_pipeline -off decode/decode_label3 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off decode/decode_label3 
+Execute       set_directive_pipeline -off reset/reset_label4 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off reset/reset_label4 
+Execute       set_directive_pipeline -off reset/reset_label5 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off reset/reset_label5 
+Execute       set_directive_pipeline -off reset/reset_label6 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off reset/reset_label6 
+Execute       set_directive_pipeline -off reset/reset_label7 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off reset/reset_label7 
+Execute       set_directive_pipeline -off filtez/filtez_label8 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off filtez/filtez_label8 
+Execute       set_directive_pipeline -off quantl/quantl_label9 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off quantl/quantl_label9 
+Execute       set_directive_pipeline -off upzero/upzero_label10 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off upzero/upzero_label10 
+Execute       set_directive_pipeline -off upzero/upzero_label11 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off upzero/upzero_label11 
+Execute       set_directive_pipeline -off adpcm_main/adpcm_main_label12 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off adpcm_main/adpcm_main_label12 
+Execute       set_directive_pipeline -off adpcm_main/adpcm_main_label13 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off adpcm_main/adpcm_main_label13 
+Execute       set_directive_pipeline -off encode 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off encode 
+Execute       set_directive_pipeline -off decode 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off decode 
+Execute       set_directive_pipeline -off reset 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off reset 
+Execute       set_directive_pipeline -off filtez 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off filtez 
+Execute       set_directive_pipeline -off quantl 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off quantl 
+Execute       set_directive_pipeline -off upzero 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off upzero 
+Execute       set_directive_pipeline -off adpcm_main 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off adpcm_main 
+Execute       set_directive_loop_flatten -off encode/encode_label0 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off encode/encode_label0 
+Execute       set_directive_loop_flatten -off encode/encode_label1 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off encode/encode_label1 
+Execute       set_directive_loop_flatten -off decode/decode_label2 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off decode/decode_label2 
+Execute       set_directive_loop_flatten -off decode/decode_label3 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off decode/decode_label3 
+Execute       set_directive_loop_flatten -off reset/reset_label4 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off reset/reset_label4 
+Execute       set_directive_loop_flatten -off reset/reset_label5 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off reset/reset_label5 
+Execute       set_directive_loop_flatten -off reset/reset_label6 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off reset/reset_label6 
+Execute       set_directive_loop_flatten -off reset/reset_label7 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off reset/reset_label7 
+Execute       set_directive_loop_flatten -off filtez/filtez_label8 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off filtez/filtez_label8 
+Execute       set_directive_loop_flatten -off quantl/quantl_label9 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off quantl/quantl_label9 
+Execute       set_directive_loop_flatten -off upzero/upzero_label10 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off upzero/upzero_label10 
+Execute       set_directive_loop_flatten -off upzero/upzero_label11 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off upzero/upzero_label11 
+Execute       set_directive_loop_flatten -off adpcm_main/adpcm_main_label12 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off adpcm_main/adpcm_main_label12 
+Execute       set_directive_loop_flatten -off adpcm_main/adpcm_main_label13 
+INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off adpcm_main/adpcm_main_label13 
+Execute       set_directive_inline -off encode 
+INFO: [HLS 200-1510] Running: set_directive_inline -off encode 
+Execute       set_directive_inline -off decode 
+INFO: [HLS 200-1510] Running: set_directive_inline -off decode 
+Execute       set_directive_inline -off reset 
+INFO: [HLS 200-1510] Running: set_directive_inline -off reset 
+Execute       set_directive_inline -off filtez 
+INFO: [HLS 200-1510] Running: set_directive_inline -off filtez 
+Execute       set_directive_inline -off quantl 
+INFO: [HLS 200-1510] Running: set_directive_inline -off quantl 
+Execute       set_directive_inline -off upzero 
+INFO: [HLS 200-1510] Running: set_directive_inline -off upzero 
+Execute       set_directive_inline -off adpcm_main 
+INFO: [HLS 200-1510] Running: set_directive_inline -off adpcm_main 
+Execute     csynth_design 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO-FLOW: Running SLX 'csynth' proc: ::SLX::run_csynth
+Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 286.590 MB.
+Execute         set_directive_top adpcm_main -name=adpcm_main 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/try/try.tcl 
+INFO: [HLS 200-10] Analyzing design file '/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c' ... 
+INFO-FLOW: Compiling one TU...
+INFO-FLOW: Handling /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c as C
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c -foptimization-record-file=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.c.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -gcc-toolchain /tools/Xilinx/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0 -fhls -fno-exceptions -insert-hls-directive=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/all.directive.json -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=8 -std=gnu99 -fgnu89-inline -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /tools/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I /tools/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -I /usr/include/x86_64-linux-gnu -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -hls-platform-db-name=/tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/platform.db -hls-platform-name=virtexuplus_medium -device-resource-info=BRAM_2688.000000_DSP_5952.000000_FF_1743360.000000_LUT_871680.000000_SLICE_108960.000000_SLR_2.000000_URAM_640.000000 -device-name-info=xcu50-fsvh2104-2-e > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.c.clang.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.c.clang.err.log
+INFO-FLOW: Done: GCC PP 39 time: 0.1 seconds per iteration
+INFO-FLOW: Source syntax check for synthesis
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fsyntax-only -fhls -target fpga64-xilinx-linux-gnu /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -hls-platform-db-name=/tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/platform.db -hls-platform-name=virtexuplus_medium -device-resource-info=BRAM_2688.000000_DSP_5952.000000_FF_1743360.000000_LUT_871680.000000_SLICE_108960.000000_SLR_2.000000_URAM_640.000000 -device-name-info=xcu50-fsvh2104-2-e > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/clang.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/clang.err.log
+Execute         clang_tidy xilinx-systemc-detector -desc systemc-detector /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c std=gnu99 -target fpga  -directive=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/.systemc_flag -fix-errors /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -- -std=gnu99 -target fpga -fhls -ferror-limit=0
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute         clang_tidy xilinx-directive2pragma -desc directive2pragma /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c std=gnu99 -target fpga  -directive=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/all.directive.json 
+INFO-FLOW: exec /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/all.directive.json -fix-errors /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -- -std=gnu99 -target fpga -fhls -ferror-limit=0
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+INFO-FLOW: Calling xilinx-aggregate-on-hls-vector ... 
+Execute         clang_tidy -errorcheck -desc loop-label xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c std=gnu99 -target fpga  
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.clang-tidy.loop-label.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -- -std=gnu99 -target fpga -fhls -ferror-limit=0 > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.clang-tidy.loop-label.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.clang-tidy.loop-label.err.log
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.xilinx-dataflow-lawyer.diag.yml /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -- -std=gnu99 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.xilinx-dataflow-lawyer.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.xilinx-dataflow-lawyer.err.log
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info 
+INFO-FLOW: compiling source code to llvm bc
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing -hls-emit-hint-scope /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=8 -std=gnu99 -fgnu89-inline -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /tools/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I /tools/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.bc -hls-platform-db-name=/tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/platform.db -hls-platform-name=virtexuplus_medium -device-resource-info=BRAM_2688.000000_DSP_5952.000000_FF_1743360.000000_LUT_871680.000000_SLICE_108960.000000_SLR_2.000000_URAM_640.000000 -device-name-info=xcu50-fsvh2104-2-e > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.clang.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.pp.0.c.clang.err.log
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.41 seconds. CPU system time: 0.19 seconds. Elapsed time: 0.59 seconds; current allocated memory: 289.461 MB.
+INFO-FLOW: Linking Debug ...
+INFO-FLOW: Linking dut bc code.
+Execute         run_link_or_opt -out /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc -args  "/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.g.bc"  
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm.g.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc.llvm-link.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc.llvm-link.err.log
+INFO-FLOW: 
+Execute         run_link_or_opt -opt -out /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc -args /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics 
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc.opt.diag.yml /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc.opt.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc.opt.err.log
+INFO-FLOW: 
+INFO-FLOW: Running: gen_design_size_report post-opt
+INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
+INFO-FLOW: Linking math bc lib
+Execute         run_link_or_opt -out /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.2.m1.bc -args /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsm_39.bc /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsmc++_39.bc 
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.1.lower.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsm_39.bc /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsmc++_39.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.2.m1.bc > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.err.log
+INFO-FLOW: 
+Command         run_link_or_opt done; 1.13 sec.
+Execute         run_link_or_opt -opt -out /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc -args /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=adpcm_main -reflow-float-conversion 
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc.opt.diag.yml /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=adpcm_main -reflow-float-conversion -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc.opt.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc.opt.err.log
+INFO-FLOW: 
+INFO-FLOW: Running: gen_design_size_report post-opt
+INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
+Command         run_link_or_opt done; 0.48 sec.
+Execute         run_link_or_opt -out /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.4.m2.bc -args /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libfloatconversion_39.bc 
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libfloatconversion_39.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.4.m2.bc > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.err.log
+INFO-FLOW: 
+Execute         run_link_or_opt -opt -out /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.5.gdce.bc -args /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=adpcm_main 
+INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.5.gdce.bc.opt.diag.yml /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.5.gdce.bc > /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.5.gdce.bc.opt.out.log 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.5.gdce.bc.opt.err.log
+INFO-FLOW: 
+INFO-FLOW: Running: gen_design_size_report post-opt
+INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
+Execute         send_msg_by_id INFO @200-777@%s Vivado 
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+Execute         is_m_axi_addr64 
+INFO-FLOW: Doing LTO.
+INFO-FLOW: run_clang (background poll_ms 5000) exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc.clang.reflow.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fhls -mllvm -hls-top-function-name=adpcm_main -mllvm -hls-db-dir -mllvm /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -emit-llvm -c -target fpga64-xilinx-none -mllvm -xcl-xmlinfo=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/kernel.internal.xml -mllvm -top-io-mapping-info=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/top-io-fe.xml -mllvm -hls-bitcode-version=3.1 -mllvm -reflow-enable-slave-interface-default-setting=true -mllvm -gen-kernel-xml=false -mllvm -default-maxi-offset=slave -mllvm -maxi-latency=0 -mllvm -hls-maxi-data-size-in-bits=8 -mllvm -hls-maxi-max-data-size-in-bits=1024 -mllvm -hls-max-widen-size-in-bits=0 -mllvm -xcl-kernel-max-mem-ports=0 -mllvm -maxi-read-trans=16 -mllvm -maxi-write-trans=16 -mllvm -maxi-read-burst-len=16 -mllvm -maxi-write-burst-len=16 -mllvm -reflow-enable-saxi-64bits=0 -mllvm -reflow-basic-block-instr-threshold=200000 -mllvm -reflow-auto-pipeline-threshold=64 -mllvm -reflow-enable-maxi-auto-id-channel=0 -mllvm -enable-fp-thr=0 -mllvm -reflow-bdd-simplify-threshold=1048576 -mllvm -reflow-fanout-threshold=16 -mllvm -assume-maxi-align=1 -mllvm -reflow-pipeline-style-llvm-setting=2 -mllvm -reflow-enable-dataflow-strict-mode-checking=1 -ftime-report -mllvm -time-passes -mllvm -reflow-auto-array-partition-mode=default -mllvm -reflow-enable-auto-parallel-performance-driven=true -mllvm -reflow-enable-partition-for-automation=true -mllvm -reflow-aggregate-bitwidth-threshold=4096 -mllvm -reflow-reserved-saxilite-registers=0 -mllvm -enable-reflow-auto-loop-pipeline -mllvm -reflow-max-unroll-threshold=409600 -mllvm -reflow-assume-no-address-wrap=true -mllvm -reflow-enable-occurrence-inference=true -mllvm -reflow-emit-hint-scope=true -mllvm -hls -mllvm -disable-inlined-alloca-merging=true -mllvm -default-clock-period=8 -x ir /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.5.gdce.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.lto.bc -hls-platform-db-name=/tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/platform.db -hls-platform-name=virtexuplus_medium -device-resource-info=BRAM_2688.000000_DSP_5952.000000_FF_1743360.000000_LUT_871680.000000_SLICE_108960.000000_SLR_2.000000_URAM_640.000000 -device-name-info=xcu50-fsvh2104-2-e 2> /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.ld.0.bc.clang.reflow.err.log bg_poll_cmd: ::AP::poll_clang_39_closed_source
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,497 Compile/Link /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,497 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,371 Unroll/Inline (step 1) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,371 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,134 Unroll/Inline (step 2) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,134 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,019 Unroll/Inline (step 3) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,019 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 984 Unroll/Inline (step 4) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 984 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 990 Array/Struct (step 1) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 990 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 984 Array/Struct (step 2) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 984 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 984 Array/Struct (step 3) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 984 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 984 Array/Struct (step 4) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 984 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,002 Array/Struct (step 5) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,002 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 993 Performance (step 1) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 993 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 984 Performance (step 2) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 984 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 984 Performance (step 3) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 984 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 990 HW Transforms (step 1) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 990 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,118 HW Transforms (step 2) /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,118 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth_design_size.rpt
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/yaml.tcl 
+INFO: [HLS 214-178] Inlining function 'abs' into 'quantl' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:484:0)
+INFO: [HLS 214-178] Inlining function 'filtep' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'logscl' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'scalel' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'uppol2' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'uppol1' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'abs' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'logsch' into 'encode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:240:0)
+INFO: [HLS 214-178] Inlining function 'filtep' into 'decode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:331:0)
+INFO: [HLS 214-178] Inlining function 'logscl' into 'decode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:331:0)
+INFO: [HLS 214-178] Inlining function 'scalel' into 'decode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:331:0)
+INFO: [HLS 214-178] Inlining function 'uppol2' into 'decode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:331:0)
+INFO: [HLS 214-178] Inlining function 'uppol1' into 'decode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:331:0)
+INFO: [HLS 214-178] Inlining function 'logsch' into 'decode' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:331:0)
+WARNING: [HLS 214-167] The program may have out of bound array access (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:258:22)
+WARNING: [HLS 214-167] The program may have out of bound array access (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:258:38)
+WARNING: [HLS 214-167] The program may have out of bound array access (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:392:37)
+INFO-FLOW: DBG:PUTS: copy_raw_kernel_xml ap_link_39: kernel.xml not generated: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/kernel.internal.xml
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.1 seconds. CPU system time: 0.28 seconds. Elapsed time: 6.89 seconds; current allocated memory: 291.598 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 291.598 MB.
+Execute         opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+Execute           cleanup_all_models 
+INFO: [HLS 200-10] Starting code transformations ...
+INFO-FLOW: Running Standard Transforms...
+Execute           transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top adpcm_main -deadargelim -mem2reg -instcombine -dce -presyn-prepare -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -auto-shift-reg-idiom -promote-dbg-pointer -norm-name /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.0.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.1.bc -f -phase std-opt 
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 292.785 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO-FLOW: Checking Synthesizability 1/2..
+Execute           transform -hls -syn-check -check-rec-only -scalarrepl -norm-name -dce -mem2reg -instcombine -directive-preproc -mem2reg -dse -dce -dce -pag -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -data-pack -instcombine -dce -inst-simplify -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -directive-preproc -mem2reg -dse -dce -globaldce /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.1.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.2.prechk.bc -f 
+INFO-FLOW: Checking Synthesizability 2/2..
+Execute           transform -syn-check /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.2.prechk.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.2.bc -f -phase syn-check 
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 293.809 MB.
+INFO-FLOW: Compiler optimizing ...
+INFO-FLOW: Share syncheck's 1.bc for syn flow: copy /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.g.1.bc to /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.1.bc
+INFO-FLOW: Presyn 1...
+Execute           transform -hls -tmp /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -interface-port-rename -directive-preproc -mem2reg -dse -dce -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -simplifycfg -dce -resource-proc -clib-intrinsic-prepare -dce -func-buffer -dce -pag -array-normalize -func-legal -instcombine -gvn -constprop -dce -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -ptrArgReplace -mem2reg -dce -array-seg-normalize -deadargelim -instcombine -dce -directive-preproc -mem2reg -dse -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -find-region -instcombine -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -scalar-auto-dep-elim -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -duplicate-dataflow-processes -globaldce -instcombine -array-partition -prepare-dynamic-array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -dce -global-constprop -deadargelim -mem2reg -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -scalar-auto-dep-elim -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -mem-intrinsic-preproc -dce -global-internalize -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -dce -norm-name -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -accesses-merge -function-inline -complex-op-raise -inst-simplify -globaldce -func-legal -dce -loop-bound -arraycheck -bitwidthmin2 -bitwidthmin2 -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -duplicate-dataflow-processes -check-dataflow-syntax -legalize-stream-variable -globaldce -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -hls-dead-arg-elim -deadargelim -directive-preproc -canonicalize-dataflow -dce -globaldce -scalar-preprocessing -scalar-propagation2 -scalar-stream -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -clean-array-spec -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -hls-display -norm-name /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.1.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.1.tmp.bc -f 
+INFO: [XFORM 203-102] Automatically partitioning small array 'wh_code_table' completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'qq2_code2_table' completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'wh_code_table' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'qq2_code2_table' in dimension 1 completely.
+Command           transform done; 0.18 sec.
+INFO-FLOW: Presyn 2...
+Execute           transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin2 -bitwidthmin2 -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -barrier -norm-name /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.1.tmp.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.2.bc -f -phase presyn 
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:502:15) to (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:505:5) in function 'quantl'... converting 4 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.26 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.27 seconds; current allocated memory: 318.293 MB.
+INFO-FLOW: Building ssdm...
+Execute           transform -hls -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -aggr-aa -licm -loop-dep -loop-bound -licm -loop-simplify -loop-sink-hoist -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg-lite -loop-simplify -array-burst -promote-global-argument -dce -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg-lite -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -deadargelim -dce -canonicalize-dataflow -dce -deadargelim -globaldce -mem2reg -bram-byte-enable -inst-simplify -inst-rectify -instcombine -adce -deadargelim -load-elim -read-loop-dep -loop-simplify -loop-extract-inner -directive-preproc -bitwidthmin2 -bitwidthmin2 -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable-spec-prop -deadargelim -inst-simplify -dce -mem2reg -instcombine -gvn -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg-lite -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -float-op-raise -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg-lite -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg-lite -loop-simplify -mergereturn -inst-simplify -inst-rectify -globaldce -dce -load-elim -bitop-lower -float-op-raise -fma-raise -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -dyn-mem-reuse -dce -recurrence-min -dce -share-scalar-alloca -deadargelim -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dce -dump-loop-dep-to-ir -check-all-ssdm -dump-complexity-metric -cdfg-build /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.2.bc -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+Execute             auto_get_db
+Command           transform done; 0.2 sec.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.2 seconds. CPU system time: 0 seconds. Elapsed time: 0.2 seconds; current allocated memory: 372.047 MB.
+INFO-FLOW: Finish building internal data model.
+Command         opt_and_import_c done; 0.58 sec.
+Command       elaborate done; 8.06 sec.
+Execute       ap_eval exec zip -j /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/dut.hcp $dbDir/a.o.3.bc $dbDir/${topname}.rtl_wrap.cfg.tcl $dbDir/apatb_${topname}.cpp $dbDir/apatb_${topname}_util.cpp $dbDir/apatb_${topname}_ir.ll $dbDir/mapper_${topname}.cpp $dbDir/top-io-fe.xml $dbDir/kernel.internal.xml $workdir/../hls.app 
+Execute       autosyn -from_csynth_design=1 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO-FLOW: Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'adpcm_main' ...
+Execute         ap_set_top_model adpcm_main 
+Execute         get_model_list adpcm_main -filter all-wo-channel -topdown 
+Execute         preproc_iomode -model adpcm_main 
+Execute         preproc_iomode -model decode 
+Execute         preproc_iomode -model encode 
+Execute         preproc_iomode -model upzero 
+Execute         preproc_iomode -model quantl 
+Execute         preproc_iomode -model filtez 
+Execute         preproc_iomode -model reset 
+Execute         get_model_list adpcm_main -filter all-wo-channel 
+INFO-FLOW: Model list for configure: reset filtez quantl upzero encode decode adpcm_main
+INFO-FLOW: Configuring Module : reset ...
+Execute         set_default_model reset 
+Execute         apply_spec_resource_limit reset 
+INFO-FLOW: Configuring Module : filtez ...
+Execute         set_default_model filtez 
+Execute         apply_spec_resource_limit filtez 
+INFO-FLOW: Configuring Module : quantl ...
+Execute         set_default_model quantl 
+Execute         apply_spec_resource_limit quantl 
+INFO-FLOW: Configuring Module : upzero ...
+Execute         set_default_model upzero 
+Execute         apply_spec_resource_limit upzero 
+INFO-FLOW: Configuring Module : encode ...
+Execute         set_default_model encode 
+Execute         apply_spec_resource_limit encode 
+INFO-FLOW: Configuring Module : decode ...
+Execute         set_default_model decode 
+Execute         apply_spec_resource_limit decode 
+INFO-FLOW: Configuring Module : adpcm_main ...
+Execute         set_default_model adpcm_main 
+Execute         apply_spec_resource_limit adpcm_main 
+INFO-FLOW: Model list for preprocess: reset filtez quantl upzero encode decode adpcm_main
+INFO-FLOW: Preprocessing Module: reset ...
+Execute         set_default_model reset 
+Execute         cdfg_preprocess -model reset 
+Execute         rtl_gen_preprocess reset 
+INFO-FLOW: Preprocessing Module: filtez ...
+Execute         set_default_model filtez 
+Execute         cdfg_preprocess -model filtez 
+Execute         rtl_gen_preprocess filtez 
+INFO-FLOW: Preprocessing Module: quantl ...
+Execute         set_default_model quantl 
+Execute         cdfg_preprocess -model quantl 
+Execute         rtl_gen_preprocess quantl 
+INFO-FLOW: Preprocessing Module: upzero ...
+Execute         set_default_model upzero 
+Execute         cdfg_preprocess -model upzero 
+Execute         rtl_gen_preprocess upzero 
+INFO-FLOW: Preprocessing Module: encode ...
+Execute         set_default_model encode 
+Execute         cdfg_preprocess -model encode 
+Execute         rtl_gen_preprocess encode 
+INFO-FLOW: Preprocessing Module: decode ...
+Execute         set_default_model decode 
+Execute         cdfg_preprocess -model decode 
+Execute         rtl_gen_preprocess decode 
+INFO-FLOW: Preprocessing Module: adpcm_main ...
+Execute         set_default_model adpcm_main 
+Execute         cdfg_preprocess -model adpcm_main 
+Execute         rtl_gen_preprocess adpcm_main 
+INFO-FLOW: Model list for synthesis: reset filtez quantl upzero encode decode adpcm_main
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'reset' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model reset 
+Execute         schedule -model reset 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.11 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 373.988 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.sched.adb -f 
+INFO-FLOW: Finish scheduling reset.
+Execute         set_default_model reset 
+Execute         bind -model reset 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 373.988 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.bind.adb -f 
+INFO-FLOW: Finish binding reset.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'filtez' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model filtez 
+Execute         schedule -model filtez 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 374.391 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.sched.adb -f 
+INFO-FLOW: Finish scheduling filtez.
+Execute         set_default_model filtez 
+Execute         bind -model filtez 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 374.391 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.bind.adb -f 
+INFO-FLOW: Finish binding filtez.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'quantl' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model quantl 
+Execute         schedule -model quantl 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 374.734 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.sched.adb -f 
+INFO-FLOW: Finish scheduling quantl.
+Execute         set_default_model quantl 
+Execute         bind -model quantl 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 374.734 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.bind.adb -f 
+INFO-FLOW: Finish binding quantl.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'upzero' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model upzero 
+Execute         schedule -model upzero 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 375.414 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.sched.adb -f 
+INFO-FLOW: Finish scheduling upzero.
+Execute         set_default_model upzero 
+Execute         bind -model upzero 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 375.414 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.bind.adb -f 
+INFO-FLOW: Finish binding upzero.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'encode' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model encode 
+Execute         schedule -model encode 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+Command         schedule done; 0.28 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.29 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 378.270 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.sched.adb -f 
+INFO-FLOW: Finish scheduling encode.
+Execute         set_default_model encode 
+Execute         bind -model encode 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 378.270 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.bind.adb -f 
+INFO-FLOW: Finish binding encode.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'decode' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model decode 
+Execute         schedule -model decode 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+Command         schedule done; 0.2 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.25 seconds; current allocated memory: 380.574 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.sched.adb -f 
+INFO-FLOW: Finish scheduling decode.
+Execute         set_default_model decode 
+Execute         bind -model decode 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 380.574 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.bind.adb -f 
+INFO-FLOW: Finish binding decode.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'adpcm_main' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model adpcm_main 
+Execute         schedule -model adpcm_main 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 380.574 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.verbose.sched.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.sched.adb -f 
+INFO-FLOW: Finish scheduling adpcm_main.
+Execute         set_default_model adpcm_main 
+Execute         bind -model adpcm_main 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 380.574 MB.
+Execute         syn_report -verbosereport -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.verbose.bind.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.bind.adb -f 
+INFO-FLOW: Finish binding adpcm_main.
+Execute         get_model_list adpcm_main -filter all-wo-channel 
+INFO-FLOW: Preprocessing for RTLGen ...
+Execute         rtl_gen_preprocess reset 
+Execute         rtl_gen_preprocess filtez 
+Execute         rtl_gen_preprocess quantl 
+Execute         rtl_gen_preprocess upzero 
+Execute         rtl_gen_preprocess encode 
+Execute         rtl_gen_preprocess decode 
+Execute         rtl_gen_preprocess adpcm_main 
+INFO-FLOW: Model list for RTL generation: reset filtez quantl upzero encode decode adpcm_main
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'reset' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model reset -top_prefix adpcm_main_ -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.compgen.tcl 
+INFO: [RTGEN 206-100] Finished creating RTL model for 'reset'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 380.645 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl reset -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main_reset 
+Execute         gen_rtl reset -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main_reset 
+Execute         syn_report -csynth -model reset -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/reset_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model reset -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/reset_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model reset -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model reset -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.adb 
+Execute         db_write -model reset -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info reset -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'filtez' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model filtez -top_prefix adpcm_main_ -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.compgen.tcl 
+INFO: [RTGEN 206-100] Generating core module 'mul_16s_32s_48_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'filtez'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 382.762 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl filtez -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main_filtez 
+Execute         gen_rtl filtez -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main_filtez 
+Execute         syn_report -csynth -model filtez -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/filtez_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model filtez -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/filtez_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model filtez -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model filtez -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.adb 
+Execute         db_write -model filtez -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info filtez -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'quantl' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model quantl -top_prefix adpcm_main_ -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.compgen.tcl 
+INFO: [RTGEN 206-100] Generating core module 'mul_15ns_15ns_30_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'quantl'.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_quantl_decis_levl_ROM_AUTO_1R' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R' using auto ROMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 383.891 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl quantl -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main_quantl 
+Execute         gen_rtl quantl -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main_quantl 
+Execute         syn_report -csynth -model quantl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/quantl_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model quantl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/quantl_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model quantl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model quantl -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.adb 
+Execute         db_write -model quantl -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info quantl -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'upzero' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model upzero -top_prefix adpcm_main_ -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.compgen.tcl 
+INFO: [RTGEN 206-100] Generating core module 'mul_16s_16s_32_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'upzero'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 385.027 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl upzero -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main_upzero 
+Execute         gen_rtl upzero -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main_upzero 
+Execute         syn_report -csynth -model upzero -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/upzero_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model upzero -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/upzero_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model upzero -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model upzero -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.adb 
+Execute         db_write -model upzero -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info upzero -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'encode' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model encode -top_prefix adpcm_main_ -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.compgen.tcl 
+INFO: [RTGEN 206-100] Generating core module 'mul_14s_15ns_29_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_15ns_11ns_25_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_15s_32s_47_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_16s_15ns_31_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_16s_32s_47_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_32s_32s_64_1_1': 4 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_32s_7s_39_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_4_2_11_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_4_2_14_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'encode'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.13 seconds; current allocated memory: 388.605 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl encode -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main_encode 
+Execute         gen_rtl encode -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main_encode 
+Execute         syn_report -csynth -model encode -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/encode_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model encode -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/encode_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model encode -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model encode -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.adb 
+Execute         db_write -model encode -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info encode -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'decode' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model decode -top_prefix adpcm_main_ -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.compgen.tcl 
+INFO: [RTGEN 206-100] Generating core module 'mul_14s_15ns_29_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_15s_32s_47_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_16s_15ns_31_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_16s_32s_47_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_32s_32s_64_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_32s_7s_39_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_4_2_11_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mux_4_2_14_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'decode'.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R' using auto ROMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.2 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.21 seconds; current allocated memory: 396.629 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl decode -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main_decode 
+Execute         gen_rtl decode -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main_decode 
+Execute         syn_report -csynth -model decode -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/decode_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model decode -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/decode_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model decode -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model decode -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.adb 
+Execute         db_write -model decode -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info decode -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'adpcm_main' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model adpcm_main -top_prefix  -sub_prefix adpcm_main_ -mg_file /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.compgen.tcl 
+INFO: [RTGEN 206-500] Setting interface mode on port 'adpcm_main/in_data' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'adpcm_main/encoded' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'adpcm_main/decoded' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'adpcm_main' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'dec_detl' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'detl' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_deth' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'deth' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'rlt2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'rlt1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'plt2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'plt1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'al2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'al1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'nbl' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'rh2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'rh1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'ph2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'ph1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'ah2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'ah1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'nbh' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_rlt2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_rlt1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_plt2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_plt1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_al2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_al1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_nbl' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_rh2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_rh1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_ph2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_ph1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_ah2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_ah1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'dec_nbh' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'il' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'xout1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'xout2' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'adpcm_main'.
+INFO: [RTMG 210-278] Implementing memory 'adpcm_main_delay_dltx_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'adpcm_main_delay_bpl_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'adpcm_main_tqmf_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'adpcm_main_accumc_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_h_ROM_AUTO_1R' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_qq4_code4_table_ROM_AUTO_1R' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_wl_code_table_ROM_AUTO_1R' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'adpcm_main_ilb_table_ROM_AUTO_1R' using auto ROMs.
+Command         create_rtl_model done; 0.13 sec.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.25 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.28 seconds; current allocated memory: 404.469 MB.
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         gen_rtl adpcm_main -istop -style xilinx -f -lang vhdl -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/vhdl/adpcm_main 
+Execute         gen_rtl adpcm_main -istop -style xilinx -f -lang vlog -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/verilog/adpcm_main 
+Execute         syn_report -csynth -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/adpcm_main_csynth.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -rtlxml -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/adpcm_main_csynth.xml 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -verbosereport -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.verbose.rpt 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         db_write -model adpcm_main -f -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.adb 
+Execute         db_write -model adpcm_main -bindview -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info adpcm_main -p /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main 
+Execute         export_constraint_db -f -tool general -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.constraint.tcl 
+Execute         syn_report -designview -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.design.xml 
+Execute         syn_report -csynthDesign -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth.rpt -MHOut /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/kernel_module_hierarchy.tcl 
+Execute           list_part -family xcu50-fsvh2104-2-e 
+Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
+Execute             ap_part_info -quiet -name xcu50-fsvh2104-2-e -data family 
+Execute         syn_report -wcfg -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main_dataflow_ana.wcfg 
+Execute         syn_report -protoinst -model adpcm_main -o /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.protoinst 
+Execute         sc_get_clocks adpcm_main 
+Execute         sc_get_portdomain adpcm_main 
+INFO-FLOW: Model list for RTL component generation: reset filtez quantl upzero encode decode adpcm_main
+INFO-FLOW: Handling components in module [reset] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.compgen.tcl 
+INFO-FLOW: Handling components in module [filtez] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.compgen.tcl 
+INFO-FLOW: Found component adpcm_main_mul_16s_32s_48_1_1.
+INFO-FLOW: Append model adpcm_main_mul_16s_32s_48_1_1
+INFO-FLOW: Handling components in module [quantl] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.compgen.tcl 
+INFO-FLOW: Found component adpcm_main_mul_15ns_15ns_30_1_1.
+INFO-FLOW: Append model adpcm_main_mul_15ns_15ns_30_1_1
+INFO-FLOW: Found component adpcm_main_quantl_decis_levl_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_quantl_decis_levl_ROM_AUTO_1R
+INFO-FLOW: Found component adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R
+INFO-FLOW: Found component adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R
+INFO-FLOW: Handling components in module [upzero] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.compgen.tcl 
+INFO-FLOW: Found component adpcm_main_mul_16s_16s_32_1_1.
+INFO-FLOW: Append model adpcm_main_mul_16s_16s_32_1_1
+INFO-FLOW: Handling components in module [encode] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.compgen.tcl 
+INFO-FLOW: Found component adpcm_main_mul_15s_32s_47_1_1.
+INFO-FLOW: Append model adpcm_main_mul_15s_32s_47_1_1
+INFO-FLOW: Found component adpcm_main_mul_16s_32s_47_1_1.
+INFO-FLOW: Append model adpcm_main_mul_16s_32s_47_1_1
+INFO-FLOW: Found component adpcm_main_mul_32s_32s_64_1_1.
+INFO-FLOW: Append model adpcm_main_mul_32s_32s_64_1_1
+INFO-FLOW: Found component adpcm_main_mul_32s_7s_39_1_1.
+INFO-FLOW: Append model adpcm_main_mul_32s_7s_39_1_1
+INFO-FLOW: Found component adpcm_main_mul_15ns_11ns_25_1_1.
+INFO-FLOW: Append model adpcm_main_mul_15ns_11ns_25_1_1
+INFO-FLOW: Found component adpcm_main_mul_16s_15ns_31_1_1.
+INFO-FLOW: Append model adpcm_main_mul_16s_15ns_31_1_1
+INFO-FLOW: Found component adpcm_main_mux_4_2_14_1_1.
+INFO-FLOW: Append model adpcm_main_mux_4_2_14_1_1
+INFO-FLOW: Found component adpcm_main_mul_14s_15ns_29_1_1.
+INFO-FLOW: Append model adpcm_main_mul_14s_15ns_29_1_1
+INFO-FLOW: Found component adpcm_main_mux_4_2_11_1_1.
+INFO-FLOW: Append model adpcm_main_mux_4_2_11_1_1
+INFO-FLOW: Handling components in module [decode] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.compgen.tcl 
+INFO-FLOW: Found component adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R
+INFO-FLOW: Handling components in module [adpcm_main] ... 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.compgen.tcl 
+INFO-FLOW: Found component adpcm_main_delay_dltx_RAM_AUTO_1R1W.
+INFO-FLOW: Append model adpcm_main_delay_dltx_RAM_AUTO_1R1W
+INFO-FLOW: Found component adpcm_main_delay_bpl_RAM_AUTO_1R1W.
+INFO-FLOW: Append model adpcm_main_delay_bpl_RAM_AUTO_1R1W
+INFO-FLOW: Found component adpcm_main_tqmf_RAM_AUTO_1R1W.
+INFO-FLOW: Append model adpcm_main_tqmf_RAM_AUTO_1R1W
+INFO-FLOW: Found component adpcm_main_accumc_RAM_AUTO_1R1W.
+INFO-FLOW: Append model adpcm_main_accumc_RAM_AUTO_1R1W
+INFO-FLOW: Found component adpcm_main_h_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_h_ROM_AUTO_1R
+INFO-FLOW: Found component adpcm_main_qq4_code4_table_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_qq4_code4_table_ROM_AUTO_1R
+INFO-FLOW: Found component adpcm_main_wl_code_table_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_wl_code_table_ROM_AUTO_1R
+INFO-FLOW: Found component adpcm_main_ilb_table_ROM_AUTO_1R.
+INFO-FLOW: Append model adpcm_main_ilb_table_ROM_AUTO_1R
+INFO-FLOW: Append model reset
+INFO-FLOW: Append model filtez
+INFO-FLOW: Append model quantl
+INFO-FLOW: Append model upzero
+INFO-FLOW: Append model encode
+INFO-FLOW: Append model decode
+INFO-FLOW: Append model adpcm_main
+INFO-FLOW: Generating RTL model list ...
+INFO-FLOW: All models in this session: adpcm_main_mul_16s_32s_48_1_1 adpcm_main_mul_15ns_15ns_30_1_1 adpcm_main_quantl_decis_levl_ROM_AUTO_1R adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R adpcm_main_mul_16s_16s_32_1_1 adpcm_main_mul_15s_32s_47_1_1 adpcm_main_mul_16s_32s_47_1_1 adpcm_main_mul_32s_32s_64_1_1 adpcm_main_mul_32s_7s_39_1_1 adpcm_main_mul_15ns_11ns_25_1_1 adpcm_main_mul_16s_15ns_31_1_1 adpcm_main_mux_4_2_14_1_1 adpcm_main_mul_14s_15ns_29_1_1 adpcm_main_mux_4_2_11_1_1 adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R adpcm_main_delay_dltx_RAM_AUTO_1R1W adpcm_main_delay_bpl_RAM_AUTO_1R1W adpcm_main_tqmf_RAM_AUTO_1R1W adpcm_main_accumc_RAM_AUTO_1R1W adpcm_main_h_ROM_AUTO_1R adpcm_main_qq4_code4_table_ROM_AUTO_1R adpcm_main_wl_code_table_ROM_AUTO_1R adpcm_main_ilb_table_ROM_AUTO_1R reset filtez quantl upzero encode decode adpcm_main
+INFO-FLOW: Generating /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/autopilot.rtl.models.txt file...
+INFO-FLOW: To file: write model adpcm_main_mul_16s_32s_48_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_15ns_15ns_30_1_1
+INFO-FLOW: To file: write model adpcm_main_quantl_decis_levl_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_mul_16s_16s_32_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_15s_32s_47_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_16s_32s_47_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_32s_32s_64_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_32s_7s_39_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_15ns_11ns_25_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_16s_15ns_31_1_1
+INFO-FLOW: To file: write model adpcm_main_mux_4_2_14_1_1
+INFO-FLOW: To file: write model adpcm_main_mul_14s_15ns_29_1_1
+INFO-FLOW: To file: write model adpcm_main_mux_4_2_11_1_1
+INFO-FLOW: To file: write model adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_delay_dltx_RAM_AUTO_1R1W
+INFO-FLOW: To file: write model adpcm_main_delay_bpl_RAM_AUTO_1R1W
+INFO-FLOW: To file: write model adpcm_main_tqmf_RAM_AUTO_1R1W
+INFO-FLOW: To file: write model adpcm_main_accumc_RAM_AUTO_1R1W
+INFO-FLOW: To file: write model adpcm_main_h_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_qq4_code4_table_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_wl_code_table_ROM_AUTO_1R
+INFO-FLOW: To file: write model adpcm_main_ilb_table_ROM_AUTO_1R
+INFO-FLOW: To file: write model reset
+INFO-FLOW: To file: write model filtez
+INFO-FLOW: To file: write model quantl
+INFO-FLOW: To file: write model upzero
+INFO-FLOW: To file: write model encode
+INFO-FLOW: To file: write model decode
+INFO-FLOW: To file: write model adpcm_main
+INFO-FLOW: Generating /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/autopilot.rtl.models.tcl file...
+INFO-FLOW: Finished generating RTL model list.
+
+
+INFO-FLOW: RTL Generation done.
+INFO-FLOW: CAS Generation done.
+INFO-FLOW: CBC Generation done.
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate_csynth_design
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:   using AESL_AUTOCG::g_clock_period=8.000 (was NA)
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::generate_ip_cores gen_sim_model='1' gen_fp_models='0' gen_for_export='0' dstSCDir='' dstVhdlDir='/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/vhdl' dstVlogDir='/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/vlog' tclDir='/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db' modelList='adpcm_main_mul_16s_32s_48_1_1
+adpcm_main_mul_15ns_15ns_30_1_1
+adpcm_main_quantl_decis_levl_ROM_AUTO_1R
+adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R
+adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R
+adpcm_main_mul_16s_16s_32_1_1
+adpcm_main_mul_15s_32s_47_1_1
+adpcm_main_mul_16s_32s_47_1_1
+adpcm_main_mul_32s_32s_64_1_1
+adpcm_main_mul_32s_7s_39_1_1
+adpcm_main_mul_15ns_11ns_25_1_1
+adpcm_main_mul_16s_15ns_31_1_1
+adpcm_main_mux_4_2_14_1_1
+adpcm_main_mul_14s_15ns_29_1_1
+adpcm_main_mux_4_2_11_1_1
+adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R
+adpcm_main_delay_dltx_RAM_AUTO_1R1W
+adpcm_main_delay_bpl_RAM_AUTO_1R1W
+adpcm_main_tqmf_RAM_AUTO_1R1W
+adpcm_main_accumc_RAM_AUTO_1R1W
+adpcm_main_h_ROM_AUTO_1R
+adpcm_main_qq4_code4_table_ROM_AUTO_1R
+adpcm_main_wl_code_table_ROM_AUTO_1R
+adpcm_main_ilb_table_ROM_AUTO_1R
+reset
+filtez
+quantl
+upzero
+encode
+decode
+adpcm_main
+' expOnly='0'
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.compgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.compgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.compgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.compgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.compgen.tcl 
+Execute           ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute           ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute           ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute           ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.compgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.compgen.tcl 
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.24 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.28 seconds; current allocated memory: 408.367 MB.
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::create_csynth_xml bind_info_var='bind_info' RtlSubPrefix='adpcm_main_' outfile=''
+INFO-FLOW: Running: create_csynth_xml read xml data
+INFO-FLOW: Done: create_csynth_xml read xml data time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml bind info
+INFO-FLOW: Done: create_csynth_xml bind info time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml config info
+INFO-FLOW: Done: create_csynth_xml config info time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml write xml
+INFO-FLOW: Done: create_csynth_xml write xml time: 0 seconds per iteration
+INFO-FLOW: DBG:PUTS:      create_csynth_xml wrote csynth_xml=/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/syn/report/csynth.xml
+INFO-FLOW: DBG:PROC: ::AP::DESIGN_DATA::generate_json generate_bd_files='0' generate_xo_files='0' modelList='adpcm_main_mul_16s_32s_48_1_1
+adpcm_main_mul_15ns_15ns_30_1_1
+adpcm_main_quantl_decis_levl_ROM_AUTO_1R
+adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R
+adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R
+adpcm_main_mul_16s_16s_32_1_1
+adpcm_main_mul_15s_32s_47_1_1
+adpcm_main_mul_16s_32s_47_1_1
+adpcm_main_mul_32s_32s_64_1_1
+adpcm_main_mul_32s_7s_39_1_1
+adpcm_main_mul_15ns_11ns_25_1_1
+adpcm_main_mul_16s_15ns_31_1_1
+adpcm_main_mux_4_2_14_1_1
+adpcm_main_mul_14s_15ns_29_1_1
+adpcm_main_mux_4_2_11_1_1
+adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R
+adpcm_main_delay_dltx_RAM_AUTO_1R1W
+adpcm_main_delay_bpl_RAM_AUTO_1R1W
+adpcm_main_tqmf_RAM_AUTO_1R1W
+adpcm_main_accumc_RAM_AUTO_1R1W
+adpcm_main_h_ROM_AUTO_1R
+adpcm_main_qq4_code4_table_ROM_AUTO_1R
+adpcm_main_wl_code_table_ROM_AUTO_1R
+adpcm_main_ilb_table_ROM_AUTO_1R
+reset
+filtez
+quantl
+upzero
+encode
+decode
+adpcm_main
+' rtl_lang='both' bootstrap_tcl='false' outdir='' outfilename=''
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/top-io-be.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.compgen.dataonly.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.constraint.tcl 
+Execute         sc_get_clocks adpcm_main 
+Execute         source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::add_csynth_report_sections bind_info_dict='adapter_nodes {} report_dict {TOPINST adpcm_main MODULE2INSTS {adpcm_main adpcm_main reset grp_reset_fu_243 encode grp_encode_fu_333 filtez {grp_filtez_fu_430 grp_filtez_fu_433} quantl grp_quantl_fu_440 upzero {grp_upzero_fu_452 grp_upzero_fu_461 grp_upzero_fu_443} decode grp_decode_fu_399} INST2MODULE {adpcm_main adpcm_main grp_reset_fu_243 reset grp_encode_fu_333 encode grp_filtez_fu_430 filtez grp_quantl_fu_440 quantl grp_upzero_fu_452 upzero grp_upzero_fu_461 upzero grp_decode_fu_399 decode grp_filtez_fu_433 filtez grp_upzero_fu_443 upzero} INSTDATA {adpcm_main {DEPTH 1 CHILDREN {grp_reset_fu_243 grp_encode_fu_333 grp_decode_fu_399}} grp_reset_fu_243 {DEPTH 2 CHILDREN {}} grp_encode_fu_333 {DEPTH 2 CHILDREN {grp_filtez_fu_430 grp_quantl_fu_440 grp_upzero_fu_452 grp_upzero_fu_461}} grp_filtez_fu_430 {DEPTH 3 CHILDREN {}} grp_quantl_fu_440 {DEPTH 3 CHILDREN {}} grp_upzero_fu_452 {DEPTH 3 CHILDREN {}} grp_upzero_fu_461 {DEPTH 3 CHILDREN {}} grp_decode_fu_399 {DEPTH 2 CHILDREN {grp_filtez_fu_433 grp_upzero_fu_443}} grp_filtez_fu_433 {DEPTH 3 CHILDREN {}} grp_upzero_fu_443 {DEPTH 3 CHILDREN {}}} MODULEDATA {reset {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln427_fu_518_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:427 VARIABLE add_ln427 LOOP reset_label4 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln436_fu_551_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:436 VARIABLE add_ln436 LOOP reset_label5 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln445_fu_584_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:445 VARIABLE add_ln445 LOOP reset_label6 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln451_fu_614_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:451 VARIABLE add_ln451 LOOP reset_label7 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}}} AREA {DSP 0 BRAM 0 URAM 0}} filtez {BINDINFO {{BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_32s_48_1_1_U44 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:461 VARIABLE zl LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_32s_48_1_1_U44 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:466 VARIABLE mul_ln466 LOOP filtez_label8 BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME zl_2_fu_188_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:466 VARIABLE zl_2 LOOP filtez_label8 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME i_fu_142_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:464 VARIABLE i LOOP filtez_label8 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln464_fu_148_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:464 VARIABLE add_ln464 LOOP filtez_label8 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}}} AREA {DSP 2 BRAM 0 URAM 0}} quantl {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME m_fu_122_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:236 VARIABLE m LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln493_fu_154_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:493 VARIABLE add_ln493 LOOP quantl_label9 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15ns_15ns_30_1_1_U48 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:495 VARIABLE mul_ln495 LOOP quantl_label9 BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_1p PRAGMA {} RTLNAME decis_levl_U SOURCE {} VARIABLE decis_levl LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {15 30 1} STORAGEUSAGE rom_1p DISPNAME {bind_storage rom_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_1p PRAGMA {} RTLNAME quant26bt_pos_U SOURCE {} VARIABLE quant26bt_pos LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {6 31 1} STORAGEUSAGE rom_1p DISPNAME {bind_storage rom_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_1p PRAGMA {} RTLNAME quant26bt_neg_U SOURCE {} VARIABLE quant26bt_neg LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {6 31 1} STORAGEUSAGE rom_1p DISPNAME {bind_storage rom_1p}}} AREA {DSP 1 BRAM 0 URAM 0}} upzero {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_174_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:543 VARIABLE add_ln543 LOOP upzero_label11 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_16s_32_1_1_U55 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:545 VARIABLE mul_ln545 LOOP upzero_label11 BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln549_fu_268_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:549 VARIABLE sub_ln549 LOOP upzero_label11 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln550_fu_284_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:550 VARIABLE add_ln550 LOOP upzero_label11 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_174_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:537 VARIABLE add_ln537 LOOP upzero_label10 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln539_fu_303_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:539 VARIABLE sub_ln539 LOOP upzero_label10 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}}} AREA {DSP 1 BRAM 0 URAM 0}} encode {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME xa_fu_569_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:250 VARIABLE xa LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_7s_39_1_1_U67 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:251 VARIABLE xb LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME i_11_fu_607_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:255 VARIABLE i_11 LOOP encode_label0 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln243_fu_616_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:243 VARIABLE add_ln243 LOOP encode_label0 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln257_fu_628_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:257 VARIABLE add_ln257 LOOP encode_label0 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U60 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:257 VARIABLE mul_ln257 LOOP encode_label0 BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xa_3_fu_674_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:257 VARIABLE xa_3 LOOP encode_label0 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U61 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:258 VARIABLE mul_ln258 LOOP encode_label0 BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xb_3_fu_694_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:258 VARIABLE xb_3 LOOP encode_label0 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME i_13_fu_727_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:269 VARIABLE i_13 LOOP encode_label1 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln243_1_fu_740_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:243 VARIABLE add_ln243_1 LOOP encode_label1 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln243_2_fu_917_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:243 VARIABLE add_ln243_2 LOOP encode_label1 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln269_fu_751_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:269 VARIABLE add_ln269 LOOP encode_label1 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_7s_39_1_1_U67 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:262 VARIABLE mul_ln262 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln263_fu_797_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:263 VARIABLE sub_ln263 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xa_4_fu_807_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:262 VARIABLE xa_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xb_4_fu_812_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:263 VARIABLE xb_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln278_fu_817_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:278 VARIABLE add_ln278 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln279_fu_833_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:279 VARIABLE sub_ln279 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_32s_47_1_1_U62 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:475 VARIABLE mul_ln475 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U60 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE mul_ln479 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_509_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE pl_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_529_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:284 VARIABLE add_ln284 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln285_fu_931_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:285 VARIABLE sub_ln285 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_15ns_31_1_1_U69 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:287 VARIABLE mul_ln287 LOOP {} BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln511_fu_1149_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:511 VARIABLE sub_ln511 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln512_fu_1173_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:512 VARIABLE add_ln512 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln525_fu_1486_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:525 VARIABLE sub_ln525 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln290_fu_1248_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:290 VARIABLE add_ln290 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U63 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:570 VARIABLE mul_ln570 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln571_fu_1552_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:571 VARIABLE sub_ln571 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U64 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:574 VARIABLE mul_ln574 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln580_fu_1607_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:580 VARIABLE sub_ln580 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln597_fu_1883_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:597 VARIABLE sub_ln597 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME apl1_fu_1910_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:599 VARIABLE apl1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME wd3_1_fu_1916_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:606 VARIABLE wd3_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME apl1_2_fu_1948_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:609 VARIABLE apl1_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln294_fu_1253_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:294 VARIABLE add_ln294 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_32s_47_1_1_U62 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:475 VARIABLE mul_ln475_1 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U60 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE mul_ln479_1 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_509_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE pl_3 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_529_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:303 VARIABLE add_ln303 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln304_fu_1036_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:304 VARIABLE sub_ln304 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15ns_11ns_25_1_1_U68 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:310 VARIABLE mul_ln310 LOOP {} BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME m_fu_1077_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:236 VARIABLE m LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln314_fu_1281_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:314 VARIABLE add_ln314 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_14s_15ns_29_1_1_U71 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:314 VARIABLE mul_ln314 LOOP {} BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln620_fu_1354_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:620 VARIABLE sub_ln620 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln621_fu_1392_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:621 VARIABLE add_ln621 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln525_1_fu_1661_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:525 VARIABLE sub_ln525_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln317_fu_1467_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:317 VARIABLE add_ln317 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U65 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:570 VARIABLE mul_ln570_1 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln571_1_fu_1727_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:571 VARIABLE sub_ln571_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U66 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:574 VARIABLE mul_ln574_1 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln580_1_fu_1782_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:580 VARIABLE sub_ln580_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln597_1_fu_2028_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:597 VARIABLE sub_ln597_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME apl1_4_fu_2055_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:599 VARIABLE apl1_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME wd3_3_fu_2061_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:606 VARIABLE wd3_3 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME apl1_6_fu_2093_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:609 VARIABLE apl1_6 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln321_fu_1472_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:321 VARIABLE add_ln321 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}}} AREA {DSP 32 BRAM 0 URAM 0}} decode {BINDINFO {{BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_32s_47_1_1_U112 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:475 VARIABLE mul_ln475 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U110 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE mul_ln479 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_479_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE pl_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln344_fu_930_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:344 VARIABLE add_ln344 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_15ns_31_1_1_U116 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:345 VARIABLE mul_ln345 LOOP {} BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_15ns_31_1_1_U117 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:346 VARIABLE mul_ln346 LOOP {} BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln347_fu_1197_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:347 VARIABLE add_ln347 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln511_fu_643_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:511 VARIABLE sub_ln511 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln512_fu_667_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:512 VARIABLE add_ln512 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln525_fu_943_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:525 VARIABLE sub_ln525 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln350_fu_972_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:350 VARIABLE add_ln350 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U113 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:570 VARIABLE mul_ln570 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln571_fu_1009_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:571 VARIABLE sub_ln571 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U114 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:574 VARIABLE mul_ln574 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln580_fu_1068_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:580 VARIABLE sub_ln580 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln597_fu_1249_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:597 VARIABLE sub_ln597 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME apl1_fu_1276_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:599 VARIABLE apl1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME wd3_4_fu_1282_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:606 VARIABLE wd3_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME apl1_9_fu_1314_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:609 VARIABLE apl1_9 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln354_fu_1344_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:354 VARIABLE add_ln354 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_16s_32s_47_1_1_U112 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:475 VARIABLE mul_ln475_2 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U110 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE mul_ln479_2 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME grp_fu_479_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:479 VARIABLE pl_6 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_14s_15ns_29_1_1_U120 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:364 VARIABLE mul_ln364 LOOP {} BUNDLEDNAME {} DSP 1 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln620_fu_762_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:620 VARIABLE sub_ln620 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln621_fu_799_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:621 VARIABLE add_ln621 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln525_2_fu_1159_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:525 VARIABLE sub_ln525_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln367_fu_1418_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:367 VARIABLE add_ln367 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U113 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:570 VARIABLE mul_ln570_2 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln571_2_fu_1455_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:571 VARIABLE sub_ln571_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_32s_64_1_1_U114 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:574 VARIABLE mul_ln574_2 LOOP {} BUNDLEDNAME {} DSP 4 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln580_2_fu_1514_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:580 VARIABLE sub_ln580_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln597_2_fu_1630_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:597 VARIABLE sub_ln597_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME apl1_11_fu_1657_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:599 VARIABLE apl1_11 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME wd3_6_fu_1663_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:606 VARIABLE wd3_6 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME apl1_13_fu_1695_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:609 VARIABLE apl1_13 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln371_fu_1546_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:371 VARIABLE add_ln371 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln378_fu_1725_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:378 VARIABLE sub_ln378 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln379_fu_1729_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:379 VARIABLE add_ln379 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME xa1_fu_1757_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:385 VARIABLE xa1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_7s_39_1_1_U115 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:386 VARIABLE xa2 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME i_15_fu_1795_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:389 VARIABLE i_15 LOOP decode_label2 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln335_fu_1810_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:335 VARIABLE add_ln335 LOOP decode_label2 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln391_fu_1821_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:391 VARIABLE add_ln391 LOOP decode_label2 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U110 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:391 VARIABLE mul_ln391 LOOP decode_label2 BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xa1_5_fu_1866_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:391 VARIABLE xa1_5 LOOP decode_label2 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_15s_32s_47_1_1_U111 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:392 VARIABLE mul_ln392 LOOP decode_label2 BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xa2_5_fu_1886_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:392 VARIABLE xa2_5 LOOP decode_label2 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL auto LATENCY 0 OPTYPE mul PRAGMA {} RTLNAME mul_32s_7s_39_1_1_U115 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:395 VARIABLE mul_ln395 LOOP {} BUNDLEDNAME {} DSP 2 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xa1_4_fu_1919_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:395 VARIABLE xa1_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln396_fu_1949_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:396 VARIABLE sub_ln396 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME xa2_4_fu_1959_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:396 VARIABLE xa2_4 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME i_17_fu_2006_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:405 VARIABLE i_17 LOOP decode_label3 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln335_1_fu_2047_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:335 VARIABLE add_ln335_1 LOOP decode_label3 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln335_2_fu_2019_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:335 VARIABLE add_ln335_2 LOOP decode_label3 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln405_fu_2031_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:405 VARIABLE add_ln405 LOOP decode_label3 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_1p PRAGMA {} RTLNAME qq6_code6_table_U SOURCE {} VARIABLE qq6_code6_table LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {16 64 1} STORAGEUSAGE rom_1p DISPNAME {bind_storage rom_1p}}} AREA {DSP 22 BRAM 0 URAM 0}} adpcm_main {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln217_fu_478_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:217 VARIABLE add_ln217 LOOP adpcm_main_label12 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln223_fu_536_p2 SOURCE /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/adpcm/adpcm.c:223 VARIABLE add_ln223 LOOP adpcm_main_label13 BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_t2p PRAGMA {} RTLNAME delay_dltx_U SOURCE {} VARIABLE delay_dltx LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {16 6 1} STORAGEUSAGE ram_t2p DISPNAME {bind_storage ram_t2p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_t2p PRAGMA {} RTLNAME delay_dhx_U SOURCE {} VARIABLE delay_dhx LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {16 6 1} STORAGEUSAGE ram_t2p DISPNAME {bind_storage ram_t2p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_t2p PRAGMA {} RTLNAME dec_del_dltx_U SOURCE {} VARIABLE dec_del_dltx LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {16 6 1} STORAGEUSAGE ram_t2p DISPNAME {bind_storage ram_t2p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_t2p PRAGMA {} RTLNAME dec_del_dhx_U SOURCE {} VARIABLE dec_del_dhx LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {16 6 1} STORAGEUSAGE ram_t2p DISPNAME {bind_storage ram_t2p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_1p PRAGMA {} RTLNAME delay_bpl_U SOURCE {} VARIABLE delay_bpl LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 6 1} STORAGEUSAGE ram_1p DISPNAME {bind_storage ram_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_1p PRAGMA {} RTLNAME delay_bph_U SOURCE {} VARIABLE delay_bph LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 6 1} STORAGEUSAGE ram_1p DISPNAME {bind_storage ram_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_1p PRAGMA {} RTLNAME dec_del_bpl_U SOURCE {} VARIABLE dec_del_bpl LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 6 1} STORAGEUSAGE ram_1p DISPNAME {bind_storage ram_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_1p PRAGMA {} RTLNAME dec_del_bph_U SOURCE {} VARIABLE dec_del_bph LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 6 1} STORAGEUSAGE ram_1p DISPNAME {bind_storage ram_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_t2p PRAGMA {} RTLNAME tqmf_U SOURCE {} VARIABLE tqmf LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 24 1} STORAGEUSAGE ram_t2p DISPNAME {bind_storage ram_t2p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_1p PRAGMA {} RTLNAME accumc_U SOURCE {} VARIABLE accumc LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 11 1} STORAGEUSAGE ram_1p DISPNAME {bind_storage ram_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE ram_1p PRAGMA {} RTLNAME accumd_U SOURCE {} VARIABLE accumd LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {32 11 1} STORAGEUSAGE ram_1p DISPNAME {bind_storage ram_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_2p PRAGMA {} RTLNAME h_U SOURCE {} VARIABLE h LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {15 24 1} STORAGEUSAGE rom_2p DISPNAME {bind_storage rom_2p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_1p PRAGMA {} RTLNAME qq4_code4_table_U SOURCE {} VARIABLE qq4_code4_table LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {16 16 1} STORAGEUSAGE rom_1p DISPNAME {bind_storage rom_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_1p PRAGMA {} RTLNAME wl_code_table_U SOURCE {} VARIABLE wl_code_table LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {13 16 1} STORAGEUSAGE rom_1p DISPNAME {bind_storage rom_1p}} {BINDTYPE storage ID {} IMPL auto LATENCY 1 OPTYPE rom_2p PRAGMA {} RTLNAME ilb_table_U SOURCE {} VARIABLE ilb_table LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} STORAGESIZE {12 32 1} STORAGEUSAGE rom_2p DISPNAME {bind_storage rom_2p}}} AREA {DSP 54 BRAM 0 URAM 0}}}}'
+INFO-FLOW: DBG:PUTS:      update_csynth_reports json2rpt_hw_sw_interfaces
+INFO-FLOW: Running: gen_csynth_sec_pragma
+INFO-FLOW: Done: gen_csynth_sec_pragma time: 0 seconds per iteration
+INFO-FLOW: DBG:PUTS:      update_csynth_reports wrote xml
+INFO-FLOW: DBG:PUTS:      update_csynth_reports appended to csynth rpt file
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.52 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.53 seconds; current allocated memory: 415.801 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for adpcm_main.
+INFO: [VLOG 209-307] Generating Verilog RTL for adpcm_main.
+Execute         syn_report -model adpcm_main -printsummary 
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 191.83 MHz
+Command       autosyn done; 2.89 sec.
+Command     csynth_design done; 11.06 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.89 seconds. CPU system time: 0.66 seconds. Elapsed time: 11.06 seconds; current allocated memory: 130.539 MB.
+Execute     export_design -flow impl -format syn_dcp -rtl verilog 
+INFO: [HLS 200-1510] Running: export_design -flow impl -format syn_dcp -rtl verilog 
+Execute       config_export -flow=impl -format=syn_dcp -rtl=verilog 
+INFO-FLOW: DBG:PUTS: export_design_wrap: -flow impl -format syn_dcp -rtl verilog
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:   auto_impl: pack: -export -tool vivado -rtl verilog
+INFO-FLOW: DBG:PROC: ::AESL_AUTOIMPL::auto_impl args='-export -tool vivado -rtl verilog'
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+INFO-FLOW: DBG:PUTS: automg_wrap -export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate args='-export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag'
+INFO-FLOW: DBG:PUTS:     auto_generate -export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:       initCTypeInfo top_module=adpcm_main xml_exists=0
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       cosim_export_main adding deadlock detection to adpcm_main
+INFO-FLOW: DBG:PUTS: Skipping loadAnalyze_DB, #g_database=3
+INFO-FLOW: DBG:PUTS:       generate_json generate_bd_files=0 generate_xo_files=false #modelList=31 #gSsdmPorts=0
+INFO-FLOW: DBG:PROC: ::AP::DESIGN_DATA::generate_json generate_bd_files='0' generate_xo_files='false' modelList='adpcm_main_mul_16s_32s_48_1_1
+adpcm_main_mul_15ns_15ns_30_1_1
+adpcm_main_quantl_decis_levl_ROM_AUTO_1R
+adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R
+adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R
+adpcm_main_mul_16s_16s_32_1_1
+adpcm_main_mul_15s_32s_47_1_1
+adpcm_main_mul_16s_32s_47_1_1
+adpcm_main_mul_32s_32s_64_1_1
+adpcm_main_mul_32s_7s_39_1_1
+adpcm_main_mul_15ns_11ns_25_1_1
+adpcm_main_mul_16s_15ns_31_1_1
+adpcm_main_mux_4_2_14_1_1
+adpcm_main_mul_14s_15ns_29_1_1
+adpcm_main_mux_4_2_11_1_1
+adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R
+adpcm_main_delay_dltx_RAM_AUTO_1R1W
+adpcm_main_delay_bpl_RAM_AUTO_1R1W
+adpcm_main_tqmf_RAM_AUTO_1R1W
+adpcm_main_accumc_RAM_AUTO_1R1W
+adpcm_main_h_ROM_AUTO_1R
+adpcm_main_qq4_code4_table_ROM_AUTO_1R
+adpcm_main_wl_code_table_ROM_AUTO_1R
+adpcm_main_ilb_table_ROM_AUTO_1R
+reset
+filtez
+quantl
+upzero
+encode
+decode
+adpcm_main
+' rtl_lang='vlog' bootstrap_tcl='false' outdir='' outfilename=''
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/top-io-be.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.compgen.dataonly.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/reset.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/filtez.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/quantl.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/upzero.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/encode.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/decode.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.constraint.tcl 
+Execute       sc_get_clocks adpcm_main 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       cosim_export_main adding deadlock detection to adpcm_main
+INFO-FLOW: DBG:PUTS:       generate_ip_script #gSsdmPorts=0 g_lang=vlog is_sdaccel=false is_sdsoc=true xo_file=
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_top_info
+INFO-FLOW: DBG:PUTS:       prepArgInfo -> loadAnalyze_DB top_module=adpcm_main
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.rtl_wrap.cfg.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.constraint.tcl 
+INFO-FLOW: DBG:PUTS:       generate_syn_sh
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_imp_constraints
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.constraint.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       delete-temp-dirs (skipped for debug)
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:     IP package: exec /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/ip/pack.sh
+INFO-FLOW: DBG:PUTS:     IP package: success /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/ip/pack.sh
+INFO-FLOW: DBG:PUTS:   auto_impl: eval: -tool vivado -flow impl -rtl verilog
+INFO-FLOW: DBG:PROC: ::AESL_AUTOIMPL::auto_impl args='-tool vivado -flow impl -rtl verilog'
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO: [IMPL 213-8] Starting RTL evaluation using Vivado ...
+INFO-FLOW: DBG:PUTS: automg_wrap -rtl vlog -tool Vivado -impltomg_flag
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate args='-rtl vlog -tool Vivado -impltomg_flag'
+INFO-FLOW: DBG:PUTS:     auto_generate -rtl vlog -tool Vivado -impltomg_flag
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:       generate_syn_sh
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_imp_constraints
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.constraint.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       delete-temp-dirs (skipped for debug)
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/autopilot.rtl.models.tcl 
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data names -quiet 
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet 
+INFO-FLOW: DBG:PUTS: debug_in_auto_impl: vlog exec /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/verilog/impl.sh
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report topinfo_dict='RtlTopPrefix {} RtlSubPrefix adpcm_main_ TopModuleNoPrefix adpcm_main TopModuleWithPrefix adpcm_main' export_design_flow='impl' impl_dir='/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl' lang='verilog' out_dir=''
+INFO-FLOW: DBG:PUTS:     auto_impl_report: impl processing xml
+Execute       ap_part_info -quiet -data family -name xcu50-fsvh2104-2-e 
+INFO-FLOW: DBG:PUTS:     writing export xml file: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/report/verilog/export_impl.xml
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report_txt xml_root='domNode0x7f6bf17e73c8' export_design_flow='impl' export_rpt='/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/report/verilog/export_impl.rpt' rpt_txt_var=''
+INFO-FLOW: DBG:PUTS:     wrote export rpt file: export_impl.rpt
+INFO-FLOW: DBG:PUTS:     auto_impl_report: syn processing xml
+Execute       ap_part_info -quiet -data family -name xcu50-fsvh2104-2-e 
+INFO-FLOW: DBG:PUTS:     writing export xml file: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/report/verilog/export_syn.xml
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report_txt xml_root='domNode0x7f6bf1a46aa8' export_design_flow='syn' export_rpt='/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/impl/report/verilog/export_syn.rpt' rpt_txt_var=''
+INFO-FLOW: DBG:PUTS:     wrote export rpt file: export_syn.rpt
+Execute       send_msg_by_id INFO @200-802@%s base_solutions/ADPCM/solution0/impl/export.dcp 
+INFO: [HLS 200-802] Generated output file base_solutions/ADPCM/solution0/impl/export.dcp
+Execute       source /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/ADPCM/solution0/.autopilot/db/adpcm_main.tbgen.tcl 
+Execute       send_msg_by_id INFO @200-802@%s base_solutions/ADPCM/solution0/impl/export.veo 
+INFO: [HLS 200-802] Generated output file base_solutions/ADPCM/solution0/impl/export.veo
+Command     export_design done; 420.16 sec.
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 211.49 seconds. CPU system time: 9.61 seconds. Elapsed time: 420.16 seconds; current allocated memory: 8.957 MB.
+Execute     cleanup_all 

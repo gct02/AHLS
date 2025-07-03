@@ -75,10 +75,9 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
         metadata[0], 
         [(et[0], et[1], et[2]) for et in metadata[1]]
     )
+    model_args["dropout"] = 0.0
     model = HLSQoREstimator(**model_args)
-    model.load_state_dict(
-        torch.load(model_path, map_location=DEVICE)
-    )
+    model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     return model
 
 
@@ -135,24 +134,6 @@ def main(args: Dict[str, str]):
     # Load the model
     model = load_model(model_path, model_args_path).to(DEVICE)
 
-    # Set model to training mode and enable gradients for fine-tuning
-    model.train()
-    for param in model.parameters():
-        param.requires_grad = False
-
-    # for module in model.modules():
-    #     if isinstance(module, (nn.LayerNorm, LayerNorm)):
-    #         for param in module.parameters():
-    #             param.requires_grad = True
-
-    for module in model.graph_mlp.modules():
-        for param in module.parameters():
-            param.requires_grad = True
-
-    for module in model.y_base_mlp.modules():
-        for param in module.parameters():
-            param.requires_grad = True
-
     grouped_params = get_optimizer_param_groups(model, weight_decay)
 
     optimizer = torch.optim.AdamW(
@@ -160,7 +141,15 @@ def main(args: Dict[str, str]):
         lr=lr,
         betas=betas
     )
-    loss_fn = nn.L1Loss()
+    if loss == 'l1':
+        loss_fn = nn.L1Loss()
+    elif loss == 'mse':
+        loss_fn = nn.MSELoss()
+    elif loss == 'huber':
+        huber_delta = pretraining_args.get('huber_delta', 1.0)
+        loss_fn = nn.HuberLoss(delta=huber_delta)
+    else:
+        raise ValueError(f"Unsupported loss function: {loss}")
 
     fine_tune(
         model=model,
@@ -243,7 +232,7 @@ if __name__ == "__main__":
                         help="Path to the serialized model arguments.")
     parser.add_argument("-pa", "--pretraining_args", type=str, required=True,
                         help="Path to the arguments used for pre-training the model.")
-    parser.add_argument("-ss", "--scaling_stats", type=str, required=True,
+    parser.add_argument("-s", "--scaling_stats", type=str, required=True,
                         help="Path to the statistics for standardization.")
     parser.add_argument("-e", "--epochs", type=int, default=15, 
                         help="Number of epochs for fine-tuning.")

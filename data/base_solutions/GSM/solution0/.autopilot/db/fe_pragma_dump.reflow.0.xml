@@ -1,0 +1,44 @@
+<pragmas>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="27" pragmaType="inline" parentfunction="Reflection_coefficients" off="1" region="0" recursive="0"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="10" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="1" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="15" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="175" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="8" max="8" avg="8"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="7" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="21" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="211" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="1" max="8" avg="4"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="5" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="19" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="205" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="1" max="8" avg="4"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="6" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="20" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="230" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="1" max="7" avg="4"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="4" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="18" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="198" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="9" max="9" avg="9"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="3" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="17" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="192" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="7" max="7" avg="7"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="2" pragmaType="pipeline" parentfunction="Reflection_coefficients" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="16" pragmaType="loop_flatten" parentfunction="Reflection_coefficients" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="185" pragmaType="loop_tripcount" parentfunction="Reflection_coefficients" min="9" max="9" avg="9"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm.c" line="14" pragmaType="pipeline" parentfunction="Gsm_LPC_Analysis" off="1" ii="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="26" pragmaType="inline" parentfunction="Autocorrelation" off="1" region="0" recursive="0"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="11" pragmaType="pipeline" parentfunction="Autocorrelation" off="1" ii="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="153" pragmaType="loop_tripcount" parentfunction="Autocorrelation" min="160" max="160" avg="160"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="145" pragmaType="loop_tripcount" parentfunction="Autocorrelation" min="9" max="9" avg="9"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="130" pragmaType="loop_tripcount" parentfunction="Autocorrelation" min="152" max="152" avg="152"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="80" pragmaType="loop_tripcount" parentfunction="Autocorrelation" min="9" max="9" avg="9"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="66" pragmaType="loop_tripcount" parentfunction="Autocorrelation" min="160" max="160" avg="160"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="8" pragmaType="pipeline" parentfunction="Autocorrelation" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="22" pragmaType="loop_flatten" parentfunction="Autocorrelation" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="50" pragmaType="loop_tripcount" parentfunction="Autocorrelation" min="160" max="160" avg="160"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_lpc.c" line="249" pragmaType="loop_tripcount" parentfunction="Transformation_to_Log_Area_Ratios" min="8" max="8" avg="8"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="24" pragmaType="inline" parentfunction="gsm_norm" off="1" region="0" recursive="0"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="12" pragmaType="pipeline" parentfunction="gsm_norm" off="1" ii="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="25" pragmaType="inline" parentfunction="gsm_div" off="1" region="0" recursive="0"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="13" pragmaType="pipeline" parentfunction="gsm_div" off="1" ii="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="9" pragmaType="pipeline" parentfunction="gsm_div" off="1" ii="0" rewind="0" style=""/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="23" pragmaType="loop_flatten" parentfunction="gsm_div" off="1"/>
+<pragma file="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/gsm/gsm_add.c" line="140" pragmaType="loop_tripcount" parentfunction="gsm_div" min="15" max="15" avg="15"/>
+</pragmas>

@@ -1,0 +1,34 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "loop1",
+      "FunctionName": "kernel_gramschmidt",
+      "Depth": 1
+    },
+    {
+      "Name": "loop4",
+      "FunctionName": "kernel_gramschmidt",
+      "Depth": 2
+    },
+    {
+      "Name": "loop6",
+      "FunctionName": "kernel_gramschmidt",
+      "Depth": 3
+    },
+    {
+      "Name": "loop5",
+      "FunctionName": "kernel_gramschmidt",
+      "Depth": 3
+    },
+    {
+      "Name": "loop3",
+      "FunctionName": "kernel_gramschmidt",
+      "Depth": 2
+    },
+    {
+      "Name": "loop2",
+      "FunctionName": "kernel_gramschmidt",
+      "Depth": 2
+    }
+  ]
+}

@@ -1,0 +1,722 @@
+{
+  "ArrayMetadata": [
+    {
+      "Name": "llvm.global_ctors",
+      "FunctionName": "",
+      "BaseBitwidth": 0,
+      "BaseType": 13,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 0,
+      "Dimensions": [0]
+    },
+    {
+      "Name": "activations1",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "activations2",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "activations3",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "dactivations1",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "dactivations2",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "dactivations3",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "net_outputs",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "delta_weights1",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 832,
+      "Dimensions": [832]
+    },
+    {
+      "Name": "delta_weights2",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "delta_weights3",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "oracle_activations1",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "oracle_activations2",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "net_outputs",
+      "FunctionName": "soft_max",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "soft_max",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "RELU",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "RELU",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "add_bias_to_activations",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "add_bias_to_activations",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "weights",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 832,
+      "Dimensions": [832]
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "input_sample",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 13,
+      "Dimensions": [13]
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "weights",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "input_activations",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "weights",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "input_activations",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "net_outputs",
+      "FunctionName": "take_difference",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "solutions",
+      "FunctionName": "take_difference",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "take_difference",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "take_difference",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "delta_weights3",
+      "FunctionName": "get_delta_matrix_weights3",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "get_delta_matrix_weights3",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "last_activations",
+      "FunctionName": "get_delta_matrix_weights3",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "weights3",
+      "FunctionName": "get_oracle_activations2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "output_differences",
+      "FunctionName": "get_oracle_activations2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "oracle_activations",
+      "FunctionName": "get_oracle_activations2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "get_oracle_activations2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "delta_weights2",
+      "FunctionName": "get_delta_matrix_weights2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "get_delta_matrix_weights2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "last_activations",
+      "FunctionName": "get_delta_matrix_weights2",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "weights2",
+      "FunctionName": "get_oracle_activations1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "output_differences",
+      "FunctionName": "get_oracle_activations1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "oracle_activations",
+      "FunctionName": "get_oracle_activations1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "get_oracle_activations1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "delta_weights1",
+      "FunctionName": "get_delta_matrix_weights1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 832,
+      "Dimensions": [832]
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "get_delta_matrix_weights1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "last_activations",
+      "FunctionName": "get_delta_matrix_weights1",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 13,
+      "Dimensions": [13]
+    },
+    {
+      "Name": "weights1",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 832,
+      "Dimensions": [832]
+    },
+    {
+      "Name": "weights2",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "weights3",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "d_weights1",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 832,
+      "Dimensions": [832]
+    },
+    {
+      "Name": "d_weights2",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "d_weights3",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "biases1",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases2",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases3",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "d_biases1",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "d_biases2",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "d_biases3",
+      "FunctionName": "update_weights",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "weights1",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 832,
+      "Dimensions": [832]
+    },
+    {
+      "Name": "weights2",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "weights3",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 192,
+      "Dimensions": [192]
+    },
+    {
+      "Name": "biases1",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases2",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "biases3",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 3,
+      "Dimensions": [3]
+    },
+    {
+      "Name": "training_data",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 2119,
+      "Dimensions": [2119]
+    },
+    {
+      "Name": "training_targets",
+      "FunctionName": "backprop",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 489,
+      "Dimensions": [489]
+    }
+  ]
+}

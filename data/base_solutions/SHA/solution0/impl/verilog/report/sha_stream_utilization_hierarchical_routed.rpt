@@ -1,0 +1,56 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Wed Jul  2 18:47:58 2025
+| Host         : H410M-H-V3 running 64-bit Linux Mint 20.2
+| Command      : report_utilization -hierarchical -hierarchical_depth 7 -file ./report/sha_stream_utilization_hierarchical_routed.rpt
+| Design       : bd_0_wrapper
+| Device       : xcu50-fsvh2104-2-e
+| Speed File   : -2
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+|                                    Instance                                   |                                       Module                                      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP Blocks |
++-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+| bd_0_wrapper                                                                  |                                                                             (top) |       2897 |       2897 |       0 |    0 | 2683 |      8 |      0 |    0 |          0 |
+|   bd_0_i                                                                      |                                                                              bd_0 |       2897 |       2897 |       0 |    0 | 2683 |      8 |      0 |    0 |          0 |
+|     hls_inst                                                                  |                                                                   bd_0_hls_inst_0 |       2897 |       2897 |       0 |    0 | 2683 |      8 |      0 |    0 |          0 |
+|       inst                                                                    |                                                        bd_0_hls_inst_0_sha_stream |       2897 |       2897 |       0 |    0 | 2683 |      8 |      0 |    0 |          0 |
+|         (inst)                                                                |                                                        bd_0_hls_inst_0_sha_stream |         13 |         13 |       0 |    0 |  162 |      0 |      0 |    0 |          0 |
+|         grp_local_memset_fu_185                                               |                                           bd_0_hls_inst_0_sha_stream_local_memset |         87 |         87 |       0 |    0 |   42 |      0 |      0 |    0 |          0 |
+|           (grp_local_memset_fu_185)                                           |                                           bd_0_hls_inst_0_sha_stream_local_memset |         13 |         13 |       0 |    0 |   10 |      0 |      0 |    0 |          0 |
+|           grp_local_memset_Pipeline_local_memset_label1_fu_44                 |              bd_0_hls_inst_0_sha_stream_local_memset_Pipeline_local_memset_label1 |         74 |         74 |       0 |    0 |   32 |      0 |      0 |    0 |          0 |
+|             (grp_local_memset_Pipeline_local_memset_label1_fu_44)             |              bd_0_hls_inst_0_sha_stream_local_memset_Pipeline_local_memset_label1 |          0 |          0 |       0 |    0 |   30 |      0 |      0 |    0 |          0 |
+|             flow_control_loop_pipe_sequential_init_U                          |               bd_0_hls_inst_0_sha_stream_flow_control_loop_pipe_sequential_init_3 |         74 |         74 |       0 |    0 |    2 |      0 |      0 |    0 |          0 |
+|         grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160     | bd_0_hls_inst_0_sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1 |         56 |         56 |       0 |    0 |   47 |      0 |      0 |    0 |          0 |
+|           (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160) | bd_0_hls_inst_0_sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1 |          7 |          7 |       0 |    0 |   45 |      0 |      0 |    0 |          0 |
+|           flow_control_loop_pipe_sequential_init_U                            |               bd_0_hls_inst_0_sha_stream_flow_control_loop_pipe_sequential_init_2 |         49 |         49 |       0 |    0 |    2 |      0 |      0 |    0 |          0 |
+|         grp_sha_stream_Pipeline_sha_stream_label2_fu_203                      |                  bd_0_hls_inst_0_sha_stream_sha_stream_Pipeline_sha_stream_label2 |         12 |         12 |       0 |    0 |    9 |      0 |      0 |    0 |          0 |
+|           (grp_sha_stream_Pipeline_sha_stream_label2_fu_203)                  |                  bd_0_hls_inst_0_sha_stream_sha_stream_Pipeline_sha_stream_label2 |          0 |          0 |       0 |    0 |    7 |      0 |      0 |    0 |          0 |
+|           flow_control_loop_pipe_sequential_init_U                            |                 bd_0_hls_inst_0_sha_stream_flow_control_loop_pipe_sequential_init |         12 |         12 |       0 |    0 |    2 |      0 |      0 |    0 |          0 |
+|         grp_sha_transform_fu_195                                              |                                          bd_0_hls_inst_0_sha_stream_sha_transform |       1192 |       1192 |       0 |    0 | 1123 |      1 |      0 |    0 |          0 |
+|           (grp_sha_transform_fu_195)                                          |                                          bd_0_hls_inst_0_sha_stream_sha_transform |        901 |        901 |       0 |    0 | 1123 |      0 |      0 |    0 |          0 |
+|           W_U                                                                 |                        bd_0_hls_inst_0_sha_stream_sha_transform_W_RAM_AUTO_1R1W_1 |        291 |        291 |       0 |    0 |    0 |      1 |      0 |    0 |          0 |
+|         grp_sha_update_fu_168                                                 |                                             bd_0_hls_inst_0_sha_stream_sha_update |       1514 |       1514 |       0 |    0 | 1300 |      1 |      0 |    0 |          0 |
+|           (grp_sha_update_fu_168)                                             |                                             bd_0_hls_inst_0_sha_stream_sha_update |        135 |        135 |       0 |    0 |   92 |      0 |      0 |    0 |          0 |
+|           grp_local_memcpy_fu_88                                              |                                           bd_0_hls_inst_0_sha_stream_local_memcpy |        167 |        167 |       0 |    0 |   85 |      0 |      0 |    0 |          0 |
+|           grp_sha_transform_fu_100                                            |                                        bd_0_hls_inst_0_sha_stream_sha_transform_0 |       1212 |       1212 |       0 |    0 | 1123 |      1 |      0 |    0 |          0 |
+|             (grp_sha_transform_fu_100)                                        |                                        bd_0_hls_inst_0_sha_stream_sha_transform_0 |        921 |        921 |       0 |    0 | 1123 |      0 |      0 |    0 |          0 |
+|             W_U                                                               |                          bd_0_hls_inst_0_sha_stream_sha_transform_W_RAM_AUTO_1R1W |        291 |        291 |       0 |    0 |    0 |      1 |      0 |    0 |          0 |
+|         local_indata_U                                                        |                             bd_0_hls_inst_0_sha_stream_local_indata_RAM_AUTO_1R1W |         16 |         16 |       0 |    0 |    0 |      4 |      0 |    0 |          0 |
+|         sha_info_data_U                                                       |                            bd_0_hls_inst_0_sha_stream_sha_info_data_RAM_AUTO_1R1W |          5 |          5 |       0 |    0 |    0 |      1 |      0 |    0 |          0 |
+|         sha_info_digest_U                                                     |                          bd_0_hls_inst_0_sha_stream_sha_info_digest_RAM_AUTO_1R1W |          4 |          4 |       0 |    0 |    0 |      1 |      0 |    0 |          0 |
++-------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

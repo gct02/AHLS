@@ -1,0 +1,7 @@
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GSM/temp/hls_script.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=Gsm_LPC_Analysis_XLX_SEP_ PragmaOptions=name=Gsm_LPC_Analysis_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE TOP name=Gsm_LPC_Analysis
+        ^
+/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/GSM/temp/directives.tcl:14:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=Gsm_LPC_Analysis_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE PIPELINE off=true
+        ^
+2 warnings generated.

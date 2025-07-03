@@ -1,0 +1,827 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Jul  2 18:05:08 2025
+# Process ID: 1049305
+# Current directory: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
+# Command line: vivado -log bd_0_hls_inst_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_hls_inst_0.tcl
+# Log file: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
+# Journal file: /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
+# Running On: H410M-H-V3, OS: Linux, CPU Frequency: 2900.000 MHz, CPU Physical cores: 6, Host memory: 33513 MB
+#-----------------------------------------------------------
+source bd_0_hls_inst_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
+Command: synth_design -top bd_0_hls_inst_0 -part xcu50-fsvh2104-2-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu50'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
+INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 1049382
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3040.695 ; gain = 398.715 ; free physical = 12243 ; free virtual = 22524
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'backprop' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_activations1_RAM_AUTO_1R1W' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_activations1_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dactivations1_RAM_AUTO_1R1W' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dactivations1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dactivations1_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dactivations1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_delta_weights1_RAM_AUTO_1R1W' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_delta_weights1_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_delta_weights2_RAM_AUTO_1R1W' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_delta_weights2_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_delta_weights3_RAM_AUTO_1R1W' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_delta_weights3_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_backprop_loop1_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_backprop_loop1_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_backprop_loop1_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_backprop_loop1_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_matrix_vector_product_with_bias_input_layer_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_matrix_vector_product_with_bias_input_layer_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_RELU_loop1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_RELU_loop1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_matrix_vector_product_with_bias_second_layer_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_matrix_vector_product_with_bias_second_layer_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_RELU_loop11' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_RELU_loop11' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_matrix_vector_product_with_bias_output_layer_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_mux_3_2_64_1_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_mux_3_2_64_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_mux_3_2_64_1_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_mux_3_2_64_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_matrix_vector_product_with_bias_output_layer_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_RELU_loop12' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop12.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_RELU_loop12' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop12.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_soft_max_loop1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_soft_max_loop1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_soft_max_loop2' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_soft_max_loop2' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_backprop_Pipeline_take_difference_loop1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_take_difference_loop1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_backprop_Pipeline_take_difference_loop1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_take_difference_loop1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_get_delta_matrix_weights3' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_delta_matrix_weights3.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_get_delta_matrix_weights3' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_delta_matrix_weights3.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_get_oracle_activations2_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_oracle_activations2_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_get_oracle_activations2_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_oracle_activations2_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_get_delta_matrix_weights2' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_delta_matrix_weights2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_get_delta_matrix_weights2' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_delta_matrix_weights2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_get_oracle_activations1_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_oracle_activations1_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_get_oracle_activations1_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_oracle_activations1_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_get_delta_matrix_weights1_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_delta_matrix_weights1_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_get_delta_matrix_weights1_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_delta_matrix_weights1_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_update_weights_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_update_weights_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6157] synthesizing module 'LUT1' [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
+INFO: [Synth 8-6155] done synthesizing module 'LUT1' (0#1) [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dsqrt_64ns_64ns_64_12_no_dsp_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_update_weights_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_update_weights_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dadddsub_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dmul_64ns_64ns_64_4_max_dsp_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dadd_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dadd_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_ddiv_64ns_64ns_64_14_no_dsp_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip' [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v:53]
+WARNING: [Synth 8-5974] attribute "use_dsp48" has been deprecated, please use "use_dsp" instead 
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'backprop_dexp_64ns_64ns_64_10_full_dsp_1' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'backprop' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized259 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DEC_OP_STATE[11] in module flt_dec_op_lat is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DEC_OP_STATE[10] in module flt_dec_op_lat is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DEC_OP_STATE[9] in module flt_dec_op_lat is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DEC_OP_STATE[8] in module flt_dec_op_lat is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DIVIDE_BY_ZERO_IN in module flt_dec_op_lat is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized117 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized117 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized117 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized117 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized117 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[18] in module carry_chain__parameterized60 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized49 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized97 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized107 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized223 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized143 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module dsp48e1_wrapper__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port NORMALIZE[1] in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port FIXED_POINT in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port FIX_MANT_SIGN in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SIGN in module flt_round_bit__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized251 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized65 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized65 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized65 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized65 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized65 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized233 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized87 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized153 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized153 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized153 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized153 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized153 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[47] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[46] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[45] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[44] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[43] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[42] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[41] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[40] in module flt_mult_round is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MANT_CASC_IN[39] in module flt_mult_round is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 3357.891 ; gain = 715.910 ; free physical = 11909 ; free virtual = 22196
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 3357.891 ; gain = 715.910 ; free physical = 11909 ; free virtual = 22196
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 3357.891 ; gain = 715.910 ; free physical = 11909 ; free virtual = 22196
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.68 ; elapsed = 00:00:00.68 . Memory (MB): peak = 3365.891 ; gain = 0.000 ; free physical = 11909 ; free virtual = 22195
+INFO: [Netlist 29-17] Analyzing 10486 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/backprop_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/backprop_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3602.492 ; gain = 0.000 ; free physical = 11823 ; free virtual = 22109
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 60 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 19 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 29 instances
+  FDE => FDRE: 12 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.81 ; elapsed = 00:00:00.26 . Memory (MB): peak = 3609.430 ; gain = 6.902 ; free physical = 11816 ; free virtual = 22103
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:36 ; elapsed = 00:00:35 . Memory (MB): peak = 3609.430 ; gain = 967.449 ; free physical = 11811 ; free virtual = 22098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu50-fsvh2104-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:36 ; elapsed = 00:00:35 . Memory (MB): peak = 3609.430 ; gain = 967.449 ; free physical = 11811 ; free virtual = 22098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:35 . Memory (MB): peak = 3609.430 ; gain = 967.449 ; free physical = 11811 ; free virtual = 22098
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter7_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:697]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter6_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:696]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter5_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:695]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter4_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:694]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter3_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:693]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter2_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:692]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter1_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:624]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v:623]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter7_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:697]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter6_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:696]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter5_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:695]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter4_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:694]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter3_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:693]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter2_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:692]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_pp0_iter1_reg_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:624]
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln36_reg_151_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v:623]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln141_reg_276_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_oracle_activations2_1.v:205]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'zext_ln174_reg_229_reg' and it is trimmed from '7' to '6' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/93fb/hdl/verilog/backprop_get_oracle_activations1_1.v:191]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-6904] The RAM "backprop_activations1_RAM_AUTO_1R1W:/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop_dactivations1_RAM_AUTO_1R1W:/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 36 for RAM "backprop_delta_weights1_RAM_AUTO_1R1W:/ram_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 28 for RAM "backprop_delta_weights1_RAM_AUTO_1R1W:/ram_reg"
+INFO: [Synth 8-6794] RAM ("backprop_delta_weights2_RAM_AUTO_1R1W:/ram_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"backprop_delta_weights2_RAM_AUTO_1R1W:/ram_reg"'.
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:44 ; elapsed = 00:00:43 . Memory (MB): peak = 3609.430 ; gain = 967.449 ; free physical = 11800 ; free virtual = 22093
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_INC_DELAY' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized33) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized33) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.ROUND/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_UNDERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'flt_add_logic:/ALIGN_BLK/SUB_DELAY' (delay__parameterized0) to 'flt_add_logic:/ALIGN_BLK/SUBTRACT_PREADD_DEL'
+INFO: [Synth 8-223] decloning instance 'flt_add_logic:/NORM/ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'flt_add_logic:/NORM/ROUND/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'flt_add_logic:/NORM/ROUND/EXP_INC_DELAY' (delay__parameterized0) to 'flt_add_logic:/NORM/ROUND/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U166/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U166/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U166/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U166/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_INC_DELAY' (delay__parameterized0) to 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized33) to 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized33) to 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.R_AND_R/LOGIC.R_AND_R/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'backprop_dmul_64ns_64ns_64_4_max_dsp_1:/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U168/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U168/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U168/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U168/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_INC_DELAY' (delay__parameterized0) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized33) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized33) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DIV_OP.SPD.OP/ROUND/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW' (delay__parameterized0) to 'inst/ddiv_64ns_64ns_64_14_no_dsp_1_U169/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[0].i_sign_delay' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[1].i_sign_delay'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[0].i_sign_delay' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_recip_ln2/g_tables[2].i_sign_delay'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_ln2/g_tables[0].i_sign_delay' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_ccm_ln2/g_tables[1].i_sign_delay'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXTRA_LSB_BIT_DEL' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXTRA_LSB_RND1_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_INC_DELAY' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_INC_RND1_DELAY'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_IN_DELAY.EXP_IN_DEL' (delay__parameterized24) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_RND2_DELAY.EXP_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_IN_DELAY.EXP_OFF_OP_DEL' (delay__parameterized24) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/EXP_OP.i_sp_or_dp.OP/i_renorm_and_round/EXP_RND2_DELAY.EXP_OFF_RND_DEL'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_INVALID_OP' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_DIVIDE_BY_ZERO'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_INVALID_OP' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_INVALID_OP' (delay__parameterized0) to 'inst/dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 5952 (col length:93)
+BRAMs: 2688 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[23].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[17].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '21' to '20' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[11].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '33' to '32' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[5].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '45' to '44' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-6904] The RAM "backprop__GB0/activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB0/activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB0/dactivations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB0/oracle_activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+RAM ("backprop__GB0/delta_weights1_U/ram_reg") is too shallow (depth = 832) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 36 for RAM "backprop__GB0/delta_weights1_U/ram_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 28 for RAM "backprop__GB0/delta_weights1_U/ram_reg"
+INFO: [Synth 8-6904] The RAM "backprop__GB0/activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB0/activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB0/dactivations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB0/oracle_activations1_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_reg[0]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_reg[1]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_reg[2]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_reg[3]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_reg[4]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_reg[5]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_reg[0]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_reg[1]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_reg[2]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_reg[3]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_reg[4]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_reg[5]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter1_reg_reg[0]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter1_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter1_reg_reg[1]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter1_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter1_reg_reg[2]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter1_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter1_reg_reg[3]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter1_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter1_reg_reg[4]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter1_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter1_reg_reg[5]' (FDE) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter1_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter1_reg_reg[0]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter1_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter1_reg_reg[1]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter1_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter1_reg_reg[2]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter1_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter1_reg_reg[3]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter1_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter1_reg_reg[4]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter1_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter1_reg_reg[5]' (FDE) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter1_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter2_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter2_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter2_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter2_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter2_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter2_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter2_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter2_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter2_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter2_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter2_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter2_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter2_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter2_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter2_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter2_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter2_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter2_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter2_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter2_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter2_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter2_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter2_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter2_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter3_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter3_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter3_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter3_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter3_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter3_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter3_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter3_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter3_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter3_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter3_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter3_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter3_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter3_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter3_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter3_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter3_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter3_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter3_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter3_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter3_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter3_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter3_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter3_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter4_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter4_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter4_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter4_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter4_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter4_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter4_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter4_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter4_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter4_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter4_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter4_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter4_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter4_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter4_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter4_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter4_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter4_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter4_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter4_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter4_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter4_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter4_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter4_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter5_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter5_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter5_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter5_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter5_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter5_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter5_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter5_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter5_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter5_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter5_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter5_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter5_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter5_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter5_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter5_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter5_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter5_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter5_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter5_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter5_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter5_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter5_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter5_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter6_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter6_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter6_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter6_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter6_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter6_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter6_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter6_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter6_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter6_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter6_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter6_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter6_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter6_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter6_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter6_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter6_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter6_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter6_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter6_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter6_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter6_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter6_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter6_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter7_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter7_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter7_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter7_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter7_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter7_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter7_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter7_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter7_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter7_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop11_fu_288/activations2_addr_reg_156_pp0_iter7_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop11_fu_288/zext_ln36_reg_151_pp0_iter7_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter7_reg_reg[0]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter7_reg_reg[0]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter7_reg_reg[1]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter7_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter7_reg_reg[2]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter7_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter7_reg_reg[3]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter7_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter7_reg_reg[4]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter7_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_backprop_Pipeline_RELU_loop1_fu_272/activations1_addr_reg_156_pp0_iter7_reg_reg[5]' (FD) to 'grp_backprop_Pipeline_RELU_loop1_fu_272/zext_ln36_reg_151_pp0_iter7_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[5].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg[0]' (FDE) to 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[5].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg[1]' (FDE) to 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[6]' (FDE) to 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3886] merging instance 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[11].MA_DEL.MANT_DEL/i_pipe/opt_has_pipe.first_q_reg[0]' (FDE) to 'grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst/i_synth/SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT/RT[11].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[11]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_get_delta_matrix_weights1_1_fu_399/\tmp_reg_232_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_get_oracle_activations1_1_fu_390/\tmp_s_reg_239_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_backprop_Pipeline_RELU_loop11_fu_288/\ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_backprop_Pipeline_RELU_loop11_fu_288/ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_matrix_vector_product_with_bias_second_layer_1_fu_278/\tmp_9_reg_229_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_matrix_vector_product_with_bias_second_layer_1_fu_278/\grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_matrix_vector_product_with_bias_second_layer_1_fu_278/\grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_backprop_Pipeline_RELU_loop1_fu_272/\ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_backprop_Pipeline_RELU_loop1_fu_272/ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_matrix_vector_product_with_bias_input_layer_1_fu_260/\grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_matrix_vector_product_with_bias_input_layer_1_fu_260/\grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/\tmp_1_reg_1370_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_update_weights_1_fu_408/dsqrt_64ns_64ns_64_12_no_dsp_1_U149/\backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip_u/inst /i_synth/\SQRT_OP.SPD.OP/i_mant_calc.MANT_SQRT /\RT[5].Q_DEL/i_pipe/opt_has_pipe.first_q_reg[5] )
+RAM ("backprop__GB1/delta_weights3_U/ram_reg") is too shallow (depth = 192) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-6794] RAM ("backprop__GB1/delta_weights2_U/ram_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"backprop__GB1/delta_weights2_U/ram_reg"'.
+INFO: [Synth 8-6794] RAM ("backprop__GB1/delta_weights2_U/ram_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"backprop__GB1/delta_weights2_U/ram_reg"'.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_get_delta_matrix_weights2_fu_383/\tmp_s_reg_195_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_backprop_Pipeline_backprop_loop1_1_fu_248/\ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_backprop_Pipeline_backprop_loop1_1_fu_248/ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (grp_backprop_Pipeline_take_difference_loop1_fu_344/\ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_backprop_Pipeline_take_difference_loop1_fu_344/ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_backprop_Pipeline_RELU_loop12_fu_306/ap_done_reg_reg)
+INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "p_0_out". This will be implemented in logic
+INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "p_0_out". This will be implemented in logic
+INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "p_0_out". This will be implemented in logic
+INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "p_0_out". This will be implemented in logic
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_backprop_Pipeline_soft_max_loop1_fu_322/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_backprop_Pipeline_soft_max_loop2_fu_330/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_backprop_Pipeline_soft_max_loop2_fu_330/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst /i_synth/\EXP_OP.i_sp_or_dp.OP/i_recombination/result_delay/i_pipe/opt_has_pipe.first_q_reg[63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\dexp_64ns_64ns_64_10_full_dsp_1_U170/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip_u/inst /i_synth/\EXP_OP.i_sp_or_dp.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.c_high_delay_balance/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2][0] )
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-3936] Found unconnected internal register 'EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '12' to '11' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LZE/enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-3936] Found unconnected internal register 'EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '12' to '11' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-6904] The RAM "backprop__GB3/oracle_activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB3/dactivations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6904] The RAM "backprop__GB3/oracle_activations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "backprop__GB3/dactivations2_U/ram_reg" of size (depth=64 x width=64) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (dmul_64ns_64ns_64_4_max_dsp_1_U171/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_matrix_vector_product_with_bias_output_layer_1_fu_294/\grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (grp_matrix_vector_product_with_bias_output_layer_1_fu_294/\tmp_s_reg_378_reg[5] )
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[54].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '54' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[49].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '49' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[44].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '44' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[39].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '39' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[34].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '34' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[29].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '29' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[24].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '24' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[19].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '19' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[14].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '14' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[9].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '9' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-3936] Found unconnected internal register 'RT[4].Q_DEL/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '55' to '4' bits. [/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/c4f2/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:05 ; elapsed = 00:01:30 . Memory (MB): peak = 3609.430 ; gain = 967.449 ; free physical = 2580 ; free virtual = 12903
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:12 ; elapsed = 00:01:37 . Memory (MB): peak = 3685.102 ; gain = 1043.121 ; free physical = 2436 ; free virtual = 12759
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5556] The block RAM "inst/delta_weights1_U/ram_reg" may be mapped as a cascade chain, because it is not timing critical.
+RAM ("inst/delta_weights1_U/ram_reg") is too shallow (depth = 832) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 36 for RAM "inst/delta_weights1_U/ram_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 28 for RAM "inst/delta_weights1_U/ram_reg"
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:17 ; elapsed = 00:01:42 . Memory (MB): peak = 3753.141 ; gain = 1111.160 ; free physical = 2369 ; free virtual = 12693
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/i_22_0/delta_weights1_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_22_0/delta_weights1_U/ram_reg_bram_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_21_1/delta_weights3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_21_1/delta_weights3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_21_1/delta_weights2_U/ram_reg_uram_0 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (inst/i_26_3/\dadddsub_64ns_64ns_64_4_full_dsp_1_U166/ce_r_reg )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (inst/i_26_3/\dadd_64ns_64ns_64_4_full_dsp_1_U168/ce_r_reg )
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:20 ; elapsed = 00:01:54 . Memory (MB): peak = 3774.074 ; gain = 1132.094 ; free physical = 351 ; free virtual = 10588
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights1_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights1_U/ram_reg_bram_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/delta_weights3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:27 ; elapsed = 00:02:00 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:27 ; elapsed = 00:02:00 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:29 ; elapsed = 00:02:03 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:29 ; elapsed = 00:02:03 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:30 ; elapsed = 00:02:04 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:30 ; elapsed = 00:02:04 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------------------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                         | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|dsp48e1_wrapper__parameterized0_389 | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_390                 | A:B                | 29     | 18     | -      | -      | 16     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized1_318 | C+A:B              | 0      | 2      | 47     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper                     | A:B                | 29     | 18     | -      | -      | 16     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized1_252 | C+A:B              | 0      | 2      | 47     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp                                 | (C+A*B)'           | 25     | 13     | 46     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp                                 | PCIN>>17+(A*B)'    | 0      | 5      | -      | -      | 45     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized0                 | C+A*B              | 17     | 17     | 46     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp__parameterized0                 | PCIN>>17+A*B       | 0      | 12     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized0                 | (PCIN+A*B)'        | 27     | 17     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|dsp__parameterized0                 | PCIN>>17+(A*B)'    | 0      | 12     | -      | -      | 45     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized1                 | (C+A*B)'           | 17     | 17     | 0      | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp__parameterized1                 | PCIN>>17+(A*B)'    | 0      | 17     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized1                 | PCIN+A'*B'         | 17     | 14     | -      | -      | 17     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | PCIN+A'*B'         | 17     | 17     | -      | -      | 17     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | PCIN+(A*B)'        | 17     | 17     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp__parameterized1                 | PCIN>>17+A'*B      | 17     | 0      | -      | -      | 0      | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | PCIN>>17+A'*B      | 14     | 0      | -      | -      | 0      | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp__parameterized1                 | (PCIN+A'*B')'      | 14     | 17     | -      | -      | 17     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|dsp__parameterized1                 | PCIN>>17+(A*B')'   | 0      | 14     | -      | -      | 45     | 0    | 1    | -    | -    | -     | 1    | 0    | 
+|dsp48e1_wrapper__parameterized2_82  | C+A:B              | 29     | 18     | 38     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_80  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_81  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_78  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized4_79  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized5     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 1    | 
+|dsp48e1_wrapper__parameterized4     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized2_77  | C+A:B              | 0      | 6      | 0      | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized2     | C+A:B              | 0      | 11     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized3     | (C+A:B)'           | 30     | 18     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp48e1_wrapper__parameterized1_72  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper_36                  | Dynamic            | -      | -      | -      | -      | 17     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized0_37  | Dynamic            | -      | -      | -      | -      | 17     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized2_38  | PCIN>>17+C+A*B     | 0      | 17     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized3_39  | (C+A*B)'           | 26     | 17     | 17     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp48e2_wrapper__parameterized4_40  | PCIN>>17+C'+(A*B)' | 0      | 17     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp48e2_wrapper__parameterized5_41  | PCIN>>17+C'+A'*B'  | 0      | 17     | -      | -      | 45     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized1_42  | A:B+C              | 30     | 18     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized1_30  | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper                     | Dynamic            | -      | -      | -      | -      | 17     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized0     | Dynamic            | -      | -      | -      | -      | 17     | -    | -    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized2     | PCIN>>17+C+A*B     | 0      | 17     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized3     | (C+A*B)'           | 26     | 17     | 17     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|dsp48e2_wrapper__parameterized4     | PCIN>>17+C'+(A*B)' | 0      | 17     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|dsp48e2_wrapper__parameterized5     | PCIN>>17+C'+A'*B'  | 0      | 17     | -      | -      | 45     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|dsp48e2_wrapper__parameterized1     | A:B+C              | 30     | 18     | 48     | -      | 48     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized1     | Dynamic            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 0    | 
++------------------------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |CARRY8          |    43|
+|2     |DSP48E1         |    19|
+|3     |DSP_ALU         |    29|
+|8     |DSP_A_B_DATA    |    29|
+|14    |DSP_C_DATA      |    29|
+|16    |DSP_MULTIPLIER  |    29|
+|18    |DSP_M_DATA      |    29|
+|20    |DSP_OUTPUT      |    29|
+|27    |DSP_PREADD      |    29|
+|28    |DSP_PREADD_DATA |    29|
+|31    |LUT1            |   175|
+|32    |LUT2            |   924|
+|33    |LUT3            |  5851|
+|34    |LUT4            |  1599|
+|35    |LUT5            |  2430|
+|36    |LUT6            |  4499|
+|37    |MUXCY           |  5209|
+|38    |MUXF7           |   429|
+|39    |MUXF8           |     9|
+|40    |RAM64X1D        |   128|
+|41    |RAM64X1S        |   256|
+|42    |RAMB36E2        |     3|
+|44    |SRL16E          |   278|
+|45    |SRLC32E         |    20|
+|46    |URAM288         |     1|
+|47    |XORCY           |  4945|
+|48    |FDE             |    12|
+|49    |FDRE            | 11386|
+|50    |FDSE            |    35|
++------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:30 ; elapsed = 00:02:04 . Memory (MB): peak = 3783.871 ; gain = 1141.891 ; free physical = 346 ; free virtual = 10582
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 403 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:19 ; elapsed = 00:01:57 . Memory (MB): peak = 3787.781 ; gain = 894.262 ; free physical = 11850 ; free virtual = 22086
+Synthesis Optimization Complete : Time (s): cpu = 00:01:33 ; elapsed = 00:02:09 . Memory (MB): peak = 3787.781 ; gain = 1145.801 ; free physical = 11857 ; free virtual = 22085
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.38 ; elapsed = 00:00:00.38 . Memory (MB): peak = 3794.777 ; gain = 0.000 ; free physical = 11857 ; free virtual = 22084
+INFO: [Netlist 29-17] Analyzing 11079 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/delta_weights3_U/ram_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3986.145 ; gain = 0.000 ; free physical = 11724 ; free virtual = 21952
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1174 instances were transformed.
+  (CARRY4) => CARRY8: 730 instances
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 19 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 29 instances
+  FDE => FDRE: 12 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 128 instances
+  RAM64X1S => RAM64X1S (RAMS64E): 256 instances
+
+Synth Design complete | Checksum: 18fd29ee
+INFO: [Common 17-83] Releasing license: Synthesis
+420 Infos, 119 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:46 ; elapsed = 00:02:22 . Memory (MB): peak = 3986.180 ; gain = 2598.012 ; free physical = 11724 ; free virtual = 21952
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 14745.742; main = 3219.165; forked = 11852.358
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 19837.680; main = 3986.148; forked = 16053.805
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.04 . Memory (MB): peak = 4010.156 ; gain = 0.000 ; free physical = 11721 ; free virtual = 21951
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 44b22a2cbeef9685
+INFO: [Coretcl 2-1174] Renamed 779 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 4010.156 ; gain = 0.000 ; free physical = 11660 ; free virtual = 21931
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/BACKPROP/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  2 18:07:48 2025...

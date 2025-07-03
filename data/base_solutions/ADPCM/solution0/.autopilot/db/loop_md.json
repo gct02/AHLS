@@ -1,0 +1,74 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "adpcm_main_label13",
+      "FunctionName": "adpcm_main",
+      "Depth": 1
+    },
+    {
+      "Name": "adpcm_main_label12",
+      "FunctionName": "adpcm_main",
+      "Depth": 1
+    },
+    {
+      "Name": "reset_label7",
+      "FunctionName": "reset",
+      "Depth": 1
+    },
+    {
+      "Name": "reset_label6",
+      "FunctionName": "reset",
+      "Depth": 1
+    },
+    {
+      "Name": "reset_label5",
+      "FunctionName": "reset",
+      "Depth": 1
+    },
+    {
+      "Name": "reset_label4",
+      "FunctionName": "reset",
+      "Depth": 1
+    },
+    {
+      "Name": "encode_label1",
+      "FunctionName": "encode",
+      "Depth": 1
+    },
+    {
+      "Name": "encode_label0",
+      "FunctionName": "encode",
+      "Depth": 1
+    },
+    {
+      "Name": "decode_label3",
+      "FunctionName": "decode",
+      "Depth": 1
+    },
+    {
+      "Name": "decode_label2",
+      "FunctionName": "decode",
+      "Depth": 1
+    },
+    {
+      "Name": "filtez_label8",
+      "FunctionName": "filtez",
+      "Depth": 1
+    },
+    {
+      "Name": "upzero_label10",
+      "FunctionName": "upzero",
+      "Depth": 1
+    },
+    {
+      "Name": "upzero_label11",
+      "FunctionName": "upzero",
+      "Depth": 1
+    },
+    {
+      "Name": "quantl_label9",
+      "FunctionName": "quantl",
+      "Depth": 1
+    }
+  ]
+}

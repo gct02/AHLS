@@ -1,0 +1,173 @@
+
+
+================================================================
+== Vitis HLS Report for 'get_oracle_activations1_1'
+================================================================
+* Date:           Wed Jul  2 18:04:23 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        BACKPROP
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.217 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    41345|    41345|  0.331 ms|  0.331 ms|  41345|  41345|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |              Loop Name             |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- get_oracle_activations1_loop1     |    41344|    41344|       646|          -|          -|    64|        no|
+        | + get_oracle_activations1_loop1_1  |      640|      640|        10|          -|          -|    64|        no|
+        +------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|      77|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|     136|    -|
+|Register             |        -|     -|      255|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|      255|     213|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln174_fu_152_p2   |         +|   0|  0|  14|           7|           1|
+    |add_ln178_fu_181_p2   |         +|   0|  0|  14|           7|           1|
+    |add_ln180_fu_191_p2   |         +|   0|  0|  19|          12|          12|
+    |icmp_ln174_fu_146_p2  |      icmp|   0|  0|  15|           7|           8|
+    |icmp_ln178_fu_175_p2  |      icmp|   0|  0|  15|           7|           8|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  77|          40|          30|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------+----+-----------+-----+-----------+
+    |      Name      | LUT| Input Size| Bits| Total Bits|
+    +----------------+----+-----------+-----+-----------+
+    |add113_reg_113  |   9|          2|   64|        128|
+    |ap_NS_fsm       |  81|         17|    1|         17|
+    |grp_fu_130_p0   |  14|          3|   64|        192|
+    |grp_fu_130_p1   |  14|          3|   64|        192|
+    |i_fu_46         |   9|          2|    7|         14|
+    |j_reg_101       |   9|          2|    7|         14|
+    +----------------+----+-----------+-----+-----------+
+    |Total           | 136|         29|  207|        557|
+    +----------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------+----+----+-----+-----------+
+    |               Name              | FF | LUT| Bits| Const Bits|
+    +---------------------------------+----+----+-----+-----------+
+    |add113_reg_113                   |  64|   0|   64|          0|
+    |add_ln174_reg_224                |   7|   0|    7|          0|
+    |add_ln178_reg_247                |   7|   0|    7|          0|
+    |ap_CS_fsm                        |  16|   0|   16|          0|
+    |i_fu_46                          |   7|   0|    7|          0|
+    |j_reg_101                        |   7|   0|    7|          0|
+    |mul8_reg_282                     |  64|   0|   64|          0|
+    |oracle_activations_addr_reg_234  |   6|   0|    6|          0|
+    |tmp_s_reg_239                    |   6|   0|   12|          6|
+    |weights2_load_reg_267            |  64|   0|   64|          0|
+    |zext_ln174_reg_229               |   7|   0|   64|         57|
+    +---------------------------------+----+----+-----+-----------+
+    |Total                            | 255|   0|  318|         63|
+    +---------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+---------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |       Source Object       |    C Type    |
++-----------------------------+-----+-----+------------+---------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_din0            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_din1            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_opcode          |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_dout0           |   in|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_ce              |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_din0            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_din1            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_dout0           |   in|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_ce              |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|weights2_address0            |  out|   12|   ap_memory|                   weights2|         array|
+|weights2_ce0                 |  out|    1|   ap_memory|                   weights2|         array|
+|weights2_q0                  |   in|   64|   ap_memory|                   weights2|         array|
+|output_differences_address0  |  out|    6|   ap_memory|         output_differences|         array|
+|output_differences_ce0       |  out|    1|   ap_memory|         output_differences|         array|
+|output_differences_q0        |   in|   64|   ap_memory|         output_differences|         array|
+|oracle_activations_address0  |  out|    6|   ap_memory|         oracle_activations|         array|
+|oracle_activations_ce0       |  out|    1|   ap_memory|         oracle_activations|         array|
+|oracle_activations_we0       |  out|    1|   ap_memory|         oracle_activations|         array|
+|oracle_activations_d0        |  out|   64|   ap_memory|         oracle_activations|         array|
+|dactivations_address0        |  out|    6|   ap_memory|               dactivations|         array|
+|dactivations_ce0             |  out|    1|   ap_memory|               dactivations|         array|
+|dactivations_q0              |   in|   64|   ap_memory|               dactivations|         array|
++-----------------------------+-----+-----+------------+---------------------------+--------------+
+

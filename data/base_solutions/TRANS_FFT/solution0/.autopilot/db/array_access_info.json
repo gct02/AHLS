@@ -1,0 +1,202 @@
+{
+  "ArrayAccessInfo": [
+    {
+      "Name": "twiddles8_reversed8",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "twiddles8_reversed8_load" }, { "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "twiddles8_reversed8_load" }]
+    },
+    {
+      "Name": "ref_4oPi_table_256",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sin_or_cos<double>", "LoadInstName": "table_256" }]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K4",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sin_or_cos<double>", "LoadInstName": "fourth_order_double_sin_cos_K4_load" }, { "FunctionName": "sin_or_cos<double>", "LoadInstName": "" }]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K3",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sin_or_cos<double>", "LoadInstName": "fourth_order_double_sin_cos_K3_load" }, { "FunctionName": "sin_or_cos<double>", "LoadInstName": "" }]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K2",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sin_or_cos<double>", "LoadInstName": "fourth_order_double_sin_cos_K2_load" }, { "FunctionName": "sin_or_cos<double>", "LoadInstName": "" }]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K1",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sin_or_cos<double>", "LoadInstName": "fourth_order_double_sin_cos_K1_load" }, { "FunctionName": "sin_or_cos<double>", "LoadInstName": "" }]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K0",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sin_or_cos<double>", "LoadInstName": "t1" }, { "FunctionName": "sin_or_cos<double>", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_0",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_1",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_2",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_3",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_4",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_5",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_6",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_7",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_8",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_9",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_10",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_11",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_12",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_13",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "DATA_x",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_31" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_30" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_29" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_28" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_29" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_28" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_26" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_24" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_23" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_22" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_21" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_20" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_19" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_18" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_17" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_16" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_15" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_14" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_13" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_17" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_16" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_14" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_x_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_x_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "DATA_y",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_31" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_30" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_29" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_28" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_29" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_28" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_26" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_24" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_23" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_22" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_21" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_20" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_19" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_18" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_17" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_16" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_15" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_14" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_13" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_17" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_16" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_14" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "c0_y_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "DATA_y_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "data_x",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_13" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_11" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_10" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_9" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_8" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_x_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "data_y",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_13" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_11" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_10" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_9" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_8" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "data_y_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "smem",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "smem_load_31" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_30" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_29" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_28" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_27" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_26" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_25" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_24" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_23" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_22" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_21" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_20" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_19" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_18" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_17" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_16" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_15" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_14" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_13" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_12" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_11" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_10" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_9" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_8" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "smem_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "data_x",
+      "FunctionName": "fft1D_512_Pipeline_twiddles1",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "tmp" }]
+    },
+    {
+      "Name": "data_y",
+      "FunctionName": "fft1D_512_Pipeline_twiddles1",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles1", "LoadInstName": "data_y_load" }]
+    },
+    {
+      "Name": "data_x",
+      "FunctionName": "fft1D_512_Pipeline_twiddles",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "tmp" }]
+    },
+    {
+      "Name": "data_y",
+      "FunctionName": "fft1D_512_Pipeline_twiddles",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "" }, { "FunctionName": "fft1D_512_Pipeline_twiddles", "LoadInstName": "data_y_load" }]
+    },
+    {
+      "Name": "work_x",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_x_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    },
+    {
+      "Name": "work_y",
+      "FunctionName": "fft1D_512",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_7" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_6" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_5" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_4" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_3" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_2" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load_1" }, { "FunctionName": "fft1D_512", "LoadInstName": "work_y_load" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }, { "FunctionName": "fft1D_512", "LoadInstName": "" }]
+    }
+  ]
+}

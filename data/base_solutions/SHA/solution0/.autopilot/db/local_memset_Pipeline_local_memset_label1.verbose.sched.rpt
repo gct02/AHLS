@@ -1,0 +1,137 @@
+
+
+================================================================
+== Vitis HLS Report for 'local_memset_Pipeline_local_memset_label1'
+================================================================
+* Date:           Wed Jul  2 18:41:51 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        SHA
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  1.960 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max   | min | max |   Type  |
+    +---------+---------+-----------+----------+-----+-----+---------+
+    |        2|       16|  16.000 ns|  0.128 us|    2|   16|       no|
+    +---------+---------+-----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |                       |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |       Loop Name       |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +-----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- local_memset_label1  |        0|       14|         1|          1|          1|  0 ~ 14|       yes|
+        +-----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.96>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 4 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%tmp = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %empty"   --->   Operation 5 'read' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%m_read = read i31 @_ssdm_op_Read.ap_auto.i31, i31 %m"   --->   Operation 6 'read' 'm_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.38ns)   --->   "%store_ln0 = store i30 0, i30 %idx"   --->   Operation 7 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%br_ln0 = br void %while.body4"   --->   Operation 8 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%idx_load = load i30 %idx" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 9 'load' 'idx_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%zext_ln65 = zext i30 %idx_load" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 10 'zext' 'zext_ln65' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.87ns)   --->   "%icmp_ln65 = icmp_slt  i31 %zext_ln65, i31 %m_read" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 11 'icmp' 'icmp_ln65' <Predicate = true> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 12 [1/1] (0.86ns)   --->   "%add_ln65 = add i30 %idx_load, i30 1" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 12 'add' 'add_ln65' <Predicate = true> <Delay = 0.86> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.86> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%br_ln65 = br i1 %icmp_ln65, void %while.end6.loopexit.exitStub, void %while.body4.split" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 13 'br' 'br_ln65' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%trunc_ln65 = trunc i30 %idx_load" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 14 'trunc' 'trunc_ln65' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specpipeline_ln57 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:57]   --->   Operation 15 'specpipeline' 'specpipeline_ln57' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%speclooptripcount_ln66 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 14, i64 7" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:66]   --->   Operation 16 'speclooptripcount' 'speclooptripcount_ln66' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%specloopname_ln65 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 17 'specloopname' 'specloopname_ln65' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.70ns)   --->   "%add_ln57 = add i4 %trunc_ln65, i4 %tmp" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:57]   --->   Operation 18 'add' 'add_ln57' <Predicate = (icmp_ln65)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln57 = zext i4 %add_ln57" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:57]   --->   Operation 19 'zext' 'zext_ln57' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%p = getelementptr i32 %sha_info_data, i64 0, i64 %zext_ln57" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:57]   --->   Operation 20 'getelementptr' 'p' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.69ns)   --->   "%store_ln67 = store i32 0, i4 %p" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:67]   --->   Operation 21 'store' 'store_ln67' <Predicate = (icmp_ln65)> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_1 : Operation 22 [1/1] (0.38ns)   --->   "%store_ln65 = store i30 %add_ln65, i30 %idx" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 22 'store' 'store_ln65' <Predicate = (icmp_ln65)> <Delay = 0.38>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln65 = br void %while.body4" [/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65]   --->   Operation 23 'br' 'br_ln65' <Predicate = (icmp_ln65)> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 24 'ret' 'ret_ln0' <Predicate = (!icmp_ln65)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 1.960ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'idx' [7]  (0.387 ns)
+	'load' operation 30 bit ('idx_load', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65) on local variable 'idx' [10]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln65', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:65) [12]  (0.874 ns)
+	'store' operation 0 bit ('store_ln67', /home/gabriel/Documents/RAISE/dataset_gen/benchmarks/sha/sha.c:67) of constant 0 on array 'sha_info_data' [23]  (0.699 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

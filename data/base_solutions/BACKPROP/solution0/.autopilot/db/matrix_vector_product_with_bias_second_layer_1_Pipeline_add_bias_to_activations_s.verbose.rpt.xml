@@ -1,0 +1,143 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s'" level="0">
+<item name = "Date">Wed Jul  2 18:04:22 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">BACKPROP</item>
+<item name = "Solution">solution0 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 5.048 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">69, 69, 0.552 us, 0.552 us, 69, 69, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- add_bias_to_activations_loop1">67, 67, 5, 1, 1, 64, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 31, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, -, -, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 36, -</column>
+<column name="Register">-, -, 86, 32, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln48_fu_88_p2">+, 0, 0, 14, 7, 1</column>
+<column name="icmp_ln48_fu_82_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_done_int">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
+<column name="ap_sig_allocacmp_i">9, 2, 7, 14</column>
+<column name="i_12_fu_34">9, 2, 7, 14</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="activations_addr_reg_121">6, 0, 6, 0</column>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter3">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter4">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter2_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter3_reg">1, 0, 1, 0</column>
+<column name="i_12_fu_34">7, 0, 7, 0</column>
+<column name="activations_addr_reg_121">64, 32, 6, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="grp_fu_123_p_din0">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="grp_fu_123_p_din1">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="grp_fu_123_p_opcode">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="grp_fu_123_p_dout0">in, 64, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="grp_fu_123_p_ce">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, return value</column>
+<column name="activations_address0">out, 6, ap_memory, activations, array</column>
+<column name="activations_ce0">out, 1, ap_memory, activations, array</column>
+<column name="activations_we0">out, 1, ap_memory, activations, array</column>
+<column name="activations_d0">out, 64, ap_memory, activations, array</column>
+<column name="activations_address1">out, 6, ap_memory, activations, array</column>
+<column name="activations_ce1">out, 1, ap_memory, activations, array</column>
+<column name="activations_q1">in, 64, ap_memory, activations, array</column>
+<column name="biases2_address0">out, 6, ap_memory, biases2, array</column>
+<column name="biases2_ce0">out, 1, ap_memory, biases2, array</column>
+<column name="biases2_q0">in, 64, ap_memory, biases2, array</column>
+</table>
+</item>
+</section>
+</profile>

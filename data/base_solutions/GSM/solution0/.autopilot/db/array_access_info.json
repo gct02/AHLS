@@ -1,0 +1,214 @@
+{
+  "ArrayAccessInfo": [
+    {
+      "Name": "bitoff",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "gsm_norm", "LoadInstName": "bitoff_load_3" }, { "FunctionName": "gsm_norm", "LoadInstName": "bitoff_load_2" }, { "FunctionName": "gsm_norm", "LoadInstName": "bitoff_load_1" }, { "FunctionName": "gsm_norm", "LoadInstName": "bitoff_load" }]
+    },
+    {
+      "Name": "empty",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label2", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "gsm_div", "LoadInstName": "" }, { "FunctionName": "gsm_norm", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_0",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "gsm_div", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_1",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_2",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_3",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_4",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_5",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_6",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_7",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_8",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_9",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_10",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_11",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_12",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_13",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label2", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_14",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_15",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation", "LoadInstName": "" }]
+    },
+    {
+      "Name": "empty_16",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "ACF",
+      "FunctionName": "Reflection_coefficients",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "ACF_load_1" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "ACF_load" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "P",
+      "FunctionName": "Reflection_coefficients",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "P_load_1" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "P_load" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "temp_1" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "K",
+      "FunctionName": "Reflection_coefficients",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "K_load" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "L_ACF",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }]
+    },
+    {
+      "Name": "L_ACF",
+      "FunctionName": "Reflection_coefficients",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "L_ACF_load_1" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "L_ACF_load" }]
+    },
+    {
+      "Name": "LARc",
+      "FunctionName": "Reflection_coefficients",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }, { "FunctionName": "Reflection_coefficients", "LoadInstName": "" }]
+    },
+    {
+      "Name": "LARc",
+      "FunctionName": "Quantization_and_coding",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_7" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_6" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_5" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_4" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_3" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_2" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load_1" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "LARc_load" }, { "FunctionName": "Quantization_and_coding", "LoadInstName": "" }]
+    },
+    {
+      "Name": "indata",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }]
+    },
+    {
+      "Name": "LARc",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "temp_27" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }, { "FunctionName": "Gsm_LPC_Analysis", "LoadInstName": "" }]
+    },
+    {
+      "Name": "indata",
+      "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "indata_load" }, { "FunctionName": "Autocorrelation_Pipeline_VITIS_LOOP_65_1", "LoadInstName": "" }]
+    },
+    {
+      "Name": "indata",
+      "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "indata_load" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label5", "LoadInstName": "" }]
+    },
+    {
+      "Name": "L_ACF",
+      "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4", "LoadInstName": "" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label4", "LoadInstName": "L_ACF_load" }]
+    },
+    {
+      "Name": "indata",
+      "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_7" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_6" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_5" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_4" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_3" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_2" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load_1" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "indata_load" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "sl" }, { "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label3", "LoadInstName": "" }]
+    },
+    {
+      "Name": "L_ACF",
+      "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label2",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation_Pipeline_Autocorrelation_label2", "LoadInstName": "" }]
+    },
+    {
+      "Name": "indata",
+      "FunctionName": "Autocorrelation",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_7" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_6" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_5" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_4" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_3" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_2" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl_1" }, { "FunctionName": "Autocorrelation", "LoadInstName": "sl" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "indata_load" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }]
+    },
+    {
+      "Name": "L_ACF",
+      "FunctionName": "Autocorrelation",
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_9" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_8" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_7" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_6" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_5" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_4" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_3" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load_2" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "" }, { "FunctionName": "Autocorrelation", "LoadInstName": "L_ACF_load" }]
+    }
+  ]
+}

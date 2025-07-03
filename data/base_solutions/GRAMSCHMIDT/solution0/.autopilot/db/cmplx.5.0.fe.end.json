@@ -1,0 +1,23 @@
+{
+    "0": {
+        "name": "kernel_gramschmidt",
+        "file": "\/home\/gabriel\/Documents\/RAISE\/dataset_gen\/benchmarks\/gramschmidt\/gramschmidt.c",
+        "fileloc": "75",
+        "instructions": "147",
+        "total_instructions": "147",
+        "calls": "",
+        "basicblocks": "19",
+        "loads": {
+            "L": "3",
+            "T": "6"
+        },
+        "stores": {
+            "L": "4",
+            "T": "4"
+        },
+        "loops": {
+            "L": "1",
+            "N": "5"
+        }
+    }
+}

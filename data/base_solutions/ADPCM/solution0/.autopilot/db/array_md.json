@@ -1,0 +1,276 @@
+{
+  "ArrayMetadata": [
+    {
+      "Name": "h",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 24,
+      "Dimensions": [24]
+    },
+    {
+      "Name": "qq4_code4_table",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16]
+    },
+    {
+      "Name": "qq6_code6_table",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64]
+    },
+    {
+      "Name": "wl_code_table",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16]
+    },
+    {
+      "Name": "ilb_table",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "decis_levl",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 30,
+      "Dimensions": [30]
+    },
+    {
+      "Name": "quant26bt_pos",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 31,
+      "Dimensions": [31]
+    },
+    {
+      "Name": "quant26bt_neg",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 31,
+      "Dimensions": [31]
+    },
+    {
+      "Name": "qq2_code2_table",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 4,
+      "Dimensions": [4]
+    },
+    {
+      "Name": "wh_code_table",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 4,
+      "Dimensions": [4]
+    },
+    {
+      "Name": "tqmf",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 24,
+      "Dimensions": [24]
+    },
+    {
+      "Name": "delay_bpl",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "delay_dltx",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "delay_bph",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "delay_dhx",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "dec_del_bpl",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "dec_del_dltx",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "dec_del_bph",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "dec_del_dhx",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6]
+    },
+    {
+      "Name": "accumc",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 11,
+      "Dimensions": [11]
+    },
+    {
+      "Name": "accumd",
+      "FunctionName": "",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 11,
+      "Dimensions": [11]
+    },
+    {
+      "Name": "llvm.global_ctors",
+      "FunctionName": "",
+      "BaseBitwidth": 0,
+      "BaseType": 13,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 0,
+      "Dimensions": [0]
+    },
+    {
+      "Name": "in_data",
+      "FunctionName": "adpcm_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 100,
+      "Dimensions": [100]
+    },
+    {
+      "Name": "encoded",
+      "FunctionName": "adpcm_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 50,
+      "Dimensions": [50]
+    },
+    {
+      "Name": "decoded",
+      "FunctionName": "adpcm_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 100,
+      "Dimensions": [100]
+    }
+  ]
+}

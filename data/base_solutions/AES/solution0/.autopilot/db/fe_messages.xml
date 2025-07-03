@@ -1,0 +1,225 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:19:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:43:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:30:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:6:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_dec.c:117:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=9 max=13 avg=12" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:18:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:42:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:29:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:5:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_enc.c:111:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=9 max=13 avg=11" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/hls_script.tcl:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=aes_main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:24:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:48:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:21:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="ByteSub_ShiftRow" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:45:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="ByteSub_ShiftRow" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:22:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="InversShiftRow_ByteSub" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:46:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="InversShiftRow_ByteSub" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:16:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:40:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:32:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:8:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:325:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:33:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:9:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:365:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:17:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:41:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:27:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:3:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:381:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:1:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:25:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:390:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:2:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:26:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:393:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:28:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:4:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:437:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:23:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:47:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:31:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:7:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:470:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:20:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:44:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:34:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:555:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:11:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:35:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:558:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:12:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:36:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:566:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=32 max=116 avg=74" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:37:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:14:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:38:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:586:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:15:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/base_solutions/AES/temp/directives.tcl:39:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:593:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_dec.c:66:0" msg_body="Updating loop upper bound from 13 to 9 for loop 'decrypt_label4' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_dec.c:116:5) in function 'decrypt'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_dec.c:116:5" LoopName="decrypt_label4" NewBound="9" OldBound="13"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:480:0" msg_body="Updating loop lower bound from 32 to 40 for loop 'KeySchedule_label6' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:565:5) in function 'KeySchedule'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:565:5" LoopName="KeySchedule_label6" NewBound="40" OldBound="32"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:480:0" msg_body="Updating loop upper bound from 116 to 40 for loop 'KeySchedule_label6' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:565:5) in function 'KeySchedule'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:565:5" LoopName="KeySchedule_label6" NewBound="40" OldBound="116"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:480:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'KeySchedule_label4' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:554:5) in function 'KeySchedule'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:554:5" LoopName="KeySchedule_label4" NewBound="4" OldBound="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:447:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'AddRoundKey_label0' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:469:5) in function 'AddRoundKey'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:469:5" LoopName="AddRoundKey_label0" NewBound="4" OldBound="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:375:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'AddRoundKey_InversMixColumn_label3' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:436:5) in function 'AddRoundKey_InversMixColumn'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:436:5" LoopName="AddRoundKey_InversMixColumn_label3" NewBound="4" OldBound="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:375:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'AddRoundKey_InversMixColumn_label0' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:389:5) in function 'AddRoundKey_InversMixColumn'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:389:5" LoopName="AddRoundKey_InversMixColumn_label0" NewBound="4" OldBound="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:375:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'AddRoundKey_InversMixColumn_label2' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:380:5) in function 'AddRoundKey_InversMixColumn'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:380:5" LoopName="AddRoundKey_InversMixColumn_label2" NewBound="4" OldBound="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_enc.c:66:0" msg_body="Updating loop upper bound from 13 to 9 for loop 'encrypt_label1' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_enc.c:110:5) in function 'encrypt'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_enc.c:110:5" LoopName="encrypt_label1" NewBound="9" OldBound="13"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:319:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'MixColumn_AddRoundKey_label1' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:364:5) in function 'MixColumn_AddRoundKey'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:364:5" LoopName="MixColumn_AddRoundKey_label1" NewBound="4" OldBound="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:319:0" msg_body="Updating loop upper bound from 8 to 4 for loop 'MixColumn_AddRoundKey_label0' (/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:324:5) in function 'MixColumn_AddRoundKey'.">
+        <args LoopLoc="/home/gabriel/Documents/RAISE/dataset_gen/benchmarks/aes/aes_key.c:324:5" LoopName="MixColumn_AddRoundKey_label0" NewBound="4" OldBound="8"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+
