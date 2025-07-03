@@ -22,23 +22,10 @@ CDFG_EDGE_TYPES = [
     ("instr", "data", "instr"),
     ("port", "data", "instr"),
     ("array", "data", "instr"),
+    ("instr", "data", "port"),
+    ("instr", "data", "array"),
 
-    # Edges for array allocations
-    ("instr", "alloca", "array"),
-
-    # Edges for store instructions
-    ("instr", "store", "array"),
-    ("instr", "store", "instr"),
-    ("instr", "store", "port"),
-
-    # Edges representing relationships between load and store 
-    # instructions that access the same memory
-    ("instr", "mem", "instr"),
-
-    # Edges representing conditional memory accesses
-    ("instr", "cond_mem", "instr"),
-
-    # Edges representing constant pointers to global arrays
+    # Data flow edges representing constant pointers
     ("instr", "data", "const"),
     ("port", "data", "const"),
     ("array", "data", "const"),
@@ -152,15 +139,15 @@ class RegionNode(Node):
 
             ii = findint(element, 'mII', 0)
             if ii <= 0:
-                if max_tc > 0:
-                    ii = max_lat // max_tc
-                else:
-                    ii = 1
+                ii = max_lat // max_tc if max_tc > 0 else 1
         else:
             loop_depth = 0
             min_tc = 0
             max_tc = 0
-            ii = 0
+            ii = findint(element, 'mII', 0)
+            if ii <= 0:
+                ii = max_lat if max_lat > 0 else 1
+
 
         encoded_loop_depth = [0] * LOOP_DEPTH_LIM
         encoded_loop_depth[loop_depth] = 1
@@ -500,7 +487,7 @@ class CDFG:
             self.nodes['instr'].append(instr_node)
 
             if array_md is not None and opcode == 'alloca':
-                self.edges[('instr', 'alloca', 'array')].append(
+                self.edges[('instr', 'data', 'array')].append(
                     (instr_node.id, array_node.id)
                 )
                 self._alloca_array_map[instr_node.id] = array_node.id
@@ -701,17 +688,19 @@ class CDFG:
             for array, instr in self.edges.get((nt, "data", "instr"), []):
                 instr_node = self.nodes['instr'][instr - instr_offset]
                 if instr_node.opcode == 'store':
-                    self.edges[("instr", "store", nt)].append((instr, array))
+                    self.edges[("instr", "data", nt)].append((instr, array))
 
         for src_instr, dst_instr in self.edges.get(("instr", "data", "instr"), []):
             dst_node = self.nodes['instr'][dst_instr - instr_offset]
             if dst_node.opcode == 'store':
                 src_node = self.nodes['instr'][src_instr - instr_offset]
                 if src_node.opcode == 'alloca':
-                    self.edges[("instr", "store", "instr")].append((dst_instr, src_instr))
+                    self.edges[("instr", "data", "instr")].append((dst_instr, src_instr))
 
     def _map_edge_type(self, edge_type):
-        return {'1': 'data', '2': 'control', '3': 'cond_mem', '4': 'mem'}.get(edge_type, '')
+        if str(edge_type).isdigit() and int(edge_type) == 2:
+            return 'control'
+        return 'data'
 
     def _build_hierarchy_edges(self):
         block_offset = self._offsets['block']

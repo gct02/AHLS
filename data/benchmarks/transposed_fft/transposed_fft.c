@@ -113,7 +113,7 @@ void loady8(TYPE a_y[], TYPE x[], int offset, int sx){
 
 void fft1D_512(TYPE work_x[512], TYPE work_y[512]){
     int tid, hi, lo, stride;
-    int reversed[] = {0,4,2,6,1,5,3,7};
+    const int reversed[] = {0,4,2,6,1,5,3,7};
     TYPE DATA_x[THREADS*8];
     TYPE DATA_y[THREADS*8];
 

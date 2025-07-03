@@ -200,7 +200,9 @@ def update_with_directives(
         for sub_region in loop_node.sub_regions:
             node = kernel_info.nodes['region'][sub_region]
             if node.is_loop:
-                trip_count = node.attrs.get("max_trip_count", 0)
+                trip_count = node.attrs.get("max_trip_count", 1)
+                if trip_count <= 0:
+                    trip_count = 1
                 node.attrs["unroll_factor"] = trip_count
                 node.attrs["unroll"] = 1
             unroll_pipelined_subloops(node)
@@ -227,10 +229,10 @@ def update_with_directives(
             
             array_node.attrs["array_partition"] = 1
 
-            partition_factor = int(args.get("factor", 0))
-            if partition_factor <= 0:
-                partition_factor = array_node.total_size
-            array_node.attrs["partition_factor"] = partition_factor
+            factor = int(args.get("factor", 0))
+            if factor <= 0:
+                factor = array_node.total_size
+            array_node.attrs["partition_factor"] = factor
 
             partition_dim = int(args.get("dim", 0))
             array_node.attrs["partition_dim"][partition_dim] = 1
@@ -261,13 +263,14 @@ def update_with_directives(
             if dct == "pipeline" and region_node.is_loop:
                 # Pipeline pragma in a loop implies the complete
                 # unrolling of all its subloops (if any)
+                region_node.attrs["ii"] = max(1, int(args.get("ii", 1)))
                 unroll_pipelined_subloops(region_node)
 
             if dct == "unroll" and region_node.attrs.get("unroll", 0) == 0:
-                unroll_factor = int(args.get("factor", 0))
-                if unroll_factor <= 0:
-                    unroll_factor = region_node.attrs.get("max_trip_count", 1)
-                region_node.attrs["unroll_factor"] = unroll_factor
+                factor = int(args.get("factor", 0))
+                if factor <= 0:
+                    factor = max(1, region_node.attrs.get("max_trip_count", 1))
+                region_node.attrs["unroll_factor"] = factor
 
             region_node.attrs[dct] = 1
 
@@ -300,6 +303,7 @@ def update_with_directives(
                 for node in kernel_info.nodes.get('region', []):
                     if node.name == loop_name:
                         node.attrs["pipeline"] = 1
+                        node.attrs["ii"] = 1
                         if node.is_loop:
                             unroll_pipelined_subloops(node)
                         break

@@ -119,7 +119,7 @@ def main(args: Dict[str, str]):
     max_norm = pretraining_args.get('max_norm', 5.0)
     log_transform = pretraining_args.get('log_transform', False)
     seed = pretraining_args.get('seed', 42)
-    # loss = pretraining_args.get('loss', 'l1')
+    loss = pretraining_args.get('loss', 'l1')
 
     set_random_seeds(seed)
 
@@ -141,7 +141,15 @@ def main(args: Dict[str, str]):
         lr=lr,
         betas=betas
     )
-    loss_fn = nn.L1Loss()
+    if loss == 'l1':
+        loss_fn = nn.L1Loss()
+    elif loss == 'mse':
+        loss_fn = nn.MSELoss()
+    elif loss == 'huber':
+        huber_delta = pretraining_args.get('huber_delta', 1.0)
+        loss_fn = nn.HuberLoss(delta=huber_delta)
+    else:
+        raise ValueError(f"Unsupported loss function: {loss}")
 
     fine_tune(
         model=model,

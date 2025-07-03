@@ -260,12 +260,10 @@ def compute_scaling_stats(
         'delay': [],
         'dims': [],
         'partition_factor': [],
-
         'ii': [],
         'latency': [],
         'trip_count': [],
         'unroll_factor': [],
-
         'num_instrs': [],
         'num_loads': [],
         'num_stores': [],
@@ -329,7 +327,11 @@ def compute_scaling_stats(
                                     if float(dim) > 1:
                                         numerical_feats[base_key].append(float(dim))
                             elif float(value) > 1e-6:
-                                numerical_feats[base_key].append(float(value))
+                                if base_key == 'ii':
+                                    if node.attrs.get('max_latency', 0) > 0:
+                                        numerical_feats[base_key].append(float(value))
+                                else:
+                                    numerical_feats[base_key].append(float(value))
 
     scaling_stats = {}
     for key, values in numerical_feats.items():
