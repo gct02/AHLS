@@ -6,6 +6,7 @@ from typing import Optional
 def extract_llvm_ir_array_info(
     hls_ir_dir: str, 
     array_md_out_path: str,
+    loop_md_out_path: str,
     array_access_info_out_path: str,
     opt_path: str = '/usr/bin/opt', 
     dse_lib_path: Optional[str] = None
@@ -28,8 +29,13 @@ def extract_llvm_ir_array_info(
     
     try:
         subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-array-md -out-md "
+            f"{opt} -load {dse_lib} -extract-array-md -out-array-md "
             f"{array_md_out_path} < {ir_base}", 
+            shell=True, stderr=subprocess.STDOUT
+        )
+        subprocess.check_output(
+            f"{opt} -load {dse_lib} -extract-loop-md -out-loop-md "
+            f"{loop_md_out_path} < {ir_base}",
             shell=True, stderr=subprocess.STDOUT
         )
         subprocess.check_output(

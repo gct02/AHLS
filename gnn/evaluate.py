@@ -187,7 +187,7 @@ if __name__ == "__main__":
                         help="Benchmark name for evaluation")
     parser.add_argument("-t", "--target", type=str, default="area", 
                         help="Target metric for evaluation")
-    parser.add_argument("-s", "--scaling_stats", type=str, required=True, 
+    parser.add_argument("-ss", "--scaling_stats", type=str, required=True, 
                         help="Path to the file containing statistics for standardization")
     parser.add_argument("-lt", "--log_transform", action='store_true', 
                         help="Apply log transform to the targets")

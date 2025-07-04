@@ -1,0 +1,29 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "loopjj",
+      "FunctionName": "bbgemm",
+      "Depth": 1
+    },
+    {
+      "Name": "loopkk",
+      "FunctionName": "bbgemm",
+      "Depth": 2
+    },
+    {
+      "Name": "loopi",
+      "FunctionName": "bbgemm",
+      "Depth": 3
+    },
+    {
+      "Name": "loopk",
+      "FunctionName": "bbgemm",
+      "Depth": 4
+    },
+    {
+      "Name": "loopj",
+      "FunctionName": "bbgemm",
+      "Depth": 5
+    }
+  ]
+}

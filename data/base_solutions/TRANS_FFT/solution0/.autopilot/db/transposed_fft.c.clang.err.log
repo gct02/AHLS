@@ -1,0 +1,8 @@
+In file included from data/benchmarks/trans_fft/transposed_fft.c:6:
+data/benchmarks/trans_fft/transposed_fft.h:18:9: warning: 'M_SQRT1_2' macro redefined [-Wmacro-redefined]
+#define M_SQRT1_2 0.70710678118654752440f
+        ^
+/usr/include/math.h:1158:10: note: previous definition is here
+# define M_SQRT1_2      0.70710678118654752440  /* 1/sqrt(2) */
+         ^
+1 warning generated.

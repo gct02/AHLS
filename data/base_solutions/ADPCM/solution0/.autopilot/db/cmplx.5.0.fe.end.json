@@ -1,0 +1,140 @@
+{
+    "0": {
+        "name": "adpcm_main",
+        "file": "adpcm.c",
+        "fileloc": "207",
+        "instructions": "59",
+        "total_instructions": "1328",
+        "calls": "5 3 1",
+        "basicblocks": "7",
+        "loads": {
+            "G": "2",
+            "L": "2",
+            "T": "3"
+        },
+        "stores": {
+            "L": "4",
+            "T": "3"
+        },
+        "loops": {
+            "L": "2"
+        }
+    },
+    "1": {
+        "name": "decode",
+        "file": "adpcm.c",
+        "fileloc": "331",
+        "instructions": "344",
+        "total_instructions": "564",
+        "calls": "2 6 2 6",
+        "basicblocks": "7",
+        "loads": {
+            "G": "30",
+            "L": "8"
+        },
+        "stores": {
+            "G": "22",
+            "L": "12"
+        },
+        "loops": {
+            "L": "2"
+        }
+    },
+    "2": {
+        "name": "filtez",
+        "file": "adpcm.c",
+        "fileloc": "458",
+        "instructions": "41",
+        "total_instructions": "41",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "G": "4",
+            "L": "4"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "encode",
+        "file": "adpcm.c",
+        "fileloc": "240",
+        "instructions": "348",
+        "total_instructions": "602",
+        "calls": "2 4 6 2 6",
+        "basicblocks": "7",
+        "loads": {
+            "G": "29",
+            "L": "8"
+        },
+        "stores": {
+            "G": "20",
+            "L": "12"
+        },
+        "loops": {
+            "L": "2"
+        }
+    },
+    "4": {
+        "name": "quantl",
+        "file": "adpcm.c",
+        "fileloc": "484",
+        "instructions": "34",
+        "total_instructions": "34",
+        "calls": "",
+        "basicblocks": "5",
+        "loads": {
+            "G": "3",
+            "L": "1"
+        },
+        "stores": {
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "reset",
+        "file": "adpcm.c",
+        "fileloc": "416",
+        "instructions": "103",
+        "total_instructions": "103",
+        "calls": "",
+        "basicblocks": "13",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "G": "43",
+            "L": "8"
+        },
+        "loops": {
+            "L": "4"
+        }
+    },
+    "6": {
+        "name": "upzero",
+        "file": "adpcm.c",
+        "fileloc": "531",
+        "instructions": "69",
+        "total_instructions": "69",
+        "calls": "",
+        "basicblocks": "10",
+        "loads": {
+            "G": "8",
+            "L": "2"
+        },
+        "stores": {
+            "G": "8",
+            "L": "4"
+        },
+        "loops": {
+            "L": "2"
+        }
+    }
+}

@@ -9,6 +9,7 @@ set_directive_pipeline -off fft1D_512/loop8
 set_directive_pipeline -off fft1D_512/loop9
 set_directive_pipeline -off fft1D_512/loop10
 set_directive_pipeline -off fft1D_512/loop11
-set_directive_pipeline -off fft1D_512
 set_directive_loop_flatten -off fft1D_512/loop1
 set_directive_loop_flatten -off fft1D_512/loop6
+set_directive_loop_flatten -off twiddles8/twiddles
+set_directive_inline -off twiddles8

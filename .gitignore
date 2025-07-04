@@ -2,7 +2,6 @@
 *.lib
 *.so
 *.exe
-*.log
 
 # Environment specific files
 .vscode/
@@ -22,7 +21,6 @@ llvm/clang_plugins/
 models/
 results/
 dataset/
-base_solutions/
 
 hls_config.tcl
 process_dataset.sh

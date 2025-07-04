@@ -1,0 +1,153 @@
+{
+  "0": {
+    "basicblocks": 19,
+    "calls": "3 4 7 5 8 1 6 2 9",
+    "file": "backprop.c",
+    "fileloc": 330,
+    "instructions": 149,
+    "loads": {
+      "L": 7,
+      "T": 1
+    },
+    "name": "backprop",
+    "stores": {
+      "L": 11
+    },
+    "total_instructions": 595
+  },
+  "1": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 153,
+    "instructions": 20,
+    "loads": {
+      "L": 2
+    },
+    "name": "get_delta_matrix_weights2",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 20
+  },
+  "2": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 186,
+    "instructions": 22,
+    "loads": {
+      "L": 2
+    },
+    "name": "get_delta_matrix_weights1",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 22
+  },
+  "3": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 54,
+    "instructions": 38,
+    "loads": {
+      "L": 4
+    },
+    "name": "matrix_vector_product_with_bias_input_layer",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 38
+  },
+  "4": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 72,
+    "instructions": 36,
+    "loads": {
+      "L": 4
+    },
+    "name": "matrix_vector_product_with_bias_second_layer",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 36
+  },
+  "5": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 120,
+    "instructions": 20,
+    "loads": {
+      "L": 2
+    },
+    "name": "get_delta_matrix_weights3",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 20
+  },
+  "6": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 168,
+    "instructions": 27,
+    "loads": {
+      "L": 3
+    },
+    "name": "get_oracle_activations1",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 27
+  },
+  "7": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 90,
+    "instructions": 36,
+    "loads": {
+      "L": 4
+    },
+    "name": "matrix_vector_product_with_bias_output_layer",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 36
+  },
+  "8": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 135,
+    "instructions": 27,
+    "loads": {
+      "L": 3
+    },
+    "name": "get_oracle_activations2",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 27
+  },
+  "9": {
+    "basicblocks": 37,
+    "calls": "",
+    "file": "backprop.c",
+    "fileloc": 201,
+    "instructions": 220,
+    "loads": {
+      "L": 18
+    },
+    "name": "update_weights",
+    "stores": {
+      "L": 12
+    },
+    "total_instructions": 220
+  }
+}

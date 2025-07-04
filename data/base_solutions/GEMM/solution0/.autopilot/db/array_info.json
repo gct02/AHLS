@@ -1,0 +1,45 @@
+{
+  "ArrayInfo": [
+    {
+      "Name": "global_ctors",
+      "FunctionName": "llvm",
+      "BaseBitwidth": 0,
+      "BaseType": 13,
+      "IsGlobal": 1,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 0,
+      "Dimensions": [0]
+    },
+    {
+      "Name": "m1",
+      "FunctionName": "bbgemm",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "m2",
+      "FunctionName": "bbgemm",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    },
+    {
+      "Name": "prod",
+      "FunctionName": "bbgemm",
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096]
+    }
+  ]
+}

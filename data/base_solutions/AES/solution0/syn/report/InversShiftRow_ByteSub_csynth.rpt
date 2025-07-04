@@ -1,0 +1,158 @@
+
+
+================================================================
+== Vitis HLS Report for 'InversShiftRow_ByteSub'
+================================================================
+* Date:           Sat May 31 00:10:17 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        AES
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  1.325 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       15|       15|  0.120 us|  0.120 us|   15|   15|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        -|       -|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        0|     -|        8|      33|    -|
+|Multiplexer          |        -|     -|        -|     439|    -|
+|Register             |        -|     -|      144|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|      152|     472|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-----------+--------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |   Memory  |                   Module                   | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-----------+--------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |invSbox_U  |InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R  |        0|  8|  33|    0|   256|    8|     1|         2048|
+    +-----------+--------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total      |                                            |        0|  8|  33|    0|   256|    8|     1|         2048|
+    +-----------+--------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  81|         17|    1|         17|
+    |invSbox_address0  |  49|          9|    8|         72|
+    |invSbox_address1  |  49|          9|    8|         72|
+    |statemt_address0  |  81|         17|    5|         85|
+    |statemt_address1  |  81|         17|    5|         85|
+    |statemt_d0        |  49|          9|   32|        288|
+    |statemt_d1        |  49|          9|   32|        288|
+    +------------------+----+-----------+-----+-----------+
+    |Total             | 439|         87|   91|        907|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------+----+----+-----+-----------+
+    |         Name        | FF | LUT| Bits| Const Bits|
+    +---------------------+----+----+-----+-----------+
+    |ap_CS_fsm            |  16|   0|   16|          0|
+    |trunc_ln222_reg_554  |   8|   0|    8|          0|
+    |trunc_ln223_reg_559  |   8|   0|    8|          0|
+    |trunc_ln224_reg_574  |   8|   0|    8|          0|
+    |trunc_ln225_reg_579  |   8|   0|    8|          0|
+    |trunc_ln227_reg_594  |   8|   0|    8|          0|
+    |trunc_ln228_reg_599  |   8|   0|    8|          0|
+    |trunc_ln230_reg_614  |   8|   0|    8|          0|
+    |trunc_ln231_reg_619  |   8|   0|    8|          0|
+    |trunc_ln233_reg_634  |   8|   0|    8|          0|
+    |trunc_ln234_reg_639  |   8|   0|    8|          0|
+    |trunc_ln235_reg_654  |   8|   0|    8|          0|
+    |trunc_ln236_reg_659  |   8|   0|    8|          0|
+    |trunc_ln238_reg_684  |   8|   0|    8|          0|
+    |trunc_ln239_reg_689  |   8|   0|    8|          0|
+    |trunc_ln240_reg_714  |   8|   0|    8|          0|
+    |trunc_ln241_reg_719  |   8|   0|    8|          0|
+    +---------------------+----+----+-----+-----------+
+    |Total                | 144|   0|  144|          0|
+    +---------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------+-----+-----+------------+------------------------+--------------+
+|     RTL Ports    | Dir | Bits|  Protocol  |      Source Object     |    C Type    |
++------------------+-----+-----+------------+------------------------+--------------+
+|ap_clk            |   in|    1|  ap_ctrl_hs|  InversShiftRow_ByteSub|  return value|
+|ap_rst            |   in|    1|  ap_ctrl_hs|  InversShiftRow_ByteSub|  return value|
+|ap_start          |   in|    1|  ap_ctrl_hs|  InversShiftRow_ByteSub|  return value|
+|ap_done           |  out|    1|  ap_ctrl_hs|  InversShiftRow_ByteSub|  return value|
+|ap_idle           |  out|    1|  ap_ctrl_hs|  InversShiftRow_ByteSub|  return value|
+|ap_ready          |  out|    1|  ap_ctrl_hs|  InversShiftRow_ByteSub|  return value|
+|statemt_address0  |  out|    5|   ap_memory|                 statemt|         array|
+|statemt_ce0       |  out|    1|   ap_memory|                 statemt|         array|
+|statemt_we0       |  out|    1|   ap_memory|                 statemt|         array|
+|statemt_d0        |  out|   32|   ap_memory|                 statemt|         array|
+|statemt_q0        |   in|   32|   ap_memory|                 statemt|         array|
+|statemt_address1  |  out|    5|   ap_memory|                 statemt|         array|
+|statemt_ce1       |  out|    1|   ap_memory|                 statemt|         array|
+|statemt_we1       |  out|    1|   ap_memory|                 statemt|         array|
+|statemt_d1        |  out|   32|   ap_memory|                 statemt|         array|
+|statemt_q1        |   in|   32|   ap_memory|                 statemt|         array|
++------------------+-----+-----+------------+------------------------+--------------+
+

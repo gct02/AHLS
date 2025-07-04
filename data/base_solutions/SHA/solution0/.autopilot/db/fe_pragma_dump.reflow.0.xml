@@ -1,0 +1,32 @@
+<pragmas>
+<pragma file="data/benchmarks/sha/sha.c" line="18" pragmaType="inline" parentfunction="sha_stream" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/sha/sha.c" line="226" pragmaType="loop_tripcount" parentfunction="sha_stream" min="5" max="5" avg="5"/>
+<pragma file="data/benchmarks/sha/sha.c" line="217" pragmaType="loop_tripcount" parentfunction="sha_stream" min="2" max="2" avg="2"/>
+<pragma file="data/benchmarks/sha/sha.c" line="206" pragmaType="loop_tripcount" parentfunction="sha_stream" min="2" max="2" avg="2"/>
+<pragma file="data/benchmarks/sha/sha.c" line="208" pragmaType="loop_tripcount" parentfunction="sha_stream" min="8192" max="8192" avg="8192"/>
+<pragma file="data/benchmarks/sha/sha.c" line="17" pragmaType="inline" parentfunction="sha_update" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/sha/sha.c" line="3" pragmaType="pipeline" parentfunction="sha_update" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="163" pragmaType="loop_tripcount" parentfunction="sha_update" min="127" max="128" avg="127"/>
+<pragma file="data/benchmarks/sha/sha.c" line="14" pragmaType="inline" parentfunction="local_memcpy" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/sha/sha.c" line="2" pragmaType="pipeline" parentfunction="local_memcpy" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="12" pragmaType="loop_flatten" parentfunction="local_memcpy" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="80" pragmaType="loop_tripcount" parentfunction="local_memcpy" min="0" max="16" avg="8"/>
+<pragma file="data/benchmarks/sha/sha.c" line="16" pragmaType="inline" parentfunction="sha_transform" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/sha/sha.c" line="9" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="130" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="8" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="126" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="7" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="122" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="6" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="118" pragmaType="loop_tripcount" parentfunction="sha_transform" min="20" max="20" avg="20"/>
+<pragma file="data/benchmarks/sha/sha.c" line="5" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="105" pragmaType="loop_tripcount" parentfunction="sha_transform" min="64" max="64" avg="64"/>
+<pragma file="data/benchmarks/sha/sha.c" line="4" pragmaType="pipeline" parentfunction="sha_transform" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="99" pragmaType="loop_tripcount" parentfunction="sha_transform" min="16" max="16" avg="16"/>
+<pragma file="data/benchmarks/sha/sha.c" line="13" pragmaType="inline" parentfunction="local_memset" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/sha/sha.c" line="11" pragmaType="loop_flatten" parentfunction="local_memset" off="1"/>
+<pragma file="data/benchmarks/sha/sha.c" line="66" pragmaType="loop_tripcount" parentfunction="local_memset" min="0" max="14" avg="7"/>
+<pragma file="data/benchmarks/sha/sha.c" line="1" pragmaType="pipeline" parentfunction="local_memset" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/sha/sha.c" line="10" pragmaType="loop_flatten" parentfunction="local_memset" off="1"/>
+</pragmas>

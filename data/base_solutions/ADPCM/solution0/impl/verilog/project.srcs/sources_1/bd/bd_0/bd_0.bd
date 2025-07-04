@@ -1,0 +1,387 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x4EA357E6075A043E",
+      "device": "xcu50-fsvh2104-2-e",
+      "gen_directory": "../../../../project.gen/sources_1/bd/bd_0",
+      "name": "bd_0",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2023.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "hls_inst": ""
+    },
+    "interface_ports": {
+      "ap_ctrl": {
+        "mode": "Slave",
+        "vlnv_bus_definition": "xilinx.com:interface:acc_handshake:1.0",
+        "vlnv": "xilinx.com:interface:acc_handshake_rtl:1.0",
+        "port_maps": {
+          "start": {
+            "physical_name": "ap_ctrl_start",
+            "direction": "I"
+          },
+          "done": {
+            "physical_name": "ap_ctrl_done",
+            "direction": "O"
+          },
+          "idle": {
+            "physical_name": "ap_ctrl_idle",
+            "direction": "O"
+          },
+          "ready": {
+            "physical_name": "ap_ctrl_ready",
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "ports": {
+      "ap_clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "ap_rst",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "bd_0_ap_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "125000000.0"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "ap_rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      },
+      "decoded_address0": {
+        "type": "data",
+        "direction": "O",
+        "left": "6",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "decoded_address1": {
+        "type": "data",
+        "direction": "O",
+        "left": "6",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "decoded_ce0": {
+        "direction": "O"
+      },
+      "decoded_ce1": {
+        "direction": "O"
+      },
+      "decoded_d0": {
+        "type": "data",
+        "direction": "O",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "decoded_d1": {
+        "type": "data",
+        "direction": "O",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "decoded_we0": {
+        "direction": "O"
+      },
+      "decoded_we1": {
+        "direction": "O"
+      },
+      "encoded_address0": {
+        "type": "data",
+        "direction": "O",
+        "left": "5",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "encoded_ce0": {
+        "direction": "O"
+      },
+      "encoded_d0": {
+        "type": "data",
+        "direction": "O",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "encoded_q0": {
+        "type": "data",
+        "direction": "I",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "encoded_we0": {
+        "direction": "O"
+      },
+      "in_data_address0": {
+        "type": "data",
+        "direction": "O",
+        "left": "6",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "in_data_address1": {
+        "type": "data",
+        "direction": "O",
+        "left": "6",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "in_data_ce0": {
+        "direction": "O"
+      },
+      "in_data_ce1": {
+        "direction": "O"
+      },
+      "in_data_q0": {
+        "type": "data",
+        "direction": "I",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "in_data_q1": {
+        "type": "data",
+        "direction": "I",
+        "left": "31",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      }
+    },
+    "components": {
+      "hls_inst": {
+        "vlnv": "xilinx.com:hls:adpcm_main:1.0",
+        "ip_revision": "2114106437",
+        "xci_name": "bd_0_hls_inst_0",
+        "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
+        "inst_hier_path": "hls_inst"
+      }
+    },
+    "interface_nets": {
+      "ap_ctrl_0_1": {
+        "interface_ports": [
+          "ap_ctrl",
+          "hls_inst/ap_ctrl"
+        ]
+      }
+    },
+    "nets": {
+      "ap_clk_0_1": {
+        "ports": [
+          "ap_clk",
+          "hls_inst/ap_clk"
+        ]
+      },
+      "ap_rst_0_1": {
+        "ports": [
+          "ap_rst",
+          "hls_inst/ap_rst"
+        ]
+      },
+      "encoded_q0_0_1": {
+        "ports": [
+          "encoded_q0",
+          "hls_inst/encoded_q0"
+        ]
+      },
+      "hls_inst_decoded_address0": {
+        "ports": [
+          "hls_inst/decoded_address0",
+          "decoded_address0"
+        ]
+      },
+      "hls_inst_decoded_address1": {
+        "ports": [
+          "hls_inst/decoded_address1",
+          "decoded_address1"
+        ]
+      },
+      "hls_inst_decoded_ce0": {
+        "ports": [
+          "hls_inst/decoded_ce0",
+          "decoded_ce0"
+        ]
+      },
+      "hls_inst_decoded_ce1": {
+        "ports": [
+          "hls_inst/decoded_ce1",
+          "decoded_ce1"
+        ]
+      },
+      "hls_inst_decoded_d0": {
+        "ports": [
+          "hls_inst/decoded_d0",
+          "decoded_d0"
+        ]
+      },
+      "hls_inst_decoded_d1": {
+        "ports": [
+          "hls_inst/decoded_d1",
+          "decoded_d1"
+        ]
+      },
+      "hls_inst_decoded_we0": {
+        "ports": [
+          "hls_inst/decoded_we0",
+          "decoded_we0"
+        ]
+      },
+      "hls_inst_decoded_we1": {
+        "ports": [
+          "hls_inst/decoded_we1",
+          "decoded_we1"
+        ]
+      },
+      "hls_inst_encoded_address0": {
+        "ports": [
+          "hls_inst/encoded_address0",
+          "encoded_address0"
+        ]
+      },
+      "hls_inst_encoded_ce0": {
+        "ports": [
+          "hls_inst/encoded_ce0",
+          "encoded_ce0"
+        ]
+      },
+      "hls_inst_encoded_d0": {
+        "ports": [
+          "hls_inst/encoded_d0",
+          "encoded_d0"
+        ]
+      },
+      "hls_inst_encoded_we0": {
+        "ports": [
+          "hls_inst/encoded_we0",
+          "encoded_we0"
+        ]
+      },
+      "hls_inst_in_data_address0": {
+        "ports": [
+          "hls_inst/in_data_address0",
+          "in_data_address0"
+        ]
+      },
+      "hls_inst_in_data_address1": {
+        "ports": [
+          "hls_inst/in_data_address1",
+          "in_data_address1"
+        ]
+      },
+      "hls_inst_in_data_ce0": {
+        "ports": [
+          "hls_inst/in_data_ce0",
+          "in_data_ce0"
+        ]
+      },
+      "hls_inst_in_data_ce1": {
+        "ports": [
+          "hls_inst/in_data_ce1",
+          "in_data_ce1"
+        ]
+      },
+      "in_data_q0_0_1": {
+        "ports": [
+          "in_data_q0",
+          "hls_inst/in_data_q0"
+        ]
+      },
+      "in_data_q1_0_1": {
+        "ports": [
+          "in_data_q1",
+          "hls_inst/in_data_q1"
+        ]
+      }
+    }
+  }
+}

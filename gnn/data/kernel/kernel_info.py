@@ -22,13 +22,18 @@ CDFG_EDGE_TYPES = [
     ("instr", "data", "instr"),
     ("port", "data", "instr"),
     ("array", "data", "instr"),
-    ("instr", "data", "port"),
-    ("instr", "data", "array"),
 
-    # Data flow edges representing constant pointers
-    ("instr", "data", "const"),
-    ("port", "data", "const"),
-    ("array", "data", "const"),
+    # Edges for array allocations
+    ("instr", "alloca", "array"),
+
+    # Edges for store instructions
+    ("instr", "store", "array"),
+    ("instr", "store", "instr"),
+    ("instr", "store", "port"),
+
+    # Edges representing relationships between load and store 
+    # instructions that access the same memory
+    ("instr", "mem", "instr"),
 
     # Control flow edges
     ("block", "control", "instr"), 
@@ -44,7 +49,7 @@ CDFG_EDGE_TYPES = [
     ("block", "hrchy", "instr"),
 ]
 MAX_ARRAY_DIM = 4
-LOOP_DEPTH_LIM = 5
+MAX_LOOP_DEPTH = 5
 
 
 Metadata = Dict[str, Union[str, int, List[int]]]
@@ -78,8 +83,9 @@ class CDFGNode(Node):
         self.name = obj.findtext('name', '')
         self.rtl_name = obj.findtext('rtlName', '')
         self.function_name = function
-        self.attrs = {}
+        self.context_function_name = obj.findtext('contextFuncName', function)
         self.label = f"{self.function_name}/{self.name}"
+        self.attrs = {}
 
     def as_dict(self):
         attributes = {}
@@ -89,6 +95,7 @@ class CDFGNode(Node):
             else:
                 attributes[key] = value
         return {
+            'id': self.id,
             'label': self.label, 
             'rtl_name': self.rtl_name,
             'attributes': attributes
@@ -126,11 +133,11 @@ class RegionNode(Node):
 
         if self.is_loop:
             if loop_md is not None:
-                loop_depth = loop_md.get('LoopDepth', 1)
+                loop_depth = loop_md.get('Depth', 1)
                 if loop_depth <= 0:
                     loop_depth = 1
-                elif loop_depth >= LOOP_DEPTH_LIM:
-                    loop_depth = LOOP_DEPTH_LIM - 1
+                elif loop_depth > MAX_LOOP_DEPTH:
+                    loop_depth = MAX_LOOP_DEPTH
             else:
                 loop_depth = 1
 
@@ -139,17 +146,17 @@ class RegionNode(Node):
 
             ii = findint(element, 'mII', 0)
             if ii <= 0:
-                ii = max_lat // max_tc if max_tc > 0 else 1
+                if max_tc > 0:
+                    ii = max_lat // max_tc
+                else:
+                    ii = 1
         else:
             loop_depth = 0
             min_tc = 0
             max_tc = 0
-            ii = findint(element, 'mII', 0)
-            if ii <= 0:
-                ii = max_lat if max_lat > 0 else 1
+            ii = 0
 
-
-        encoded_loop_depth = [0] * LOOP_DEPTH_LIM
+        encoded_loop_depth = [0] * (MAX_LOOP_DEPTH + 1)
         encoded_loop_depth[loop_depth] = 1
 
         self.attrs = {
@@ -180,6 +187,7 @@ class RegionNode(Node):
             else:
                 attributes[key] = value
         return {
+            'id': self.id,
             'label': self.label, 
             'attributes': attributes,
             'sub_regions': self.sub_regions,
@@ -341,12 +349,13 @@ class ConstantNode(CDFGNode):
 
         self.attrs.update({
             'primitive_bitwidth': findint(element, 'Value/bitwidth', 0),
-            'const_type': element.findtext('const_type', '-1'),
+            'const_type': str(element.findtext('const_type', '-1')),
         })
 
     def as_dict(self):
         node_dict = super().as_dict()
         node_dict.update({'content': self.content})
+        return node_dict
 
 
 class BlockNode(CDFGNode):
@@ -390,38 +399,23 @@ class CDFG:
         cdfg_regions = root.find('syndb/cdfg_regions')
         if cdfg_regions is None:
             raise ValueError("CDFG regions not found in the XML file")
-        
-        self._extract_function_name(cdfg)
 
-        # Extract function information
         self.name = cdfg.findtext('name')
+
+        if self.name.endswith('_1') and '_Pipeline' not in self.name:
+            # Remove the trailing '_1' from the function name
+            self.original_name = self.name[:-2]
+        else:
+            self.original_name = self.name
+
         self.ret_bitwidth = findint(cdfg, 'ret_bitwidth', 0)
-        self.is_top_level = self.function_name == top_level_name
+        self.is_top_level = self.original_name == top_level_name
         self.function_calls = []
 
         self._parse_nodes(cdfg, cdfg_regions, array_md_list, 
                           loop_md_list, module_util_map)
         self._parse_edges(cdfg)
         self._build_hierarchy_edges()
-
-    def _extract_function_name(self, cdfg):
-        if (instrs := cdfg.find('nodes')) is None:
-            raise ValueError("CDFG does not contain 'nodes' section")
-        
-        self.function_name = ''
-        for elem in instrs.findall('item'):
-            value = elem.find('Value')
-            obj = elem.find('Obj') if value is None else value.find('Obj')
-            if obj is None:
-                continue
-            name = obj.findtext('contextFuncName', '')
-            if name:
-                self.function_name = name
-                break
-
-        if not self.function_name:
-            print("CDFG does not contain 'contextFuncName' in any node")
-            self.function_name = cdfg.findtext('name')
 
     def _parse_nodes(self, cdfg, regions, array_md_list, loop_md_list, module_util_map):
         if (consts := cdfg.find('consts')) is None:
@@ -463,12 +457,12 @@ class CDFG:
             is_global_mem = opcode == 'GlobalMem'
 
             array_md = fetch_array_md(
-                array_md_list, name, self.function_name, 
+                array_md_list, name, self.original_name, 
                 is_global_mem=is_global_mem
             )
             if array_md is not None:
                 array_node = ArrayNode(
-                    elem, self.function_name, array_md, 
+                    elem, self.original_name, array_md, 
                     is_global_mem=is_global_mem, utilization=util
                 )
                 array_node.id = array_offset
@@ -479,7 +473,7 @@ class CDFG:
                     continue
 
             instr_node = InstructionNode(
-                elem, self.function_name, utilization=util
+                elem, self.original_name, utilization=util
             )
             instr_node.id = instr_offset
             instr_offset += 1
@@ -487,7 +481,7 @@ class CDFG:
             self.nodes['instr'].append(instr_node)
 
             if array_md is not None and opcode == 'alloca':
-                self.edges[('instr', 'data', 'array')].append(
+                self.edges[('instr', 'alloca', 'array')].append(
                     (instr_node.id, array_node.id)
                 )
                 self._alloca_array_map[instr_node.id] = array_node.id
@@ -502,9 +496,9 @@ class CDFG:
                 raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
             name = obj.findtext('name', '')
 
-            array_md = fetch_array_md(array_md_list, name, self.function_name)
+            array_md = fetch_array_md(array_md_list, name, self.original_name, is_global_mem=True)
             node = PortNode(
-                elem, self.function_name, self.is_top_level, 
+                elem, self.original_name, self.is_top_level, 
                 array_md=array_md
             )
             self._node_id_map[node.id] = (i + offset, 'port')
@@ -512,30 +506,31 @@ class CDFG:
             self.nodes['port'].append(node)
 
     def _process_consts(self, consts):
-        # Note: Constant nodes with type 6 are used to 
-        # represent call edges and will be removed later
+        # Note: Constant nodes with type '2' and '6' are used to 
+        # represent pointer offset (for indexing structured elements) 
+        # and call edges, respectivelly. Those will be removed later
         offset = self._offsets['const']
-        dummy_consts = []
+        self._const_callee_name_map = {}
+        self._pointer_offset_ids = []
 
         for elem in consts.findall('item'):
-            node = ConstantNode(elem, self.function_name)
-            if node.attrs['const_type'] == '6':
-                dummy_consts.append(node)
+            node = ConstantNode(elem, self.original_name)
+            if node.attrs['const_type'] == '4':
+                self._pointer_offset_ids.append(node.id)
+            elif node.attrs['const_type'] == '6':
+                self._const_callee_name_map[node.id] = node.name
             else:
+                self._node_id_map[node.id] = (offset, 'const')
+                node.id = offset
+                offset += 1
                 self.nodes['const'].append(node)
-
-        self.nodes['const'].extend(dummy_consts)
-
-        for i, node in enumerate(self.nodes['const']):
-            self._node_id_map[node.id] = (i + offset, 'const')
-            self.nodes['const'][i].id = i + offset
 
     def _process_blocks(self, blocks):
         offset = self._offsets['block']
         instr_offset = self._offsets['instr']
 
         for i, elem in enumerate(blocks.findall('item')):
-            node = BlockNode(elem, self.function_name)
+            node = BlockNode(elem, self.original_name)
             self._node_id_map[node.id] = (i + offset, 'block')
             node.id = i + offset
 
@@ -594,11 +589,11 @@ class CDFG:
                 loop_name = elem.findtext('mTag', '')
                 for md in loop_md_list:
                     if (md.get('Name', '') == loop_name 
-                        and md.get('FunctionName', '') == self.function_name):
+                        and md.get('FunctionName', '') == self.original_name):
                         loop_md = md
                         break    
 
-            node = RegionNode(elem, self.function_name, loop_md=loop_md)
+            node = RegionNode(elem, self.original_name, loop_md=loop_md)
             node.id += offset - 1
             node.sub_regions = [
                 sub_region_id + offset - 1
@@ -612,6 +607,9 @@ class CDFG:
             self.nodes['region'].append(node)
 
     def _parse_edges(self, cdfg):
+        src_pointer_offset_ids = []
+        dst_pointer_offset_ids = []
+
         for elem in cdfg.find('edges').findall('item'):
             rel = self._map_edge_type(elem.findtext('edge_type', ''))
             if rel == '':
@@ -620,6 +618,28 @@ class CDFG:
             src = findint(elem, 'source_obj')
             dst = findint(elem, 'sink_obj')
             if src is None or dst is None:
+                continue
+
+            if src in self._const_callee_name_map:
+                dst, dst_nt = self._node_id_map.get(dst, (None, None))
+                if dst is not None and dst_nt == 'instr':
+                    callee_name = self._const_callee_name_map[src]
+                    self.function_calls.append((dst, callee_name))
+                continue
+
+            if src in self._pointer_offset_ids:
+                dst, dst_nt = self._node_id_map.get(dst, (None, None))
+                if dst is not None and dst_nt == 'instr':
+                    src_pointer_offset_ids.append((src, dst))
+                continue
+            if dst in self._pointer_offset_ids:
+                src, src_nt = self._node_id_map.get(src, (None, None))
+                if src is not None:
+                    dst_pointer_offset_ids.append(((src, src_nt), dst))
+                    if src_nt == 'instr' and src in self._alloca_array_map:
+                        # If the source is an alloca, we need to map it to the array
+                        array = self._alloca_array_map[src]
+                        dst_pointer_offset_ids.append(((array, "array"), dst))
                 continue
 
             src, src_nt = self._node_id_map.get(src, (None, None))
@@ -632,53 +652,36 @@ class CDFG:
                 print(f"Skipping edge type: {et}")
                 continue
 
-            if et == ('const', 'data', 'instr'):
-                src_node = self.nodes[src_nt][src - self._offsets[src_nt]]
-                if src_node.attrs['const_type'] == '6':
-                    callee_name = src_node.name
-                    self.function_calls.append((dst, callee_name))
-                    continue
-
             elif src_nt == "instr" and rel == "data":
                 # For data edges from instructions, check if it's an alloca
                 if src in self._alloca_array_map:
-                    src = self._alloca_array_map[src]
-                    et = ('array', 'data', dst_nt)
+                    array = self._alloca_array_map[src]
+                    self.edges[('array', 'data', dst_nt)].append((array, dst))
 
             self.edges[et].append((src, dst))
 
-        # Remove dummy constants (representing call edges)
-        for i, node in enumerate(self.nodes['const']):
-            if node.attrs['const_type'] == '6':
-                del self.nodes['const'][i:]
-                break
+        for (src, src_nt), dst_const in dst_pointer_offset_ids:
+            for src_const, instr in src_pointer_offset_ids:
+                if src_const == dst_const:
+                    self.edges[(src_nt, 'data', 'instr')].append((src, instr))
 
+        # Add a (Node -> Instr) edge for each (Node -> GEP -> Instr) path
         instr_offset = self._offsets['instr']
-        new_array_data_edges = {
+        ptr_data_edges = {
+            ('instr', 'data', 'instr'): [],
             ('array', 'data', 'instr'): [],
             ('port', 'data', 'instr'): [],
         }
-
-        # Add a (Array -> GEP) edge for each (Array -> ArrayPtr -> GEP) path
-        for nt in ['array', 'port']:
-            for array, dst_const in self.edges.get((nt, "data", "const"), []):
-                for src_const, instr in self.edges.get(("const", "data", "instr"), []):
-                    if src_const == dst_const:
-                        instr_node = self.nodes['instr'][instr - instr_offset]
-                        if instr_node.opcode == 'getelementptr':
-                            new_array_data_edges[(nt, "data", "instr")].append((array, instr))
-
-        # Add a (Array -> Instr) edge for each (Array -> GEP -> Instr) path
-        for nt in ['array', 'port']:
+        for nt in ['array', 'port', 'instr']:
             for array, instr in self.edges.get((nt, "data", "instr"), []):
                 instr_node = self.nodes['instr'][instr - instr_offset]
                 if instr_node.opcode == 'getelementptr':
                     for src_instr, dst_instr in self.edges.get(("instr", "data", "instr"), []):
                         if src_instr == instr:
-                            new_array_data_edges[(nt, "data", "instr")].append((array, dst_instr))
+                            ptr_data_edges[(nt, "data", "instr")].append((array, dst_instr))
             
         # Add the new edges to the edges dictionary
-        for et, edges in new_array_data_edges.items():
+        for et, edges in ptr_data_edges.items():
             for src, dst in edges:
                 if not _edge_exists(self.edges, src, dst, et):
                     self.edges[et].append((src, dst))
@@ -688,19 +691,17 @@ class CDFG:
             for array, instr in self.edges.get((nt, "data", "instr"), []):
                 instr_node = self.nodes['instr'][instr - instr_offset]
                 if instr_node.opcode == 'store':
-                    self.edges[("instr", "data", nt)].append((instr, array))
+                    self.edges[("instr", "store", nt)].append((instr, array))
 
         for src_instr, dst_instr in self.edges.get(("instr", "data", "instr"), []):
             dst_node = self.nodes['instr'][dst_instr - instr_offset]
             if dst_node.opcode == 'store':
                 src_node = self.nodes['instr'][src_instr - instr_offset]
                 if src_node.opcode == 'alloca':
-                    self.edges[("instr", "data", "instr")].append((dst_instr, src_instr))
+                    self.edges[("instr", "store", "instr")].append((dst_instr, src_instr))
 
     def _map_edge_type(self, edge_type):
-        if str(edge_type).isdigit() and int(edge_type) == 2:
-            return 'control'
-        return 'data'
+        return {'1': 'data', '2': 'control', '3': 'data', '4': 'mem'}.get(edge_type, '')
 
     def _build_hierarchy_edges(self):
         block_offset = self._offsets['block']
@@ -717,7 +718,7 @@ class CDFG:
 
     def as_dict(self):
         return {
-            'function_name': self.function_name,
+            'function_name': self.original_name,
             'ret_bitwidth': self.ret_bitwidth,
             'is_top_level': self.is_top_level,
             'function_calls': self.function_calls,
@@ -822,10 +823,11 @@ class VitisKernelInfo:
                 root=root, 
                 top_level_name=self.top_level_name, 
                 array_md_list=self.array_md,
+                loop_md_list=self.loop_md_list,
                 module_util_map=self.module_util_map,
                 offsets=self._offsets
             )
-            self._cdfgs[cdfg.function_name] = cdfg
+            self._cdfgs[cdfg.name] = cdfg
             self._merge_cdfg_data(cdfg)
 
     def _merge_cdfg_data(self, cdfg):

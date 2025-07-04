@@ -1,0 +1,314 @@
+{
+  "GlobalArrayUsageInfo": [
+    {
+      "Name": "twiddles8_reversed8",
+      "Uses": [
+        {
+          "Name": "twiddles8_reversed8_addr",
+          "FunctionName": "twiddles8",
+          "Idx": 16
+        }
+      ]
+    },
+    {
+      "Name": "ref_4oPi_table_256",
+      "Uses": [
+        {
+          "Name": "ref_4oPi_table_256_addr",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 14
+        }
+      ]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K4",
+      "Uses": [
+        {
+          "Name": "fourth_order_double_sin_cos_K4_addr",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 94
+        },
+        {
+          "Name": "",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 58
+        }
+      ]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K3",
+      "Uses": [
+        {
+          "Name": "fourth_order_double_sin_cos_K3_addr",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 88
+        },
+        {
+          "Name": "",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 57
+        }
+      ]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K2",
+      "Uses": [
+        {
+          "Name": "fourth_order_double_sin_cos_K2_addr",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 81
+        },
+        {
+          "Name": "",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 56
+        }
+      ]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K1",
+      "Uses": [
+        {
+          "Name": "fourth_order_double_sin_cos_K1_addr",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 75
+        },
+        {
+          "Name": "",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 55
+        }
+      ]
+    },
+    {
+      "Name": "fourth_order_double_sin_cos_K0",
+      "Uses": [
+        {
+          "Name": "fourth_order_double_sin_cos_K0_addr",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 71
+        },
+        {
+          "Name": "",
+          "FunctionName": "sin_or_cos<double>",
+          "Idx": 54
+        }
+      ]
+    },
+    {
+      "Name": "empty",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 531
+        }
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 612
+        }
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 821
+        }
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 986
+        }
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 39
+        }
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "twiddles8",
+          "Idx": 15
+        }
+      ]
+    },
+    {
+      "Name": "empty_5",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 1062
+        }
+      ]
+    },
+    {
+      "Name": "empty_6",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "twiddles8",
+          "Idx": 13
+        }
+      ]
+    },
+    {
+      "Name": "empty_7",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 900
+        }
+      ]
+    },
+    {
+      "Name": "empty_8",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 2
+        }
+      ]
+    },
+    {
+      "Name": "empty_9",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 1
+        }
+      ]
+    },
+    {
+      "Name": "empty_10",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 1166
+        }
+      ]
+    },
+    {
+      "Name": "empty_11",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 452
+        }
+      ]
+    },
+    {
+      "Name": "empty_12",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 371
+        }
+      ]
+    },
+    {
+      "Name": "empty_13",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "fft1D_512",
+          "Idx": 292
+        }
+      ]
+    }
+  ]
+}

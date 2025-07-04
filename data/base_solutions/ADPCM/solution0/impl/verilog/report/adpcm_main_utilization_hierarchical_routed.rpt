@@ -1,0 +1,94 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Fri May 30 21:23:22 2025
+| Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 7 -file ./report/adpcm_main_utilization_hierarchical_routed.rpt
+| Design       : bd_0_wrapper
+| Device       : xcu50-fsvh2104-2-e
+| Speed File   : -2
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------------------------+-------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+|               Instance               |                            Module                           | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP Blocks |
++--------------------------------------+-------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+| bd_0_wrapper                         |                                                       (top) |       4339 |       4243 |      96 |    0 | 2633 |      1 |      4 |    0 |         50 |
+|   bd_0_i                             |                                                        bd_0 |       4339 |       4243 |      96 |    0 | 2633 |      1 |      4 |    0 |         50 |
+|     hls_inst                         |                                             bd_0_hls_inst_0 |       4339 |       4243 |      96 |    0 | 2633 |      1 |      4 |    0 |         50 |
+|       (hls_inst)                     |                                             bd_0_hls_inst_0 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|       inst                           |                                  bd_0_hls_inst_0_adpcm_main |       4339 |       4243 |      96 |    0 | 2633 |      1 |      4 |    0 |         50 |
+|         (inst)                       |                                  bd_0_hls_inst_0_adpcm_main |         18 |         18 |       0 |    0 |  913 |      0 |      0 |    0 |          0 |
+|         accumc_U                     |             bd_0_hls_inst_0_adpcm_main_accumc_RAM_AUTO_1R1W |         16 |          0 |      16 |    0 |   32 |      0 |      0 |    0 |          0 |
+|         accumd_U                     |           bd_0_hls_inst_0_adpcm_main_accumc_RAM_AUTO_1R1W_0 |         84 |         68 |      16 |    0 |   32 |      0 |      0 |    0 |          0 |
+|         dec_del_bph_U                |          bd_0_hls_inst_0_adpcm_main_delay_bpl_RAM_AUTO_1R1W |         62 |         46 |      16 |    0 |   32 |      0 |      0 |    0 |          0 |
+|         dec_del_bpl_U                |        bd_0_hls_inst_0_adpcm_main_delay_bpl_RAM_AUTO_1R1W_1 |         73 |         57 |      16 |    0 |   32 |      0 |      0 |    0 |          0 |
+|         dec_del_dhx_U                |         bd_0_hls_inst_0_adpcm_main_delay_dltx_RAM_AUTO_1R1W |         40 |         40 |       0 |    0 |    0 |      0 |      1 |    0 |          0 |
+|         dec_del_dltx_U               |       bd_0_hls_inst_0_adpcm_main_delay_dltx_RAM_AUTO_1R1W_2 |          0 |          0 |       0 |    0 |    0 |      0 |      1 |    0 |          0 |
+|         delay_bph_U                  |        bd_0_hls_inst_0_adpcm_main_delay_bpl_RAM_AUTO_1R1W_3 |         90 |         74 |      16 |    0 |   32 |      0 |      0 |    0 |          0 |
+|         delay_bpl_U                  |        bd_0_hls_inst_0_adpcm_main_delay_bpl_RAM_AUTO_1R1W_4 |         75 |         59 |      16 |    0 |   32 |      0 |      0 |    0 |          0 |
+|         delay_dhx_U                  |       bd_0_hls_inst_0_adpcm_main_delay_dltx_RAM_AUTO_1R1W_5 |         16 |         16 |       0 |    0 |    0 |      0 |      1 |    0 |          0 |
+|         delay_dltx_U                 |       bd_0_hls_inst_0_adpcm_main_delay_dltx_RAM_AUTO_1R1W_6 |          8 |          8 |       0 |    0 |    0 |      0 |      1 |    0 |          0 |
+|         grp_decode_fu_397            |                           bd_0_hls_inst_0_adpcm_main_decode |       1655 |       1655 |       0 |    0 |  496 |      0 |      0 |    0 |         20 |
+|           (grp_decode_fu_397)        |                           bd_0_hls_inst_0_adpcm_main_decode |        701 |        701 |       0 |    0 |  377 |      0 |      0 |    0 |          0 |
+|           grp_filtez_fu_427          |                        bd_0_hls_inst_0_adpcm_main_filtez_13 |         73 |         73 |       0 |    0 |   56 |      0 |      0 |    0 |          2 |
+|             (grp_filtez_fu_427)      |                        bd_0_hls_inst_0_adpcm_main_filtez_13 |         27 |         27 |       0 |    0 |   56 |      0 |      0 |    0 |          0 |
+|             mul_16s_32s_48_1_1_U44   |            bd_0_hls_inst_0_adpcm_main_mul_16s_32s_48_1_1_25 |         46 |         46 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           grp_upzero_fu_437          |                        bd_0_hls_inst_0_adpcm_main_upzero_14 |        131 |        131 |       0 |    0 |   63 |      0 |      0 |    0 |          1 |
+|             (grp_upzero_fu_437)      |                        bd_0_hls_inst_0_adpcm_main_upzero_14 |        107 |        107 |       0 |    0 |   63 |      0 |      0 |    0 |          0 |
+|             mul_16s_16s_32_1_1_U55   |            bd_0_hls_inst_0_adpcm_main_mul_16s_16s_32_1_1_24 |         24 |         24 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_14s_15ns_29_1_1_U120   |           bd_0_hls_inst_0_adpcm_main_mul_14s_15ns_29_1_1_15 |         94 |         94 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_15s_32s_47_1_1_U110    |            bd_0_hls_inst_0_adpcm_main_mul_15s_32s_47_1_1_16 |        169 |        169 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           mul_15s_32s_47_1_1_U111    |            bd_0_hls_inst_0_adpcm_main_mul_15s_32s_47_1_1_17 |         61 |         61 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           mul_16s_15ns_31_1_1_U116   |           bd_0_hls_inst_0_adpcm_main_mul_16s_15ns_31_1_1_18 |         78 |         78 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_16s_15ns_31_1_1_U117   |           bd_0_hls_inst_0_adpcm_main_mul_16s_15ns_31_1_1_19 |         16 |         16 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_16s_32s_47_1_1_U112    |            bd_0_hls_inst_0_adpcm_main_mul_16s_32s_47_1_1_20 |         25 |         25 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           mul_32s_32s_64_1_1_U113    |            bd_0_hls_inst_0_adpcm_main_mul_32s_32s_64_1_1_21 |        139 |        139 |       0 |    0 |    0 |      0 |      0 |    0 |          4 |
+|           mul_32s_32s_64_1_1_U114    |            bd_0_hls_inst_0_adpcm_main_mul_32s_32s_64_1_1_22 |         65 |         65 |       0 |    0 |    0 |      0 |      0 |    0 |          4 |
+|           mul_32s_7s_39_1_1_U115     |             bd_0_hls_inst_0_adpcm_main_mul_32s_7s_39_1_1_23 |        150 |        150 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|           mux_4_2_14_1_1_U119        |                   bd_0_hls_inst_0_adpcm_main_mux_4_2_14_1_1 |          2 |          2 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         grp_encode_fu_331            |                           bd_0_hls_inst_0_adpcm_main_encode |       1941 |       1941 |       0 |    0 |  967 |      0 |      0 |    0 |         30 |
+|           (grp_encode_fu_331)        |                           bd_0_hls_inst_0_adpcm_main_encode |        632 |        632 |       0 |    0 |  715 |      0 |      0 |    0 |          0 |
+|           grp_filtez_fu_426          |                           bd_0_hls_inst_0_adpcm_main_filtez |        228 |        228 |       0 |    0 |   56 |      0 |      0 |    0 |          2 |
+|             (grp_filtez_fu_426)      |                           bd_0_hls_inst_0_adpcm_main_filtez |        182 |        182 |       0 |    0 |   56 |      0 |      0 |    0 |          0 |
+|             mul_16s_32s_48_1_1_U44   |               bd_0_hls_inst_0_adpcm_main_mul_16s_32s_48_1_1 |         46 |         46 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           grp_quantl_fu_436          |                           bd_0_hls_inst_0_adpcm_main_quantl |        106 |        106 |       0 |    0 |   70 |      0 |      0 |    0 |          1 |
+|             (grp_quantl_fu_436)      |                           bd_0_hls_inst_0_adpcm_main_quantl |         39 |         39 |       0 |    0 |   59 |      0 |      0 |    0 |          0 |
+|             mul_15ns_15ns_30_1_1_U48 |             bd_0_hls_inst_0_adpcm_main_mul_15ns_15ns_30_1_1 |         27 |         27 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|             quant26bt_neg_U          | bd_0_hls_inst_0_adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R |         31 |         31 |       0 |    0 |    5 |      0 |      0 |    0 |          0 |
+|             quant26bt_pos_U          | bd_0_hls_inst_0_adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R |          9 |          9 |       0 |    0 |    6 |      0 |      0 |    0 |          0 |
+|           grp_upzero_fu_448          |                           bd_0_hls_inst_0_adpcm_main_upzero |         79 |         79 |       0 |    0 |   63 |      0 |      0 |    0 |          1 |
+|             (grp_upzero_fu_448)      |                           bd_0_hls_inst_0_adpcm_main_upzero |         55 |         55 |       0 |    0 |   63 |      0 |      0 |    0 |          0 |
+|             mul_16s_16s_32_1_1_U55   |            bd_0_hls_inst_0_adpcm_main_mul_16s_16s_32_1_1_12 |         24 |         24 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           grp_upzero_fu_457          |                         bd_0_hls_inst_0_adpcm_main_upzero_7 |         75 |         75 |       0 |    0 |   63 |      0 |      0 |    0 |          1 |
+|             (grp_upzero_fu_457)      |                         bd_0_hls_inst_0_adpcm_main_upzero_7 |         51 |         51 |       0 |    0 |   63 |      0 |      0 |    0 |          0 |
+|             mul_16s_16s_32_1_1_U55   |               bd_0_hls_inst_0_adpcm_main_mul_16s_16s_32_1_1 |         24 |         24 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_14s_15ns_29_1_1_U71    |              bd_0_hls_inst_0_adpcm_main_mul_14s_15ns_29_1_1 |         47 |         47 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_15ns_11ns_25_1_1_U68   |             bd_0_hls_inst_0_adpcm_main_mul_15ns_11ns_25_1_1 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_15s_32s_47_1_1_U60     |               bd_0_hls_inst_0_adpcm_main_mul_15s_32s_47_1_1 |        139 |        139 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           mul_15s_32s_47_1_1_U61     |             bd_0_hls_inst_0_adpcm_main_mul_15s_32s_47_1_1_8 |         47 |         47 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           mul_16s_15ns_31_1_1_U69    |              bd_0_hls_inst_0_adpcm_main_mul_16s_15ns_31_1_1 |         48 |         48 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|           mul_16s_32s_47_1_1_U62     |               bd_0_hls_inst_0_adpcm_main_mul_16s_32s_47_1_1 |         25 |         25 |       0 |    0 |    0 |      0 |      0 |    0 |          2 |
+|           mul_32s_32s_64_1_1_U63     |               bd_0_hls_inst_0_adpcm_main_mul_32s_32s_64_1_1 |        100 |        100 |       0 |    0 |    0 |      0 |      0 |    0 |          4 |
+|           mul_32s_32s_64_1_1_U64     |             bd_0_hls_inst_0_adpcm_main_mul_32s_32s_64_1_1_9 |         63 |         63 |       0 |    0 |    0 |      0 |      0 |    0 |          4 |
+|           mul_32s_32s_64_1_1_U65     |            bd_0_hls_inst_0_adpcm_main_mul_32s_32s_64_1_1_10 |        102 |        102 |       0 |    0 |    0 |      0 |      0 |    0 |          4 |
+|           mul_32s_32s_64_1_1_U66     |            bd_0_hls_inst_0_adpcm_main_mul_32s_32s_64_1_1_11 |         63 |         63 |       0 |    0 |    0 |      0 |      0 |    0 |          4 |
+|           mul_32s_7s_39_1_1_U67      |                bd_0_hls_inst_0_adpcm_main_mul_32s_7s_39_1_1 |        193 |        193 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|         grp_reset_fu_241             |                            bd_0_hls_inst_0_adpcm_main_reset |         35 |         35 |       0 |    0 |   20 |      0 |      0 |    0 |          0 |
+|         h_U                          |                    bd_0_hls_inst_0_adpcm_main_h_ROM_AUTO_1R |          0 |          0 |       0 |    0 |   12 |      0 |      0 |    0 |          0 |
+|         ilb_table_U                  |            bd_0_hls_inst_0_adpcm_main_ilb_table_ROM_AUTO_1R |        122 |        122 |       0 |    0 |   22 |      0 |      0 |    0 |          0 |
+|         tqmf_U                       |               bd_0_hls_inst_0_adpcm_main_tqmf_RAM_AUTO_1R1W |         66 |         66 |       0 |    0 |    0 |      1 |      0 |    0 |          0 |
+|         wl_code_table_U              |        bd_0_hls_inst_0_adpcm_main_wl_code_table_ROM_AUTO_1R |         76 |         76 |       0 |    0 |   11 |      0 |      0 |    0 |          0 |
++--------------------------------------+-------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

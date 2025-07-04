@@ -1,0 +1,23 @@
+{
+    "0": {
+        "name": "bbgemm",
+        "file": "gemm.c",
+        "fileloc": "10",
+        "instructions": "79",
+        "total_instructions": "79",
+        "calls": "",
+        "basicblocks": "16",
+        "loads": {
+            "L": "1",
+            "T": "3"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1",
+            "N": "4"
+        }
+    }
+}

@@ -1,0 +1,163 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'decrypt'" level="0">
+<item name = "Date">Sat May 31 00:10:17 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">AES</item>
+<item name = "Solution">solution0 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 4.978 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">1572, 1572, 12.576 us, 12.576 us, 1572, 1572, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_KeySchedule_fu_52">KeySchedule, 562, 562, 4.496 us, 4.496 us, 562, 562, no</column>
+<column name="grp_AddRoundKey_fu_64">AddRoundKey, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
+<column name="grp_InversShiftRow_ByteSub_fu_75">InversShiftRow_ByteSub, 15, 15, 0.120 us, 0.120 us, 15, 15, no</column>
+<column name="grp_AddRoundKey_InversMixColumn_fu_83">AddRoundKey_InversMixColumn, 87, 87, 0.696 us, 0.696 us, 87, 87, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- decrypt_label4">954, 954, 106, -, -, 9, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 24, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">0, -, 787, 3874, 0</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 337, -</column>
+<column name="Register">-, -, 23, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="grp_AddRoundKey_fu_64">AddRoundKey, 0, 0, 92, 278, 0</column>
+<column name="grp_AddRoundKey_InversMixColumn_fu_83">AddRoundKey_InversMixColumn, 0, 0, 230, 2130, 0</column>
+<column name="grp_InversShiftRow_ByteSub_fu_75">InversShiftRow_ByteSub, 0, 0, 152, 472, 0</column>
+<column name="grp_KeySchedule_fu_52">KeySchedule, 0, 0, 313, 994, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="i_fu_107_p2">+, 0, 0, 12, 4, 2</column>
+<column name="icmp_ln116_fu_101_p2">icmp, 0, 0, 12, 4, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">65, 12, 1, 12</column>
+<column name="grp_AddRoundKey_fu_64_n">14, 3, 4, 12</column>
+<column name="i_01_fu_48">9, 2, 4, 8</column>
+<column name="statemt_address0">20, 4, 5, 20</column>
+<column name="statemt_address1">20, 4, 5, 20</column>
+<column name="statemt_ce0">20, 4, 1, 4</column>
+<column name="statemt_ce1">20, 4, 1, 4</column>
+<column name="statemt_d0">20, 4, 32, 128</column>
+<column name="statemt_d1">20, 4, 32, 128</column>
+<column name="statemt_we0">20, 4, 1, 4</column>
+<column name="statemt_we1">20, 4, 1, 4</column>
+<column name="word_address0">20, 4, 9, 36</column>
+<column name="word_address1">20, 4, 9, 36</column>
+<column name="word_ce0">20, 4, 1, 4</column>
+<column name="word_ce1">20, 4, 1, 4</column>
+<column name="word_we0">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">11, 0, 11, 0</column>
+<column name="grp_AddRoundKey_InversMixColumn_fu_83_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_AddRoundKey_fu_64_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_InversShiftRow_ByteSub_fu_75_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_KeySchedule_fu_52_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_01_fu_48">4, 0, 4, 0</column>
+<column name="i_4_reg_125">4, 0, 4, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, decrypt, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, decrypt, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, decrypt, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, decrypt, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, decrypt, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, decrypt, return value</column>
+<column name="statemt_address0">out, 5, ap_memory, statemt, array</column>
+<column name="statemt_ce0">out, 1, ap_memory, statemt, array</column>
+<column name="statemt_we0">out, 1, ap_memory, statemt, array</column>
+<column name="statemt_d0">out, 32, ap_memory, statemt, array</column>
+<column name="statemt_q0">in, 32, ap_memory, statemt, array</column>
+<column name="statemt_address1">out, 5, ap_memory, statemt, array</column>
+<column name="statemt_ce1">out, 1, ap_memory, statemt, array</column>
+<column name="statemt_we1">out, 1, ap_memory, statemt, array</column>
+<column name="statemt_d1">out, 32, ap_memory, statemt, array</column>
+<column name="statemt_q1">in, 32, ap_memory, statemt, array</column>
+<column name="key_address0">out, 5, ap_memory, key, array</column>
+<column name="key_ce0">out, 1, ap_memory, key, array</column>
+<column name="key_q0">in, 32, ap_memory, key, array</column>
+<column name="word_address0">out, 9, ap_memory, word, array</column>
+<column name="word_ce0">out, 1, ap_memory, word, array</column>
+<column name="word_we0">out, 1, ap_memory, word, array</column>
+<column name="word_d0">out, 32, ap_memory, word, array</column>
+<column name="word_q0">in, 32, ap_memory, word, array</column>
+<column name="word_address1">out, 9, ap_memory, word, array</column>
+<column name="word_ce1">out, 1, ap_memory, word, array</column>
+<column name="word_q1">in, 32, ap_memory, word, array</column>
+</table>
+</item>
+</section>
+</profile>

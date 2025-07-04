@@ -1,0 +1,74 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "local_memset_label1",
+      "FunctionName": "local_memset",
+      "Depth": 1
+    },
+    {
+      "Name": "local_memset_label0",
+      "FunctionName": "local_memset",
+      "Depth": 1
+    },
+    {
+      "Name": "local_memcpy_label3",
+      "FunctionName": "local_memcpy",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_transform_label6",
+      "FunctionName": "sha_transform",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_transform_label5",
+      "FunctionName": "sha_transform",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_transform_label4",
+      "FunctionName": "sha_transform",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_transform_label3",
+      "FunctionName": "sha_transform",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_transform_label2",
+      "FunctionName": "sha_transform",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_transform_label1",
+      "FunctionName": "sha_transform",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_update_label4",
+      "FunctionName": "sha_update",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_stream_label2",
+      "FunctionName": "sha_stream",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_stream_label0",
+      "FunctionName": "sha_stream",
+      "Depth": 1
+    },
+    {
+      "Name": "sha_stream_label1",
+      "FunctionName": "sha_stream",
+      "Depth": 1
+    },
+    {
+      "Name": "VITIS_LOOP_207_1",
+      "FunctionName": "sha_stream",
+      "Depth": 2
+    }
+  ]
+}

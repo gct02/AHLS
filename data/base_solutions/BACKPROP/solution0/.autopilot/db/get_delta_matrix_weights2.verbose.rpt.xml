@@ -1,0 +1,142 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'get_delta_matrix_weights2'" level="0">
+<item name = "Date">Fri May 30 21:43:16 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">BACKPROP</item>
+<item name = "Solution">solution0 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 5.217 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">24769, 24769, 0.198 ms, 0.198 ms, 24769, 24769, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- get_delta_matrix_weights2_loop1">24768, 24768, 387, -, -, 64, no</column>
+<column name=" + get_delta_matrix_weights2_loop1_1">384, 384, 6, -, -, 64, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 77, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, -, -, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 72, -</column>
+<column name="Register">-, -, 189, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln158_fu_103_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln161_fu_131_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln163_fu_146_p2">+, 0, 0, 19, 12, 12</column>
+<column name="icmp_ln158_fu_97_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="icmp_ln161_fu_125_p2">icmp, 0, 0, 15, 7, 8</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">54, 10, 1, 10</column>
+<column name="i_fu_30">9, 2, 7, 14</column>
+<column name="j_reg_73">9, 2, 7, 14</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="add_ln158_reg_169">7, 0, 7, 0</column>
+<column name="add_ln161_reg_197">7, 0, 7, 0</column>
+<column name="add_ln163_reg_207">12, 0, 12, 0</column>
+<column name="ap_CS_fsm">9, 0, 9, 0</column>
+<column name="empty_reg_179">6, 0, 6, 0</column>
+<column name="i_fu_30">7, 0, 7, 0</column>
+<column name="j_reg_73">7, 0, 7, 0</column>
+<column name="last_activations_load_reg_184">64, 0, 64, 0</column>
+<column name="mul_reg_217">64, 0, 64, 0</column>
+<column name="tmp_s_reg_189">6, 0, 12, 6</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="grp_fu_990_p_din0">out, 64, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="grp_fu_990_p_din1">out, 64, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="grp_fu_990_p_dout0">in, 64, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="grp_fu_990_p_ce">out, 1, ap_ctrl_hs, get_delta_matrix_weights2, return value</column>
+<column name="delta_weights2_address0">out, 12, ap_memory, delta_weights2, array</column>
+<column name="delta_weights2_ce0">out, 1, ap_memory, delta_weights2, array</column>
+<column name="delta_weights2_we0">out, 1, ap_memory, delta_weights2, array</column>
+<column name="delta_weights2_d0">out, 64, ap_memory, delta_weights2, array</column>
+<column name="output_difference_address0">out, 6, ap_memory, output_difference, array</column>
+<column name="output_difference_ce0">out, 1, ap_memory, output_difference, array</column>
+<column name="output_difference_q0">in, 64, ap_memory, output_difference, array</column>
+<column name="last_activations_address0">out, 6, ap_memory, last_activations, array</column>
+<column name="last_activations_ce0">out, 1, ap_memory, last_activations, array</column>
+<column name="last_activations_q0">in, 64, ap_memory, last_activations, array</column>
+</table>
+</item>
+</section>
+</profile>

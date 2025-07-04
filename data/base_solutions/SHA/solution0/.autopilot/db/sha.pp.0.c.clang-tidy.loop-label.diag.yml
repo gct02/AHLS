@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/.autopilot/db/sha.pp.0.c
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_207_1:  '
+    FileOffset:      207
+    FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/benchmarks/sha/sha.c
+    Replacements:    
+      - FilePath:        /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/.autopilot/db/sha.pp.0.c
+        Offset:          14005
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_207_1: '
+...

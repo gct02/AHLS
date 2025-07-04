@@ -1,0 +1,879 @@
+{
+  "GlobalArrayUsageInfo": [
+    {
+      "Name": "word",
+      "Uses": [
+        {
+          "Name": "word_addr_15",
+          "FunctionName": "AddRoundKey",
+          "Idx": 26
+        },
+        {
+          "Name": "word_addr_14",
+          "FunctionName": "AddRoundKey",
+          "Idx": 23
+        },
+        {
+          "Name": "word_addr_13",
+          "FunctionName": "AddRoundKey",
+          "Idx": 20
+        },
+        {
+          "Name": "word_addr",
+          "FunctionName": "AddRoundKey",
+          "Idx": 17
+        },
+        {
+          "Name": "word_addr_12",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 30
+        },
+        {
+          "Name": "word_addr_11",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 27
+        },
+        {
+          "Name": "word_addr_10",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 24
+        },
+        {
+          "Name": "word_addr",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 21
+        },
+        {
+          "Name": "word_addr_9",
+          "FunctionName": "KeySchedule",
+          "Idx": 181
+        },
+        {
+          "Name": "word_addr_8",
+          "FunctionName": "KeySchedule",
+          "Idx": 178
+        },
+        {
+          "Name": "word_addr_6",
+          "FunctionName": "KeySchedule",
+          "Idx": 61
+        },
+        {
+          "Name": "word_addr_5",
+          "FunctionName": "KeySchedule",
+          "Idx": 60
+        },
+        {
+          "Name": "word_addr_4",
+          "FunctionName": "KeySchedule",
+          "Idx": 57
+        },
+        {
+          "Name": "word_addr",
+          "FunctionName": "KeySchedule",
+          "Idx": 54
+        },
+        {
+          "Name": "word_addr_7",
+          "FunctionName": "KeySchedule",
+          "Idx": 28
+        },
+        {
+          "Name": "word_addr_3",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 61
+        },
+        {
+          "Name": "word_addr_2",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 58
+        },
+        {
+          "Name": "word_addr_1",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 55
+        },
+        {
+          "Name": "word_addr",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 52
+        }
+      ]
+    },
+    {
+      "Name": "invSbox",
+      "Uses": [
+        {
+          "Name": "invSbox_addr_15",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 125
+        },
+        {
+          "Name": "invSbox_addr_14",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 117
+        },
+        {
+          "Name": "invSbox_addr_13",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 109
+        },
+        {
+          "Name": "invSbox_addr_12",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 101
+        },
+        {
+          "Name": "invSbox_addr_11",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 92
+        },
+        {
+          "Name": "invSbox_addr_10",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 84
+        },
+        {
+          "Name": "invSbox_addr_9",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 76
+        },
+        {
+          "Name": "invSbox_addr_8",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 69
+        },
+        {
+          "Name": "invSbox_addr_7",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 60
+        },
+        {
+          "Name": "invSbox_addr_6",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 53
+        },
+        {
+          "Name": "invSbox_addr_5",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 44
+        },
+        {
+          "Name": "invSbox_addr_4",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 37
+        },
+        {
+          "Name": "invSbox_addr_3",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 28
+        },
+        {
+          "Name": "invSbox_addr_2",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 20
+        },
+        {
+          "Name": "invSbox_addr_1",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 12
+        },
+        {
+          "Name": "invSbox_addr",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 5
+        }
+      ]
+    },
+    {
+      "Name": "Sbox_1",
+      "Uses": [
+        {
+          "Name": "Sbox_1_addr_15",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 125
+        },
+        {
+          "Name": "Sbox_1_addr_14",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 117
+        },
+        {
+          "Name": "Sbox_1_addr_13",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 109
+        },
+        {
+          "Name": "Sbox_1_addr_12",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 101
+        },
+        {
+          "Name": "Sbox_1_addr_11",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 92
+        },
+        {
+          "Name": "Sbox_1_addr_10",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 84
+        },
+        {
+          "Name": "Sbox_1_addr_9",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 76
+        },
+        {
+          "Name": "Sbox_1_addr_8",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 69
+        },
+        {
+          "Name": "Sbox_1_addr_7",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 60
+        },
+        {
+          "Name": "Sbox_1_addr_6",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 53
+        },
+        {
+          "Name": "Sbox_1_addr_5",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 44
+        },
+        {
+          "Name": "Sbox_1_addr_4",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 37
+        },
+        {
+          "Name": "Sbox_1_addr_3",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 28
+        },
+        {
+          "Name": "Sbox_1_addr_2",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 20
+        },
+        {
+          "Name": "Sbox_1_addr_1",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 12
+        },
+        {
+          "Name": "Sbox_1_addr",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 5
+        }
+      ]
+    },
+    {
+      "Name": "Sbox",
+      "Uses": [
+        {
+          "Name": "Sbox_addr_3",
+          "FunctionName": "KeySchedule",
+          "Idx": 157
+        },
+        {
+          "Name": "Sbox_addr_2",
+          "FunctionName": "KeySchedule",
+          "Idx": 136
+        },
+        {
+          "Name": "Sbox_addr_1",
+          "FunctionName": "KeySchedule",
+          "Idx": 115
+        },
+        {
+          "Name": "Sbox_addr",
+          "FunctionName": "KeySchedule",
+          "Idx": 88
+        }
+      ]
+    },
+    {
+      "Name": "Rcon0",
+      "Uses": [
+        {
+          "Name": "Rcon0_addr",
+          "FunctionName": "KeySchedule",
+          "Idx": 93
+        }
+      ]
+    },
+    {
+      "Name": "empty",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        }
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 1
+        }
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 11
+        }
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 70
+        }
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 16
+        }
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 12
+        }
+      ]
+    },
+    {
+      "Name": "empty_5",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 12
+        }
+      ]
+    },
+    {
+      "Name": "empty_6",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 200
+        }
+      ]
+    },
+    {
+      "Name": "empty_7",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 80
+        }
+      ]
+    },
+    {
+      "Name": "empty_8",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 12
+        }
+      ]
+    },
+    {
+      "Name": "empty_9",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 16
+        }
+      ]
+    },
+    {
+      "Name": "empty_10",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 131
+        }
+      ]
+    },
+    {
+      "Name": "empty_11",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "AddRoundKey_InversMixColumn",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "ByteSub_ShiftRow",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "InversShiftRow_ByteSub",
+          "Idx": 0
+        },
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "MixColumn_AddRoundKey",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 4
+        },
+        {
+          "Name": "",
+          "FunctionName": "aes_main",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "decrypt",
+          "Idx": 1
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 2
+        },
+        {
+          "Name": "",
+          "FunctionName": "encrypt",
+          "Idx": 1
+        }
+      ]
+    },
+    {
+      "Name": "empty_12",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 183
+        }
+      ]
+    },
+    {
+      "Name": "empty_13",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 45
+        }
+      ]
+    },
+    {
+      "Name": "empty_14",
+      "Uses": [
+        {
+          "Name": "",
+          "FunctionName": "KeySchedule",
+          "Idx": 31
+        }
+      ]
+    }
+  ]
+}

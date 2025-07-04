@@ -1,0 +1,84 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "twiddles",
+      "FunctionName": "twiddles8",
+      "Depth": 1
+    },
+    {
+      "Name": "for.end45",
+      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
+      "Depth": 1
+    },
+    {
+      "Name": "for.end",
+      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
+      "Depth": 1
+    },
+    {
+      "Name": "arrayinit.end",
+      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
+      "Depth": 1
+    },
+    {
+      "Name": "entry",
+      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
+      "Depth": 1
+    },
+    {
+      "Name": "loop11",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop10",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop9",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop8",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop7",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop6",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop5",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop4",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop3",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop2",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    },
+    {
+      "Name": "loop1",
+      "FunctionName": "fft1D_512",
+      "Depth": 1
+    }
+  ]
+}

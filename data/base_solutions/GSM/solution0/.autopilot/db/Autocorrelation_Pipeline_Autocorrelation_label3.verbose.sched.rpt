@@ -1,0 +1,333 @@
+
+
+================================================================
+== Vitis HLS Report for 'Autocorrelation_Pipeline_Autocorrelation_label3'
+================================================================
+* Date:           Fri May 30 22:03:37 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        GSM
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.651 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      765|      765|  6.120 us|  6.120 us|  765|  765|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |         Loop Name        |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Autocorrelation_label3  |      763|      763|         6|          5|          1|   152|       yes|
+        +--------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 5, depth = 6
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 1
+  Pipeline-0 : II = 5, D = 6, States = { 1 2 3 4 5 6 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.26>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 9 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 10 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%empty = alloca i32 1"   --->   Operation 11 'alloca' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%empty_75 = alloca i32 1"   --->   Operation 12 'alloca' 'empty_75' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%empty_76 = alloca i32 1"   --->   Operation 13 'alloca' 'empty_76' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%empty_77 = alloca i32 1"   --->   Operation 14 'alloca' 'empty_77' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%empty_78 = alloca i32 1"   --->   Operation 15 'alloca' 'empty_78' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%empty_79 = alloca i32 1"   --->   Operation 16 'alloca' 'empty_79' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%empty_80 = alloca i32 1"   --->   Operation 17 'alloca' 'empty_80' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%empty_81 = alloca i32 1"   --->   Operation 18 'alloca' 'empty_81' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%empty_82 = alloca i32 1"   --->   Operation 19 'alloca' 'empty_82' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %indata, void @empty_9, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%add_ln119_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln119"   --->   Operation 21 'read' 'add_ln119_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%add_ln120_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln120"   --->   Operation 22 'read' 'add_ln120_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%add_ln121_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln121"   --->   Operation 23 'read' 'add_ln121_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%add_ln122_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln122"   --->   Operation 24 'read' 'add_ln122_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%add_ln123_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln123"   --->   Operation 25 'read' 'add_ln123_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%add_ln124_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln124"   --->   Operation 26 'read' 'add_ln124_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%add_ln125_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln125"   --->   Operation 27 'read' 'add_ln125_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%add_ln126_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %add_ln126"   --->   Operation 28 'read' 'add_ln126_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%L_ACF_load_9_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %L_ACF_load_9"   --->   Operation 29 'read' 'L_ACF_load_9_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %L_ACF_load_9_read, i64 %empty_82"   --->   Operation 30 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 31 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln126_read, i64 %empty_81"   --->   Operation 31 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 32 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln125_read, i64 %empty_80"   --->   Operation 32 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 33 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln124_read, i64 %empty_79"   --->   Operation 33 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 34 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln123_read, i64 %empty_78"   --->   Operation 34 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 35 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln122_read, i64 %empty_77"   --->   Operation 35 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 36 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln121_read, i64 %empty_76"   --->   Operation 36 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 37 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln120_read, i64 %empty_75"   --->   Operation 37 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 38 [1/1] (0.38ns)   --->   "%store_ln0 = store i64 %add_ln119_read, i64 %empty"   --->   Operation 38 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 39 [1/1] (0.38ns)   --->   "%store_ln39 = store i8 8, i8 %i" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 39 'store' 'store_ln39' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 40 [1/1] (0.38ns)   --->   "%store_ln0 = store i8 0, i8 %idx"   --->   Operation 40 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc318"   --->   Operation 41 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%idx_load = load i8 %idx" [data/benchmarks/gsm/gsm_lpc.c:43]   --->   Operation 42 'load' 'idx_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%i_10 = load i8 %i" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 43 'load' 'i_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.70ns)   --->   "%icmp_ln129 = icmp_eq  i8 %i_10, i8 160" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 44 'icmp' 'icmp_ln129' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%br_ln129 = br i1 %icmp_ln129, void %for.inc318.split, void %Autocorrelation_label4.exitStub" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 45 'br' 'br_ln129' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.70ns)   --->   "%add_ln43 = add i8 %idx_load, i8 7" [data/benchmarks/gsm/gsm_lpc.c:43]   --->   Operation 46 'add' 'add_ln43' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%zext_ln39 = zext i8 %add_ln43" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 47 'zext' 'zext_ln39' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.70ns)   --->   "%add_ln131 = add i8 %idx_load, i8 8" [data/benchmarks/gsm/gsm_lpc.c:131]   --->   Operation 48 'add' 'add_ln131' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%zext_ln131 = zext i8 %add_ln131" [data/benchmarks/gsm/gsm_lpc.c:131]   --->   Operation 49 'zext' 'zext_ln131' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%indata_addr = getelementptr i16 %indata, i64 0, i64 %zext_ln131" [data/benchmarks/gsm/gsm_lpc.c:131]   --->   Operation 50 'getelementptr' 'indata_addr' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_1 : Operation 51 [2/2] (1.17ns)   --->   "%sl = load i8 %indata_addr" [data/benchmarks/gsm/gsm_lpc.c:131]   --->   Operation 51 'load' 'sl' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%indata_addr_1 = getelementptr i16 %indata, i64 0, i64 %zext_ln39" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 52 'getelementptr' 'indata_addr_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_1 : Operation 53 [2/2] (1.17ns)   --->   "%indata_load = load i8 %indata_addr_1" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 53 'load' 'indata_load' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_1 : Operation 54 [1/1] (0.70ns)   --->   "%i_11 = add i8 %i_10, i8 1" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 54 'add' 'i_11' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 55 [1/1] (0.38ns)   --->   "%store_ln39 = store i8 %i_11, i8 %i" [data/benchmarks/gsm/gsm_lpc.c:39]   --->   Operation 55 'store' 'store_ln39' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+
+State 2 <SV = 1> <Delay = 4.65>
+ST_2 : Operation 56 [1/1] (0.00ns)   --->   "%p_load33 = load i64 %empty" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 56 'load' 'p_load33' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 57 [1/1] (0.00ns)   --->   "%p_load31 = load i64 %empty_75" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 57 'load' 'p_load31' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 58 [1/2] (1.17ns)   --->   "%sl = load i8 %indata_addr" [data/benchmarks/gsm/gsm_lpc.c:131]   --->   Operation 58 'load' 'sl' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 59 [1/1] (0.00ns)   --->   "%sext_ln132 = sext i16 %sl" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 59 'sext' 'sext_ln132' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 60 [1/1] (1.94ns)   --->   "%mul_ln132 = mul i32 %sext_ln132, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 60 'mul' 'mul_ln132' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 61 [1/1] (0.00ns)   --->   "%sext_ln132_1 = sext i32 %mul_ln132" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 61 'sext' 'sext_ln132_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 62 [1/1] (1.14ns)   --->   "%add_ln132 = add i64 %sext_ln132_1, i64 %p_load33" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 62 'add' 'add_ln132' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 63 [1/2] (1.17ns)   --->   "%indata_load = load i8 %indata_addr_1" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 63 'load' 'indata_load' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 64 [1/1] (0.00ns)   --->   "%sext_ln133 = sext i16 %indata_load" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 64 'sext' 'sext_ln133' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 65 [1/1] (1.94ns)   --->   "%mul_ln133 = mul i32 %sext_ln133, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 65 'mul' 'mul_ln133' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 66 [1/1] (0.00ns)   --->   "%sext_ln133_1 = sext i32 %mul_ln133" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 66 'sext' 'sext_ln133_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 67 [1/1] (1.14ns)   --->   "%add_ln133 = add i64 %sext_ln133_1, i64 %p_load31" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 67 'add' 'add_ln133' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 68 [1/1] (0.70ns)   --->   "%add_ln134 = add i8 %idx_load, i8 6" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 68 'add' 'add_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 69 [1/1] (0.00ns)   --->   "%zext_ln134 = zext i8 %add_ln134" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 69 'zext' 'zext_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 70 [1/1] (0.00ns)   --->   "%indata_addr_2 = getelementptr i16 %indata, i64 0, i64 %zext_ln134" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 70 'getelementptr' 'indata_addr_2' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 71 [2/2] (1.17ns)   --->   "%indata_load_1 = load i8 %indata_addr_2" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 71 'load' 'indata_load_1' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 72 [1/1] (0.70ns)   --->   "%add_ln135 = add i8 %idx_load, i8 5" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 72 'add' 'add_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 73 [1/1] (0.00ns)   --->   "%zext_ln135 = zext i8 %add_ln135" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 73 'zext' 'zext_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 74 [1/1] (0.00ns)   --->   "%indata_addr_3 = getelementptr i16 %indata, i64 0, i64 %zext_ln135" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 74 'getelementptr' 'indata_addr_3' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_2 : Operation 75 [2/2] (1.17ns)   --->   "%indata_load_2 = load i8 %indata_addr_3" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 75 'load' 'indata_load_2' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_2 : Operation 76 [1/1] (0.38ns)   --->   "%store_ln133 = store i64 %add_ln133, i64 %empty_75" [data/benchmarks/gsm/gsm_lpc.c:133]   --->   Operation 76 'store' 'store_ln133' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_2 : Operation 77 [1/1] (0.38ns)   --->   "%store_ln132 = store i64 %add_ln132, i64 %empty" [data/benchmarks/gsm/gsm_lpc.c:132]   --->   Operation 77 'store' 'store_ln132' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+
+State 3 <SV = 2> <Delay = 4.65>
+ST_3 : Operation 78 [1/1] (0.00ns)   --->   "%p_load29 = load i64 %empty_76" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 78 'load' 'p_load29' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 79 [1/1] (0.00ns)   --->   "%p_load27 = load i64 %empty_77" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 79 'load' 'p_load27' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 80 [1/2] (1.17ns)   --->   "%indata_load_1 = load i8 %indata_addr_2" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 80 'load' 'indata_load_1' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_3 : Operation 81 [1/1] (0.00ns)   --->   "%sext_ln134 = sext i16 %indata_load_1" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 81 'sext' 'sext_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 82 [1/1] (1.94ns)   --->   "%mul_ln134 = mul i32 %sext_ln134, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 82 'mul' 'mul_ln134' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 83 [1/1] (0.00ns)   --->   "%sext_ln134_1 = sext i32 %mul_ln134" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 83 'sext' 'sext_ln134_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 84 [1/1] (1.14ns)   --->   "%add_ln134_1 = add i64 %sext_ln134_1, i64 %p_load29" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 84 'add' 'add_ln134_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 85 [1/2] (1.17ns)   --->   "%indata_load_2 = load i8 %indata_addr_3" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 85 'load' 'indata_load_2' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%sext_ln135 = sext i16 %indata_load_2" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 86 'sext' 'sext_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (1.94ns)   --->   "%mul_ln135 = mul i32 %sext_ln135, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 87 'mul' 'mul_ln135' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 88 [1/1] (0.00ns)   --->   "%sext_ln135_1 = sext i32 %mul_ln135" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 88 'sext' 'sext_ln135_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 89 [1/1] (1.14ns)   --->   "%add_ln135_1 = add i64 %sext_ln135_1, i64 %p_load27" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 89 'add' 'add_ln135_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 90 [1/1] (0.70ns)   --->   "%add_ln136 = add i8 %idx_load, i8 4" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 90 'add' 'add_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 91 [1/1] (0.00ns)   --->   "%zext_ln136 = zext i8 %add_ln136" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 91 'zext' 'zext_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 92 [1/1] (0.00ns)   --->   "%indata_addr_4 = getelementptr i16 %indata, i64 0, i64 %zext_ln136" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 92 'getelementptr' 'indata_addr_4' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 93 [2/2] (1.17ns)   --->   "%indata_load_3 = load i8 %indata_addr_4" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 93 'load' 'indata_load_3' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_3 : Operation 94 [1/1] (0.70ns)   --->   "%add_ln137 = add i8 %idx_load, i8 3" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 94 'add' 'add_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 95 [1/1] (0.00ns)   --->   "%zext_ln137 = zext i8 %add_ln137" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 95 'zext' 'zext_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 96 [1/1] (0.00ns)   --->   "%indata_addr_5 = getelementptr i16 %indata, i64 0, i64 %zext_ln137" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 96 'getelementptr' 'indata_addr_5' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_3 : Operation 97 [2/2] (1.17ns)   --->   "%indata_load_4 = load i8 %indata_addr_5" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 97 'load' 'indata_load_4' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_3 : Operation 98 [1/1] (0.38ns)   --->   "%store_ln135 = store i64 %add_ln135_1, i64 %empty_77" [data/benchmarks/gsm/gsm_lpc.c:135]   --->   Operation 98 'store' 'store_ln135' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_3 : Operation 99 [1/1] (0.38ns)   --->   "%store_ln134 = store i64 %add_ln134_1, i64 %empty_76" [data/benchmarks/gsm/gsm_lpc.c:134]   --->   Operation 99 'store' 'store_ln134' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+
+State 4 <SV = 3> <Delay = 4.65>
+ST_4 : Operation 100 [1/1] (0.70ns)   --->   "%add_ln139 = add i8 %idx_load, i8 1" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 100 'add' 'add_ln139' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 101 [1/1] (0.00ns)   --->   "%p_load25 = load i64 %empty_78" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 101 'load' 'p_load25' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 102 [1/1] (0.00ns)   --->   "%p_load23 = load i64 %empty_79" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 102 'load' 'p_load23' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 103 [1/2] (1.17ns)   --->   "%indata_load_3 = load i8 %indata_addr_4" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 103 'load' 'indata_load_3' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_4 : Operation 104 [1/1] (0.00ns)   --->   "%sext_ln136 = sext i16 %indata_load_3" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 104 'sext' 'sext_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 105 [1/1] (1.94ns)   --->   "%mul_ln136 = mul i32 %sext_ln136, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 105 'mul' 'mul_ln136' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 106 [1/1] (0.00ns)   --->   "%sext_ln136_1 = sext i32 %mul_ln136" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 106 'sext' 'sext_ln136_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 107 [1/1] (1.14ns)   --->   "%add_ln136_1 = add i64 %sext_ln136_1, i64 %p_load25" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 107 'add' 'add_ln136_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 108 [1/2] (1.17ns)   --->   "%indata_load_4 = load i8 %indata_addr_5" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 108 'load' 'indata_load_4' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_4 : Operation 109 [1/1] (0.00ns)   --->   "%sext_ln137 = sext i16 %indata_load_4" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 109 'sext' 'sext_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 110 [1/1] (1.94ns)   --->   "%mul_ln137 = mul i32 %sext_ln137, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 110 'mul' 'mul_ln137' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 111 [1/1] (0.00ns)   --->   "%sext_ln137_1 = sext i32 %mul_ln137" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 111 'sext' 'sext_ln137_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 112 [1/1] (1.14ns)   --->   "%add_ln137_1 = add i64 %sext_ln137_1, i64 %p_load23" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 112 'add' 'add_ln137_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 113 [1/1] (0.70ns)   --->   "%add_ln138 = add i8 %idx_load, i8 2" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 113 'add' 'add_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 114 [1/1] (0.00ns)   --->   "%zext_ln138 = zext i8 %add_ln138" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 114 'zext' 'zext_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 115 [1/1] (0.00ns)   --->   "%indata_addr_6 = getelementptr i16 %indata, i64 0, i64 %zext_ln138" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 115 'getelementptr' 'indata_addr_6' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 116 [2/2] (1.17ns)   --->   "%indata_load_5 = load i8 %indata_addr_6" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 116 'load' 'indata_load_5' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_4 : Operation 117 [1/1] (0.00ns)   --->   "%zext_ln139 = zext i8 %add_ln139" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 117 'zext' 'zext_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 118 [1/1] (0.00ns)   --->   "%indata_addr_7 = getelementptr i16 %indata, i64 0, i64 %zext_ln139" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 118 'getelementptr' 'indata_addr_7' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 119 [2/2] (1.17ns)   --->   "%indata_load_6 = load i8 %indata_addr_7" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 119 'load' 'indata_load_6' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_4 : Operation 120 [1/1] (0.38ns)   --->   "%store_ln137 = store i64 %add_ln137_1, i64 %empty_79" [data/benchmarks/gsm/gsm_lpc.c:137]   --->   Operation 120 'store' 'store_ln137' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_4 : Operation 121 [1/1] (0.38ns)   --->   "%store_ln136 = store i64 %add_ln136_1, i64 %empty_78" [data/benchmarks/gsm/gsm_lpc.c:136]   --->   Operation 121 'store' 'store_ln136' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_4 : Operation 122 [1/1] (0.38ns)   --->   "%store_ln139 = store i8 %add_ln139, i8 %idx" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 122 'store' 'store_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_4 : Operation 151 [1/1] (0.00ns)   --->   "%p_load34 = load i64 %empty"   --->   Operation 151 'load' 'p_load34' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 152 [1/1] (0.00ns)   --->   "%p_load32 = load i64 %empty_75"   --->   Operation 152 'load' 'p_load32' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 153 [1/1] (0.00ns)   --->   "%p_load30 = load i64 %empty_76"   --->   Operation 153 'load' 'p_load30' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 154 [1/1] (0.00ns)   --->   "%p_load28 = load i64 %empty_77"   --->   Operation 154 'load' 'p_load28' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 155 [1/1] (0.00ns)   --->   "%p_load26 = load i64 %empty_78"   --->   Operation 155 'load' 'p_load26' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 156 [1/1] (0.00ns)   --->   "%p_load24 = load i64 %empty_79"   --->   Operation 156 'load' 'p_load24' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 157 [1/1] (0.00ns)   --->   "%p_load22 = load i64 %empty_80"   --->   Operation 157 'load' 'p_load22' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 158 [1/1] (0.00ns)   --->   "%p_load20 = load i64 %empty_81"   --->   Operation 158 'load' 'p_load20' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 159 [1/1] (0.00ns)   --->   "%p_load18 = load i64 %empty_82"   --->   Operation 159 'load' 'p_load18' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 160 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out, i64 %p_load18"   --->   Operation 160 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 161 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out1, i64 %p_load20"   --->   Operation 161 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 162 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out2, i64 %p_load22"   --->   Operation 162 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 163 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out3, i64 %p_load24"   --->   Operation 163 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 164 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out4, i64 %p_load26"   --->   Operation 164 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 165 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out5, i64 %p_load28"   --->   Operation 165 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 166 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out6, i64 %p_load30"   --->   Operation 166 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 167 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out7, i64 %p_load32"   --->   Operation 167 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 168 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i64P0A, i64 %p_out8, i64 %p_load34"   --->   Operation 168 'write' 'write_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+ST_4 : Operation 169 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 169 'ret' 'ret_ln0' <Predicate = (icmp_ln129)> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 4.65>
+ST_5 : Operation 123 [1/1] (0.00ns)   --->   "%p_load21 = load i64 %empty_80" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 123 'load' 'p_load21' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 124 [1/1] (0.00ns)   --->   "%p_load19 = load i64 %empty_81" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 124 'load' 'p_load19' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 125 [1/1] (0.00ns)   --->   "%zext_ln129 = zext i8 %idx_load" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 125 'zext' 'zext_ln129' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 126 [1/2] (1.17ns)   --->   "%indata_load_5 = load i8 %indata_addr_6" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 126 'load' 'indata_load_5' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_5 : Operation 127 [1/1] (0.00ns)   --->   "%sext_ln138 = sext i16 %indata_load_5" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 127 'sext' 'sext_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 128 [1/1] (1.94ns)   --->   "%mul_ln138 = mul i32 %sext_ln138, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 128 'mul' 'mul_ln138' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 129 [1/1] (0.00ns)   --->   "%sext_ln138_1 = sext i32 %mul_ln138" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 129 'sext' 'sext_ln138_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 130 [1/1] (1.14ns)   --->   "%add_ln138_1 = add i64 %sext_ln138_1, i64 %p_load21" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 130 'add' 'add_ln138_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 131 [1/2] (1.17ns)   --->   "%indata_load_6 = load i8 %indata_addr_7" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 131 'load' 'indata_load_6' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_5 : Operation 132 [1/1] (0.00ns)   --->   "%sext_ln139 = sext i16 %indata_load_6" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 132 'sext' 'sext_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 133 [1/1] (1.94ns)   --->   "%mul_ln139 = mul i32 %sext_ln139, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 133 'mul' 'mul_ln139' <Predicate = (!icmp_ln129)> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 134 [1/1] (0.00ns)   --->   "%sext_ln139_1 = sext i32 %mul_ln139" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 134 'sext' 'sext_ln139_1' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 135 [1/1] (1.14ns)   --->   "%add_ln139_1 = add i64 %sext_ln139_1, i64 %p_load19" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 135 'add' 'add_ln139_1' <Predicate = (!icmp_ln129)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 136 [1/1] (0.00ns)   --->   "%indata_addr_8 = getelementptr i16 %indata, i64 0, i64 %zext_ln129" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 136 'getelementptr' 'indata_addr_8' <Predicate = (!icmp_ln129)> <Delay = 0.00>
+ST_5 : Operation 137 [2/2] (1.17ns)   --->   "%indata_load_7 = load i8 %indata_addr_8" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 137 'load' 'indata_load_7' <Predicate = (!icmp_ln129)> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_5 : Operation 138 [1/1] (0.38ns)   --->   "%store_ln139 = store i64 %add_ln139_1, i64 %empty_81" [data/benchmarks/gsm/gsm_lpc.c:139]   --->   Operation 138 'store' 'store_ln139' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+ST_5 : Operation 139 [1/1] (0.38ns)   --->   "%store_ln138 = store i64 %add_ln138_1, i64 %empty_80" [data/benchmarks/gsm/gsm_lpc.c:138]   --->   Operation 139 'store' 'store_ln138' <Predicate = (!icmp_ln129)> <Delay = 0.38>
+
+State 6 <SV = 5> <Delay = 4.65>
+ST_6 : Operation 140 [1/1] (0.00ns)   --->   "%p_load = load i64 %empty_82" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 140 'load' 'p_load' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 141 [1/1] (0.00ns)   --->   "%specpipeline_ln43 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty" [data/benchmarks/gsm/gsm_lpc.c:43]   --->   Operation 141 'specpipeline' 'specpipeline_ln43' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 142 [1/1] (0.00ns)   --->   "%speclooptripcount_ln130 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 152, i64 152, i64 152" [data/benchmarks/gsm/gsm_lpc.c:130]   --->   Operation 142 'speclooptripcount' 'speclooptripcount_ln130' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 143 [1/1] (0.00ns)   --->   "%specloopname_ln129 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 143 'specloopname' 'specloopname_ln129' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 144 [1/2] (1.17ns)   --->   "%indata_load_7 = load i8 %indata_addr_8" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 144 'load' 'indata_load_7' <Predicate = true> <Delay = 1.17> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.17> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 160> <RAM>
+ST_6 : Operation 145 [1/1] (0.00ns)   --->   "%sext_ln140 = sext i16 %indata_load_7" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 145 'sext' 'sext_ln140' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 146 [1/1] (1.94ns)   --->   "%mul_ln140 = mul i32 %sext_ln140, i32 %sext_ln132" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 146 'mul' 'mul_ln140' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 147 [1/1] (0.00ns)   --->   "%sext_ln140_1 = sext i32 %mul_ln140" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 147 'sext' 'sext_ln140_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 148 [1/1] (1.14ns)   --->   "%add_ln140 = add i64 %sext_ln140_1, i64 %p_load" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 148 'add' 'add_ln140' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 149 [1/1] (0.38ns)   --->   "%store_ln140 = store i64 %add_ln140, i64 %empty_82" [data/benchmarks/gsm/gsm_lpc.c:140]   --->   Operation 149 'store' 'store_ln140' <Predicate = true> <Delay = 0.38>
+ST_6 : Operation 150 [1/1] (0.00ns)   --->   "%br_ln129 = br void %for.inc318" [data/benchmarks/gsm/gsm_lpc.c:129]   --->   Operation 150 'br' 'br_ln129' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 2.269ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'idx' [51]  (0.387 ns)
+	'load' operation 8 bit ('idx_load', data/benchmarks/gsm/gsm_lpc.c:43) on local variable 'idx' [54]  (0.000 ns)
+	'add' operation 8 bit ('add_ln131', data/benchmarks/gsm/gsm_lpc.c:131) [75]  (0.705 ns)
+	'getelementptr' operation 8 bit ('indata_addr', data/benchmarks/gsm/gsm_lpc.c:131) [77]  (0.000 ns)
+	'load' operation 16 bit ('sl', data/benchmarks/gsm/gsm_lpc.c:131) on array 'indata' [78]  (1.177 ns)
+
+ <State 2>: 4.651ns
+The critical path consists of the following:
+	'load' operation 16 bit ('sl', data/benchmarks/gsm/gsm_lpc.c:131) on array 'indata' [78]  (1.177 ns)
+	'mul' operation 32 bit ('mul_ln133', data/benchmarks/gsm/gsm_lpc.c:133) [86]  (1.940 ns)
+	'add' operation 64 bit ('add_ln133', data/benchmarks/gsm/gsm_lpc.c:133) [88]  (1.147 ns)
+	'store' operation 0 bit ('store_ln133', data/benchmarks/gsm/gsm_lpc.c:133) of variable 'add_ln133', data/benchmarks/gsm/gsm_lpc.c:133 on local variable 'empty_75' [150]  (0.387 ns)
+
+ <State 3>: 4.651ns
+The critical path consists of the following:
+	'load' operation 16 bit ('indata_load_2', data/benchmarks/gsm/gsm_lpc.c:135) on array 'indata' [100]  (1.177 ns)
+	'mul' operation 32 bit ('mul_ln135', data/benchmarks/gsm/gsm_lpc.c:135) [102]  (1.940 ns)
+	'add' operation 64 bit ('add_ln135_1', data/benchmarks/gsm/gsm_lpc.c:135) [104]  (1.147 ns)
+	'store' operation 0 bit ('store_ln135', data/benchmarks/gsm/gsm_lpc.c:135) of variable 'add_ln135_1', data/benchmarks/gsm/gsm_lpc.c:135 on local variable 'empty_77' [148]  (0.387 ns)
+
+ <State 4>: 4.651ns
+The critical path consists of the following:
+	'load' operation 16 bit ('indata_load_4', data/benchmarks/gsm/gsm_lpc.c:137) on array 'indata' [116]  (1.177 ns)
+	'mul' operation 32 bit ('mul_ln137', data/benchmarks/gsm/gsm_lpc.c:137) [118]  (1.940 ns)
+	'add' operation 64 bit ('add_ln137_1', data/benchmarks/gsm/gsm_lpc.c:137) [120]  (1.147 ns)
+	'store' operation 0 bit ('store_ln137', data/benchmarks/gsm/gsm_lpc.c:137) of variable 'add_ln137_1', data/benchmarks/gsm/gsm_lpc.c:137 on local variable 'empty_79' [146]  (0.387 ns)
+
+ <State 5>: 4.651ns
+The critical path consists of the following:
+	'load' operation 16 bit ('indata_load_6', data/benchmarks/gsm/gsm_lpc.c:139) on array 'indata' [131]  (1.177 ns)
+	'mul' operation 32 bit ('mul_ln139', data/benchmarks/gsm/gsm_lpc.c:139) [133]  (1.940 ns)
+	'add' operation 64 bit ('add_ln139_1', data/benchmarks/gsm/gsm_lpc.c:139) [135]  (1.147 ns)
+	'store' operation 0 bit ('store_ln139', data/benchmarks/gsm/gsm_lpc.c:139) of variable 'add_ln139_1', data/benchmarks/gsm/gsm_lpc.c:139 on local variable 'empty_81' [144]  (0.387 ns)
+
+ <State 6>: 4.651ns
+The critical path consists of the following:
+	'load' operation 16 bit ('indata_load_7', data/benchmarks/gsm/gsm_lpc.c:140) on array 'indata' [137]  (1.177 ns)
+	'mul' operation 32 bit ('mul_ln140', data/benchmarks/gsm/gsm_lpc.c:140) [139]  (1.940 ns)
+	'add' operation 64 bit ('add_ln140', data/benchmarks/gsm/gsm_lpc.c:140) [141]  (1.147 ns)
+	'store' operation 0 bit ('store_ln140', data/benchmarks/gsm/gsm_lpc.c:140) of variable 'add_ln140', data/benchmarks/gsm/gsm_lpc.c:140 on local variable 'empty_82' [143]  (0.387 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

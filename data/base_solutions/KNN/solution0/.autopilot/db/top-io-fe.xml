@@ -1,0 +1,44 @@
+<root versionMajor = "1" versionMinor = "5">
+  <kernel src_name="md_kernel" language="c" hwCtrl="ap_ctrl_hs" mem_layout="fpga64-xilinx-none">
+    <args>
+      <arg id="0" access_type="w" src_name="force_x" src_type="double*" src_isptr="1" src_bitwidth="64" src_size_or_depth="256">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="force_x" hw_bitwidth="64" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="1" access_type="w" src_name="force_y" src_type="double*" src_isptr="1" src_bitwidth="64" src_size_or_depth="256">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="force_y" hw_bitwidth="64" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="2" access_type="w" src_name="force_z" src_type="double*" src_isptr="1" src_bitwidth="64" src_size_or_depth="256">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="force_z" hw_bitwidth="64" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="3" access_type="r" src_name="position_x" src_type="double*" src_isptr="1" src_bitwidth="64" src_size_or_depth="256">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="position_x" hw_bitwidth="64" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="4" access_type="r" src_name="position_y" src_type="double*" src_isptr="1" src_bitwidth="64" src_size_or_depth="256">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="position_y" hw_bitwidth="64" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="5" access_type="r" src_name="position_z" src_type="double*" src_isptr="1" src_bitwidth="64" src_size_or_depth="256">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="position_z" hw_bitwidth="64" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="6" access_type="r" src_name="NL" src_type="int*" src_isptr="1" src_bitwidth="32" src_size_or_depth="4096">
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="NL" hw_bitwidth="32" hw_size_or_depth="4096" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+    </args>
+    <return src_type="void" src_bitwidth="0" offset="0x0">
+      <hw hw_usage="data" hw_interface="" hw_name="" hw_bitwidth="0" hw_kernel_support="true"/>
+    </return>
+  </kernel>
+</root>
