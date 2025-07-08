@@ -42,7 +42,7 @@ FEATURE_SIZE_BY_TYPE = {
     "instr": 69, 
     "port": 25,
     "const": 5,
-    "region": 19,
+    "region": 18,
     "block": 14,
     "array": 24
 }
@@ -264,6 +264,7 @@ def update_with_directives(
             if dct == "pipeline" and region_node.is_loop:
                 # Pipeline pragma in a loop implies the complete
                 # unrolling of all its subloops (if any)
+                # region_node.attrs["ii"] = max(1, int(args.get("ii", 1)))
                 unroll_pipelined_subloops(region_node)
 
             if dct == "unroll" and region_node.attrs.get("unroll", 0) == 0:
