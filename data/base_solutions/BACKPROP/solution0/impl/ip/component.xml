@@ -459,7 +459,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a74cc7d6</spirit:value>
+            <spirit:value>4877d9d3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -478,7 +478,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ef5975a9</spirit:value>
+            <spirit:value>bffad7a4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -497,7 +497,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>35a5fefe</spirit:value>
+            <spirit:value>0aacf777</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -516,7 +516,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>cd7ceb65</spirit:value>
+            <spirit:value>a5be8413</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1245,35 +1245,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_backprop_loop1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_add_bias_to_activations_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_RELU_loop12.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_soft_max_loop1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_soft_max_loop2.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_take_difference_loop1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_dactivations1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_add_bias_to_activations_clone_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1313,10 +1289,6 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_flow_control_loop_pipe_sequential_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/backprop_get_delta_matrix_weights1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -1341,15 +1313,7 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1357,11 +1321,23 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_RELU.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/backprop_RELU_clone.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/backprop_soft_max.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/backprop_take_difference_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1391,42 +1367,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_backprop_loop1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_add_bias_to_activations_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_RELU_loop12.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_soft_max_loop1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_soft_max_loop2.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_backprop_Pipeline_take_difference_loop1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_dactivations1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_add_bias_to_activations_clone_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1476,11 +1422,6 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_flow_control_loop_pipe_sequential_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/backprop_get_delta_matrix_weights1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -1511,17 +1452,7 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1531,12 +1462,27 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
+        <spirit:name>hdl/verilog/backprop_RELU.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/backprop_RELU_clone.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/backprop_soft_max.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/backprop_take_difference_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1627,35 +1573,11 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_backprop_loop1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_add_bias_to_activations_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_RELU_loop1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_RELU_loop11.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_RELU_loop12.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_soft_max_loop1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_soft_max_loop2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_take_difference_loop1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_dactivations1_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_add_bias_to_activations_clone_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1695,10 +1617,6 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/backprop_get_delta_matrix_weights1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
@@ -1723,15 +1641,7 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_output_layer_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1739,11 +1649,23 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_mux_3_2_64_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_mux_3_2_64_1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_RELU.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/backprop_RELU_clone.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/backprop_soft_max.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/backprop_take_difference_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1753,7 +1675,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/backprop.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_74a03c12</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_e531c86b</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1774,42 +1696,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_backprop_loop1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_add_bias_to_activations_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_RELU_loop1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_RELU_loop11.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_RELU_loop12.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_soft_max_loop1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_soft_max_loop2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_backprop_Pipeline_take_difference_loop1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_dactivations1_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_add_bias_to_activations_clone_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1859,11 +1751,6 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/backprop_get_delta_matrix_weights1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -1894,17 +1781,7 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_output_layer_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1914,12 +1791,27 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_mux_3_2_64_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/backprop_mux_3_2_64_1_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/backprop_RELU.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/backprop_RELU_clone.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/backprop_soft_max.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/backprop_take_difference_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -2026,7 +1918,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">50132118</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">50857142</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
@@ -2043,8 +1935,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Backprop</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114106463</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-05-31T00:43:32Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114162973</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-07-09T06:33:13Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -2053,9 +1945,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="f5988edd"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bc6cb061"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ba2f8f7e"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="896f84d0"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="16869873"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="5ec02c40"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

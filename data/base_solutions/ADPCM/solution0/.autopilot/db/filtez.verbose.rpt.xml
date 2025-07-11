@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'filtez'" level="0">
-<item name = "Date">Fri May 30 21:17:06 2025
+<item name = "Date">Wed Jul  9 03:19:59 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -81,10 +81,10 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln464_fu_142_p2">+, 0, 0, 10, 3, 1</column>
-<column name="i_fu_136_p2">+, 0, 0, 10, 3, 1</column>
-<column name="zl_2_fu_182_p2">+, 0, 0, 57, 50, 50</column>
-<column name="icmp_ln464_fu_121_p2">icmp, 0, 0, 10, 3, 3</column>
+<column name="add_ln464_fu_148_p2">+, 0, 0, 10, 3, 1</column>
+<column name="i_fu_142_p2">+, 0, 0, 10, 3, 1</column>
+<column name="zl_2_fu_188_p2">+, 0, 0, 57, 50, 50</column>
+<column name="icmp_ln464_fu_127_p2">icmp, 0, 0, 10, 3, 3</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -92,19 +92,19 @@
 <column name="ap_NS_fsm">26, 5, 1, 5</column>
 <column name="bpl_address0">14, 3, 3, 9</column>
 <column name="dlt_address0">14, 3, 3, 9</column>
-<column name="grp_fu_82_p0">14, 3, 16, 48</column>
-<column name="grp_fu_82_p1">14, 3, 32, 96</column>
-<column name="i_02_fu_34">9, 2, 3, 6</column>
-<column name="idx_fu_26">9, 2, 3, 6</column>
-<column name="zl_1_fu_30">9, 2, 50, 100</column>
+<column name="grp_fu_88_p0">14, 3, 16, 48</column>
+<column name="grp_fu_88_p1">14, 3, 32, 96</column>
+<column name="i_02_fu_40">9, 2, 3, 6</column>
+<column name="idx_fu_32">9, 2, 3, 6</column>
+<column name="zl_1_fu_36">9, 2, 50, 100</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">4, 0, 4, 0</column>
-<column name="i_02_fu_34">3, 0, 3, 0</column>
-<column name="idx_fu_26">3, 0, 3, 0</column>
-<column name="zl_1_fu_30">50, 0, 50, 0</column>
+<column name="i_02_fu_40">3, 0, 3, 0</column>
+<column name="idx_fu_32">3, 0, 3, 0</column>
+<column name="zl_1_fu_36">50, 0, 50, 0</column>
 </table>
 </item>
 </section>

@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="backprop_backprop,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.974629,HLS_SYN_LAT=50132118,HLS_SYN_TPT=none,HLS_SYN_MEM=6,HLS_SYN_DSP=0,HLS_SYN_FF=10800,HLS_SYN_LUT=12085,HLS_VERSION=2023_2}" *)
+(* CORE_GENERATION_INFO="backprop_backprop,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.974629,HLS_SYN_LAT=50857142,HLS_SYN_TPT=none,HLS_SYN_MEM=6,HLS_SYN_DSP=0,HLS_SYN_FF=12531,HLS_SYN_LUT=15307,HLS_VERSION=2023_2}" *)
 
 module backprop (
         ap_clk,
@@ -53,36 +53,31 @@ module backprop (
         training_targets_q0
 );
 
-parameter    ap_ST_fsm_state1 = 30'd1;
-parameter    ap_ST_fsm_state2 = 30'd2;
-parameter    ap_ST_fsm_state3 = 30'd4;
-parameter    ap_ST_fsm_state4 = 30'd8;
-parameter    ap_ST_fsm_state5 = 30'd16;
-parameter    ap_ST_fsm_state6 = 30'd32;
-parameter    ap_ST_fsm_state7 = 30'd64;
-parameter    ap_ST_fsm_state8 = 30'd128;
-parameter    ap_ST_fsm_state9 = 30'd256;
-parameter    ap_ST_fsm_state10 = 30'd512;
-parameter    ap_ST_fsm_state11 = 30'd1024;
-parameter    ap_ST_fsm_state12 = 30'd2048;
-parameter    ap_ST_fsm_state13 = 30'd4096;
-parameter    ap_ST_fsm_state14 = 30'd8192;
-parameter    ap_ST_fsm_state15 = 30'd16384;
-parameter    ap_ST_fsm_state16 = 30'd32768;
-parameter    ap_ST_fsm_state17 = 30'd65536;
-parameter    ap_ST_fsm_state18 = 30'd131072;
-parameter    ap_ST_fsm_state19 = 30'd262144;
-parameter    ap_ST_fsm_state20 = 30'd524288;
-parameter    ap_ST_fsm_state21 = 30'd1048576;
-parameter    ap_ST_fsm_state22 = 30'd2097152;
-parameter    ap_ST_fsm_state23 = 30'd4194304;
-parameter    ap_ST_fsm_state24 = 30'd8388608;
-parameter    ap_ST_fsm_state25 = 30'd16777216;
-parameter    ap_ST_fsm_state26 = 30'd33554432;
-parameter    ap_ST_fsm_state27 = 30'd67108864;
-parameter    ap_ST_fsm_state28 = 30'd134217728;
-parameter    ap_ST_fsm_state29 = 30'd268435456;
-parameter    ap_ST_fsm_state30 = 30'd536870912;
+parameter    ap_ST_fsm_state1 = 25'd1;
+parameter    ap_ST_fsm_state2 = 25'd2;
+parameter    ap_ST_fsm_state3 = 25'd4;
+parameter    ap_ST_fsm_state4 = 25'd8;
+parameter    ap_ST_fsm_state5 = 25'd16;
+parameter    ap_ST_fsm_state6 = 25'd32;
+parameter    ap_ST_fsm_state7 = 25'd64;
+parameter    ap_ST_fsm_state8 = 25'd128;
+parameter    ap_ST_fsm_state9 = 25'd256;
+parameter    ap_ST_fsm_state10 = 25'd512;
+parameter    ap_ST_fsm_state11 = 25'd1024;
+parameter    ap_ST_fsm_state12 = 25'd2048;
+parameter    ap_ST_fsm_state13 = 25'd4096;
+parameter    ap_ST_fsm_state14 = 25'd8192;
+parameter    ap_ST_fsm_state15 = 25'd16384;
+parameter    ap_ST_fsm_state16 = 25'd32768;
+parameter    ap_ST_fsm_state17 = 25'd65536;
+parameter    ap_ST_fsm_state18 = 25'd131072;
+parameter    ap_ST_fsm_state19 = 25'd262144;
+parameter    ap_ST_fsm_state20 = 25'd524288;
+parameter    ap_ST_fsm_state21 = 25'd1048576;
+parameter    ap_ST_fsm_state22 = 25'd2097152;
+parameter    ap_ST_fsm_state23 = 25'd4194304;
+parameter    ap_ST_fsm_state24 = 25'd8388608;
+parameter    ap_ST_fsm_state25 = 25'd16777216;
 
 input   ap_clk;
 input   ap_rst;
@@ -151,34 +146,50 @@ reg biases3_we0;
 reg[11:0] training_data_address0;
 reg training_data_ce0;
 
-(* fsm_encoding = "none" *) reg   [29:0] ap_CS_fsm;
+(* fsm_encoding = "none" *) reg   [24:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-reg   [11:0] phi_mul_load_reg_867;
+reg   [11:0] phi_mul_load_reg_827;
 wire    ap_CS_fsm_state2;
-reg   [7:0] i_32_reg_873;
-reg   [63:0] activations3_0_reg_909;
+wire   [11:0] add_ln356_1_fu_496_p2;
+reg   [11:0] add_ln356_1_reg_845;
+wire   [7:0] add_ln356_fu_508_p2;
+reg   [7:0] add_ln356_reg_853;
+wire   [8:0] zext_ln356_fu_514_p1;
+reg   [8:0] zext_ln356_reg_858;
+wire   [6:0] add_ln359_fu_524_p2;
+reg   [6:0] add_ln359_reg_866;
+wire    ap_CS_fsm_state3;
+wire   [8:0] sub_ln374_fu_557_p2;
+reg   [8:0] sub_ln374_reg_877;
+reg   [63:0] activations3_0_reg_891;
 wire    ap_CS_fsm_state13;
-reg   [63:0] activations3_1_reg_914;
-reg   [63:0] activations3_2_reg_919;
-wire   [8:0] sub_ln374_fu_618_p2;
-reg   [8:0] sub_ln374_reg_972;
-wire    ap_CS_fsm_state19;
+reg   [63:0] activations3_1_reg_896;
+reg   [63:0] activations3_2_reg_901;
+reg   [63:0] dactivations3_2_reg_915;
+wire    ap_CS_fsm_state14;
+reg   [63:0] dactivations3_1_reg_920;
+reg   [63:0] dactivations3_0_reg_925;
+reg   [63:0] activations3_0_2_reg_930;
+reg   [63:0] activations3_1_2_reg_935;
+reg   [63:0] activations3_2_2_reg_940;
+reg   [63:0] net_outputs_0_reg_954;
+wire    ap_CS_fsm_state15;
+reg   [63:0] net_outputs_1_reg_959;
+reg   [63:0] net_outputs_2_reg_964;
+reg   [63:0] output_difference_0_reg_969;
+wire    ap_CS_fsm_state16;
+reg   [63:0] output_difference_1_reg_976;
+reg   [63:0] output_difference_2_reg_983;
 reg   [5:0] activations1_address0;
 reg    activations1_ce0;
 reg    activations1_we0;
 reg   [63:0] activations1_d0;
 wire   [63:0] activations1_q0;
-reg   [5:0] activations1_address1;
-reg    activations1_ce1;
-wire   [63:0] activations1_q1;
 reg   [5:0] activations2_address0;
 reg    activations2_ce0;
 reg    activations2_we0;
 reg   [63:0] activations2_d0;
 wire   [63:0] activations2_q0;
-reg   [5:0] activations2_address1;
-reg    activations2_ce1;
-wire   [63:0] activations2_q1;
 reg   [5:0] dactivations1_address0;
 reg    dactivations1_ce0;
 reg    dactivations1_we0;
@@ -207,430 +218,328 @@ reg   [5:0] oracle_activations2_address0;
 reg    oracle_activations2_ce0;
 reg    oracle_activations2_we0;
 wire   [63:0] oracle_activations2_q0;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_done;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_idle;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_ready;
-wire   [5:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_address0;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_ce0;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_we0;
-wire   [63:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_d0;
-wire   [5:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_address0;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_ce0;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_we0;
-wire   [63:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_d0;
-wire   [63:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_2_1_out;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_2_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_1_1_out;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_1_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_0_1_out;
-wire    grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_0_1_out_ap_vld;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_done;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_idle;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_ready;
-wire   [5:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_biases1_address0;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_biases1_ce0;
-wire   [9:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_weights1_address0;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_weights1_ce0;
-wire   [5:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_address0;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_ce0;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_we0;
-wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_d0;
-wire   [5:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_address1;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_ce1;
-wire   [11:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_training_data_address0;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_training_data_ce0;
-wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_din1;
-wire   [0:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_opcode;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_ce;
-wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_din1;
-wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_ce;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_ap_done;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_ap_idle;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_ap_ready;
-wire   [5:0] grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_address0;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_ce0;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_we0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_d0;
-wire   [5:0] grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_address1;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_ce1;
-wire   [5:0] grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_address0;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_ce0;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_we0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_d0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_din1;
-wire   [0:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_opcode;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_din1;
-wire   [1:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_opcode;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_ce;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_done;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_idle;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_ready;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_biases2_address0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_biases2_ce0;
-wire   [11:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_weights2_address0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_weights2_ce0;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_address0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_ce0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_we0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_d0;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_address1;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_ce1;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_input_activations_address0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_input_activations_ce0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_din1;
-wire   [0:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_opcode;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_ce;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_din1;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_ce;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_ap_done;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_ap_idle;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_ap_ready;
-wire   [5:0] grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_address0;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_ce0;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_we0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_d0;
-wire   [5:0] grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_address1;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_ce1;
-wire   [5:0] grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_address0;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_ce0;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_we0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_d0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_din1;
-wire   [0:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_opcode;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_din1;
-wire   [1:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_opcode;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_ce;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_done;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_idle;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_ready;
-wire   [1:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_biases3_address0;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_biases3_ce0;
-wire   [7:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_weights3_address0;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_weights3_ce0;
-wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_input_activations_address0;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_input_activations_ce0;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_0;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_1;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_2;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_din1;
-wire   [1:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_opcode;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_ce;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_din1;
-wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_ce;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_ap_done;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_ap_idle;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_ap_ready;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_2_1_out;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_2_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_1_1_out;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_1_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_0_1_out;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_0_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_din1;
-wire   [1:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_opcode;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_ce;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_din0;
-wire   [63:0] grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_din1;
-wire    grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_ce;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_done;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_idle;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_ready;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop1_fu_320_sum_out;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_sum_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_din0;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_din1;
-wire   [0:0] grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_opcode;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_ce;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_din0;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_din1;
-wire    grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_ce;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_done;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_idle;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_ready;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_2_1_out;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_2_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_1_1_out;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_1_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_0_1_out;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_0_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_din0;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_din1;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_ce;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_din0;
-wire   [63:0] grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_din1;
-wire    grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_ce;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_done;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_idle;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_ready;
-wire   [8:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_training_targets_address0;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_training_targets_ce0;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out_ap_vld;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_din0;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_din1;
-wire   [0:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_opcode;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_ce;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_din0;
-wire   [63:0] grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_din1;
-wire    grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_ce;
-wire    grp_get_delta_matrix_weights3_fu_361_ap_start;
-wire    grp_get_delta_matrix_weights3_fu_361_ap_done;
-wire    grp_get_delta_matrix_weights3_fu_361_ap_idle;
-wire    grp_get_delta_matrix_weights3_fu_361_ap_ready;
-wire   [7:0] grp_get_delta_matrix_weights3_fu_361_delta_weights3_address0;
-wire    grp_get_delta_matrix_weights3_fu_361_delta_weights3_ce0;
-wire    grp_get_delta_matrix_weights3_fu_361_delta_weights3_we0;
-wire   [63:0] grp_get_delta_matrix_weights3_fu_361_delta_weights3_d0;
-wire   [5:0] grp_get_delta_matrix_weights3_fu_361_last_activations_address0;
-wire    grp_get_delta_matrix_weights3_fu_361_last_activations_ce0;
-wire   [63:0] grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_din0;
-wire   [63:0] grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_din1;
-wire    grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_ce;
-wire    grp_get_oracle_activations2_1_fu_370_ap_start;
-wire    grp_get_oracle_activations2_1_fu_370_ap_done;
-wire    grp_get_oracle_activations2_1_fu_370_ap_idle;
-wire    grp_get_oracle_activations2_1_fu_370_ap_ready;
-wire   [7:0] grp_get_oracle_activations2_1_fu_370_weights3_address0;
-wire    grp_get_oracle_activations2_1_fu_370_weights3_ce0;
-wire   [5:0] grp_get_oracle_activations2_1_fu_370_oracle_activations_address0;
-wire    grp_get_oracle_activations2_1_fu_370_oracle_activations_ce0;
-wire    grp_get_oracle_activations2_1_fu_370_oracle_activations_we0;
-wire   [63:0] grp_get_oracle_activations2_1_fu_370_oracle_activations_d0;
-wire   [5:0] grp_get_oracle_activations2_1_fu_370_dactivations_address0;
-wire    grp_get_oracle_activations2_1_fu_370_dactivations_ce0;
-wire   [63:0] grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_din0;
-wire   [63:0] grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_din1;
-wire   [0:0] grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_opcode;
-wire    grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_ce;
-wire   [63:0] grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_din0;
-wire   [63:0] grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_din1;
-wire    grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_ce;
-wire    grp_get_delta_matrix_weights2_fu_381_ap_start;
-wire    grp_get_delta_matrix_weights2_fu_381_ap_done;
-wire    grp_get_delta_matrix_weights2_fu_381_ap_idle;
-wire    grp_get_delta_matrix_weights2_fu_381_ap_ready;
-wire   [11:0] grp_get_delta_matrix_weights2_fu_381_delta_weights2_address0;
-wire    grp_get_delta_matrix_weights2_fu_381_delta_weights2_ce0;
-wire    grp_get_delta_matrix_weights2_fu_381_delta_weights2_we0;
-wire   [63:0] grp_get_delta_matrix_weights2_fu_381_delta_weights2_d0;
-wire   [5:0] grp_get_delta_matrix_weights2_fu_381_output_difference_address0;
-wire    grp_get_delta_matrix_weights2_fu_381_output_difference_ce0;
-wire   [5:0] grp_get_delta_matrix_weights2_fu_381_last_activations_address0;
-wire    grp_get_delta_matrix_weights2_fu_381_last_activations_ce0;
-wire   [63:0] grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_din0;
-wire   [63:0] grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_din1;
-wire    grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_ce;
-wire    grp_get_oracle_activations1_1_fu_388_ap_start;
-wire    grp_get_oracle_activations1_1_fu_388_ap_done;
-wire    grp_get_oracle_activations1_1_fu_388_ap_idle;
-wire    grp_get_oracle_activations1_1_fu_388_ap_ready;
-wire   [11:0] grp_get_oracle_activations1_1_fu_388_weights2_address0;
-wire    grp_get_oracle_activations1_1_fu_388_weights2_ce0;
-wire   [5:0] grp_get_oracle_activations1_1_fu_388_output_differences_address0;
-wire    grp_get_oracle_activations1_1_fu_388_output_differences_ce0;
-wire   [5:0] grp_get_oracle_activations1_1_fu_388_oracle_activations_address0;
-wire    grp_get_oracle_activations1_1_fu_388_oracle_activations_ce0;
-wire    grp_get_oracle_activations1_1_fu_388_oracle_activations_we0;
-wire   [63:0] grp_get_oracle_activations1_1_fu_388_oracle_activations_d0;
-wire   [5:0] grp_get_oracle_activations1_1_fu_388_dactivations_address0;
-wire    grp_get_oracle_activations1_1_fu_388_dactivations_ce0;
-wire   [63:0] grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_din0;
-wire   [63:0] grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_din1;
-wire   [0:0] grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_opcode;
-wire    grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_ce;
-wire   [63:0] grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_din0;
-wire   [63:0] grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_din1;
-wire    grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_ce;
-wire    grp_get_delta_matrix_weights1_1_fu_397_ap_start;
-wire    grp_get_delta_matrix_weights1_1_fu_397_ap_done;
-wire    grp_get_delta_matrix_weights1_1_fu_397_ap_idle;
-wire    grp_get_delta_matrix_weights1_1_fu_397_ap_ready;
-wire   [9:0] grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_address0;
-wire    grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_ce0;
-wire    grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_we0;
-wire   [63:0] grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_d0;
-wire   [5:0] grp_get_delta_matrix_weights1_1_fu_397_output_difference_address0;
-wire    grp_get_delta_matrix_weights1_1_fu_397_output_difference_ce0;
-wire   [11:0] grp_get_delta_matrix_weights1_1_fu_397_training_data_address0;
-wire    grp_get_delta_matrix_weights1_1_fu_397_training_data_ce0;
-wire   [63:0] grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_din0;
-wire   [63:0] grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_din1;
-wire    grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_ce;
-wire    grp_update_weights_1_fu_406_ap_start;
-wire    grp_update_weights_1_fu_406_ap_done;
-wire    grp_update_weights_1_fu_406_ap_idle;
-wire    grp_update_weights_1_fu_406_ap_ready;
-wire   [9:0] grp_update_weights_1_fu_406_weights1_address0;
-wire    grp_update_weights_1_fu_406_weights1_ce0;
-wire    grp_update_weights_1_fu_406_weights1_we0;
-wire   [63:0] grp_update_weights_1_fu_406_weights1_d0;
-wire   [11:0] grp_update_weights_1_fu_406_weights2_address0;
-wire    grp_update_weights_1_fu_406_weights2_ce0;
-wire    grp_update_weights_1_fu_406_weights2_we0;
-wire   [63:0] grp_update_weights_1_fu_406_weights2_d0;
-wire   [7:0] grp_update_weights_1_fu_406_weights3_address0;
-wire    grp_update_weights_1_fu_406_weights3_ce0;
-wire    grp_update_weights_1_fu_406_weights3_we0;
-wire   [63:0] grp_update_weights_1_fu_406_weights3_d0;
-wire   [9:0] grp_update_weights_1_fu_406_d_weights1_address0;
-wire    grp_update_weights_1_fu_406_d_weights1_ce0;
-wire   [11:0] grp_update_weights_1_fu_406_d_weights2_address0;
-wire    grp_update_weights_1_fu_406_d_weights2_ce0;
-wire   [7:0] grp_update_weights_1_fu_406_d_weights3_address0;
-wire    grp_update_weights_1_fu_406_d_weights3_ce0;
-wire   [5:0] grp_update_weights_1_fu_406_biases1_address0;
-wire    grp_update_weights_1_fu_406_biases1_ce0;
-wire    grp_update_weights_1_fu_406_biases1_we0;
-wire   [63:0] grp_update_weights_1_fu_406_biases1_d0;
-wire   [5:0] grp_update_weights_1_fu_406_biases2_address0;
-wire    grp_update_weights_1_fu_406_biases2_ce0;
-wire    grp_update_weights_1_fu_406_biases2_we0;
-wire   [63:0] grp_update_weights_1_fu_406_biases2_d0;
-wire   [1:0] grp_update_weights_1_fu_406_biases3_address0;
-wire    grp_update_weights_1_fu_406_biases3_ce0;
-wire    grp_update_weights_1_fu_406_biases3_we0;
-wire   [63:0] grp_update_weights_1_fu_406_biases3_d0;
-wire   [5:0] grp_update_weights_1_fu_406_d_biases1_address0;
-wire    grp_update_weights_1_fu_406_d_biases1_ce0;
-wire   [5:0] grp_update_weights_1_fu_406_d_biases2_address0;
-wire    grp_update_weights_1_fu_406_d_biases2_ce0;
-wire   [63:0] grp_update_weights_1_fu_406_grp_fu_986_p_din0;
-wire   [63:0] grp_update_weights_1_fu_406_grp_fu_986_p_din1;
-wire   [1:0] grp_update_weights_1_fu_406_grp_fu_986_p_opcode;
-wire    grp_update_weights_1_fu_406_grp_fu_986_p_ce;
-wire   [63:0] grp_update_weights_1_fu_406_grp_fu_990_p_din0;
-wire   [63:0] grp_update_weights_1_fu_406_grp_fu_990_p_din1;
-wire    grp_update_weights_1_fu_406_grp_fu_990_p_ce;
-wire   [63:0] grp_update_weights_1_fu_406_grp_fu_998_p_din0;
-wire   [63:0] grp_update_weights_1_fu_406_grp_fu_998_p_din1;
-wire    grp_update_weights_1_fu_406_grp_fu_998_p_ce;
-reg    grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start_reg;
-wire   [0:0] icmp_ln356_fu_452_p2;
-wire    ap_CS_fsm_state3;
-reg    grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start_reg;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_done;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_idle;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_ready;
+wire   [5:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_biases1_address0;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_biases1_ce0;
+wire   [9:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_weights1_address0;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_weights1_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_address0;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_ce0;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_d0;
+wire   [11:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_training_data_address0;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_training_data_ce0;
+wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_opcode;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_din1;
+wire    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_ce;
+wire    grp_RELU_fu_335_ap_start;
+wire    grp_RELU_fu_335_ap_done;
+wire    grp_RELU_fu_335_ap_idle;
+wire    grp_RELU_fu_335_ap_ready;
+wire   [5:0] grp_RELU_fu_335_activations_address0;
+wire    grp_RELU_fu_335_activations_ce0;
+wire    grp_RELU_fu_335_activations_we0;
+wire   [63:0] grp_RELU_fu_335_activations_d0;
+reg   [63:0] grp_RELU_fu_335_activations_q0;
+wire   [5:0] grp_RELU_fu_335_dactivations_address0;
+wire    grp_RELU_fu_335_dactivations_ce0;
+wire    grp_RELU_fu_335_dactivations_we0;
+wire   [63:0] grp_RELU_fu_335_dactivations_d0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_done;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_idle;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_ready;
+wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_biases2_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_biases2_ce0;
+wire   [11:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_weights2_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_weights2_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_ce0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_we0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_d0;
+wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_input_activations_address0;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_input_activations_ce0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_opcode;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_din1;
+wire    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_ce;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_done;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_idle;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_ready;
+wire   [1:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_biases3_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_biases3_ce0;
+wire   [7:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_weights3_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_weights3_ce0;
+wire   [5:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_input_activations_address0;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_input_activations_ce0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_1;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_2;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_din1;
+wire   [0:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_opcode;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_ce;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_din0;
+wire   [63:0] grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_din1;
+wire    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_ce;
+wire    grp_RELU_clone_fu_366_ap_start;
+wire    grp_RELU_clone_fu_366_ap_done;
+wire    grp_RELU_clone_fu_366_ap_idle;
+wire    grp_RELU_clone_fu_366_ap_ready;
+wire   [63:0] grp_RELU_clone_fu_366_ap_return_0;
+wire   [63:0] grp_RELU_clone_fu_366_ap_return_1;
+wire   [63:0] grp_RELU_clone_fu_366_ap_return_2;
+wire   [63:0] grp_RELU_clone_fu_366_ap_return_3;
+wire   [63:0] grp_RELU_clone_fu_366_ap_return_4;
+wire   [63:0] grp_RELU_clone_fu_366_ap_return_5;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_990_p_din0;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_990_p_din1;
+wire   [1:0] grp_RELU_clone_fu_366_grp_fu_990_p_opcode;
+wire    grp_RELU_clone_fu_366_grp_fu_990_p_ce;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_994_p_din0;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_994_p_din1;
+wire    grp_RELU_clone_fu_366_grp_fu_994_p_ce;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_998_p_din0;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_998_p_din1;
+wire    grp_RELU_clone_fu_366_grp_fu_998_p_ce;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_1002_p_din0;
+wire   [63:0] grp_RELU_clone_fu_366_grp_fu_1002_p_din1;
+wire    grp_RELU_clone_fu_366_grp_fu_1002_p_ce;
+wire    grp_soft_max_fu_376_ap_start;
+wire    grp_soft_max_fu_376_ap_done;
+wire    grp_soft_max_fu_376_ap_idle;
+wire    grp_soft_max_fu_376_ap_ready;
+wire   [63:0] grp_soft_max_fu_376_ap_return_0;
+wire   [63:0] grp_soft_max_fu_376_ap_return_1;
+wire   [63:0] grp_soft_max_fu_376_ap_return_2;
+wire   [63:0] grp_soft_max_fu_376_grp_fu_990_p_din0;
+wire   [63:0] grp_soft_max_fu_376_grp_fu_990_p_din1;
+wire   [0:0] grp_soft_max_fu_376_grp_fu_990_p_opcode;
+wire    grp_soft_max_fu_376_grp_fu_990_p_ce;
+wire   [63:0] grp_soft_max_fu_376_grp_fu_998_p_din0;
+wire   [63:0] grp_soft_max_fu_376_grp_fu_998_p_din1;
+wire    grp_soft_max_fu_376_grp_fu_998_p_ce;
+wire   [63:0] grp_soft_max_fu_376_grp_fu_1002_p_din0;
+wire   [63:0] grp_soft_max_fu_376_grp_fu_1002_p_din1;
+wire    grp_soft_max_fu_376_grp_fu_1002_p_ce;
+wire    grp_take_difference_1_fu_386_ap_start;
+wire    grp_take_difference_1_fu_386_ap_done;
+wire    grp_take_difference_1_fu_386_ap_idle;
+wire    grp_take_difference_1_fu_386_ap_ready;
+wire   [8:0] grp_take_difference_1_fu_386_training_targets_address0;
+wire    grp_take_difference_1_fu_386_training_targets_ce0;
+wire   [63:0] grp_take_difference_1_fu_386_ap_return_0;
+wire   [63:0] grp_take_difference_1_fu_386_ap_return_1;
+wire   [63:0] grp_take_difference_1_fu_386_ap_return_2;
+wire   [63:0] grp_take_difference_1_fu_386_grp_fu_990_p_din0;
+wire   [63:0] grp_take_difference_1_fu_386_grp_fu_990_p_din1;
+wire   [0:0] grp_take_difference_1_fu_386_grp_fu_990_p_opcode;
+wire    grp_take_difference_1_fu_386_grp_fu_990_p_ce;
+wire   [63:0] grp_take_difference_1_fu_386_grp_fu_994_p_din0;
+wire   [63:0] grp_take_difference_1_fu_386_grp_fu_994_p_din1;
+wire    grp_take_difference_1_fu_386_grp_fu_994_p_ce;
+wire    grp_get_delta_matrix_weights3_fu_402_ap_start;
+wire    grp_get_delta_matrix_weights3_fu_402_ap_done;
+wire    grp_get_delta_matrix_weights3_fu_402_ap_idle;
+wire    grp_get_delta_matrix_weights3_fu_402_ap_ready;
+wire   [7:0] grp_get_delta_matrix_weights3_fu_402_delta_weights3_address0;
+wire    grp_get_delta_matrix_weights3_fu_402_delta_weights3_ce0;
+wire    grp_get_delta_matrix_weights3_fu_402_delta_weights3_we0;
+wire   [63:0] grp_get_delta_matrix_weights3_fu_402_delta_weights3_d0;
+wire   [5:0] grp_get_delta_matrix_weights3_fu_402_last_activations_address0;
+wire    grp_get_delta_matrix_weights3_fu_402_last_activations_ce0;
+wire   [63:0] grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_din0;
+wire   [63:0] grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_din1;
+wire    grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_ce;
+wire    grp_get_oracle_activations2_1_fu_411_ap_start;
+wire    grp_get_oracle_activations2_1_fu_411_ap_done;
+wire    grp_get_oracle_activations2_1_fu_411_ap_idle;
+wire    grp_get_oracle_activations2_1_fu_411_ap_ready;
+wire   [7:0] grp_get_oracle_activations2_1_fu_411_weights3_address0;
+wire    grp_get_oracle_activations2_1_fu_411_weights3_ce0;
+wire   [5:0] grp_get_oracle_activations2_1_fu_411_oracle_activations_address0;
+wire    grp_get_oracle_activations2_1_fu_411_oracle_activations_ce0;
+wire    grp_get_oracle_activations2_1_fu_411_oracle_activations_we0;
+wire   [63:0] grp_get_oracle_activations2_1_fu_411_oracle_activations_d0;
+wire   [5:0] grp_get_oracle_activations2_1_fu_411_dactivations_address0;
+wire    grp_get_oracle_activations2_1_fu_411_dactivations_ce0;
+wire   [63:0] grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_din0;
+wire   [63:0] grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_din1;
+wire   [0:0] grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_opcode;
+wire    grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_ce;
+wire    grp_get_delta_matrix_weights2_fu_422_ap_start;
+wire    grp_get_delta_matrix_weights2_fu_422_ap_done;
+wire    grp_get_delta_matrix_weights2_fu_422_ap_idle;
+wire    grp_get_delta_matrix_weights2_fu_422_ap_ready;
+wire   [11:0] grp_get_delta_matrix_weights2_fu_422_delta_weights2_address0;
+wire    grp_get_delta_matrix_weights2_fu_422_delta_weights2_ce0;
+wire    grp_get_delta_matrix_weights2_fu_422_delta_weights2_we0;
+wire   [63:0] grp_get_delta_matrix_weights2_fu_422_delta_weights2_d0;
+wire   [5:0] grp_get_delta_matrix_weights2_fu_422_output_difference_address0;
+wire    grp_get_delta_matrix_weights2_fu_422_output_difference_ce0;
+wire   [5:0] grp_get_delta_matrix_weights2_fu_422_last_activations_address0;
+wire    grp_get_delta_matrix_weights2_fu_422_last_activations_ce0;
+wire   [63:0] grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_din0;
+wire   [63:0] grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_din1;
+wire    grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_ce;
+wire    grp_get_oracle_activations1_1_fu_429_ap_start;
+wire    grp_get_oracle_activations1_1_fu_429_ap_done;
+wire    grp_get_oracle_activations1_1_fu_429_ap_idle;
+wire    grp_get_oracle_activations1_1_fu_429_ap_ready;
+wire   [11:0] grp_get_oracle_activations1_1_fu_429_weights2_address0;
+wire    grp_get_oracle_activations1_1_fu_429_weights2_ce0;
+wire   [5:0] grp_get_oracle_activations1_1_fu_429_output_differences_address0;
+wire    grp_get_oracle_activations1_1_fu_429_output_differences_ce0;
+wire   [5:0] grp_get_oracle_activations1_1_fu_429_oracle_activations_address0;
+wire    grp_get_oracle_activations1_1_fu_429_oracle_activations_ce0;
+wire    grp_get_oracle_activations1_1_fu_429_oracle_activations_we0;
+wire   [63:0] grp_get_oracle_activations1_1_fu_429_oracle_activations_d0;
+wire   [5:0] grp_get_oracle_activations1_1_fu_429_dactivations_address0;
+wire    grp_get_oracle_activations1_1_fu_429_dactivations_ce0;
+wire   [63:0] grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_din0;
+wire   [63:0] grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_din1;
+wire   [0:0] grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_opcode;
+wire    grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_ce;
+wire   [63:0] grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_din0;
+wire   [63:0] grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_din1;
+wire    grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_ce;
+wire    grp_get_delta_matrix_weights1_1_fu_438_ap_start;
+wire    grp_get_delta_matrix_weights1_1_fu_438_ap_done;
+wire    grp_get_delta_matrix_weights1_1_fu_438_ap_idle;
+wire    grp_get_delta_matrix_weights1_1_fu_438_ap_ready;
+wire   [9:0] grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_address0;
+wire    grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_ce0;
+wire    grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_we0;
+wire   [63:0] grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_d0;
+wire   [5:0] grp_get_delta_matrix_weights1_1_fu_438_output_difference_address0;
+wire    grp_get_delta_matrix_weights1_1_fu_438_output_difference_ce0;
+wire   [11:0] grp_get_delta_matrix_weights1_1_fu_438_training_data_address0;
+wire    grp_get_delta_matrix_weights1_1_fu_438_training_data_ce0;
+wire   [63:0] grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_din0;
+wire   [63:0] grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_din1;
+wire    grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_ce;
+wire    grp_update_weights_1_fu_447_ap_start;
+wire    grp_update_weights_1_fu_447_ap_done;
+wire    grp_update_weights_1_fu_447_ap_idle;
+wire    grp_update_weights_1_fu_447_ap_ready;
+wire   [9:0] grp_update_weights_1_fu_447_weights1_address0;
+wire    grp_update_weights_1_fu_447_weights1_ce0;
+wire    grp_update_weights_1_fu_447_weights1_we0;
+wire   [63:0] grp_update_weights_1_fu_447_weights1_d0;
+wire   [11:0] grp_update_weights_1_fu_447_weights2_address0;
+wire    grp_update_weights_1_fu_447_weights2_ce0;
+wire    grp_update_weights_1_fu_447_weights2_we0;
+wire   [63:0] grp_update_weights_1_fu_447_weights2_d0;
+wire   [7:0] grp_update_weights_1_fu_447_weights3_address0;
+wire    grp_update_weights_1_fu_447_weights3_ce0;
+wire    grp_update_weights_1_fu_447_weights3_we0;
+wire   [63:0] grp_update_weights_1_fu_447_weights3_d0;
+wire   [9:0] grp_update_weights_1_fu_447_d_weights1_address0;
+wire    grp_update_weights_1_fu_447_d_weights1_ce0;
+wire   [11:0] grp_update_weights_1_fu_447_d_weights2_address0;
+wire    grp_update_weights_1_fu_447_d_weights2_ce0;
+wire   [7:0] grp_update_weights_1_fu_447_d_weights3_address0;
+wire    grp_update_weights_1_fu_447_d_weights3_ce0;
+wire   [5:0] grp_update_weights_1_fu_447_biases1_address0;
+wire    grp_update_weights_1_fu_447_biases1_ce0;
+wire    grp_update_weights_1_fu_447_biases1_we0;
+wire   [63:0] grp_update_weights_1_fu_447_biases1_d0;
+wire   [5:0] grp_update_weights_1_fu_447_biases2_address0;
+wire    grp_update_weights_1_fu_447_biases2_ce0;
+wire    grp_update_weights_1_fu_447_biases2_we0;
+wire   [63:0] grp_update_weights_1_fu_447_biases2_d0;
+wire   [1:0] grp_update_weights_1_fu_447_biases3_address0;
+wire    grp_update_weights_1_fu_447_biases3_ce0;
+wire    grp_update_weights_1_fu_447_biases3_we0;
+wire   [63:0] grp_update_weights_1_fu_447_biases3_d0;
+wire   [5:0] grp_update_weights_1_fu_447_d_biases1_address0;
+wire    grp_update_weights_1_fu_447_d_biases1_ce0;
+wire   [5:0] grp_update_weights_1_fu_447_d_biases2_address0;
+wire    grp_update_weights_1_fu_447_d_biases2_ce0;
+wire   [63:0] grp_update_weights_1_fu_447_grp_fu_990_p_din0;
+wire   [63:0] grp_update_weights_1_fu_447_grp_fu_990_p_din1;
+wire   [1:0] grp_update_weights_1_fu_447_grp_fu_990_p_opcode;
+wire    grp_update_weights_1_fu_447_grp_fu_990_p_ce;
+wire   [63:0] grp_update_weights_1_fu_447_grp_fu_994_p_din0;
+wire   [63:0] grp_update_weights_1_fu_447_grp_fu_994_p_din1;
+wire    grp_update_weights_1_fu_447_grp_fu_994_p_ce;
+wire   [63:0] grp_update_weights_1_fu_447_grp_fu_998_p_din0;
+wire   [63:0] grp_update_weights_1_fu_447_grp_fu_998_p_din1;
+wire    grp_update_weights_1_fu_447_grp_fu_998_p_ce;
+reg   [63:0] activations3_2_1_reg_222;
+wire   [0:0] icmp_ln356_fu_502_p2;
 wire    ap_CS_fsm_state4;
+reg   [63:0] activations3_1_1_reg_232;
+reg   [63:0] activations3_0_1_reg_242;
+reg   [6:0] j_reg_252;
+reg   [63:0] activations3_2_3_reg_263;
+wire   [0:0] icmp_ln359_fu_518_p2;
+wire   [0:0] icmp_ln363_fu_536_p2;
+wire   [1:0] trunc_ln364_fu_542_p1;
+reg   [63:0] activations3_1_3_reg_283;
+reg   [63:0] activations3_0_3_reg_303;
+reg    grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start_reg;
 wire    ap_CS_fsm_state5;
-reg    grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start_reg;
+reg    grp_RELU_fu_335_ap_start_reg;
 wire    ap_CS_fsm_state6;
+wire    ap_CS_fsm_state10;
 wire    ap_CS_fsm_state7;
-reg    grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start_reg;
+wire    ap_CS_fsm_state11;
+reg    grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start_reg;
 wire    ap_CS_fsm_state8;
 wire    ap_CS_fsm_state9;
-reg    grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start_reg;
-wire    ap_CS_fsm_state10;
-wire    ap_CS_fsm_state11;
-reg    grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start_reg;
+reg    grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start_reg;
 wire    ap_CS_fsm_state12;
-reg    grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start_reg;
-wire    ap_CS_fsm_state14;
-reg    grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start_reg;
-wire    ap_CS_fsm_state15;
-wire    ap_CS_fsm_state16;
-reg    grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start_reg;
+reg    grp_RELU_clone_fu_366_ap_start_reg;
+reg    grp_soft_max_fu_376_ap_start_reg;
+reg    grp_take_difference_1_fu_386_ap_start_reg;
+reg    grp_get_delta_matrix_weights3_fu_402_ap_start_reg;
 wire    ap_CS_fsm_state17;
+reg    grp_get_oracle_activations2_1_fu_411_ap_start_reg;
+reg    grp_get_delta_matrix_weights2_fu_422_ap_start_reg;
 wire    ap_CS_fsm_state18;
-reg    grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start_reg;
+wire    ap_CS_fsm_state19;
+reg    grp_get_oracle_activations1_1_fu_429_ap_start_reg;
 wire    ap_CS_fsm_state20;
-reg    grp_get_delta_matrix_weights3_fu_361_ap_start_reg;
 wire    ap_CS_fsm_state21;
+reg    grp_get_delta_matrix_weights1_1_fu_438_ap_start_reg;
 wire    ap_CS_fsm_state22;
-reg    grp_get_oracle_activations2_1_fu_370_ap_start_reg;
-reg    grp_get_delta_matrix_weights2_fu_381_ap_start_reg;
 wire    ap_CS_fsm_state23;
+reg    grp_update_weights_1_fu_447_ap_start_reg;
 wire    ap_CS_fsm_state24;
-reg    grp_get_oracle_activations1_1_fu_388_ap_start_reg;
 wire    ap_CS_fsm_state25;
-wire    ap_CS_fsm_state26;
-reg    grp_get_delta_matrix_weights1_1_fu_397_ap_start_reg;
-wire    ap_CS_fsm_state27;
-wire    ap_CS_fsm_state28;
-reg    grp_update_weights_1_fu_406_ap_start_reg;
-wire    ap_CS_fsm_state29;
-wire    ap_CS_fsm_state30;
-reg   [11:0] phi_mul_fu_90;
-wire   [11:0] add_ln356_1_fu_446_p2;
-reg   [7:0] i_fu_94;
-wire   [7:0] add_ln356_fu_458_p2;
-reg   [63:0] dactivations3_0_01_fu_98;
-reg   [63:0] dactivations3_1_02_fu_102;
-reg   [63:0] dactivations3_2_03_fu_106;
-reg   [63:0] net_outputs_0_04_fu_110;
-reg   [63:0] net_outputs_1_05_fu_114;
-reg   [63:0] net_outputs_2_06_fu_118;
-reg   [63:0] activations3_0_0_fu_122;
-reg   [63:0] activations3_1_0_fu_126;
-reg   [63:0] activations3_2_0_fu_130;
-reg   [63:0] output_difference_0_020_fu_134;
-reg   [63:0] output_difference_1_021_fu_138;
-reg   [63:0] output_difference_2_022_fu_142;
-wire   [6:0] trunc_ln374_fu_607_p1;
-wire   [8:0] shl_ln_fu_610_p3;
-wire   [8:0] zext_ln356_fu_580_p1;
-wire   [63:0] grp_fu_986_p2;
-reg   [63:0] grp_fu_986_p0;
-reg   [63:0] grp_fu_986_p1;
-reg   [1:0] grp_fu_986_opcode;
-reg    grp_fu_986_ce;
+wire   [63:0] zext_ln359_fu_530_p1;
+reg   [11:0] phi_mul_fu_104;
+reg   [7:0] i_fu_108;
+reg   [63:0] dactivations3_020_fu_112;
+reg   [63:0] dactivations3_121_fu_116;
+reg   [63:0] dactivations3_222_fu_120;
+reg   [63:0] net_outputs_023_fu_124;
+reg   [63:0] net_outputs_124_fu_128;
+reg   [63:0] net_outputs_225_fu_132;
+reg   [63:0] output_difference_2_032_fu_136;
+reg   [63:0] output_difference_1_033_fu_140;
+reg   [63:0] output_difference_0_034_fu_144;
+reg   [63:0] activations3_0_0_fu_148;
+reg   [63:0] activations3_1_0_fu_152;
+reg   [63:0] activations3_2_0_fu_156;
+wire   [6:0] trunc_ln374_fu_546_p1;
+wire   [8:0] shl_ln_fu_549_p3;
 wire   [63:0] grp_fu_990_p2;
 reg   [63:0] grp_fu_990_p0;
 reg   [63:0] grp_fu_990_p1;
+reg   [1:0] grp_fu_990_opcode;
 reg    grp_fu_990_ce;
 wire   [63:0] grp_fu_994_p2;
 reg   [63:0] grp_fu_994_p0;
@@ -644,14 +553,10 @@ wire   [63:0] grp_fu_1002_p2;
 reg   [63:0] grp_fu_1002_p0;
 reg   [63:0] grp_fu_1002_p1;
 reg    grp_fu_1002_ce;
-wire   [63:0] grp_fu_1006_p2;
-reg   [63:0] grp_fu_1006_p0;
-reg   [63:0] grp_fu_1006_p1;
-reg    grp_fu_1006_ce;
-reg   [29:0] ap_NS_fsm;
+reg   [24:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
-reg    ap_ST_fsm_state3_blk;
+wire    ap_ST_fsm_state3_blk;
 wire    ap_ST_fsm_state4_blk;
 reg    ap_ST_fsm_state5_blk;
 wire    ap_ST_fsm_state6_blk;
@@ -663,58 +568,50 @@ reg    ap_ST_fsm_state11_blk;
 wire    ap_ST_fsm_state12_blk;
 reg    ap_ST_fsm_state13_blk;
 reg    ap_ST_fsm_state14_blk;
-wire    ap_ST_fsm_state15_blk;
+reg    ap_ST_fsm_state15_blk;
 reg    ap_ST_fsm_state16_blk;
-wire    ap_ST_fsm_state17_blk;
-reg    ap_ST_fsm_state18_blk;
-wire    ap_ST_fsm_state19_blk;
-reg    ap_ST_fsm_state20_blk;
-wire    ap_ST_fsm_state21_blk;
-reg    ap_block_state22_on_subcall_done;
-reg    ap_ST_fsm_state22_blk;
-wire    ap_ST_fsm_state23_blk;
-reg    ap_ST_fsm_state24_blk;
-wire    ap_ST_fsm_state25_blk;
-reg    ap_ST_fsm_state26_blk;
-wire    ap_ST_fsm_state27_blk;
-reg    ap_ST_fsm_state28_blk;
-wire    ap_ST_fsm_state29_blk;
-reg    ap_ST_fsm_state30_blk;
+reg    ap_block_state17_on_subcall_done;
+reg    ap_ST_fsm_state17_blk;
+wire    ap_ST_fsm_state18_blk;
+reg    ap_ST_fsm_state19_blk;
+wire    ap_ST_fsm_state20_blk;
+reg    ap_ST_fsm_state21_blk;
+wire    ap_ST_fsm_state22_blk;
+reg    ap_ST_fsm_state23_blk;
+wire    ap_ST_fsm_state24_blk;
+reg    ap_ST_fsm_state25_blk;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 30'd1;
-#0 grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start_reg = 1'b0;
-#0 grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start_reg = 1'b0;
-#0 grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start_reg = 1'b0;
-#0 grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start_reg = 1'b0;
-#0 grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start_reg = 1'b0;
-#0 grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start_reg = 1'b0;
-#0 grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start_reg = 1'b0;
-#0 grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start_reg = 1'b0;
-#0 grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start_reg = 1'b0;
-#0 grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start_reg = 1'b0;
-#0 grp_get_delta_matrix_weights3_fu_361_ap_start_reg = 1'b0;
-#0 grp_get_oracle_activations2_1_fu_370_ap_start_reg = 1'b0;
-#0 grp_get_delta_matrix_weights2_fu_381_ap_start_reg = 1'b0;
-#0 grp_get_oracle_activations1_1_fu_388_ap_start_reg = 1'b0;
-#0 grp_get_delta_matrix_weights1_1_fu_397_ap_start_reg = 1'b0;
-#0 grp_update_weights_1_fu_406_ap_start_reg = 1'b0;
-#0 phi_mul_fu_90 = 12'd0;
-#0 i_fu_94 = 8'd0;
-#0 dactivations3_0_01_fu_98 = 64'd0;
-#0 dactivations3_1_02_fu_102 = 64'd0;
-#0 dactivations3_2_03_fu_106 = 64'd0;
-#0 net_outputs_0_04_fu_110 = 64'd0;
-#0 net_outputs_1_05_fu_114 = 64'd0;
-#0 net_outputs_2_06_fu_118 = 64'd0;
-#0 activations3_0_0_fu_122 = 64'd0;
-#0 activations3_1_0_fu_126 = 64'd0;
-#0 activations3_2_0_fu_130 = 64'd0;
-#0 output_difference_0_020_fu_134 = 64'd0;
-#0 output_difference_1_021_fu_138 = 64'd0;
-#0 output_difference_2_022_fu_142 = 64'd0;
+#0 ap_CS_fsm = 25'd1;
+#0 grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start_reg = 1'b0;
+#0 grp_RELU_fu_335_ap_start_reg = 1'b0;
+#0 grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start_reg = 1'b0;
+#0 grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start_reg = 1'b0;
+#0 grp_RELU_clone_fu_366_ap_start_reg = 1'b0;
+#0 grp_soft_max_fu_376_ap_start_reg = 1'b0;
+#0 grp_take_difference_1_fu_386_ap_start_reg = 1'b0;
+#0 grp_get_delta_matrix_weights3_fu_402_ap_start_reg = 1'b0;
+#0 grp_get_oracle_activations2_1_fu_411_ap_start_reg = 1'b0;
+#0 grp_get_delta_matrix_weights2_fu_422_ap_start_reg = 1'b0;
+#0 grp_get_oracle_activations1_1_fu_429_ap_start_reg = 1'b0;
+#0 grp_get_delta_matrix_weights1_1_fu_438_ap_start_reg = 1'b0;
+#0 grp_update_weights_1_fu_447_ap_start_reg = 1'b0;
+#0 phi_mul_fu_104 = 12'd0;
+#0 i_fu_108 = 8'd0;
+#0 dactivations3_020_fu_112 = 64'd0;
+#0 dactivations3_121_fu_116 = 64'd0;
+#0 dactivations3_222_fu_120 = 64'd0;
+#0 net_outputs_023_fu_124 = 64'd0;
+#0 net_outputs_124_fu_128 = 64'd0;
+#0 net_outputs_225_fu_132 = 64'd0;
+#0 output_difference_2_032_fu_136 = 64'd0;
+#0 output_difference_1_033_fu_140 = 64'd0;
+#0 output_difference_0_034_fu_144 = 64'd0;
+#0 activations3_0_0_fu_148 = 64'd0;
+#0 activations3_1_0_fu_152 = 64'd0;
+#0 activations3_2_0_fu_156 = 64'd0;
 end
 
 backprop_activations1_RAM_AUTO_1R1W #(
@@ -728,10 +625,7 @@ activations1_U(
     .ce0(activations1_ce0),
     .we0(activations1_we0),
     .d0(activations1_d0),
-    .q0(activations1_q0),
-    .address1(activations1_address1),
-    .ce1(activations1_ce1),
-    .q1(activations1_q1)
+    .q0(activations1_q0)
 );
 
 backprop_activations1_RAM_AUTO_1R1W #(
@@ -745,13 +639,10 @@ activations2_U(
     .ce0(activations2_ce0),
     .we0(activations2_we0),
     .d0(activations2_d0),
-    .q0(activations2_q0),
-    .address1(activations2_address1),
-    .ce1(activations2_ce1),
-    .q1(activations2_q1)
+    .q0(activations2_q0)
 );
 
-backprop_dactivations1_RAM_AUTO_1R1W #(
+backprop_activations1_RAM_AUTO_1R1W #(
     .DataWidth( 64 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
@@ -761,11 +652,11 @@ dactivations1_U(
     .address0(dactivations1_address0),
     .ce0(dactivations1_ce0),
     .we0(dactivations1_we0),
-    .d0(grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_d0),
+    .d0(grp_RELU_fu_335_dactivations_d0),
     .q0(dactivations1_q0)
 );
 
-backprop_dactivations1_RAM_AUTO_1R1W #(
+backprop_activations1_RAM_AUTO_1R1W #(
     .DataWidth( 64 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
@@ -775,7 +666,7 @@ dactivations2_U(
     .address0(dactivations2_address0),
     .ce0(dactivations2_ce0),
     .we0(dactivations2_we0),
-    .d0(grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_d0),
+    .d0(grp_RELU_fu_335_dactivations_d0),
     .q0(dactivations2_q0)
 );
 
@@ -789,7 +680,7 @@ delta_weights1_U(
     .address0(delta_weights1_address0),
     .ce0(delta_weights1_ce0),
     .we0(delta_weights1_we0),
-    .d0(grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_d0),
+    .d0(grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_d0),
     .q0(delta_weights1_q0)
 );
 
@@ -803,7 +694,7 @@ delta_weights2_U(
     .address0(delta_weights2_address0),
     .ce0(delta_weights2_ce0),
     .we0(delta_weights2_we0),
-    .d0(grp_get_delta_matrix_weights2_fu_381_delta_weights2_d0),
+    .d0(grp_get_delta_matrix_weights2_fu_422_delta_weights2_d0),
     .q0(delta_weights2_q0)
 );
 
@@ -817,11 +708,11 @@ delta_weights3_U(
     .address0(delta_weights3_address0),
     .ce0(delta_weights3_ce0),
     .we0(delta_weights3_we0),
-    .d0(grp_get_delta_matrix_weights3_fu_361_delta_weights3_d0),
+    .d0(grp_get_delta_matrix_weights3_fu_402_delta_weights3_d0),
     .q0(delta_weights3_q0)
 );
 
-backprop_dactivations1_RAM_AUTO_1R1W #(
+backprop_activations1_RAM_AUTO_1R1W #(
     .DataWidth( 64 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
@@ -831,11 +722,11 @@ oracle_activations1_U(
     .address0(oracle_activations1_address0),
     .ce0(oracle_activations1_ce0),
     .we0(oracle_activations1_we0),
-    .d0(grp_get_oracle_activations1_1_fu_388_oracle_activations_d0),
+    .d0(grp_get_oracle_activations1_1_fu_429_oracle_activations_d0),
     .q0(oracle_activations1_q0)
 );
 
-backprop_dactivations1_RAM_AUTO_1R1W #(
+backprop_activations1_RAM_AUTO_1R1W #(
     .DataWidth( 64 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
@@ -845,556 +736,425 @@ oracle_activations2_U(
     .address0(oracle_activations2_address0),
     .ce0(oracle_activations2_ce0),
     .we0(oracle_activations2_we0),
-    .d0(grp_get_oracle_activations2_1_fu_370_oracle_activations_d0),
+    .d0(grp_get_oracle_activations2_1_fu_411_oracle_activations_d0),
     .q0(oracle_activations2_q0)
 );
 
-backprop_backprop_Pipeline_backprop_loop1_1 grp_backprop_Pipeline_backprop_loop1_1_fu_246(
+backprop_matrix_vector_product_with_bias_input_layer_1 grp_matrix_vector_product_with_bias_input_layer_1_fu_323(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start),
-    .ap_done(grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_done),
-    .ap_idle(grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_ready),
-    .activations3_2_0(activations3_2_0_fu_130),
-    .activations3_1_0(activations3_1_0_fu_126),
-    .activations3_0_0(activations3_0_0_fu_122),
-    .activations1_address0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_address0),
-    .activations1_ce0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_ce0),
-    .activations1_we0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_we0),
-    .activations1_d0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_d0),
-    .activations2_address0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_address0),
-    .activations2_ce0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_ce0),
-    .activations2_we0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_we0),
-    .activations2_d0(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_d0),
-    .activations3_2_1_out(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_2_1_out),
-    .activations3_2_1_out_ap_vld(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_2_1_out_ap_vld),
-    .activations3_1_1_out(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_1_1_out),
-    .activations3_1_1_out_ap_vld(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_1_1_out_ap_vld),
-    .activations3_0_1_out(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_0_1_out),
-    .activations3_0_1_out_ap_vld(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_0_1_out_ap_vld)
-);
-
-backprop_matrix_vector_product_with_bias_input_layer_1 grp_matrix_vector_product_with_bias_input_layer_1_fu_258(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start),
-    .ap_done(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_done),
-    .ap_idle(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_idle),
-    .ap_ready(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_ready),
-    .biases1_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_biases1_address0),
-    .biases1_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_biases1_ce0),
+    .ap_start(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start),
+    .ap_done(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_done),
+    .ap_idle(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_idle),
+    .ap_ready(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_ready),
+    .biases1_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_biases1_address0),
+    .biases1_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_biases1_ce0),
     .biases1_q0(biases1_q0),
-    .weights1_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_weights1_address0),
-    .weights1_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_weights1_ce0),
+    .weights1_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_weights1_address0),
+    .weights1_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_weights1_ce0),
     .weights1_q0(weights1_q0),
-    .activations_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_address0),
-    .activations_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_ce0),
-    .activations_we0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_we0),
-    .activations_d0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_d0),
-    .activations_address1(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_address1),
-    .activations_ce1(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_ce1),
-    .activations_q1(activations1_q1),
-    .training_data_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_training_data_address0),
-    .training_data_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_training_data_ce0),
+    .activations_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_address0),
+    .activations_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_ce0),
+    .activations_we0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_we0),
+    .activations_d0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_d0),
+    .activations_q0(activations1_q0),
+    .training_data_address0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_training_data_address0),
+    .training_data_ce0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_training_data_ce0),
     .training_data_q0(training_data_q0),
-    .idx(phi_mul_load_reg_867),
-    .grp_fu_986_p_din0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_ce),
-    .grp_fu_990_p_din0(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_din1),
+    .idx(phi_mul_load_reg_827),
+    .grp_fu_990_p_din0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_opcode),
     .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_ce)
-);
-
-backprop_backprop_Pipeline_RELU_loop1 grp_backprop_Pipeline_RELU_loop1_fu_270(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start),
-    .ap_done(grp_backprop_Pipeline_RELU_loop1_fu_270_ap_done),
-    .ap_idle(grp_backprop_Pipeline_RELU_loop1_fu_270_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_RELU_loop1_fu_270_ap_ready),
-    .activations1_address0(grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_address0),
-    .activations1_ce0(grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_ce0),
-    .activations1_we0(grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_we0),
-    .activations1_d0(grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_d0),
-    .activations1_address1(grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_address1),
-    .activations1_ce1(grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_ce1),
-    .activations1_q1(activations1_q1),
-    .dactivations1_address0(grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_address0),
-    .dactivations1_ce0(grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_ce0),
-    .dactivations1_we0(grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_we0),
-    .dactivations1_d0(grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_d0),
-    .grp_fu_986_p_din0(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_ce),
-    .grp_fu_994_p_din0(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_din0),
-    .grp_fu_994_p_din1(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_din1),
-    .grp_fu_994_p_opcode(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_opcode),
+    .grp_fu_990_p_ce(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_din1),
     .grp_fu_994_p_dout0(grp_fu_994_p2),
-    .grp_fu_994_p_ce(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_ce),
-    .grp_fu_990_p_din0(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_din1),
-    .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_ce),
-    .grp_fu_998_p_din0(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_din0),
-    .grp_fu_998_p_din1(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_din1),
-    .grp_fu_998_p_dout0(grp_fu_998_p2),
-    .grp_fu_998_p_ce(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_ce),
-    .grp_fu_1002_p_din0(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_din0),
-    .grp_fu_1002_p_din1(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_din1),
-    .grp_fu_1002_p_dout0(grp_fu_1002_p2),
-    .grp_fu_1002_p_ce(grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_ce)
+    .grp_fu_994_p_ce(grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_ce)
 );
 
-backprop_matrix_vector_product_with_bias_second_layer_1 grp_matrix_vector_product_with_bias_second_layer_1_fu_276(
+backprop_RELU grp_RELU_fu_335(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start),
-    .ap_done(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_done),
-    .ap_idle(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_idle),
-    .ap_ready(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_ready),
-    .biases2_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_biases2_address0),
-    .biases2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_biases2_ce0),
+    .ap_start(grp_RELU_fu_335_ap_start),
+    .ap_done(grp_RELU_fu_335_ap_done),
+    .ap_idle(grp_RELU_fu_335_ap_idle),
+    .ap_ready(grp_RELU_fu_335_ap_ready),
+    .activations_address0(grp_RELU_fu_335_activations_address0),
+    .activations_ce0(grp_RELU_fu_335_activations_ce0),
+    .activations_we0(grp_RELU_fu_335_activations_we0),
+    .activations_d0(grp_RELU_fu_335_activations_d0),
+    .activations_q0(grp_RELU_fu_335_activations_q0),
+    .dactivations_address0(grp_RELU_fu_335_dactivations_address0),
+    .dactivations_ce0(grp_RELU_fu_335_dactivations_ce0),
+    .dactivations_we0(grp_RELU_fu_335_dactivations_we0),
+    .dactivations_d0(grp_RELU_fu_335_dactivations_d0)
+);
+
+backprop_matrix_vector_product_with_bias_second_layer_1 grp_matrix_vector_product_with_bias_second_layer_1_fu_341(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start),
+    .ap_done(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_done),
+    .ap_idle(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_idle),
+    .ap_ready(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_ready),
+    .biases2_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_biases2_address0),
+    .biases2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_biases2_ce0),
     .biases2_q0(biases2_q0),
-    .weights2_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_weights2_address0),
-    .weights2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_weights2_ce0),
+    .weights2_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_weights2_address0),
+    .weights2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_weights2_ce0),
     .weights2_q0(weights2_q0),
-    .activations_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_address0),
-    .activations_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_ce0),
-    .activations_we0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_we0),
-    .activations_d0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_d0),
-    .activations_address1(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_address1),
-    .activations_ce1(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_ce1),
-    .activations_q1(activations2_q1),
-    .input_activations_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_input_activations_address0),
-    .input_activations_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_input_activations_ce0),
+    .activations_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_address0),
+    .activations_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_ce0),
+    .activations_we0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_we0),
+    .activations_d0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_d0),
+    .activations_q0(activations2_q0),
+    .input_activations_address0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_input_activations_address0),
+    .input_activations_ce0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_input_activations_ce0),
     .input_activations_q0(activations1_q0),
-    .grp_fu_986_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_ce),
-    .grp_fu_990_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_din1),
+    .grp_fu_990_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_opcode),
     .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_ce)
-);
-
-backprop_backprop_Pipeline_RELU_loop11 grp_backprop_Pipeline_RELU_loop11_fu_286(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start),
-    .ap_done(grp_backprop_Pipeline_RELU_loop11_fu_286_ap_done),
-    .ap_idle(grp_backprop_Pipeline_RELU_loop11_fu_286_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_RELU_loop11_fu_286_ap_ready),
-    .activations2_address0(grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_address0),
-    .activations2_ce0(grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_ce0),
-    .activations2_we0(grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_we0),
-    .activations2_d0(grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_d0),
-    .activations2_address1(grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_address1),
-    .activations2_ce1(grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_ce1),
-    .activations2_q1(activations2_q1),
-    .dactivations2_address0(grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_address0),
-    .dactivations2_ce0(grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_ce0),
-    .dactivations2_we0(grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_we0),
-    .dactivations2_d0(grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_d0),
-    .grp_fu_986_p_din0(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_ce),
-    .grp_fu_994_p_din0(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_din0),
-    .grp_fu_994_p_din1(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_din1),
-    .grp_fu_994_p_opcode(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_opcode),
+    .grp_fu_990_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_din1),
     .grp_fu_994_p_dout0(grp_fu_994_p2),
-    .grp_fu_994_p_ce(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_ce),
-    .grp_fu_990_p_din0(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_din1),
-    .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_ce),
-    .grp_fu_998_p_din0(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_din0),
-    .grp_fu_998_p_din1(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_din1),
-    .grp_fu_998_p_dout0(grp_fu_998_p2),
-    .grp_fu_998_p_ce(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_ce),
-    .grp_fu_1002_p_din0(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_din0),
-    .grp_fu_1002_p_din1(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_din1),
-    .grp_fu_1002_p_dout0(grp_fu_1002_p2),
-    .grp_fu_1002_p_ce(grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_ce)
+    .grp_fu_994_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_ce)
 );
 
-backprop_matrix_vector_product_with_bias_output_layer_1 grp_matrix_vector_product_with_bias_output_layer_1_fu_292(
+backprop_matrix_vector_product_with_bias_output_layer_1 grp_matrix_vector_product_with_bias_output_layer_1_fu_351(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start),
-    .ap_done(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_done),
-    .ap_idle(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_idle),
-    .ap_ready(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_ready),
-    .biases3_address0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_biases3_address0),
-    .biases3_ce0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_biases3_ce0),
+    .ap_start(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start),
+    .ap_done(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_done),
+    .ap_idle(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_idle),
+    .ap_ready(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_ready),
+    .biases3_address0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_biases3_address0),
+    .biases3_ce0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_biases3_ce0),
     .biases3_q0(biases3_q0),
-    .weights3_address0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_weights3_address0),
-    .weights3_ce0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_weights3_ce0),
+    .weights3_address0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_weights3_address0),
+    .weights3_ce0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_weights3_ce0),
     .weights3_q0(weights3_q0),
-    .p_read(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_0_1_out),
-    .p_read1(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_1_1_out),
-    .p_read2(grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations3_2_1_out),
-    .input_activations_address0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_input_activations_address0),
-    .input_activations_ce0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_input_activations_ce0),
+    .p_read(activations3_0_1_reg_242),
+    .p_read1(activations3_1_1_reg_232),
+    .p_read2(activations3_2_1_reg_222),
+    .input_activations_address0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_input_activations_address0),
+    .input_activations_ce0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_input_activations_ce0),
     .input_activations_q0(activations2_q0),
-    .ap_return_0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_0),
-    .ap_return_1(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_1),
-    .ap_return_2(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_2),
-    .grp_fu_994_p_din0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_din0),
-    .grp_fu_994_p_din1(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_din1),
-    .grp_fu_994_p_opcode(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_opcode),
+    .ap_return_0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_0),
+    .ap_return_1(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_1),
+    .ap_return_2(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_2),
+    .grp_fu_990_p_din0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_opcode),
+    .grp_fu_990_p_dout0(grp_fu_990_p2),
+    .grp_fu_990_p_ce(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_din1),
     .grp_fu_994_p_dout0(grp_fu_994_p2),
-    .grp_fu_994_p_ce(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_ce),
-    .grp_fu_1006_p_din0(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_din0),
-    .grp_fu_1006_p_din1(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_din1),
-    .grp_fu_1006_p_dout0(grp_fu_1006_p2),
-    .grp_fu_1006_p_ce(grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_ce)
+    .grp_fu_994_p_ce(grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_ce)
 );
 
-backprop_backprop_Pipeline_RELU_loop12 grp_backprop_Pipeline_RELU_loop12_fu_304(
+backprop_RELU_clone grp_RELU_clone_fu_366(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start),
-    .ap_done(grp_backprop_Pipeline_RELU_loop12_fu_304_ap_done),
-    .ap_idle(grp_backprop_Pipeline_RELU_loop12_fu_304_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_RELU_loop12_fu_304_ap_ready),
-    .activations3_2(activations3_2_reg_919),
-    .activations3_1(activations3_1_reg_914),
-    .activations3_0(activations3_0_reg_909),
-    .dactivations3_2_03(dactivations3_2_03_fu_106),
-    .dactivations3_1_02(dactivations3_1_02_fu_102),
-    .dactivations3_0_01(dactivations3_0_01_fu_98),
-    .activations3_2_4_out(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out),
-    .activations3_2_4_out_ap_vld(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out_ap_vld),
-    .activations3_1_4_out(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out),
-    .activations3_1_4_out_ap_vld(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out_ap_vld),
-    .activations3_0_4_out(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out),
-    .activations3_0_4_out_ap_vld(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out_ap_vld),
-    .dactivations3_2_1_out(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_2_1_out),
-    .dactivations3_2_1_out_ap_vld(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_2_1_out_ap_vld),
-    .dactivations3_1_1_out(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_1_1_out),
-    .dactivations3_1_1_out_ap_vld(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_1_1_out_ap_vld),
-    .dactivations3_0_1_out(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_0_1_out),
-    .dactivations3_0_1_out_ap_vld(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_0_1_out_ap_vld),
-    .grp_fu_986_p_din0(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_ce),
-    .grp_fu_990_p_din0(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_din1),
+    .ap_start(grp_RELU_clone_fu_366_ap_start),
+    .ap_done(grp_RELU_clone_fu_366_ap_done),
+    .ap_idle(grp_RELU_clone_fu_366_ap_idle),
+    .ap_ready(grp_RELU_clone_fu_366_ap_ready),
+    .p_read(activations3_0_reg_891),
+    .p_read1(activations3_1_reg_896),
+    .p_read2(activations3_2_reg_901),
+    .p_read3(dactivations3_020_fu_112),
+    .p_read14(dactivations3_121_fu_116),
+    .p_read25(dactivations3_222_fu_120),
+    .ap_return_0(grp_RELU_clone_fu_366_ap_return_0),
+    .ap_return_1(grp_RELU_clone_fu_366_ap_return_1),
+    .ap_return_2(grp_RELU_clone_fu_366_ap_return_2),
+    .ap_return_3(grp_RELU_clone_fu_366_ap_return_3),
+    .ap_return_4(grp_RELU_clone_fu_366_ap_return_4),
+    .ap_return_5(grp_RELU_clone_fu_366_ap_return_5),
+    .grp_fu_990_p_din0(grp_RELU_clone_fu_366_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_RELU_clone_fu_366_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_RELU_clone_fu_366_grp_fu_990_p_opcode),
     .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_ce),
-    .grp_fu_998_p_din0(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_din0),
-    .grp_fu_998_p_din1(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_din1),
+    .grp_fu_990_p_ce(grp_RELU_clone_fu_366_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_RELU_clone_fu_366_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_RELU_clone_fu_366_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_RELU_clone_fu_366_grp_fu_994_p_ce),
+    .grp_fu_998_p_din0(grp_RELU_clone_fu_366_grp_fu_998_p_din0),
+    .grp_fu_998_p_din1(grp_RELU_clone_fu_366_grp_fu_998_p_din1),
     .grp_fu_998_p_dout0(grp_fu_998_p2),
-    .grp_fu_998_p_ce(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_ce),
-    .grp_fu_1002_p_din0(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_din0),
-    .grp_fu_1002_p_din1(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_din1),
+    .grp_fu_998_p_ce(grp_RELU_clone_fu_366_grp_fu_998_p_ce),
+    .grp_fu_1002_p_din0(grp_RELU_clone_fu_366_grp_fu_1002_p_din0),
+    .grp_fu_1002_p_din1(grp_RELU_clone_fu_366_grp_fu_1002_p_din1),
     .grp_fu_1002_p_dout0(grp_fu_1002_p2),
-    .grp_fu_1002_p_ce(grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_ce)
+    .grp_fu_1002_p_ce(grp_RELU_clone_fu_366_grp_fu_1002_p_ce)
 );
 
-backprop_backprop_Pipeline_soft_max_loop1 grp_backprop_Pipeline_soft_max_loop1_fu_320(
+backprop_soft_max grp_soft_max_fu_376(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start),
-    .ap_done(grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_done),
-    .ap_idle(grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_ready),
-    .activations3_0_4_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out),
-    .activations3_1_4_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out),
-    .activations3_2_4_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out),
-    .sum_out(grp_backprop_Pipeline_soft_max_loop1_fu_320_sum_out),
-    .sum_out_ap_vld(grp_backprop_Pipeline_soft_max_loop1_fu_320_sum_out_ap_vld),
-    .grp_fu_986_p_din0(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_ce),
-    .grp_fu_1002_p_din0(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_din0),
-    .grp_fu_1002_p_din1(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_din1),
-    .grp_fu_1002_p_dout0(grp_fu_1002_p2),
-    .grp_fu_1002_p_ce(grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_ce)
-);
-
-backprop_backprop_Pipeline_soft_max_loop2 grp_backprop_Pipeline_soft_max_loop2_fu_328(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start),
-    .ap_done(grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_done),
-    .ap_idle(grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_ready),
-    .net_outputs_2_06(net_outputs_2_06_fu_118),
-    .net_outputs_1_05(net_outputs_1_05_fu_114),
-    .net_outputs_0_04(net_outputs_0_04_fu_110),
-    .activations3_0_4_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out),
-    .activations3_1_4_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out),
-    .activations3_2_4_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out),
-    .sum_reload(grp_backprop_Pipeline_soft_max_loop1_fu_320_sum_out),
-    .net_outputs_2_1_out(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_2_1_out),
-    .net_outputs_2_1_out_ap_vld(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_2_1_out_ap_vld),
-    .net_outputs_1_1_out(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_1_1_out),
-    .net_outputs_1_1_out_ap_vld(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_1_1_out_ap_vld),
-    .net_outputs_0_1_out(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_0_1_out),
-    .net_outputs_0_1_out_ap_vld(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_0_1_out_ap_vld),
-    .grp_fu_998_p_din0(grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_din0),
-    .grp_fu_998_p_din1(grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_din1),
+    .ap_start(grp_soft_max_fu_376_ap_start),
+    .ap_done(grp_soft_max_fu_376_ap_done),
+    .ap_idle(grp_soft_max_fu_376_ap_idle),
+    .ap_ready(grp_soft_max_fu_376_ap_ready),
+    .p_read(net_outputs_023_fu_124),
+    .p_read1(net_outputs_124_fu_128),
+    .p_read2(net_outputs_225_fu_132),
+    .p_read3(activations3_0_2_reg_930),
+    .p_read4(activations3_1_2_reg_935),
+    .p_read5(activations3_2_2_reg_940),
+    .ap_return_0(grp_soft_max_fu_376_ap_return_0),
+    .ap_return_1(grp_soft_max_fu_376_ap_return_1),
+    .ap_return_2(grp_soft_max_fu_376_ap_return_2),
+    .grp_fu_990_p_din0(grp_soft_max_fu_376_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_soft_max_fu_376_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_soft_max_fu_376_grp_fu_990_p_opcode),
+    .grp_fu_990_p_dout0(grp_fu_990_p2),
+    .grp_fu_990_p_ce(grp_soft_max_fu_376_grp_fu_990_p_ce),
+    .grp_fu_998_p_din0(grp_soft_max_fu_376_grp_fu_998_p_din0),
+    .grp_fu_998_p_din1(grp_soft_max_fu_376_grp_fu_998_p_din1),
     .grp_fu_998_p_dout0(grp_fu_998_p2),
-    .grp_fu_998_p_ce(grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_ce),
-    .grp_fu_1002_p_din0(grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_din0),
-    .grp_fu_1002_p_din1(grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_din1),
+    .grp_fu_998_p_ce(grp_soft_max_fu_376_grp_fu_998_p_ce),
+    .grp_fu_1002_p_din0(grp_soft_max_fu_376_grp_fu_1002_p_din0),
+    .grp_fu_1002_p_din1(grp_soft_max_fu_376_grp_fu_1002_p_din1),
     .grp_fu_1002_p_dout0(grp_fu_1002_p2),
-    .grp_fu_1002_p_ce(grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_ce)
+    .grp_fu_1002_p_ce(grp_soft_max_fu_376_grp_fu_1002_p_ce)
 );
 
-backprop_backprop_Pipeline_take_difference_loop1 grp_backprop_Pipeline_take_difference_loop1_fu_342(
+backprop_take_difference_1 grp_take_difference_1_fu_386(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start),
-    .ap_done(grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_done),
-    .ap_idle(grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_idle),
-    .ap_ready(grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_ready),
-    .output_difference_2_022(output_difference_2_022_fu_142),
-    .output_difference_1_021(output_difference_1_021_fu_138),
-    .output_difference_0_020(output_difference_0_020_fu_134),
-    .net_outputs_0_1_reload(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_0_1_out),
-    .net_outputs_1_1_reload(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_1_1_out),
-    .net_outputs_2_1_reload(grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_2_1_out),
-    .sub_ln374(sub_ln374_reg_972),
-    .training_targets_address0(grp_backprop_Pipeline_take_difference_loop1_fu_342_training_targets_address0),
-    .training_targets_ce0(grp_backprop_Pipeline_take_difference_loop1_fu_342_training_targets_ce0),
+    .ap_start(grp_take_difference_1_fu_386_ap_start),
+    .ap_done(grp_take_difference_1_fu_386_ap_done),
+    .ap_idle(grp_take_difference_1_fu_386_ap_idle),
+    .ap_ready(grp_take_difference_1_fu_386_ap_ready),
+    .p_read(net_outputs_0_reg_954),
+    .p_read1(net_outputs_1_reg_959),
+    .p_read2(net_outputs_2_reg_964),
+    .training_targets_address0(grp_take_difference_1_fu_386_training_targets_address0),
+    .training_targets_ce0(grp_take_difference_1_fu_386_training_targets_ce0),
     .training_targets_q0(training_targets_q0),
-    .dactivations3_0_1_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_0_1_out),
-    .dactivations3_1_1_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_1_1_out),
-    .dactivations3_2_1_reload(grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_2_1_out),
-    .output_difference_2_1_out(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out),
-    .output_difference_2_1_out_ap_vld(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out_ap_vld),
-    .output_difference_1_1_out(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out),
-    .output_difference_1_1_out_ap_vld(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out_ap_vld),
-    .output_difference_0_1_out(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out),
-    .output_difference_0_1_out_ap_vld(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out_ap_vld),
-    .grp_fu_986_p_din0(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_ce),
-    .grp_fu_990_p_din0(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_din1),
+    .p_read3(output_difference_0_034_fu_144),
+    .p_read14(output_difference_1_033_fu_140),
+    .p_read25(output_difference_2_032_fu_136),
+    .p_read6(dactivations3_0_reg_925),
+    .p_read7(dactivations3_1_reg_920),
+    .p_read8(dactivations3_2_reg_915),
+    .idx(sub_ln374_reg_877),
+    .ap_return_0(grp_take_difference_1_fu_386_ap_return_0),
+    .ap_return_1(grp_take_difference_1_fu_386_ap_return_1),
+    .ap_return_2(grp_take_difference_1_fu_386_ap_return_2),
+    .grp_fu_990_p_din0(grp_take_difference_1_fu_386_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_take_difference_1_fu_386_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_take_difference_1_fu_386_grp_fu_990_p_opcode),
     .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_ce)
+    .grp_fu_990_p_ce(grp_take_difference_1_fu_386_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_take_difference_1_fu_386_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_take_difference_1_fu_386_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_take_difference_1_fu_386_grp_fu_994_p_ce)
 );
 
-backprop_get_delta_matrix_weights3 grp_get_delta_matrix_weights3_fu_361(
+backprop_get_delta_matrix_weights3 grp_get_delta_matrix_weights3_fu_402(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_get_delta_matrix_weights3_fu_361_ap_start),
-    .ap_done(grp_get_delta_matrix_weights3_fu_361_ap_done),
-    .ap_idle(grp_get_delta_matrix_weights3_fu_361_ap_idle),
-    .ap_ready(grp_get_delta_matrix_weights3_fu_361_ap_ready),
-    .delta_weights3_address0(grp_get_delta_matrix_weights3_fu_361_delta_weights3_address0),
-    .delta_weights3_ce0(grp_get_delta_matrix_weights3_fu_361_delta_weights3_ce0),
-    .delta_weights3_we0(grp_get_delta_matrix_weights3_fu_361_delta_weights3_we0),
-    .delta_weights3_d0(grp_get_delta_matrix_weights3_fu_361_delta_weights3_d0),
-    .p_read(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out),
-    .p_read1(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out),
-    .p_read2(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out),
-    .last_activations_address0(grp_get_delta_matrix_weights3_fu_361_last_activations_address0),
-    .last_activations_ce0(grp_get_delta_matrix_weights3_fu_361_last_activations_ce0),
+    .ap_start(grp_get_delta_matrix_weights3_fu_402_ap_start),
+    .ap_done(grp_get_delta_matrix_weights3_fu_402_ap_done),
+    .ap_idle(grp_get_delta_matrix_weights3_fu_402_ap_idle),
+    .ap_ready(grp_get_delta_matrix_weights3_fu_402_ap_ready),
+    .delta_weights3_address0(grp_get_delta_matrix_weights3_fu_402_delta_weights3_address0),
+    .delta_weights3_ce0(grp_get_delta_matrix_weights3_fu_402_delta_weights3_ce0),
+    .delta_weights3_we0(grp_get_delta_matrix_weights3_fu_402_delta_weights3_we0),
+    .delta_weights3_d0(grp_get_delta_matrix_weights3_fu_402_delta_weights3_d0),
+    .p_read(output_difference_0_reg_969),
+    .p_read1(output_difference_1_reg_976),
+    .p_read2(output_difference_2_reg_983),
+    .last_activations_address0(grp_get_delta_matrix_weights3_fu_402_last_activations_address0),
+    .last_activations_ce0(grp_get_delta_matrix_weights3_fu_402_last_activations_ce0),
     .last_activations_q0(activations2_q0),
-    .grp_fu_990_p_din0(grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_din1),
-    .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_ce)
+    .grp_fu_994_p_din0(grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_ce)
 );
 
-backprop_get_oracle_activations2_1 grp_get_oracle_activations2_1_fu_370(
+backprop_get_oracle_activations2_1 grp_get_oracle_activations2_1_fu_411(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_get_oracle_activations2_1_fu_370_ap_start),
-    .ap_done(grp_get_oracle_activations2_1_fu_370_ap_done),
-    .ap_idle(grp_get_oracle_activations2_1_fu_370_ap_idle),
-    .ap_ready(grp_get_oracle_activations2_1_fu_370_ap_ready),
-    .weights3_address0(grp_get_oracle_activations2_1_fu_370_weights3_address0),
-    .weights3_ce0(grp_get_oracle_activations2_1_fu_370_weights3_ce0),
+    .ap_start(grp_get_oracle_activations2_1_fu_411_ap_start),
+    .ap_done(grp_get_oracle_activations2_1_fu_411_ap_done),
+    .ap_idle(grp_get_oracle_activations2_1_fu_411_ap_idle),
+    .ap_ready(grp_get_oracle_activations2_1_fu_411_ap_ready),
+    .weights3_address0(grp_get_oracle_activations2_1_fu_411_weights3_address0),
+    .weights3_ce0(grp_get_oracle_activations2_1_fu_411_weights3_ce0),
     .weights3_q0(weights3_q0),
-    .p_read(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out),
-    .p_read1(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out),
-    .p_read2(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out),
-    .oracle_activations_address0(grp_get_oracle_activations2_1_fu_370_oracle_activations_address0),
-    .oracle_activations_ce0(grp_get_oracle_activations2_1_fu_370_oracle_activations_ce0),
-    .oracle_activations_we0(grp_get_oracle_activations2_1_fu_370_oracle_activations_we0),
-    .oracle_activations_d0(grp_get_oracle_activations2_1_fu_370_oracle_activations_d0),
-    .dactivations_address0(grp_get_oracle_activations2_1_fu_370_dactivations_address0),
-    .dactivations_ce0(grp_get_oracle_activations2_1_fu_370_dactivations_ce0),
+    .p_read(output_difference_0_reg_969),
+    .p_read1(output_difference_1_reg_976),
+    .p_read2(output_difference_2_reg_983),
+    .oracle_activations_address0(grp_get_oracle_activations2_1_fu_411_oracle_activations_address0),
+    .oracle_activations_ce0(grp_get_oracle_activations2_1_fu_411_oracle_activations_ce0),
+    .oracle_activations_we0(grp_get_oracle_activations2_1_fu_411_oracle_activations_we0),
+    .oracle_activations_d0(grp_get_oracle_activations2_1_fu_411_oracle_activations_d0),
+    .dactivations_address0(grp_get_oracle_activations2_1_fu_411_dactivations_address0),
+    .dactivations_ce0(grp_get_oracle_activations2_1_fu_411_dactivations_ce0),
     .dactivations_q0(dactivations2_q0),
-    .grp_fu_986_p_din0(grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_ce),
-    .grp_fu_1006_p_din0(grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_din0),
-    .grp_fu_1006_p_din1(grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_din1),
-    .grp_fu_1006_p_dout0(grp_fu_1006_p2),
-    .grp_fu_1006_p_ce(grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_ce)
+    .grp_fu_990_p_din0(grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_opcode),
+    .grp_fu_990_p_dout0(grp_fu_990_p2),
+    .grp_fu_990_p_ce(grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_ce)
 );
 
-backprop_get_delta_matrix_weights2 grp_get_delta_matrix_weights2_fu_381(
+backprop_get_delta_matrix_weights2 grp_get_delta_matrix_weights2_fu_422(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_get_delta_matrix_weights2_fu_381_ap_start),
-    .ap_done(grp_get_delta_matrix_weights2_fu_381_ap_done),
-    .ap_idle(grp_get_delta_matrix_weights2_fu_381_ap_idle),
-    .ap_ready(grp_get_delta_matrix_weights2_fu_381_ap_ready),
-    .delta_weights2_address0(grp_get_delta_matrix_weights2_fu_381_delta_weights2_address0),
-    .delta_weights2_ce0(grp_get_delta_matrix_weights2_fu_381_delta_weights2_ce0),
-    .delta_weights2_we0(grp_get_delta_matrix_weights2_fu_381_delta_weights2_we0),
-    .delta_weights2_d0(grp_get_delta_matrix_weights2_fu_381_delta_weights2_d0),
-    .output_difference_address0(grp_get_delta_matrix_weights2_fu_381_output_difference_address0),
-    .output_difference_ce0(grp_get_delta_matrix_weights2_fu_381_output_difference_ce0),
+    .ap_start(grp_get_delta_matrix_weights2_fu_422_ap_start),
+    .ap_done(grp_get_delta_matrix_weights2_fu_422_ap_done),
+    .ap_idle(grp_get_delta_matrix_weights2_fu_422_ap_idle),
+    .ap_ready(grp_get_delta_matrix_weights2_fu_422_ap_ready),
+    .delta_weights2_address0(grp_get_delta_matrix_weights2_fu_422_delta_weights2_address0),
+    .delta_weights2_ce0(grp_get_delta_matrix_weights2_fu_422_delta_weights2_ce0),
+    .delta_weights2_we0(grp_get_delta_matrix_weights2_fu_422_delta_weights2_we0),
+    .delta_weights2_d0(grp_get_delta_matrix_weights2_fu_422_delta_weights2_d0),
+    .output_difference_address0(grp_get_delta_matrix_weights2_fu_422_output_difference_address0),
+    .output_difference_ce0(grp_get_delta_matrix_weights2_fu_422_output_difference_ce0),
     .output_difference_q0(oracle_activations2_q0),
-    .last_activations_address0(grp_get_delta_matrix_weights2_fu_381_last_activations_address0),
-    .last_activations_ce0(grp_get_delta_matrix_weights2_fu_381_last_activations_ce0),
+    .last_activations_address0(grp_get_delta_matrix_weights2_fu_422_last_activations_address0),
+    .last_activations_ce0(grp_get_delta_matrix_weights2_fu_422_last_activations_ce0),
     .last_activations_q0(activations1_q0),
-    .grp_fu_990_p_din0(grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_din1),
-    .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_ce)
+    .grp_fu_994_p_din0(grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_ce)
 );
 
-backprop_get_oracle_activations1_1 grp_get_oracle_activations1_1_fu_388(
+backprop_get_oracle_activations1_1 grp_get_oracle_activations1_1_fu_429(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_get_oracle_activations1_1_fu_388_ap_start),
-    .ap_done(grp_get_oracle_activations1_1_fu_388_ap_done),
-    .ap_idle(grp_get_oracle_activations1_1_fu_388_ap_idle),
-    .ap_ready(grp_get_oracle_activations1_1_fu_388_ap_ready),
-    .weights2_address0(grp_get_oracle_activations1_1_fu_388_weights2_address0),
-    .weights2_ce0(grp_get_oracle_activations1_1_fu_388_weights2_ce0),
+    .ap_start(grp_get_oracle_activations1_1_fu_429_ap_start),
+    .ap_done(grp_get_oracle_activations1_1_fu_429_ap_done),
+    .ap_idle(grp_get_oracle_activations1_1_fu_429_ap_idle),
+    .ap_ready(grp_get_oracle_activations1_1_fu_429_ap_ready),
+    .weights2_address0(grp_get_oracle_activations1_1_fu_429_weights2_address0),
+    .weights2_ce0(grp_get_oracle_activations1_1_fu_429_weights2_ce0),
     .weights2_q0(weights2_q0),
-    .output_differences_address0(grp_get_oracle_activations1_1_fu_388_output_differences_address0),
-    .output_differences_ce0(grp_get_oracle_activations1_1_fu_388_output_differences_ce0),
+    .output_differences_address0(grp_get_oracle_activations1_1_fu_429_output_differences_address0),
+    .output_differences_ce0(grp_get_oracle_activations1_1_fu_429_output_differences_ce0),
     .output_differences_q0(oracle_activations2_q0),
-    .oracle_activations_address0(grp_get_oracle_activations1_1_fu_388_oracle_activations_address0),
-    .oracle_activations_ce0(grp_get_oracle_activations1_1_fu_388_oracle_activations_ce0),
-    .oracle_activations_we0(grp_get_oracle_activations1_1_fu_388_oracle_activations_we0),
-    .oracle_activations_d0(grp_get_oracle_activations1_1_fu_388_oracle_activations_d0),
-    .dactivations_address0(grp_get_oracle_activations1_1_fu_388_dactivations_address0),
-    .dactivations_ce0(grp_get_oracle_activations1_1_fu_388_dactivations_ce0),
+    .oracle_activations_address0(grp_get_oracle_activations1_1_fu_429_oracle_activations_address0),
+    .oracle_activations_ce0(grp_get_oracle_activations1_1_fu_429_oracle_activations_ce0),
+    .oracle_activations_we0(grp_get_oracle_activations1_1_fu_429_oracle_activations_we0),
+    .oracle_activations_d0(grp_get_oracle_activations1_1_fu_429_oracle_activations_d0),
+    .dactivations_address0(grp_get_oracle_activations1_1_fu_429_dactivations_address0),
+    .dactivations_ce0(grp_get_oracle_activations1_1_fu_429_dactivations_ce0),
     .dactivations_q0(dactivations1_q0),
-    .grp_fu_986_p_din0(grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_ce),
-    .grp_fu_990_p_din0(grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_din1),
+    .grp_fu_990_p_din0(grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_opcode),
     .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_ce)
+    .grp_fu_990_p_ce(grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_ce)
 );
 
-backprop_get_delta_matrix_weights1_1 grp_get_delta_matrix_weights1_1_fu_397(
+backprop_get_delta_matrix_weights1_1 grp_get_delta_matrix_weights1_1_fu_438(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_get_delta_matrix_weights1_1_fu_397_ap_start),
-    .ap_done(grp_get_delta_matrix_weights1_1_fu_397_ap_done),
-    .ap_idle(grp_get_delta_matrix_weights1_1_fu_397_ap_idle),
-    .ap_ready(grp_get_delta_matrix_weights1_1_fu_397_ap_ready),
-    .delta_weights1_address0(grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_address0),
-    .delta_weights1_ce0(grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_ce0),
-    .delta_weights1_we0(grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_we0),
-    .delta_weights1_d0(grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_d0),
-    .output_difference_address0(grp_get_delta_matrix_weights1_1_fu_397_output_difference_address0),
-    .output_difference_ce0(grp_get_delta_matrix_weights1_1_fu_397_output_difference_ce0),
+    .ap_start(grp_get_delta_matrix_weights1_1_fu_438_ap_start),
+    .ap_done(grp_get_delta_matrix_weights1_1_fu_438_ap_done),
+    .ap_idle(grp_get_delta_matrix_weights1_1_fu_438_ap_idle),
+    .ap_ready(grp_get_delta_matrix_weights1_1_fu_438_ap_ready),
+    .delta_weights1_address0(grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_address0),
+    .delta_weights1_ce0(grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_ce0),
+    .delta_weights1_we0(grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_we0),
+    .delta_weights1_d0(grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_d0),
+    .output_difference_address0(grp_get_delta_matrix_weights1_1_fu_438_output_difference_address0),
+    .output_difference_ce0(grp_get_delta_matrix_weights1_1_fu_438_output_difference_ce0),
     .output_difference_q0(oracle_activations1_q0),
-    .training_data_address0(grp_get_delta_matrix_weights1_1_fu_397_training_data_address0),
-    .training_data_ce0(grp_get_delta_matrix_weights1_1_fu_397_training_data_ce0),
+    .training_data_address0(grp_get_delta_matrix_weights1_1_fu_438_training_data_address0),
+    .training_data_ce0(grp_get_delta_matrix_weights1_1_fu_438_training_data_ce0),
     .training_data_q0(training_data_q0),
-    .idx(phi_mul_load_reg_867),
-    .grp_fu_990_p_din0(grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_din1),
-    .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_ce)
+    .idx(phi_mul_load_reg_827),
+    .grp_fu_994_p_din0(grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_ce)
 );
 
-backprop_update_weights_1 grp_update_weights_1_fu_406(
+backprop_update_weights_1 grp_update_weights_1_fu_447(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_update_weights_1_fu_406_ap_start),
-    .ap_done(grp_update_weights_1_fu_406_ap_done),
-    .ap_idle(grp_update_weights_1_fu_406_ap_idle),
-    .ap_ready(grp_update_weights_1_fu_406_ap_ready),
-    .weights1_address0(grp_update_weights_1_fu_406_weights1_address0),
-    .weights1_ce0(grp_update_weights_1_fu_406_weights1_ce0),
-    .weights1_we0(grp_update_weights_1_fu_406_weights1_we0),
-    .weights1_d0(grp_update_weights_1_fu_406_weights1_d0),
+    .ap_start(grp_update_weights_1_fu_447_ap_start),
+    .ap_done(grp_update_weights_1_fu_447_ap_done),
+    .ap_idle(grp_update_weights_1_fu_447_ap_idle),
+    .ap_ready(grp_update_weights_1_fu_447_ap_ready),
+    .weights1_address0(grp_update_weights_1_fu_447_weights1_address0),
+    .weights1_ce0(grp_update_weights_1_fu_447_weights1_ce0),
+    .weights1_we0(grp_update_weights_1_fu_447_weights1_we0),
+    .weights1_d0(grp_update_weights_1_fu_447_weights1_d0),
     .weights1_q0(weights1_q0),
-    .weights2_address0(grp_update_weights_1_fu_406_weights2_address0),
-    .weights2_ce0(grp_update_weights_1_fu_406_weights2_ce0),
-    .weights2_we0(grp_update_weights_1_fu_406_weights2_we0),
-    .weights2_d0(grp_update_weights_1_fu_406_weights2_d0),
+    .weights2_address0(grp_update_weights_1_fu_447_weights2_address0),
+    .weights2_ce0(grp_update_weights_1_fu_447_weights2_ce0),
+    .weights2_we0(grp_update_weights_1_fu_447_weights2_we0),
+    .weights2_d0(grp_update_weights_1_fu_447_weights2_d0),
     .weights2_q0(weights2_q0),
-    .weights3_address0(grp_update_weights_1_fu_406_weights3_address0),
-    .weights3_ce0(grp_update_weights_1_fu_406_weights3_ce0),
-    .weights3_we0(grp_update_weights_1_fu_406_weights3_we0),
-    .weights3_d0(grp_update_weights_1_fu_406_weights3_d0),
+    .weights3_address0(grp_update_weights_1_fu_447_weights3_address0),
+    .weights3_ce0(grp_update_weights_1_fu_447_weights3_ce0),
+    .weights3_we0(grp_update_weights_1_fu_447_weights3_we0),
+    .weights3_d0(grp_update_weights_1_fu_447_weights3_d0),
     .weights3_q0(weights3_q0),
-    .d_weights1_address0(grp_update_weights_1_fu_406_d_weights1_address0),
-    .d_weights1_ce0(grp_update_weights_1_fu_406_d_weights1_ce0),
+    .d_weights1_address0(grp_update_weights_1_fu_447_d_weights1_address0),
+    .d_weights1_ce0(grp_update_weights_1_fu_447_d_weights1_ce0),
     .d_weights1_q0(delta_weights1_q0),
-    .d_weights2_address0(grp_update_weights_1_fu_406_d_weights2_address0),
-    .d_weights2_ce0(grp_update_weights_1_fu_406_d_weights2_ce0),
+    .d_weights2_address0(grp_update_weights_1_fu_447_d_weights2_address0),
+    .d_weights2_ce0(grp_update_weights_1_fu_447_d_weights2_ce0),
     .d_weights2_q0(delta_weights2_q0),
-    .d_weights3_address0(grp_update_weights_1_fu_406_d_weights3_address0),
-    .d_weights3_ce0(grp_update_weights_1_fu_406_d_weights3_ce0),
+    .d_weights3_address0(grp_update_weights_1_fu_447_d_weights3_address0),
+    .d_weights3_ce0(grp_update_weights_1_fu_447_d_weights3_ce0),
     .d_weights3_q0(delta_weights3_q0),
-    .biases1_address0(grp_update_weights_1_fu_406_biases1_address0),
-    .biases1_ce0(grp_update_weights_1_fu_406_biases1_ce0),
-    .biases1_we0(grp_update_weights_1_fu_406_biases1_we0),
-    .biases1_d0(grp_update_weights_1_fu_406_biases1_d0),
+    .biases1_address0(grp_update_weights_1_fu_447_biases1_address0),
+    .biases1_ce0(grp_update_weights_1_fu_447_biases1_ce0),
+    .biases1_we0(grp_update_weights_1_fu_447_biases1_we0),
+    .biases1_d0(grp_update_weights_1_fu_447_biases1_d0),
     .biases1_q0(biases1_q0),
-    .biases2_address0(grp_update_weights_1_fu_406_biases2_address0),
-    .biases2_ce0(grp_update_weights_1_fu_406_biases2_ce0),
-    .biases2_we0(grp_update_weights_1_fu_406_biases2_we0),
-    .biases2_d0(grp_update_weights_1_fu_406_biases2_d0),
+    .biases2_address0(grp_update_weights_1_fu_447_biases2_address0),
+    .biases2_ce0(grp_update_weights_1_fu_447_biases2_ce0),
+    .biases2_we0(grp_update_weights_1_fu_447_biases2_we0),
+    .biases2_d0(grp_update_weights_1_fu_447_biases2_d0),
     .biases2_q0(biases2_q0),
-    .biases3_address0(grp_update_weights_1_fu_406_biases3_address0),
-    .biases3_ce0(grp_update_weights_1_fu_406_biases3_ce0),
-    .biases3_we0(grp_update_weights_1_fu_406_biases3_we0),
-    .biases3_d0(grp_update_weights_1_fu_406_biases3_d0),
+    .biases3_address0(grp_update_weights_1_fu_447_biases3_address0),
+    .biases3_ce0(grp_update_weights_1_fu_447_biases3_ce0),
+    .biases3_we0(grp_update_weights_1_fu_447_biases3_we0),
+    .biases3_d0(grp_update_weights_1_fu_447_biases3_d0),
     .biases3_q0(biases3_q0),
-    .d_biases1_address0(grp_update_weights_1_fu_406_d_biases1_address0),
-    .d_biases1_ce0(grp_update_weights_1_fu_406_d_biases1_ce0),
+    .d_biases1_address0(grp_update_weights_1_fu_447_d_biases1_address0),
+    .d_biases1_ce0(grp_update_weights_1_fu_447_d_biases1_ce0),
     .d_biases1_q0(oracle_activations1_q0),
-    .d_biases2_address0(grp_update_weights_1_fu_406_d_biases2_address0),
-    .d_biases2_ce0(grp_update_weights_1_fu_406_d_biases2_ce0),
+    .d_biases2_address0(grp_update_weights_1_fu_447_d_biases2_address0),
+    .d_biases2_ce0(grp_update_weights_1_fu_447_d_biases2_ce0),
     .d_biases2_q0(oracle_activations2_q0),
-    .p_read(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out),
-    .p_read1(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out),
-    .p_read2(grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out),
-    .grp_fu_986_p_din0(grp_update_weights_1_fu_406_grp_fu_986_p_din0),
-    .grp_fu_986_p_din1(grp_update_weights_1_fu_406_grp_fu_986_p_din1),
-    .grp_fu_986_p_opcode(grp_update_weights_1_fu_406_grp_fu_986_p_opcode),
-    .grp_fu_986_p_dout0(grp_fu_986_p2),
-    .grp_fu_986_p_ce(grp_update_weights_1_fu_406_grp_fu_986_p_ce),
-    .grp_fu_990_p_din0(grp_update_weights_1_fu_406_grp_fu_990_p_din0),
-    .grp_fu_990_p_din1(grp_update_weights_1_fu_406_grp_fu_990_p_din1),
+    .p_read(output_difference_0_reg_969),
+    .p_read1(output_difference_1_reg_976),
+    .p_read2(output_difference_2_reg_983),
+    .grp_fu_990_p_din0(grp_update_weights_1_fu_447_grp_fu_990_p_din0),
+    .grp_fu_990_p_din1(grp_update_weights_1_fu_447_grp_fu_990_p_din1),
+    .grp_fu_990_p_opcode(grp_update_weights_1_fu_447_grp_fu_990_p_opcode),
     .grp_fu_990_p_dout0(grp_fu_990_p2),
-    .grp_fu_990_p_ce(grp_update_weights_1_fu_406_grp_fu_990_p_ce),
-    .grp_fu_998_p_din0(grp_update_weights_1_fu_406_grp_fu_998_p_din0),
-    .grp_fu_998_p_din1(grp_update_weights_1_fu_406_grp_fu_998_p_din1),
+    .grp_fu_990_p_ce(grp_update_weights_1_fu_447_grp_fu_990_p_ce),
+    .grp_fu_994_p_din0(grp_update_weights_1_fu_447_grp_fu_994_p_din0),
+    .grp_fu_994_p_din1(grp_update_weights_1_fu_447_grp_fu_994_p_din1),
+    .grp_fu_994_p_dout0(grp_fu_994_p2),
+    .grp_fu_994_p_ce(grp_update_weights_1_fu_447_grp_fu_994_p_ce),
+    .grp_fu_998_p_din0(grp_update_weights_1_fu_447_grp_fu_998_p_din0),
+    .grp_fu_998_p_din1(grp_update_weights_1_fu_447_grp_fu_998_p_din1),
     .grp_fu_998_p_dout0(grp_fu_998_p2),
-    .grp_fu_998_p_ce(grp_update_weights_1_fu_406_grp_fu_998_p_ce)
+    .grp_fu_998_p_ce(grp_update_weights_1_fu_447_grp_fu_998_p_ce)
 );
 
 backprop_dadddsub_64ns_64ns_64_4_full_dsp_1 #(
@@ -1403,14 +1163,14 @@ backprop_dadddsub_64ns_64ns_64_4_full_dsp_1 #(
     .din0_WIDTH( 64 ),
     .din1_WIDTH( 64 ),
     .dout_WIDTH( 64 ))
-dadddsub_64ns_64ns_64_4_full_dsp_1_U166(
+dadddsub_64ns_64ns_64_4_full_dsp_1_U129(
     .clk(ap_clk),
     .reset(ap_rst),
-    .din0(grp_fu_986_p0),
-    .din1(grp_fu_986_p1),
-    .opcode(grp_fu_986_opcode),
-    .ce(grp_fu_986_ce),
-    .dout(grp_fu_986_p2)
+    .din0(grp_fu_990_p0),
+    .din1(grp_fu_990_p1),
+    .opcode(grp_fu_990_opcode),
+    .ce(grp_fu_990_ce),
+    .dout(grp_fu_990_p2)
 );
 
 backprop_dmul_64ns_64ns_64_4_max_dsp_1 #(
@@ -1419,22 +1179,7 @@ backprop_dmul_64ns_64ns_64_4_max_dsp_1 #(
     .din0_WIDTH( 64 ),
     .din1_WIDTH( 64 ),
     .dout_WIDTH( 64 ))
-dmul_64ns_64ns_64_4_max_dsp_1_U167(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .din0(grp_fu_990_p0),
-    .din1(grp_fu_990_p1),
-    .ce(grp_fu_990_ce),
-    .dout(grp_fu_990_p2)
-);
-
-backprop_dadd_64ns_64ns_64_4_full_dsp_1 #(
-    .ID( 1 ),
-    .NUM_STAGE( 4 ),
-    .din0_WIDTH( 64 ),
-    .din1_WIDTH( 64 ),
-    .dout_WIDTH( 64 ))
-dadd_64ns_64ns_64_4_full_dsp_1_U168(
+dmul_64ns_64ns_64_4_max_dsp_1_U130(
     .clk(ap_clk),
     .reset(ap_rst),
     .din0(grp_fu_994_p0),
@@ -1449,7 +1194,7 @@ backprop_ddiv_64ns_64ns_64_14_no_dsp_1 #(
     .din0_WIDTH( 64 ),
     .din1_WIDTH( 64 ),
     .dout_WIDTH( 64 ))
-ddiv_64ns_64ns_64_14_no_dsp_1_U169(
+ddiv_64ns_64ns_64_14_no_dsp_1_U131(
     .clk(ap_clk),
     .reset(ap_rst),
     .din0(grp_fu_998_p0),
@@ -1464,28 +1209,13 @@ backprop_dexp_64ns_64ns_64_10_full_dsp_1 #(
     .din0_WIDTH( 64 ),
     .din1_WIDTH( 64 ),
     .dout_WIDTH( 64 ))
-dexp_64ns_64ns_64_10_full_dsp_1_U170(
+dexp_64ns_64ns_64_10_full_dsp_1_U132(
     .clk(ap_clk),
     .reset(ap_rst),
     .din0(grp_fu_1002_p0),
     .din1(grp_fu_1002_p1),
     .ce(grp_fu_1002_ce),
     .dout(grp_fu_1002_p2)
-);
-
-backprop_dmul_64ns_64ns_64_4_max_dsp_1 #(
-    .ID( 1 ),
-    .NUM_STAGE( 4 ),
-    .din0_WIDTH( 64 ),
-    .din1_WIDTH( 64 ),
-    .dout_WIDTH( 64 ))
-dmul_64ns_64ns_64_4_max_dsp_1_U171(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .din0(grp_fu_1006_p0),
-    .din1(grp_fu_1006_p1),
-    .ce(grp_fu_1006_ce),
-    .dout(grp_fu_1006_p2)
 );
 
 always @ (posedge ap_clk) begin
@@ -1498,402 +1228,417 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start_reg <= 1'b0;
+        grp_RELU_clone_fu_366_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state10)) begin
-            grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_RELU_loop11_fu_286_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start_reg <= 1'b0;
+        if (((grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
+            grp_RELU_clone_fu_366_ap_start_reg <= 1'b1;
+        end else if ((grp_RELU_clone_fu_366_ap_ready == 1'b1)) begin
+            grp_RELU_clone_fu_366_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start_reg <= 1'b0;
+        grp_RELU_fu_335_ap_start_reg <= 1'b0;
     end else begin
-        if (((grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
-            grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_RELU_loop12_fu_304_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state10) | (1'b1 == ap_CS_fsm_state6))) begin
+            grp_RELU_fu_335_ap_start_reg <= 1'b1;
+        end else if ((grp_RELU_fu_335_ap_ready == 1'b1)) begin
+            grp_RELU_fu_335_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start_reg <= 1'b0;
+        grp_get_delta_matrix_weights1_1_fu_438_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state6)) begin
-            grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_RELU_loop1_fu_270_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state22)) begin
+            grp_get_delta_matrix_weights1_1_fu_438_ap_start_reg <= 1'b1;
+        end else if ((grp_get_delta_matrix_weights1_1_fu_438_ap_ready == 1'b1)) begin
+            grp_get_delta_matrix_weights1_1_fu_438_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start_reg <= 1'b0;
+        grp_get_delta_matrix_weights2_fu_422_ap_start_reg <= 1'b0;
     end else begin
-        if (((icmp_ln356_fu_452_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-            grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state18)) begin
+            grp_get_delta_matrix_weights2_fu_422_ap_start_reg <= 1'b1;
+        end else if ((grp_get_delta_matrix_weights2_fu_422_ap_ready == 1'b1)) begin
+            grp_get_delta_matrix_weights2_fu_422_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start_reg <= 1'b0;
+        grp_get_delta_matrix_weights3_fu_402_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state15)) begin
-            grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start_reg <= 1'b0;
+        if (((grp_take_difference_1_fu_386_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state16))) begin
+            grp_get_delta_matrix_weights3_fu_402_ap_start_reg <= 1'b1;
+        end else if ((grp_get_delta_matrix_weights3_fu_402_ap_ready == 1'b1)) begin
+            grp_get_delta_matrix_weights3_fu_402_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start_reg <= 1'b0;
+        grp_get_oracle_activations1_1_fu_429_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state17)) begin
-            grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state20)) begin
+            grp_get_oracle_activations1_1_fu_429_ap_start_reg <= 1'b1;
+        end else if ((grp_get_oracle_activations1_1_fu_429_ap_ready == 1'b1)) begin
+            grp_get_oracle_activations1_1_fu_429_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start_reg <= 1'b0;
+        grp_get_oracle_activations2_1_fu_411_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state19)) begin
-            grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start_reg <= 1'b1;
-        end else if ((grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_ready == 1'b1)) begin
-            grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start_reg <= 1'b0;
+        if (((grp_take_difference_1_fu_386_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state16))) begin
+            grp_get_oracle_activations2_1_fu_411_ap_start_reg <= 1'b1;
+        end else if ((grp_get_oracle_activations2_1_fu_411_ap_ready == 1'b1)) begin
+            grp_get_oracle_activations2_1_fu_411_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_get_delta_matrix_weights1_1_fu_397_ap_start_reg <= 1'b0;
+        grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state27)) begin
-            grp_get_delta_matrix_weights1_1_fu_397_ap_start_reg <= 1'b1;
-        end else if ((grp_get_delta_matrix_weights1_1_fu_397_ap_ready == 1'b1)) begin
-            grp_get_delta_matrix_weights1_1_fu_397_ap_start_reg <= 1'b0;
+        if (((icmp_ln359_fu_518_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
+            grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_get_delta_matrix_weights2_fu_381_ap_start_reg <= 1'b0;
-    end else begin
-        if ((1'b1 == ap_CS_fsm_state23)) begin
-            grp_get_delta_matrix_weights2_fu_381_ap_start_reg <= 1'b1;
-        end else if ((grp_get_delta_matrix_weights2_fu_381_ap_ready == 1'b1)) begin
-            grp_get_delta_matrix_weights2_fu_381_ap_start_reg <= 1'b0;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        grp_get_delta_matrix_weights3_fu_361_ap_start_reg <= 1'b0;
-    end else begin
-        if ((1'b1 == ap_CS_fsm_state21)) begin
-            grp_get_delta_matrix_weights3_fu_361_ap_start_reg <= 1'b1;
-        end else if ((grp_get_delta_matrix_weights3_fu_361_ap_ready == 1'b1)) begin
-            grp_get_delta_matrix_weights3_fu_361_ap_start_reg <= 1'b0;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        grp_get_oracle_activations1_1_fu_388_ap_start_reg <= 1'b0;
-    end else begin
-        if ((1'b1 == ap_CS_fsm_state25)) begin
-            grp_get_oracle_activations1_1_fu_388_ap_start_reg <= 1'b1;
-        end else if ((grp_get_oracle_activations1_1_fu_388_ap_ready == 1'b1)) begin
-            grp_get_oracle_activations1_1_fu_388_ap_start_reg <= 1'b0;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        grp_get_oracle_activations2_1_fu_370_ap_start_reg <= 1'b0;
-    end else begin
-        if ((1'b1 == ap_CS_fsm_state21)) begin
-            grp_get_oracle_activations2_1_fu_370_ap_start_reg <= 1'b1;
-        end else if ((grp_get_oracle_activations2_1_fu_370_ap_ready == 1'b1)) begin
-            grp_get_oracle_activations2_1_fu_370_ap_start_reg <= 1'b0;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start_reg <= 1'b0;
-    end else begin
-        if ((1'b1 == ap_CS_fsm_state4)) begin
-            grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start_reg <= 1'b1;
-        end else if ((grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_ready == 1'b1)) begin
-            grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start_reg <= 1'b0;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start_reg <= 1'b0;
+        grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state12)) begin
-            grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start_reg <= 1'b1;
-        end else if ((grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_ready == 1'b1)) begin
-            grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start_reg <= 1'b0;
+            grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start_reg <= 1'b0;
+        grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state8)) begin
-            grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start_reg <= 1'b1;
-        end else if ((grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_ready == 1'b1)) begin
-            grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start_reg <= 1'b0;
+            grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start_reg <= 1'b1;
+        end else if ((grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_ready == 1'b1)) begin
+            grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_update_weights_1_fu_406_ap_start_reg <= 1'b0;
+        grp_soft_max_fu_376_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state29)) begin
-            grp_update_weights_1_fu_406_ap_start_reg <= 1'b1;
-        end else if ((grp_update_weights_1_fu_406_ap_ready == 1'b1)) begin
-            grp_update_weights_1_fu_406_ap_start_reg <= 1'b0;
+        if (((grp_RELU_clone_fu_366_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state14))) begin
+            grp_soft_max_fu_376_ap_start_reg <= 1'b1;
+        end else if ((grp_soft_max_fu_376_ap_ready == 1'b1)) begin
+            grp_soft_max_fu_376_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        i_fu_94 <= 8'd0;
-    end else if (((icmp_ln356_fu_452_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        i_fu_94 <= add_ln356_fu_458_p2;
+    if (ap_rst == 1'b1) begin
+        grp_take_difference_1_fu_386_ap_start_reg <= 1'b0;
+    end else begin
+        if (((grp_soft_max_fu_376_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state15))) begin
+            grp_take_difference_1_fu_386_ap_start_reg <= 1'b1;
+        end else if ((grp_take_difference_1_fu_386_ap_ready == 1'b1)) begin
+            grp_take_difference_1_fu_386_ap_start_reg <= 1'b0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_update_weights_1_fu_447_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state24)) begin
+            grp_update_weights_1_fu_447_ap_start_reg <= 1'b1;
+        end else if ((grp_update_weights_1_fu_447_ap_ready == 1'b1)) begin
+            grp_update_weights_1_fu_447_ap_start_reg <= 1'b0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations3_0_1_reg_242 <= activations3_0_3_reg_303;
+    end else if (((icmp_ln356_fu_502_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
+        activations3_0_1_reg_242 <= activations3_0_0_fu_148;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((trunc_ln364_fu_542_p1 == 2'd0) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations3_0_3_reg_303 <= 64'd0;
+    end else if ((((icmp_ln363_fu_536_p2 == 1'd0) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)) | (~(trunc_ln364_fu_542_p1 == 2'd1) & ~(trunc_ln364_fu_542_p1 == 2'd0) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)) | ((trunc_ln364_fu_542_p1 == 2'd1) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)))) begin
+        activations3_0_3_reg_303 <= activations3_0_1_reg_242;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations3_1_1_reg_232 <= activations3_1_3_reg_283;
+    end else if (((icmp_ln356_fu_502_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
+        activations3_1_1_reg_232 <= activations3_1_0_fu_152;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((trunc_ln364_fu_542_p1 == 2'd1) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations3_1_3_reg_283 <= 64'd0;
+    end else if ((((icmp_ln363_fu_536_p2 == 1'd0) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)) | (~(trunc_ln364_fu_542_p1 == 2'd1) & ~(trunc_ln364_fu_542_p1 == 2'd0) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)) | ((trunc_ln364_fu_542_p1 == 2'd0) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)))) begin
+        activations3_1_3_reg_283 <= activations3_1_1_reg_232;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        activations3_2_1_reg_222 <= activations3_2_3_reg_263;
+    end else if (((icmp_ln356_fu_502_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
+        activations3_2_1_reg_222 <= activations3_2_0_fu_156;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((((icmp_ln363_fu_536_p2 == 1'd0) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)) | ((trunc_ln364_fu_542_p1 == 2'd1) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)) | ((trunc_ln364_fu_542_p1 == 2'd0) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3)))) begin
+        activations3_2_3_reg_263 <= activations3_2_1_reg_222;
+    end else if ((~(trunc_ln364_fu_542_p1 == 2'd1) & ~(trunc_ln364_fu_542_p1 == 2'd0) & (icmp_ln363_fu_536_p2 == 1'd1) & (icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations3_2_3_reg_263 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        phi_mul_fu_90 <= 12'd0;
-    end else if (((icmp_ln356_fu_452_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        phi_mul_fu_90 <= add_ln356_1_fu_446_p2;
+        i_fu_108 <= 8'd0;
+    end else if (((icmp_ln359_fu_518_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
+        i_fu_108 <= add_ln356_reg_853;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state15)) begin
-        activations3_0_0_fu_122 <= grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_0_4_out;
-        activations3_1_0_fu_126 <= grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_1_4_out;
-        activations3_2_0_fu_130 <= grp_backprop_Pipeline_RELU_loop12_fu_304_activations3_2_4_out;
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        j_reg_252 <= add_ln359_reg_866;
+    end else if (((icmp_ln356_fu_502_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
+        j_reg_252 <= 7'd0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+        phi_mul_fu_104 <= 12'd0;
+    end else if (((icmp_ln359_fu_518_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
+        phi_mul_fu_104 <= add_ln356_1_reg_845;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_RELU_clone_fu_366_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state14))) begin
+        activations3_0_0_fu_148 <= grp_RELU_clone_fu_366_ap_return_3;
+        activations3_1_0_fu_152 <= grp_RELU_clone_fu_366_ap_return_4;
+        activations3_2_0_fu_156 <= grp_RELU_clone_fu_366_ap_return_5;
+        dactivations3_020_fu_112 <= grp_RELU_clone_fu_366_ap_return_0;
+        dactivations3_121_fu_116 <= grp_RELU_clone_fu_366_ap_return_1;
+        dactivations3_222_fu_120 <= grp_RELU_clone_fu_366_ap_return_2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state14)) begin
+        activations3_0_2_reg_930 <= grp_RELU_clone_fu_366_ap_return_3;
+        activations3_1_2_reg_935 <= grp_RELU_clone_fu_366_ap_return_4;
+        activations3_2_2_reg_940 <= grp_RELU_clone_fu_366_ap_return_5;
+        dactivations3_0_reg_925 <= grp_RELU_clone_fu_366_ap_return_0;
+        dactivations3_1_reg_920 <= grp_RELU_clone_fu_366_ap_return_1;
+        dactivations3_2_reg_915 <= grp_RELU_clone_fu_366_ap_return_2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations3_0_reg_909 <= grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_0;
-        activations3_1_reg_914 <= grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_1;
-        activations3_2_reg_919 <= grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_return_2;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state19)) begin
-        dactivations3_0_01_fu_98 <= grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_0_1_out;
-        dactivations3_1_02_fu_102 <= grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_1_1_out;
-        dactivations3_2_03_fu_106 <= grp_backprop_Pipeline_RELU_loop12_fu_304_dactivations3_2_1_out;
-        net_outputs_0_04_fu_110 <= grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_0_1_out;
-        net_outputs_1_05_fu_114 <= grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_1_1_out;
-        net_outputs_2_06_fu_118 <= grp_backprop_Pipeline_soft_max_loop2_fu_328_net_outputs_2_1_out;
-        sub_ln374_reg_972 <= sub_ln374_fu_618_p2;
+        activations3_0_reg_891 <= grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_0;
+        activations3_1_reg_896 <= grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_1;
+        activations3_2_reg_901 <= grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_return_2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        i_32_reg_873 <= i_fu_94;
-        phi_mul_load_reg_867 <= phi_mul_fu_90;
+        add_ln356_1_reg_845 <= add_ln356_1_fu_496_p2;
+        add_ln356_reg_853 <= add_ln356_fu_508_p2;
+        phi_mul_load_reg_827 <= phi_mul_fu_104;
+        zext_ln356_reg_858[7 : 0] <= zext_ln356_fu_514_p1[7 : 0];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state21)) begin
-        output_difference_0_020_fu_134 <= grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_0_1_out;
-        output_difference_1_021_fu_138 <= grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_1_1_out;
-        output_difference_2_022_fu_142 <= grp_backprop_Pipeline_take_difference_loop1_fu_342_output_difference_2_1_out;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        add_ln359_reg_866 <= add_ln359_fu_524_p2;
+        sub_ln374_reg_877 <= sub_ln374_fu_557_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_soft_max_fu_376_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state15))) begin
+        net_outputs_023_fu_124 <= grp_soft_max_fu_376_ap_return_0;
+        net_outputs_124_fu_128 <= grp_soft_max_fu_376_ap_return_1;
+        net_outputs_225_fu_132 <= grp_soft_max_fu_376_ap_return_2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state15)) begin
+        net_outputs_0_reg_954 <= grp_soft_max_fu_376_ap_return_0;
+        net_outputs_1_reg_959 <= grp_soft_max_fu_376_ap_return_1;
+        net_outputs_2_reg_964 <= grp_soft_max_fu_376_ap_return_2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_take_difference_1_fu_386_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state16))) begin
+        output_difference_0_034_fu_144 <= grp_take_difference_1_fu_386_ap_return_0;
+        output_difference_1_033_fu_140 <= grp_take_difference_1_fu_386_ap_return_1;
+        output_difference_2_032_fu_136 <= grp_take_difference_1_fu_386_ap_return_2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state16)) begin
+        output_difference_0_reg_969 <= grp_take_difference_1_fu_386_ap_return_0;
+        output_difference_1_reg_976 <= grp_take_difference_1_fu_386_ap_return_1;
+        output_difference_2_reg_983 <= grp_take_difference_1_fu_386_ap_return_2;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state24)) begin
-        activations1_address0 = grp_get_delta_matrix_weights2_fu_381_last_activations_address0;
+    if (((icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations1_address0 = zext_ln359_fu_530_p1;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        activations1_address0 = grp_get_delta_matrix_weights2_fu_422_last_activations_address0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations1_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_input_activations_address0;
+        activations1_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_input_activations_address0;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        activations1_address0 = grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_address0;
+        activations1_address0 = grp_RELU_fu_335_activations_address0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        activations1_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_address0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations1_address0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_address0;
+        activations1_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_address0;
     end else begin
         activations1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        activations1_address1 = grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_address1;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        activations1_address1 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_address1;
-    end else begin
-        activations1_address1 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state24)) begin
-        activations1_ce0 = grp_get_delta_matrix_weights2_fu_381_last_activations_ce0;
+    if (((icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations1_ce0 = 1'b1;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        activations1_ce0 = grp_get_delta_matrix_weights2_fu_422_last_activations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations1_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_input_activations_ce0;
+        activations1_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_input_activations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        activations1_ce0 = grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_ce0;
+        activations1_ce0 = grp_RELU_fu_335_activations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        activations1_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations1_ce0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_ce0;
+        activations1_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_ce0;
     end else begin
         activations1_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        activations1_ce1 = grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_ce1;
+    if (((icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations1_d0 = 64'd0;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        activations1_d0 = grp_RELU_fu_335_activations_d0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        activations1_ce1 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_ce1;
-    end else begin
-        activations1_ce1 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        activations1_d0 = grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_d0;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        activations1_d0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_d0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations1_d0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_d0;
+        activations1_d0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_d0;
     end else begin
         activations1_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        activations1_we0 = grp_backprop_Pipeline_RELU_loop1_fu_270_activations1_we0;
+    if (((icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations1_we0 = 1'b1;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        activations1_we0 = grp_RELU_fu_335_activations_we0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        activations1_we0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_activations_we0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations1_we0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations1_we0;
+        activations1_we0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activations_we0;
     end else begin
         activations1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        activations2_address0 = grp_get_delta_matrix_weights3_fu_361_last_activations_address0;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        activations2_address0 = zext_ln359_fu_530_p1;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        activations2_address0 = grp_get_delta_matrix_weights3_fu_402_last_activations_address0;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations2_address0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_input_activations_address0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        activations2_address0 = grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_address0;
+        activations2_address0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_input_activations_address0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_address0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations2_address0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_address0;
+        activations2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_address0;
+    end else if ((1'b1 == ap_CS_fsm_state11)) begin
+        activations2_address0 = grp_RELU_fu_335_activations_address0;
     end else begin
         activations2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state11)) begin
-        activations2_address1 = grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_address1;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations2_address1 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_address1;
-    end else begin
-        activations2_address1 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        activations2_ce0 = grp_get_delta_matrix_weights3_fu_361_last_activations_ce0;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        activations2_ce0 = 1'b1;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        activations2_ce0 = grp_get_delta_matrix_weights3_fu_402_last_activations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations2_ce0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_input_activations_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        activations2_ce0 = grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_ce0;
+        activations2_ce0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_input_activations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations2_ce0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_ce0;
+        activations2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state11)) begin
+        activations2_ce0 = grp_RELU_fu_335_activations_ce0;
     end else begin
         activations2_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state11)) begin
-        activations2_ce1 = grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_ce1;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        activations2_d0 = 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations2_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_ce1;
-    end else begin
-        activations2_ce1 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state11)) begin
-        activations2_d0 = grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_d0;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations2_d0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_d0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations2_d0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_d0;
+        activations2_d0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_d0;
+    end else if ((1'b1 == ap_CS_fsm_state11)) begin
+        activations2_d0 = grp_RELU_fu_335_activations_d0;
     end else begin
         activations2_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state11)) begin
-        activations2_we0 = grp_backprop_Pipeline_RELU_loop11_fu_286_activations2_we0;
+    if (((icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        activations2_we0 = 1'b1;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        activations2_we0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_activations_we0;
-    end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations2_we0 = grp_backprop_Pipeline_backprop_loop1_1_fu_246_activations2_we0;
+        activations2_we0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activations_we0;
+    end else if ((1'b1 == ap_CS_fsm_state11)) begin
+        activations2_we0 = grp_RELU_fu_335_activations_we0;
     end else begin
         activations2_we0 = 1'b0;
     end
@@ -1902,7 +1647,7 @@ end
 assign ap_ST_fsm_state10_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_backprop_Pipeline_RELU_loop11_fu_286_ap_done == 1'b0)) begin
+    if ((grp_RELU_fu_335_ap_done == 1'b0)) begin
         ap_ST_fsm_state11_blk = 1'b1;
     end else begin
         ap_ST_fsm_state11_blk = 1'b0;
@@ -1912,7 +1657,7 @@ end
 assign ap_ST_fsm_state12_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_done == 1'b0)) begin
+    if ((grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_done == 1'b0)) begin
         ap_ST_fsm_state13_blk = 1'b1;
     end else begin
         ap_ST_fsm_state13_blk = 1'b0;
@@ -1920,34 +1665,46 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((grp_backprop_Pipeline_RELU_loop12_fu_304_ap_done == 1'b0)) begin
+    if ((grp_RELU_clone_fu_366_ap_done == 1'b0)) begin
         ap_ST_fsm_state14_blk = 1'b1;
     end else begin
         ap_ST_fsm_state14_blk = 1'b0;
     end
 end
 
-assign ap_ST_fsm_state15_blk = 1'b0;
+always @ (*) begin
+    if ((grp_soft_max_fu_376_ap_done == 1'b0)) begin
+        ap_ST_fsm_state15_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state15_blk = 1'b0;
+    end
+end
 
 always @ (*) begin
-    if ((grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_done == 1'b0)) begin
+    if ((grp_take_difference_1_fu_386_ap_done == 1'b0)) begin
         ap_ST_fsm_state16_blk = 1'b1;
     end else begin
         ap_ST_fsm_state16_blk = 1'b0;
     end
 end
 
-assign ap_ST_fsm_state17_blk = 1'b0;
-
 always @ (*) begin
-    if ((grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_done == 1'b0)) begin
-        ap_ST_fsm_state18_blk = 1'b1;
+    if ((1'b1 == ap_block_state17_on_subcall_done)) begin
+        ap_ST_fsm_state17_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state18_blk = 1'b0;
+        ap_ST_fsm_state17_blk = 1'b0;
     end
 end
 
-assign ap_ST_fsm_state19_blk = 1'b0;
+assign ap_ST_fsm_state18_blk = 1'b0;
+
+always @ (*) begin
+    if ((grp_get_delta_matrix_weights2_fu_422_ap_done == 1'b0)) begin
+        ap_ST_fsm_state19_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state19_blk = 1'b0;
+    end
+end
 
 always @ (*) begin
     if ((ap_start == 1'b0)) begin
@@ -1957,78 +1714,44 @@ always @ (*) begin
     end
 end
 
+assign ap_ST_fsm_state20_blk = 1'b0;
+
 always @ (*) begin
-    if ((grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_done == 1'b0)) begin
-        ap_ST_fsm_state20_blk = 1'b1;
+    if ((grp_get_oracle_activations1_1_fu_429_ap_done == 1'b0)) begin
+        ap_ST_fsm_state21_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state20_blk = 1'b0;
+        ap_ST_fsm_state21_blk = 1'b0;
     end
 end
 
-assign ap_ST_fsm_state21_blk = 1'b0;
+assign ap_ST_fsm_state22_blk = 1'b0;
 
 always @ (*) begin
-    if ((1'b1 == ap_block_state22_on_subcall_done)) begin
-        ap_ST_fsm_state22_blk = 1'b1;
+    if ((grp_get_delta_matrix_weights1_1_fu_438_ap_done == 1'b0)) begin
+        ap_ST_fsm_state23_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state22_blk = 1'b0;
+        ap_ST_fsm_state23_blk = 1'b0;
     end
 end
 
-assign ap_ST_fsm_state23_blk = 1'b0;
+assign ap_ST_fsm_state24_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_get_delta_matrix_weights2_fu_381_ap_done == 1'b0)) begin
-        ap_ST_fsm_state24_blk = 1'b1;
+    if ((grp_update_weights_1_fu_447_ap_done == 1'b0)) begin
+        ap_ST_fsm_state25_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state24_blk = 1'b0;
+        ap_ST_fsm_state25_blk = 1'b0;
     end
 end
-
-assign ap_ST_fsm_state25_blk = 1'b0;
-
-always @ (*) begin
-    if ((grp_get_oracle_activations1_1_fu_388_ap_done == 1'b0)) begin
-        ap_ST_fsm_state26_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state26_blk = 1'b0;
-    end
-end
-
-assign ap_ST_fsm_state27_blk = 1'b0;
-
-always @ (*) begin
-    if ((grp_get_delta_matrix_weights1_1_fu_397_ap_done == 1'b0)) begin
-        ap_ST_fsm_state28_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state28_blk = 1'b0;
-    end
-end
-
-assign ap_ST_fsm_state29_blk = 1'b0;
 
 assign ap_ST_fsm_state2_blk = 1'b0;
 
-always @ (*) begin
-    if ((grp_update_weights_1_fu_406_ap_done == 1'b0)) begin
-        ap_ST_fsm_state30_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state30_blk = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_done == 1'b0)) begin
-        ap_ST_fsm_state3_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state3_blk = 1'b0;
-    end
-end
+assign ap_ST_fsm_state3_blk = 1'b0;
 
 assign ap_ST_fsm_state4_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_done == 1'b0)) begin
+    if ((grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_done == 1'b0)) begin
         ap_ST_fsm_state5_blk = 1'b1;
     end else begin
         ap_ST_fsm_state5_blk = 1'b0;
@@ -2038,7 +1761,7 @@ end
 assign ap_ST_fsm_state6_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_backprop_Pipeline_RELU_loop1_fu_270_ap_done == 1'b0)) begin
+    if ((grp_RELU_fu_335_ap_done == 1'b0)) begin
         ap_ST_fsm_state7_blk = 1'b1;
     end else begin
         ap_ST_fsm_state7_blk = 1'b0;
@@ -2048,7 +1771,7 @@ end
 assign ap_ST_fsm_state8_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_done == 1'b0)) begin
+    if ((grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_done == 1'b0)) begin
         ap_ST_fsm_state9_blk = 1'b1;
     end else begin
         ap_ST_fsm_state9_blk = 1'b0;
@@ -2056,7 +1779,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln356_fu_452_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
+    if (((icmp_ln356_fu_502_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -2072,7 +1795,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln356_fu_452_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
+    if (((icmp_ln356_fu_502_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -2080,104 +1803,104 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases1_address0 = grp_update_weights_1_fu_406_biases1_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases1_address0 = grp_update_weights_1_fu_447_biases1_address0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        biases1_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_biases1_address0;
+        biases1_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_biases1_address0;
     end else begin
         biases1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases1_ce0 = grp_update_weights_1_fu_406_biases1_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases1_ce0 = grp_update_weights_1_fu_447_biases1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        biases1_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_biases1_ce0;
+        biases1_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_biases1_ce0;
     end else begin
         biases1_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases1_we0 = grp_update_weights_1_fu_406_biases1_we0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases1_we0 = grp_update_weights_1_fu_447_biases1_we0;
     end else begin
         biases1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases2_address0 = grp_update_weights_1_fu_406_biases2_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases2_address0 = grp_update_weights_1_fu_447_biases2_address0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        biases2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_biases2_address0;
+        biases2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_biases2_address0;
     end else begin
         biases2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases2_ce0 = grp_update_weights_1_fu_406_biases2_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases2_ce0 = grp_update_weights_1_fu_447_biases2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        biases2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_biases2_ce0;
+        biases2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_biases2_ce0;
     end else begin
         biases2_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases2_we0 = grp_update_weights_1_fu_406_biases2_we0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases2_we0 = grp_update_weights_1_fu_447_biases2_we0;
     end else begin
         biases2_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases3_address0 = grp_update_weights_1_fu_406_biases3_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases3_address0 = grp_update_weights_1_fu_447_biases3_address0;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        biases3_address0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_biases3_address0;
+        biases3_address0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_biases3_address0;
     end else begin
         biases3_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases3_ce0 = grp_update_weights_1_fu_406_biases3_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases3_ce0 = grp_update_weights_1_fu_447_biases3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        biases3_ce0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_biases3_ce0;
+        biases3_ce0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_biases3_ce0;
     end else begin
         biases3_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        biases3_we0 = grp_update_weights_1_fu_406_biases3_we0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        biases3_we0 = grp_update_weights_1_fu_447_biases3_we0;
     end else begin
         biases3_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state26)) begin
-        dactivations1_address0 = grp_get_oracle_activations1_1_fu_388_dactivations_address0;
+    if ((1'b1 == ap_CS_fsm_state21)) begin
+        dactivations1_address0 = grp_get_oracle_activations1_1_fu_429_dactivations_address0;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        dactivations1_address0 = grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_address0;
+        dactivations1_address0 = grp_RELU_fu_335_dactivations_address0;
     end else begin
         dactivations1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state26)) begin
-        dactivations1_ce0 = grp_get_oracle_activations1_1_fu_388_dactivations_ce0;
+    if ((1'b1 == ap_CS_fsm_state21)) begin
+        dactivations1_ce0 = grp_get_oracle_activations1_1_fu_429_dactivations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        dactivations1_ce0 = grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_ce0;
+        dactivations1_ce0 = grp_RELU_fu_335_dactivations_ce0;
     end else begin
         dactivations1_ce0 = 1'b0;
     end
@@ -2185,27 +1908,27 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state7)) begin
-        dactivations1_we0 = grp_backprop_Pipeline_RELU_loop1_fu_270_dactivations1_we0;
+        dactivations1_we0 = grp_RELU_fu_335_dactivations_we0;
     end else begin
         dactivations1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        dactivations2_address0 = grp_get_oracle_activations2_1_fu_370_dactivations_address0;
+    if ((1'b1 == ap_CS_fsm_state17)) begin
+        dactivations2_address0 = grp_get_oracle_activations2_1_fu_411_dactivations_address0;
     end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        dactivations2_address0 = grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_address0;
+        dactivations2_address0 = grp_RELU_fu_335_dactivations_address0;
     end else begin
         dactivations2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        dactivations2_ce0 = grp_get_oracle_activations2_1_fu_370_dactivations_ce0;
+    if ((1'b1 == ap_CS_fsm_state17)) begin
+        dactivations2_ce0 = grp_get_oracle_activations2_1_fu_411_dactivations_ce0;
     end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        dactivations2_ce0 = grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_ce0;
+        dactivations2_ce0 = grp_RELU_fu_335_dactivations_ce0;
     end else begin
         dactivations2_ce0 = 1'b0;
     end
@@ -2213,621 +1936,521 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state11)) begin
-        dactivations2_we0 = grp_backprop_Pipeline_RELU_loop11_fu_286_dactivations2_we0;
+        dactivations2_we0 = grp_RELU_fu_335_dactivations_we0;
     end else begin
         dactivations2_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        delta_weights1_address0 = grp_update_weights_1_fu_406_d_weights1_address0;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        delta_weights1_address0 = grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        delta_weights1_address0 = grp_update_weights_1_fu_447_d_weights1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        delta_weights1_address0 = grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_address0;
     end else begin
         delta_weights1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        delta_weights1_ce0 = grp_update_weights_1_fu_406_d_weights1_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        delta_weights1_ce0 = grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        delta_weights1_ce0 = grp_update_weights_1_fu_447_d_weights1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        delta_weights1_ce0 = grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_ce0;
     end else begin
         delta_weights1_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state28)) begin
-        delta_weights1_we0 = grp_get_delta_matrix_weights1_1_fu_397_delta_weights1_we0;
+    if ((1'b1 == ap_CS_fsm_state23)) begin
+        delta_weights1_we0 = grp_get_delta_matrix_weights1_1_fu_438_delta_weights1_we0;
     end else begin
         delta_weights1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        delta_weights2_address0 = grp_update_weights_1_fu_406_d_weights2_address0;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        delta_weights2_address0 = grp_get_delta_matrix_weights2_fu_381_delta_weights2_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        delta_weights2_address0 = grp_update_weights_1_fu_447_d_weights2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        delta_weights2_address0 = grp_get_delta_matrix_weights2_fu_422_delta_weights2_address0;
     end else begin
         delta_weights2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        delta_weights2_ce0 = grp_update_weights_1_fu_406_d_weights2_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        delta_weights2_ce0 = grp_get_delta_matrix_weights2_fu_381_delta_weights2_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        delta_weights2_ce0 = grp_update_weights_1_fu_447_d_weights2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        delta_weights2_ce0 = grp_get_delta_matrix_weights2_fu_422_delta_weights2_ce0;
     end else begin
         delta_weights2_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state24)) begin
-        delta_weights2_we0 = grp_get_delta_matrix_weights2_fu_381_delta_weights2_we0;
+    if ((1'b1 == ap_CS_fsm_state19)) begin
+        delta_weights2_we0 = grp_get_delta_matrix_weights2_fu_422_delta_weights2_we0;
     end else begin
         delta_weights2_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        delta_weights3_address0 = grp_update_weights_1_fu_406_d_weights3_address0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        delta_weights3_address0 = grp_get_delta_matrix_weights3_fu_361_delta_weights3_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        delta_weights3_address0 = grp_update_weights_1_fu_447_d_weights3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        delta_weights3_address0 = grp_get_delta_matrix_weights3_fu_402_delta_weights3_address0;
     end else begin
         delta_weights3_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        delta_weights3_ce0 = grp_update_weights_1_fu_406_d_weights3_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        delta_weights3_ce0 = grp_get_delta_matrix_weights3_fu_361_delta_weights3_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        delta_weights3_ce0 = grp_update_weights_1_fu_447_d_weights3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        delta_weights3_ce0 = grp_get_delta_matrix_weights3_fu_402_delta_weights3_ce0;
     end else begin
         delta_weights3_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        delta_weights3_we0 = grp_get_delta_matrix_weights3_fu_361_delta_weights3_we0;
+    if ((1'b1 == ap_CS_fsm_state17)) begin
+        delta_weights3_we0 = grp_get_delta_matrix_weights3_fu_402_delta_weights3_we0;
     end else begin
         delta_weights3_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state18)) begin
-        grp_fu_1002_ce = grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_1002_ce = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_1002_ce = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_1002_ce = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_ce;
+    if ((1'b1 == ap_CS_fsm_state11)) begin
+        grp_RELU_fu_335_activations_q0 = activations2_q0;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_1002_ce = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_ce;
+        grp_RELU_fu_335_activations_q0 = activations1_q0;
+    end else begin
+        grp_RELU_fu_335_activations_q0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_1002_ce = grp_soft_max_fu_376_grp_fu_1002_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state14)) begin
+        grp_fu_1002_ce = grp_RELU_clone_fu_366_grp_fu_1002_p_ce;
     end else begin
         grp_fu_1002_ce = 1'b1;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state18)) begin
-        grp_fu_1002_p0 = grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_1002_p0 = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_din0;
+    if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_1002_p0 = grp_soft_max_fu_376_grp_fu_1002_p_din0;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_1002_p0 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_1002_p0 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_1002_p0 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_din0;
+        grp_fu_1002_p0 = grp_RELU_clone_fu_366_grp_fu_1002_p_din0;
     end else begin
         grp_fu_1002_p0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state18)) begin
-        grp_fu_1002_p1 = grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_1002_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_1002_p1 = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_1002_p_din1;
+    if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_1002_p1 = grp_soft_max_fu_376_grp_fu_1002_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_1002_p1 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_1002_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_1002_p1 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_1002_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_1002_p1 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_1002_p_din1;
+        grp_fu_1002_p1 = grp_RELU_clone_fu_366_grp_fu_1002_p_din1;
     end else begin
         grp_fu_1002_p1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_1006_ce = grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_ce;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_990_ce = grp_update_weights_1_fu_447_grp_fu_990_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_990_ce = grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_990_ce = grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_990_ce = grp_take_difference_1_fu_386_grp_fu_990_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_990_ce = grp_soft_max_fu_376_grp_fu_990_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state14)) begin
+        grp_fu_990_ce = grp_RELU_clone_fu_366_grp_fu_990_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_1006_ce = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_ce;
-    end else begin
-        grp_fu_1006_ce = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_1006_p0 = grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_1006_p0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_din0;
-    end else begin
-        grp_fu_1006_p0 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_1006_p1 = grp_get_oracle_activations2_1_fu_370_grp_fu_1006_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_1006_p1 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_1006_p_din1;
-    end else begin
-        grp_fu_1006_p1 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_986_ce = grp_update_weights_1_fu_406_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_986_ce = grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_986_ce = grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_986_ce = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_986_ce = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_986_ce = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_986_ce = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_ce;
+        grp_fu_990_ce = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_986_ce = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_986_ce = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_ce;
+        grp_fu_990_ce = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_986_ce = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_ce;
-    end else begin
-        grp_fu_986_ce = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_986_opcode = grp_update_weights_1_fu_406_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_986_opcode = grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_986_opcode = grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_986_opcode = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_986_opcode = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_986_opcode = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_986_opcode = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_986_opcode = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_986_opcode = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_986_opcode = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_opcode;
-    end else begin
-        grp_fu_986_opcode = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_986_p0 = grp_update_weights_1_fu_406_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_986_p0 = grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_986_p0 = grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_986_p0 = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_986_p0 = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_986_p0 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_986_p0 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_986_p0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_986_p0 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_986_p0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_din0;
-    end else begin
-        grp_fu_986_p0 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_986_p1 = grp_update_weights_1_fu_406_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_986_p1 = grp_get_oracle_activations1_1_fu_388_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_986_p1 = grp_get_oracle_activations2_1_fu_370_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_986_p1 = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state16)) begin
-        grp_fu_986_p1 = grp_backprop_Pipeline_soft_max_loop1_fu_320_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_986_p1 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_986_p1 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_986_p1 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_986_p1 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_986_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_986_p1 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_986_p_din1;
-    end else begin
-        grp_fu_986_p1 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_990_ce = grp_update_weights_1_fu_406_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        grp_fu_990_ce = grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_990_ce = grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        grp_fu_990_ce = grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_990_ce = grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_990_ce = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_990_ce = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_990_ce = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_990_ce = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_990_ce = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_990_ce = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_ce;
+        grp_fu_990_ce = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_ce;
     end else begin
         grp_fu_990_ce = 1'b1;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_990_p0 = grp_update_weights_1_fu_406_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        grp_fu_990_p0 = grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_990_p0 = grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        grp_fu_990_p0 = grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_990_p0 = grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_990_p0 = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_din0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_990_opcode = grp_update_weights_1_fu_447_grp_fu_990_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_990_opcode = grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_990_opcode = grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_990_opcode = grp_take_difference_1_fu_386_grp_fu_990_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_990_opcode = grp_soft_max_fu_376_grp_fu_990_p_opcode;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_990_p0 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_990_p0 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_din0;
+        grp_fu_990_opcode = grp_RELU_clone_fu_366_grp_fu_990_p_opcode;
+    end else if ((1'b1 == ap_CS_fsm_state13)) begin
+        grp_fu_990_opcode = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_opcode;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_990_p0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_990_p0 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_din0;
+        grp_fu_990_opcode = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_opcode;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_990_p0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_din0;
+        grp_fu_990_opcode = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_opcode;
+    end else begin
+        grp_fu_990_opcode = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_990_p0 = grp_update_weights_1_fu_447_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_990_p0 = grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_990_p0 = grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_990_p0 = grp_take_difference_1_fu_386_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_990_p0 = grp_soft_max_fu_376_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state14)) begin
+        grp_fu_990_p0 = grp_RELU_clone_fu_366_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state13)) begin
+        grp_fu_990_p0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state9)) begin
+        grp_fu_990_p0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_990_p0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_din0;
     end else begin
         grp_fu_990_p0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_990_p1 = grp_update_weights_1_fu_406_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        grp_fu_990_p1 = grp_get_delta_matrix_weights1_1_fu_397_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_fu_990_p1 = grp_get_oracle_activations1_1_fu_388_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        grp_fu_990_p1 = grp_get_delta_matrix_weights2_fu_381_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        grp_fu_990_p1 = grp_get_delta_matrix_weights3_fu_361_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state20)) begin
-        grp_fu_990_p1 = grp_backprop_Pipeline_take_difference_loop1_fu_342_grp_fu_990_p_din1;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_990_p1 = grp_update_weights_1_fu_447_grp_fu_990_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_990_p1 = grp_get_oracle_activations1_1_fu_429_grp_fu_990_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_990_p1 = grp_get_oracle_activations2_1_fu_411_grp_fu_990_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_990_p1 = grp_take_difference_1_fu_386_grp_fu_990_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_990_p1 = grp_soft_max_fu_376_grp_fu_990_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_990_p1 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_990_p1 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_990_p_din1;
+        grp_fu_990_p1 = grp_RELU_clone_fu_366_grp_fu_990_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state13)) begin
+        grp_fu_990_p1 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_990_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_990_p1 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_grp_fu_990_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_990_p1 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_990_p_din1;
+        grp_fu_990_p1 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_990_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_990_p1 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_grp_fu_990_p_din1;
+        grp_fu_990_p1 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_990_p_din1;
     end else begin
         grp_fu_990_p1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_994_ce = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_994_ce = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_994_ce = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_ce;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_994_ce = grp_update_weights_1_fu_447_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        grp_fu_994_ce = grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_994_ce = grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        grp_fu_994_ce = grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_994_ce = grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_994_ce = grp_take_difference_1_fu_386_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state14)) begin
+        grp_fu_994_ce = grp_RELU_clone_fu_366_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state13)) begin
+        grp_fu_994_ce = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state9)) begin
+        grp_fu_994_ce = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_994_ce = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_ce;
     end else begin
         grp_fu_994_ce = 1'b1;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_994_p0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_994_p0 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_994_p0 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_din0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_994_p0 = grp_update_weights_1_fu_447_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        grp_fu_994_p0 = grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_994_p0 = grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        grp_fu_994_p0 = grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_994_p0 = grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_994_p0 = grp_take_difference_1_fu_386_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state14)) begin
+        grp_fu_994_p0 = grp_RELU_clone_fu_366_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state13)) begin
+        grp_fu_994_p0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state9)) begin
+        grp_fu_994_p0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_994_p0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_din0;
     end else begin
         grp_fu_994_p0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_994_p1 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_grp_fu_994_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_994_p1 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_994_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_994_p1 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_994_p_din1;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_994_p1 = grp_update_weights_1_fu_447_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        grp_fu_994_p1 = grp_get_delta_matrix_weights1_1_fu_438_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        grp_fu_994_p1 = grp_get_oracle_activations1_1_fu_429_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        grp_fu_994_p1 = grp_get_delta_matrix_weights2_fu_422_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        grp_fu_994_p1 = grp_get_delta_matrix_weights3_fu_402_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state16)) begin
+        grp_fu_994_p1 = grp_take_difference_1_fu_386_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state14)) begin
+        grp_fu_994_p1 = grp_RELU_clone_fu_366_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state13)) begin
+        grp_fu_994_p1 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state9)) begin
+        grp_fu_994_p1 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_grp_fu_994_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        grp_fu_994_p1 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_grp_fu_994_p_din1;
     end else begin
         grp_fu_994_p1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_998_ce = grp_update_weights_1_fu_406_grp_fu_998_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state18)) begin
-        grp_fu_998_ce = grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_ce;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_998_ce = grp_update_weights_1_fu_447_grp_fu_998_p_ce;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_998_ce = grp_soft_max_fu_376_grp_fu_998_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_998_ce = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_998_ce = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_ce;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_998_ce = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_ce;
+        grp_fu_998_ce = grp_RELU_clone_fu_366_grp_fu_998_p_ce;
     end else begin
         grp_fu_998_ce = 1'b1;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_998_p0 = grp_update_weights_1_fu_406_grp_fu_998_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state18)) begin
-        grp_fu_998_p0 = grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_din0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_998_p0 = grp_update_weights_1_fu_447_grp_fu_998_p_din0;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_998_p0 = grp_soft_max_fu_376_grp_fu_998_p_din0;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_998_p0 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_998_p0 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_998_p0 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_din0;
+        grp_fu_998_p0 = grp_RELU_clone_fu_366_grp_fu_998_p_din0;
     end else begin
         grp_fu_998_p0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        grp_fu_998_p1 = grp_update_weights_1_fu_406_grp_fu_998_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state18)) begin
-        grp_fu_998_p1 = grp_backprop_Pipeline_soft_max_loop2_fu_328_grp_fu_998_p_din1;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        grp_fu_998_p1 = grp_update_weights_1_fu_447_grp_fu_998_p_din1;
+    end else if ((1'b1 == ap_CS_fsm_state15)) begin
+        grp_fu_998_p1 = grp_soft_max_fu_376_grp_fu_998_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state14)) begin
-        grp_fu_998_p1 = grp_backprop_Pipeline_RELU_loop12_fu_304_grp_fu_998_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state11)) begin
-        grp_fu_998_p1 = grp_backprop_Pipeline_RELU_loop11_fu_286_grp_fu_998_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        grp_fu_998_p1 = grp_backprop_Pipeline_RELU_loop1_fu_270_grp_fu_998_p_din1;
+        grp_fu_998_p1 = grp_RELU_clone_fu_366_grp_fu_998_p_din1;
     end else begin
         grp_fu_998_p1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        oracle_activations1_address0 = grp_update_weights_1_fu_406_d_biases1_address0;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        oracle_activations1_address0 = grp_get_delta_matrix_weights1_1_fu_397_output_difference_address0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        oracle_activations1_address0 = grp_get_oracle_activations1_1_fu_388_oracle_activations_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        oracle_activations1_address0 = grp_update_weights_1_fu_447_d_biases1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        oracle_activations1_address0 = grp_get_delta_matrix_weights1_1_fu_438_output_difference_address0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        oracle_activations1_address0 = grp_get_oracle_activations1_1_fu_429_oracle_activations_address0;
     end else begin
         oracle_activations1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        oracle_activations1_ce0 = grp_update_weights_1_fu_406_d_biases1_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state28)) begin
-        oracle_activations1_ce0 = grp_get_delta_matrix_weights1_1_fu_397_output_difference_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        oracle_activations1_ce0 = grp_get_oracle_activations1_1_fu_388_oracle_activations_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        oracle_activations1_ce0 = grp_update_weights_1_fu_447_d_biases1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state23)) begin
+        oracle_activations1_ce0 = grp_get_delta_matrix_weights1_1_fu_438_output_difference_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        oracle_activations1_ce0 = grp_get_oracle_activations1_1_fu_429_oracle_activations_ce0;
     end else begin
         oracle_activations1_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state26)) begin
-        oracle_activations1_we0 = grp_get_oracle_activations1_1_fu_388_oracle_activations_we0;
+    if ((1'b1 == ap_CS_fsm_state21)) begin
+        oracle_activations1_we0 = grp_get_oracle_activations1_1_fu_429_oracle_activations_we0;
     end else begin
         oracle_activations1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        oracle_activations2_address0 = grp_update_weights_1_fu_406_d_biases2_address0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        oracle_activations2_address0 = grp_get_oracle_activations1_1_fu_388_output_differences_address0;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        oracle_activations2_address0 = grp_get_delta_matrix_weights2_fu_381_output_difference_address0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        oracle_activations2_address0 = grp_get_oracle_activations2_1_fu_370_oracle_activations_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        oracle_activations2_address0 = grp_update_weights_1_fu_447_d_biases2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        oracle_activations2_address0 = grp_get_oracle_activations1_1_fu_429_output_differences_address0;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        oracle_activations2_address0 = grp_get_delta_matrix_weights2_fu_422_output_difference_address0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        oracle_activations2_address0 = grp_get_oracle_activations2_1_fu_411_oracle_activations_address0;
     end else begin
         oracle_activations2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        oracle_activations2_ce0 = grp_update_weights_1_fu_406_d_biases2_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        oracle_activations2_ce0 = grp_get_oracle_activations1_1_fu_388_output_differences_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state24)) begin
-        oracle_activations2_ce0 = grp_get_delta_matrix_weights2_fu_381_output_difference_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        oracle_activations2_ce0 = grp_get_oracle_activations2_1_fu_370_oracle_activations_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        oracle_activations2_ce0 = grp_update_weights_1_fu_447_d_biases2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        oracle_activations2_ce0 = grp_get_oracle_activations1_1_fu_429_output_differences_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state19)) begin
+        oracle_activations2_ce0 = grp_get_delta_matrix_weights2_fu_422_output_difference_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        oracle_activations2_ce0 = grp_get_oracle_activations2_1_fu_411_oracle_activations_ce0;
     end else begin
         oracle_activations2_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state22)) begin
-        oracle_activations2_we0 = grp_get_oracle_activations2_1_fu_370_oracle_activations_we0;
+    if ((1'b1 == ap_CS_fsm_state17)) begin
+        oracle_activations2_we0 = grp_get_oracle_activations2_1_fu_411_oracle_activations_we0;
     end else begin
         oracle_activations2_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state28)) begin
-        training_data_address0 = grp_get_delta_matrix_weights1_1_fu_397_training_data_address0;
+    if ((1'b1 == ap_CS_fsm_state23)) begin
+        training_data_address0 = grp_get_delta_matrix_weights1_1_fu_438_training_data_address0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        training_data_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_training_data_address0;
+        training_data_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_training_data_address0;
     end else begin
         training_data_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state28)) begin
-        training_data_ce0 = grp_get_delta_matrix_weights1_1_fu_397_training_data_ce0;
+    if ((1'b1 == ap_CS_fsm_state23)) begin
+        training_data_ce0 = grp_get_delta_matrix_weights1_1_fu_438_training_data_ce0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        training_data_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_training_data_ce0;
+        training_data_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_training_data_ce0;
     end else begin
         training_data_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights1_address0 = grp_update_weights_1_fu_406_weights1_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights1_address0 = grp_update_weights_1_fu_447_weights1_address0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        weights1_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_weights1_address0;
+        weights1_address0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_weights1_address0;
     end else begin
         weights1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights1_ce0 = grp_update_weights_1_fu_406_weights1_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights1_ce0 = grp_update_weights_1_fu_447_weights1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        weights1_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_weights1_ce0;
+        weights1_ce0 = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_weights1_ce0;
     end else begin
         weights1_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights1_we0 = grp_update_weights_1_fu_406_weights1_we0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights1_we0 = grp_update_weights_1_fu_447_weights1_we0;
     end else begin
         weights1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights2_address0 = grp_update_weights_1_fu_406_weights2_address0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        weights2_address0 = grp_get_oracle_activations1_1_fu_388_weights2_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights2_address0 = grp_update_weights_1_fu_447_weights2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        weights2_address0 = grp_get_oracle_activations1_1_fu_429_weights2_address0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        weights2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_weights2_address0;
+        weights2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_weights2_address0;
     end else begin
         weights2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights2_ce0 = grp_update_weights_1_fu_406_weights2_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        weights2_ce0 = grp_get_oracle_activations1_1_fu_388_weights2_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights2_ce0 = grp_update_weights_1_fu_447_weights2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state21)) begin
+        weights2_ce0 = grp_get_oracle_activations1_1_fu_429_weights2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        weights2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_weights2_ce0;
+        weights2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_weights2_ce0;
     end else begin
         weights2_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights2_we0 = grp_update_weights_1_fu_406_weights2_we0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights2_we0 = grp_update_weights_1_fu_447_weights2_we0;
     end else begin
         weights2_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights3_address0 = grp_update_weights_1_fu_406_weights3_address0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        weights3_address0 = grp_get_oracle_activations2_1_fu_370_weights3_address0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights3_address0 = grp_update_weights_1_fu_447_weights3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        weights3_address0 = grp_get_oracle_activations2_1_fu_411_weights3_address0;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        weights3_address0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_weights3_address0;
+        weights3_address0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_weights3_address0;
     end else begin
         weights3_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights3_ce0 = grp_update_weights_1_fu_406_weights3_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state22)) begin
-        weights3_ce0 = grp_get_oracle_activations2_1_fu_370_weights3_ce0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights3_ce0 = grp_update_weights_1_fu_447_weights3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state17)) begin
+        weights3_ce0 = grp_get_oracle_activations2_1_fu_411_weights3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        weights3_ce0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_weights3_ce0;
+        weights3_ce0 = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_weights3_ce0;
     end else begin
         weights3_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state30)) begin
-        weights3_we0 = grp_update_weights_1_fu_406_weights3_we0;
+    if ((1'b1 == ap_CS_fsm_state25)) begin
+        weights3_we0 = grp_update_weights_1_fu_447_weights3_we0;
     end else begin
         weights3_we0 = 1'b0;
     end
@@ -2843,24 +2466,24 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((icmp_ln356_fu_452_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
+            if (((icmp_ln356_fu_502_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state3;
             end
         end
         ap_ST_fsm_state3 : begin
-            if (((grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+            if (((icmp_ln359_fu_518_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
                 ap_NS_fsm = ap_ST_fsm_state4;
             end else begin
-                ap_NS_fsm = ap_ST_fsm_state3;
+                ap_NS_fsm = ap_ST_fsm_state5;
             end
         end
         ap_ST_fsm_state4 : begin
-            ap_NS_fsm = ap_ST_fsm_state5;
+            ap_NS_fsm = ap_ST_fsm_state3;
         end
         ap_ST_fsm_state5 : begin
-            if (((grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state5))) begin
+            if (((grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state5))) begin
                 ap_NS_fsm = ap_ST_fsm_state6;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state5;
@@ -2870,7 +2493,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state7;
         end
         ap_ST_fsm_state7 : begin
-            if (((grp_backprop_Pipeline_RELU_loop1_fu_270_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state7))) begin
+            if (((grp_RELU_fu_335_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state7))) begin
                 ap_NS_fsm = ap_ST_fsm_state8;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state7;
@@ -2880,7 +2503,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state9;
         end
         ap_ST_fsm_state9 : begin
-            if (((grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state9))) begin
+            if (((grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state9))) begin
                 ap_NS_fsm = ap_ST_fsm_state10;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state9;
@@ -2890,7 +2513,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state11;
         end
         ap_ST_fsm_state11 : begin
-            if (((grp_backprop_Pipeline_RELU_loop11_fu_286_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state11))) begin
+            if (((grp_RELU_fu_335_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state11))) begin
                 ap_NS_fsm = ap_ST_fsm_state12;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state11;
@@ -2900,97 +2523,78 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state13;
         end
         ap_ST_fsm_state13 : begin
-            if (((grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
+            if (((grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
                 ap_NS_fsm = ap_ST_fsm_state14;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state13;
             end
         end
         ap_ST_fsm_state14 : begin
-            if (((grp_backprop_Pipeline_RELU_loop12_fu_304_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state14))) begin
+            if (((grp_RELU_clone_fu_366_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state14))) begin
                 ap_NS_fsm = ap_ST_fsm_state15;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state14;
             end
         end
         ap_ST_fsm_state15 : begin
-            ap_NS_fsm = ap_ST_fsm_state16;
+            if (((grp_soft_max_fu_376_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state15))) begin
+                ap_NS_fsm = ap_ST_fsm_state16;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state15;
+            end
         end
         ap_ST_fsm_state16 : begin
-            if (((grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state16))) begin
+            if (((grp_take_difference_1_fu_386_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state16))) begin
                 ap_NS_fsm = ap_ST_fsm_state17;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state16;
             end
         end
         ap_ST_fsm_state17 : begin
-            ap_NS_fsm = ap_ST_fsm_state18;
+            if (((1'b1 == ap_CS_fsm_state17) & (1'b0 == ap_block_state17_on_subcall_done))) begin
+                ap_NS_fsm = ap_ST_fsm_state18;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state17;
+            end
         end
         ap_ST_fsm_state18 : begin
-            if (((grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state18))) begin
-                ap_NS_fsm = ap_ST_fsm_state19;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state18;
-            end
+            ap_NS_fsm = ap_ST_fsm_state19;
         end
         ap_ST_fsm_state19 : begin
-            ap_NS_fsm = ap_ST_fsm_state20;
+            if (((grp_get_delta_matrix_weights2_fu_422_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state19))) begin
+                ap_NS_fsm = ap_ST_fsm_state20;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state19;
+            end
         end
         ap_ST_fsm_state20 : begin
-            if (((grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state20))) begin
-                ap_NS_fsm = ap_ST_fsm_state21;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state20;
-            end
+            ap_NS_fsm = ap_ST_fsm_state21;
         end
         ap_ST_fsm_state21 : begin
-            ap_NS_fsm = ap_ST_fsm_state22;
+            if (((grp_get_oracle_activations1_1_fu_429_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state21))) begin
+                ap_NS_fsm = ap_ST_fsm_state22;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state21;
+            end
         end
         ap_ST_fsm_state22 : begin
-            if (((1'b1 == ap_CS_fsm_state22) & (1'b0 == ap_block_state22_on_subcall_done))) begin
-                ap_NS_fsm = ap_ST_fsm_state23;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state22;
-            end
+            ap_NS_fsm = ap_ST_fsm_state23;
         end
         ap_ST_fsm_state23 : begin
-            ap_NS_fsm = ap_ST_fsm_state24;
+            if (((grp_get_delta_matrix_weights1_1_fu_438_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state23))) begin
+                ap_NS_fsm = ap_ST_fsm_state24;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state23;
+            end
         end
         ap_ST_fsm_state24 : begin
-            if (((grp_get_delta_matrix_weights2_fu_381_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state24))) begin
-                ap_NS_fsm = ap_ST_fsm_state25;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state24;
-            end
+            ap_NS_fsm = ap_ST_fsm_state25;
         end
         ap_ST_fsm_state25 : begin
-            ap_NS_fsm = ap_ST_fsm_state26;
-        end
-        ap_ST_fsm_state26 : begin
-            if (((grp_get_oracle_activations1_1_fu_388_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state26))) begin
-                ap_NS_fsm = ap_ST_fsm_state27;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state26;
-            end
-        end
-        ap_ST_fsm_state27 : begin
-            ap_NS_fsm = ap_ST_fsm_state28;
-        end
-        ap_ST_fsm_state28 : begin
-            if (((grp_get_delta_matrix_weights1_1_fu_397_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state28))) begin
-                ap_NS_fsm = ap_ST_fsm_state29;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state28;
-            end
-        end
-        ap_ST_fsm_state29 : begin
-            ap_NS_fsm = ap_ST_fsm_state30;
-        end
-        ap_ST_fsm_state30 : begin
-            if (((grp_update_weights_1_fu_406_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state30))) begin
+            if (((grp_update_weights_1_fu_447_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state25))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
-                ap_NS_fsm = ap_ST_fsm_state30;
+                ap_NS_fsm = ap_ST_fsm_state25;
             end
         end
         default : begin
@@ -2999,9 +2603,11 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln356_1_fu_446_p2 = (phi_mul_fu_90 + 12'd13);
+assign add_ln356_1_fu_496_p2 = (phi_mul_fu_104 + 12'd13);
 
-assign add_ln356_fu_458_p2 = (i_fu_94 + 8'd1);
+assign add_ln356_fu_508_p2 = (i_fu_108 + 8'd1);
+
+assign add_ln359_fu_524_p2 = (j_reg_252 + 7'd1);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -3039,17 +2645,7 @@ assign ap_CS_fsm_state24 = ap_CS_fsm[32'd23];
 
 assign ap_CS_fsm_state25 = ap_CS_fsm[32'd24];
 
-assign ap_CS_fsm_state26 = ap_CS_fsm[32'd25];
-
-assign ap_CS_fsm_state27 = ap_CS_fsm[32'd26];
-
-assign ap_CS_fsm_state28 = ap_CS_fsm[32'd27];
-
-assign ap_CS_fsm_state29 = ap_CS_fsm[32'd28];
-
 assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
-
-assign ap_CS_fsm_state30 = ap_CS_fsm[32'd29];
 
 assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
@@ -3064,65 +2660,71 @@ assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 assign ap_CS_fsm_state9 = ap_CS_fsm[32'd8];
 
 always @ (*) begin
-    ap_block_state22_on_subcall_done = ((grp_get_oracle_activations2_1_fu_370_ap_done == 1'b0) | (grp_get_delta_matrix_weights3_fu_361_ap_done == 1'b0));
+    ap_block_state17_on_subcall_done = ((grp_get_oracle_activations2_1_fu_411_ap_done == 1'b0) | (grp_get_delta_matrix_weights3_fu_402_ap_done == 1'b0));
 end
 
-assign biases1_d0 = grp_update_weights_1_fu_406_biases1_d0;
+assign biases1_d0 = grp_update_weights_1_fu_447_biases1_d0;
 
-assign biases2_d0 = grp_update_weights_1_fu_406_biases2_d0;
+assign biases2_d0 = grp_update_weights_1_fu_447_biases2_d0;
 
-assign biases3_d0 = grp_update_weights_1_fu_406_biases3_d0;
+assign biases3_d0 = grp_update_weights_1_fu_447_biases3_d0;
 
-assign grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start = grp_backprop_Pipeline_RELU_loop11_fu_286_ap_start_reg;
+assign grp_RELU_clone_fu_366_ap_start = grp_RELU_clone_fu_366_ap_start_reg;
 
-assign grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start = grp_backprop_Pipeline_RELU_loop12_fu_304_ap_start_reg;
+assign grp_RELU_fu_335_ap_start = grp_RELU_fu_335_ap_start_reg;
 
-assign grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start = grp_backprop_Pipeline_RELU_loop1_fu_270_ap_start_reg;
+assign grp_get_delta_matrix_weights1_1_fu_438_ap_start = grp_get_delta_matrix_weights1_1_fu_438_ap_start_reg;
 
-assign grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start = grp_backprop_Pipeline_backprop_loop1_1_fu_246_ap_start_reg;
+assign grp_get_delta_matrix_weights2_fu_422_ap_start = grp_get_delta_matrix_weights2_fu_422_ap_start_reg;
 
-assign grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start = grp_backprop_Pipeline_soft_max_loop1_fu_320_ap_start_reg;
+assign grp_get_delta_matrix_weights3_fu_402_ap_start = grp_get_delta_matrix_weights3_fu_402_ap_start_reg;
 
-assign grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start = grp_backprop_Pipeline_soft_max_loop2_fu_328_ap_start_reg;
+assign grp_get_oracle_activations1_1_fu_429_ap_start = grp_get_oracle_activations1_1_fu_429_ap_start_reg;
 
-assign grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start = grp_backprop_Pipeline_take_difference_loop1_fu_342_ap_start_reg;
+assign grp_get_oracle_activations2_1_fu_411_ap_start = grp_get_oracle_activations2_1_fu_411_ap_start_reg;
 
-assign grp_get_delta_matrix_weights1_1_fu_397_ap_start = grp_get_delta_matrix_weights1_1_fu_397_ap_start_reg;
+assign grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start = grp_matrix_vector_product_with_bias_input_layer_1_fu_323_ap_start_reg;
 
-assign grp_get_delta_matrix_weights2_fu_381_ap_start = grp_get_delta_matrix_weights2_fu_381_ap_start_reg;
+assign grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start = grp_matrix_vector_product_with_bias_output_layer_1_fu_351_ap_start_reg;
 
-assign grp_get_delta_matrix_weights3_fu_361_ap_start = grp_get_delta_matrix_weights3_fu_361_ap_start_reg;
+assign grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start = grp_matrix_vector_product_with_bias_second_layer_1_fu_341_ap_start_reg;
 
-assign grp_get_oracle_activations1_1_fu_388_ap_start = grp_get_oracle_activations1_1_fu_388_ap_start_reg;
+assign grp_soft_max_fu_376_ap_start = grp_soft_max_fu_376_ap_start_reg;
 
-assign grp_get_oracle_activations2_1_fu_370_ap_start = grp_get_oracle_activations2_1_fu_370_ap_start_reg;
+assign grp_take_difference_1_fu_386_ap_start = grp_take_difference_1_fu_386_ap_start_reg;
 
-assign grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start = grp_matrix_vector_product_with_bias_input_layer_1_fu_258_ap_start_reg;
+assign grp_update_weights_1_fu_447_ap_start = grp_update_weights_1_fu_447_ap_start_reg;
 
-assign grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start = grp_matrix_vector_product_with_bias_output_layer_1_fu_292_ap_start_reg;
+assign icmp_ln356_fu_502_p2 = ((i_fu_108 == 8'd163) ? 1'b1 : 1'b0);
 
-assign grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start = grp_matrix_vector_product_with_bias_second_layer_1_fu_276_ap_start_reg;
+assign icmp_ln359_fu_518_p2 = ((j_reg_252 == 7'd64) ? 1'b1 : 1'b0);
 
-assign grp_update_weights_1_fu_406_ap_start = grp_update_weights_1_fu_406_ap_start_reg;
+assign icmp_ln363_fu_536_p2 = ((j_reg_252 < 7'd3) ? 1'b1 : 1'b0);
 
-assign icmp_ln356_fu_452_p2 = ((i_fu_94 == 8'd163) ? 1'b1 : 1'b0);
+assign shl_ln_fu_549_p3 = {{trunc_ln374_fu_546_p1}, {2'd0}};
 
-assign shl_ln_fu_610_p3 = {{trunc_ln374_fu_607_p1}, {2'd0}};
+assign sub_ln374_fu_557_p2 = (shl_ln_fu_549_p3 - zext_ln356_reg_858);
 
-assign sub_ln374_fu_618_p2 = (shl_ln_fu_610_p3 - zext_ln356_fu_580_p1);
+assign training_targets_address0 = grp_take_difference_1_fu_386_training_targets_address0;
 
-assign training_targets_address0 = grp_backprop_Pipeline_take_difference_loop1_fu_342_training_targets_address0;
+assign training_targets_ce0 = grp_take_difference_1_fu_386_training_targets_ce0;
 
-assign training_targets_ce0 = grp_backprop_Pipeline_take_difference_loop1_fu_342_training_targets_ce0;
+assign trunc_ln364_fu_542_p1 = j_reg_252[1:0];
 
-assign trunc_ln374_fu_607_p1 = i_32_reg_873[6:0];
+assign trunc_ln374_fu_546_p1 = i_fu_108[6:0];
 
-assign weights1_d0 = grp_update_weights_1_fu_406_weights1_d0;
+assign weights1_d0 = grp_update_weights_1_fu_447_weights1_d0;
 
-assign weights2_d0 = grp_update_weights_1_fu_406_weights2_d0;
+assign weights2_d0 = grp_update_weights_1_fu_447_weights2_d0;
 
-assign weights3_d0 = grp_update_weights_1_fu_406_weights3_d0;
+assign weights3_d0 = grp_update_weights_1_fu_447_weights3_d0;
 
-assign zext_ln356_fu_580_p1 = i_32_reg_873;
+assign zext_ln356_fu_514_p1 = i_fu_108;
+
+assign zext_ln359_fu_530_p1 = j_reg_252;
+
+always @ (posedge ap_clk) begin
+    zext_ln356_reg_858[8] <= 1'b0;
+end
 
 endmodule //backprop

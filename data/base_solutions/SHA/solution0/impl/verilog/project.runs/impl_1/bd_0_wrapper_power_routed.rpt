@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date             : Fri May 30 23:30:05 2025
+| Date             : Wed Jul  9 04:14:20 2025
 | Host             : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command          : report_power -file bd_0_wrapper_power_routed.rpt -pb bd_0_wrapper_power_summary_routed.pb -rpx bd_0_wrapper_power_routed.rpx
 | Design           : bd_0_wrapper
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.254        |
-|   FPGA Power (W)         | 2.014        |
+| Total On-Chip Power (W)  | 2.257        |
+|   FPGA Power (W)         | 2.017        |
 |   HBM Power (W)          | 0.240        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.041        |
+| Dynamic (W)              | 0.044        |
 | Device Static (W)        | 2.213        |
 | Effective TJA (C/W)      | 0.5          |
 | Max Ambient (C)          | 98.8         |
@@ -55,15 +55,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.011 |        3 |       --- |             --- |
-| CLB Logic      |     0.012 |     6653 |       --- |             --- |
-|   LUT as Logic |     0.010 |     2897 |    871680 |            0.33 |
-|   CARRY8       |    <0.001 |      150 |    108960 |            0.14 |
-|   Register     |    <0.001 |     2683 |   1743360 |            0.15 |
-|   Others       |     0.000 |       47 |       --- |             --- |
-| Signals        |     0.010 |     4737 |       --- |             --- |
-| Block RAM      |     0.008 |        8 |      1344 |            0.60 |
+| CLB Logic      |     0.013 |     6644 |       --- |             --- |
+|   LUT as Logic |     0.012 |     2858 |    871680 |            0.33 |
+|   CARRY8       |    <0.001 |      146 |    108960 |            0.13 |
+|   Register     |    <0.001 |     2660 |   1743360 |            0.15 |
+|   Others       |     0.000 |       42 |       --- |             --- |
+|   F7/F8 Muxes  |     0.000 |       16 |    871680 |           <0.01 |
+| Signals        |     0.011 |     4678 |       --- |             --- |
+| Block RAM      |     0.009 |        8 |      1344 |            0.60 |
 | Static Power   |     2.213 |          |           |                 |
-| Total          |     2.254 |          |           |                 |
+| Total          |     2.257 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +74,7 @@ Table of Contents
 +------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source     | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint     |       0.850 |     0.896 |       0.048 |      0.848 |       NA    | Unspecified | NA         |
+| Vccint     |       0.850 |     0.899 |       0.051 |      0.849 |       NA    | Unspecified | NA         |
 | Vccint_io  |       0.850 |     0.201 |       0.000 |      0.201 |       NA    | Unspecified | NA         |
 | Vccbram    |       0.850 |     0.021 |       0.001 |      0.020 |       NA    | Unspecified | NA         |
 | Vccaux     |       1.800 |     0.550 |       0.000 |      0.550 |       NA    | Unspecified | NA         |
@@ -148,10 +149,10 @@ Table of Contents
 +--------------+-----------+
 | Name         | Power (W) |
 +--------------+-----------+
-| bd_0_wrapper |     0.041 |
-|   bd_0_i     |     0.041 |
-|     hls_inst |     0.041 |
-|       inst   |     0.041 |
+| bd_0_wrapper |     0.044 |
+|   bd_0_i     |     0.044 |
+|     hls_inst |     0.044 |
+|       inst   |     0.044 |
 +--------------+-----------+
 
 

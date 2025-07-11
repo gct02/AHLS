@@ -173,6 +173,10 @@ __attribute__((sdx_kernel("md_kernel", 0))) void md_kernel(
     int NL[256*16]
 )
 {
+#line 3 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/knn.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 19 "data/benchmarks/knn/md.c"
+
 #line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=md_kernel
 # 19 "data/benchmarks/knn/md.c"
@@ -197,6 +201,10 @@ __attribute__((sdx_kernel("md_kernel", 0))) void md_kernel(
         loop_j: for(j = 0; j < 16; j++){
 #line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/knn.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 33 "data/benchmarks/knn/md.c"
+
+#line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/knn.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 33 "data/benchmarks/knn/md.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=16 max=16 avg=16

@@ -48,17 +48,18 @@
 
 
 // IP VLNV: xilinx.com:hls:Gsm_LPC_Analysis:1.0
-// IP Revision: 2114106483
+// IP Revision: 2114162997
 
 (* X_CORE_INFO = "Gsm_LPC_Analysis,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "bd_0_hls_inst_0,Gsm_LPC_Analysis,{}" *)
-(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,Gsm_LPC_Analysis,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=Gsm_LPC_Analysis,x_ipVersion=1.0,x_ipCoreRevision=2114106483,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,Gsm_LPC_Analysis,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=Gsm_LPC_Analysis,x_ipVersion=1.0,x_ipCoreRevision=2114162997,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "HLS" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_0_hls_inst_0 (
   indata_ce0,
   indata_we0,
   indata_ce1,
+  indata_we1,
   LARc_ce0,
   LARc_we0,
   LARc_ce1,
@@ -73,6 +74,7 @@ module bd_0_hls_inst_0 (
   indata_d0,
   indata_q0,
   indata_address1,
+  indata_d1,
   indata_q1,
   LARc_address0,
   LARc_d0,
@@ -85,6 +87,7 @@ module bd_0_hls_inst_0 (
 output wire indata_ce0;
 output wire indata_we0;
 output wire indata_ce1;
+output wire indata_we1;
 output wire LARc_ce0;
 output wire LARc_we0;
 output wire LARc_ce1;
@@ -115,6 +118,9 @@ input wire [15 : 0] indata_q0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME indata_address1, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 indata_address1 DATA" *)
 output wire [7 : 0] indata_address1;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME indata_d1, LAYERED_METADATA undef" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 indata_d1 DATA" *)
+output wire [15 : 0] indata_d1;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME indata_q1, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 indata_q1 DATA" *)
 input wire [15 : 0] indata_q1;
@@ -144,6 +150,7 @@ input wire [15 : 0] LARc_q1;
     .indata_ce0(indata_ce0),
     .indata_we0(indata_we0),
     .indata_ce1(indata_ce1),
+    .indata_we1(indata_we1),
     .LARc_ce0(LARc_ce0),
     .LARc_we0(LARc_we0),
     .LARc_ce1(LARc_ce1),
@@ -158,6 +165,7 @@ input wire [15 : 0] LARc_q1;
     .indata_d0(indata_d0),
     .indata_q0(indata_q0),
     .indata_address1(indata_address1),
+    .indata_d1(indata_d1),
     .indata_q1(indata_q1),
     .LARc_address0(LARc_address0),
     .LARc_d0(LARc_d0),

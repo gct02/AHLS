@@ -154,6 +154,22 @@
       </spirit:portMaps>
     </spirit:busInterface>
     <spirit:busInterface>
+      <spirit:name>indata_d1</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>indata_d1</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
       <spirit:name>indata_q1</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
@@ -280,7 +296,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e3a207b8</spirit:value>
+            <spirit:value>bf121e64</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -296,7 +312,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7251f501</spirit:value>
+            <spirit:value>35ff77bd</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -312,7 +328,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>baa348b6</spirit:value>
+            <spirit:value>a2ccb4d2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -328,7 +344,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1e442d7c</spirit:value>
+            <spirit:value>521a81fe</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -412,6 +428,19 @@
       </spirit:port>
       <spirit:port>
         <spirit:name>indata_ce1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC</spirit:typeName>
+              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>indata_we1</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -622,6 +651,23 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>indata_d1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>indata_q1</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
@@ -767,27 +813,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_abs.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_add.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -795,7 +825,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_div_Pipeline_gsm_div_label0.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult_r.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -812,10 +846,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -848,6 +878,10 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -878,32 +912,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_abs.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_add.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -913,7 +927,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_div_Pipeline_gsm_div_label0.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult_r.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -933,11 +952,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -978,6 +992,11 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1011,27 +1030,11 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_abs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_add.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1039,7 +1042,11 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_div_Pipeline_gsm_div_label0.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult_r.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1052,10 +1059,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1091,9 +1094,13 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_4a2f40a4</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_16787056</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1119,32 +1126,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label2.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_abs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label3.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label4.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_Autocorrelation_label5.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Autocorrelation_Pipeline_VITIS_LOOP_65_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_add.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1154,7 +1141,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_div_Pipeline_gsm_div_label0.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult_r.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1170,11 +1162,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1215,6 +1202,11 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1276,7 +1268,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">1160</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">1310</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
@@ -1293,8 +1285,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Gsm_lpc_analysis</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114106483</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-05-31T01:03:49Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114162997</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-07-09T06:57:27Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1302,10 +1294,10 @@
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="6eb03148"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e2881183"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="f03c8da8"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="b4255988"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="61093367"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b2de0814"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="d0363a2b"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="1357c4b7"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

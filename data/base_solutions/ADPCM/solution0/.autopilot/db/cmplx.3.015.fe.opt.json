@@ -1,10 +1,10 @@
 {
   "0": {
     "basicblocks": 7,
-    "calls": "6 4 2",
+    "calls": "3 1 2",
     "file": "adpcm.c",
     "fileloc": 207,
-    "instructions": 45,
+    "instructions": 46,
     "loads": {
       "G": 2,
       "T": 3
@@ -13,41 +13,125 @@
     "stores": {
       "T": 3
     },
-    "total_instructions": 1081
+    "total_instructions": 1222
   },
   "1": {
-    "basicblocks": 10,
+    "basicblocks": 7,
+    "calls": "5 4 7 11 12 8 13 10 5 4 6 9 12 8 13 10",
+    "file": "adpcm.c",
+    "fileloc": 240,
+    "instructions": 154,
+    "loads": {
+      "G": 27
+    },
+    "name": "encode",
+    "stores": {
+      "G": 20
+    },
+    "total_instructions": 566
+  },
+  "10": {
+    "basicblocks": 1,
     "calls": "",
     "file": "adpcm.c",
-    "fileloc": 531,
-    "instructions": 61,
+    "fileloc": 593,
+    "instructions": 20,
+    "name": "uppol1",
+    "total_instructions": 20
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 509,
+    "instructions": 16,
     "loads": {
-      "L": 8
+      "G": 1
     },
-    "name": "upzero",
-    "stores": {
-      "L": 8
+    "name": "logscl",
+    "total_instructions": 16
+  },
+  "12": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 521,
+    "instructions": 13,
+    "loads": {
+      "G": 1
     },
-    "total_instructions": 61
+    "name": "scalel",
+    "total_instructions": 13
+  },
+  "13": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 565,
+    "instructions": 27,
+    "name": "uppol2",
+    "total_instructions": 27
   },
   "2": {
     "basicblocks": 7,
-    "calls": "5 1 5 1",
+    "calls": "5 4 11 12 8 13 10 5 4 9 12 8 13 10",
     "file": "adpcm.c",
     "fileloc": 331,
-    "instructions": 275,
+    "instructions": 156,
     "loads": {
-      "G": 32
+      "G": 28
     },
     "name": "decode",
     "stores": {
       "G": 22
     },
-    "total_instructions": 457
+    "total_instructions": 521
   },
   "3": {
-    "basicblocks": 10,
+    "basicblocks": 13,
     "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 416,
+    "instructions": 89,
+    "name": "reset",
+    "stores": {
+      "G": 43
+    },
+    "total_instructions": 89
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 474,
+    "instructions": 14,
+    "name": "filtep",
+    "total_instructions": 14
+  },
+  "5": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 458,
+    "instructions": 31,
+    "loads": {
+      "L": 4
+    },
+    "name": "filtez",
+    "total_instructions": 31
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "adpcm.c",
+    "fileloc": 231,
+    "instructions": 6,
+    "name": "abs",
+    "total_instructions": 6
+  },
+  "7": {
+    "basicblocks": 10,
+    "calls": "6",
     "file": "adpcm.c",
     "fileloc": 484,
     "instructions": 35,
@@ -55,45 +139,33 @@
       "G": 3
     },
     "name": "quantl",
-    "total_instructions": 35
+    "total_instructions": 41
   },
-  "4": {
-    "basicblocks": 7,
-    "calls": "5 3 1 5 1",
-    "file": "adpcm.c",
-    "fileloc": 240,
-    "instructions": 274,
-    "loads": {
-      "G": 31
-    },
-    "name": "encode",
-    "stores": {
-      "G": 20
-    },
-    "total_instructions": 491
-  },
-  "5": {
-    "basicblocks": 4,
+  "8": {
+    "basicblocks": 10,
     "calls": "",
     "file": "adpcm.c",
-    "fileloc": 458,
-    "instructions": 30,
+    "fileloc": 531,
+    "instructions": 62,
     "loads": {
-      "L": 4
+      "L": 8
     },
-    "name": "filtez",
-    "total_instructions": 30
+    "name": "upzero",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 62
   },
-  "6": {
-    "basicblocks": 13,
+  "9": {
+    "basicblocks": 1,
     "calls": "",
     "file": "adpcm.c",
-    "fileloc": 416,
-    "instructions": 88,
-    "name": "reset",
-    "stores": {
-      "G": 43
+    "fileloc": 617,
+    "instructions": 15,
+    "loads": {
+      "G": 1
     },
-    "total_instructions": 88
+    "name": "logsch",
+    "total_instructions": 15
   }
 }

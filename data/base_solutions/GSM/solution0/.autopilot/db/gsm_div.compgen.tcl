@@ -10,7 +10,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 81 \
+    id 54 \
     name num \
     type other \
     dir I \
@@ -25,7 +25,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 82 \
+    id 55 \
     name denum \
     type other \
     dir I \

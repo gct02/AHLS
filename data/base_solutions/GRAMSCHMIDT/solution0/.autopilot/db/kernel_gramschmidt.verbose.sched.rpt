@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'kernel_gramschmidt'
 ================================================================
-* Date:           Fri May 30 13:02:07 2025
+* Date:           Wed Jul  9 03:51:05 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        GRAMSCHMIDT
@@ -149,322 +149,323 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 0.38>
 ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%indvars_iv40 = alloca i32 1"   --->   Operation 64 'alloca' 'indvars_iv40' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%k = alloca i32 1" [data/benchmarks/gramschmidt/gramschmidt.c:80]   --->   Operation 65 'alloca' 'k' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%spectopmodule_ln75 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_2" [data/benchmarks/gramschmidt/gramschmidt.c:75]   --->   Operation 66 'spectopmodule' 'spectopmodule_ln75' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %ni"   --->   Operation 67 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %ni, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 68 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %nj"   --->   Operation 69 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %nj, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 70 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %A, void @empty_1, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 71 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %A"   --->   Operation 72 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %R, void @empty_1, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 73 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %R"   --->   Operation 74 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 75 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %Q, void @empty_1, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 75 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 76 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %Q"   --->   Operation 76 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%nj_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %nj" [data/benchmarks/gramschmidt/gramschmidt.c:75]   --->   Operation 77 'read' 'nj_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%ni_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %ni" [data/benchmarks/gramschmidt/gramschmidt.c:75]   --->   Operation 78 'read' 'ni_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 79 [1/1] (0.38ns)   --->   "%store_ln80 = store i19 0, i19 %k" [data/benchmarks/gramschmidt/gramschmidt.c:80]   --->   Operation 79 'store' 'store_ln80' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 80 [1/1] (0.38ns)   --->   "%store_ln0 = store i32 1, i32 %indvars_iv40"   --->   Operation 80 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 81 [1/1] (0.00ns)   --->   "%br_ln85 = br void %loop2" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 81 'br' 'br_ln85' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%specpipeline_ln7 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_0" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl:7]   --->   Operation 66 'specpipeline' 'specpipeline_ln7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%spectopmodule_ln75 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_2" [data/benchmarks/gramschmidt/gramschmidt.c:75]   --->   Operation 67 'spectopmodule' 'spectopmodule_ln75' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %ni"   --->   Operation 68 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %ni, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 69 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %nj"   --->   Operation 70 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %nj, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 71 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %A, void @empty_1, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 72 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %A"   --->   Operation 73 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %R, void @empty_1, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 74 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 75 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %R"   --->   Operation 75 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 76 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %Q, void @empty_1, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 76 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %Q"   --->   Operation 77 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%nj_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %nj" [data/benchmarks/gramschmidt/gramschmidt.c:75]   --->   Operation 78 'read' 'nj_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 79 [1/1] (0.00ns)   --->   "%ni_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %ni" [data/benchmarks/gramschmidt/gramschmidt.c:75]   --->   Operation 79 'read' 'ni_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 80 [1/1] (0.38ns)   --->   "%store_ln80 = store i19 0, i19 %k" [data/benchmarks/gramschmidt/gramschmidt.c:80]   --->   Operation 80 'store' 'store_ln80' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 81 [1/1] (0.38ns)   --->   "%store_ln0 = store i32 1, i32 %indvars_iv40"   --->   Operation 81 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%br_ln85 = br void %loop2" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 82 'br' 'br_ln85' <Predicate = true> <Delay = 0.00>
 
 State 2 <SV = 1> <Delay = 0.88>
-ST_2 : Operation 82 [1/1] (0.00ns)   --->   "%k_1 = load i19 %k" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 82 'load' 'k_1' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 83 [1/1] (0.00ns)   --->   "%trunc_ln100 = trunc i19 %k_1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 83 'trunc' 'trunc_ln100' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 84 [1/1] (0.00ns)   --->   "%zext_ln100 = zext i19 %k_1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 84 'zext' 'zext_ln100' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 85 [1/1] (0.88ns)   --->   "%icmp_ln100 = icmp_slt  i32 %zext_ln100, i32 %nj_read" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 85 'icmp' 'icmp_ln100' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 86 [1/1] (0.80ns)   --->   "%add_ln100 = add i19 %k_1, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 86 'add' 'add_ln100' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 87 [1/1] (0.00ns)   --->   "%br_ln85 = br i1 %icmp_ln100, void %for.end88.loopexit, void %loop2.split" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 87 'br' 'br_ln85' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 88 [1/1] (0.00ns)   --->   "%indvars_iv40_load = load i32 %indvars_iv40" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 88 'load' 'indvars_iv40_load' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 89 [1/1] (0.00ns)   --->   "%trunc_ln94 = trunc i19 %k_1" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 89 'trunc' 'trunc_ln94' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 90 [1/1] (0.00ns)   --->   "%tmp_1 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln100, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 90 'bitconcatenate' 'tmp_1' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 91 [1/1] (0.79ns)   --->   "%add_ln94 = add i18 %tmp_1, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 91 'add' 'add_ln94' <Predicate = (icmp_ln100)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 92 [1/1] (0.00ns)   --->   "%zext_ln94 = zext i18 %add_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 92 'zext' 'zext_ln94' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 93 [1/1] (0.00ns)   --->   "%R_addr = getelementptr i64 %R, i64 0, i64 %zext_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 93 'getelementptr' 'R_addr' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 94 [1/1] (0.00ns)   --->   "%trunc_ln100_1 = trunc i32 %indvars_iv40_load" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 94 'trunc' 'trunc_ln100_1' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 95 [1/1] (0.00ns)   --->   "%speclooptripcount_ln87 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:87]   --->   Operation 95 'speclooptripcount' 'speclooptripcount_ln87' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 96 [1/1] (0.00ns)   --->   "%specloopname_ln115 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [data/benchmarks/gramschmidt/gramschmidt.c:115]   --->   Operation 96 'specloopname' 'specloopname_ln115' <Predicate = (icmp_ln100)> <Delay = 0.00>
-ST_2 : Operation 97 [1/1] (0.38ns)   --->   "%br_ln89 = br void %for.inc" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 97 'br' 'br_ln89' <Predicate = (icmp_ln100)> <Delay = 0.38>
-ST_2 : Operation 98 [1/1] (0.00ns)   --->   "%ret_ln118 = ret" [data/benchmarks/gramschmidt/gramschmidt.c:118]   --->   Operation 98 'ret' 'ret_ln118' <Predicate = (!icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 83 [1/1] (0.00ns)   --->   "%k_1 = load i19 %k" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 83 'load' 'k_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 84 [1/1] (0.00ns)   --->   "%trunc_ln100 = trunc i19 %k_1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 84 'trunc' 'trunc_ln100' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 85 [1/1] (0.00ns)   --->   "%zext_ln100 = zext i19 %k_1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 85 'zext' 'zext_ln100' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 86 [1/1] (0.88ns)   --->   "%icmp_ln100 = icmp_slt  i32 %zext_ln100, i32 %nj_read" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 86 'icmp' 'icmp_ln100' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 87 [1/1] (0.80ns)   --->   "%add_ln100 = add i19 %k_1, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 87 'add' 'add_ln100' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 88 [1/1] (0.00ns)   --->   "%br_ln85 = br i1 %icmp_ln100, void %for.end88.loopexit, void %loop2.split" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 88 'br' 'br_ln85' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 89 [1/1] (0.00ns)   --->   "%indvars_iv40_load = load i32 %indvars_iv40" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 89 'load' 'indvars_iv40_load' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 90 [1/1] (0.00ns)   --->   "%trunc_ln94 = trunc i19 %k_1" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 90 'trunc' 'trunc_ln94' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 91 [1/1] (0.00ns)   --->   "%tmp_1 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln100, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 91 'bitconcatenate' 'tmp_1' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 92 [1/1] (0.79ns)   --->   "%add_ln94 = add i18 %tmp_1, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 92 'add' 'add_ln94' <Predicate = (icmp_ln100)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 93 [1/1] (0.00ns)   --->   "%zext_ln94 = zext i18 %add_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 93 'zext' 'zext_ln94' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 94 [1/1] (0.00ns)   --->   "%R_addr = getelementptr i64 %R, i64 0, i64 %zext_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 94 'getelementptr' 'R_addr' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 95 [1/1] (0.00ns)   --->   "%trunc_ln100_1 = trunc i32 %indvars_iv40_load" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 95 'trunc' 'trunc_ln100_1' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 96 [1/1] (0.00ns)   --->   "%speclooptripcount_ln87 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:87]   --->   Operation 96 'speclooptripcount' 'speclooptripcount_ln87' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 97 [1/1] (0.00ns)   --->   "%specloopname_ln115 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [data/benchmarks/gramschmidt/gramschmidt.c:115]   --->   Operation 97 'specloopname' 'specloopname_ln115' <Predicate = (icmp_ln100)> <Delay = 0.00>
+ST_2 : Operation 98 [1/1] (0.38ns)   --->   "%br_ln89 = br void %for.inc" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 98 'br' 'br_ln89' <Predicate = (icmp_ln100)> <Delay = 0.38>
+ST_2 : Operation 99 [1/1] (0.00ns)   --->   "%ret_ln118 = ret" [data/benchmarks/gramschmidt/gramschmidt.c:118]   --->   Operation 99 'ret' 'ret_ln118' <Predicate = (!icmp_ln100)> <Delay = 0.00>
 
 State 3 <SV = 2> <Delay = 5.47>
-ST_3 : Operation 99 [1/1] (0.00ns)   --->   "%i = phi i31 %add_ln89, void %for.inc.split, i31 0, void %loop2.split" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 99 'phi' 'i' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 100 [1/1] (0.00ns)   --->   "%nrm = phi i64 %nrm_1, void %for.inc.split, i64 0, void %loop2.split"   --->   Operation 100 'phi' 'nrm' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 101 [1/1] (0.00ns)   --->   "%trunc_ln89 = trunc i31 %i" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 101 'trunc' 'trunc_ln89' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 102 [1/1] (0.00ns)   --->   "%zext_ln89 = zext i31 %i" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 102 'zext' 'zext_ln89' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 103 [1/1] (0.88ns)   --->   "%icmp_ln89 = icmp_slt  i32 %zext_ln89, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 103 'icmp' 'icmp_ln89' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 104 [1/1] (0.87ns)   --->   "%add_ln89 = add i31 %i, i31 1" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 104 'add' 'add_ln89' <Predicate = true> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 105 [1/1] (0.00ns)   --->   "%br_ln89 = br i1 %icmp_ln89, void %loop3.loopexit, void %for.inc.split" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 105 'br' 'br_ln89' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 106 [1/1] (0.00ns)   --->   "%tmp_2 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln89, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 106 'bitconcatenate' 'tmp_2' <Predicate = (icmp_ln89)> <Delay = 0.00>
-ST_3 : Operation 107 [1/1] (0.79ns)   --->   "%add_ln92 = add i18 %tmp_2, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 107 'add' 'add_ln92' <Predicate = (icmp_ln89)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 108 [1/1] (0.00ns)   --->   "%zext_ln92 = zext i18 %add_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 108 'zext' 'zext_ln92' <Predicate = (icmp_ln89)> <Delay = 0.00>
-ST_3 : Operation 109 [1/1] (0.00ns)   --->   "%A_addr = getelementptr i64 %A, i64 0, i64 %zext_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 109 'getelementptr' 'A_addr' <Predicate = (icmp_ln89)> <Delay = 0.00>
-ST_3 : Operation 110 [2/2] (2.98ns)   --->   "%A_load = load i18 %A_addr" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 110 'load' 'A_load' <Predicate = (icmp_ln89)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_3 : Operation 111 [12/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 111 'dsqrt' 'tmp' <Predicate = (!icmp_ln89)> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_3 : Operation 100 [1/1] (0.00ns)   --->   "%i = phi i31 %add_ln89, void %for.inc.split, i31 0, void %loop2.split" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 100 'phi' 'i' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 101 [1/1] (0.00ns)   --->   "%nrm = phi i64 %nrm_1, void %for.inc.split, i64 0, void %loop2.split"   --->   Operation 101 'phi' 'nrm' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 102 [1/1] (0.00ns)   --->   "%trunc_ln89 = trunc i31 %i" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 102 'trunc' 'trunc_ln89' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 103 [1/1] (0.00ns)   --->   "%zext_ln89 = zext i31 %i" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 103 'zext' 'zext_ln89' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 104 [1/1] (0.88ns)   --->   "%icmp_ln89 = icmp_slt  i32 %zext_ln89, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 104 'icmp' 'icmp_ln89' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 105 [1/1] (0.87ns)   --->   "%add_ln89 = add i31 %i, i31 1" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 105 'add' 'add_ln89' <Predicate = true> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 106 [1/1] (0.00ns)   --->   "%br_ln89 = br i1 %icmp_ln89, void %loop3.loopexit, void %for.inc.split" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 106 'br' 'br_ln89' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 107 [1/1] (0.00ns)   --->   "%tmp_2 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln89, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 107 'bitconcatenate' 'tmp_2' <Predicate = (icmp_ln89)> <Delay = 0.00>
+ST_3 : Operation 108 [1/1] (0.79ns)   --->   "%add_ln92 = add i18 %tmp_2, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 108 'add' 'add_ln92' <Predicate = (icmp_ln89)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 109 [1/1] (0.00ns)   --->   "%zext_ln92 = zext i18 %add_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 109 'zext' 'zext_ln92' <Predicate = (icmp_ln89)> <Delay = 0.00>
+ST_3 : Operation 110 [1/1] (0.00ns)   --->   "%A_addr = getelementptr i64 %A, i64 0, i64 %zext_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 110 'getelementptr' 'A_addr' <Predicate = (icmp_ln89)> <Delay = 0.00>
+ST_3 : Operation 111 [2/2] (2.98ns)   --->   "%A_load = load i18 %A_addr" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 111 'load' 'A_load' <Predicate = (icmp_ln89)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_3 : Operation 112 [12/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 112 'dsqrt' 'tmp' <Predicate = (!icmp_ln89)> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 4 <SV = 3> <Delay = 2.98>
-ST_4 : Operation 112 [1/2] (2.98ns)   --->   "%A_load = load i18 %A_addr" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 112 'load' 'A_load' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_4 : Operation 113 [1/2] (2.98ns)   --->   "%A_load = load i18 %A_addr" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 113 'load' 'A_load' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
 
 State 5 <SV = 4> <Delay = 4.50>
-ST_5 : Operation 113 [1/1] (0.00ns)   --->   "%bitcast_ln92 = bitcast i64 %A_load" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 113 'bitcast' 'bitcast_ln92' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 114 [4/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 114 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 114 [1/1] (0.00ns)   --->   "%bitcast_ln92 = bitcast i64 %A_load" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 114 'bitcast' 'bitcast_ln92' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 115 [4/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 115 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 6 <SV = 5> <Delay = 4.50>
-ST_6 : Operation 115 [3/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 115 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 116 [3/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 116 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 7 <SV = 6> <Delay = 4.50>
-ST_7 : Operation 116 [2/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 116 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 117 [2/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 117 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 8 <SV = 7> <Delay = 4.50>
-ST_8 : Operation 117 [1/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 117 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 118 [1/4] (4.50ns)   --->   "%mul = dmul i64 %bitcast_ln92, i64 %bitcast_ln92" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 118 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 9 <SV = 8> <Delay = 4.33>
-ST_9 : Operation 118 [4/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 118 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 119 [4/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 119 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 10 <SV = 9> <Delay = 4.33>
-ST_10 : Operation 119 [3/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 119 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 120 [3/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 120 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 11 <SV = 10> <Delay = 4.33>
-ST_11 : Operation 120 [2/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 120 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 121 [2/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 121 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 12 <SV = 11> <Delay = 4.33>
-ST_12 : Operation 121 [1/1] (0.00ns)   --->   "%speclooptripcount_ln91 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:91]   --->   Operation 121 'speclooptripcount' 'speclooptripcount_ln91' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 122 [1/1] (0.00ns)   --->   "%specloopname_ln93 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [data/benchmarks/gramschmidt/gramschmidt.c:93]   --->   Operation 122 'specloopname' 'specloopname_ln93' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 123 [1/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 123 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
-ST_12 : Operation 124 [1/1] (0.00ns)   --->   "%br_ln89 = br void %for.inc" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 124 'br' 'br_ln89' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 122 [1/1] (0.00ns)   --->   "%speclooptripcount_ln91 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:91]   --->   Operation 122 'speclooptripcount' 'speclooptripcount_ln91' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 123 [1/1] (0.00ns)   --->   "%specloopname_ln93 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [data/benchmarks/gramschmidt/gramschmidt.c:93]   --->   Operation 123 'specloopname' 'specloopname_ln93' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 124 [1/4] (4.33ns)   --->   "%nrm_1 = dadd i64 %nrm, i64 %mul" [data/benchmarks/gramschmidt/gramschmidt.c:92]   --->   Operation 124 'dadd' 'nrm_1' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 125 [1/1] (0.00ns)   --->   "%br_ln89 = br void %for.inc" [data/benchmarks/gramschmidt/gramschmidt.c:89]   --->   Operation 125 'br' 'br_ln89' <Predicate = true> <Delay = 0.00>
 
 State 13 <SV = 3> <Delay = 5.47>
-ST_13 : Operation 125 [11/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 125 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_13 : Operation 126 [11/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 126 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 14 <SV = 4> <Delay = 5.47>
-ST_14 : Operation 126 [10/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 126 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_14 : Operation 127 [10/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 127 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 15 <SV = 5> <Delay = 5.47>
-ST_15 : Operation 127 [9/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 127 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_15 : Operation 128 [9/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 128 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 16 <SV = 6> <Delay = 5.47>
-ST_16 : Operation 128 [8/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 128 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_16 : Operation 129 [8/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 129 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 17 <SV = 7> <Delay = 5.47>
-ST_17 : Operation 129 [7/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 129 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_17 : Operation 130 [7/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 130 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 18 <SV = 8> <Delay = 5.47>
-ST_18 : Operation 130 [6/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 130 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_18 : Operation 131 [6/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 131 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 19 <SV = 9> <Delay = 5.47>
-ST_19 : Operation 131 [5/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 131 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_19 : Operation 132 [5/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 132 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 20 <SV = 10> <Delay = 5.47>
-ST_20 : Operation 132 [4/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 132 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_20 : Operation 133 [4/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 133 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 21 <SV = 11> <Delay = 5.47>
-ST_21 : Operation 133 [3/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 133 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_21 : Operation 134 [3/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 134 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 22 <SV = 12> <Delay = 5.47>
-ST_22 : Operation 134 [2/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 134 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_22 : Operation 135 [2/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 135 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 23 <SV = 13> <Delay = 5.47>
-ST_23 : Operation 135 [1/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 135 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
+ST_23 : Operation 136 [1/12] (5.47ns)   --->   "%tmp = dsqrt i64 @llvm.sqrt.f64, i64 %nrm" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 136 'dsqrt' 'tmp' <Predicate = true> <Delay = 5.47> <CoreInst = "DSqrt">   --->   Core 52 'DSqrt' <Latency = 11> <II = 1> <Delay = 5.47> <FuncUnit> <Opcode : 'dsqrt'> <InPorts = 1> <OutPorts = 1>
 
 State 24 <SV = 14> <Delay = 2.98>
-ST_24 : Operation 136 [1/1] (0.00ns)   --->   "%bitcast_ln94 = bitcast i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 136 'bitcast' 'bitcast_ln94' <Predicate = true> <Delay = 0.00>
-ST_24 : Operation 137 [1/1] (2.98ns)   --->   "%store_ln94 = store i64 %bitcast_ln94, i18 %R_addr" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 137 'store' 'store_ln94' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_24 : Operation 138 [1/1] (0.38ns)   --->   "%br_ln95 = br void %for.inc29" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 138 'br' 'br_ln95' <Predicate = true> <Delay = 0.38>
+ST_24 : Operation 137 [1/1] (0.00ns)   --->   "%bitcast_ln94 = bitcast i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 137 'bitcast' 'bitcast_ln94' <Predicate = true> <Delay = 0.00>
+ST_24 : Operation 138 [1/1] (2.98ns)   --->   "%store_ln94 = store i64 %bitcast_ln94, i18 %R_addr" [data/benchmarks/gramschmidt/gramschmidt.c:94]   --->   Operation 138 'store' 'store_ln94' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_24 : Operation 139 [1/1] (0.38ns)   --->   "%br_ln95 = br void %for.inc29" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 139 'br' 'br_ln95' <Predicate = true> <Delay = 0.38>
 
 State 25 <SV = 15> <Delay = 3.77>
-ST_25 : Operation 139 [1/1] (0.00ns)   --->   "%i_1 = phi i19 %add_ln95, void %for.inc29.split, i19 0, void %loop3.loopexit" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 139 'phi' 'i_1' <Predicate = true> <Delay = 0.00>
-ST_25 : Operation 140 [1/1] (0.00ns)   --->   "%trunc_ln95 = trunc i19 %i_1" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 140 'trunc' 'trunc_ln95' <Predicate = true> <Delay = 0.00>
-ST_25 : Operation 141 [1/1] (0.00ns)   --->   "%zext_ln95 = zext i19 %i_1" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 141 'zext' 'zext_ln95' <Predicate = true> <Delay = 0.00>
-ST_25 : Operation 142 [1/1] (0.88ns)   --->   "%icmp_ln95 = icmp_slt  i32 %zext_ln95, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 142 'icmp' 'icmp_ln95' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_25 : Operation 143 [1/1] (0.80ns)   --->   "%add_ln95 = add i19 %i_1, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 143 'add' 'add_ln95' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_25 : Operation 144 [1/1] (0.00ns)   --->   "%br_ln95 = br i1 %icmp_ln95, void %loop5.preheader, void %for.inc29.split" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 144 'br' 'br_ln95' <Predicate = true> <Delay = 0.00>
-ST_25 : Operation 145 [1/1] (0.00ns)   --->   "%tmp_3 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln95, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 145 'bitconcatenate' 'tmp_3' <Predicate = (icmp_ln95)> <Delay = 0.00>
-ST_25 : Operation 146 [1/1] (0.79ns)   --->   "%add_ln98 = add i18 %tmp_3, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 146 'add' 'add_ln98' <Predicate = (icmp_ln95)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_25 : Operation 147 [1/1] (0.00ns)   --->   "%zext_ln98 = zext i18 %add_ln98" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 147 'zext' 'zext_ln98' <Predicate = (icmp_ln95)> <Delay = 0.00>
-ST_25 : Operation 148 [1/1] (0.00ns)   --->   "%A_addr_1 = getelementptr i64 %A, i64 0, i64 %zext_ln98" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 148 'getelementptr' 'A_addr_1' <Predicate = (icmp_ln95)> <Delay = 0.00>
-ST_25 : Operation 149 [2/2] (2.98ns)   --->   "%A_load_1 = load i18 %A_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 149 'load' 'A_load_1' <Predicate = (icmp_ln95)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_25 : Operation 150 [1/1] (0.38ns)   --->   "%br_ln100 = br void %loop5" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 150 'br' 'br_ln100' <Predicate = (!icmp_ln95)> <Delay = 0.38>
+ST_25 : Operation 140 [1/1] (0.00ns)   --->   "%i_1 = phi i19 %add_ln95, void %for.inc29.split, i19 0, void %loop3.loopexit" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 140 'phi' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 141 [1/1] (0.00ns)   --->   "%trunc_ln95 = trunc i19 %i_1" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 141 'trunc' 'trunc_ln95' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 142 [1/1] (0.00ns)   --->   "%zext_ln95 = zext i19 %i_1" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 142 'zext' 'zext_ln95' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 143 [1/1] (0.88ns)   --->   "%icmp_ln95 = icmp_slt  i32 %zext_ln95, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 143 'icmp' 'icmp_ln95' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 144 [1/1] (0.80ns)   --->   "%add_ln95 = add i19 %i_1, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 144 'add' 'add_ln95' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 145 [1/1] (0.00ns)   --->   "%br_ln95 = br i1 %icmp_ln95, void %loop5.preheader, void %for.inc29.split" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 145 'br' 'br_ln95' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 146 [1/1] (0.00ns)   --->   "%tmp_3 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln95, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 146 'bitconcatenate' 'tmp_3' <Predicate = (icmp_ln95)> <Delay = 0.00>
+ST_25 : Operation 147 [1/1] (0.79ns)   --->   "%add_ln98 = add i18 %tmp_3, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 147 'add' 'add_ln98' <Predicate = (icmp_ln95)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 148 [1/1] (0.00ns)   --->   "%zext_ln98 = zext i18 %add_ln98" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 148 'zext' 'zext_ln98' <Predicate = (icmp_ln95)> <Delay = 0.00>
+ST_25 : Operation 149 [1/1] (0.00ns)   --->   "%A_addr_1 = getelementptr i64 %A, i64 0, i64 %zext_ln98" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 149 'getelementptr' 'A_addr_1' <Predicate = (icmp_ln95)> <Delay = 0.00>
+ST_25 : Operation 150 [2/2] (2.98ns)   --->   "%A_load_1 = load i18 %A_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 150 'load' 'A_load_1' <Predicate = (icmp_ln95)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_25 : Operation 151 [1/1] (0.38ns)   --->   "%br_ln100 = br void %loop5" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 151 'br' 'br_ln100' <Predicate = (!icmp_ln95)> <Delay = 0.38>
 
 State 26 <SV = 16> <Delay = 2.98>
-ST_26 : Operation 151 [1/2] (2.98ns)   --->   "%A_load_1 = load i18 %A_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 151 'load' 'A_load_1' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_26 : Operation 152 [1/2] (2.98ns)   --->   "%A_load_1 = load i18 %A_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 152 'load' 'A_load_1' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
 
 State 27 <SV = 17> <Delay = 5.22>
-ST_27 : Operation 152 [1/1] (0.00ns)   --->   "%bitcast_ln98 = bitcast i64 %A_load_1" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 152 'bitcast' 'bitcast_ln98' <Predicate = true> <Delay = 0.00>
-ST_27 : Operation 153 [14/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 153 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 153 [1/1] (0.00ns)   --->   "%bitcast_ln98 = bitcast i64 %A_load_1" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 153 'bitcast' 'bitcast_ln98' <Predicate = true> <Delay = 0.00>
+ST_27 : Operation 154 [14/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 154 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 28 <SV = 18> <Delay = 5.22>
-ST_28 : Operation 154 [13/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 154 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 155 [13/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 155 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 29 <SV = 19> <Delay = 5.22>
-ST_29 : Operation 155 [12/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 155 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 156 [12/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 156 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 30 <SV = 20> <Delay = 5.22>
-ST_30 : Operation 156 [11/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 156 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 157 [11/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 157 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 31 <SV = 21> <Delay = 5.22>
-ST_31 : Operation 157 [10/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 157 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 158 [10/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 158 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 32 <SV = 22> <Delay = 5.22>
-ST_32 : Operation 158 [9/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 158 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 159 [9/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 159 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 33 <SV = 23> <Delay = 5.22>
-ST_33 : Operation 159 [8/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 159 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 160 [8/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 160 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 34 <SV = 24> <Delay = 5.22>
-ST_34 : Operation 160 [7/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 160 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 161 [7/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 161 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 35 <SV = 25> <Delay = 5.22>
-ST_35 : Operation 161 [6/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 161 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 162 [6/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 162 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 36 <SV = 26> <Delay = 5.22>
-ST_36 : Operation 162 [5/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 162 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 163 [5/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 163 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 37 <SV = 27> <Delay = 5.22>
-ST_37 : Operation 163 [4/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 163 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 164 [4/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 164 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 38 <SV = 28> <Delay = 5.22>
-ST_38 : Operation 164 [3/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 164 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 165 [3/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 165 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 39 <SV = 29> <Delay = 5.22>
-ST_39 : Operation 165 [2/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 165 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 166 [2/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 166 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 40 <SV = 30> <Delay = 5.22>
-ST_40 : Operation 166 [1/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 166 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_40 : Operation 167 [1/14] (5.22ns)   --->   "%div = ddiv i64 %bitcast_ln98, i64 %tmp" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 167 'ddiv' 'div' <Predicate = true> <Delay = 5.22> <CoreInst = "DDiv">   --->   Core 39 'DDiv' <Latency = 13> <II = 1> <Delay = 5.22> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
 
 State 41 <SV = 31> <Delay = 2.98>
-ST_41 : Operation 167 [1/1] (0.00ns)   --->   "%Q_addr = getelementptr i64 %Q, i64 0, i64 %zext_ln98" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 167 'getelementptr' 'Q_addr' <Predicate = true> <Delay = 0.00>
-ST_41 : Operation 168 [1/1] (0.00ns)   --->   "%speclooptripcount_ln97 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:97]   --->   Operation 168 'speclooptripcount' 'speclooptripcount_ln97' <Predicate = true> <Delay = 0.00>
-ST_41 : Operation 169 [1/1] (0.00ns)   --->   "%specloopname_ln99 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [data/benchmarks/gramschmidt/gramschmidt.c:99]   --->   Operation 169 'specloopname' 'specloopname_ln99' <Predicate = true> <Delay = 0.00>
-ST_41 : Operation 170 [1/1] (0.00ns)   --->   "%bitcast_ln98_1 = bitcast i64 %div" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 170 'bitcast' 'bitcast_ln98_1' <Predicate = true> <Delay = 0.00>
-ST_41 : Operation 171 [1/1] (2.98ns)   --->   "%store_ln98 = store i64 %bitcast_ln98_1, i18 %Q_addr" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 171 'store' 'store_ln98' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_41 : Operation 172 [1/1] (0.00ns)   --->   "%br_ln95 = br void %for.inc29" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 172 'br' 'br_ln95' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 168 [1/1] (0.00ns)   --->   "%Q_addr = getelementptr i64 %Q, i64 0, i64 %zext_ln98" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 168 'getelementptr' 'Q_addr' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 169 [1/1] (0.00ns)   --->   "%speclooptripcount_ln97 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:97]   --->   Operation 169 'speclooptripcount' 'speclooptripcount_ln97' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 170 [1/1] (0.00ns)   --->   "%specloopname_ln99 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [data/benchmarks/gramschmidt/gramschmidt.c:99]   --->   Operation 170 'specloopname' 'specloopname_ln99' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 171 [1/1] (0.00ns)   --->   "%bitcast_ln98_1 = bitcast i64 %div" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 171 'bitcast' 'bitcast_ln98_1' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 172 [1/1] (2.98ns)   --->   "%store_ln98 = store i64 %bitcast_ln98_1, i18 %Q_addr" [data/benchmarks/gramschmidt/gramschmidt.c:98]   --->   Operation 172 'store' 'store_ln98' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_41 : Operation 173 [1/1] (0.00ns)   --->   "%br_ln95 = br void %for.inc29" [data/benchmarks/gramschmidt/gramschmidt.c:95]   --->   Operation 173 'br' 'br_ln95' <Predicate = true> <Delay = 0.00>
 
 State 42 <SV = 16> <Delay = 1.26>
-ST_42 : Operation 173 [1/1] (0.00ns)   --->   "%j = phi i31 %add_ln100_1, void %for.inc83.loopexit, i31 %trunc_ln100_1, void %loop5.preheader" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 173 'phi' 'j' <Predicate = true> <Delay = 0.00>
-ST_42 : Operation 174 [1/1] (0.00ns)   --->   "%zext_ln100_1 = zext i31 %j" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 174 'zext' 'zext_ln100_1' <Predicate = true> <Delay = 0.00>
-ST_42 : Operation 175 [1/1] (0.88ns)   --->   "%icmp_ln100_1 = icmp_eq  i32 %zext_ln100_1, i32 %nj_read" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 175 'icmp' 'icmp_ln100_1' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_42 : Operation 176 [1/1] (0.00ns)   --->   "%br_ln100 = br i1 %icmp_ln100_1, void %loop5.split, void %for.inc86.loopexit" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 176 'br' 'br_ln100' <Predicate = true> <Delay = 0.00>
-ST_42 : Operation 177 [1/1] (0.00ns)   --->   "%trunc_ln103 = trunc i31 %j" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 177 'trunc' 'trunc_ln103' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
-ST_42 : Operation 178 [1/1] (0.79ns)   --->   "%add_ln103 = add i18 %tmp_1, i18 %trunc_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 178 'add' 'add_ln103' <Predicate = (!icmp_ln100_1)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_42 : Operation 179 [1/1] (0.00ns)   --->   "%zext_ln103 = zext i18 %add_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 179 'zext' 'zext_ln103' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
-ST_42 : Operation 180 [1/1] (0.00ns)   --->   "%R_addr_1 = getelementptr i64 %R, i64 0, i64 %zext_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 180 'getelementptr' 'R_addr_1' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
-ST_42 : Operation 181 [1/1] (0.00ns)   --->   "%speclooptripcount_ln102 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1, i64 511, i64 256" [data/benchmarks/gramschmidt/gramschmidt.c:102]   --->   Operation 181 'speclooptripcount' 'speclooptripcount_ln102' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
-ST_42 : Operation 182 [1/1] (0.00ns)   --->   "%specloopname_ln114 = specloopname void @_ssdm_op_SpecLoopName, void @empty_7" [data/benchmarks/gramschmidt/gramschmidt.c:114]   --->   Operation 182 'specloopname' 'specloopname_ln114' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
-ST_42 : Operation 183 [1/1] (0.38ns)   --->   "%br_ln104 = br void %for.inc57" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 183 'br' 'br_ln104' <Predicate = (!icmp_ln100_1)> <Delay = 0.38>
-ST_42 : Operation 184 [1/1] (0.00ns)   --->   "%indvars_iv40_load_1 = load i32 %indvars_iv40" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 184 'load' 'indvars_iv40_load_1' <Predicate = (icmp_ln100_1)> <Delay = 0.00>
-ST_42 : Operation 185 [1/1] (0.88ns)   --->   "%add_ln85 = add i32 %indvars_iv40_load_1, i32 1" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 185 'add' 'add_ln85' <Predicate = (icmp_ln100_1)> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_42 : Operation 186 [1/1] (0.38ns)   --->   "%store_ln80 = store i19 %add_ln100, i19 %k" [data/benchmarks/gramschmidt/gramschmidt.c:80]   --->   Operation 186 'store' 'store_ln80' <Predicate = (icmp_ln100_1)> <Delay = 0.38>
-ST_42 : Operation 187 [1/1] (0.38ns)   --->   "%store_ln85 = store i32 %add_ln85, i32 %indvars_iv40" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 187 'store' 'store_ln85' <Predicate = (icmp_ln100_1)> <Delay = 0.38>
-ST_42 : Operation 188 [1/1] (0.00ns)   --->   "%br_ln85 = br void %loop2" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 188 'br' 'br_ln85' <Predicate = (icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 174 [1/1] (0.00ns)   --->   "%j = phi i31 %add_ln100_1, void %for.inc83.loopexit, i31 %trunc_ln100_1, void %loop5.preheader" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 174 'phi' 'j' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 175 [1/1] (0.00ns)   --->   "%zext_ln100_1 = zext i31 %j" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 175 'zext' 'zext_ln100_1' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 176 [1/1] (0.88ns)   --->   "%icmp_ln100_1 = icmp_eq  i32 %zext_ln100_1, i32 %nj_read" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 176 'icmp' 'icmp_ln100_1' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 177 [1/1] (0.00ns)   --->   "%br_ln100 = br i1 %icmp_ln100_1, void %loop5.split, void %for.inc86.loopexit" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 177 'br' 'br_ln100' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 178 [1/1] (0.00ns)   --->   "%trunc_ln103 = trunc i31 %j" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 178 'trunc' 'trunc_ln103' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 179 [1/1] (0.79ns)   --->   "%add_ln103 = add i18 %tmp_1, i18 %trunc_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 179 'add' 'add_ln103' <Predicate = (!icmp_ln100_1)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 180 [1/1] (0.00ns)   --->   "%zext_ln103 = zext i18 %add_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 180 'zext' 'zext_ln103' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 181 [1/1] (0.00ns)   --->   "%R_addr_1 = getelementptr i64 %R, i64 0, i64 %zext_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:103]   --->   Operation 181 'getelementptr' 'R_addr_1' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 182 [1/1] (0.00ns)   --->   "%speclooptripcount_ln102 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1, i64 511, i64 256" [data/benchmarks/gramschmidt/gramschmidt.c:102]   --->   Operation 182 'speclooptripcount' 'speclooptripcount_ln102' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 183 [1/1] (0.00ns)   --->   "%specloopname_ln114 = specloopname void @_ssdm_op_SpecLoopName, void @empty_7" [data/benchmarks/gramschmidt/gramschmidt.c:114]   --->   Operation 183 'specloopname' 'specloopname_ln114' <Predicate = (!icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 184 [1/1] (0.38ns)   --->   "%br_ln104 = br void %for.inc57" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 184 'br' 'br_ln104' <Predicate = (!icmp_ln100_1)> <Delay = 0.38>
+ST_42 : Operation 185 [1/1] (0.00ns)   --->   "%indvars_iv40_load_1 = load i32 %indvars_iv40" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 185 'load' 'indvars_iv40_load_1' <Predicate = (icmp_ln100_1)> <Delay = 0.00>
+ST_42 : Operation 186 [1/1] (0.88ns)   --->   "%add_ln85 = add i32 %indvars_iv40_load_1, i32 1" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 186 'add' 'add_ln85' <Predicate = (icmp_ln100_1)> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 187 [1/1] (0.38ns)   --->   "%store_ln80 = store i19 %add_ln100, i19 %k" [data/benchmarks/gramschmidt/gramschmidt.c:80]   --->   Operation 187 'store' 'store_ln80' <Predicate = (icmp_ln100_1)> <Delay = 0.38>
+ST_42 : Operation 188 [1/1] (0.38ns)   --->   "%store_ln85 = store i32 %add_ln85, i32 %indvars_iv40" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 188 'store' 'store_ln85' <Predicate = (icmp_ln100_1)> <Delay = 0.38>
+ST_42 : Operation 189 [1/1] (0.00ns)   --->   "%br_ln85 = br void %loop2" [data/benchmarks/gramschmidt/gramschmidt.c:85]   --->   Operation 189 'br' 'br_ln85' <Predicate = (icmp_ln100_1)> <Delay = 0.00>
 
 State 43 <SV = 17> <Delay = 3.86>
-ST_43 : Operation 189 [1/1] (0.00ns)   --->   "%storemerge = phi i64 0, void %loop5.split, i64 %bitcast_ln107_2, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 189 'phi' 'storemerge' <Predicate = true> <Delay = 0.00>
-ST_43 : Operation 190 [1/1] (0.00ns)   --->   "%i_2 = phi i19 0, void %loop5.split, i19 %add_ln104, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 190 'phi' 'i_2' <Predicate = true> <Delay = 0.00>
-ST_43 : Operation 191 [1/1] (0.00ns)   --->   "%empty = phi i64 0, void %loop5.split, i64 %add, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 191 'phi' 'empty' <Predicate = true> <Delay = 0.00>
-ST_43 : Operation 192 [1/1] (0.00ns)   --->   "%trunc_ln104 = trunc i19 %i_2" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 192 'trunc' 'trunc_ln104' <Predicate = true> <Delay = 0.00>
-ST_43 : Operation 193 [1/1] (0.00ns)   --->   "%zext_ln104 = zext i19 %i_2" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 193 'zext' 'zext_ln104' <Predicate = true> <Delay = 0.00>
-ST_43 : Operation 194 [1/1] (0.88ns)   --->   "%icmp_ln104 = icmp_slt  i32 %zext_ln104, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 194 'icmp' 'icmp_ln104' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_43 : Operation 195 [1/1] (0.80ns)   --->   "%add_ln104 = add i19 %i_2, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 195 'add' 'add_ln104' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_43 : Operation 196 [1/1] (0.00ns)   --->   "%br_ln104 = br i1 %icmp_ln104, void %for.inc80.preheader, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 196 'br' 'br_ln104' <Predicate = true> <Delay = 0.00>
-ST_43 : Operation 197 [1/1] (0.00ns)   --->   "%tmp_4 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln104, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 197 'bitconcatenate' 'tmp_4' <Predicate = (icmp_ln104)> <Delay = 0.00>
-ST_43 : Operation 198 [1/1] (0.79ns)   --->   "%add_ln107 = add i18 %tmp_4, i18 %trunc_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 198 'add' 'add_ln107' <Predicate = (icmp_ln104)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_43 : Operation 199 [1/1] (0.00ns)   --->   "%zext_ln107 = zext i18 %add_ln107" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 199 'zext' 'zext_ln107' <Predicate = (icmp_ln104)> <Delay = 0.00>
-ST_43 : Operation 200 [1/1] (0.00ns)   --->   "%A_addr_2 = getelementptr i64 %A, i64 0, i64 %zext_ln107" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 200 'getelementptr' 'A_addr_2' <Predicate = (icmp_ln104)> <Delay = 0.00>
-ST_43 : Operation 201 [1/1] (0.79ns)   --->   "%add_ln107_1 = add i18 %tmp_4, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 201 'add' 'add_ln107_1' <Predicate = (icmp_ln104)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_43 : Operation 202 [1/1] (0.00ns)   --->   "%zext_ln107_1 = zext i18 %add_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 202 'zext' 'zext_ln107_1' <Predicate = (icmp_ln104)> <Delay = 0.00>
-ST_43 : Operation 203 [1/1] (0.00ns)   --->   "%Q_addr_1 = getelementptr i64 %Q, i64 0, i64 %zext_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 203 'getelementptr' 'Q_addr_1' <Predicate = (icmp_ln104)> <Delay = 0.00>
-ST_43 : Operation 204 [2/2] (2.98ns)   --->   "%Q_load = load i18 %Q_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 204 'load' 'Q_load' <Predicate = (icmp_ln104)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_43 : Operation 205 [2/2] (2.98ns)   --->   "%A_load_2 = load i18 %A_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 205 'load' 'A_load_2' <Predicate = (icmp_ln104)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_43 : Operation 206 [1/1] (2.98ns)   --->   "%store_ln107 = store i64 %storemerge, i18 %R_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 206 'store' 'store_ln107' <Predicate = (!icmp_ln104)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_43 : Operation 207 [1/1] (0.38ns)   --->   "%br_ln109 = br void %for.inc80" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 207 'br' 'br_ln109' <Predicate = (!icmp_ln104)> <Delay = 0.38>
+ST_43 : Operation 190 [1/1] (0.00ns)   --->   "%storemerge = phi i64 0, void %loop5.split, i64 %bitcast_ln107_2, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 190 'phi' 'storemerge' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 191 [1/1] (0.00ns)   --->   "%i_2 = phi i19 0, void %loop5.split, i19 %add_ln104, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 191 'phi' 'i_2' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 192 [1/1] (0.00ns)   --->   "%empty = phi i64 0, void %loop5.split, i64 %add, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 192 'phi' 'empty' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 193 [1/1] (0.00ns)   --->   "%trunc_ln104 = trunc i19 %i_2" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 193 'trunc' 'trunc_ln104' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 194 [1/1] (0.00ns)   --->   "%zext_ln104 = zext i19 %i_2" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 194 'zext' 'zext_ln104' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 195 [1/1] (0.88ns)   --->   "%icmp_ln104 = icmp_slt  i32 %zext_ln104, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 195 'icmp' 'icmp_ln104' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 196 [1/1] (0.80ns)   --->   "%add_ln104 = add i19 %i_2, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 196 'add' 'add_ln104' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 197 [1/1] (0.00ns)   --->   "%br_ln104 = br i1 %icmp_ln104, void %for.inc80.preheader, void %for.inc57.split" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 197 'br' 'br_ln104' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 198 [1/1] (0.00ns)   --->   "%tmp_4 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln104, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 198 'bitconcatenate' 'tmp_4' <Predicate = (icmp_ln104)> <Delay = 0.00>
+ST_43 : Operation 199 [1/1] (0.79ns)   --->   "%add_ln107 = add i18 %tmp_4, i18 %trunc_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 199 'add' 'add_ln107' <Predicate = (icmp_ln104)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 200 [1/1] (0.00ns)   --->   "%zext_ln107 = zext i18 %add_ln107" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 200 'zext' 'zext_ln107' <Predicate = (icmp_ln104)> <Delay = 0.00>
+ST_43 : Operation 201 [1/1] (0.00ns)   --->   "%A_addr_2 = getelementptr i64 %A, i64 0, i64 %zext_ln107" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 201 'getelementptr' 'A_addr_2' <Predicate = (icmp_ln104)> <Delay = 0.00>
+ST_43 : Operation 202 [1/1] (0.79ns)   --->   "%add_ln107_1 = add i18 %tmp_4, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 202 'add' 'add_ln107_1' <Predicate = (icmp_ln104)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 203 [1/1] (0.00ns)   --->   "%zext_ln107_1 = zext i18 %add_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 203 'zext' 'zext_ln107_1' <Predicate = (icmp_ln104)> <Delay = 0.00>
+ST_43 : Operation 204 [1/1] (0.00ns)   --->   "%Q_addr_1 = getelementptr i64 %Q, i64 0, i64 %zext_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 204 'getelementptr' 'Q_addr_1' <Predicate = (icmp_ln104)> <Delay = 0.00>
+ST_43 : Operation 205 [2/2] (2.98ns)   --->   "%Q_load = load i18 %Q_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 205 'load' 'Q_load' <Predicate = (icmp_ln104)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_43 : Operation 206 [2/2] (2.98ns)   --->   "%A_load_2 = load i18 %A_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 206 'load' 'A_load_2' <Predicate = (icmp_ln104)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_43 : Operation 207 [1/1] (2.98ns)   --->   "%store_ln107 = store i64 %storemerge, i18 %R_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 207 'store' 'store_ln107' <Predicate = (!icmp_ln104)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_43 : Operation 208 [1/1] (0.38ns)   --->   "%br_ln109 = br void %for.inc80" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 208 'br' 'br_ln109' <Predicate = (!icmp_ln104)> <Delay = 0.38>
 
 State 44 <SV = 18> <Delay = 2.98>
-ST_44 : Operation 208 [1/2] (2.98ns)   --->   "%Q_load = load i18 %Q_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 208 'load' 'Q_load' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_44 : Operation 209 [1/2] (2.98ns)   --->   "%A_load_2 = load i18 %A_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 209 'load' 'A_load_2' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_44 : Operation 209 [1/2] (2.98ns)   --->   "%Q_load = load i18 %Q_addr_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 209 'load' 'Q_load' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_44 : Operation 210 [1/2] (2.98ns)   --->   "%A_load_2 = load i18 %A_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 210 'load' 'A_load_2' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
 
 State 45 <SV = 19> <Delay = 4.50>
-ST_45 : Operation 210 [1/1] (0.00ns)   --->   "%bitcast_ln107 = bitcast i64 %Q_load" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 210 'bitcast' 'bitcast_ln107' <Predicate = true> <Delay = 0.00>
-ST_45 : Operation 211 [1/1] (0.00ns)   --->   "%bitcast_ln107_1 = bitcast i64 %A_load_2" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 211 'bitcast' 'bitcast_ln107_1' <Predicate = true> <Delay = 0.00>
-ST_45 : Operation 212 [4/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 212 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 211 [1/1] (0.00ns)   --->   "%bitcast_ln107 = bitcast i64 %Q_load" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 211 'bitcast' 'bitcast_ln107' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 212 [1/1] (0.00ns)   --->   "%bitcast_ln107_1 = bitcast i64 %A_load_2" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 212 'bitcast' 'bitcast_ln107_1' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 213 [4/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 213 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 46 <SV = 20> <Delay = 4.50>
-ST_46 : Operation 213 [3/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 213 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_46 : Operation 214 [3/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 214 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 47 <SV = 21> <Delay = 4.50>
-ST_47 : Operation 214 [2/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 214 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_47 : Operation 215 [2/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 215 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 48 <SV = 22> <Delay = 4.50>
-ST_48 : Operation 215 [1/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 215 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 216 [1/4] (4.50ns)   --->   "%mul1 = dmul i64 %bitcast_ln107, i64 %bitcast_ln107_1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 216 'dmul' 'mul1' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 49 <SV = 23> <Delay = 4.33>
-ST_49 : Operation 216 [4/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 216 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_49 : Operation 217 [4/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 217 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 50 <SV = 24> <Delay = 4.33>
-ST_50 : Operation 217 [3/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 217 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_50 : Operation 218 [3/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 218 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 51 <SV = 25> <Delay = 4.33>
-ST_51 : Operation 218 [2/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 218 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_51 : Operation 219 [2/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 219 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 52 <SV = 26> <Delay = 4.33>
-ST_52 : Operation 219 [1/1] (0.00ns)   --->   "%speclooptripcount_ln106 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:106]   --->   Operation 219 'speclooptripcount' 'speclooptripcount_ln106' <Predicate = true> <Delay = 0.00>
-ST_52 : Operation 220 [1/1] (0.00ns)   --->   "%specloopname_ln108 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/gramschmidt/gramschmidt.c:108]   --->   Operation 220 'specloopname' 'specloopname_ln108' <Predicate = true> <Delay = 0.00>
-ST_52 : Operation 221 [1/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 221 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
-ST_52 : Operation 222 [1/1] (0.00ns)   --->   "%bitcast_ln107_2 = bitcast i64 %add" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 222 'bitcast' 'bitcast_ln107_2' <Predicate = true> <Delay = 0.00>
-ST_52 : Operation 223 [1/1] (0.00ns)   --->   "%br_ln104 = br void %for.inc57" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 223 'br' 'br_ln104' <Predicate = true> <Delay = 0.00>
+ST_52 : Operation 220 [1/1] (0.00ns)   --->   "%speclooptripcount_ln106 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:106]   --->   Operation 220 'speclooptripcount' 'speclooptripcount_ln106' <Predicate = true> <Delay = 0.00>
+ST_52 : Operation 221 [1/1] (0.00ns)   --->   "%specloopname_ln108 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/gramschmidt/gramschmidt.c:108]   --->   Operation 221 'specloopname' 'specloopname_ln108' <Predicate = true> <Delay = 0.00>
+ST_52 : Operation 222 [1/4] (4.33ns)   --->   "%add = dadd i64 %empty, i64 %mul1" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 222 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_52 : Operation 223 [1/1] (0.00ns)   --->   "%bitcast_ln107_2 = bitcast i64 %add" [data/benchmarks/gramschmidt/gramschmidt.c:107]   --->   Operation 223 'bitcast' 'bitcast_ln107_2' <Predicate = true> <Delay = 0.00>
+ST_52 : Operation 224 [1/1] (0.00ns)   --->   "%br_ln104 = br void %for.inc57" [data/benchmarks/gramschmidt/gramschmidt.c:104]   --->   Operation 224 'br' 'br_ln104' <Predicate = true> <Delay = 0.00>
 
 State 53 <SV = 18> <Delay = 3.77>
-ST_53 : Operation 224 [1/1] (0.00ns)   --->   "%i_3 = phi i19 %add_ln109, void %for.inc80.split, i19 0, void %for.inc80.preheader" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 224 'phi' 'i_3' <Predicate = true> <Delay = 0.00>
-ST_53 : Operation 225 [1/1] (0.00ns)   --->   "%trunc_ln109 = trunc i19 %i_3" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 225 'trunc' 'trunc_ln109' <Predicate = true> <Delay = 0.00>
-ST_53 : Operation 226 [1/1] (0.00ns)   --->   "%zext_ln109 = zext i19 %i_3" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 226 'zext' 'zext_ln109' <Predicate = true> <Delay = 0.00>
-ST_53 : Operation 227 [1/1] (0.88ns)   --->   "%icmp_ln109 = icmp_slt  i32 %zext_ln109, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 227 'icmp' 'icmp_ln109' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_53 : Operation 228 [1/1] (0.80ns)   --->   "%add_ln109 = add i19 %i_3, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 228 'add' 'add_ln109' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_53 : Operation 229 [1/1] (0.00ns)   --->   "%br_ln109 = br i1 %icmp_ln109, void %for.inc83.loopexit, void %for.inc80.split" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 229 'br' 'br_ln109' <Predicate = true> <Delay = 0.00>
-ST_53 : Operation 230 [1/1] (0.00ns)   --->   "%tmp_5 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln109, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 230 'bitconcatenate' 'tmp_5' <Predicate = (icmp_ln109)> <Delay = 0.00>
-ST_53 : Operation 231 [1/1] (0.79ns)   --->   "%add_ln112 = add i18 %tmp_5, i18 %trunc_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 231 'add' 'add_ln112' <Predicate = (icmp_ln109)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_53 : Operation 232 [1/1] (0.79ns)   --->   "%add_ln112_1 = add i18 %tmp_5, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 232 'add' 'add_ln112_1' <Predicate = (icmp_ln109)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_53 : Operation 233 [1/1] (0.00ns)   --->   "%zext_ln112_1 = zext i18 %add_ln112_1" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 233 'zext' 'zext_ln112_1' <Predicate = (icmp_ln109)> <Delay = 0.00>
-ST_53 : Operation 234 [1/1] (0.00ns)   --->   "%Q_addr_2 = getelementptr i64 %Q, i64 0, i64 %zext_ln112_1" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 234 'getelementptr' 'Q_addr_2' <Predicate = (icmp_ln109)> <Delay = 0.00>
-ST_53 : Operation 235 [2/2] (2.98ns)   --->   "%Q_load_1 = load i18 %Q_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 235 'load' 'Q_load_1' <Predicate = (icmp_ln109)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_53 : Operation 236 [1/1] (0.87ns)   --->   "%add_ln100_1 = add i31 %j, i31 1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 236 'add' 'add_ln100_1' <Predicate = (!icmp_ln109)> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_53 : Operation 237 [1/1] (0.00ns)   --->   "%br_ln100 = br void %loop5" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 237 'br' 'br_ln100' <Predicate = (!icmp_ln109)> <Delay = 0.00>
+ST_53 : Operation 225 [1/1] (0.00ns)   --->   "%i_3 = phi i19 %add_ln109, void %for.inc80.split, i19 0, void %for.inc80.preheader" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 225 'phi' 'i_3' <Predicate = true> <Delay = 0.00>
+ST_53 : Operation 226 [1/1] (0.00ns)   --->   "%trunc_ln109 = trunc i19 %i_3" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 226 'trunc' 'trunc_ln109' <Predicate = true> <Delay = 0.00>
+ST_53 : Operation 227 [1/1] (0.00ns)   --->   "%zext_ln109 = zext i19 %i_3" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 227 'zext' 'zext_ln109' <Predicate = true> <Delay = 0.00>
+ST_53 : Operation 228 [1/1] (0.88ns)   --->   "%icmp_ln109 = icmp_slt  i32 %zext_ln109, i32 %ni_read" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 228 'icmp' 'icmp_ln109' <Predicate = true> <Delay = 0.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 229 [1/1] (0.80ns)   --->   "%add_ln109 = add i19 %i_3, i19 1" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 229 'add' 'add_ln109' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 230 [1/1] (0.00ns)   --->   "%br_ln109 = br i1 %icmp_ln109, void %for.inc83.loopexit, void %for.inc80.split" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 230 'br' 'br_ln109' <Predicate = true> <Delay = 0.00>
+ST_53 : Operation 231 [1/1] (0.00ns)   --->   "%tmp_5 = bitconcatenate i18 @_ssdm_op_BitConcatenate.i18.i9.i9, i9 %trunc_ln109, i9 0" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 231 'bitconcatenate' 'tmp_5' <Predicate = (icmp_ln109)> <Delay = 0.00>
+ST_53 : Operation 232 [1/1] (0.79ns)   --->   "%add_ln112 = add i18 %tmp_5, i18 %trunc_ln103" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 232 'add' 'add_ln112' <Predicate = (icmp_ln109)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 233 [1/1] (0.79ns)   --->   "%add_ln112_1 = add i18 %tmp_5, i18 %trunc_ln94" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 233 'add' 'add_ln112_1' <Predicate = (icmp_ln109)> <Delay = 0.79> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 234 [1/1] (0.00ns)   --->   "%zext_ln112_1 = zext i18 %add_ln112_1" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 234 'zext' 'zext_ln112_1' <Predicate = (icmp_ln109)> <Delay = 0.00>
+ST_53 : Operation 235 [1/1] (0.00ns)   --->   "%Q_addr_2 = getelementptr i64 %Q, i64 0, i64 %zext_ln112_1" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 235 'getelementptr' 'Q_addr_2' <Predicate = (icmp_ln109)> <Delay = 0.00>
+ST_53 : Operation 236 [2/2] (2.98ns)   --->   "%Q_load_1 = load i18 %Q_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 236 'load' 'Q_load_1' <Predicate = (icmp_ln109)> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_53 : Operation 237 [1/1] (0.87ns)   --->   "%add_ln100_1 = add i31 %j, i31 1" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 237 'add' 'add_ln100_1' <Predicate = (!icmp_ln109)> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 238 [1/1] (0.00ns)   --->   "%br_ln100 = br void %loop5" [data/benchmarks/gramschmidt/gramschmidt.c:100]   --->   Operation 238 'br' 'br_ln100' <Predicate = (!icmp_ln109)> <Delay = 0.00>
 
 State 54 <SV = 19> <Delay = 2.98>
-ST_54 : Operation 238 [1/2] (2.98ns)   --->   "%Q_load_1 = load i18 %Q_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 238 'load' 'Q_load_1' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_54 : Operation 239 [1/2] (2.98ns)   --->   "%Q_load_1 = load i18 %Q_addr_2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 239 'load' 'Q_load_1' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
 
 State 55 <SV = 20> <Delay = 4.50>
-ST_55 : Operation 239 [1/1] (0.00ns)   --->   "%bitcast_ln112_1 = bitcast i64 %Q_load_1" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 239 'bitcast' 'bitcast_ln112_1' <Predicate = true> <Delay = 0.00>
-ST_55 : Operation 240 [4/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 240 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_55 : Operation 240 [1/1] (0.00ns)   --->   "%bitcast_ln112_1 = bitcast i64 %Q_load_1" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 240 'bitcast' 'bitcast_ln112_1' <Predicate = true> <Delay = 0.00>
+ST_55 : Operation 241 [4/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 241 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 56 <SV = 21> <Delay = 4.50>
-ST_56 : Operation 241 [3/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 241 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_56 : Operation 242 [3/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 242 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 57 <SV = 22> <Delay = 4.50>
-ST_57 : Operation 242 [1/1] (0.00ns)   --->   "%zext_ln112 = zext i18 %add_ln112" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 242 'zext' 'zext_ln112' <Predicate = true> <Delay = 0.00>
-ST_57 : Operation 243 [1/1] (0.00ns)   --->   "%A_addr_3 = getelementptr i64 %A, i64 0, i64 %zext_ln112" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 243 'getelementptr' 'A_addr_3' <Predicate = true> <Delay = 0.00>
-ST_57 : Operation 244 [2/2] (2.98ns)   --->   "%A_load_3 = load i18 %A_addr_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 244 'load' 'A_load_3' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_57 : Operation 245 [2/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 245 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_57 : Operation 243 [1/1] (0.00ns)   --->   "%zext_ln112 = zext i18 %add_ln112" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 243 'zext' 'zext_ln112' <Predicate = true> <Delay = 0.00>
+ST_57 : Operation 244 [1/1] (0.00ns)   --->   "%A_addr_3 = getelementptr i64 %A, i64 0, i64 %zext_ln112" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 244 'getelementptr' 'A_addr_3' <Predicate = true> <Delay = 0.00>
+ST_57 : Operation 245 [2/2] (2.98ns)   --->   "%A_load_3 = load i18 %A_addr_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 245 'load' 'A_load_3' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_57 : Operation 246 [2/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 246 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 58 <SV = 23> <Delay = 4.50>
-ST_58 : Operation 246 [1/2] (2.98ns)   --->   "%A_load_3 = load i18 %A_addr_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 246 'load' 'A_load_3' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_58 : Operation 247 [1/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 247 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_58 : Operation 247 [1/2] (2.98ns)   --->   "%A_load_3 = load i18 %A_addr_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 247 'load' 'A_load_3' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_58 : Operation 248 [1/4] (4.50ns)   --->   "%mul2 = dmul i64 %bitcast_ln112_1, i64 %empty" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 248 'dmul' 'mul2' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 
 State 59 <SV = 24> <Delay = 4.33>
-ST_59 : Operation 248 [1/1] (0.00ns)   --->   "%bitcast_ln112 = bitcast i64 %A_load_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 248 'bitcast' 'bitcast_ln112' <Predicate = true> <Delay = 0.00>
-ST_59 : Operation 249 [4/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 249 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_59 : Operation 249 [1/1] (0.00ns)   --->   "%bitcast_ln112 = bitcast i64 %A_load_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 249 'bitcast' 'bitcast_ln112' <Predicate = true> <Delay = 0.00>
+ST_59 : Operation 250 [4/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 250 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 60 <SV = 25> <Delay = 4.33>
-ST_60 : Operation 250 [3/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 250 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_60 : Operation 251 [3/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 251 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 61 <SV = 26> <Delay = 4.33>
-ST_61 : Operation 251 [2/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 251 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_61 : Operation 252 [2/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 252 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 62 <SV = 27> <Delay = 4.33>
-ST_62 : Operation 252 [1/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 252 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_62 : Operation 253 [1/4] (4.33ns)   --->   "%sub = dsub i64 %bitcast_ln112, i64 %mul2" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 253 'dsub' 'sub' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 
 State 63 <SV = 28> <Delay = 2.98>
-ST_63 : Operation 253 [1/1] (0.00ns)   --->   "%speclooptripcount_ln111 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:111]   --->   Operation 253 'speclooptripcount' 'speclooptripcount_ln111' <Predicate = true> <Delay = 0.00>
-ST_63 : Operation 254 [1/1] (0.00ns)   --->   "%specloopname_ln113 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [data/benchmarks/gramschmidt/gramschmidt.c:113]   --->   Operation 254 'specloopname' 'specloopname_ln113' <Predicate = true> <Delay = 0.00>
-ST_63 : Operation 255 [1/1] (0.00ns)   --->   "%bitcast_ln112_2 = bitcast i64 %sub" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 255 'bitcast' 'bitcast_ln112_2' <Predicate = true> <Delay = 0.00>
-ST_63 : Operation 256 [1/1] (2.98ns)   --->   "%store_ln112 = store i64 %bitcast_ln112_2, i18 %A_addr_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 256 'store' 'store_ln112' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
-ST_63 : Operation 257 [1/1] (0.00ns)   --->   "%br_ln109 = br void %for.inc80" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 257 'br' 'br_ln109' <Predicate = true> <Delay = 0.00>
+ST_63 : Operation 254 [1/1] (0.00ns)   --->   "%speclooptripcount_ln111 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 512, i64 512, i64 512" [data/benchmarks/gramschmidt/gramschmidt.c:111]   --->   Operation 254 'speclooptripcount' 'speclooptripcount_ln111' <Predicate = true> <Delay = 0.00>
+ST_63 : Operation 255 [1/1] (0.00ns)   --->   "%specloopname_ln113 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [data/benchmarks/gramschmidt/gramschmidt.c:113]   --->   Operation 255 'specloopname' 'specloopname_ln113' <Predicate = true> <Delay = 0.00>
+ST_63 : Operation 256 [1/1] (0.00ns)   --->   "%bitcast_ln112_2 = bitcast i64 %sub" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 256 'bitcast' 'bitcast_ln112_2' <Predicate = true> <Delay = 0.00>
+ST_63 : Operation 257 [1/1] (2.98ns)   --->   "%store_ln112 = store i64 %bitcast_ln112_2, i18 %A_addr_3" [data/benchmarks/gramschmidt/gramschmidt.c:112]   --->   Operation 257 'store' 'store_ln112' <Predicate = true> <Delay = 2.98> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 2.98> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 262144> <RAM>
+ST_63 : Operation 258 [1/1] (0.00ns)   --->   "%br_ln109 = br void %for.inc80" [data/benchmarks/gramschmidt/gramschmidt.c:109]   --->   Operation 258 'br' 'br_ln109' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -475,268 +476,268 @@ Target clock period: 8.000ns, clock uncertainty: 2.160ns.
  <State 1>: 0.387ns
 The critical path consists of the following:
 	'alloca' operation 19 bit ('k', data/benchmarks/gramschmidt/gramschmidt.c:80) [7]  (0.000 ns)
-	'store' operation 0 bit ('store_ln80', data/benchmarks/gramschmidt/gramschmidt.c:80) of constant 0 on local variable 'k', data/benchmarks/gramschmidt/gramschmidt.c:80 [21]  (0.387 ns)
+	'store' operation 0 bit ('store_ln80', data/benchmarks/gramschmidt/gramschmidt.c:80) of constant 0 on local variable 'k', data/benchmarks/gramschmidt/gramschmidt.c:80 [22]  (0.387 ns)
 
  <State 2>: 0.880ns
 The critical path consists of the following:
-	'load' operation 19 bit ('k', data/benchmarks/gramschmidt/gramschmidt.c:94) on local variable 'k', data/benchmarks/gramschmidt/gramschmidt.c:80 [25]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln100', data/benchmarks/gramschmidt/gramschmidt.c:100) [28]  (0.880 ns)
+	'load' operation 19 bit ('k', data/benchmarks/gramschmidt/gramschmidt.c:94) on local variable 'k', data/benchmarks/gramschmidt/gramschmidt.c:80 [26]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln100', data/benchmarks/gramschmidt/gramschmidt.c:100) [29]  (0.880 ns)
 
  <State 3>: 5.473ns
 The critical path consists of the following:
-	'phi' operation 64 bit ('nrm') with incoming values : ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [44]  (0.000 ns)
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'phi' operation 64 bit ('nrm') with incoming values : ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [45]  (0.000 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 4>: 2.983ns
 The critical path consists of the following:
-	'load' operation 64 bit ('A_load', data/benchmarks/gramschmidt/gramschmidt.c:92) on array 'A' [57]  (2.983 ns)
+	'load' operation 64 bit ('A_load', data/benchmarks/gramschmidt/gramschmidt.c:92) on array 'A' [58]  (2.983 ns)
 
  <State 5>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [59]  (4.503 ns)
+	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.503 ns)
 
  <State 6>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [59]  (4.503 ns)
+	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.503 ns)
 
  <State 7>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [59]  (4.503 ns)
+	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.503 ns)
 
  <State 8>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [59]  (4.503 ns)
+	'dmul' operation 64 bit ('mul', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.503 ns)
 
  <State 9>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.334 ns)
+	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [61]  (4.334 ns)
 
  <State 10>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.334 ns)
+	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [61]  (4.334 ns)
 
  <State 11>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.334 ns)
+	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [61]  (4.334 ns)
 
  <State 12>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [60]  (4.334 ns)
+	'dadd' operation 64 bit ('nrm', data/benchmarks/gramschmidt/gramschmidt.c:92) [61]  (4.334 ns)
 
  <State 13>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 14>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 15>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 16>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 17>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 18>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 19>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 20>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 21>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 22>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 23>: 5.473ns
 The critical path consists of the following:
-	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [63]  (5.473 ns)
+	'dsqrt' operation 64 bit ('tmp', data/benchmarks/gramschmidt/gramschmidt.c:94) [64]  (5.473 ns)
 
  <State 24>: 2.983ns
 The critical path consists of the following:
-	'store' operation 0 bit ('store_ln94', data/benchmarks/gramschmidt/gramschmidt.c:94) of variable 'bitcast_ln94', data/benchmarks/gramschmidt/gramschmidt.c:94 on array 'R' [65]  (2.983 ns)
+	'store' operation 0 bit ('store_ln94', data/benchmarks/gramschmidt/gramschmidt.c:94) of variable 'bitcast_ln94', data/benchmarks/gramschmidt/gramschmidt.c:94 on array 'R' [66]  (2.983 ns)
 
  <State 25>: 3.780ns
 The critical path consists of the following:
-	'phi' operation 19 bit ('i', data/benchmarks/gramschmidt/gramschmidt.c:95) with incoming values : ('add_ln95', data/benchmarks/gramschmidt/gramschmidt.c:95) [68]  (0.000 ns)
-	'add' operation 18 bit ('add_ln98', data/benchmarks/gramschmidt/gramschmidt.c:98) [76]  (0.797 ns)
-	'getelementptr' operation 18 bit ('A_addr_1', data/benchmarks/gramschmidt/gramschmidt.c:98) [78]  (0.000 ns)
-	'load' operation 64 bit ('A_load_1', data/benchmarks/gramschmidt/gramschmidt.c:98) on array 'A' [82]  (2.983 ns)
+	'phi' operation 19 bit ('i', data/benchmarks/gramschmidt/gramschmidt.c:95) with incoming values : ('add_ln95', data/benchmarks/gramschmidt/gramschmidt.c:95) [69]  (0.000 ns)
+	'add' operation 18 bit ('add_ln98', data/benchmarks/gramschmidt/gramschmidt.c:98) [77]  (0.797 ns)
+	'getelementptr' operation 18 bit ('A_addr_1', data/benchmarks/gramschmidt/gramschmidt.c:98) [79]  (0.000 ns)
+	'load' operation 64 bit ('A_load_1', data/benchmarks/gramschmidt/gramschmidt.c:98) on array 'A' [83]  (2.983 ns)
 
  <State 26>: 2.983ns
 The critical path consists of the following:
-	'load' operation 64 bit ('A_load_1', data/benchmarks/gramschmidt/gramschmidt.c:98) on array 'A' [82]  (2.983 ns)
+	'load' operation 64 bit ('A_load_1', data/benchmarks/gramschmidt/gramschmidt.c:98) on array 'A' [83]  (2.983 ns)
 
  <State 27>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 28>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 29>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 30>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 31>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 32>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 33>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 34>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 35>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 36>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 37>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 38>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 39>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 40>: 5.222ns
 The critical path consists of the following:
-	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [84]  (5.222 ns)
+	'ddiv' operation 64 bit ('div', data/benchmarks/gramschmidt/gramschmidt.c:98) [85]  (5.222 ns)
 
  <State 41>: 2.983ns
 The critical path consists of the following:
-	'getelementptr' operation 18 bit ('Q_addr', data/benchmarks/gramschmidt/gramschmidt.c:98) [79]  (0.000 ns)
-	'store' operation 0 bit ('store_ln98', data/benchmarks/gramschmidt/gramschmidt.c:98) of variable 'bitcast_ln98_1', data/benchmarks/gramschmidt/gramschmidt.c:98 on array 'Q' [86]  (2.983 ns)
+	'getelementptr' operation 18 bit ('Q_addr', data/benchmarks/gramschmidt/gramschmidt.c:98) [80]  (0.000 ns)
+	'store' operation 0 bit ('store_ln98', data/benchmarks/gramschmidt/gramschmidt.c:98) of variable 'bitcast_ln98_1', data/benchmarks/gramschmidt/gramschmidt.c:98 on array 'Q' [87]  (2.983 ns)
 
  <State 42>: 1.267ns
 The critical path consists of the following:
-	'phi' operation 31 bit ('j', data/benchmarks/gramschmidt/gramschmidt.c:100) with incoming values : ('trunc_ln100_1', data/benchmarks/gramschmidt/gramschmidt.c:100) ('add_ln100_1', data/benchmarks/gramschmidt/gramschmidt.c:100) [91]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln100_1', data/benchmarks/gramschmidt/gramschmidt.c:100) [93]  (0.880 ns)
-	'store' operation 0 bit ('store_ln85', data/benchmarks/gramschmidt/gramschmidt.c:85) of variable 'add_ln85', data/benchmarks/gramschmidt/gramschmidt.c:85 on local variable 'indvars_iv40' [166]  (0.387 ns)
+	'phi' operation 31 bit ('j', data/benchmarks/gramschmidt/gramschmidt.c:100) with incoming values : ('trunc_ln100_1', data/benchmarks/gramschmidt/gramschmidt.c:100) ('add_ln100_1', data/benchmarks/gramschmidt/gramschmidt.c:100) [92]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln100_1', data/benchmarks/gramschmidt/gramschmidt.c:100) [94]  (0.880 ns)
+	'store' operation 0 bit ('store_ln85', data/benchmarks/gramschmidt/gramschmidt.c:85) of variable 'add_ln85', data/benchmarks/gramschmidt/gramschmidt.c:85 on local variable 'indvars_iv40' [167]  (0.387 ns)
 
  <State 43>: 3.863ns
 The critical path consists of the following:
-	'phi' operation 19 bit ('i', data/benchmarks/gramschmidt/gramschmidt.c:104) with incoming values : ('add_ln104', data/benchmarks/gramschmidt/gramschmidt.c:104) [105]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln104', data/benchmarks/gramschmidt/gramschmidt.c:104) [109]  (0.880 ns)
-	'store' operation 0 bit ('store_ln107', data/benchmarks/gramschmidt/gramschmidt.c:107) of variable 'storemerge', data/benchmarks/gramschmidt/gramschmidt.c:107 on array 'R' [131]  (2.983 ns)
+	'phi' operation 19 bit ('i', data/benchmarks/gramschmidt/gramschmidt.c:104) with incoming values : ('add_ln104', data/benchmarks/gramschmidt/gramschmidt.c:104) [106]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln104', data/benchmarks/gramschmidt/gramschmidt.c:104) [110]  (0.880 ns)
+	'store' operation 0 bit ('store_ln107', data/benchmarks/gramschmidt/gramschmidt.c:107) of variable 'storemerge', data/benchmarks/gramschmidt/gramschmidt.c:107 on array 'R' [132]  (2.983 ns)
 
  <State 44>: 2.983ns
 The critical path consists of the following:
-	'load' operation 64 bit ('Q_load', data/benchmarks/gramschmidt/gramschmidt.c:107) on array 'Q' [122]  (2.983 ns)
+	'load' operation 64 bit ('Q_load', data/benchmarks/gramschmidt/gramschmidt.c:107) on array 'Q' [123]  (2.983 ns)
 
  <State 45>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [126]  (4.503 ns)
+	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.503 ns)
 
  <State 46>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [126]  (4.503 ns)
+	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.503 ns)
 
  <State 47>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [126]  (4.503 ns)
+	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.503 ns)
 
  <State 48>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [126]  (4.503 ns)
+	'dmul' operation 64 bit ('mul1', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.503 ns)
 
  <State 49>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.334 ns)
+	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [128]  (4.334 ns)
 
  <State 50>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.334 ns)
+	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [128]  (4.334 ns)
 
  <State 51>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.334 ns)
+	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [128]  (4.334 ns)
 
  <State 52>: 4.334ns
 The critical path consists of the following:
-	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [127]  (4.334 ns)
+	'dadd' operation 64 bit ('add', data/benchmarks/gramschmidt/gramschmidt.c:107) [128]  (4.334 ns)
 
  <State 53>: 3.780ns
 The critical path consists of the following:
-	'phi' operation 19 bit ('i', data/benchmarks/gramschmidt/gramschmidt.c:109) with incoming values : ('add_ln109', data/benchmarks/gramschmidt/gramschmidt.c:109) [134]  (0.000 ns)
-	'add' operation 18 bit ('add_ln112_1', data/benchmarks/gramschmidt/gramschmidt.c:112) [145]  (0.797 ns)
-	'getelementptr' operation 18 bit ('Q_addr_2', data/benchmarks/gramschmidt/gramschmidt.c:112) [147]  (0.000 ns)
-	'load' operation 64 bit ('Q_load_1', data/benchmarks/gramschmidt/gramschmidt.c:112) on array 'Q' [152]  (2.983 ns)
+	'phi' operation 19 bit ('i', data/benchmarks/gramschmidt/gramschmidt.c:109) with incoming values : ('add_ln109', data/benchmarks/gramschmidt/gramschmidt.c:109) [135]  (0.000 ns)
+	'add' operation 18 bit ('add_ln112_1', data/benchmarks/gramschmidt/gramschmidt.c:112) [146]  (0.797 ns)
+	'getelementptr' operation 18 bit ('Q_addr_2', data/benchmarks/gramschmidt/gramschmidt.c:112) [148]  (0.000 ns)
+	'load' operation 64 bit ('Q_load_1', data/benchmarks/gramschmidt/gramschmidt.c:112) on array 'Q' [153]  (2.983 ns)
 
  <State 54>: 2.983ns
 The critical path consists of the following:
-	'load' operation 64 bit ('Q_load_1', data/benchmarks/gramschmidt/gramschmidt.c:112) on array 'Q' [152]  (2.983 ns)
+	'load' operation 64 bit ('Q_load_1', data/benchmarks/gramschmidt/gramschmidt.c:112) on array 'Q' [153]  (2.983 ns)
 
  <State 55>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [154]  (4.503 ns)
+	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.503 ns)
 
  <State 56>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [154]  (4.503 ns)
+	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.503 ns)
 
  <State 57>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [154]  (4.503 ns)
+	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.503 ns)
 
  <State 58>: 4.503ns
 The critical path consists of the following:
-	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [154]  (4.503 ns)
+	'dmul' operation 64 bit ('mul2', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.503 ns)
 
  <State 59>: 4.334ns
 The critical path consists of the following:
-	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.334 ns)
+	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [156]  (4.334 ns)
 
  <State 60>: 4.334ns
 The critical path consists of the following:
-	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.334 ns)
+	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [156]  (4.334 ns)
 
  <State 61>: 4.334ns
 The critical path consists of the following:
-	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.334 ns)
+	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [156]  (4.334 ns)
 
  <State 62>: 4.334ns
 The critical path consists of the following:
-	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [155]  (4.334 ns)
+	'dsub' operation 64 bit ('sub', data/benchmarks/gramschmidt/gramschmidt.c:112) [156]  (4.334 ns)
 
  <State 63>: 2.983ns
 The critical path consists of the following:
-	'store' operation 0 bit ('store_ln112', data/benchmarks/gramschmidt/gramschmidt.c:112) of variable 'bitcast_ln112_2', data/benchmarks/gramschmidt/gramschmidt.c:112 on array 'A' [157]  (2.983 ns)
+	'store' operation 0 bit ('store_ln112', data/benchmarks/gramschmidt/gramschmidt.c:112) of variable 'bitcast_ln112_2', data/benchmarks/gramschmidt/gramschmidt.c:112 on array 'A' [158]  (2.983 ns)
 
 
 ============================================================

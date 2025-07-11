@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Thu May 29 17:02:42 2025
+| Date              : Wed Jul  9 04:08:48 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -max_paths 10 -report_unconstrained -file bd_0_wrapper_timing_summary_routed.rpt -pb bd_0_wrapper_timing_summary_routed.pb -rpx bd_0_wrapper_timing_summary_routed.rpx -warn_on_violation
 | Design            : bd_0_wrapper
@@ -1891,7 +1891,7 @@ Slack (MET) :             1.655ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.029ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/reg_270_reg[36]/C
+  Source:                 bd_0_i/hls_inst/inst/reg_272_reg[36]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/din1_buf1_reg[36]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
@@ -1910,10 +1910,10 @@ Slack (MET) :             0.029ns  (arrival time - required time)
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X53Y131        FDRE                                         r  bd_0_i/hls_inst/inst/reg_270_reg[36]/C
+    SLICE_X53Y131        FDRE                                         r  bd_0_i/hls_inst/inst/reg_272_reg[36]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X53Y131        FDRE (Prop_HFF_SLICEM_C_Q)
-                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/reg_270_reg[36]/Q
+                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/reg_272_reg[36]/Q
                          net (fo=6, routed)           0.043     0.095    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/din1_buf1_reg[63]_0[36]
     SLICE_X53Y131        FDRE                                         r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/din1_buf1_reg[36]/D
   -------------------------------------------------------------------    -------------------
@@ -1932,7 +1932,7 @@ Slack (MET) :             0.029ns  (arrival time - required time)
                          slack                                  0.029    
 
 Slack (MET) :             0.038ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/dely_reg_521_reg[29]/C
+  Source:                 bd_0_i/hls_inst/inst/dely_reg_523_reg[29]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1_reg[29]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
@@ -1951,14 +1951,14 @@ Slack (MET) :             0.038ns  (arrival time - required time)
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X40Y120        FDRE                                         r  bd_0_i/hls_inst/inst/dely_reg_521_reg[29]/C
+    SLICE_X40Y120        FDRE                                         r  bd_0_i/hls_inst/inst/dely_reg_523_reg[29]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X40Y120        FDRE (Prop_GFF_SLICEL_C_Q)
-                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/dely_reg_521_reg[29]/Q
+                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/dely_reg_523_reg[29]/Q
                          net (fo=2, routed)           0.025     0.077    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din0_buf1_reg[63]_0[29]
     SLICE_X40Y120        LUT3 (Prop_D5LUT_SLICEL_I2_O)
                                                       0.020     0.097 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1[29]_i_1__3/O
-                         net (fo=1, routed)           0.006     0.103    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/grp_fu_256_p1[29]
+                         net (fo=1, routed)           0.006     0.103    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/grp_fu_258_p1[29]
     SLICE_X40Y120        FDRE                                         r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1_reg[29]/D
   -------------------------------------------------------------------    -------------------
 
@@ -1976,7 +1976,7 @@ Slack (MET) :             0.038ns  (arrival time - required time)
                          slack                                  0.038    
 
 Slack (MET) :             0.040ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/dely_reg_521_reg[1]/C
+  Source:                 bd_0_i/hls_inst/inst/dely_reg_523_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1_reg[1]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
@@ -1995,14 +1995,14 @@ Slack (MET) :             0.040ns  (arrival time - required time)
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X47Y117        FDRE                                         r  bd_0_i/hls_inst/inst/dely_reg_521_reg[1]/C
+    SLICE_X47Y117        FDRE                                         r  bd_0_i/hls_inst/inst/dely_reg_523_reg[1]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X47Y117        FDRE (Prop_GFF_SLICEL_C_Q)
-                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/dely_reg_521_reg[1]/Q
+                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/dely_reg_523_reg[1]/Q
                          net (fo=2, routed)           0.027     0.079    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din0_buf1_reg[63]_0[1]
     SLICE_X47Y117        LUT3 (Prop_D5LUT_SLICEL_I2_O)
                                                       0.020     0.099 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1[1]_i_1__3/O
-                         net (fo=1, routed)           0.006     0.105    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/grp_fu_256_p1[1]
+                         net (fo=1, routed)           0.006     0.105    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/grp_fu_258_p1[1]
     SLICE_X47Y117        FDRE                                         r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
@@ -2020,7 +2020,7 @@ Slack (MET) :             0.040ns  (arrival time - required time)
                          slack                                  0.040    
 
 Slack (MET) :             0.040ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/dely_reg_521_reg[33]/C
+  Source:                 bd_0_i/hls_inst/inst/dely_reg_523_reg[33]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1_reg[33]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
@@ -2039,14 +2039,14 @@ Slack (MET) :             0.040ns  (arrival time - required time)
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X40Y119        FDRE                                         r  bd_0_i/hls_inst/inst/dely_reg_521_reg[33]/C
+    SLICE_X40Y119        FDRE                                         r  bd_0_i/hls_inst/inst/dely_reg_523_reg[33]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X40Y119        FDRE (Prop_GFF_SLICEL_C_Q)
-                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/dely_reg_521_reg[33]/Q
+                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/dely_reg_523_reg[33]/Q
                          net (fo=2, routed)           0.027     0.079    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din0_buf1_reg[63]_0[33]
     SLICE_X40Y119        LUT3 (Prop_D5LUT_SLICEL_I2_O)
                                                       0.020     0.099 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1[33]_i_1__3/O
-                         net (fo=1, routed)           0.006     0.105    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/grp_fu_256_p1[33]
+                         net (fo=1, routed)           0.006     0.105    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/grp_fu_258_p1[33]
     SLICE_X40Y119        FDRE                                         r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/din1_buf1_reg[33]/D
   -------------------------------------------------------------------    -------------------
 
@@ -2066,7 +2066,7 @@ Slack (MET) :             0.040ns  (arrival time - required time)
 Slack (MET) :             0.041ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[8]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/reg_280_reg[8]/D
+  Destination:            bd_0_i/hls_inst/inst/reg_282_reg[8]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2087,17 +2087,17 @@ Slack (MET) :             0.041ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
     SLICE_X43Y125        FDRE (Prop_HFF_SLICEL_C_Q)
                                                       0.039     0.052 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[8]/Q
-                         net (fo=1, routed)           0.055     0.107    bd_0_i/hls_inst/inst/grp_fu_256_p2[8]
-    SLICE_X43Y124        FDRE                                         r  bd_0_i/hls_inst/inst/reg_280_reg[8]/D
+                         net (fo=1, routed)           0.055     0.107    bd_0_i/hls_inst/inst/grp_fu_258_p2[8]
+    SLICE_X43Y124        FDRE                                         r  bd_0_i/hls_inst/inst/reg_282_reg[8]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X43Y124        FDRE                                         r  bd_0_i/hls_inst/inst/reg_280_reg[8]/C
+    SLICE_X43Y124        FDRE                                         r  bd_0_i/hls_inst/inst/reg_282_reg[8]/C
                          clock pessimism              0.000     0.019    
     SLICE_X43Y124        FDRE (Hold_GFF2_SLICEL_C_D)
-                                                      0.047     0.066    bd_0_i/hls_inst/inst/reg_280_reg[8]
+                                                      0.047     0.066    bd_0_i/hls_inst/inst/reg_282_reg[8]
   -------------------------------------------------------------------
                          required time                         -0.066    
                          arrival time                           0.107    
@@ -2107,7 +2107,7 @@ Slack (MET) :             0.041ns  (arrival time - required time)
 Slack (MET) :             0.042ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[47]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/reg_280_reg[47]/D
+  Destination:            bd_0_i/hls_inst/inst/reg_282_reg[47]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2128,17 +2128,17 @@ Slack (MET) :             0.042ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
     SLICE_X36Y128        FDRE (Prop_BFF_SLICEL_C_Q)
                                                       0.039     0.051 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[47]/Q
-                         net (fo=1, routed)           0.057     0.108    bd_0_i/hls_inst/inst/grp_fu_256_p2[47]
-    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_280_reg[47]/D
+                         net (fo=1, routed)           0.057     0.108    bd_0_i/hls_inst/inst/grp_fu_258_p2[47]
+    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_282_reg[47]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_280_reg[47]/C
+    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_282_reg[47]/C
                          clock pessimism              0.000     0.019    
     SLICE_X36Y126        FDRE (Hold_HFF2_SLICEL_C_D)
-                                                      0.047     0.066    bd_0_i/hls_inst/inst/reg_280_reg[47]
+                                                      0.047     0.066    bd_0_i/hls_inst/inst/reg_282_reg[47]
   -------------------------------------------------------------------
                          required time                         -0.066    
                          arrival time                           0.108    
@@ -2148,7 +2148,7 @@ Slack (MET) :             0.042ns  (arrival time - required time)
 Slack (MET) :             0.043ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.exp_op_reg[4]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/mul4_reg_545_reg[56]/D
+  Destination:            bd_0_i/hls_inst/inst/mul4_reg_547_reg[56]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2169,17 +2169,17 @@ Slack (MET) :             0.043ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
     SLICE_X43Y151        FDRE (Prop_BFF_SLICEL_C_Q)
                                                       0.039     0.051 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.exp_op_reg[4]/Q
-                         net (fo=1, routed)           0.057     0.108    bd_0_i/hls_inst/inst/grp_fu_261_p2[56]
-    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_545_reg[56]/D
+                         net (fo=1, routed)           0.057     0.108    bd_0_i/hls_inst/inst/grp_fu_263_p2[56]
+    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_547_reg[56]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_545_reg[56]/C
+    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_547_reg[56]/C
                          clock pessimism              0.000     0.018    
     SLICE_X43Y150        FDRE (Hold_BFF2_SLICEL_C_D)
-                                                      0.047     0.065    bd_0_i/hls_inst/inst/mul4_reg_545_reg[56]
+                                                      0.047     0.065    bd_0_i/hls_inst/inst/mul4_reg_547_reg[56]
   -------------------------------------------------------------------
                          required time                         -0.065    
                          arrival time                           0.108    
@@ -2189,7 +2189,7 @@ Slack (MET) :             0.043ns  (arrival time - required time)
 Slack (MET) :             0.043ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[20]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/mul4_reg_545_reg[20]/D
+  Destination:            bd_0_i/hls_inst/inst/mul4_reg_547_reg[20]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2210,17 +2210,17 @@ Slack (MET) :             0.043ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
     SLICE_X51Y142        FDRE (Prop_CFF_SLICEL_C_Q)
                                                       0.039     0.051 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[20]/Q
-                         net (fo=1, routed)           0.058     0.109    bd_0_i/hls_inst/inst/grp_fu_261_p2[20]
-    SLICE_X51Y142        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_545_reg[20]/D
+                         net (fo=1, routed)           0.058     0.109    bd_0_i/hls_inst/inst/grp_fu_263_p2[20]
+    SLICE_X51Y142        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_547_reg[20]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X51Y142        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_545_reg[20]/C
+    SLICE_X51Y142        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_547_reg[20]/C
                          clock pessimism              0.000     0.019    
     SLICE_X51Y142        FDRE (Hold_FFF2_SLICEL_C_D)
-                                                      0.047     0.066    bd_0_i/hls_inst/inst/mul4_reg_545_reg[20]
+                                                      0.047     0.066    bd_0_i/hls_inst/inst/mul4_reg_547_reg[20]
   -------------------------------------------------------------------
                          required time                         -0.066    
                          arrival time                           0.109    
@@ -2230,7 +2230,7 @@ Slack (MET) :             0.043ns  (arrival time - required time)
 Slack (MET) :             0.044ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[49]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/reg_280_reg[49]/D
+  Destination:            bd_0_i/hls_inst/inst/reg_282_reg[49]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2251,17 +2251,17 @@ Slack (MET) :             0.044ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
     SLICE_X36Y128        FDRE (Prop_HFF_SLICEL_C_Q)
                                                       0.039     0.052 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U5/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.mant_op_reg[49]/Q
-                         net (fo=1, routed)           0.058     0.110    bd_0_i/hls_inst/inst/grp_fu_256_p2[49]
-    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_280_reg[49]/D
+                         net (fo=1, routed)           0.058     0.110    bd_0_i/hls_inst/inst/grp_fu_258_p2[49]
+    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_282_reg[49]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_280_reg[49]/C
+    SLICE_X36Y126        FDRE                                         r  bd_0_i/hls_inst/inst/reg_282_reg[49]/C
                          clock pessimism              0.000     0.019    
     SLICE_X36Y126        FDRE (Hold_GFF2_SLICEL_C_D)
-                                                      0.047     0.066    bd_0_i/hls_inst/inst/reg_280_reg[49]
+                                                      0.047     0.066    bd_0_i/hls_inst/inst/reg_282_reg[49]
   -------------------------------------------------------------------
                          required time                         -0.066    
                          arrival time                           0.110    
@@ -2271,7 +2271,7 @@ Slack (MET) :             0.044ns  (arrival time - required time)
 Slack (MET) :             0.045ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.exp_op_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/mul4_reg_545_reg[53]/D
+  Destination:            bd_0_i/hls_inst/inst/mul4_reg_547_reg[53]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2292,17 +2292,17 @@ Slack (MET) :             0.045ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
     SLICE_X43Y151        FDRE (Prop_DFF_SLICEL_C_Q)
                                                       0.039     0.051 r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/md_kernel_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.OP/RESULT_REG.NORMAL.exp_op_reg[1]/Q
-                         net (fo=1, routed)           0.059     0.110    bd_0_i/hls_inst/inst/grp_fu_261_p2[53]
-    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_545_reg[53]/D
+                         net (fo=1, routed)           0.059     0.110    bd_0_i/hls_inst/inst/grp_fu_263_p2[53]
+    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_547_reg[53]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_545_reg[53]/C
+    SLICE_X43Y150        FDRE                                         r  bd_0_i/hls_inst/inst/mul4_reg_547_reg[53]/C
                          clock pessimism              0.000     0.018    
     SLICE_X43Y150        FDRE (Hold_AFF2_SLICEL_C_D)
-                                                      0.047     0.065    bd_0_i/hls_inst/inst/mul4_reg_545_reg[53]
+                                                      0.047     0.065    bd_0_i/hls_inst/inst/mul4_reg_547_reg[53]
   -------------------------------------------------------------------
                          required time                         -0.065    
                          arrival time                           0.110    
@@ -2789,7 +2789,7 @@ Min Delay           265 Endpoints
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[9]
                             (output port)
@@ -2808,11 +2808,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[5])
                                                       0.233     0.778 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[5]
                          net (fo=0)                   0.033     0.811    NL_address0[9]
@@ -2820,7 +2820,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[11]
                             (output port)
@@ -2839,11 +2839,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[7])
                                                       0.234     0.779 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[7]
                          net (fo=0)                   0.031     0.810    NL_address0[11]
@@ -2851,7 +2851,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[10]
                             (output port)
@@ -2870,11 +2870,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[6])
                                                       0.220     0.765 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[6]
                          net (fo=0)                   0.032     0.797    NL_address0[10]
@@ -2882,7 +2882,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[8]
                             (output port)
@@ -2901,11 +2901,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[4])
                                                       0.200     0.745 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[4]
                          net (fo=0)                   0.031     0.776    NL_address0[8]
@@ -2913,7 +2913,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[7]
                             (output port)
@@ -2932,11 +2932,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[3])
                                                       0.120     0.665 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[3]
                          net (fo=0)                   0.031     0.696    NL_address0[7]
@@ -2944,7 +2944,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[6]
                             (output port)
@@ -2963,11 +2963,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[2])
                                                       0.114     0.659 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[2]
                          net (fo=0)                   0.033     0.692    NL_address0[6]
@@ -2975,7 +2975,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[5]
                             (output port)
@@ -2994,11 +2994,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/C
+    SLICE_X37Y151        FDRE                                         r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y151        FDRE (Prop_GFF_SLICEM_C_Q)
-                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_467_reg[5]/Q
-                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_467[5]
+                                                      0.078     0.108 r  bd_0_i/hls_inst/inst/tmp_1_reg_469_reg[5]/Q
+                         net (fo=1, routed)           0.437     0.545    bd_0_i/hls_inst/inst/tmp_1_reg_469[5]
     SLICE_X36Y151        CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[1])
                                                       0.053     0.598 r  bd_0_i/hls_inst/inst/NL_address0[4]_INST_0/O[1]
                          net (fo=0)                   0.033     0.631    NL_address0[5]
@@ -3006,7 +3006,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/i_fu_70_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/i_fu_72_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            ap_ctrl_done
                             (output port)
@@ -3025,11 +3025,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y152        FDRE                                         r  bd_0_i/hls_inst/inst/i_fu_70_reg[5]/C
+    SLICE_X37Y152        FDRE                                         r  bd_0_i/hls_inst/inst/i_fu_72_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y152        FDRE (Prop_GFF2_SLICEM_C_Q)
-                                                      0.079     0.109 f  bd_0_i/hls_inst/inst/i_fu_70_reg[5]/Q
-                         net (fo=7, routed)           0.122     0.231    bd_0_i/hls_inst/inst/i_fu_70_reg_n_0_[5]
+                                                      0.079     0.109 f  bd_0_i/hls_inst/inst/i_fu_72_reg[5]/Q
+                         net (fo=7, routed)           0.122     0.231    bd_0_i/hls_inst/inst/i_fu_72_reg_n_0_[5]
     SLICE_X37Y150        LUT6 (Prop_D6LUT_SLICEM_I5_O)
                                                       0.145     0.376 f  bd_0_i/hls_inst/inst/ap_ready_INST_0_i_1/O
                          net (fo=1, routed)           0.092     0.468    bd_0_i/hls_inst/inst/ap_ready_INST_0_i_1_n_0
@@ -3040,7 +3040,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/i_fu_70_reg[5]/C
+  Source:                 bd_0_i/hls_inst/inst/i_fu_72_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            ap_ctrl_ready
                             (output port)
@@ -3059,11 +3059,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y152        FDRE                                         r  bd_0_i/hls_inst/inst/i_fu_70_reg[5]/C
+    SLICE_X37Y152        FDRE                                         r  bd_0_i/hls_inst/inst/i_fu_72_reg[5]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y152        FDRE (Prop_GFF2_SLICEM_C_Q)
-                                                      0.079     0.109 f  bd_0_i/hls_inst/inst/i_fu_70_reg[5]/Q
-                         net (fo=7, routed)           0.122     0.231    bd_0_i/hls_inst/inst/i_fu_70_reg_n_0_[5]
+                                                      0.079     0.109 f  bd_0_i/hls_inst/inst/i_fu_72_reg[5]/Q
+                         net (fo=7, routed)           0.122     0.231    bd_0_i/hls_inst/inst/i_fu_72_reg_n_0_[5]
     SLICE_X37Y150        LUT6 (Prop_D6LUT_SLICEM_I5_O)
                                                       0.145     0.376 f  bd_0_i/hls_inst/inst/ap_ready_INST_0_i_1/O
                          net (fo=1, routed)           0.092     0.468    bd_0_i/hls_inst/inst/ap_ready_INST_0_i_1_n_0
@@ -3074,7 +3074,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/i_fu_70_reg[3]/C
+  Source:                 bd_0_i/hls_inst/inst/i_fu_72_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            position_x_address0[3]
                             (output port)
@@ -3093,11 +3093,11 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.030     0.030    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X37Y152        FDRE                                         r  bd_0_i/hls_inst/inst/i_fu_70_reg[3]/C
+    SLICE_X37Y152        FDRE                                         r  bd_0_i/hls_inst/inst/i_fu_72_reg[3]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X37Y152        FDRE (Prop_FFF2_SLICEM_C_Q)
-                                                      0.079     0.109 r  bd_0_i/hls_inst/inst/i_fu_70_reg[3]/Q
-                         net (fo=7, routed)           0.233     0.342    bd_0_i/hls_inst/inst/i_fu_70_reg_n_0_[3]
+                                                      0.079     0.109 r  bd_0_i/hls_inst/inst/i_fu_72_reg[3]/Q
+                         net (fo=7, routed)           0.233     0.342    bd_0_i/hls_inst/inst/i_fu_72_reg_n_0_[3]
     SLICE_X37Y151        LUT3 (Prop_H5LUT_SLICEM_I2_O)
                                                       0.135     0.477 r  bd_0_i/hls_inst/inst/position_z_address0[3]_INST_0/O
                          net (fo=0)                   0.025     0.502    position_x_address0[3]
@@ -3111,7 +3111,7 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/j_reg_189_reg[2]/C
+  Source:                 bd_0_i/hls_inst/inst/j_reg_191_reg[2]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[2]
                             (output port)
@@ -3130,16 +3130,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X35Y151        FDRE                                         r  bd_0_i/hls_inst/inst/j_reg_189_reg[2]/C
+    SLICE_X35Y151        FDRE                                         r  bd_0_i/hls_inst/inst/j_reg_191_reg[2]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X35Y151        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/j_reg_189_reg[2]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/j_reg_191_reg[2]/Q
                          net (fo=5, unset)            0.000     0.050    NL_address0[2]
                                                                       r  NL_address0[2] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fy_reg_212_reg[24]/C
+  Source:                 bd_0_i/hls_inst/inst/fy_reg_214_reg[24]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_y_d0[24]
                             (output port)
@@ -3158,16 +3158,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X46Y113        FDRE                                         r  bd_0_i/hls_inst/inst/fy_reg_212_reg[24]/C
+    SLICE_X46Y113        FDRE                                         r  bd_0_i/hls_inst/inst/fy_reg_214_reg[24]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X46Y113        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fy_reg_212_reg[24]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fy_reg_214_reg[24]/Q
                          net (fo=1, unset)            0.000     0.050    force_y_d0[24]
                                                                       r  force_y_d0[24] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fy_reg_212_reg[26]/C
+  Source:                 bd_0_i/hls_inst/inst/fy_reg_214_reg[26]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_y_d0[26]
                             (output port)
@@ -3186,16 +3186,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X48Y117        FDRE                                         r  bd_0_i/hls_inst/inst/fy_reg_212_reg[26]/C
+    SLICE_X48Y117        FDRE                                         r  bd_0_i/hls_inst/inst/fy_reg_214_reg[26]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X48Y117        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fy_reg_212_reg[26]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fy_reg_214_reg[26]/Q
                          net (fo=1, unset)            0.000     0.050    force_y_d0[26]
                                                                       r  force_y_d0[26] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fy_reg_212_reg[6]/C
+  Source:                 bd_0_i/hls_inst/inst/fy_reg_214_reg[6]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_y_d0[6]
                             (output port)
@@ -3214,16 +3214,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X44Y108        FDRE                                         r  bd_0_i/hls_inst/inst/fy_reg_212_reg[6]/C
+    SLICE_X44Y108        FDRE                                         r  bd_0_i/hls_inst/inst/fy_reg_214_reg[6]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X44Y108        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fy_reg_212_reg[6]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fy_reg_214_reg[6]/Q
                          net (fo=1, unset)            0.000     0.050    force_y_d0[6]
                                                                       r  force_y_d0[6] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fz_reg_200_reg[18]/C
+  Source:                 bd_0_i/hls_inst/inst/fz_reg_202_reg[18]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_z_d0[18]
                             (output port)
@@ -3242,16 +3242,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X53Y140        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_200_reg[18]/C
+    SLICE_X53Y140        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_202_reg[18]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X53Y140        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_200_reg[18]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_202_reg[18]/Q
                          net (fo=1, unset)            0.000     0.050    force_z_d0[18]
                                                                       r  force_z_d0[18] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fz_reg_200_reg[24]/C
+  Source:                 bd_0_i/hls_inst/inst/fz_reg_202_reg[24]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_z_d0[24]
                             (output port)
@@ -3270,16 +3270,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X53Y143        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_200_reg[24]/C
+    SLICE_X53Y143        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_202_reg[24]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X53Y143        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_200_reg[24]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_202_reg[24]/Q
                          net (fo=1, unset)            0.000     0.050    force_z_d0[24]
                                                                       r  force_z_d0[24] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fz_reg_200_reg[32]/C
+  Source:                 bd_0_i/hls_inst/inst/fz_reg_202_reg[32]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_z_d0[32]
                             (output port)
@@ -3298,16 +3298,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X52Y139        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_200_reg[32]/C
+    SLICE_X52Y139        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_202_reg[32]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X52Y139        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_200_reg[32]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_202_reg[32]/Q
                          net (fo=1, unset)            0.000     0.050    force_z_d0[32]
                                                                       r  force_z_d0[32] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fz_reg_200_reg[50]/C
+  Source:                 bd_0_i/hls_inst/inst/fz_reg_202_reg[50]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_z_d0[50]
                             (output port)
@@ -3326,16 +3326,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X50Y147        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_200_reg[50]/C
+    SLICE_X50Y147        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_202_reg[50]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X50Y147        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_200_reg[50]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_202_reg[50]/Q
                          net (fo=1, unset)            0.000     0.050    force_z_d0[50]
                                                                       r  force_z_d0[50] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/fz_reg_200_reg[62]/C
+  Source:                 bd_0_i/hls_inst/inst/fz_reg_202_reg[62]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            force_z_d0[62]
                             (output port)
@@ -3354,16 +3354,16 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X46Y151        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_200_reg[62]/C
+    SLICE_X46Y151        FDRE                                         r  bd_0_i/hls_inst/inst/fz_reg_202_reg[62]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X46Y151        FDRE (Prop_FFF_SLICEM_C_Q)
-                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_200_reg[62]/Q
+                                                      0.037     0.050 r  bd_0_i/hls_inst/inst/fz_reg_202_reg[62]/Q
                          net (fo=1, unset)            0.000     0.050    force_z_d0[62]
                                                                       r  force_z_d0[62] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 bd_0_i/hls_inst/inst/j_reg_189_reg[0]/C
+  Source:                 bd_0_i/hls_inst/inst/j_reg_191_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            NL_address0[0]
                             (output port)
@@ -3382,10 +3382,10 @@ Slack:                    inf
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X35Y151        FDRE                                         r  bd_0_i/hls_inst/inst/j_reg_189_reg[0]/C
+    SLICE_X35Y151        FDRE                                         r  bd_0_i/hls_inst/inst/j_reg_191_reg[0]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X35Y151        FDRE (Prop_EFF_SLICEM_C_Q)
-                                                      0.038     0.051 r  bd_0_i/hls_inst/inst/j_reg_189_reg[0]/Q
+                                                      0.038     0.051 r  bd_0_i/hls_inst/inst/j_reg_191_reg[0]/Q
                          net (fo=7, unset)            0.000     0.051    NL_address0[0]
                                                                       r  NL_address0[0] (OUT)
   -------------------------------------------------------------------    -------------------
@@ -3985,7 +3985,7 @@ Min Delay Paths
 Slack:                    inf
   Source:                 position_x_q0[0]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[0]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[0]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4000,18 +4000,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[0] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[0]
-    SLICE_X48Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[0]/D
+    SLICE_X48Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X48Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[0]/C
+    SLICE_X48Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[0]/C
 
 Slack:                    inf
   Source:                 position_x_q0[13]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[13]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[13]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4026,18 +4026,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[13] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[13]
-    SLICE_X47Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[13]/D
+    SLICE_X47Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X47Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[13]/C
+    SLICE_X47Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[13]/C
 
 Slack:                    inf
   Source:                 position_x_q0[15]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[15]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[15]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4052,18 +4052,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[15] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[15]
-    SLICE_X47Y125        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[15]/D
+    SLICE_X47Y125        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[15]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X47Y125        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[15]/C
+    SLICE_X47Y125        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[15]/C
 
 Slack:                    inf
   Source:                 position_x_q0[19]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[19]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[19]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4078,18 +4078,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[19] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[19]
-    SLICE_X49Y126        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[19]/D
+    SLICE_X49Y126        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[19]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X49Y126        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[19]/C
+    SLICE_X49Y126        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[19]/C
 
 Slack:                    inf
   Source:                 position_x_q0[1]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[1]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[1]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4104,18 +4104,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[1] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[1]
-    SLICE_X51Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[1]/D
+    SLICE_X51Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X51Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[1]/C
+    SLICE_X51Y124        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[1]/C
 
 Slack:                    inf
   Source:                 position_x_q0[26]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[26]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[26]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4130,18 +4130,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[26] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[26]
-    SLICE_X54Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[26]/D
+    SLICE_X54Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[26]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X54Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[26]/C
+    SLICE_X54Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[26]/C
 
 Slack:                    inf
   Source:                 position_x_q0[28]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[28]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[28]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4156,18 +4156,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[28] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[28]
-    SLICE_X54Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[28]/D
+    SLICE_X54Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[28]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X54Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[28]/C
+    SLICE_X54Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[28]/C
 
 Slack:                    inf
   Source:                 position_x_q0[29]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[29]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[29]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4182,18 +4182,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[29] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[29]
-    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[29]/D
+    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[29]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[29]/C
+    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[29]/C
 
 Slack:                    inf
   Source:                 position_x_q0[34]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[34]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[34]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4208,18 +4208,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[34] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[34]
-    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[34]/D
+    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[34]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.019     0.019    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[34]/C
+    SLICE_X55Y128        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[34]/C
 
 Slack:                    inf
   Source:                 position_x_q0[37]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/i_x_reg_452_reg[37]/D
+  Destination:            bd_0_i/hls_inst/inst/i_x_reg_454_reg[37]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -4234,13 +4234,13 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  position_x_q0[37] (IN)
                          net (fo=1, unset)            0.007     0.007    bd_0_i/hls_inst/inst/position_x_q0[37]
-    SLICE_X55Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[37]/D
+    SLICE_X55Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[37]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.018     0.018    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X55Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_452_reg[37]/C
+    SLICE_X55Y130        FDRE                                         r  bd_0_i/hls_inst/inst/i_x_reg_454_reg[37]/C
 
 
 

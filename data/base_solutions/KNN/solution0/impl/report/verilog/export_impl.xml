@@ -330,7 +330,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/md_kernel_utilization_hierarchical_routed.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Thu May 29 17:03:15 -03 2025"/>
+    <item NAME="Date" VALUE="Wed Jul 09 04:09:23 -03 2025"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="KNN"/>
     <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>

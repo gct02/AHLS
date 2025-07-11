@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'encrypt'
 ================================================================
-* Date:           Sat May 31 00:10:17 2025
+* Date:           Wed Jul  9 03:26:54 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -38,10 +38,10 @@
         |                                 |                       |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
         |             Instance            |         Module        |   min   |   max   |    min   |    max   | min | max |   Type  |
         +---------------------------------+-----------------------+---------+---------+----------+----------+-----+-----+---------+
-        |grp_KeySchedule_fu_50            |KeySchedule            |      562|      562|  4.496 us|  4.496 us|  562|  562|       no|
-        |grp_AddRoundKey_fu_62            |AddRoundKey            |       17|       17|  0.136 us|  0.136 us|   17|   17|       no|
-        |grp_ByteSub_ShiftRow_fu_73       |ByteSub_ShiftRow       |       15|       15|  0.120 us|  0.120 us|   15|   15|       no|
-        |grp_MixColumn_AddRoundKey_fu_81  |MixColumn_AddRoundKey  |       30|       30|  0.240 us|  0.240 us|   30|   30|       no|
+        |grp_KeySchedule_fu_52            |KeySchedule            |      562|      562|  4.496 us|  4.496 us|  562|  562|       no|
+        |grp_AddRoundKey_fu_64            |AddRoundKey            |       17|       17|  0.136 us|  0.136 us|   17|   17|       no|
+        |grp_ByteSub_ShiftRow_fu_75       |ByteSub_ShiftRow       |       15|       15|  0.120 us|  0.120 us|   15|   15|       no|
+        |grp_MixColumn_AddRoundKey_fu_83  |MixColumn_AddRoundKey  |       30|       30|  0.240 us|  0.240 us|   30|   30|       no|
         +---------------------------------+-----------------------+---------+---------+----------+----------+-----+-----+---------+
 
         * Loop: 
@@ -85,10 +85,10 @@
     +---------------------------------+-----------------------+---------+----+-----+------+-----+
     |             Instance            |         Module        | BRAM_18K| DSP|  FF |  LUT | URAM|
     +---------------------------------+-----------------------+---------+----+-----+------+-----+
-    |grp_AddRoundKey_fu_62            |AddRoundKey            |        0|   0|   92|   278|    0|
-    |grp_ByteSub_ShiftRow_fu_73       |ByteSub_ShiftRow       |        0|   0|  152|   472|    0|
-    |grp_KeySchedule_fu_50            |KeySchedule            |        0|   0|  313|   994|    0|
-    |grp_MixColumn_AddRoundKey_fu_81  |MixColumn_AddRoundKey  |        0|   0|  270|  1852|    0|
+    |grp_AddRoundKey_fu_64            |AddRoundKey            |        0|   0|   92|   278|    0|
+    |grp_ByteSub_ShiftRow_fu_75       |ByteSub_ShiftRow       |        0|   0|  152|   472|    0|
+    |grp_KeySchedule_fu_52            |KeySchedule            |        0|   0|  313|   994|    0|
+    |grp_MixColumn_AddRoundKey_fu_83  |MixColumn_AddRoundKey  |        0|   0|  270|  1852|    0|
     +---------------------------------+-----------------------+---------+----+-----+------+-----+
     |Total                            |                       |        0|   0|  827|  3596|    0|
     +---------------------------------+-----------------------+---------+----+-----+------+-----+
@@ -103,22 +103,22 @@
     N/A
 
     * Expression: 
-    +---------------------+----------+----+---+----+------------+------------+
-    |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +---------------------+----------+----+---+----+------------+------------+
-    |i_3_fu_104_p2        |         +|   0|  0|  12|           4|           1|
-    |icmp_ln110_fu_98_p2  |      icmp|   0|  0|  12|           4|           4|
-    +---------------------+----------+----+---+----+------------+------------+
-    |Total                |          |   0|  0|  24|           8|           5|
-    +---------------------+----------+----+---+----+------------+------------+
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |i_3_fu_106_p2         |         +|   0|  0|  12|           4|           1|
+    |icmp_ln110_fu_100_p2  |      icmp|   0|  0|  12|           4|           4|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  24|           8|           5|
+    +----------------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
     +-------------------------+----+-----------+-----+-----------+
     |           Name          | LUT| Input Size| Bits| Total Bits|
     +-------------------------+----+-----------+-----+-----------+
     |ap_NS_fsm                |  65|         12|    1|         12|
-    |grp_AddRoundKey_fu_62_n  |  14|          3|    4|         12|
-    |i_fu_46                  |   9|          2|    4|          8|
+    |grp_AddRoundKey_fu_64_n  |  14|          3|    4|         12|
+    |i_fu_48                  |   9|          2|    4|          8|
     |statemt_address0         |  20|          4|    5|         20|
     |statemt_address1         |  20|          4|    5|         20|
     |statemt_ce0              |  20|          4|    1|          4|
@@ -141,12 +141,12 @@
     |                     Name                     | FF | LUT| Bits| Const Bits|
     +----------------------------------------------+----+----+-----+-----------+
     |ap_CS_fsm                                     |  11|   0|   11|          0|
-    |grp_AddRoundKey_fu_62_ap_start_reg            |   1|   0|    1|          0|
-    |grp_ByteSub_ShiftRow_fu_73_ap_start_reg       |   1|   0|    1|          0|
-    |grp_KeySchedule_fu_50_ap_start_reg            |   1|   0|    1|          0|
-    |grp_MixColumn_AddRoundKey_fu_81_ap_start_reg  |   1|   0|    1|          0|
-    |i_2_reg_122                                   |   4|   0|    4|          0|
-    |i_fu_46                                       |   4|   0|    4|          0|
+    |grp_AddRoundKey_fu_64_ap_start_reg            |   1|   0|    1|          0|
+    |grp_ByteSub_ShiftRow_fu_75_ap_start_reg       |   1|   0|    1|          0|
+    |grp_KeySchedule_fu_52_ap_start_reg            |   1|   0|    1|          0|
+    |grp_MixColumn_AddRoundKey_fu_83_ap_start_reg  |   1|   0|    1|          0|
+    |i_2_reg_124                                   |   4|   0|    4|          0|
+    |i_fu_48                                       |   4|   0|    4|          0|
     +----------------------------------------------+----+----+-----+-----------+
     |Total                                         |  23|   0|   23|          0|
     +----------------------------------------------+----+----+-----+-----------+

@@ -20334,15 +20334,6 @@
       "Dimensions": [4]
     },
     {
-      "Name": "reversed",
-      "FunctionName": "fft1D_512",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "TotalSize": 8,
-      "Dimensions": [8]
-    },
-    {
       "Name": "DATA_x",
       "FunctionName": "fft1D_512",
       "BaseBitwidth": 64,

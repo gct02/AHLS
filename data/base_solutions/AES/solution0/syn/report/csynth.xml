@@ -31,7 +31,7 @@
         <SummaryOfViolations>
             <IssueType>-</IssueType>
             <ViolationType>-</ViolationType>
-            <SourceLocation>data/benchmarks/aes/aes.c:66</SourceLocation>
+            <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:16</SourceLocation>
         </SummaryOfViolations>
     </PerformanceEstimates>
     <AreaEstimates>
@@ -290,78 +290,78 @@
             <ModuleName>aes_main</ModuleName>
             <InstancesList>
                 <Instance>
-                    <InstName>grp_encrypt_fu_34</InstName>
+                    <InstName>grp_encrypt_fu_38</InstName>
                     <ModuleName>encrypt</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>34</ID>
-                    <InstancesList>
-                        <Instance>
-                            <InstName>grp_KeySchedule_fu_50</InstName>
-                            <ModuleName>KeySchedule</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>50</ID>
-                            <BindInstances>add_ln554_fu_313_p2 add_ln557_fu_342_p2 sub_ln559_fu_390_p2 add_ln559_fu_352_p2 add_ln571_fu_427_p2 add_ln571_2_fu_441_p2 add_ln572_fu_452_p2 add_ln573_fu_467_p2 sub_ln571_fu_485_p2 sub_ln571_1_fu_501_p2 sub_ln571_2_fu_549_p2 sub_ln571_3_fu_567_p2 add_ln571_3_fu_585_p2 add_ln571_1_fu_605_p2 sub_ln572_fu_616_p2 sub_ln572_1_fu_632_p2 sub_ln572_2_fu_680_p2 sub_ln572_3_fu_698_p2 add_ln572_1_fu_716_p2 sub_ln573_fu_758_p2 sub_ln573_1_fu_774_p2 sub_ln573_2_fu_822_p2 sub_ln573_3_fu_840_p2 add_ln573_1_fu_858_p2 sub_ln574_fu_869_p2 sub_ln574_1_fu_885_p2 sub_ln574_2_fu_933_p2 sub_ln574_3_fu_951_p2 add_ln574_fu_969_p2 empty_70_fu_1020_p2 add_ln592_fu_1039_p2 sub_ln594_fu_1065_p2 add_ln594_fu_1071_p2 add_ln594_1_fu_1081_p2 add_ln565_fu_1096_p2 Sbox_U Rcon0_U</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_AddRoundKey_fu_62</InstName>
-                            <ModuleName>AddRoundKey</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>62</ID>
-                            <BindInstances>add_ln469_fu_190_p2 add_ln471_fu_200_p2 add_ln472_fu_214_p2 add_ln473_fu_261_p2 add_ln474_fu_272_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_ByteSub_ShiftRow_fu_73</InstName>
-                            <ModuleName>ByteSub_ShiftRow</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>73</ID>
-                            <BindInstances>Sbox_1_U</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_MixColumn_AddRoundKey_fu_81</InstName>
-                            <ModuleName>MixColumn_AddRoundKey</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>81</ID>
-                            <BindInstances>ret_U add_ln324_fu_317_p2 add_ln333_fu_355_p2 add_ln342_fu_369_p2 add_ln351_fu_427_p2 add_ln360_fu_438_p2 add_ln364_fu_842_p2</BindInstances>
-                        </Instance>
-                    </InstancesList>
-                    <BindInstances>i_3_fu_104_p2</BindInstances>
-                </Instance>
-                <Instance>
-                    <InstName>grp_decrypt_fu_50</InstName>
-                    <ModuleName>decrypt</ModuleName>
-                    <IsCompInst>true</IsCompInst>
-                    <ID>50</ID>
+                    <ID>38</ID>
                     <InstancesList>
                         <Instance>
                             <InstName>grp_KeySchedule_fu_52</InstName>
                             <ModuleName>KeySchedule</ModuleName>
                             <IsCompInst>true</IsCompInst>
                             <ID>52</ID>
-                            <BindInstances>add_ln554_fu_313_p2 add_ln557_fu_342_p2 sub_ln559_fu_390_p2 add_ln559_fu_352_p2 add_ln571_fu_427_p2 add_ln571_2_fu_441_p2 add_ln572_fu_452_p2 add_ln573_fu_467_p2 sub_ln571_fu_485_p2 sub_ln571_1_fu_501_p2 sub_ln571_2_fu_549_p2 sub_ln571_3_fu_567_p2 add_ln571_3_fu_585_p2 add_ln571_1_fu_605_p2 sub_ln572_fu_616_p2 sub_ln572_1_fu_632_p2 sub_ln572_2_fu_680_p2 sub_ln572_3_fu_698_p2 add_ln572_1_fu_716_p2 sub_ln573_fu_758_p2 sub_ln573_1_fu_774_p2 sub_ln573_2_fu_822_p2 sub_ln573_3_fu_840_p2 add_ln573_1_fu_858_p2 sub_ln574_fu_869_p2 sub_ln574_1_fu_885_p2 sub_ln574_2_fu_933_p2 sub_ln574_3_fu_951_p2 add_ln574_fu_969_p2 empty_70_fu_1020_p2 add_ln592_fu_1039_p2 sub_ln594_fu_1065_p2 add_ln594_fu_1071_p2 add_ln594_1_fu_1081_p2 add_ln565_fu_1096_p2 Sbox_U Rcon0_U</BindInstances>
+                            <BindInstances>add_ln554_fu_315_p2 add_ln557_fu_344_p2 sub_ln559_fu_392_p2 add_ln559_fu_354_p2 add_ln571_fu_429_p2 add_ln571_2_fu_443_p2 add_ln572_fu_454_p2 add_ln573_fu_469_p2 sub_ln571_fu_487_p2 sub_ln571_1_fu_503_p2 sub_ln571_2_fu_551_p2 sub_ln571_3_fu_569_p2 add_ln571_3_fu_587_p2 add_ln571_1_fu_607_p2 sub_ln572_fu_618_p2 sub_ln572_1_fu_634_p2 sub_ln572_2_fu_682_p2 sub_ln572_3_fu_700_p2 add_ln572_1_fu_718_p2 sub_ln573_fu_760_p2 sub_ln573_1_fu_776_p2 sub_ln573_2_fu_824_p2 sub_ln573_3_fu_842_p2 add_ln573_1_fu_860_p2 sub_ln574_fu_871_p2 sub_ln574_1_fu_887_p2 sub_ln574_2_fu_935_p2 sub_ln574_3_fu_953_p2 add_ln574_fu_971_p2 empty_70_fu_1022_p2 add_ln592_fu_1041_p2 sub_ln594_fu_1067_p2 add_ln594_fu_1073_p2 add_ln594_1_fu_1083_p2 add_ln565_fu_1098_p2 Sbox_U Rcon0_U</BindInstances>
                         </Instance>
                         <Instance>
                             <InstName>grp_AddRoundKey_fu_64</InstName>
                             <ModuleName>AddRoundKey</ModuleName>
                             <IsCompInst>true</IsCompInst>
                             <ID>64</ID>
-                            <BindInstances>add_ln469_fu_190_p2 add_ln471_fu_200_p2 add_ln472_fu_214_p2 add_ln473_fu_261_p2 add_ln474_fu_272_p2</BindInstances>
+                            <BindInstances>add_ln469_fu_192_p2 add_ln471_fu_202_p2 add_ln472_fu_216_p2 add_ln473_fu_263_p2 add_ln474_fu_274_p2</BindInstances>
                         </Instance>
                         <Instance>
-                            <InstName>grp_InversShiftRow_ByteSub_fu_75</InstName>
-                            <ModuleName>InversShiftRow_ByteSub</ModuleName>
+                            <InstName>grp_ByteSub_ShiftRow_fu_75</InstName>
+                            <ModuleName>ByteSub_ShiftRow</ModuleName>
                             <IsCompInst>true</IsCompInst>
                             <ID>75</ID>
+                            <BindInstances>Sbox_1_U</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_MixColumn_AddRoundKey_fu_83</InstName>
+                            <ModuleName>MixColumn_AddRoundKey</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>83</ID>
+                            <BindInstances>ret_U add_ln324_fu_319_p2 add_ln333_fu_357_p2 add_ln342_fu_371_p2 add_ln351_fu_429_p2 add_ln360_fu_440_p2 add_ln364_fu_844_p2</BindInstances>
+                        </Instance>
+                    </InstancesList>
+                    <BindInstances>i_3_fu_106_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_decrypt_fu_54</InstName>
+                    <ModuleName>decrypt</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>54</ID>
+                    <InstancesList>
+                        <Instance>
+                            <InstName>grp_KeySchedule_fu_54</InstName>
+                            <ModuleName>KeySchedule</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>54</ID>
+                            <BindInstances>add_ln554_fu_315_p2 add_ln557_fu_344_p2 sub_ln559_fu_392_p2 add_ln559_fu_354_p2 add_ln571_fu_429_p2 add_ln571_2_fu_443_p2 add_ln572_fu_454_p2 add_ln573_fu_469_p2 sub_ln571_fu_487_p2 sub_ln571_1_fu_503_p2 sub_ln571_2_fu_551_p2 sub_ln571_3_fu_569_p2 add_ln571_3_fu_587_p2 add_ln571_1_fu_607_p2 sub_ln572_fu_618_p2 sub_ln572_1_fu_634_p2 sub_ln572_2_fu_682_p2 sub_ln572_3_fu_700_p2 add_ln572_1_fu_718_p2 sub_ln573_fu_760_p2 sub_ln573_1_fu_776_p2 sub_ln573_2_fu_824_p2 sub_ln573_3_fu_842_p2 add_ln573_1_fu_860_p2 sub_ln574_fu_871_p2 sub_ln574_1_fu_887_p2 sub_ln574_2_fu_935_p2 sub_ln574_3_fu_953_p2 add_ln574_fu_971_p2 empty_70_fu_1022_p2 add_ln592_fu_1041_p2 sub_ln594_fu_1067_p2 add_ln594_fu_1073_p2 add_ln594_1_fu_1083_p2 add_ln565_fu_1098_p2 Sbox_U Rcon0_U</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_AddRoundKey_fu_66</InstName>
+                            <ModuleName>AddRoundKey</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>66</ID>
+                            <BindInstances>add_ln469_fu_192_p2 add_ln471_fu_202_p2 add_ln472_fu_216_p2 add_ln473_fu_263_p2 add_ln474_fu_274_p2</BindInstances>
+                        </Instance>
+                        <Instance>
+                            <InstName>grp_InversShiftRow_ByteSub_fu_77</InstName>
+                            <ModuleName>InversShiftRow_ByteSub</ModuleName>
+                            <IsCompInst>true</IsCompInst>
+                            <ID>77</ID>
                             <BindInstances>invSbox_U</BindInstances>
                         </Instance>
                         <Instance>
-                            <InstName>grp_AddRoundKey_InversMixColumn_fu_83</InstName>
+                            <InstName>grp_AddRoundKey_InversMixColumn_fu_85</InstName>
                             <ModuleName>AddRoundKey_InversMixColumn</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>83</ID>
-                            <BindInstances>ret_U add_ln380_fu_383_p2 add_ln382_fu_393_p2 add_ln383_fu_407_p2 add_ln384_fu_459_p2 add_ln385_fu_470_p2 add_ln389_fu_510_p2 add_ln404_fu_539_p2 add_ln394_fu_549_p2 add_ln424_fu_886_p2 add_ln436_fu_1217_p2</BindInstances>
+                            <ID>85</ID>
+                            <BindInstances>ret_U add_ln380_fu_385_p2 add_ln382_fu_395_p2 add_ln383_fu_409_p2 add_ln384_fu_461_p2 add_ln385_fu_472_p2 add_ln389_fu_512_p2 add_ln404_fu_541_p2 add_ln394_fu_551_p2 add_ln424_fu_888_p2 add_ln436_fu_1219_p2</BindInstances>
                         </Instance>
                     </InstancesList>
-                    <BindInstances>i_fu_107_p2</BindInstances>
+                    <BindInstances>i_fu_109_p2</BindInstances>
                 </Instance>
             </InstancesList>
             <BindInstances>word_U</BindInstances>
@@ -492,41 +492,41 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln554_fu_313_p2" SOURCE="data/benchmarks/aes/aes_key.c:554" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln554"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln557_fu_342_p2" SOURCE="data/benchmarks/aes/aes_key.c:557" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln557"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label5" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln559_fu_390_p2" SOURCE="data/benchmarks/aes/aes_key.c:559" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln559"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln559_fu_352_p2" SOURCE="data/benchmarks/aes/aes_key.c:559" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln559"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_fu_427_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_2_fu_441_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln572_fu_452_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln572"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln573_fu_467_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln573"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_fu_485_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_1_fu_501_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_2_fu_549_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_3_fu_567_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_3_fu_585_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_1_fu_605_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_fu_616_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_1_fu_632_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_2_fu_680_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_3_fu_698_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln572_1_fu_716_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln572_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_fu_758_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_1_fu_774_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_2_fu_822_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_3_fu_840_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln573_1_fu_858_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln573_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_fu_869_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_1_fu_885_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_2_fu_933_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_3_fu_951_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln574_fu_969_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln574"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="empty_70_fu_1020_p2" SOURCE="" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_70"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln592_fu_1039_p2" SOURCE="data/benchmarks/aes/aes_key.c:592" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln592"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln594_fu_1065_p2" SOURCE="data/benchmarks/aes/aes_key.c:594" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln594"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln594_fu_1071_p2" SOURCE="data/benchmarks/aes/aes_key.c:594" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln594"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln594_1_fu_1081_p2" SOURCE="data/benchmarks/aes/aes_key.c:594" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln594_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln565_fu_1096_p2" SOURCE="data/benchmarks/aes/aes_key.c:565" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln565"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln554_fu_315_p2" SOURCE="data/benchmarks/aes/aes_key.c:554" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln554"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln557_fu_344_p2" SOURCE="data/benchmarks/aes/aes_key.c:557" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln557"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label5" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln559_fu_392_p2" SOURCE="data/benchmarks/aes/aes_key.c:559" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln559"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln559_fu_354_p2" SOURCE="data/benchmarks/aes/aes_key.c:559" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln559"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_fu_429_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_2_fu_443_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln572_fu_454_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln572"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln573_fu_469_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln573"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_fu_487_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_1_fu_503_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_2_fu_551_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_3_fu_569_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_3_fu_587_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln571_1_fu_607_p2" SOURCE="data/benchmarks/aes/aes_key.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln571_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_fu_618_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_1_fu_634_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_2_fu_682_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln572_3_fu_700_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln572_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln572_1_fu_718_p2" SOURCE="data/benchmarks/aes/aes_key.c:572" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln572_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_fu_760_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_1_fu_776_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_2_fu_824_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln573_3_fu_842_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln573_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln573_1_fu_860_p2" SOURCE="data/benchmarks/aes/aes_key.c:573" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln573_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_fu_871_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_1_fu_887_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_2_fu_935_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln574_3_fu_953_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln574_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln574_fu_971_p2" SOURCE="data/benchmarks/aes/aes_key.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln574"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="empty_70_fu_1022_p2" SOURCE="" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_70"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln592_fu_1041_p2" SOURCE="data/benchmarks/aes/aes_key.c:592" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln592"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln594_fu_1067_p2" SOURCE="data/benchmarks/aes/aes_key.c:594" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln594"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln594_fu_1073_p2" SOURCE="data/benchmarks/aes/aes_key.c:594" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln594"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln594_1_fu_1083_p2" SOURCE="data/benchmarks/aes/aes_key.c:594" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln594_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="KeySchedule_label6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln565_fu_1098_p2" SOURCE="data/benchmarks/aes/aes_key.c:565" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln565"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="Sbox_U" SOURCE="" STORAGESIZE="8 256 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="Sbox"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="Rcon0_U" SOURCE="" STORAGESIZE="8 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="Rcon0"/>
             </BindNodes>
@@ -599,11 +599,11 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln469_fu_190_p2" SOURCE="data/benchmarks/aes/aes_key.c:469" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln469"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln471_fu_200_p2" SOURCE="data/benchmarks/aes/aes_key.c:471" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln471"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln472_fu_214_p2" SOURCE="data/benchmarks/aes/aes_key.c:472" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln472"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln473_fu_261_p2" SOURCE="data/benchmarks/aes/aes_key.c:473" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln473"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln474_fu_272_p2" SOURCE="data/benchmarks/aes/aes_key.c:474" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln474"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln469_fu_192_p2" SOURCE="data/benchmarks/aes/aes_key.c:469" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln469"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln471_fu_202_p2" SOURCE="data/benchmarks/aes/aes_key.c:471" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln471"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln472_fu_216_p2" SOURCE="data/benchmarks/aes/aes_key.c:472" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln472"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln473_fu_263_p2" SOURCE="data/benchmarks/aes/aes_key.c:473" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln473"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln474_fu_274_p2" SOURCE="data/benchmarks/aes/aes_key.c:474" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln474"/>
             </BindNodes>
         </Module>
         <Module>
@@ -740,12 +740,12 @@
             </AreaEstimates>
             <BindNodes>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_t2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_t2p" PRAGMA="" RTLNAME="ret_U" SOURCE="data/benchmarks/aes/aes_key.c:320" STORAGESIZE="32 32 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_t2p array" URAM="0" VARIABLE="ret"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln324_fu_317_p2" SOURCE="data/benchmarks/aes/aes_key.c:324" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln324"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln333_fu_355_p2" SOURCE="data/benchmarks/aes/aes_key.c:333" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln333"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln342_fu_369_p2" SOURCE="data/benchmarks/aes/aes_key.c:342" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln342"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln351_fu_427_p2" SOURCE="data/benchmarks/aes/aes_key.c:351" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln351"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln360_fu_438_p2" SOURCE="data/benchmarks/aes/aes_key.c:360" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln360"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln364_fu_842_p2" SOURCE="data/benchmarks/aes/aes_key.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln364"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln324_fu_319_p2" SOURCE="data/benchmarks/aes/aes_key.c:324" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln324"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln333_fu_357_p2" SOURCE="data/benchmarks/aes/aes_key.c:333" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln333"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln342_fu_371_p2" SOURCE="data/benchmarks/aes/aes_key.c:342" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln342"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln351_fu_429_p2" SOURCE="data/benchmarks/aes/aes_key.c:351" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln351"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln360_fu_440_p2" SOURCE="data/benchmarks/aes/aes_key.c:360" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln360"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="MixColumn_AddRoundKey_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln364_fu_844_p2" SOURCE="data/benchmarks/aes/aes_key.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln364"/>
             </BindNodes>
         </Module>
         <Module>
@@ -780,8 +780,8 @@
                         <PipelineDepth>49</PipelineDepth>
                         <PipelineType>no</PipelineType>
                         <InstanceList>
-                            <Instance>grp_ByteSub_ShiftRow_fu_73</Instance>
-                            <Instance>grp_MixColumn_AddRoundKey_fu_81</Instance>
+                            <Instance>grp_ByteSub_ShiftRow_fu_75</Instance>
+                            <Instance>grp_MixColumn_AddRoundKey_fu_83</Instance>
                         </InstanceList>
                     </encrypt_label1>
                 </SummaryOfLoopLatency>
@@ -819,7 +819,7 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encrypt_label1" OPTYPE="add" PRAGMA="" RTLNAME="i_3_fu_104_p2" SOURCE="data/benchmarks/aes/aes_enc.c:110" STORAGESUBTYPE="" URAM="0" VARIABLE="i_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encrypt_label1" OPTYPE="add" PRAGMA="" RTLNAME="i_3_fu_106_p2" SOURCE="data/benchmarks/aes/aes_enc.c:110" STORAGESUBTYPE="" URAM="0" VARIABLE="i_3"/>
             </BindNodes>
         </Module>
         <Module>
@@ -993,16 +993,16 @@
             </AreaEstimates>
             <BindNodes>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="ret_U" SOURCE="data/benchmarks/aes/aes_key.c:376" STORAGESIZE="32 32 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="ret"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln380_fu_383_p2" SOURCE="data/benchmarks/aes/aes_key.c:380" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln380"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln382_fu_393_p2" SOURCE="data/benchmarks/aes/aes_key.c:382" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln382"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln383_fu_407_p2" SOURCE="data/benchmarks/aes/aes_key.c:383" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln383"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln384_fu_459_p2" SOURCE="data/benchmarks/aes/aes_key.c:384" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln384"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln385_fu_470_p2" SOURCE="data/benchmarks/aes/aes_key.c:385" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln385"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln389_fu_510_p2" SOURCE="data/benchmarks/aes/aes_key.c:389" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln389"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln404_fu_539_p2" SOURCE="data/benchmarks/aes/aes_key.c:404" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln404"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln394_fu_549_p2" SOURCE="data/benchmarks/aes/aes_key.c:394" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln394"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln424_fu_886_p2" SOURCE="data/benchmarks/aes/aes_key.c:424" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln424"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln436_fu_1217_p2" SOURCE="data/benchmarks/aes/aes_key.c:436" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln436"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln380_fu_385_p2" SOURCE="data/benchmarks/aes/aes_key.c:380" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln380"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln382_fu_395_p2" SOURCE="data/benchmarks/aes/aes_key.c:382" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln382"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln383_fu_409_p2" SOURCE="data/benchmarks/aes/aes_key.c:383" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln383"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln384_fu_461_p2" SOURCE="data/benchmarks/aes/aes_key.c:384" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln384"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln385_fu_472_p2" SOURCE="data/benchmarks/aes/aes_key.c:385" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln385"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln389_fu_512_p2" SOURCE="data/benchmarks/aes/aes_key.c:389" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln389"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln404_fu_541_p2" SOURCE="data/benchmarks/aes/aes_key.c:404" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln404"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln394_fu_551_p2" SOURCE="data/benchmarks/aes/aes_key.c:394" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln394"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln424_fu_888_p2" SOURCE="data/benchmarks/aes/aes_key.c:424" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln424"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="AddRoundKey_InversMixColumn_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln436_fu_1219_p2" SOURCE="data/benchmarks/aes/aes_key.c:436" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln436"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1037,7 +1037,7 @@
                         <PipelineDepth>106</PipelineDepth>
                         <PipelineType>no</PipelineType>
                         <InstanceList>
-                            <Instance>grp_AddRoundKey_InversMixColumn_fu_83</Instance>
+                            <Instance>grp_AddRoundKey_InversMixColumn_fu_85</Instance>
                         </InstanceList>
                     </decrypt_label4>
                 </SummaryOfLoopLatency>
@@ -1075,7 +1075,7 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decrypt_label4" OPTYPE="add" PRAGMA="" RTLNAME="i_fu_107_p2" SOURCE="data/benchmarks/aes/aes_dec.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="i"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decrypt_label4" OPTYPE="add" PRAGMA="" RTLNAME="i_fu_109_p2" SOURCE="data/benchmarks/aes/aes_dec.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="i"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1099,7 +1099,7 @@
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/aes/aes.c:66</SourceLocation>
+                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:16</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -1368,36 +1368,44 @@
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:566" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=32 max=116 avg=74"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:586" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:593" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:29" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:38" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:7" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:23" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:16" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:24" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:32" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:25" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:1" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:2" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:3" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:4" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:30" status="valid" parentFunction="aes_main" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:27" status="valid" parentFunction="bytesub_shiftrow" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:25" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:6" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:24" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:5" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:28" status="valid" parentFunction="inversshiftrow_bytesub" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:26" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:17" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:18" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:19" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:20" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:21" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:18" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:16" status="valid" parentFunction="aes_main" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:37" status="valid" parentFunction="bytesub_shiftrow" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:23" status="valid" parentFunction="bytesub_shiftrow" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:35" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:15" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:21" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:34" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:14" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:20" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:33" status="valid" parentFunction="inversshiftrow_bytesub" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:19" status="valid" parentFunction="inversshiftrow_bytesub" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:36" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:26" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:27" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:28" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:29" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:30" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:8" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:9" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:10" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:11" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:12" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:13" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:14" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:15" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:22" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:8" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:9" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:22" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:31" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:5" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:6" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:17" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

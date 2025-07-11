@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'get_oracle_activations2_1'" level="0">
-<item name = "Date">Fri May 30 21:43:16 2025
+<item name = "Date">Wed Jul  9 03:32:57 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -51,21 +51,22 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 77, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, -, 0, 14, -</column>
+<column name="Instance">-, 8, 275, 122, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, 120, -</column>
 <column name="Register">-, -, 246, -, -</column>
 <specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
-<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, ~0, ~0, ~0, 0</specialColumn>
 <specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
-<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, ~0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="mux_3_2_64_1_1_U124">mux_3_2_64_1_1, 0, 0, 0, 14, 0</column>
+<column name="dmul_64ns_64ns_64_4_max_dsp_1_U86">dmul_64ns_64ns_64_4_max_dsp_1, 0, 8, 275, 108, 0</column>
+<column name="mux_3_2_64_1_1_U87">mux_3_2_64_1_1, 0, 0, 0, 14, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -82,37 +83,37 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln141_fu_167_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln145_fu_206_p2">+, 0, 0, 9, 2, 1</column>
-<column name="add_ln147_fu_225_p2">+, 0, 0, 15, 8, 8</column>
-<column name="empty_51_fu_194_p2">-, 0, 0, 15, 8, 8</column>
-<column name="icmp_ln141_fu_161_p2">icmp, 0, 0, 15, 7, 8</column>
-<column name="icmp_ln145_fu_200_p2">icmp, 0, 0, 9, 2, 2</column>
+<column name="add_ln141_fu_169_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln145_fu_208_p2">+, 0, 0, 9, 2, 1</column>
+<column name="add_ln147_fu_227_p2">+, 0, 0, 15, 8, 8</column>
+<column name="empty_51_fu_196_p2">-, 0, 0, 15, 8, 8</column>
+<column name="icmp_ln141_fu_163_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="icmp_ln145_fu_202_p2">icmp, 0, 0, 9, 2, 2</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="add113_reg_129">9, 2, 64, 128</column>
+<column name="add113_reg_131">9, 2, 64, 128</column>
 <column name="ap_NS_fsm">65, 16, 1, 16</column>
-<column name="grp_fu_146_p0">14, 3, 64, 192</column>
-<column name="grp_fu_146_p1">14, 3, 64, 192</column>
-<column name="i_fu_58">9, 2, 7, 14</column>
-<column name="j_reg_118">9, 2, 2, 4</column>
+<column name="grp_fu_148_p0">14, 3, 64, 192</column>
+<column name="grp_fu_148_p1">14, 3, 64, 192</column>
+<column name="i_fu_60">9, 2, 7, 14</column>
+<column name="j_reg_120">9, 2, 2, 4</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add113_reg_129">64, 0, 64, 0</column>
-<column name="add_ln141_reg_269">7, 0, 7, 0</column>
-<column name="add_ln145_reg_292">2, 0, 2, 0</column>
+<column name="add113_reg_131">64, 0, 64, 0</column>
+<column name="add_ln141_reg_271">7, 0, 7, 0</column>
+<column name="add_ln145_reg_294">2, 0, 2, 0</column>
 <column name="ap_CS_fsm">15, 0, 15, 0</column>
-<column name="empty_51_reg_284">8, 0, 8, 0</column>
-<column name="i_fu_58">7, 0, 7, 0</column>
-<column name="j_reg_118">2, 0, 2, 0</column>
-<column name="mul8_reg_317">64, 0, 64, 0</column>
-<column name="oracle_activations_addr_reg_279">6, 0, 6, 0</column>
-<column name="tmp_reg_297">64, 0, 64, 0</column>
-<column name="zext_ln141_reg_274">7, 0, 64, 57</column>
+<column name="empty_51_reg_286">8, 0, 8, 0</column>
+<column name="i_fu_60">7, 0, 7, 0</column>
+<column name="j_reg_120">2, 0, 2, 0</column>
+<column name="mul8_reg_319">64, 0, 64, 0</column>
+<column name="oracle_activations_addr_reg_281">6, 0, 6, 0</column>
+<column name="tmp_reg_299">64, 0, 64, 0</column>
+<column name="zext_ln141_reg_276">7, 0, 64, 57</column>
 </table>
 </item>
 </section>
@@ -128,15 +129,11 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_986_p_din0">out, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_986_p_din1">out, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_986_p_opcode">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_986_p_dout0">in, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_986_p_ce">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_1006_p_din0">out, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_1006_p_din1">out, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_1006_p_dout0">in, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
-<column name="grp_fu_1006_p_ce">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
+<column name="grp_fu_990_p_din0">out, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
+<column name="grp_fu_990_p_din1">out, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
+<column name="grp_fu_990_p_opcode">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
+<column name="grp_fu_990_p_dout0">in, 64, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
+<column name="grp_fu_990_p_ce">out, 1, ap_ctrl_hs, get_oracle_activations2.1, return value</column>
 <column name="weights3_address0">out, 8, ap_memory, weights3, array</column>
 <column name="weights3_ce0">out, 1, ap_memory, weights3, array</column>
 <column name="weights3_q0">in, 64, ap_memory, weights3, array</column>

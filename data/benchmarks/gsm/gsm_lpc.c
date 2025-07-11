@@ -60,8 +60,8 @@ void Autocorrelation(
         scalauto = 4 - gsm_norm((longword)smax << 16);  /* sub(4,..) */
 
     if (scalauto > 0 && scalauto <= 4) {
-        Autocorrelation_label1:
         n = scalauto;
+        Autocorrelation_label1:
         for (k = 0; k <= 159; k++) {
             #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
             s[k] = GSM_MULT_R(s[k], 16384 >> (n - 1));

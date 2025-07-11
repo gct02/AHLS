@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'md_kernel'
 ================================================================
 + General Information: 
-    * Date:           Thu May 29 16:57:13 2025
+    * Date:           Wed Jul  9 04:03:10 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        KNN
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -112,9 +112,9 @@
 | Name                                    | DSP | Pragma | Variable  | Op   | Impl    | Latency |
 +-----------------------------------------+-----+--------+-----------+------+---------+---------+
 | + md_kernel                             | 33  |        |           |      |         |         |
-|   add_ln25_fu_307_p2                    |     |        | add_ln25  | add  | fabric  | 0       |
-|   add_ln33_fu_349_p2                    |     |        | add_ln33  | add  | fabric  | 0       |
-|   add_ln36_fu_359_p2                    |     |        | add_ln36  | add  | fabric  | 0       |
+|   add_ln25_fu_309_p2                    |     |        | add_ln25  | add  | fabric  | 0       |
+|   add_ln33_fu_351_p2                    |     |        | add_ln33  | add  | fabric  | 0       |
+|   add_ln36_fu_361_p2                    |     |        | add_ln36  | add  | fabric  | 0       |
 |   dadddsub_64ns_64ns_64_4_full_dsp_1_U1 | 3   |        | delx      | dsub | fulldsp | 3       |
 |   dadddsub_64ns_64ns_64_4_full_dsp_1_U2 | 3   |        | dely      | dsub | fulldsp | 3       |
 |   dadddsub_64ns_64ns_64_4_full_dsp_1_U3 | 3   |        | delz      | dsub | fulldsp | 3       |
@@ -153,8 +153,10 @@
 +----------------+-------------------------+-------------------------------------------+
 | loop_tripcount | min=256 max=256 avg=256 | data/benchmarks/knn/md.c:26 in md_kernel  |
 | loop_tripcount | min=16 max=16 avg=16    | data/benchmarks/knn/md.c:34 in md_kernel  |
+| loop_flatten   | off=true                | ../base_directives/knn.tcl:4 in md_kernel |
 | pipeline       | off=true                | ../base_directives/knn.tcl:1 in md_kernel |
 | pipeline       | off=true                | ../base_directives/knn.tcl:2 in md_kernel |
+| pipeline       | off=true                | ../base_directives/knn.tcl:3 in md_kernel |
 +----------------+-------------------------+-------------------------------------------+
 
 

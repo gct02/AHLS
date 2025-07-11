@@ -2,7 +2,7 @@
 == Vivado RTL Synthesis Results
 ================================================================
 + General Information:
-    * Date:            Thu May 29 20:07:46 -03 2025
+    * Date:            Wed Jul 09 04:19:39 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         STENCIL3D
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -104,17 +104,17 @@ SRL:              0
 | Path  | SLACK | STARTPOINT PIN             | ENDPOINT PIN                  | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
 |       |       |                            |                               |              |            |                |          DELAY |        DELAY |
 +-------+-------+----------------------------+-------------------------------+--------------+------------+----------------+----------------+--------------+
-| Path1 | 3.437 | add_ln57_reg_1113_reg[0]/C | mul_ln57_1_reg_1118_reg[31]/D |           18 |          3 |          4.545 |          3.330 |        1.215 |
-| Path2 | 3.438 | add_ln57_reg_1113_reg[0]/C | mul_ln57_1_reg_1118_reg[29]/D |           18 |          3 |          4.544 |          3.330 |        1.214 |
-| Path3 | 3.438 | add_ln57_reg_1113_reg[0]/C | mul_ln57_reg_1078_reg[29]/D   |           18 |          3 |          4.544 |          3.330 |        1.214 |
-| Path4 | 3.438 | add_ln57_reg_1113_reg[0]/C | mul_ln57_reg_1078_reg[31]/D   |           18 |          3 |          4.544 |          3.330 |        1.214 |
-| Path5 | 3.450 | add_ln57_reg_1113_reg[0]/C | mul_ln57_1_reg_1118_reg[30]/D |           18 |          3 |          4.532 |          3.317 |        1.215 |
+| Path1 | 3.437 | add_ln57_reg_1115_reg[0]/C | mul_ln57_1_reg_1120_reg[31]/D |           18 |          3 |          4.545 |          3.330 |        1.215 |
+| Path2 | 3.438 | add_ln57_reg_1115_reg[0]/C | mul_ln57_1_reg_1120_reg[29]/D |           18 |          3 |          4.544 |          3.330 |        1.214 |
+| Path3 | 3.438 | add_ln57_reg_1115_reg[0]/C | mul_ln57_reg_1080_reg[29]/D   |           18 |          3 |          4.544 |          3.330 |        1.214 |
+| Path4 | 3.438 | add_ln57_reg_1115_reg[0]/C | mul_ln57_reg_1080_reg[31]/D   |           18 |          3 |          4.544 |          3.330 |        1.214 |
+| Path5 | 3.450 | add_ln57_reg_1115_reg[0]/C | mul_ln57_1_reg_1120_reg[30]/D |           18 |          3 |          4.532 |          3.317 |        1.215 |
 +-------+-------+----------------------------+-------------------------------+--------------+------------+----------------+----------------+--------------+
 
     +-----------------------------------------------------------+------------------------+
     | Path1 Cells                                               | Primitive Type         |
     +-----------------------------------------------------------+------------------------+
-    | add_ln57_reg_1113_reg[0]                                  | REGISTER.SDR.FDRE      |
+    | add_ln57_reg_1115_reg[0]                                  | REGISTER.SDR.FDRE      |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_131                   | CLB.LUT.LUT6           |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_85                    | CLB.CARRY.CARRY8       |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_84                    | CLB.CARRY.CARRY8       |
@@ -130,16 +130,16 @@ SRL:              0
     | mul_32s_32s_32_1_1_U1/tmp_product__0/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078[23]_i_8           | CLB.LUT.LUT2           |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[23]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[31]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_ln57_1_reg_1118_reg[31]                               | REGISTER.SDR.FDRE      |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080[23]_i_8           | CLB.LUT.LUT2           |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[23]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[31]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_ln57_1_reg_1120_reg[31]                               | REGISTER.SDR.FDRE      |
     +-----------------------------------------------------------+------------------------+
 
     +-----------------------------------------------------------+------------------------+
     | Path2 Cells                                               | Primitive Type         |
     +-----------------------------------------------------------+------------------------+
-    | add_ln57_reg_1113_reg[0]                                  | REGISTER.SDR.FDRE      |
+    | add_ln57_reg_1115_reg[0]                                  | REGISTER.SDR.FDRE      |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_131                   | CLB.LUT.LUT6           |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_85                    | CLB.CARRY.CARRY8       |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_84                    | CLB.CARRY.CARRY8       |
@@ -155,16 +155,16 @@ SRL:              0
     | mul_32s_32s_32_1_1_U1/tmp_product__0/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078[23]_i_8           | CLB.LUT.LUT2           |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[23]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[31]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_ln57_1_reg_1118_reg[29]                               | REGISTER.SDR.FDRE      |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080[23]_i_8           | CLB.LUT.LUT2           |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[23]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[31]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_ln57_1_reg_1120_reg[29]                               | REGISTER.SDR.FDRE      |
     +-----------------------------------------------------------+------------------------+
 
     +-----------------------------------------------------------+------------------------+
     | Path3 Cells                                               | Primitive Type         |
     +-----------------------------------------------------------+------------------------+
-    | add_ln57_reg_1113_reg[0]                                  | REGISTER.SDR.FDRE      |
+    | add_ln57_reg_1115_reg[0]                                  | REGISTER.SDR.FDRE      |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_131                   | CLB.LUT.LUT6           |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_85                    | CLB.CARRY.CARRY8       |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_84                    | CLB.CARRY.CARRY8       |
@@ -180,16 +180,16 @@ SRL:              0
     | mul_32s_32s_32_1_1_U1/tmp_product__0/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078[23]_i_8           | CLB.LUT.LUT2           |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[23]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[31]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_ln57_reg_1078_reg[29]                                 | REGISTER.SDR.FDRE      |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080[23]_i_8           | CLB.LUT.LUT2           |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[23]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[31]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_ln57_reg_1080_reg[29]                                 | REGISTER.SDR.FDRE      |
     +-----------------------------------------------------------+------------------------+
 
     +-----------------------------------------------------------+------------------------+
     | Path4 Cells                                               | Primitive Type         |
     +-----------------------------------------------------------+------------------------+
-    | add_ln57_reg_1113_reg[0]                                  | REGISTER.SDR.FDRE      |
+    | add_ln57_reg_1115_reg[0]                                  | REGISTER.SDR.FDRE      |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_131                   | CLB.LUT.LUT6           |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_85                    | CLB.CARRY.CARRY8       |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_84                    | CLB.CARRY.CARRY8       |
@@ -205,16 +205,16 @@ SRL:              0
     | mul_32s_32s_32_1_1_U1/tmp_product__0/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078[23]_i_8           | CLB.LUT.LUT2           |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[23]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[31]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_ln57_reg_1078_reg[31]                                 | REGISTER.SDR.FDRE      |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080[23]_i_8           | CLB.LUT.LUT2           |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[23]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[31]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_ln57_reg_1080_reg[31]                                 | REGISTER.SDR.FDRE      |
     +-----------------------------------------------------------+------------------------+
 
     +-----------------------------------------------------------+------------------------+
     | Path5 Cells                                               | Primitive Type         |
     +-----------------------------------------------------------+------------------------+
-    | add_ln57_reg_1113_reg[0]                                  | REGISTER.SDR.FDRE      |
+    | add_ln57_reg_1115_reg[0]                                  | REGISTER.SDR.FDRE      |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_131                   | CLB.LUT.LUT6           |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_85                    | CLB.CARRY.CARRY8       |
     | mul_32s_32s_32_1_1_U1/tmp_product_i_84                    | CLB.CARRY.CARRY8       |
@@ -230,10 +230,10 @@ SRL:              0
     | mul_32s_32s_32_1_1_U1/tmp_product__0/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
     | mul_32s_32s_32_1_1_U1/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078[23]_i_8           | CLB.LUT.LUT2           |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[23]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1078_reg[31]_i_1       | CLB.CARRY.CARRY8       |
-    | mul_ln57_1_reg_1118_reg[30]                               | REGISTER.SDR.FDRE      |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080[23]_i_8           | CLB.LUT.LUT2           |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[23]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_32s_32s_32_1_1_U1/mul_ln57_reg_1080_reg[31]_i_1       | CLB.CARRY.CARRY8       |
+    | mul_ln57_1_reg_1120_reg[30]                               | REGISTER.SDR.FDRE      |
     +-----------------------------------------------------------+------------------------+
 
 

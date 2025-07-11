@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Fri May 30 22:08:42 2025
+| Date         : Wed Jul  9 04:02:24 2025
 | Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_methodology -file bd_0_wrapper_methodology_drc_routed.rpt -pb bd_0_wrapper_methodology_drc_routed.pb -rpx bd_0_wrapper_methodology_drc_routed.rpx
 | Design       : bd_0_wrapper
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: checkpoint_bd_0_wrapper
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 146
+             Violations found: 163
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
-| TIMING-18 | Warning  | Missing input or output delay | 146        |
+| TIMING-18 | Warning  | Missing input or output delay | 163        |
 +-----------+----------+-------------------------------+------------+
 
 2. REPORT DETAILS
@@ -759,7 +759,92 @@ Related violations: <none>
 
 TIMING-18#146 Warning
 Missing input or output delay  
+An output delay is missing on indata_d1[0] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#147 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[10] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#148 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[11] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#149 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[12] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#150 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[13] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#151 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[14] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#152 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[15] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#153 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[1] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#154 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[2] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#155 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[3] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#156 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[4] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#157 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[5] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#158 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[6] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#159 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[7] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#160 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[8] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#161 Warning
+Missing input or output delay  
+An output delay is missing on indata_d1[9] relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#162 Warning
+Missing input or output delay  
 An output delay is missing on indata_we0 relative to the rising and/or falling clock edge(s) of ap_clk.
+Related violations: <none>
+
+TIMING-18#163 Warning
+Missing input or output delay  
+An output delay is missing on indata_we1 relative to the rising and/or falling clock edge(s) of ap_clk.
 Related violations: <none>
 
 

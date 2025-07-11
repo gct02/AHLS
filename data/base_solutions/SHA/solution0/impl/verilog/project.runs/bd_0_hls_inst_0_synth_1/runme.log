@@ -12,7 +12,7 @@
 
 source bd_0_hls_inst_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
 Command: synth_design -top bd_0_hls_inst_0 -part xcu50-fsvh2104-2-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
@@ -22,76 +22,76 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
 INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 202090
+INFO: [Synth 8-7075] Helper process launched with PID 233525
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3007.129 ; gain = 398.715 ; free physical = 3757 ; free virtual = 14022
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3007.043 ; gain = 398.715 ; free physical = 5518 ; free virtual = 13996
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_indata_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_indata_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './sha_stream_local_indata_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_indata_RAM_AUTO_1R1W.v:40]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_indata_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_indata_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_info_data_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_info_data_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './sha_stream_sha_info_data_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_info_data_RAM_AUTO_1R1W.v:41]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_info_data_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_info_data_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_info_digest_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_info_digest_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './sha_stream_sha_info_digest_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_info_digest_RAM_AUTO_1R1W.v:41]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_info_digest_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_info_digest_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_flow_control_loop_pipe_sequential_init.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_flow_control_loop_pipe_sequential_init.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_update' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_update.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_memcpy' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memcpy.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_memcpy' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memcpy.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_transform' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_transform.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_transform_W_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_transform_W_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_transform_W_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_transform_W_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_transform' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_transform.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_update' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_update.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_memset' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memset.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_memset_Pipeline_local_memset_label1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memset_Pipeline_local_memset_label1.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_memset_Pipeline_local_memset_label1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memset_Pipeline_local_memset_label1.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_memset' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memset.v:9]
-INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_stream_Pipeline_sha_stream_label2' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_stream_Pipeline_sha_stream_label2.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_stream_Pipeline_sha_stream_label2' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_sha_stream_Pipeline_sha_stream_label2.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'sha_stream' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_indata_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_indata_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './sha_stream_local_indata_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_indata_RAM_AUTO_1R1W.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_indata_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_indata_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_info_digest_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_info_digest_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './sha_stream_sha_info_digest_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_info_digest_RAM_AUTO_1R1W.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_info_digest_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_info_digest_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_info_data_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_info_data_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './sha_stream_sha_info_data_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_info_data_RAM_AUTO_1R1W.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_info_data_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_info_data_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_flow_control_loop_pipe_sequential_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_flow_control_loop_pipe_sequential_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_init' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_init.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_init' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_init.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_final' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_final.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_memset' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_memset.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_memset' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_memset.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_transform' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_transform.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_transform_W_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_transform_W_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_transform_W_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_transform_W_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_transform' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_transform.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_final' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_final.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_sha_update' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_update.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sha_stream_local_memcpy' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_memcpy.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_local_memcpy' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_memcpy.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream_sha_update' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_sha_update.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sha_stream' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
 WARNING: [Synth 8-7129] Port reset in module sha_stream_sha_transform_W_RAM_AUTO_1R1W is either unconnected or has no load
-WARNING: [Synth 8-7129] Port reset in module sha_stream_sha_info_digest_RAM_AUTO_1R1W is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module sha_stream_sha_info_data_RAM_AUTO_1R1W is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module sha_stream_sha_info_digest_RAM_AUTO_1R1W is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module sha_stream_local_indata_RAM_AUTO_1R1W is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3106.098 ; gain = 497.684 ; free physical = 3604 ; free virtual = 13893
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3106.012 ; gain = 497.684 ; free physical = 5395 ; free virtual = 13874
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3120.941 ; gain = 512.527 ; free physical = 3604 ; free virtual = 13893
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3120.855 ; gain = 512.527 ; free physical = 5395 ; free virtual = 13874
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3120.941 ; gain = 512.527 ; free physical = 3604 ; free virtual = 13893
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3120.855 ; gain = 512.527 ; free physical = 5395 ; free virtual = 13874
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3120.941 ; gain = 0.000 ; free physical = 3625 ; free virtual = 13886
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3120.855 ; gain = 0.000 ; free physical = 5395 ; free virtual = 13874
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/sha_stream_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/sha_stream_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/sha_stream_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/sha_stream_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3285.566 ; gain = 0.000 ; free physical = 3543 ; free virtual = 13803
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3280.512 ; gain = 0.000 ; free physical = 5365 ; free virtual = 13844
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3285.602 ; gain = 0.000 ; free physical = 3543 ; free virtual = 13803
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3280.547 ; gain = 0.000 ; free physical = 5364 ; free virtual = 13843
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3285.602 ; gain = 677.188 ; free physical = 3585 ; free virtual = 13845
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3280.547 ; gain = 672.219 ; free physical = 5353 ; free virtual = 13832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -99,30 +99,32 @@ Start Loading Part and Timing Information
 Loading part: xcu50-fsvh2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3285.602 ; gain = 677.188 ; free physical = 3585 ; free virtual = 13845
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3280.547 ; gain = 672.219 ; free physical = 5353 ; free virtual = 13832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3285.602 ; gain = 677.188 ; free physical = 3585 ; free virtual = 13845
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3280.547 ; gain = 672.219 ; free physical = 5353 ; free virtual = 13832
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-3936] Found unconnected internal register 'idx9_load_reg_363_reg' and it is trimmed from '5' to '4' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/dfc3/hdl/verilog/sha_stream_local_memcpy.v:147]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'idx9_load_reg_367_reg' and it is trimmed from '5' to '4' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/8bb8/hdl/verilog/sha_stream_local_memcpy.v:147]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 4 and width 8 for RAM "sha_stream_local_indata_RAM_AUTO_1R1W:/ram_reg"
-INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "sha_stream_sha_info_data_RAM_AUTO_1R1W:/ram_reg"
-INFO: [Synth 8-3971] The signal "sha_stream_sha_info_data_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "sha_stream_sha_info_digest_RAM_AUTO_1R1W:/ram_reg"
 INFO: [Synth 8-3971] The signal "sha_stream_sha_info_digest_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "sha_stream_sha_info_data_RAM_AUTO_1R1W:/ram_reg"
+INFO: [Synth 8-3971] The signal "sha_stream_sha_info_data_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "sha_stream_sha_transform_W_RAM_AUTO_1R1W:/ram_reg"
 INFO: [Synth 8-3971] The signal "sha_stream_sha_transform_W_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 3285.602 ; gain = 677.188 ; free physical = 3585 ; free virtual = 13847
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3280.547 ; gain = 672.219 ; free physical = 5353 ; free virtual = 13834
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -132,7 +134,6 @@ Detailed RTL Component Info :
 	   3 Input   32 Bit       Adders := 17    
 	   2 Input   32 Bit       Adders := 11    
 	   2 Input   31 Bit       Adders := 2     
-	   2 Input   30 Bit       Adders := 1     
 	   2 Input   15 Bit       Adders := 1     
 	   2 Input   14 Bit       Adders := 4     
 	   3 Input   14 Bit       Adders := 3     
@@ -149,52 +150,51 @@ Detailed RTL Component Info :
 	   2 Input      6 Bit         XORs := 1     
 +---Registers : 
 	               59 Bit    Registers := 2     
-	               32 Bit    Registers := 78    
+	               32 Bit    Registers := 77    
 	               31 Bit    Registers := 2     
-	               30 Bit    Registers := 1     
 	               19 Bit    Registers := 2     
-	               18 Bit    Registers := 1     
 	               15 Bit    Registers := 1     
 	               14 Bit    Registers := 4     
 	               13 Bit    Registers := 1     
-	                8 Bit    Registers := 5     
+	               11 Bit    Registers := 1     
+	                8 Bit    Registers := 6     
 	                7 Bit    Registers := 7     
 	                6 Bit    Registers := 8     
 	                5 Bit    Registers := 7     
 	                4 Bit    Registers := 3     
-	                3 Bit    Registers := 2     
+	                3 Bit    Registers := 3     
 	                2 Bit    Registers := 3     
-	                1 Bit    Registers := 27    
+	                1 Bit    Registers := 18    
 +---RAMs : 
 	             128K Bit	(16384 X 8 bit)          RAMs := 1     
 	               2K Bit	(80 X 32 bit)          RAMs := 2     
 	              512 Bit	(16 X 32 bit)          RAMs := 1     
 	              160 Bit	(5 X 32 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 55    
-	   5 Input   32 Bit        Muxes := 1     
-	   2 Input   31 Bit        Muxes := 2     
+	   3 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 59    
 	   3 Input   31 Bit        Muxes := 1     
+	   2 Input   31 Bit        Muxes := 2     
 	  20 Input   19 Bit        Muxes := 2     
-	   2 Input   18 Bit        Muxes := 3     
-	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   18 Bit        Muxes := 2     
 	   2 Input   16 Bit        Muxes := 2     
-	   2 Input   14 Bit        Muxes := 8     
-	   2 Input   13 Bit        Muxes := 1     
-	   2 Input   12 Bit        Muxes := 3     
-	   2 Input   10 Bit        Muxes := 1     
+	   2 Input   14 Bit        Muxes := 7     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 1     
 	   2 Input    9 Bit        Muxes := 1     
-	   2 Input    7 Bit        Muxes := 5     
+	   2 Input    8 Bit        Muxes := 2     
+	   2 Input    7 Bit        Muxes := 6     
 	   2 Input    6 Bit        Muxes := 3     
-	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 3     
+	   2 Input    4 Bit        Muxes := 10    
 	   5 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 5     
-	   2 Input    3 Bit        Muxes := 6     
+	   4 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 9     
 	   3 Input    3 Bit        Muxes := 2     
-	   2 Input    2 Bit        Muxes := 7     
-	   3 Input    2 Bit        Muxes := 2     
-	   4 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 74    
+	   2 Input    2 Bit        Muxes := 8     
+	   3 Input    2 Bit        Muxes := 3     
+	   5 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 67    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -213,17 +213,17 @@ Start Cross Boundary and Area Optimization
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 INFO: [Synth 8-7124] RAM ("inst/local_indata_U/ram_reg") is implemented using BRAM instead of URAM. Memory would be severely underutilized if URAMs are used
 INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 4 and width 8 for RAM "inst/local_indata_U/ram_reg"
-RAM ("inst/sha_info_data_U/ram_reg") is too shallow (depth = 16) to use URAM. Choosing BRAM instead of URAM 
-INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "inst/sha_info_data_U/ram_reg"
-INFO: [Synth 8-3971] The signal "inst/sha_info_data_U/ram_reg" was recognized as a true dual port RAM template.
 RAM ("inst/sha_info_digest_U/ram_reg") is too shallow (depth = 5) to use URAM. Choosing BRAM instead of URAM 
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "inst/sha_info_digest_U/ram_reg"
 INFO: [Synth 8-3971] The signal "inst/sha_info_digest_U/ram_reg" was recognized as a true dual port RAM template.
+RAM ("inst/sha_info_data_U/ram_reg") is too shallow (depth = 16) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "inst/sha_info_data_U/ram_reg"
+INFO: [Synth 8-3971] The signal "inst/sha_info_data_U/ram_reg" was recognized as a true dual port RAM template.
 RAM ("sha_stream_sha_transform:/W_U/ram_reg") is too shallow (depth = 80) to use URAM. Choosing BRAM instead of URAM 
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "sha_stream_sha_transform:/W_U/ram_reg"
 INFO: [Synth 8-3971] The signal "sha_stream_sha_transform:/W_U/ram_reg" was recognized as a true dual port RAM template.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 3285.602 ; gain = 677.188 ; free physical = 3544 ; free virtual = 13809
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 3280.547 ; gain = 672.219 ; free physical = 5364 ; free virtual = 13845
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -234,8 +234,8 @@ Block RAM: Preliminary Mapping Report (see note below)
 |Module Name               | RTL Object                | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
 +--------------------------+---------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
 |inst                      | local_indata_U/ram_reg    | 16 K x 8(READ_FIRST)   | W | R | 16 K x 8(WRITE_FIRST)  |   | R | Port A and B     | 0      | 4      | 4               | 
-|inst                      | sha_info_data_U/ram_reg   | 16 x 32(NO_CHANGE)     | W |   | 16 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 |inst                      | sha_info_digest_U/ram_reg | 5 x 32(READ_FIRST)     | W | R | 5 x 32(READ_FIRST)     | W | R | Port A and B     | 0      | 1      | 1               | 
+|inst                      | sha_info_data_U/ram_reg   | 16 x 32(NO_CHANGE)     | W |   | 16 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 |sha_stream_sha_transform: | W_U/ram_reg               | 80 x 32(READ_FIRST)    | W | R | 80 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 |sha_stream_sha_transform: | W_U/ram_reg               | 80 x 32(READ_FIRST)    | W | R | 80 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 +--------------------------+---------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
@@ -248,7 +248,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 3551.457 ; gain = 943.043 ; free physical = 2936 ; free virtual = 13242
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 3547.402 ; gain = 939.074 ; free physical = 5050 ; free virtual = 13531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -257,7 +257,7 @@ INFO: [Synth 8-5556] The block RAM "inst/local_indata_U/ram_reg" may be mapped a
 INFO: [Synth 8-7124] RAM ("inst/local_indata_U/ram_reg") is implemented using BRAM instead of URAM. Memory would be severely underutilized if URAMs are used
 INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 4 and width 8 for RAM "inst/local_indata_U/ram_reg"
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 3611.223 ; gain = 1002.809 ; free physical = 2854 ; free virtual = 13170
+Finished Timing Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 3610.168 ; gain = 1001.840 ; free physical = 4998 ; free virtual = 13478
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -268,8 +268,8 @@ Block RAM: Final Mapping Report
 |Module Name               | RTL Object                | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
 +--------------------------+---------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
 |inst                      | local_indata_U/ram_reg    | 16 K x 8(READ_FIRST)   | W | R | 16 K x 8(WRITE_FIRST)  |   | R | Port A and B     | 0      | 4      | 4               | 
-|inst                      | sha_info_data_U/ram_reg   | 16 x 32(NO_CHANGE)     | W |   | 16 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 |inst                      | sha_info_digest_U/ram_reg | 5 x 32(READ_FIRST)     | W | R | 5 x 32(READ_FIRST)     | W | R | Port A and B     | 0      | 1      | 1               | 
+|inst                      | sha_info_data_U/ram_reg   | 16 x 32(NO_CHANGE)     | W |   | 16 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 |sha_stream_sha_transform: | W_U/ram_reg               | 80 x 32(READ_FIRST)    | W | R | 80 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 |sha_stream_sha_transform: | W_U/ram_reg               | 80 x 32(READ_FIRST)    | W | R | 80 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 +--------------------------+---------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
@@ -282,15 +282,15 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-7052] The timing for the instance inst/local_indata_U/ram_reg_bram_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance inst/local_indata_U/ram_reg_bram_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/sha_info_digest_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/sha_info_digest_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance inst/sha_info_data_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/sha_info_digest_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/sha_info_digest_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 3629.246 ; gain = 1020.832 ; free physical = 2842 ; free virtual = 13158
+Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 3628.191 ; gain = 1019.863 ; free physical = 4981 ; free virtual = 13461
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -308,37 +308,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2878 ; free virtual = 13167
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4989 ; free virtual = 13469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2878 ; free virtual = 13167
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4989 ; free virtual = 13469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2875 ; free virtual = 13164
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4991 ; free virtual = 13471
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2875 ; free virtual = 13164
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4991 ; free virtual = 13471
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2874 ; free virtual = 13163
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4992 ; free virtual = 13472
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2874 ; free virtual = 13163
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4997 ; free virtual = 13477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -354,45 +354,46 @@ Report Cell Usage:
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |CARRY8   |   150|
-|2     |LUT1     |    59|
-|3     |LUT2     |   533|
-|4     |LUT3     |  1050|
-|5     |LUT4     |  1474|
-|6     |LUT5     |   439|
-|7     |LUT6     |   218|
-|8     |RAMB36E2 |     8|
-|13    |FDRE     |  2659|
-|14    |FDSE     |    24|
+|1     |CARRY8   |   146|
+|2     |LUT1     |    61|
+|3     |LUT2     |   535|
+|4     |LUT3     |  1060|
+|5     |LUT4     |  1512|
+|6     |LUT5     |   421|
+|7     |LUT6     |   191|
+|8     |MUXF7    |    16|
+|9     |RAMB36E2 |     8|
+|14    |FDRE     |  2634|
+|15    |FDSE     |    26|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.152 ; gain = 1029.738 ; free physical = 2874 ; free virtual = 13163
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.129 ; gain = 1025.801 ; free physical = 4997 ; free virtual = 13477
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 3638.152 ; gain = 865.078 ; free physical = 2874 ; free virtual = 13163
-Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 3638.160 ; gain = 1029.738 ; free physical = 2874 ; free virtual = 13163
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 3634.129 ; gain = 866.109 ; free physical = 4989 ; free virtual = 13469
+Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 3634.137 ; gain = 1025.801 ; free physical = 4989 ; free virtual = 13469
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3649.121 ; gain = 0.000 ; free physical = 3151 ; free virtual = 13440
-INFO: [Netlist 29-17] Analyzing 150 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3645.098 ; gain = 0.000 ; free physical = 5268 ; free virtual = 13748
+INFO: [Netlist 29-17] Analyzing 162 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3706.887 ; gain = 0.000 ; free physical = 3098 ; free virtual = 13412
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3705.863 ; gain = 0.000 ; free physical = 5245 ; free virtual = 13725
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: ac665471
+Synth Design complete | Checksum: e92a03f8
 INFO: [Common 17-83] Releasing license: Synthesis
-83 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+85 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:39 . Memory (MB): peak = 3706.922 ; gain = 2352.320 ; free physical = 3095 ; free virtual = 13410
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3270.696; main = 2969.107; forked = 377.850
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4610.785; main = 3706.891; forked = 981.535
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3730.898 ; gain = 0.000 ; free physical = 3099 ; free virtual = 13414
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 07b5582367a400a2
-INFO: [Coretcl 2-1174] Renamed 17 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3730.898 ; gain = 0.000 ; free physical = 2877 ; free virtual = 13202
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:36 . Memory (MB): peak = 3705.898 ; gain = 2351.383 ; free physical = 5245 ; free virtual = 13725
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2967.915; main = 2967.915; forked = 377.666
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4230.031; main = 3705.867; forked = 981.531
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3729.875 ; gain = 0.000 ; free physical = 5245 ; free virtual = 13726
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 5dd6161fb1b453dc
+INFO: [Coretcl 2-1174] Renamed 15 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00 . Memory (MB): peak = 3729.875 ; gain = 0.000 ; free physical = 5213 ; free virtual = 13700
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri May 30 23:26:30 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 04:10:50 2025...

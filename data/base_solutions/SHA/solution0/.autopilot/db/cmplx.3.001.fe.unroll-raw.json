@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 12,
-    "calls": "2 6 1",
+    "calls": "3 5 4",
     "file": "sha.c",
     "fileloc": 196,
     "instructions": 46,
@@ -17,33 +17,18 @@
     "total_instructions": 892
   },
   "1": {
-    "basicblocks": 4,
-    "calls": "4 5 4 4 5",
-    "file": "sha.c",
-    "fileloc": 173,
-    "instructions": 22,
-    "loads": {
-      "G": 2
-    },
-    "name": "sha_final",
-    "stores": {
-      "G": 3
-    },
-    "total_instructions": 525
-  },
-  "2": {
-    "basicblocks": 1,
+    "basicblocks": 11,
     "calls": "",
     "file": "sha.c",
-    "fileloc": 143,
-    "instructions": 8,
-    "name": "sha_init",
+    "fileloc": 55,
+    "instructions": 33,
+    "name": "local_memset",
     "stores": {
-      "G": 7
+      "G": 1
     },
-    "total_instructions": 8
+    "total_instructions": 33
   },
-  "3": {
+  "2": {
     "basicblocks": 6,
     "calls": "",
     "file": "sha.c",
@@ -58,19 +43,49 @@
     },
     "total_instructions": 36
   },
-  "4": {
-    "basicblocks": 11,
+  "3": {
+    "basicblocks": 1,
     "calls": "",
     "file": "sha.c",
-    "fileloc": 55,
-    "instructions": 33,
-    "name": "local_memset",
+    "fileloc": 143,
+    "instructions": 8,
+    "name": "sha_init",
     "stores": {
-      "G": 1
+      "G": 7
     },
-    "total_instructions": 33
+    "total_instructions": 8
+  },
+  "4": {
+    "basicblocks": 4,
+    "calls": "1 6 1 1 6",
+    "file": "sha.c",
+    "fileloc": 173,
+    "instructions": 22,
+    "loads": {
+      "G": 2
+    },
+    "name": "sha_final",
+    "stores": {
+      "G": 3
+    },
+    "total_instructions": 525
   },
   "5": {
+    "basicblocks": 8,
+    "calls": "2 6 2",
+    "file": "sha.c",
+    "fileloc": 154,
+    "instructions": 39,
+    "loads": {
+      "G": 5
+    },
+    "name": "sha_update",
+    "stores": {
+      "G": 3
+    },
+    "total_instructions": 313
+  },
+  "6": {
     "basicblocks": 19,
     "calls": "",
     "file": "sha.c",
@@ -86,20 +101,5 @@
       "L": 2
     },
     "total_instructions": 202
-  },
-  "6": {
-    "basicblocks": 8,
-    "calls": "3 5 3",
-    "file": "sha.c",
-    "fileloc": 154,
-    "instructions": 39,
-    "loads": {
-      "G": 5
-    },
-    "name": "sha_update",
-    "stores": {
-      "G": 3
-    },
-    "total_instructions": 313
   }
 }

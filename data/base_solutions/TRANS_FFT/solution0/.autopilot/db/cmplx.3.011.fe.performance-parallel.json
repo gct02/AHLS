@@ -1,12 +1,12 @@
 {
   "0": {
     "basicblocks": 23,
-    "calls": "2 2",
+    "calls": "2 1 2 1",
     "file": "transposed_fft.c",
     "fileloc": 114,
-    "instructions": 1090,
+    "instructions": 1064,
     "loads": {
-      "L": 128,
+      "L": 144,
       "T": 16
     },
     "name": "fft1D_512",
@@ -14,26 +14,29 @@
       "L": 144,
       "T": 16
     },
-    "total_instructions": 2242
+    "total_instructions": 2392
   },
   "1": {
-    "basicblocks": 7,
+    "basicblocks": 1,
     "calls": "",
-    "file": "x_hls_float_utils.h",
-    "fileloc": 389,
-    "instructions": 75,
-    "name": "scaled_fixed2ieee<63, 1>",
-    "stores": {
-      "L": 1
+    "file": "transposed_fft.c",
+    "fileloc": 103,
+    "instructions": 48,
+    "loads": {
+      "L": 8
     },
-    "total_instructions": 75
+    "name": "loady8",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 48
   },
   "2": {
     "basicblocks": 3,
-    "calls": "3 3",
+    "calls": "4 4",
     "file": "transposed_fft.c",
     "fileloc": 23,
-    "instructions": 28,
+    "instructions": 30,
     "loads": {
       "G": 1,
       "L": 2
@@ -42,11 +45,26 @@
     "stores": {
       "L": 2
     },
-    "total_instructions": 576
+    "total_instructions": 616
   },
   "3": {
+    "basicblocks": 12,
+    "calls": "",
+    "file": "x_hls_float_utils.h",
+    "fileloc": 389,
+    "instructions": 94,
+    "loads": {
+      "L": 2
+    },
+    "name": "scaled_fixed2ieee<63, 1>",
+    "stores": {
+      "L": 5
+    },
+    "total_instructions": 94
+  },
+  "4": {
     "basicblocks": 9,
-    "calls": "1",
+    "calls": "3",
     "file": "hls_hotbm.h",
     "fileloc": 209,
     "instructions": 199,
@@ -55,6 +73,6 @@
       "L": 1
     },
     "name": "sin_or_cos<double>",
-    "total_instructions": 274
+    "total_instructions": 293
   }
 }

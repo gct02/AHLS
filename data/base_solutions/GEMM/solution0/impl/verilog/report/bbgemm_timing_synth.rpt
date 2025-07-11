@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Thu May 29 16:30:48 2025
+| Date              : Wed Jul  9 03:47:52 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file ./report/bbgemm_timing_synth.rpt
 | Design            : bd_0_wrapper
@@ -349,8 +349,8 @@ Sources:            { ap_clk }
 
 Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
 Min Period        n/a     DSP_OUTPUT/CLK  n/a            0.650         8.000       7.350                bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U2/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.MULT/DSP48E2_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP/DSP_OUTPUT_INST/CLK
-Low Pulse Width   Slow    FDRE/C          n/a            0.275         4.000       3.725                bd_0_i/hls_inst/inst/add_ln19_reg_371_reg[0]/C
-High Pulse Width  Slow    FDRE/C          n/a            0.275         4.000       3.725                bd_0_i/hls_inst/inst/add_ln19_reg_371_reg[0]/C
+Low Pulse Width   Slow    FDRE/C          n/a            0.275         4.000       3.725                bd_0_i/hls_inst/inst/add_ln19_reg_373_reg[0]/C
+High Pulse Width  Slow    FDRE/C          n/a            0.275         4.000       3.725                bd_0_i/hls_inst/inst/add_ln19_reg_373_reg[0]/C
 
 
 

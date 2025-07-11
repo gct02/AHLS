@@ -23,21 +23,19 @@ module backprop_matrix_vector_product_with_bias_second_layer_1 (
         activations_ce0,
         activations_we0,
         activations_d0,
-        activations_address1,
-        activations_ce1,
-        activations_q1,
+        activations_q0,
         input_activations_address0,
         input_activations_ce0,
         input_activations_q0,
-        grp_fu_986_p_din0,
-        grp_fu_986_p_din1,
-        grp_fu_986_p_opcode,
-        grp_fu_986_p_dout0,
-        grp_fu_986_p_ce,
         grp_fu_990_p_din0,
         grp_fu_990_p_din1,
+        grp_fu_990_p_opcode,
         grp_fu_990_p_dout0,
-        grp_fu_990_p_ce
+        grp_fu_990_p_ce,
+        grp_fu_994_p_din0,
+        grp_fu_994_p_din1,
+        grp_fu_994_p_dout0,
+        grp_fu_994_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 13'd1;
@@ -70,21 +68,19 @@ output  [5:0] activations_address0;
 output   activations_ce0;
 output   activations_we0;
 output  [63:0] activations_d0;
-output  [5:0] activations_address1;
-output   activations_ce1;
-input  [63:0] activations_q1;
+input  [63:0] activations_q0;
 output  [5:0] input_activations_address0;
 output   input_activations_ce0;
 input  [63:0] input_activations_q0;
-output  [63:0] grp_fu_986_p_din0;
-output  [63:0] grp_fu_986_p_din1;
-output  [0:0] grp_fu_986_p_opcode;
-input  [63:0] grp_fu_986_p_dout0;
-output   grp_fu_986_p_ce;
 output  [63:0] grp_fu_990_p_din0;
 output  [63:0] grp_fu_990_p_din1;
+output  [0:0] grp_fu_990_p_opcode;
 input  [63:0] grp_fu_990_p_dout0;
 output   grp_fu_990_p_ce;
+output  [63:0] grp_fu_994_p_din0;
+output  [63:0] grp_fu_994_p_din1;
+input  [63:0] grp_fu_994_p_dout0;
+output   grp_fu_994_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -94,60 +90,48 @@ reg[5:0] activations_address0;
 reg activations_ce0;
 reg activations_we0;
 reg[63:0] activations_d0;
-reg activations_ce1;
 reg input_activations_ce0;
 
 (* fsm_encoding = "none" *) reg   [12:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [6:0] add_ln78_fu_145_p2;
-reg   [6:0] add_ln78_reg_217;
+wire   [6:0] add_ln78_fu_147_p2;
+reg   [6:0] add_ln78_reg_219;
 wire    ap_CS_fsm_state2;
-reg   [5:0] activations_addr_reg_222;
-wire   [11:0] tmp_9_fu_160_p3;
-reg   [11:0] tmp_9_reg_227;
-wire   [6:0] add_ln82_fu_174_p2;
-reg   [6:0] add_ln82_reg_235;
+reg   [5:0] activations_addr_reg_224;
+wire   [11:0] tmp_9_fu_162_p3;
+reg   [11:0] tmp_9_reg_229;
+wire   [6:0] add_ln82_fu_176_p2;
+reg   [6:0] add_ln82_reg_237;
 wire    ap_CS_fsm_state3;
-reg   [63:0] weights2_load_reg_245;
+reg   [63:0] weights2_load_reg_247;
 wire    ap_CS_fsm_state4;
-wire   [63:0] bitcast_ln84_fu_203_p1;
-reg   [63:0] mul8_reg_265;
+wire   [63:0] bitcast_ln84_fu_205_p1;
+reg   [63:0] mul8_reg_267;
 wire    ap_CS_fsm_state8;
 wire    ap_CS_fsm_state12;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_done;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_idle;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_ready;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_address0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_ce0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_we0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_d0;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_address1;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_ce1;
-wire   [5:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_biases2_address0;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_biases2_ce0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_din0;
-wire   [63:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_din1;
-wire   [0:0] grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_opcode;
-wire    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_ce;
-reg   [6:0] j_reg_88;
-wire   [0:0] icmp_ln78_fu_139_p2;
-reg   [63:0] add113_reg_100;
-reg    grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start_reg;
+wire    grp_add_bias_to_activations_clone_1_fu_115_ap_start;
+wire    grp_add_bias_to_activations_clone_1_fu_115_ap_done;
+wire    grp_add_bias_to_activations_clone_1_fu_115_ap_idle;
+wire    grp_add_bias_to_activations_clone_1_fu_115_ap_ready;
+wire   [5:0] grp_add_bias_to_activations_clone_1_fu_115_biases2_address0;
+wire    grp_add_bias_to_activations_clone_1_fu_115_biases2_ce0;
+wire   [5:0] grp_add_bias_to_activations_clone_1_fu_115_activations_address0;
+wire    grp_add_bias_to_activations_clone_1_fu_115_activations_ce0;
+wire    grp_add_bias_to_activations_clone_1_fu_115_activations_we0;
+wire   [63:0] grp_add_bias_to_activations_clone_1_fu_115_activations_d0;
+reg   [6:0] j_reg_90;
+wire   [0:0] icmp_ln78_fu_141_p2;
+reg   [63:0] add113_reg_102;
+reg    grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg;
 wire    ap_CS_fsm_state13;
-wire   [63:0] zext_ln78_fu_151_p1;
-wire   [63:0] zext_ln84_fu_189_p1;
-wire   [0:0] icmp_ln82_fu_168_p2;
-wire   [63:0] zext_ln82_fu_198_p1;
-reg   [6:0] i_fu_46;
-reg   [63:0] grp_fu_121_p0;
-reg   [63:0] grp_fu_121_p1;
-wire    ap_CS_fsm_state9;
-wire   [5:0] empty_fu_156_p1;
-wire   [11:0] zext_ln82_1_fu_180_p1;
-wire   [11:0] add_ln84_fu_184_p2;
-reg   [1:0] grp_fu_121_opcode;
-reg    grp_fu_121_ce;
+wire   [63:0] zext_ln78_fu_153_p1;
+wire   [63:0] zext_ln84_fu_191_p1;
+wire   [0:0] icmp_ln82_fu_170_p2;
+wire   [63:0] zext_ln82_fu_200_p1;
+reg   [6:0] i_fu_48;
+wire   [5:0] empty_fu_158_p1;
+wire   [11:0] zext_ln82_1_fu_182_p1;
+wire   [11:0] add_ln84_fu_186_p2;
 reg   [12:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
@@ -167,32 +151,25 @@ wire    ap_ce_reg;
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 13'd1;
-#0 grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start_reg = 1'b0;
-#0 i_fu_46 = 7'd0;
+#0 grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg = 1'b0;
+#0 i_fu_48 = 7'd0;
 end
 
-backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113(
+backprop_add_bias_to_activations_clone_1 grp_add_bias_to_activations_clone_1_fu_115(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start),
-    .ap_done(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_done),
-    .ap_idle(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_idle),
-    .ap_ready(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_ready),
-    .activations_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_address0),
-    .activations_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_ce0),
-    .activations_we0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_we0),
-    .activations_d0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_d0),
-    .activations_address1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_address1),
-    .activations_ce1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_ce1),
-    .activations_q1(activations_q1),
-    .biases2_address0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_biases2_address0),
-    .biases2_ce0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_biases2_ce0),
+    .ap_start(grp_add_bias_to_activations_clone_1_fu_115_ap_start),
+    .ap_done(grp_add_bias_to_activations_clone_1_fu_115_ap_done),
+    .ap_idle(grp_add_bias_to_activations_clone_1_fu_115_ap_idle),
+    .ap_ready(grp_add_bias_to_activations_clone_1_fu_115_ap_ready),
+    .biases2_address0(grp_add_bias_to_activations_clone_1_fu_115_biases2_address0),
+    .biases2_ce0(grp_add_bias_to_activations_clone_1_fu_115_biases2_ce0),
     .biases2_q0(biases2_q0),
-    .grp_fu_121_p_din0(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_din0),
-    .grp_fu_121_p_din1(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_din1),
-    .grp_fu_121_p_opcode(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_opcode),
-    .grp_fu_121_p_dout0(grp_fu_986_p_dout0),
-    .grp_fu_121_p_ce(grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_ce)
+    .activations_address0(grp_add_bias_to_activations_clone_1_fu_115_activations_address0),
+    .activations_ce0(grp_add_bias_to_activations_clone_1_fu_115_activations_ce0),
+    .activations_we0(grp_add_bias_to_activations_clone_1_fu_115_activations_we0),
+    .activations_d0(grp_add_bias_to_activations_clone_1_fu_115_activations_d0),
+    .activations_q0(activations_q0)
 );
 
 always @ (posedge ap_clk) begin
@@ -205,71 +182,71 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start_reg <= 1'b0;
+        grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_139_p2 == 1'd1))) begin
-            grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start_reg <= 1'b1;
-        end else if ((grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_ready == 1'b1)) begin
-            grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_141_p2 == 1'd1))) begin
+            grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg <= 1'b1;
+        end else if ((grp_add_bias_to_activations_clone_1_fu_115_ap_ready == 1'b1)) begin
+            grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_139_p2 == 1'd0))) begin
-        add113_reg_100 <= 64'd0;
+    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_141_p2 == 1'd0))) begin
+        add113_reg_102 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state12)) begin
-        add113_reg_100 <= grp_fu_986_p_dout0;
+        add113_reg_102 <= grp_fu_990_p_dout0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-        i_fu_46 <= 7'd0;
-    end else if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln82_fu_168_p2 == 1'd1))) begin
-        i_fu_46 <= add_ln78_reg_217;
+        i_fu_48 <= 7'd0;
+    end else if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln82_fu_170_p2 == 1'd1))) begin
+        i_fu_48 <= add_ln78_reg_219;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_139_p2 == 1'd0))) begin
-        j_reg_88 <= 7'd0;
+    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_141_p2 == 1'd0))) begin
+        j_reg_90 <= 7'd0;
     end else if ((1'b1 == ap_CS_fsm_state12)) begin
-        j_reg_88 <= add_ln82_reg_235;
+        j_reg_90 <= add_ln82_reg_237;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        activations_addr_reg_222 <= zext_ln78_fu_151_p1;
-        add_ln78_reg_217 <= add_ln78_fu_145_p2;
-        tmp_9_reg_227[11 : 6] <= tmp_9_fu_160_p3[11 : 6];
+        activations_addr_reg_224 <= zext_ln78_fu_153_p1;
+        add_ln78_reg_219 <= add_ln78_fu_147_p2;
+        tmp_9_reg_229[11 : 6] <= tmp_9_fu_162_p3[11 : 6];
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        add_ln82_reg_235 <= add_ln82_fu_174_p2;
+        add_ln82_reg_237 <= add_ln82_fu_176_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        mul8_reg_265 <= grp_fu_990_p_dout0;
+        mul8_reg_267 <= grp_fu_994_p_dout0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        weights2_load_reg_245 <= weights2_q0;
+        weights2_load_reg_247 <= weights2_q0;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations_address0 = activations_addr_reg_222;
+        activations_address0 = activations_addr_reg_224;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_address0;
+        activations_address0 = grp_add_bias_to_activations_clone_1_fu_115_activations_address0;
     end else begin
         activations_address0 = 'bx;
     end
@@ -279,35 +256,27 @@ always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
         activations_ce0 = 1'b1;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_ce0;
+        activations_ce0 = grp_add_bias_to_activations_clone_1_fu_115_activations_ce0;
     end else begin
         activations_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations_ce1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_ce1;
-    end else begin
-        activations_ce1 = 1'b0;
-    end
-end
-
-always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        activations_d0 = add113_reg_100;
+        activations_d0 = add113_reg_102;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations_d0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_d0;
+        activations_d0 = grp_add_bias_to_activations_clone_1_fu_115_activations_d0;
     end else begin
         activations_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln82_fu_168_p2 == 1'd1))) begin
+    if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln82_fu_170_p2 == 1'd1))) begin
         activations_we0 = 1'b1;
     end else if ((1'b1 == ap_CS_fsm_state13)) begin
-        activations_we0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_we0;
+        activations_we0 = grp_add_bias_to_activations_clone_1_fu_115_activations_we0;
     end else begin
         activations_we0 = 1'b0;
     end
@@ -320,7 +289,7 @@ assign ap_ST_fsm_state11_blk = 1'b0;
 assign ap_ST_fsm_state12_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_done == 1'b0)) begin
+    if ((grp_add_bias_to_activations_clone_1_fu_115_ap_done == 1'b0)) begin
         ap_ST_fsm_state13_blk = 1'b1;
     end else begin
         ap_ST_fsm_state13_blk = 1'b0;
@@ -352,7 +321,7 @@ assign ap_ST_fsm_state8_blk = 1'b0;
 assign ap_ST_fsm_state9_blk = 1'b0;
 
 always @ (*) begin
-    if ((((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)) | ((1'b1 == ap_CS_fsm_state13) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_done == 1'b1)))) begin
+    if ((((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)) | ((1'b1 == ap_CS_fsm_state13) & (grp_add_bias_to_activations_clone_1_fu_115_ap_done == 1'b1)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -368,48 +337,10 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state13) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_done == 1'b1))) begin
+    if (((1'b1 == ap_CS_fsm_state13) & (grp_add_bias_to_activations_clone_1_fu_115_ap_done == 1'b1))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_121_ce = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_ce;
-    end else begin
-        grp_fu_121_ce = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_121_opcode = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_opcode;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_121_opcode = 2'd0;
-    end else begin
-        grp_fu_121_opcode = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_121_p0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_din0;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_121_p0 = add113_reg_100;
-    end else begin
-        grp_fu_121_p0 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_121_p1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_grp_fu_121_p_din1;
-    end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        grp_fu_121_p1 = mul8_reg_265;
-    end else begin
-        grp_fu_121_p1 = 'bx;
     end
 end
 
@@ -439,14 +370,14 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_139_p2 == 1'd0))) begin
+            if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln78_fu_141_p2 == 1'd0))) begin
                 ap_NS_fsm = ap_ST_fsm_state3;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state13;
             end
         end
         ap_ST_fsm_state3 : begin
-            if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln82_fu_168_p2 == 1'd1))) begin
+            if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln82_fu_170_p2 == 1'd1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state4;
@@ -480,7 +411,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state3;
         end
         ap_ST_fsm_state13 : begin
-            if (((1'b1 == ap_CS_fsm_state13) & (grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_done == 1'b1))) begin
+            if (((1'b1 == ap_CS_fsm_state13) & (grp_add_bias_to_activations_clone_1_fu_115_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state13;
@@ -492,13 +423,11 @@ always @ (*) begin
     endcase
 end
 
-assign activations_address1 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_activations_address1;
+assign add_ln78_fu_147_p2 = (i_fu_48 + 7'd1);
 
-assign add_ln78_fu_145_p2 = (i_fu_46 + 7'd1);
+assign add_ln82_fu_176_p2 = (j_reg_90 + 7'd1);
 
-assign add_ln82_fu_174_p2 = (j_reg_88 + 7'd1);
-
-assign add_ln84_fu_184_p2 = (zext_ln82_1_fu_180_p1 + tmp_9_reg_227);
+assign add_ln84_fu_186_p2 = (zext_ln82_1_fu_182_p1 + tmp_9_reg_229);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -514,52 +443,50 @@ assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
 assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 
-assign ap_CS_fsm_state9 = ap_CS_fsm[32'd8];
+assign biases2_address0 = grp_add_bias_to_activations_clone_1_fu_115_biases2_address0;
 
-assign biases2_address0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_biases2_address0;
+assign biases2_ce0 = grp_add_bias_to_activations_clone_1_fu_115_biases2_ce0;
 
-assign biases2_ce0 = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_biases2_ce0;
+assign bitcast_ln84_fu_205_p1 = weights2_load_reg_247;
 
-assign bitcast_ln84_fu_203_p1 = weights2_load_reg_245;
+assign empty_fu_158_p1 = i_fu_48[5:0];
 
-assign empty_fu_156_p1 = i_fu_46[5:0];
-
-assign grp_fu_986_p_ce = grp_fu_121_ce;
-
-assign grp_fu_986_p_din0 = grp_fu_121_p0;
-
-assign grp_fu_986_p_din1 = grp_fu_121_p1;
-
-assign grp_fu_986_p_opcode = grp_fu_121_opcode;
+assign grp_add_bias_to_activations_clone_1_fu_115_ap_start = grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg;
 
 assign grp_fu_990_p_ce = 1'b1;
 
-assign grp_fu_990_p_din0 = bitcast_ln84_fu_203_p1;
+assign grp_fu_990_p_din0 = add113_reg_102;
 
-assign grp_fu_990_p_din1 = input_activations_q0;
+assign grp_fu_990_p_din1 = mul8_reg_267;
 
-assign grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start = grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_113_ap_start_reg;
+assign grp_fu_990_p_opcode = 2'd0;
 
-assign icmp_ln78_fu_139_p2 = ((i_fu_46 == 7'd64) ? 1'b1 : 1'b0);
+assign grp_fu_994_p_ce = 1'b1;
 
-assign icmp_ln82_fu_168_p2 = ((j_reg_88 == 7'd64) ? 1'b1 : 1'b0);
+assign grp_fu_994_p_din0 = bitcast_ln84_fu_205_p1;
 
-assign input_activations_address0 = zext_ln82_fu_198_p1;
+assign grp_fu_994_p_din1 = input_activations_q0;
 
-assign tmp_9_fu_160_p3 = {{empty_fu_156_p1}, {6'd0}};
+assign icmp_ln78_fu_141_p2 = ((i_fu_48 == 7'd64) ? 1'b1 : 1'b0);
 
-assign weights2_address0 = zext_ln84_fu_189_p1;
+assign icmp_ln82_fu_170_p2 = ((j_reg_90 == 7'd64) ? 1'b1 : 1'b0);
 
-assign zext_ln78_fu_151_p1 = i_fu_46;
+assign input_activations_address0 = zext_ln82_fu_200_p1;
 
-assign zext_ln82_1_fu_180_p1 = j_reg_88;
+assign tmp_9_fu_162_p3 = {{empty_fu_158_p1}, {6'd0}};
 
-assign zext_ln82_fu_198_p1 = j_reg_88;
+assign weights2_address0 = zext_ln84_fu_191_p1;
 
-assign zext_ln84_fu_189_p1 = add_ln84_fu_184_p2;
+assign zext_ln78_fu_153_p1 = i_fu_48;
+
+assign zext_ln82_1_fu_182_p1 = j_reg_90;
+
+assign zext_ln82_fu_200_p1 = j_reg_90;
+
+assign zext_ln84_fu_191_p1 = add_ln84_fu_186_p2;
 
 always @ (posedge ap_clk) begin
-    tmp_9_reg_227[5:0] <= 6'b000000;
+    tmp_9_reg_229[5:0] <= 6'b000000;
 end
 
 endmodule //backprop_matrix_vector_product_with_bias_second_layer_1

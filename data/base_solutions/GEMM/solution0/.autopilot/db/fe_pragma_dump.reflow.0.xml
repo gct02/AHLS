@@ -1,4 +1,5 @@
 <pragmas>
+<pragma file="data/benchmarks/gemm/gemm.c" line="6" pragmaType="pipeline" parentfunction="bbgemm" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/gemm/gemm.c" line="1" pragmaType="pipeline" parentfunction="bbgemm" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/gemm/gemm.c" line="16" pragmaType="loop_tripcount" parentfunction="bbgemm" min="8" max="8" avg="8"/>
 <pragma file="data/benchmarks/gemm/gemm.c" line="2" pragmaType="pipeline" parentfunction="bbgemm" off="1" ii="0" rewind="0" style=""/>

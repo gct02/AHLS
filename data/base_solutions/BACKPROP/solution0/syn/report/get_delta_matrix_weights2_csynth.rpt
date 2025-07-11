@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_delta_matrix_weights2'
 ================================================================
-* Date:           Fri May 30 21:43:16 2025
+* Date:           Wed Jul  9 03:32:57 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -90,11 +90,11 @@
     +----------------------+----------+----+---+----+------------+------------+
     |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +----------------------+----------+----+---+----+------------+------------+
-    |add_ln158_fu_103_p2   |         +|   0|  0|  14|           7|           1|
-    |add_ln161_fu_131_p2   |         +|   0|  0|  14|           7|           1|
-    |add_ln163_fu_146_p2   |         +|   0|  0|  19|          12|          12|
-    |icmp_ln158_fu_97_p2   |      icmp|   0|  0|  15|           7|           8|
-    |icmp_ln161_fu_125_p2  |      icmp|   0|  0|  15|           7|           8|
+    |add_ln158_fu_109_p2   |         +|   0|  0|  14|           7|           1|
+    |add_ln161_fu_137_p2   |         +|   0|  0|  14|           7|           1|
+    |add_ln163_fu_152_p2   |         +|   0|  0|  19|          12|          12|
+    |icmp_ln158_fu_103_p2  |      icmp|   0|  0|  15|           7|           8|
+    |icmp_ln161_fu_131_p2  |      icmp|   0|  0|  15|           7|           8|
     +----------------------+----------+----+---+----+------------+------------+
     |Total                 |          |   0|  0|  77|          40|          30|
     +----------------------+----------+----+---+----+------------+------------+
@@ -104,8 +104,8 @@
     |    Name   | LUT| Input Size| Bits| Total Bits|
     +-----------+----+-----------+-----+-----------+
     |ap_NS_fsm  |  54|         10|    1|         10|
-    |i_fu_30    |   9|          2|    7|         14|
-    |j_reg_73   |   9|          2|    7|         14|
+    |i_fu_36    |   9|          2|    7|         14|
+    |j_reg_79   |   9|          2|    7|         14|
     +-----------+----+-----------+-----+-----------+
     |Total      |  72|         14|   15|         38|
     +-----------+----+-----------+-----+-----------+
@@ -114,16 +114,16 @@
     +-------------------------------+----+----+-----+-----------+
     |              Name             | FF | LUT| Bits| Const Bits|
     +-------------------------------+----+----+-----+-----------+
-    |add_ln158_reg_169              |   7|   0|    7|          0|
-    |add_ln161_reg_197              |   7|   0|    7|          0|
-    |add_ln163_reg_207              |  12|   0|   12|          0|
+    |add_ln158_reg_175              |   7|   0|    7|          0|
+    |add_ln161_reg_203              |   7|   0|    7|          0|
+    |add_ln163_reg_213              |  12|   0|   12|          0|
     |ap_CS_fsm                      |   9|   0|    9|          0|
-    |empty_reg_179                  |   6|   0|    6|          0|
-    |i_fu_30                        |   7|   0|    7|          0|
-    |j_reg_73                       |   7|   0|    7|          0|
-    |last_activations_load_reg_184  |  64|   0|   64|          0|
-    |mul_reg_217                    |  64|   0|   64|          0|
-    |tmp_s_reg_189                  |   6|   0|   12|          6|
+    |empty_reg_185                  |   6|   0|    6|          0|
+    |i_fu_36                        |   7|   0|    7|          0|
+    |j_reg_79                       |   7|   0|    7|          0|
+    |last_activations_load_reg_190  |  64|   0|   64|          0|
+    |mul_reg_223                    |  64|   0|   64|          0|
+    |tmp_s_reg_195                  |   6|   0|   12|          6|
     +-------------------------------+----+----+-----+-----------+
     |Total                          | 189|   0|  195|          6|
     +-------------------------------+----+----+-----+-----------+
@@ -143,10 +143,10 @@
 |ap_done                     |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
 |ap_idle                     |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
 |ap_ready                    |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
-|grp_fu_990_p_din0           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
-|grp_fu_990_p_din1           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
-|grp_fu_990_p_dout0          |   in|   64|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
-|grp_fu_990_p_ce             |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
+|grp_fu_994_p_din0           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
+|grp_fu_994_p_din1           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
+|grp_fu_994_p_dout0          |   in|   64|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
+|grp_fu_994_p_ce             |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights2|  return value|
 |delta_weights2_address0     |  out|   12|   ap_memory|             delta_weights2|         array|
 |delta_weights2_ce0          |  out|    1|   ap_memory|             delta_weights2|         array|
 |delta_weights2_we0          |  out|    1|   ap_memory|             delta_weights2|         array|

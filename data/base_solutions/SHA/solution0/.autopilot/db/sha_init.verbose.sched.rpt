@@ -1,0 +1,129 @@
+
+
+================================================================
+== Vitis HLS Report for 'sha_init'
+================================================================
+* Date:           Wed Jul  9 04:09:33 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        SHA
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  0.699 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        2|  16.000 ns|  16.000 ns|    2|    2|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.69>
+ST_1 : Operation 4 [1/1] (0.69ns)   --->   "%store_ln144 = store i32 1732584193, i32 0" [data/benchmarks/sha/sha.c:144]   --->   Operation 4 'store' 'store_ln144' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+
+State 2 <SV = 1> <Delay = 0.69>
+ST_2 : Operation 5 [1/1] (0.69ns)   --->   "%store_ln145 = store i32 4023233417, i32 1" [data/benchmarks/sha/sha.c:145]   --->   Operation 5 'store' 'store_ln145' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_2 : Operation 6 [1/1] (0.69ns)   --->   "%store_ln146 = store i32 2562383102, i32 2" [data/benchmarks/sha/sha.c:146]   --->   Operation 6 'store' 'store_ln146' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+
+State 3 <SV = 2> <Delay = 0.69>
+ST_3 : Operation 7 [1/1] (0.00ns)   --->   "%specpipeline_ln19 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:19]   --->   Operation 7 'specpipeline' 'specpipeline_ln19' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 8 [1/1] (0.69ns)   --->   "%store_ln147 = store i32 271733878, i32 3" [data/benchmarks/sha/sha.c:147]   --->   Operation 8 'store' 'store_ln147' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_3 : Operation 9 [1/1] (0.69ns)   --->   "%store_ln148 = store i32 3285377520, i32 4" [data/benchmarks/sha/sha.c:148]   --->   Operation 9 'store' 'store_ln148' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 5> <RAM>
+ST_3 : Operation 10 [1/1] (0.00ns)   --->   "%store_ln149 = store i32 0, i32 %sha_info_count_lo" [data/benchmarks/sha/sha.c:149]   --->   Operation 10 'store' 'store_ln149' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 11 [1/1] (0.00ns)   --->   "%store_ln150 = store i32 0, i32 %sha_info_count_hi" [data/benchmarks/sha/sha.c:150]   --->   Operation 11 'store' 'store_ln150' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 12 [1/1] (0.00ns)   --->   "%ret_ln151 = ret" [data/benchmarks/sha/sha.c:151]   --->   Operation 12 'ret' 'ret_ln151' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 0.699ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln144', data/benchmarks/sha/sha.c:144) of constant 1732584193 on array 'sha_info_digest' [4]  (0.699 ns)
+
+ <State 2>: 0.699ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln145', data/benchmarks/sha/sha.c:145) of constant 4023233417 on array 'sha_info_digest' [5]  (0.699 ns)
+
+ <State 3>: 0.699ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln147', data/benchmarks/sha/sha.c:147) of constant 271733878 on array 'sha_info_digest' [7]  (0.699 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

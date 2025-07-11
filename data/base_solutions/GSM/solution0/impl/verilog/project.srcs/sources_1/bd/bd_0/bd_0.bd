@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x5D4B5BED3A07B363",
+      "boundary_crc": "0x44E50FE288075F91",
       "device": "xcu50-fsvh2104-2-e",
       "gen_directory": "../../../../project.gen/sources_1/bd/bd_0",
       "name": "bd_0",
@@ -207,6 +207,18 @@
           }
         }
       },
+      "indata_d1": {
+        "type": "data",
+        "direction": "O",
+        "left": "15",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
       "indata_q0": {
         "type": "data",
         "direction": "I",
@@ -233,12 +245,15 @@
       },
       "indata_we0": {
         "direction": "O"
+      },
+      "indata_we1": {
+        "direction": "O"
       }
     },
     "components": {
       "hls_inst": {
         "vlnv": "xilinx.com:hls:Gsm_LPC_Analysis:1.0",
-        "ip_revision": "2114106483",
+        "ip_revision": "2114162997",
         "xci_name": "bd_0_hls_inst_0",
         "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
         "inst_hier_path": "hls_inst"
@@ -355,10 +370,22 @@
           "indata_d0"
         ]
       },
+      "hls_inst_indata_d1": {
+        "ports": [
+          "hls_inst/indata_d1",
+          "indata_d1"
+        ]
+      },
       "hls_inst_indata_we0": {
         "ports": [
           "hls_inst/indata_we0",
           "indata_we0"
+        ]
+      },
+      "hls_inst_indata_we1": {
+        "ports": [
+          "hls_inst/indata_we1",
+          "indata_we1"
         ]
       },
       "indata_q0_0_1": {

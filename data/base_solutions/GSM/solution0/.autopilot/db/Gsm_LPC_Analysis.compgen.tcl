@@ -17,14 +17,14 @@ set axilite_register_dict [dict create]
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 96 \
+    id 68 \
     name indata \
     reset_level 1 \
     sync_rst true \
     dir IO \
     corename indata \
     op interface \
-    ports { indata_address0 { O 8 vector } indata_ce0 { O 1 bit } indata_we0 { O 1 bit } indata_d0 { O 16 vector } indata_q0 { I 16 vector } indata_address1 { O 8 vector } indata_ce1 { O 1 bit } indata_q1 { I 16 vector } } \
+    ports { indata_address0 { O 8 vector } indata_ce0 { O 1 bit } indata_we0 { O 1 bit } indata_d0 { O 16 vector } indata_q0 { I 16 vector } indata_address1 { O 8 vector } indata_ce1 { O 1 bit } indata_we1 { O 1 bit } indata_d1 { O 16 vector } indata_q1 { I 16 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'indata'"
@@ -36,7 +36,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 97 \
+    id 69 \
     name LARc \
     reset_level 1 \
     sync_rst true \

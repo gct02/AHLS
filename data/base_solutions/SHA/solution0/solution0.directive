@@ -5,6 +5,11 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
+        <directive functionName="local_memset" label="local_memset_label1" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
         <directive functionName="local_memcpy" label="local_memcpy_label3" functionLabel="">
             <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
@@ -45,18 +50,53 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="local_memset" label="local_memset_label0" functionLabel="">
-            <pragma name="LOOP_FLATTEN">
+        <directive functionName="sha_stream" label="sha_stream_label0" functionLabel="">
+            <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="local_memset" label="local_memset_label1" functionLabel="">
-            <pragma name="LOOP_FLATTEN">
+        <directive functionName="sha_stream" label="sha_stream_label1" functionLabel="">
+            <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="local_memcpy" label="local_memcpy_label3" functionLabel="">
-            <pragma name="LOOP_FLATTEN">
+        <directive functionName="sha_stream" label="sha_stream_label2" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="sha_stream" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="local_memset" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="local_memcpy" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="sha_transform" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="sha_update" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="sha_init" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="sha_final" label="" functionLabel="">
+            <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
@@ -85,7 +125,12 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="sha_stream" label="" functionLabel="">
+        <directive functionName="sha_init" label="" functionLabel="">
+            <pragma name="INLINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="sha_final" label="" functionLabel="">
             <pragma name="INLINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>

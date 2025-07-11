@@ -3,8 +3,8 @@
         "name": "stencil3d",
         "file": "stencil.c",
         "fileloc": "10",
-        "instructions": "187",
-        "total_instructions": "187",
+        "instructions": "188",
+        "total_instructions": "188",
         "calls": "",
         "basicblocks": "28",
         "loads": {

@@ -22,14 +22,14 @@
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>1749</Best-caseLatency>
-<Average-caseLatency>1749</Average-caseLatency>
-<Worst-caseLatency>1749</Worst-caseLatency>
-<Best-caseRealTimeLatency>13.992 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>13.992 us</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>13.992 us</Worst-caseRealTimeLatency>
-<Interval-min>1749</Interval-min>
-<Interval-max>1749</Interval-max>
+<Best-caseLatency>1752</Best-caseLatency>
+<Average-caseLatency>1752</Average-caseLatency>
+<Worst-caseLatency>1752</Worst-caseLatency>
+<Best-caseRealTimeLatency>14.016 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>14.016 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>14.016 us</Worst-caseRealTimeLatency>
+<Interval-min>1752</Interval-min>
+<Interval-max>1752</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <matrix_vector_product_with_bias_output_layer_loop1>
@@ -74,8 +74,8 @@
 
 <AreaEstimates>
 <Resources>
-<FF>561</FF>
-<LUT>380</LUT>
+<FF>751</FF>
+<LUT>364</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
 <URAM>0</URAM>
@@ -190,6 +190,61 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
+<name>grp_fu_990_p_din0</name>
+<Object>matrix_vector_product_with_bias_output_layer.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_990_p_din1</name>
+<Object>matrix_vector_product_with_bias_output_layer.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_990_p_opcode</name>
+<Object>matrix_vector_product_with_bias_output_layer.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_990_p_dout0</name>
+<Object>matrix_vector_product_with_bias_output_layer.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_990_p_ce</name>
+<Object>matrix_vector_product_with_bias_output_layer.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
 <name>grp_fu_994_p_din0</name>
 <Object>matrix_vector_product_with_bias_output_layer.1</Object>
 <Type>return value</Type>
@@ -212,17 +267,6 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_opcode</name>
-<Object>matrix_vector_product_with_bias_output_layer.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>2</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
 <name>grp_fu_994_p_dout0</name>
 <Object>matrix_vector_product_with_bias_output_layer.1</Object>
 <Type>return value</Type>
@@ -235,50 +279,6 @@
 </RtlPorts>
 <RtlPorts>
 <name>grp_fu_994_p_ce</name>
-<Object>matrix_vector_product_with_bias_output_layer.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_1006_p_din0</name>
-<Object>matrix_vector_product_with_bias_output_layer.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>64</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_1006_p_din1</name>
-<Object>matrix_vector_product_with_bias_output_layer.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>64</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_1006_p_dout0</name>
-<Object>matrix_vector_product_with_bias_output_layer.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>64</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_1006_p_ce</name>
 <Object>matrix_vector_product_with_bias_output_layer.1</Object>
 <Type>return value</Type>
 <Scope></Scope>

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'matrix_vector_product_with_bias_input_layer_1'" level="0">
-<item name = "Date">Fri May 30 21:43:12 2025
+<item name = "Date">Wed Jul  9 03:32:56 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -24,14 +24,14 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">8519, 8519, 68.152 us, 68.152 us, 8519, 8519, no</column>
+<column name="">8771, 8771, 70.168 us, 70.168 us, 8771, 8771, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_134">matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l, 69, 69, 0.552 us, 0.552 us, 69, 69, no</column>
+<column name="grp_add_bias_to_activations_clone_1_fu_136">add_bias_to_activations_clone_1, 321, 321, 2.568 us, 2.568 us, 321, 321, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

@@ -1,44 +1,68 @@
 <xilinx:hls_fe_msgs>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:25:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:21:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:35:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:6:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:15:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_dec.c:117:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="decrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=9 max=13 avg=12" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:24:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:20:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:34:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:5:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:14:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_enc.c:111:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="encrypt" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=9 max=13 avg=11" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:27:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:16:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=aes_main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:23:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="ByteSub_ShiftRow" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:37:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="ByteSub_ShiftRow" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:28:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:19:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="InversShiftRow_ByteSub" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:33:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="InversShiftRow_ByteSub" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:22:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:17:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:31:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:8:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:5:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:325:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:9:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:6:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:365:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="MixColumn_AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:23:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:18:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:32:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:3:9" msg_body="HLS pragma dump">
@@ -53,11 +77,11 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:390:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:16:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:2:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:25:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:393:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
@@ -68,7 +92,10 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:437:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="AddRoundKey_InversMixColumn" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:29:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:24:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:38:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:7:9" msg_body="HLS pragma dump">
@@ -77,62 +104,59 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:470:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="AddRoundKey" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:26:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:22:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:36:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:10:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:8:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:555:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=8 avg=6" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:11:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:17:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:26:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:9:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:558:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:12:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:10:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:18:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:27:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:566:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=32 max=116 avg=74" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:13:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:11:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:19:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:28:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:14:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:12:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:20:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:29:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:586:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:15:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:13:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:21:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:30:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_key.c:593:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="KeySchedule" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=4 max=4 avg=4" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:30:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="aes_main" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=aes_main" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_LOOP_TRIPCOUNT" msg_id="214-398" msg_severity="WARNING" msg_loc="data/benchmarks/aes/aes_dec.c:66:0" msg_body="Updating loop upper bound from 13 to 9 for loop 'decrypt_label4' (data/benchmarks/aes/aes_dec.c:116:5) in function 'decrypt'.">
         <args LoopLoc="data/benchmarks/aes/aes_dec.c:116:5" LoopName="decrypt_label4" NewBound="9" OldBound="13"/>

@@ -485,7 +485,7 @@ def prepare_data_loaders(
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--dataset-dir', type=str, required=True, 
+    parser.add_argument('-d', '--dataset-dir', type=str, required=False, default='gnn/dataset', 
                         help='The root directory of the dataset.')
     parser.add_argument('-tb', '--test-bench', type=str, required=True, 
                         help='The name of the benchmark to use for testing.')

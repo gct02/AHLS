@@ -1,20 +1,26 @@
 <pragmas>
+<pragma file="data/benchmarks/stencil3d/stencil.c" line="10" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="7" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="43" pragmaType="loop_tripcount" parentfunction="stencil3d" min="14" max="14" avg="14"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="8" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/stencil3d/stencil.c" line="14" pragmaType="loop_flatten" parentfunction="stencil3d" off="1"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="45" pragmaType="loop_tripcount" parentfunction="stencil3d" min="14" max="14" avg="14"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="9" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/stencil3d/stencil.c" line="15" pragmaType="loop_flatten" parentfunction="stencil3d" off="1"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="47" pragmaType="loop_tripcount" parentfunction="stencil3d" min="6" max="6" avg="6"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="5" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="32" pragmaType="loop_tripcount" parentfunction="stencil3d" min="14" max="14" avg="14"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="6" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/stencil3d/stencil.c" line="13" pragmaType="loop_flatten" parentfunction="stencil3d" off="1"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="34" pragmaType="loop_tripcount" parentfunction="stencil3d" min="14" max="14" avg="14"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="3" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="24" pragmaType="loop_tripcount" parentfunction="stencil3d" min="14" max="14" avg="14"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="4" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/stencil3d/stencil.c" line="12" pragmaType="loop_flatten" parentfunction="stencil3d" off="1"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="26" pragmaType="loop_tripcount" parentfunction="stencil3d" min="8" max="8" avg="8"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="1" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="16" pragmaType="loop_tripcount" parentfunction="stencil3d" min="16" max="16" avg="16"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="2" pragmaType="pipeline" parentfunction="stencil3d" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/stencil3d/stencil.c" line="11" pragmaType="loop_flatten" parentfunction="stencil3d" off="1"/>
 <pragma file="data/benchmarks/stencil3d/stencil.c" line="18" pragmaType="loop_tripcount" parentfunction="stencil3d" min="8" max="8" avg="8"/>
 </pragmas>

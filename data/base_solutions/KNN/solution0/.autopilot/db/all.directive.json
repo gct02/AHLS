@@ -49,6 +49,48 @@
     "insert_position": "",
     "label": "",
     "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/knn.tcl",
+    "sourceLine": 3,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "md_kernel",
+    "id": 3,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loop_j",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/knn.tcl",
+    "sourceLine": 4,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "md_kernel",
+    "id": 4,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
       "name": "TOP",
       "option": [
         {

@@ -6,52 +6,53 @@
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 | Phase         | Step                        | Instructions | Description                                                                            |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
-| Compile/Link  |                             | 1,626        | After all functions are compiled and linked into a single design                       |
+| Compile/Link  |                             | 1,625        | After all functions are compiled and linked into a single design                       |
 |               |                             |              |                                                                                        |
 | Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
-|               | (1) unroll                  | 1,461        | user unroll pragmas are applied                                                        |
+|               | (1) unroll                  | 1,460        | user unroll pragmas are applied                                                        |
 |               | (2) simplification          |   978        | simplification of applied user unroll pragmas                                          |
-|               | (3) inline                  |   871        | user inline pragmas are applied                                                        |
-|               | (4) simplification          |   860        | simplification of applied user inline pragmas                                          |
+|               | (3) inline                  |   975        | user inline pragmas are applied                                                        |
+|               | (4) simplification          |   968        | simplification of applied user inline pragmas                                          |
 |               |                             |              |                                                                                        |
 | Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
-|               | (1) array partition         |   866        | user array partition pragmas are applied                                               |
-|               | (2) simplification          |   866        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
-|               | (3) aggregate/disaggregate  |   866        | user struct aggregate/disaggregate pragmas are applied                                 |
-|               | (4) array reshape           |   866        | apply array reshape pragmas                                                            |
-|               | (5) access patterns         |   893        | array access pattern optmizations                                                      |
+|               | (1) array partition         |   975        | user array partition pragmas are applied                                               |
+|               | (2) simplification          |   975        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  |   975        | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           |   975        | apply array reshape pragmas                                                            |
+|               | (5) access patterns         | 1,002        | array access pattern optmizations                                                      |
 |               |                             |              |                                                                                        |
 | Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
-|               | (1) loop simplification     |   867        | loop and instruction simplification                                                    |
-|               | (2) parallelization         |   859        | loops are unrolled or pipelined to meet performance targets                            |
-|               | (3) simplification          |   859        | simplification of design after performance transformations                             |
+|               | (1) loop simplification     |   981        | loop and instruction simplification                                                    |
+|               | (2) parallelization         |   975        | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) simplification          |   975        | simplification of design after performance transformations                             |
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
-|               | (1) lowering                |   863        | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           |   918        | high level synthesis optimizations                                                     |
+|               | (1) lowering                |   979        | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           | 1,102        | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
-+------------------------------------+---------------+-----------------+---------------+--------------+-------------+---------------+
-| Function                           | Location      | Compile/Link    | Unroll/Inline | Array/Struct | Performance | HW Transforms |
-+------------------------------------+---------------+-----------------+---------------+--------------+-------------+---------------+
-| + Gsm_LPC_Analysis                 | gsm.c:7       | 1,626           | 860           | 893          | 859         | 918           |
-|  + Autocorrelation                 | gsm_lpc.c:34  |  621            | 326           | 354          | 335         | 362           |
-|     gsm_abs                        | gsm_add.c:65  |   17            |               |              |             |               |
-|     gsm_norm                       | gsm_add.c:70  |   53            |  48           |  48          |  48         |  49           |
-|     gsm_mult_r                     | gsm_add.c:51  |   17            |               |              |             |               |
-|  + Reflection_coefficients         | gsm_lpc.c:160 |  374            | 255           | 259          | 244         | 267           |
-|     gsm_norm                       | gsm_add.c:70  |   53            |  48           |  48          |  48         |  49           |
-|     gsm_abs                        | gsm_add.c:65  |   17            |               |              |             |               |
-|     gsm_div                        | gsm_add.c:118 |   29            |  23           |  24          |  22         |  27           |
-|     gsm_mult_r                     | gsm_add.c:51  |   51 (3 calls)  |               |              |             |               |
-|     gsm_add                        | gsm_add.c:36  |   45 (3 calls)  |               |              |             |               |
-|  + Transformation_to_Log_Area_R... | gsm_lpc.c:241 |   66            |               |              |             |               |
-|     gsm_abs                        | gsm_add.c:65  |   17            |               |              |             |               |
-|  + Quantization_and_coding         | gsm_lpc.c:267 |  553            | 234           | 235          | 235         | 235           |
-|     gsm_mult                       | gsm_add.c:43  |  120 (8 calls)  |               |              |             |               |
-|     gsm_add                        | gsm_add.c:36  |  240 (16 calls) |               |              |             |               |
-+------------------------------------+---------------+-----------------+---------------+--------------+-------------+---------------+
++------------------------------------+---------------+-----------------+----------------+-----------------+----------------+-----------------+
+| Function                           | Location      | Compile/Link    | Unroll/Inline  | Array/Struct    | Performance    | HW Transforms   |
++------------------------------------+---------------+-----------------+----------------+-----------------+----------------+-----------------+
+| + Gsm_LPC_Analysis                 | gsm.c:7       | 1,625           | 968            | 1,002           | 975            | 1,102           |
+|  + Autocorrelation                 | gsm_lpc.c:34  |  620            | 330            |  358            | 339            |  367            |
+|     gsm_abs                        | gsm_add.c:65  |   17            |  10            |   10            |  10            |   12            |
+|     gsm_norm                       | gsm_add.c:70  |   53            |  48            |   48            |  48            |   50            |
+|     gsm_mult_r                     | gsm_add.c:51  |   17            |  14            |   14            |  14            |   16            |
+|  + Reflection_coefficients         | gsm_lpc.c:160 |  374            | 270            |  275            | 267            |  306            |
+|     gsm_norm                       | gsm_add.c:70  |   53            |  48            |   48            |  48            |   50            |
+|     gsm_abs                        | gsm_add.c:65  |   17            |  10            |   10            |  10            |   12            |
+|     gsm_div                        | gsm_add.c:118 |   29            |  23            |   24            |  22            |   27            |
+|     gsm_mult_r                     | gsm_add.c:51  |   51 (3 calls)  |  42 (3 calls)  |   42 (3 calls)  |  42 (3 calls)  |   48 (3 calls)  |
+|     gsm_add                        | gsm_add.c:36  |   45 (3 calls)  |  27 (3 calls)  |   27 (3 calls)  |  27 (3 calls)  |   33 (3 calls)  |
+|  + Transformation_to_Log_Area_R... | gsm_lpc.c:241 |   66            |                |                 |                |                 |
+|     gsm_abs                        | gsm_add.c:65  |   17            |                |                 |                |                 |
+|  + Quantization_and_coding         | gsm_lpc.c:267 |  553            | 320            |  321            | 321            |  369            |
+|     gsm_mult                       | gsm_add.c:43  |  120 (8 calls)  |  48 (8 calls)  |   48 (8 calls)  |  48 (8 calls)  |   64 (8 calls)  |
+|     gsm_add                        | gsm_add.c:36  |  240 (16 calls) | 144 (16 calls) |  144 (16 calls) | 144 (16 calls) |  176 (16 calls) |
+|    gsm_abs                         | gsm_add.c:65  |                 |  10            |   10            |  10            |   12            |
++------------------------------------+---------------+-----------------+----------------+-----------------+----------------+-----------------+
 
 * Design Size Message Settings
 +---------------------------------------------+--------+------------------------------------------------------------------+

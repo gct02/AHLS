@@ -402,7 +402,11 @@ int aes_main (int statemt[32], int key[32]);
 # 65 "data/benchmarks/aes/aes_enc.c" 2
 
 int encrypt(int statemt[32], int key[32], int type) {
-#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 66 "data/benchmarks/aes/aes_enc.c"
+
+#line 34 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 66 "data/benchmarks/aes/aes_enc.c"
 
@@ -450,7 +454,7 @@ int encrypt(int statemt[32], int key[32], int type) {
 
     encrypt_label1:
     for (i = 1; i <= round_val + 9; ++i) {
-#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 110 "data/benchmarks/aes/aes_enc.c"
 

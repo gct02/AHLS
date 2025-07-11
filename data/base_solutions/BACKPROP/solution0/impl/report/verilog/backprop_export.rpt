@@ -4,21 +4,21 @@ Implementation tool: Xilinx Vivado v.2023.2
 Project:             BACKPROP
 Solution:            solution0
 Device target:       xcu50-fsvh2104-2-e
-Report date:         Fri May 30 21:54:02 -03 2025
+Report date:         Wed Jul 09 03:44:46 -03 2025
 
 #=== Post-Implementation Resource usage ===
 SLICE:            0
-LUT:          14779
-FF:           11292
-DSP:             48
+LUT:          20422
+FF:           15028
+DSP:             88
 BRAM:             6
 URAM:             1
 LATCH:            0
-SRL:            220
-CLB:           2958
+SRL:            173
+CLB:           4142
 
 #=== Final timing ===
 CP required:                     8.000
 CP achieved post-synthesis:      5.022
-CP achieved post-implementation: 6.399
+CP achieved post-implementation: 6.311
 Timing met

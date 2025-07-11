@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'fft1D_512'" level="0">
-<item name = "Date">Fri May 30 23:10:29 2025
+<item name = "Date">Wed Jul  9 04:19:51 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">TRANS_FFT</item>
@@ -24,28 +24,29 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">15694, 15694, 0.126 ms, 0.126 ms, 15695, 15695, no</column>
+<column name="">73675, 77259, 0.589 ms, 0.618 ms, 73676, 77260, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_twiddles8_fu_1969">twiddles8, 50, 50, 0.400 us, 0.400 us, 50, 50, no</column>
+<column name="grp_twiddles8_fu_1829">twiddles8, 492, 520, 3.936 us, 4.160 us, 492, 520, no</column>
+<column name="grp_loady8_fu_1853">loady8, 4, 4, 32.000 ns, 32.000 ns, 4, 4, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- loop1">5568, 5568, 87, -, -, 64, no</column>
+<column name="- loop1">33856, 35648, 529 ~ 557, -, -, 64, no</column>
 <column name="- loop2">320, 320, 5, -, -, 64, no</column>
 <column name="- loop3">320, 320, 5, -, -, 64, no</column>
 <column name="- loop4">320, 320, 5, -, -, 64, no</column>
-<column name="- loop5">320, 320, 5, -, -, 64, no</column>
-<column name="- loop6">5568, 5568, 87, -, -, 64, no</column>
+<column name="- loop5">1024, 1024, 16, -, -, 64, no</column>
+<column name="- loop6">33856, 35648, 529 ~ 557, -, -, 64, no</column>
 <column name="- loop7">320, 320, 5, -, -, 64, no</column>
 <column name="- loop8">320, 320, 5, -, -, 64, no</column>
 <column name="- loop9">320, 320, 5, -, -, 64, no</column>
-<column name="- loop10">320, 320, 5, -, -, 64, no</column>
+<column name="- loop10">1024, 1024, 16, -, -, 64, no</column>
 <column name="- loop11">1984, 1984, 31, -, -, 64, no</column>
 </table>
 </item>

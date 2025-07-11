@@ -3302,6 +3302,10 @@ __attribute__((sdx_kernel("kernel_gramschmidt", 0))) void kernel_gramschmidt(int
    double R[512 + 0][512 + 0],
    double Q[512 + 0][512 + 0])
 {
+#line 7 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 79 "data/benchmarks/gramschmidt/gramschmidt.c"
+
 #line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=kernel_gramschmidt
 # 79 "data/benchmarks/gramschmidt/gramschmidt.c"
@@ -3325,6 +3329,10 @@ __attribute__((sdx_kernel("kernel_gramschmidt", 0))) void kernel_gramschmidt(int
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 90 "data/benchmarks/gramschmidt/gramschmidt.c"
 
+#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 90 "data/benchmarks/gramschmidt/gramschmidt.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
  nrm += A[i][k] * A[i][k];
     }
@@ -3335,11 +3343,19 @@ __attribute__((sdx_kernel("kernel_gramschmidt", 0))) void kernel_gramschmidt(int
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 96 "data/benchmarks/gramschmidt/gramschmidt.c"
 
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 96 "data/benchmarks/gramschmidt/gramschmidt.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=512 avg=512 max=512
  Q[i][k] = A[i][k] / R[k][k];
     }
     loop4: for (j = k + 1; j < nj; j++)
     {
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 101 "data/benchmarks/gramschmidt/gramschmidt.c"
+
 #line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 101 "data/benchmarks/gramschmidt/gramschmidt.c"
@@ -3348,6 +3364,10 @@ __attribute__((sdx_kernel("kernel_gramschmidt", 0))) void kernel_gramschmidt(int
  R[k][j] = 0;
      loop5: for (i = 0; i < ni; i++)
       {
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 105 "data/benchmarks/gramschmidt/gramschmidt.c"
+
 #line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 105 "data/benchmarks/gramschmidt/gramschmidt.c"
@@ -3357,6 +3377,10 @@ __attribute__((sdx_kernel("kernel_gramschmidt", 0))) void kernel_gramschmidt(int
       }
       loop6: for (i = 0; i < ni; i++)
       {
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 110 "data/benchmarks/gramschmidt/gramschmidt.c"
+
 #line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gramschmidt.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 110 "data/benchmarks/gramschmidt/gramschmidt.c"

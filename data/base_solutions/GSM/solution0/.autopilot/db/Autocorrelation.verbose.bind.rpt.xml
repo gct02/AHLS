@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Autocorrelation'" level="0">
-<item name = "Date">Fri May 30 22:03:37 2025
+<item name = "Date">Wed Jul  9 03:57:16 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 4.651 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 4.768 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,24 +24,26 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1128, 1456, 9.024 us, 11.648 us, 1128, 1456, no</column>
+<column name="">1278, 2559, 10.224 us, 20.472 us, 1278, 2559, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_gsm_norm_fu_326">gsm_norm, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_Autocorrelation_Pipeline_VITIS_LOOP_65_1_fu_333">Autocorrelation_Pipeline_VITIS_LOOP_65_1, 165, 165, 1.320 us, 1.320 us, 165, 165, no</column>
-<column name="grp_Autocorrelation_Pipeline_Autocorrelation_label2_fu_342">Autocorrelation_Pipeline_Autocorrelation_label2, 11, 11, 88.000 ns, 88.000 ns, 11, 11, no</column>
-<column name="grp_Autocorrelation_Pipeline_Autocorrelation_label3_fu_348">Autocorrelation_Pipeline_Autocorrelation_label3, 765, 765, 6.120 us, 6.120 us, 765, 765, no</column>
-<column name="grp_Autocorrelation_Pipeline_Autocorrelation_label4_fu_373">Autocorrelation_Pipeline_Autocorrelation_label4, 11, 11, 88.000 ns, 88.000 ns, 11, 11, no</column>
-<column name="grp_Autocorrelation_Pipeline_Autocorrelation_label5_fu_379">Autocorrelation_Pipeline_Autocorrelation_label5, 162, 162, 1.296 us, 1.296 us, 162, 162, no</column>
+<column name="grp_gsm_norm_fu_477">gsm_norm, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
+<column name="temp_gsm_abs_fu_484">gsm_abs, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
+<column name="grp_gsm_mult_r_fu_490">gsm_mult_r, 3, 3, 24.000 ns, 24.000 ns, 3, 3, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- Autocorrelation_label0">320, 320, 2, -, -, 160, no</column>
+<column name="- Autocorrelation_label1">960, 960, 6, -, -, 160, no</column>
+<column name="- Autocorrelation_label2">9, 9, 1, -, -, 9, no</column>
+<column name="- Autocorrelation_label3">912, 912, 6, -, -, 152, no</column>
+<column name="- Autocorrelation_label4">18, 18, 2, -, -, 9, no</column>
+<column name="- Autocorrelation_label5">320, 320, 2, -, -, 160, no</column>
 </table>
 </item>
 </section>

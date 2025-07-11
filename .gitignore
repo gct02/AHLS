@@ -8,6 +8,7 @@
 __pycache__/
 *__pycache__/
 .venv/
+*.pyc
 
 # Build folders
 *build/
@@ -18,6 +19,8 @@ llvm/profiler/
 llvm/utils/
 llvm/clang_plugins/
 
+vitis_hls.log
+
 models/
 results/
 dataset/
@@ -26,10 +29,8 @@ hls_config.tcl
 process_dataset.sh
 test_model.sh
 
-directive_filter.py
-select_instances.py
-
 detect_broken_designs.py
 detect_redundant_designs.py
 detect_outliers.py
 inspect_gramschmidt.py
+area_model_analysis.py

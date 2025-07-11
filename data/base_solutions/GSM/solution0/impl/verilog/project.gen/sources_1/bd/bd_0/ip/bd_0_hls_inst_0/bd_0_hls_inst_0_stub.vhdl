@@ -2,10 +2,10 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
--- Date        : Fri May 30 22:05:08 2025
+-- Date        : Wed Jul  9 03:58:44 2025
 -- Host        : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GSM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0_stub.vhdl
+--               /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GSM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0_stub.vhdl
 -- Design      : bd_0_hls_inst_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xcu50-fsvh2104-2-e
@@ -18,6 +18,7 @@ entity bd_0_hls_inst_0 is
     indata_ce0 : out STD_LOGIC;
     indata_we0 : out STD_LOGIC;
     indata_ce1 : out STD_LOGIC;
+    indata_we1 : out STD_LOGIC;
     LARc_ce0 : out STD_LOGIC;
     LARc_we0 : out STD_LOGIC;
     LARc_ce1 : out STD_LOGIC;
@@ -32,6 +33,7 @@ entity bd_0_hls_inst_0 is
     indata_d0 : out STD_LOGIC_VECTOR ( 15 downto 0 );
     indata_q0 : in STD_LOGIC_VECTOR ( 15 downto 0 );
     indata_address1 : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    indata_d1 : out STD_LOGIC_VECTOR ( 15 downto 0 );
     indata_q1 : in STD_LOGIC_VECTOR ( 15 downto 0 );
     LARc_address0 : out STD_LOGIC_VECTOR ( 2 downto 0 );
     LARc_d0 : out STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -47,7 +49,7 @@ architecture stub of bd_0_hls_inst_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "indata_ce0,indata_we0,indata_ce1,LARc_ce0,LARc_we0,LARc_ce1,LARc_we1,ap_clk,ap_rst,ap_start,ap_done,ap_idle,ap_ready,indata_address0[7:0],indata_d0[15:0],indata_q0[15:0],indata_address1[7:0],indata_q1[15:0],LARc_address0[2:0],LARc_d0[15:0],LARc_q0[15:0],LARc_address1[2:0],LARc_d1[15:0],LARc_q1[15:0]";
+attribute black_box_pad_pin of stub : architecture is "indata_ce0,indata_we0,indata_ce1,indata_we1,LARc_ce0,LARc_we0,LARc_ce1,LARc_we1,ap_clk,ap_rst,ap_start,ap_done,ap_idle,ap_ready,indata_address0[7:0],indata_d0[15:0],indata_q0[15:0],indata_address1[7:0],indata_d1[15:0],indata_q1[15:0],LARc_address0[2:0],LARc_d0[15:0],LARc_q0[15:0],LARc_address1[2:0],LARc_d1[15:0],LARc_q1[15:0]";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "Gsm_LPC_Analysis,Vivado 2023.2";
 begin

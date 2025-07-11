@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'bbgemm'
 ================================================================
 + General Information: 
-    * Date:           Thu May 29 16:28:18 2025
+    * Date:           Wed Jul  9 03:45:05 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        GEMM
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -91,15 +91,15 @@
 | Name                                | DSP | Pragma | Variable | Op   | Impl    | Latency |
 +-------------------------------------+-----+--------+----------+------+---------+---------+
 | + bbgemm                            | 11  |        |          |      |         |         |
-|   add_ln19_fu_217_p2                |     |        | add_ln19 | add  | fabric  | 0       |
-|   add_ln21_fu_235_p2                |     |        | add_ln21 | add  | fabric  | 0       |
-|   add_ln25_fu_259_p2                |     |        | add_ln25 | add  | fabric  | 0       |
-|   add_ln26_fu_291_p2                |     |        | add_ln26 | add  | fabric  | 0       |
-|   add_ln28_fu_301_p2                |     |        | add_ln28 | add  | fabric  | 0       |
+|   add_ln19_fu_219_p2                |     |        | add_ln19 | add  | fabric  | 0       |
+|   add_ln21_fu_237_p2                |     |        | add_ln21 | add  | fabric  | 0       |
+|   add_ln25_fu_261_p2                |     |        | add_ln25 | add  | fabric  | 0       |
+|   add_ln26_fu_293_p2                |     |        | add_ln26 | add  | fabric  | 0       |
+|   add_ln28_fu_303_p2                |     |        | add_ln28 | add  | fabric  | 0       |
 |   dmul_64ns_64ns_64_4_max_dsp_1_U2  | 8   |        | mul      | dmul | maxdsp  | 3       |
 |   dadd_64ns_64ns_64_4_full_dsp_1_U1 | 3   |        | add      | dadd | fulldsp | 3       |
-|   add_ln17_fu_223_p2                |     |        | add_ln17 | add  | fabric  | 0       |
-|   add_ln15_fu_201_p2                |     |        | add_ln15 | add  | fabric  | 0       |
+|   add_ln17_fu_225_p2                |     |        | add_ln17 | add  | fabric  | 0       |
+|   add_ln15_fu_203_p2                |     |        | add_ln15 | add  | fabric  | 0       |
 +-------------------------------------+-----+--------+----------+------+---------+---------+
 
 
@@ -125,6 +125,7 @@
 | pipeline       | off=true             | ../base_directives/gemm.tcl:3 in bbgemm  |
 | pipeline       | off=true             | ../base_directives/gemm.tcl:4 in bbgemm  |
 | pipeline       | off=true             | ../base_directives/gemm.tcl:5 in bbgemm  |
+| pipeline       | off=true             | ../base_directives/gemm.tcl:6 in bbgemm  |
 +----------------+----------------------+------------------------------------------+
 
 

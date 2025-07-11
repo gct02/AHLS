@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'reset'" level="0">
-<item name = "Date">Fri May 30 21:17:06 2025
+<item name = "Date">Wed Jul  9 03:19:59 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -83,32 +83,32 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln427_fu_514_p2">+, 0, 0, 10, 3, 1</column>
-<column name="add_ln436_fu_547_p2">+, 0, 0, 10, 3, 1</column>
-<column name="add_ln445_fu_580_p2">+, 0, 0, 12, 5, 1</column>
-<column name="add_ln451_fu_610_p2">+, 0, 0, 12, 4, 1</column>
-<column name="icmp_ln427_fu_508_p2">icmp, 0, 0, 10, 3, 3</column>
-<column name="icmp_ln436_fu_541_p2">icmp, 0, 0, 10, 3, 3</column>
-<column name="icmp_ln445_fu_574_p2">icmp, 0, 0, 12, 5, 5</column>
-<column name="icmp_ln451_fu_604_p2">icmp, 0, 0, 12, 4, 4</column>
+<column name="add_ln427_fu_518_p2">+, 0, 0, 10, 3, 1</column>
+<column name="add_ln436_fu_551_p2">+, 0, 0, 10, 3, 1</column>
+<column name="add_ln445_fu_584_p2">+, 0, 0, 12, 5, 1</column>
+<column name="add_ln451_fu_614_p2">+, 0, 0, 12, 4, 1</column>
+<column name="icmp_ln427_fu_512_p2">icmp, 0, 0, 10, 3, 3</column>
+<column name="icmp_ln436_fu_545_p2">icmp, 0, 0, 10, 3, 3</column>
+<column name="icmp_ln445_fu_578_p2">icmp, 0, 0, 12, 5, 5</column>
+<column name="icmp_ln451_fu_608_p2">icmp, 0, 0, 12, 4, 4</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">31, 6, 1, 6</column>
-<column name="i_2_fu_142">9, 2, 3, 6</column>
-<column name="i_3_fu_146">9, 2, 5, 10</column>
-<column name="i_4_fu_150">9, 2, 4, 8</column>
-<column name="i_fu_138">9, 2, 3, 6</column>
+<column name="i_2_fu_146">9, 2, 3, 6</column>
+<column name="i_3_fu_150">9, 2, 5, 10</column>
+<column name="i_4_fu_154">9, 2, 4, 8</column>
+<column name="i_fu_142">9, 2, 3, 6</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">5, 0, 5, 0</column>
-<column name="i_2_fu_142">3, 0, 3, 0</column>
-<column name="i_3_fu_146">5, 0, 5, 0</column>
-<column name="i_4_fu_150">4, 0, 4, 0</column>
-<column name="i_fu_138">3, 0, 3, 0</column>
+<column name="i_2_fu_146">3, 0, 3, 0</column>
+<column name="i_3_fu_150">5, 0, 5, 0</column>
+<column name="i_4_fu_154">4, 0, 4, 0</column>
+<column name="i_fu_142">3, 0, 3, 0</column>
 </table>
 </item>
 </section>

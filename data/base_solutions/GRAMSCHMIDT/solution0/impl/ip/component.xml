@@ -267,7 +267,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ffea4ca7</spirit:value>
+            <spirit:value>05e2d0d4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -286,7 +286,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7520811d</spirit:value>
+            <spirit:value>9284b7e5</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -305,7 +305,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>d26d300e</spirit:value>
+            <spirit:value>02a5b237</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -324,7 +324,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>88c018c1</spirit:value>
+            <spirit:value>b657384e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -863,7 +863,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/kernel_gramschmidt.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_e9f10822</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_39398a1b</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1003,8 +1003,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Kernel_gramschmidt</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114105942</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-05-30T16:02:17Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114162991</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-07-09T06:51:16Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1013,7 +1013,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="ed647617"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3e757f32"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="eb1f853b"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="e9812265"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="6ed708c3"/>
     </xilinx:packagingInfo>

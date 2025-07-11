@@ -3,8 +3,8 @@
         "name": "kernel_gramschmidt",
         "file": "data\/benchmarks\/gramschmidt\/gramschmidt.c",
         "fileloc": "75",
-        "instructions": "146",
-        "total_instructions": "146",
+        "instructions": "147",
+        "total_instructions": "147",
         "calls": "",
         "basicblocks": "19",
         "loads": {

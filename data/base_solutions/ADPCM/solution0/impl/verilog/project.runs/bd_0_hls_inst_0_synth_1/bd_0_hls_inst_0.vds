@@ -3,18 +3,17 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Fri May 30 21:17:42 2025
-# Process ID: 116319
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
+# Start of session at: Wed Jul  9 03:20:35 2025
+# Process ID: 149410
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
 # Command line: vivado -log bd_0_hls_inst_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_hls_inst_0.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3400.000 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3493.376 MHz, CPU Physical cores: 4, Host memory: 16492 MB
 #-----------------------------------------------------------
 source bd_0_hls_inst_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1308.043 ; gain = 17.867 ; free physical = 225 ; free virtual = 14897
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
 Command: synth_design -top bd_0_hls_inst_0 -part xcu50-fsvh2104-2-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
@@ -24,94 +23,126 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
 INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 116457
+INFO: [Synth 8-7075] Helper process launched with PID 149508
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3007.508 ; gain = 397.715 ; free physical = 217 ; free virtual = 12927
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3006.891 ; gain = 396.801 ; free physical = 425 ; free virtual = 13264
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_delay_dltx_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_delay_dltx_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v:41]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_delay_dltx_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_delay_bpl_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_delay_bpl_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v:31]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_delay_bpl_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_tqmf_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_tqmf_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v:41]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_tqmf_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_accumc_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_accumc_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v:31]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_accumc_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_h_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_h_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v:33]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_h_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_qq4_code4_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_qq4_code4_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_qq4_code4_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_wl_code_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_wl_code_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_wl_code_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_ilb_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_ilb_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.v:33]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_ilb_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_reset' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_reset.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_reset' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_reset.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_encode' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_encode.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_filtez' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_filtez.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_32s_48_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_32s_48_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_filtez' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_filtez.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl_decis_levl_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_quantl_decis_levl_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl_decis_levl_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_15ns_15ns_30_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_15ns_15ns_30_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_quantl.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_upzero' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_upzero.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_16s_32_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_16s_32_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_upzero' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_upzero.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_15s_32s_47_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_15s_32s_47_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_32s_47_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_32s_47_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_32s_32s_64_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_32s_32s_64_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_32s_7s_39_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_32s_7s_39_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_15ns_11ns_25_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_15ns_11ns_25_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_15ns_31_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_15ns_31_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mux_4_2_14_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mux_4_2_14_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v:11]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_14s_15ns_29_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_14s_15ns_29_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v:5]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mux_4_2_11_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mux_4_2_11_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_encode' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_encode.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_decode' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_decode.v:9]
-INFO: [Synth 8-6157] synthesizing module 'adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_decode' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_decode.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'adpcm_main' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_delay_dltx_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_delay_dltx_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_delay_dltx_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_delay_bpl_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_delay_bpl_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_delay_bpl_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_tqmf_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_tqmf_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_tqmf_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_accumc_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_accumc_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_accumc_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_h_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_h_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_h_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_qq4_code4_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_qq4_code4_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_qq4_code4_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_reset' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_reset.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_reset' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_reset.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_encode' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_encode.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_filtez' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_filtez.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_32s_48_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_32s_48_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_filtez' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_filtez.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl_decis_levl_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_quantl_decis_levl_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl_decis_levl_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_abs_r' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_abs_r.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_abs_r' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_abs_r.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_15ns_15ns_30_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_15ns_15ns_30_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_quantl' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_quantl.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_upzero' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_upzero.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_16s_32_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_16s_32_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_upzero' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_upzero.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_uppol2' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_uppol2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_32s_32s_64_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_32s_32s_64_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_uppol2' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_uppol2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_uppol1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_uppol1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_uppol1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_uppol1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_15s_32s_47_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_15s_32s_47_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_32s_7s_39_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_32s_7s_39_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_15ns_11ns_25_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_15ns_11ns_25_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_15ns_31_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_15ns_31_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mux_4_2_14_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mux_4_2_14_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v:11]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_14s_15ns_29_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_14s_15ns_29_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_encode' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_encode.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_decode' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_decode.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_decode' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_decode.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_filtep' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_filtep.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mul_16s_32s_47_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mul_16s_32s_47_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_filtep' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_filtep.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_logscl' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logscl.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_logscl_wl_code_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_logscl_wl_code_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_logscl' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logscl.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_scalel' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_scalel.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_scalel_ilb_table_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './adpcm_main_scalel_ilb_table_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_scalel_ilb_table_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_scalel' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_scalel.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_logsch' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logsch.v:9]
+INFO: [Synth 8-6157] synthesizing module 'adpcm_main_mux_4_2_11_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_mux_4_2_11_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main_logsch' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_logsch.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'adpcm_main' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+WARNING: [Synth 8-7129] Port reset in module adpcm_main_scalel_ilb_table_ROM_AUTO_1R is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[5] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[4] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[3] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[2] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[1] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[0] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module adpcm_main_logscl_wl_code_table_ROM_AUTO_1R is either unconnected or has no load
+WARNING: [Synth 8-7129] Port il[1] in module adpcm_main_logscl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port il[0] in module adpcm_main_logscl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R is either unconnected or has no load
-WARNING: [Synth 8-7129] Port input_r[1] in module adpcm_main_decode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port input_r[0] in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_filtep_fu_650_p_ready in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_logscl_fu_657_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_scalel_fu_663_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol1_fu_669_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol2_fu_676_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tmp_s_logsch_fu_684_p_ready in module adpcm_main_decode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_quantl_decis_levl_ROM_AUTO_1R is either unconnected or has no load
-WARNING: [Synth 8-7129] Port reset in module adpcm_main_ilb_table_ROM_AUTO_1R is either unconnected or has no load
-WARNING: [Synth 8-7129] Port reset in module adpcm_main_wl_code_table_ROM_AUTO_1R is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_filtep_fu_650_p_ready in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_logscl_fu_657_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_scalel_fu_663_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol1_fu_669_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol2_fu_676_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tmp_s_logsch_fu_684_p_ready in module adpcm_main_encode is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_qq4_code4_table_ROM_AUTO_1R is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_h_ROM_AUTO_1R is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module adpcm_main_accumc_RAM_AUTO_1R1W is either unconnected or has no load
@@ -143,36 +174,36 @@ WARNING: [Synth 8-7129] Port encoded_q0[10] in module adpcm_main is either uncon
 WARNING: [Synth 8-7129] Port encoded_q0[9] in module adpcm_main is either unconnected or has no load
 WARNING: [Synth 8-7129] Port encoded_q0[8] in module adpcm_main is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3111.477 ; gain = 501.684 ; free physical = 172 ; free virtual = 12794
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3112.828 ; gain = 502.738 ; free physical = 392 ; free virtual = 13137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3126.320 ; gain = 516.527 ; free physical = 168 ; free virtual = 12791
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3127.672 ; gain = 517.582 ; free physical = 392 ; free virtual = 13137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3126.320 ; gain = 516.527 ; free physical = 168 ; free virtual = 12791
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3127.672 ; gain = 517.582 ; free physical = 392 ; free virtual = 13137
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 3126.320 ; gain = 0.000 ; free physical = 168 ; free virtual = 12791
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3127.672 ; gain = 0.000 ; free physical = 391 ; free virtual = 13137
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/adpcm_main_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/adpcm_main_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/adpcm_main_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/adpcm_main_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3281.977 ; gain = 0.000 ; free physical = 210 ; free virtual = 12722
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3284.328 ; gain = 0.000 ; free physical = 331 ; free virtual = 13089
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3282.012 ; gain = 0.000 ; free physical = 210 ; free virtual = 12722
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3284.363 ; gain = 0.000 ; free physical = 332 ; free virtual = 13089
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3282.012 ; gain = 672.219 ; free physical = 192 ; free virtual = 12711
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3284.363 ; gain = 674.273 ; free physical = 317 ; free virtual = 13082
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -180,15 +211,22 @@ Start Loading Part and Timing Information
 Loading part: xcu50-fsvh2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3282.012 ; gain = 672.219 ; free physical = 192 ; free virtual = 12711
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3284.363 ; gain = 674.273 ; free physical = 317 ; free virtual = 13082
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3282.012 ; gain = 672.219 ; free physical = 192 ; free virtual = 12710
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3284.363 ; gain = 674.273 ; free physical = 317 ; free virtual = 13082
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
@@ -204,58 +242,57 @@ INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of 
 INFO: [Synth 8-3971] The signal "adpcm_main_tqmf_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
 INFO: [Synth 8-6904] The RAM "adpcm_main_accumc_RAM_AUTO_1R1W:/ram_reg" of size (depth=11 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 3282.012 ; gain = 672.219 ; free physical = 198 ; free virtual = 12718
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 3284.363 ; gain = 674.273 ; free physical = 322 ; free virtual = 13090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   47 Bit       Adders := 3     
+	   2 Input   47 Bit       Adders := 2     
 	   4 Input   47 Bit       Adders := 1     
 	   3 Input   47 Bit       Adders := 1     
 	   2 Input   46 Bit       Adders := 2     
 	   3 Input   40 Bit       Adders := 3     
 	   3 Input   37 Bit       Adders := 4     
-	   2 Input   32 Bit       Adders := 14    
-	   3 Input   32 Bit       Adders := 3     
+	   2 Input   32 Bit       Adders := 13    
+	   3 Input   32 Bit       Adders := 4     
 	   2 Input   31 Bit       Adders := 3     
-	   3 Input   25 Bit       Adders := 4     
-	   3 Input   23 Bit       Adders := 8     
-	   2 Input   18 Bit       Adders := 4     
-	   3 Input   17 Bit       Adders := 4     
-	   2 Input   17 Bit       Adders := 4     
+	   3 Input   25 Bit       Adders := 2     
+	   3 Input   23 Bit       Adders := 4     
+	   2 Input   18 Bit       Adders := 2     
+	   3 Input   17 Bit       Adders := 2     
+	   2 Input   17 Bit       Adders := 2     
 	   2 Input   16 Bit       Adders := 4     
-	   2 Input   15 Bit       Adders := 4     
 	   2 Input    6 Bit       Adders := 3     
 	   2 Input    5 Bit       Adders := 12    
-	   2 Input    4 Bit       Adders := 10    
+	   3 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 7     
 	   2 Input    3 Bit       Adders := 9     
 	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
 	               50 Bit    Registers := 1     
 	               47 Bit    Registers := 2     
-	               32 Bit    Registers := 40    
-	               31 Bit    Registers := 11    
-	               17 Bit    Registers := 4     
-	               16 Bit    Registers := 26    
-	               15 Bit    Registers := 13    
-	               14 Bit    Registers := 3     
-	               13 Bit    Registers := 4     
-	               12 Bit    Registers := 3     
-	               11 Bit    Registers := 3     
+	               32 Bit    Registers := 50    
+	               31 Bit    Registers := 10    
+	               18 Bit    Registers := 2     
+	               16 Bit    Registers := 27    
+	               15 Bit    Registers := 24    
+	               14 Bit    Registers := 6     
+	               13 Bit    Registers := 5     
+	               12 Bit    Registers := 2     
 	                9 Bit    Registers := 1     
 	                8 Bit    Registers := 4     
-	                6 Bit    Registers := 10    
+	                6 Bit    Registers := 11    
 	                5 Bit    Registers := 10    
-	                4 Bit    Registers := 12    
-	                3 Bit    Registers := 12    
-	                2 Bit    Registers := 2     
-	                1 Bit    Registers := 20    
+	                4 Bit    Registers := 10    
+	                3 Bit    Registers := 13    
+	                2 Bit    Registers := 8     
+	                1 Bit    Registers := 28    
 +---Multipliers : 
 	              32x32  Multipliers := 6     
-	              16x32  Multipliers := 4     
-	              15x32  Multipliers := 4     
+	              16x32  Multipliers := 3     
+	              15x32  Multipliers := 5     
 	               7x32  Multipliers := 2     
 +---RAMs : 
 	              768 Bit	(24 X 32 bit)          RAMs := 1     
@@ -263,33 +300,35 @@ Detailed RTL Component Info :
 	              192 Bit	(6 X 32 bit)          RAMs := 4     
 	               96 Bit	(6 X 16 bit)          RAMs := 4     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 45    
-	   2 Input   31 Bit        Muxes := 16    
-	   2 Input   18 Bit        Muxes := 8     
-	   2 Input   17 Bit        Muxes := 4     
+	   2 Input   32 Bit        Muxes := 46    
+	   2 Input   31 Bit        Muxes := 22    
+	   2 Input   18 Bit        Muxes := 4     
+	   2 Input   17 Bit        Muxes := 7     
 	  17 Input   16 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 32    
-	   2 Input   15 Bit        Muxes := 36    
-	   2 Input   14 Bit        Muxes := 6     
+	   2 Input   16 Bit        Muxes := 41    
+	   2 Input   15 Bit        Muxes := 49    
+	   2 Input   14 Bit        Muxes := 7     
+	   2 Input   13 Bit        Muxes := 2     
 	  17 Input   13 Bit        Muxes := 1     
-	   2 Input   12 Bit        Muxes := 5     
-	   2 Input   11 Bit        Muxes := 7     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 4     
 	   2 Input   10 Bit        Muxes := 1     
 	   2 Input    9 Bit        Muxes := 3     
 	   9 Input    8 Bit        Muxes := 3     
 	   2 Input    8 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 2     
-	   2 Input    6 Bit        Muxes := 6     
-	   2 Input    5 Bit        Muxes := 13    
+	   2 Input    6 Bit        Muxes := 7     
+	   2 Input    5 Bit        Muxes := 11    
 	   3 Input    5 Bit        Muxes := 3     
 	   5 Input    5 Bit        Muxes := 2     
-	   2 Input    4 Bit        Muxes := 5     
+	   2 Input    4 Bit        Muxes := 7     
 	   6 Input    4 Bit        Muxes := 3     
 	   2 Input    3 Bit        Muxes := 25    
 	   6 Input    3 Bit        Muxes := 3     
 	   5 Input    3 Bit        Muxes := 3     
-	   2 Input    2 Bit        Muxes := 11    
-	   2 Input    1 Bit        Muxes := 100   
+	   2 Input    2 Bit        Muxes := 12    
+	   4 Input    2 Bit        Muxes := 6     
+	   2 Input    1 Bit        Muxes := 111   
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -312,167 +351,170 @@ DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul
 DSP Report: Generating DSP mul_16s_32s_48_1_1_U44/tmp_product, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul_16s_32s_48_1_1_U44/tmp_product.
 DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul_16s_32s_48_1_1_U44/tmp_product.
-DSP Report: Generating DSP mul_15ns_15ns_30_1_1_U48/tmp_product, operation Mode is: A2*B.
-DSP Report: register mul_15ns_15ns_30_1_1_U48/tmp_product is absorbed into DSP mul_15ns_15ns_30_1_1_U48/tmp_product.
-DSP Report: operator mul_15ns_15ns_30_1_1_U48/tmp_product is absorbed into DSP mul_15ns_15ns_30_1_1_U48/tmp_product.
-WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln543_reg_337_reg' and it is trimmed from '32' to '16' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/6662/hdl/verilog/adpcm_main_upzero.v:200]
-DSP Report: Generating DSP mul_16s_16s_32_1_1_U55/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_16s_32_1_1_U55/tmp_product is absorbed into DSP mul_16s_16s_32_1_1_U55/tmp_product.
-DSP Report: Generating DSP mul_16s_16s_32_1_1_U55/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_16s_32_1_1_U55/tmp_product is absorbed into DSP mul_16s_16s_32_1_1_U55/tmp_product.
-DSP Report: Generating DSP mul_16s_32s_47_1_1_U62/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_32s_47_1_1_U62/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U62/tmp_product.
-DSP Report: operator mul_16s_32s_47_1_1_U62/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U62/tmp_product.
-DSP Report: Generating DSP mul_16s_32s_47_1_1_U62/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_16s_32s_47_1_1_U62/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U62/tmp_product.
-DSP Report: operator mul_16s_32s_47_1_1_U62/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U62/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U60/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U60/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U60/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U60/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U60/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U60/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U60/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U60/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U60/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U60/tmp_product.
-DSP Report: Generating DSP mul_16s_15ns_31_1_1_U69/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_15ns_31_1_1_U69/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U69/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U64/tmp_product, operation Mode is: A2*B.
-DSP Report: register mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U64/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln290_reg_2337_reg is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U64/tmp_product, operation Mode is: A*B2.
-DSP Report: register mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U64/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln290_reg_2337_reg is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U64/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U64/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U63/tmp_product, operation Mode is: A2*B.
-DSP Report: register mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U63/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln290_reg_2337_reg is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U63/tmp_product, operation Mode is: A*B2.
-DSP Report: register mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U63/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln290_reg_2337_reg is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U63/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U63/tmp_product.
-DSP Report: Generating DSP mul_14s_15ns_29_1_1_U71/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_14s_15ns_29_1_1_U71/tmp_product is absorbed into DSP mul_14s_15ns_29_1_1_U71/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U66/tmp_product, operation Mode is: A2*B.
-DSP Report: register mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U66/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln317_reg_2363_reg is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U66/tmp_product, operation Mode is: A*B2.
-DSP Report: register mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U66/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln317_reg_2363_reg is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U66/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U66/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U65/tmp_product, operation Mode is: A2*B.
-DSP Report: register mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U65/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln317_reg_2363_reg is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U65/tmp_product, operation Mode is: A*B2.
-DSP Report: register mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U65/tmp_product, operation Mode is: (PCIN>>17)+A*B2.
-DSP Report: register add_ln317_reg_2363_reg is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U65/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U65/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U61/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U61/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U61/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U61/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U61/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U61/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U61/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U61/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U61/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U61/tmp_product.
-DSP Report: Generating DSP mul_15ns_11ns_25_1_1_U68/tmp_product, operation Mode is: A*(B:0x234).
-DSP Report: operator mul_15ns_11ns_25_1_1_U68/tmp_product is absorbed into DSP mul_15ns_11ns_25_1_1_U68/tmp_product.
+DSP Report: Generating DSP mul_15ns_15ns_30_1_1_U57/tmp_product, operation Mode is: A2*B.
+DSP Report: register mul_15ns_15ns_30_1_1_U57/tmp_product is absorbed into DSP mul_15ns_15ns_30_1_1_U57/tmp_product.
+DSP Report: operator mul_15ns_15ns_30_1_1_U57/tmp_product is absorbed into DSP mul_15ns_15ns_30_1_1_U57/tmp_product.
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln543_reg_343_reg' and it is trimmed from '32' to '16' bits. [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/07d4/hdl/verilog/adpcm_main_upzero.v:200]
+DSP Report: Generating DSP mul_16s_16s_32_1_1_U70/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_16s_16s_32_1_1_U70/tmp_product is absorbed into DSP mul_16s_16s_32_1_1_U70/tmp_product.
+DSP Report: Generating DSP mul_16s_16s_32_1_1_U70/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_16s_16s_32_1_1_U70/tmp_product is absorbed into DSP mul_16s_16s_32_1_1_U70/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_16s_15ns_31_1_1_U96/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_16s_15ns_31_1_1_U96/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U96/tmp_product.
+DSP Report: Generating DSP mul_14s_15ns_29_1_1_U98/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_14s_15ns_29_1_1_U98/tmp_product is absorbed into DSP mul_14s_15ns_29_1_1_U98/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U92/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U92/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U92/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U92/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U92/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U92/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U92/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U92/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U92/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U92/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U93/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U93/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U93/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U93/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U93/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U93/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U93/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U93/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U93/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U93/tmp_product.
+DSP Report: Generating DSP mul_15ns_11ns_25_1_1_U95/tmp_product, operation Mode is: A*(B:0x234).
+DSP Report: operator mul_15ns_11ns_25_1_1_U95/tmp_product is absorbed into DSP mul_15ns_11ns_25_1_1_U95/tmp_product.
 DSP Report: Generating DSP mul_16s_32s_48_1_1_U44/tmp_product, operation Mode is: A*B.
 DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul_16s_32s_48_1_1_U44/tmp_product.
 DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul_16s_32s_48_1_1_U44/tmp_product.
 DSP Report: Generating DSP mul_16s_32s_48_1_1_U44/tmp_product, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul_16s_32s_48_1_1_U44/tmp_product.
 DSP Report: operator mul_16s_32s_48_1_1_U44/tmp_product is absorbed into DSP mul_16s_32s_48_1_1_U44/tmp_product.
-DSP Report: Generating DSP mul_16s_16s_32_1_1_U55/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_16s_32_1_1_U55/tmp_product is absorbed into DSP mul_16s_16s_32_1_1_U55/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U110/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U110/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U110/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U110/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U110/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U110/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U110/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U110/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U110/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U110/tmp_product.
-DSP Report: Generating DSP mul_16s_15ns_31_1_1_U116/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_15ns_31_1_1_U116/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U116/tmp_product.
-DSP Report: Generating DSP mul_16s_32s_47_1_1_U112/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_16s_32s_47_1_1_U112/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U112/tmp_product.
-DSP Report: operator mul_16s_32s_47_1_1_U112/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U112/tmp_product.
-DSP Report: Generating DSP mul_16s_32s_47_1_1_U112/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_16s_32s_47_1_1_U112/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U112/tmp_product.
-DSP Report: operator mul_16s_32s_47_1_1_U112/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U112/tmp_product.
-DSP Report: Generating DSP mul_14s_15ns_29_1_1_U120/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_14s_15ns_29_1_1_U120/tmp_product is absorbed into DSP mul_14s_15ns_29_1_1_U120/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U114/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U114/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U114/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U114/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U114/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U114/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U113/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U113/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U113/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: Generating DSP mul_32s_32s_64_1_1_U113/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: operator mul_32s_32s_64_1_1_U113/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U113/tmp_product.
-DSP Report: Generating DSP mul_16s_15ns_31_1_1_U117/tmp_product, operation Mode is: A2*B.
-DSP Report: register mul_16s_15ns_31_1_1_U117/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U117/tmp_product.
-DSP Report: operator mul_16s_15ns_31_1_1_U117/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U117/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U111/tmp_product, operation Mode is: A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U111/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U111/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U111/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U111/tmp_product.
-DSP Report: Generating DSP mul_15s_32s_47_1_1_U111/tmp_product, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator mul_15s_32s_47_1_1_U111/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U111/tmp_product.
-DSP Report: operator mul_15s_32s_47_1_1_U111/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U111/tmp_product.
+DSP Report: Generating DSP mul_16s_16s_32_1_1_U70/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_16s_16s_32_1_1_U70/tmp_product is absorbed into DSP mul_16s_16s_32_1_1_U70/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U130/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U130/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U130/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U130/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U130/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U130/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U130/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U130/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U130/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U130/tmp_product.
+DSP Report: Generating DSP mul_16s_15ns_31_1_1_U135/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_16s_15ns_31_1_1_U135/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U135/tmp_product.
+DSP Report: Generating DSP mul_14s_15ns_29_1_1_U134/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_14s_15ns_29_1_1_U134/tmp_product is absorbed into DSP mul_14s_15ns_29_1_1_U134/tmp_product.
+DSP Report: Generating DSP mul_16s_15ns_31_1_1_U136/tmp_product, operation Mode is: A2*B.
+DSP Report: register mul_16s_15ns_31_1_1_U136/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U136/tmp_product.
+DSP Report: operator mul_16s_15ns_31_1_1_U136/tmp_product is absorbed into DSP mul_16s_15ns_31_1_1_U136/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U131/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U131/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U131/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U131/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U131/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U131/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U131/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U131/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U131/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U131/tmp_product.
+DSP Report: Generating DSP mul_16s_32s_47_1_1_U49/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_16s_32s_47_1_1_U49/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U49/tmp_product.
+DSP Report: operator mul_16s_32s_47_1_1_U49/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U49/tmp_product.
+DSP Report: Generating DSP mul_16s_32s_47_1_1_U49/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_16s_32s_47_1_1_U49/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U49/tmp_product.
+DSP Report: operator mul_16s_32s_47_1_1_U49/tmp_product is absorbed into DSP mul_16s_32s_47_1_1_U49/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U48/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U48/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U48/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U48/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U48/tmp_product.
+DSP Report: Generating DSP mul_15s_32s_47_1_1_U48/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_15s_32s_47_1_1_U48/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U48/tmp_product.
+DSP Report: operator mul_15s_32s_47_1_1_U48/tmp_product is absorbed into DSP mul_15s_32s_47_1_1_U48/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U83/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U83/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U76/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U76/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_32s_32s_64_1_1_U75/tmp_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
+DSP Report: operator mul_32s_32s_64_1_1_U75/tmp_product is absorbed into DSP mul_32s_32s_64_1_1_U75/tmp_product.
 INFO: [Synth 8-6904] The RAM "inst/delay_bpl_U/ram_reg" of size (depth=6 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6904] The RAM "inst/delay_bph_U/ram_reg" of size (depth=6 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6904] The RAM "inst/dec_del_bpl_U/ram_reg" of size (depth=6 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6904] The RAM "inst/dec_del_bph_U/ram_reg" of size (depth=6 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6904] The RAM "inst/accumc_U/ram_reg" of size (depth=11 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6904] The RAM "inst/accumd_U/ram_reg" of size (depth=11 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
-WARNING: [Synth 8-7129] Port input_r[1] in module adpcm_main_decode is either unconnected or has no load
-WARNING: [Synth 8-7129] Port input_r[0] in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[5] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[4] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[3] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[2] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[1] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port nbl[0] in module adpcm_main_scalel is either unconnected or has no load
+WARNING: [Synth 8-7129] Port il[1] in module adpcm_main_logscl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port il[0] in module adpcm_main_logscl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_filtep_fu_650_p_ready in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_logscl_fu_657_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_scalel_fu_663_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol1_fu_669_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol2_fu_676_p_idle in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tmp_s_logsch_fu_684_p_ready in module adpcm_main_decode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_filtep_fu_650_p_ready in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_logscl_fu_657_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_scalel_fu_663_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol1_fu_669_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port grp_uppol2_fu_676_p_idle in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tmp_s_logsch_fu_684_p_ready in module adpcm_main_encode is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module adpcm_main_qq4_code4_table_ROM_AUTO_1R is either unconnected or has no load
 WARNING: [Synth 8-7129] Port encoded_q0[31] in module adpcm_main is either unconnected or has no load
 WARNING: [Synth 8-7129] Port encoded_q0[30] in module adpcm_main is either unconnected or has no load
 WARNING: [Synth 8-7129] Port encoded_q0[29] in module adpcm_main is either unconnected or has no load
@@ -496,7 +538,7 @@ WARNING: [Synth 8-7129] Port encoded_q0[12] in module adpcm_main is either uncon
 WARNING: [Synth 8-7129] Port encoded_q0[11] in module adpcm_main is either unconnected or has no load
 WARNING: [Synth 8-7129] Port encoded_q0[10] in module adpcm_main is either unconnected or has no load
 WARNING: [Synth 8-7129] Port encoded_q0[9] in module adpcm_main is either unconnected or has no load
-WARNING: [Synth 8-7129] Port encoded_q0[8] in module adpcm_main is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 RAM ("inst/delay_dltx_U/ram_reg") is too shallow (depth = 6) to use URAM. Choosing BRAM instead of URAM 
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 16 for RAM "inst/delay_dltx_U/ram_reg"
 INFO: [Synth 8-3971] The signal "inst/delay_dltx_U/ram_reg" was recognized as a true dual port RAM template.
@@ -519,58 +561,58 @@ INFO: [Synth 8-6904] The RAM "inst/dec_del_bph_U/ram_reg" of size (depth=6 x wid
 INFO: [Synth 8-6904] The RAM "inst/accumc_U/ram_reg" of size (depth=11 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6904] The RAM "inst/accumd_U/ram_reg" of size (depth=11 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 3282.012 ; gain = 672.219 ; free physical = 288 ; free virtual = 12843
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 3284.363 ; gain = 674.273 ; free physical = 311 ; free virtual = 13055
 ---------------------------------------------------------------------------------
- Sort Area is  mul_32s_32s_64_1_1_U63/tmp_product_d : 0 0 : 3119 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U63/tmp_product_d : 0 1 : 2668 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U64/tmp_product_13 : 0 0 : 3119 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U64/tmp_product_13 : 0 1 : 2668 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U65/tmp_product_17 : 0 0 : 3119 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U65/tmp_product_17 : 0 1 : 2668 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U66/tmp_product_19 : 0 0 : 3119 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U66/tmp_product_19 : 0 1 : 2668 5787 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U113/tmp_product_25 : 0 0 : 3101 5754 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U113/tmp_product_25 : 0 1 : 2653 5754 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U114/tmp_product_29 : 0 0 : 3101 5754 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U114/tmp_product_29 : 0 1 : 2653 5754 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U63/tmp_product_10 : 0 0 : 2652 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U63/tmp_product_10 : 0 1 : 2500 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U64/tmp_product_14 : 0 0 : 2652 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U64/tmp_product_14 : 0 1 : 2500 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U65/tmp_product_18 : 0 0 : 2652 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U65/tmp_product_18 : 0 1 : 2500 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U66/tmp_product_1a : 0 0 : 2652 5152 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U66/tmp_product_1a : 0 1 : 2500 5152 : Used 1 time 0
- Sort Area is  mul_16s_32s_47_1_1_U112/tmp_product_22 : 0 0 : 2304 4252 : Used 1 time 0
- Sort Area is  mul_16s_32s_47_1_1_U112/tmp_product_22 : 0 1 : 1948 4252 : Used 1 time 0
- Sort Area is  mul_16s_32s_47_1_1_U62/tmp_product_c : 0 0 : 2304 4252 : Used 1 time 0
- Sort Area is  mul_16s_32s_47_1_1_U62/tmp_product_c : 0 1 : 1948 4252 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_8 : 0 0 : 3101 5754 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_8 : 0 1 : 2653 5754 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_e : 0 0 : 3101 5754 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_e : 0 1 : 2653 5754 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_10 : 0 0 : 3101 5754 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_10 : 0 1 : 2653 5754 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_27 : 0 0 : 3101 5261 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_27 : 0 1 : 2160 5261 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_29 : 0 0 : 3101 5261 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_29 : 0 1 : 2160 5261 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_23 : 0 0 : 3101 5261 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_23 : 0 1 : 2160 5261 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U130/tmp_product_1c : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U130/tmp_product_1c : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U131/tmp_product_20 : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U131/tmp_product_20 : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U48/tmp_product_21 : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U48/tmp_product_21 : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U92/tmp_product_18 : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U92/tmp_product_18 : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U93/tmp_product_17 : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_15s_32s_47_1_1_U93/tmp_product_17 : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_b : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_b : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_f : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_f : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_11 : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_11 : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_28 : 0 0 : 2634 4434 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U75/tmp_product_28 : 0 1 : 1800 4434 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_2a : 0 0 : 2634 4434 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U76/tmp_product_2a : 0 1 : 1800 4434 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_25 : 0 0 : 2634 4434 : Used 1 time 0
+ Sort Area is  mul_32s_32s_64_1_1_U83/tmp_product_25 : 0 1 : 1800 4434 : Used 1 time 0
+ Sort Area is  mul_16s_32s_47_1_1_U49/tmp_product_22 : 0 0 : 2304 4252 : Used 1 time 0
+ Sort Area is  mul_16s_32s_47_1_1_U49/tmp_product_22 : 0 1 : 1948 4252 : Used 1 time 0
  Sort Area is  mul_16s_32s_48_1_1_U44/tmp_product_0 : 0 0 : 2304 4252 : Used 1 time 0
  Sort Area is  mul_16s_32s_48_1_1_U44/tmp_product_0 : 0 1 : 1948 4252 : Used 1 time 0
- Sort Area is  mul_16s_32s_48_1_1_U44/tmp_product_1e : 0 0 : 2304 4199 : Used 1 time 0
- Sort Area is  mul_16s_32s_48_1_1_U44/tmp_product_1e : 0 1 : 1895 4199 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U110/tmp_product_21 : 0 0 : 2158 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U110/tmp_product_21 : 0 1 : 1856 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U111/tmp_product_2c : 0 0 : 2158 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U111/tmp_product_2c : 0 1 : 1856 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U60/tmp_product_9 : 0 0 : 2158 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U60/tmp_product_9 : 0 1 : 1856 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U61/tmp_product_1b : 0 0 : 2158 4014 : Used 1 time 0
- Sort Area is  mul_15s_32s_47_1_1_U61/tmp_product_1b : 0 1 : 1856 4014 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U113/tmp_product_28 : 0 0 : 2158 4014 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U113/tmp_product_28 : 0 1 : 1856 4014 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U114/tmp_product_2a : 0 0 : 2158 4014 : Used 1 time 0
- Sort Area is  mul_32s_32s_64_1_1_U114/tmp_product_2a : 0 1 : 1856 4014 : Used 1 time 0
- Sort Area is  mul_15ns_15ns_30_1_1_U48/tmp_product_3 : 0 0 : 1953 1953 : Used 1 time 0
- Sort Area is  mul_16s_15ns_31_1_1_U117/tmp_product_2b : 0 0 : 1953 1953 : Used 1 time 0
- Sort Area is  mul_16s_15ns_31_1_1_U116/tmp_product_23 : 0 0 : 1937 1937 : Used 1 time 0
- Sort Area is  mul_16s_15ns_31_1_1_U69/tmp_product_8 : 0 0 : 1937 1937 : Used 1 time 0
- Sort Area is  mul_16s_16s_32_1_1_U55/tmp_product_20 : 0 0 : 1937 1937 : Used 1 time 0
- Sort Area is  mul_16s_16s_32_1_1_U55/tmp_product_5 : 0 0 : 1937 1937 : Used 1 time 0
- Sort Area is  mul_16s_16s_32_1_1_U55/tmp_product_7 : 0 0 : 1937 1937 : Used 1 time 0
- Sort Area is  mul_14s_15ns_29_1_1_U120/tmp_product_24 : 0 0 : 1659 1659 : Used 1 time 0
- Sort Area is  mul_14s_15ns_29_1_1_U71/tmp_product_15 : 0 0 : 1659 1659 : Used 1 time 0
- Sort Area is  mul_15ns_11ns_25_1_1_U68/tmp_product_1c : 0 0 : 274 274 : Used 1 time 0
+ Sort Area is  mul_16s_32s_48_1_1_U44/tmp_product_19 : 0 0 : 2304 4199 : Used 1 time 0
+ Sort Area is  mul_16s_32s_48_1_1_U44/tmp_product_19 : 0 1 : 1895 4199 : Used 1 time 0
+ Sort Area is  mul_15ns_15ns_30_1_1_U57/tmp_product_3 : 0 0 : 1953 1953 : Used 1 time 0
+ Sort Area is  mul_16s_15ns_31_1_1_U136/tmp_product_1f : 0 0 : 1953 1953 : Used 1 time 0
+ Sort Area is  mul_16s_15ns_31_1_1_U135/tmp_product_1d : 0 0 : 1937 1937 : Used 1 time 0
+ Sort Area is  mul_16s_15ns_31_1_1_U96/tmp_product_12 : 0 0 : 1937 1937 : Used 1 time 0
+ Sort Area is  mul_16s_16s_32_1_1_U70/tmp_product_1b : 0 0 : 1937 1937 : Used 1 time 0
+ Sort Area is  mul_16s_16s_32_1_1_U70/tmp_product_5 : 0 0 : 1937 1937 : Used 1 time 0
+ Sort Area is  mul_16s_16s_32_1_1_U70/tmp_product_7 : 0 0 : 1937 1937 : Used 1 time 0
+ Sort Area is  mul_14s_15ns_29_1_1_U134/tmp_product_1e : 0 0 : 1659 1659 : Used 1 time 0
+ Sort Area is  mul_14s_15ns_29_1_1_U98/tmp_product_13 : 0 0 : 1659 1659 : Used 1 time 0
+ Sort Area is  mul_15ns_11ns_25_1_1_U95/tmp_product_15 : 0 0 : 274 274 : Used 1 time 0
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
@@ -581,20 +623,18 @@ ROM: Preliminary Mapping Report
 +----------------------------------------------+------------+---------------+----------------+
 |adpcm_main_h_ROM_AUTO_1R                      | rom0       | 32x13         | LUT            | 
 |adpcm_main_h_ROM_AUTO_1R                      | rom0       | 32x13         | LUT            | 
-|adpcm_main_ilb_table_ROM_AUTO_1R              | rom0       | 32x12         | LUT            | 
-|adpcm_main_ilb_table_ROM_AUTO_1R              | rom0       | 32x12         | LUT            | 
 |adpcm_main_quantl_decis_levl_ROM_AUTO_1R      | rom0       | 32x13         | LUT            | 
 |adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R   | rom0       | 32x6          | LUT            | 
 |adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R   | rom0       | 32x6          | LUT            | 
 |adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R | rom0       | 64x14         | LUT            | 
+|adpcm_main_scalel_ilb_table_ROM_AUTO_1R       | rom0       | 32x12         | LUT            | 
 |adpcm_main_quantl                             | p_0_out    | 32x13         | LUT            | 
 |adpcm_main_quantl                             | p_0_out    | 32x6          | LUT            | 
 |adpcm_main_quantl                             | p_0_out    | 32x6          | LUT            | 
 |adpcm_main_decode                             | p_0_out    | 64x14         | LUT            | 
+|adpcm_main_scalel                             | p_0_out    | 32x12         | LUT            | 
 |adpcm_main                                    | p_0_out    | 32x13         | LUT            | 
 |adpcm_main                                    | p_0_out    | 32x13         | LUT            | 
-|adpcm_main                                    | p_0_out    | 32x12         | LUT            | 
-|adpcm_main                                    | p_0_out    | 32x12         | LUT            | 
 +----------------------------------------------+------------+---------------+----------------+
 
 
@@ -626,60 +666,60 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+--------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name                     | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+--------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|adpcm_main_filtez               | A*B             | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_filtez               | (PCIN>>17)+A*B  | 16     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_quantl               | A2*B            | 16     | 16     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_16s_32_1_1   | A*B             | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_16s_32_1_1   | A*B             | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B             | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B  | 16     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B             | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B  | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_15ns_31_1_1  | A*B             | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A2*B            | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 15     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B2            | 18     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 18     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A2*B            | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 15     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B2            | 18     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 18     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_14s_15ns_29_1_1  | A*B             | 16     | 14     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A2*B            | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 15     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B2            | 18     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 18     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A2*B            | 18     | 15     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 15     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B2            | 18     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B2 | 18     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B             | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | (PCIN>>17)+A*B  | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_15ns_11ns_25_1_1 | A*(B:0x234)     | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_filtez               | A*B             | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_filtez               | (PCIN>>17)+A*B  | 16     | 15     | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_16s_32_1_1   | A*B             | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_15ns_31_1_1  | A*B             | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 16     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_14s_15ns_29_1_1  | A*B             | 16     | 14     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A2*B            | 16     | 16     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B             | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | (PCIN>>17)+A*B  | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+--------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++--------------------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                     | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|adpcm_main_filtez               | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtez               | (PCIN>>17)+A*B | 16     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_quantl               | A2*B           | 16     | 16     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_16s_32_1_1   | A*B            | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_16s_32_1_1   | A*B            | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_15ns_31_1_1  | A*B            | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_14s_15ns_29_1_1  | A*B            | 16     | 14     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_15ns_11ns_25_1_1 | A*(B:0x234)    | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtez               | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtez               | (PCIN>>17)+A*B | 16     | 15     | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_16s_32_1_1   | A*B            | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_15ns_31_1_1  | A*B            | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_14s_15ns_29_1_1  | A*B            | 16     | 14     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | A2*B           | 16     | 16     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | (PCIN>>17)+A*B | 16     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++--------------------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -689,13 +729,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 3580.648 ; gain = 970.855 ; free physical = 164 ; free virtual = 12606
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 3570.938 ; gain = 960.848 ; free physical = 289 ; free virtual = 12669
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 218 ; free virtual = 12437
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 3696.586 ; gain = 1086.496 ; free physical = 294 ; free virtual = 12413
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -742,7 +782,7 @@ INFO: [Synth 8-7052] The timing for the instance inst/dec_del_dhx_U/ram_reg_bram
 INFO: [Synth 8-7052] The timing for the instance inst/tqmf_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance inst/tqmf_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 219 ; free virtual = 12439
+Finished Technology Mapping : Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 312 ; free virtual = 12402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -760,97 +800,97 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished IO Insertion : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 327 ; free virtual = 12401
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:41 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 327 ; free virtual = 12402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:44 ; elapsed = 00:00:44 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 326 ; free virtual = 12401
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:44 ; elapsed = 00:00:44 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 327 ; free virtual = 12402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 326 ; free virtual = 12401
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 325 ; free virtual = 12401
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 DSP Final Report (the ' indicates corresponding REG is set)
-+--------------------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name                     | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+--------------------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|adpcm_main_filtez               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_filtez               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_16s_32_1_1   | A*B'           | 30     | 18     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_14s_15ns_29_1_1  | (A*B)'         | 15     | 18     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|adpcm_main_decode               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A'*B'          | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A'*B' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_15ns_31_1_1  | (A'*B)'        | 30     | 15     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|adpcm_main_decode               | (A'*B)'        | 30     | 15     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|adpcm_main_decode               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B            | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A*B   | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | A*B            | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_decode               | PCIN>>17+A*B   | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_filtez               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_filtez               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_quantl               | A'*B'          | 15     | 15     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_16s_32_1_1   | A*B''          | 30     | 18     | -      | -      | 32     | 0    | 2    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_16s_32_1_1   | A*B''          | 30     | 18     | -      | -      | 32     | 0    | 2    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_14s_15ns_29_1_1  | A*B            | 15     | 18     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_15ns_11ns_25_1_1 | A*B            | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B'           | 17     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B  | 30     | 18     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_mul_16s_15ns_31_1_1  | A'*B           | 30     | 15     | -      | -      | 32     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A*B            | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A*B   | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | A'*B'          | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|adpcm_main_encode               | PCIN>>17+A'*B' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-+--------------------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++--------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                     | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|adpcm_main_filtez               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtez               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_16s_32_1_1   | A*B'            | 30     | 18     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_14s_15ns_29_1_1  | A'*B            | 15     | 18     | -      | -      | 30     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | A'*B'           | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | PCIN>>17+A'*B'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | A'*B'           | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_decode               | PCIN>>17+A'*B'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_15ns_31_1_1  | (A'*B')'        | 30     | 15     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|adpcm_main_decode               | (A'*B')'        | 30     | 15     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|adpcm_main_filtez               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtez               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_quantl               | A'*B''          | 15     | 15     | -      | -      | 32     | 1    | 2    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A'*B''          | 17     | 18     | -      | -      | 48     | 1    | 2    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | PCIN>>17+A''*B' | 30     | 18     | -      | -      | 30     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A''*B'          | 17     | 17     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | PCIN>>17+A''*B' | 17     | 18     | -      | -      | 47     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A'*B''          | 17     | 18     | -      | -      | 48     | 1    | 2    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A''*B' | 30     | 18     | -      | -      | 30     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A''*B'          | 17     | 17     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A''*B' | 17     | 18     | -      | -      | 47     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A'*B''          | 17     | 18     | -      | -      | 48     | 1    | 2    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A''*B' | 30     | 18     | -      | -      | 30     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A''*B'          | 17     | 17     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A''*B' | 17     | 18     | -      | -      | 47     | 2    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_16s_32_1_1   | A*B''           | 30     | 18     | -      | -      | 32     | 0    | 2    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_16s_32_1_1   | A*B''           | 30     | 18     | -      | -      | 32     | 0    | 2    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_14s_15ns_29_1_1  | A'*B            | 15     | 18     | -      | -      | 30     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_15ns_11ns_25_1_1 | A'*B            | 15     | 10     | -      | -      | 27     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | A*B'            | 17     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | PCIN>>17+A'*B   | 30     | 18     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | A*B'            | 17     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_encode               | PCIN>>17+A'*B   | 30     | 18     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_mul_16s_15ns_31_1_1  | A'*B'           | 30     | 15     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_filtep               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol1               | PCIN>>17+A*B    | 0      | 18     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A*B    | 0      | 18     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A*B    | 30     | 18     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|adpcm_main_uppol2               | PCIN>>17+A*B    | 0      | 18     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++--------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
 Report BlackBoxes: 
@@ -863,58 +903,57 @@ Report Cell Usage:
 +------+----------------+------+
 |      |Cell            |Count |
 +------+----------------+------+
-|1     |CARRY8          |   339|
+|1     |CARRY8          |   289|
 |2     |DSP_ALU         |    50|
 |3     |DSP_A_B_DATA    |    50|
-|8     |DSP_C_DATA      |    50|
-|9     |DSP_MULTIPLIER  |    50|
-|10    |DSP_M_DATA      |    50|
-|11    |DSP_OUTPUT      |    50|
-|13    |DSP_PREADD      |    50|
-|14    |DSP_PREADD_DATA |    50|
-|15    |LUT1            |   233|
-|16    |LUT2            |  2002|
-|17    |LUT3            |  1482|
-|18    |LUT4            |   454|
-|19    |LUT5            |   687|
-|20    |LUT6            |   643|
-|21    |MUXF7           |     1|
-|22    |RAM16X1S        |   192|
-|23    |RAMB18E2        |     4|
-|24    |RAMB36E2        |     1|
-|25    |FDRE            |  2615|
-|26    |FDSE            |    18|
+|10    |DSP_C_DATA      |    50|
+|11    |DSP_MULTIPLIER  |    50|
+|12    |DSP_M_DATA      |    50|
+|13    |DSP_OUTPUT      |    50|
+|15    |DSP_PREADD      |    50|
+|16    |DSP_PREADD_DATA |    50|
+|17    |LUT1            |   147|
+|18    |LUT2            |  1672|
+|19    |LUT3            |  1266|
+|20    |LUT4            |   769|
+|21    |LUT5            |   732|
+|22    |LUT6            |   634|
+|23    |RAM16X1S        |   192|
+|24    |RAMB18E2        |     4|
+|25    |RAMB36E2        |     1|
+|26    |FDRE            |  2965|
+|27    |FDSE            |    24|
 +------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 3720.852 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 3704.586 ; gain = 1094.496 ; free physical = 325 ; free virtual = 12401
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 28 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 3720.852 ; gain = 955.367 ; free physical = 208 ; free virtual = 12428
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 3720.859 ; gain = 1111.059 ; free physical = 208 ; free virtual = 12428
+Synthesis finished with 0 errors, 0 critical warnings and 47 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 3704.586 ; gain = 937.805 ; free physical = 327 ; free virtual = 12402
+Synthesis Optimization Complete : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 3704.594 ; gain = 1094.496 ; free physical = 327 ; free virtual = 12402
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 3720.859 ; gain = 0.000 ; free physical = 494 ; free virtual = 12715
-INFO: [Netlist 29-17] Analyzing 582 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 3704.594 ; gain = 0.000 ; free physical = 593 ; free virtual = 12667
+INFO: [Netlist 29-17] Analyzing 531 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3761.773 ; gain = 0.000 ; free physical = 491 ; free virtual = 12712
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3765.320 ; gain = 0.000 ; free physical = 599 ; free virtual = 12662
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 242 instances were transformed.
   DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 50 instances
   RAM16X1S => RAM32X1S (RAMS32): 192 instances
 
-Synth Design complete | Checksum: b850604
+Synth Design complete | Checksum: 4bc23dc7
 INFO: [Common 17-83] Releasing license: Synthesis
-142 Infos, 66 Warnings, 0 Critical Warnings and 0 Errors encountered.
+164 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:00:49 . Memory (MB): peak = 3761.809 ; gain = 2406.797 ; free physical = 490 ; free virtual = 12711
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3353.675; main = 3026.668; forked = 377.396
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4702.359; main = 3761.777; forked = 981.504
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3785.785 ; gain = 0.000 ; free physical = 489 ; free virtual = 12711
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 8710548df65ea0f0
-INFO: [Coretcl 2-1174] Renamed 53 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3785.785 ; gain = 0.000 ; free physical = 377 ; free virtual = 12633
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:54 ; elapsed = 00:00:52 . Memory (MB): peak = 3765.355 ; gain = 2410.047 ; free physical = 600 ; free virtual = 12663
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3337.841; main = 3019.634; forked = 377.248
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4686.090; main = 3765.324; forked = 981.500
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3789.332 ; gain = 0.000 ; free physical = 600 ; free virtual = 12664
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 140ca6f3e59016ba
+INFO: [Coretcl 2-1174] Renamed 61 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3789.332 ; gain = 0.000 ; free physical = 617 ; free virtual = 12685
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri May 30 21:18:45 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 03:21:38 2025...

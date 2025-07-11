@@ -4,7 +4,7 @@
     "xci_name": "bd_0_hls_inst_0",
     "cell_name": "hls_inst",
     "component_reference": "xilinx.com:hls:aes_main:1.0",
-    "ip_revision": "2114106610",
+    "ip_revision": "2114162966",
     "gen_directory": "../../../../../../project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0",
     "parameters": {
       "component_parameters": {
@@ -30,7 +30,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114106610" } ],
+        "IPREVISION": [ { "value": "2114162966" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

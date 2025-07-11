@@ -295,13 +295,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "encode",
+    "functionName": "adpcm_main",
     "id": 14,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "INLINE",
+      "name": "PIPELINE",
       "option": [
         {
           "name": "off",
@@ -316,13 +316,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "decode",
+    "functionName": "abs",
     "id": 15,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "INLINE",
+      "name": "PIPELINE",
       "option": [
         {
           "name": "off",
@@ -337,13 +337,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "reset",
+    "functionName": "logscl",
     "id": 16,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "INLINE",
+      "name": "PIPELINE",
       "option": [
         {
           "name": "off",
@@ -358,13 +358,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "filtez",
+    "functionName": "scalel",
     "id": 17,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "INLINE",
+      "name": "PIPELINE",
       "option": [
         {
           "name": "off",
@@ -379,13 +379,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "quantl",
+    "functionName": "uppol2",
     "id": 18,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "INLINE",
+      "name": "PIPELINE",
       "option": [
         {
           "name": "off",
@@ -400,13 +400,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "upzero",
+    "functionName": "uppol1",
     "id": 19,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "INLINE",
+      "name": "PIPELINE",
       "option": [
         {
           "name": "off",
@@ -421,8 +421,449 @@
   },
   {
     "functionLabel": "",
-    "functionName": "adpcm_main",
+    "functionName": "logsch",
     "id": 20,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 21,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "encode",
+    "id": 21,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 22,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "decode",
+    "id": 22,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 23,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "reset",
+    "id": 23,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 24,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "filtez",
+    "id": 24,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 25,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "filtep",
+    "id": 25,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 26,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "quantl",
+    "id": 26,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 27,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "upzero",
+    "id": 27,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 28,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "abs",
+    "id": 28,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 29,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "logscl",
+    "id": 29,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 30,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "scalel",
+    "id": 30,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 31,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "uppol2",
+    "id": 31,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 32,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "uppol1",
+    "id": 32,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 33,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "logsch",
+    "id": 33,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 34,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "encode",
+    "id": 34,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 35,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "decode",
+    "id": 35,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 36,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "reset",
+    "id": 36,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 37,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "filtez",
+    "id": 37,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 38,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "filtep",
+    "id": 38,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 39,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "quantl",
+    "id": 39,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 40,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "upzero",
+    "id": 40,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "INLINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl",
+    "sourceLine": 41,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "adpcm_main",
+    "id": 41,
     "ifcond": "",
     "insert_position": "",
     "label": "",

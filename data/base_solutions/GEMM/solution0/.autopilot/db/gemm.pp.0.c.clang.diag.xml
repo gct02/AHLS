@@ -1,8 +1,24 @@
 <dict>
   <key>main-file</key>
-  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/.autopilot/db/gemm.pp.0.c</string>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/.autopilot/db/gemm.pp.0.c</string>
   <key>diagnostics</key>
   <array>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl</string>
+      <key>line</key>
+      <integer>6</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=bbgemm_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
     <dict>
       <key>level</key>
       <string>warning</string>

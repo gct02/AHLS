@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'fft1D_512'
 ================================================================
 + General Information: 
-    * Date:           Fri May 30 23:10:29 2025
+    * Date:           Wed Jul  9 04:19:52 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        TRANS_FFT
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -15,27 +15,46 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +---------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
-    |          Modules          |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |         |          |             |            |     |
-    |          & Loops          |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |    DSP   |      FF     |     LUT    | URAM|
-    +---------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
-    |+ fft1D_512                |  Timing|  -0.30|    15694|  1.256e+05|         -|    15695|     -|        no|  8 (~0%)|  308 (5%)|  17091 (~0%)|  29068 (3%)|    -|
-    | o loop1                   |       -|   5.84|     5568|  4.454e+04|        87|        -|    64|        no|        -|         -|            -|           -|    -|
-    |  + twiddles8              |       -|   0.28|       50|    400.000|         -|       50|     -|        no|        -|  236 (3%)|   8615 (~0%)|  15146 (1%)|    -|
-    |   o twiddles              |       -|   5.84|       47|    376.000|        42|        1|     7|       yes|        -|         -|            -|           -|    -|
-    |    + sin_or_cos_double_s  |      II|   0.28|        8|     64.000|         -|        1|     -|       yes|        -|   91 (1%)|   2527 (~0%)|  6429 (~0%)|    -|
-    |    + sin_or_cos_double_s  |      II|   0.28|        8|     64.000|         -|        1|     -|       yes|        -|   91 (1%)|   2527 (~0%)|  6429 (~0%)|    -|
-    | o loop2                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop3                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop4                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop5                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop6                   |       -|   5.84|     5568|  4.454e+04|        87|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop7                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop8                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop9                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop10                  |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
-    | o loop11                  |       -|   5.84|     1984|  1.587e+04|        31|        -|    64|        no|        -|         -|            -|           -|    -|
-    +---------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
+    +-------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
+    |                  Modules                  |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |         |          |             |            |     |
+    |                  & Loops                  |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |    DSP   |      FF     |     LUT    | URAM|
+    +-------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
+    |+ fft1D_512                                |  Timing|  -0.30|    77259|  6.181e+05|         -|    77260|     -|        no|  8 (~0%)|  274 (4%)|  15951 (~0%)|  29423 (3%)|    -|
+    | o loop1                                   |       -|   5.84|    35648|  2.852e+05|       557|        -|    64|        no|        -|         -|            -|           -|    -|
+    |  + twiddles8                              |       -|   0.28|      520|  4.160e+03|         -|      520|     -|        no|        -|  202 (3%)|   7871 (~0%)|  15409 (1%)|    -|
+    |   o twiddles                              |       -|   5.84|      518|  4.144e+03|        74|        -|     7|        no|        -|         -|            -|           -|    -|
+    |    + sin_or_cos_double_s                  |       -|   0.28|       39|    312.000|         -|       39|     -|        no|        -|   82 (1%)|   2595 (~0%)|  6635 (~0%)|    -|
+    |     + scaled_fixed2ieee_63_1_s            |       -|   2.03|       30|    240.000|         -|       30|     -|        no|        -|         -|    827 (~0%)|  1890 (~0%)|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_1  |       -|   4.63|        5|     40.000|         -|        5|     -|        no|        -|         -|    100 (~0%)|   169 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        3|     24.000|         1|        1|     4|       yes|        -|         -|            -|           -|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_2  |       -|   2.03|        5|     40.000|         -|        5|     -|        no|        -|         -|    100 (~0%)|   613 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        3|     24.000|         1|        1|     3|       yes|        -|         -|            -|           -|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_3  |       -|   4.49|        6|     48.000|         -|        6|     -|        no|        -|         -|    133 (~0%)|    69 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        4|     32.000|         1|        1|     4|       yes|        -|         -|            -|           -|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_4  |       -|   2.40|        6|     48.000|         -|        6|     -|        no|        -|         -|    102 (~0%)|   699 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        4|     32.000|         1|        1|     4|       yes|        -|         -|            -|           -|    -|
+    |    + sin_or_cos_double_s                  |       -|   0.28|       39|    312.000|         -|       39|     -|        no|        -|   82 (1%)|   2595 (~0%)|  6635 (~0%)|    -|
+    |     + scaled_fixed2ieee_63_1_s            |       -|   2.03|       30|    240.000|         -|       30|     -|        no|        -|         -|    827 (~0%)|  1890 (~0%)|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_1  |       -|   4.63|        5|     40.000|         -|        5|     -|        no|        -|         -|    100 (~0%)|   169 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        3|     24.000|         1|        1|     4|       yes|        -|         -|            -|           -|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_2  |       -|   2.03|        5|     40.000|         -|        5|     -|        no|        -|         -|    100 (~0%)|   613 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        3|     24.000|         1|        1|     3|       yes|        -|         -|            -|           -|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_3  |       -|   4.49|        6|     48.000|         -|        6|     -|        no|        -|         -|    133 (~0%)|    69 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        4|     32.000|         1|        1|     4|       yes|        -|         -|            -|           -|    -|
+    |      + scaled_fixed2ieee_63_1_Pipeline_4  |       -|   2.40|        6|     48.000|         -|        6|     -|        no|        -|         -|    102 (~0%)|   699 (~0%)|    -|
+    |       o Loop 1                            |       -|   5.84|        4|     32.000|         1|        1|     4|       yes|        -|         -|            -|           -|    -|
+    | o loop2                                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop3                                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop4                                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop5                                   |       -|   5.84|     1024|  8.192e+03|        16|        -|    64|        no|        -|         -|            -|           -|    -|
+    |  + loady8                                 |       -|   3.92|        4|     32.000|         -|        4|     -|        no|        -|         -|      5 (~0%)|   254 (~0%)|    -|
+    | o loop6                                   |       -|   5.84|    35648|  2.852e+05|       557|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop7                                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop8                                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop9                                   |       -|   5.84|      320|  2.560e+03|         5|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop10                                  |       -|   5.84|     1024|  8.192e+03|        16|        -|    64|        no|        -|         -|            -|           -|    -|
+    | o loop11                                  |       -|   5.84|     1984|  1.587e+04|        31|        -|    64|        no|        -|         -|            -|           -|    -|
+    +-------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
 
 
 ================================================================
@@ -116,337 +135,361 @@
 ================================================================
 == Bind Op Report
 ================================================================
-+----------------------------------------------------------+-----+--------+-------------+------+---------+---------+
-| Name                                                     | DSP | Pragma | Variable    | Op   | Impl    | Latency |
-+----------------------------------------------------------+-----+--------+-------------+------+---------+---------+
-| + fft1D_512                                              | 308 |        |             |      |         |         |
-|   add_ln128_fu_2331_p2                                   |     |        | add_ln128   | add  | fabric  | 0       |
-|   add_ln136_fu_2372_p2                                   |     |        | add_ln136   | add  | fabric  | 0       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_4      | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_4      | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_8      | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_8      | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_5      | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_5      | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | tmp_1       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub3        | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add4        | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add5        | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | tmp_1_1     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub5        | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | add6        | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | add7        | dadd | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U58                     | 3   |        | tmp_1_2     | dsub | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U59                     | 3   |        | sub7        | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub8        | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | c0_x_9      | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add8        | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | c0_y_9      | dmul | maxdsp  | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | mul7        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub9        | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | mul1        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add9        | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub1        | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U62                      | 8   |        | mul4        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | add1        | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U63                      | 8   |        | mul6        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_6      | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_6      | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_7      | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_7      | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | add2        | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | add3        | dadd | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U58                     | 3   |        | tmp         | dsub | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U59                     | 3   |        | sub2        | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U64                      | 8   |        | mul         | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub4        | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U65                      | 8   |        | mul2        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | sub6        | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add         | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add10       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub10       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub11       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add11       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add12       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub12       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub13       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_11     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_11     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_10     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_10     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | add13       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | add14       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | tmp_1_50    | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | sub14       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | mul3        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub15       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | mul5        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | sub16       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add15       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add16       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub17       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub18       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add17       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add18       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub         | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub19       | dsub | fulldsp | 3       |
-|   add_ln176_fu_2781_p2                                   |     |        | add_ln176   | add  | fabric  | 0       |
-|   add_ln182_fu_2832_p2                                   |     |        | add_ln182   | add  | fabric  | 0       |
-|   add_ln183_fu_2866_p2                                   |     |        | add_ln183   | add  | fabric  | 0       |
-|   add_ln184_fu_2877_p2                                   |     |        | add_ln184   | add  | fabric  | 0       |
-|   add_ln185_fu_2907_p2                                   |     |        | add_ln185   | add  | fabric  | 0       |
-|   add_ln186_fu_2917_p2                                   |     |        | add_ln186   | add  | fabric  | 0       |
-|   add_ln187_fu_2954_p2                                   |     |        | add_ln187   | add  | fabric  | 0       |
-|   add_ln188_fu_2964_p2                                   |     |        | add_ln188   | add  | fabric  | 0       |
-|   add_ln191_fu_2984_p2                                   |     |        | add_ln191   | add  | fabric  | 0       |
-|   offset_1_fu_3024_p2                                    |     |        | offset_1    | add  | fabric  | 0       |
-|   add_ln198_fu_3039_p2                                   |     |        | add_ln198   | add  | fabric  | 0       |
-|   add_ln199_fu_3083_p2                                   |     |        | add_ln199   | add  | fabric  | 0       |
-|   add_ln200_fu_3093_p2                                   |     |        | add_ln200   | add  | fabric  | 0       |
-|   add_ln201_fu_3123_p2                                   |     |        | add_ln201   | add  | fabric  | 0       |
-|   add_ln202_fu_3133_p2                                   |     |        | add_ln202   | add  | fabric  | 0       |
-|   add_ln203_fu_3163_p2                                   |     |        | add_ln203   | add  | fabric  | 0       |
-|   add_ln204_fu_3173_p2                                   |     |        | add_ln204   | add  | fabric  | 0       |
-|   add_ln208_fu_3212_p2                                   |     |        | add_ln208   | add  | fabric  | 0       |
-|   add_ln215_fu_3263_p2                                   |     |        | add_ln215   | add  | fabric  | 0       |
-|   add_ln216_fu_3297_p2                                   |     |        | add_ln216   | add  | fabric  | 0       |
-|   add_ln217_fu_3308_p2                                   |     |        | add_ln217   | add  | fabric  | 0       |
-|   add_ln218_fu_3338_p2                                   |     |        | add_ln218   | add  | fabric  | 0       |
-|   add_ln219_fu_3348_p2                                   |     |        | add_ln219   | add  | fabric  | 0       |
-|   add_ln220_fu_3385_p2                                   |     |        | add_ln220   | add  | fabric  | 0       |
-|   add_ln221_fu_3395_p2                                   |     |        | add_ln221   | add  | fabric  | 0       |
-|   add_ln224_fu_3415_p2                                   |     |        | add_ln224   | add  | fabric  | 0       |
-|   add_ln238_fu_3459_p2                                   |     |        | add_ln238   | add  | fabric  | 0       |
-|   add_ln105_fu_3470_p2                                   |     |        | add_ln105   | add  | fabric  | 0       |
-|   add_ln106_fu_3514_p2                                   |     |        | add_ln106   | add  | fabric  | 0       |
-|   add_ln107_fu_3524_p2                                   |     |        | add_ln107   | add  | fabric  | 0       |
-|   add_ln108_fu_3554_p2                                   |     |        | add_ln108   | add  | fabric  | 0       |
-|   add_ln109_fu_3564_p2                                   |     |        | add_ln109   | add  | fabric  | 0       |
-|   add_ln110_fu_3594_p2                                   |     |        | add_ln110   | add  | fabric  | 0       |
-|   add_ln111_fu_3604_p2                                   |     |        | add_ln111   | add  | fabric  | 0       |
-|   add_ln250_fu_3643_p2                                   |     |        | add_ln250   | add  | fabric  | 0       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_21     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_21     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_13     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_13     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_15     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_15     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | tmp_1_3     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub20       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add19       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add20       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | tmp_1_4     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub21       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | add21       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | add22       | dadd | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U58                     | 3   |        | tmp_1_5     | dsub | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U59                     | 3   |        | sub22       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub23       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | c0_x_20     | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add23       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | c0_y_20     | dmul | maxdsp  | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | mul8        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub24       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | mul9        | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add24       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub25       | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U62                      | 8   |        | mul10       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | add25       | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U63                      | 8   |        | mul11       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_18     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_18     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_19     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_19     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | add26       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | add27       | dadd | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U58                     | 3   |        | tmp_2       | dsub | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U59                     | 3   |        | sub26       | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U64                      | 8   |        | mul12       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub27       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U65                      | 8   |        | mul13       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | sub28       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add28       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add29       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub29       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub30       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add30       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add31       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub31       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub32       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_23     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_23     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_22     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_22     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | add32       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | add33       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | tmp_3       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | sub33       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | mul14       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub34       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | mul15       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | sub35       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add34       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add35       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub36       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub37       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add36       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add37       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub38       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub39       | dsub | fulldsp | 3       |
-|   add_ln301_fu_3928_p2                                   |     |        | add_ln301   | add  | fabric  | 0       |
-|   add_ln307_fu_3979_p2                                   |     |        | add_ln307   | add  | fabric  | 0       |
-|   add_ln308_fu_4013_p2                                   |     |        | add_ln308   | add  | fabric  | 0       |
-|   add_ln309_fu_4024_p2                                   |     |        | add_ln309   | add  | fabric  | 0       |
-|   add_ln310_fu_4054_p2                                   |     |        | add_ln310   | add  | fabric  | 0       |
-|   add_ln311_fu_4064_p2                                   |     |        | add_ln311   | add  | fabric  | 0       |
-|   add_ln312_fu_4101_p2                                   |     |        | add_ln312   | add  | fabric  | 0       |
-|   add_ln313_fu_4111_p2                                   |     |        | add_ln313   | add  | fabric  | 0       |
-|   add_ln317_fu_4131_p2                                   |     |        | add_ln317   | add  | fabric  | 0       |
-|   add_ln324_fu_4168_p2                                   |     |        | add_ln324   | add  | fabric  | 0       |
-|   add_ln325_fu_4212_p2                                   |     |        | add_ln325   | add  | fabric  | 0       |
-|   add_ln326_fu_4222_p2                                   |     |        | add_ln326   | add  | fabric  | 0       |
-|   add_ln327_fu_4252_p2                                   |     |        | add_ln327   | add  | fabric  | 0       |
-|   add_ln328_fu_4262_p2                                   |     |        | add_ln328   | add  | fabric  | 0       |
-|   add_ln329_fu_4292_p2                                   |     |        | add_ln329   | add  | fabric  | 0       |
-|   add_ln330_fu_4302_p2                                   |     |        | add_ln330   | add  | fabric  | 0       |
-|   add_ln334_fu_4341_p2                                   |     |        | add_ln334   | add  | fabric  | 0       |
-|   add_ln341_fu_4392_p2                                   |     |        | add_ln341   | add  | fabric  | 0       |
-|   add_ln342_fu_4426_p2                                   |     |        | add_ln342   | add  | fabric  | 0       |
-|   add_ln343_fu_4437_p2                                   |     |        | add_ln343   | add  | fabric  | 0       |
-|   add_ln344_fu_4467_p2                                   |     |        | add_ln344   | add  | fabric  | 0       |
-|   add_ln345_fu_4477_p2                                   |     |        | add_ln345   | add  | fabric  | 0       |
-|   add_ln346_fu_4514_p2                                   |     |        | add_ln346   | add  | fabric  | 0       |
-|   add_ln347_fu_4524_p2                                   |     |        | add_ln347   | add  | fabric  | 0       |
-|   add_ln350_fu_4544_p2                                   |     |        | add_ln350   | add  | fabric  | 0       |
-|   add_ln105_1_fu_4581_p2                                 |     |        | add_ln105_1 | add  | fabric  | 0       |
-|   add_ln106_1_fu_4633_p2                                 |     |        | add_ln106_1 | add  | fabric  | 0       |
-|   add_ln107_1_fu_4643_p2                                 |     |        | add_ln107_1 | add  | fabric  | 0       |
-|   add_ln108_1_fu_4683_p2                                 |     |        | add_ln108_1 | add  | fabric  | 0       |
-|   add_ln109_1_fu_4693_p2                                 |     |        | add_ln109_1 | add  | fabric  | 0       |
-|   add_ln110_1_fu_4733_p2                                 |     |        | add_ln110_1 | add  | fabric  | 0       |
-|   add_ln111_1_fu_4743_p2                                 |     |        | add_ln111_1 | add  | fabric  | 0       |
-|   add_ln376_fu_4826_p2                                   |     |        | add_ln376   | add  | fabric  | 0       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_33     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_33     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_25     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_25     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_27     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_27     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | tmp_1_6     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub40       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add38       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add39       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | tmp_1_7     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub41       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | add40       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | add41       | dadd | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U58                     | 3   |        | tmp_1_8     | dsub | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U59                     | 3   |        | sub42       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub43       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | c0_x_32     | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add42       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | c0_y_32     | dmul | maxdsp  | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | mul16       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub44       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | mul17       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add43       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub45       | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U62                      | 8   |        | mul18       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | add44       | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U63                      | 8   |        | mul19       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_30     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_30     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_31     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_31     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | add45       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | add46       | dadd | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U58                     | 3   |        | tmp_4       | dsub | fulldsp | 3       |
-|   dsub_64ns_64ns_64_4_full_dsp_1_U59                     | 3   |        | sub46       | dsub | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U64                      | 8   |        | mul20       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub47       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U65                      | 8   |        | mul21       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | sub48       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add47       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add48       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub49       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub50       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add49       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add50       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub51       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub52       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | c0_x_35     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | c0_y_35     | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | c0_x_34     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | c0_y_34     | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | add51       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | add52       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U56                 | 3   |        | tmp_5       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U57                 | 3   |        | sub53       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U60                      | 8   |        | mul22       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | sub54       | dadd | fulldsp | 3       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U61                      | 8   |        | mul23       | dmul | maxdsp  | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | sub55       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add53       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add54       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub56       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub57       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U52                 | 3   |        | add55       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U53                 | 3   |        | add56       | dadd | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U54                 | 3   |        | sub58       | dsub | fulldsp | 3       |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U55                 | 3   |        | sub59       | dsub | fulldsp | 3       |
-|   add_ln406_fu_5165_p2                                   |     |        | add_ln406   | add  | fabric  | 0       |
-|  + twiddles8                                             | 236 |        |             |      |         |         |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U33                     | 8   |        | mul         | dmul | maxdsp  | 3       |
-|    ddiv_64ns_64ns_64_14_no_dsp_1_U39                     |     |        | div         | ddiv | fabric  | 13      |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U34                     | 8   |        | phi         | dmul | maxdsp  | 3       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U35                     | 8   |        | mul8        | dmul | maxdsp  | 3       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U36                     | 8   |        | mul1        | dmul | maxdsp  | 3       |
-|    dsub_64ns_64ns_64_4_full_dsp_1_U31                    | 3   |        | sub         | dsub | fulldsp | 3       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U37                     | 8   |        | mul2        | dmul | maxdsp  | 3       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U38                     | 8   |        | mul3        | dmul | maxdsp  | 3       |
-|    dadd_64ns_64ns_64_4_full_dsp_1_U32                    | 3   |        | add         | dadd | fulldsp | 3       |
-|    add_ln28_fu_238_p2                                    |     |        | add_ln28    | add  | fabric  | 0       |
-|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_119) | 91  |        |             |      |         |         |
-|     Ex_fu_591_p2                                         |     |        | Ex          | add  | fabric  | 0       |
-|     add_ln396_fu_416_p2                                  |     |        | add_ln396   | add  | fabric  | 0       |
-|     mul_170s_53ns_170_2_1_U9                             | 27  |        | h           | mul  | auto    | 1       |
-|     Mx_bits_1_fu_525_p2                                  |     |        | Mx_bits_1   | sub  | fabric  | 0       |
-|     Ex_1_fu_630_p2                                       |     |        | Ex_1        | sub  | fabric  | 0       |
-|     sub_ln506_fu_644_p2                                  |     |        | sub_ln506   | sub  | fabric  | 0       |
-|     mul_49ns_49ns_98_1_1_U4                              | 9   |        | mul_ln25    | mul  | auto    | 0       |
-|     mul_49ns_49ns_98_1_1_U5                              | 9   |        | mul_ln26    | mul  | auto    | 0       |
-|     mul_49ns_49ns_98_1_1_U6                              | 9   |        | mul_ln27    | mul  | auto    | 0       |
-|     mul_56ns_52s_108_1_1_U7                              | 9   |        | mul_ln33    | mul  | auto    | 0       |
-|     mul_49ns_44s_93_1_1_U3                               | 6   |        | mul_ln34    | mul  | auto    | 0       |
-|     mul_42ns_33ns_75_1_1_U2                              | 4   |        | mul_ln35    | mul  | auto    | 0       |
-|     mul_35ns_25ns_60_1_1_U1                              | 2   |        | mul_ln36    | mul  | auto    | 0       |
-|     mul_64s_63ns_126_1_1_U8                              | 16  |        | mul_ln37    | mul  | auto    | 0       |
-|     shift_1_fu_1334_p2                                   |     |        | shift_1     | add  | fabric  | 0       |
-|     shift_2_fu_1356_p2                                   |     |        | shift_2     | add  | fabric  | 0       |
-|     add_ln422_fu_1378_p2                                 |     |        | add_ln422   | add  | fabric  | 0       |
-|     add_ln432_fu_1448_p2                                 |     |        | add_ln432   | add  | fabric  | 0       |
-|     newexp_fu_1458_p2                                    |     |        | newexp      | sub  | fabric  | 0       |
-|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_138) | 91  |        |             |      |         |         |
-|     Ex_fu_591_p2                                         |     |        | Ex          | add  | fabric  | 0       |
-|     add_ln396_fu_416_p2                                  |     |        | add_ln396   | add  | fabric  | 0       |
-|     mul_170s_53ns_170_2_1_U9                             | 27  |        | h           | mul  | auto    | 1       |
-|     Mx_bits_1_fu_525_p2                                  |     |        | Mx_bits_1   | sub  | fabric  | 0       |
-|     Ex_1_fu_630_p2                                       |     |        | Ex_1        | sub  | fabric  | 0       |
-|     sub_ln506_fu_644_p2                                  |     |        | sub_ln506   | sub  | fabric  | 0       |
-|     mul_49ns_49ns_98_1_1_U4                              | 9   |        | mul_ln25    | mul  | auto    | 0       |
-|     mul_49ns_49ns_98_1_1_U5                              | 9   |        | mul_ln26    | mul  | auto    | 0       |
-|     mul_49ns_49ns_98_1_1_U6                              | 9   |        | mul_ln27    | mul  | auto    | 0       |
-|     mul_56ns_52s_108_1_1_U7                              | 9   |        | mul_ln33    | mul  | auto    | 0       |
-|     mul_49ns_44s_93_1_1_U3                               | 6   |        | mul_ln34    | mul  | auto    | 0       |
-|     mul_42ns_33ns_75_1_1_U2                              | 4   |        | mul_ln35    | mul  | auto    | 0       |
-|     mul_35ns_25ns_60_1_1_U1                              | 2   |        | mul_ln36    | mul  | auto    | 0       |
-|     mul_64s_63ns_126_1_1_U8                              | 16  |        | mul_ln37    | mul  | auto    | 0       |
-|     shift_1_fu_1334_p2                                   |     |        | shift_1     | add  | fabric  | 0       |
-|     shift_2_fu_1356_p2                                   |     |        | shift_2     | add  | fabric  | 0       |
-|     add_ln422_fu_1378_p2                                 |     |        | add_ln422   | add  | fabric  | 0       |
-|     add_ln432_fu_1448_p2                                 |     |        | add_ln432   | add  | fabric  | 0       |
-|     newexp_fu_1458_p2                                    |     |        | newexp      | sub  | fabric  | 0       |
-+----------------------------------------------------------+-----+--------+-------------+------+---------+---------+
++----------------------------------------------------------------------------------------+-----+--------+-------------+------+---------+---------+
+| Name                                                                                   | DSP | Pragma | Variable    | Op   | Impl    | Latency |
++----------------------------------------------------------------------------------------+-----+--------+-------------+------+---------+---------+
+| + fft1D_512                                                                            | 274 |        |             |      |         |         |
+|   add_ln128_fu_2198_p2                                                                 |     |        | add_ln128   | add  | fabric  | 0       |
+|   add_ln136_fu_2243_p2                                                                 |     |        | add_ln136   | add  | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_4      | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_4      | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_8      | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_8      | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_5      | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_5      | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | tmp_1       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub3        | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add4        | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add5        | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | tmp_1_1     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub5        | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | add6        | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | add7        | dadd | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U90                                                   | 3   |        | tmp_1_2     | dsub | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U91                                                   | 3   |        | sub7        | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub8        | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | c0_x_9      | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add8        | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | c0_y_9      | dmul | maxdsp  | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | mul7        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub9        | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | mul1        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add9        | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub1        | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U94                                                    | 8   |        | mul4        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | add1        | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U95                                                    | 8   |        | mul6        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_6      | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_6      | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_7      | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_7      | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | add2        | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | add3        | dadd | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U90                                                   | 3   |        | tmp         | dsub | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U91                                                   | 3   |        | sub2        | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U96                                                    | 8   |        | mul         | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub4        | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U97                                                    | 8   |        | mul2        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | sub6        | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add         | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add10       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub10       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub11       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add11       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add12       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub12       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub13       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_11     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_11     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_10     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_10     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | add13       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | add14       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | tmp_1_49    | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | sub14       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | mul3        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub15       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | mul5        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | sub16       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add15       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add16       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub17       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub18       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add17       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add18       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub         | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub19       | dsub | fulldsp | 3       |
+|   add_ln176_fu_2646_p2                                                                 |     |        | add_ln176   | add  | fabric  | 0       |
+|   add_ln182_fu_2697_p2                                                                 |     |        | add_ln182   | add  | fabric  | 0       |
+|   add_ln183_fu_2731_p2                                                                 |     |        | add_ln183   | add  | fabric  | 0       |
+|   add_ln184_fu_2742_p2                                                                 |     |        | add_ln184   | add  | fabric  | 0       |
+|   add_ln185_fu_2772_p2                                                                 |     |        | add_ln185   | add  | fabric  | 0       |
+|   add_ln186_fu_2782_p2                                                                 |     |        | add_ln186   | add  | fabric  | 0       |
+|   add_ln187_fu_2819_p2                                                                 |     |        | add_ln187   | add  | fabric  | 0       |
+|   add_ln188_fu_2829_p2                                                                 |     |        | add_ln188   | add  | fabric  | 0       |
+|   add_ln191_fu_2849_p2                                                                 |     |        | add_ln191   | add  | fabric  | 0       |
+|   offset_1_fu_2889_p2                                                                  |     |        | offset_1    | add  | fabric  | 0       |
+|   add_ln198_fu_2904_p2                                                                 |     |        | add_ln198   | add  | fabric  | 0       |
+|   add_ln199_fu_2948_p2                                                                 |     |        | add_ln199   | add  | fabric  | 0       |
+|   add_ln200_fu_2958_p2                                                                 |     |        | add_ln200   | add  | fabric  | 0       |
+|   add_ln201_fu_2988_p2                                                                 |     |        | add_ln201   | add  | fabric  | 0       |
+|   add_ln202_fu_2998_p2                                                                 |     |        | add_ln202   | add  | fabric  | 0       |
+|   add_ln203_fu_3028_p2                                                                 |     |        | add_ln203   | add  | fabric  | 0       |
+|   add_ln204_fu_3038_p2                                                                 |     |        | add_ln204   | add  | fabric  | 0       |
+|   add_ln208_fu_3077_p2                                                                 |     |        | add_ln208   | add  | fabric  | 0       |
+|   add_ln215_fu_3128_p2                                                                 |     |        | add_ln215   | add  | fabric  | 0       |
+|   add_ln216_fu_3162_p2                                                                 |     |        | add_ln216   | add  | fabric  | 0       |
+|   add_ln217_fu_3173_p2                                                                 |     |        | add_ln217   | add  | fabric  | 0       |
+|   add_ln218_fu_3203_p2                                                                 |     |        | add_ln218   | add  | fabric  | 0       |
+|   add_ln219_fu_3213_p2                                                                 |     |        | add_ln219   | add  | fabric  | 0       |
+|   add_ln220_fu_3250_p2                                                                 |     |        | add_ln220   | add  | fabric  | 0       |
+|   add_ln221_fu_3260_p2                                                                 |     |        | add_ln221   | add  | fabric  | 0       |
+|   add_ln224_fu_3280_p2                                                                 |     |        | add_ln224   | add  | fabric  | 0       |
+|   add_ln238_fu_3415_p2                                                                 |     |        | add_ln238   | add  | fabric  | 0       |
+|   add_ln250_fu_3431_p2                                                                 |     |        | add_ln250   | add  | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_21     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_21     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_13     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_13     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_15     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_15     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | tmp_1_3     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub20       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add19       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add20       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | tmp_1_4     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub21       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | add21       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | add22       | dadd | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U90                                                   | 3   |        | tmp_1_5     | dsub | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U91                                                   | 3   |        | sub22       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub23       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | c0_x_20     | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add23       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | c0_y_20     | dmul | maxdsp  | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | mul8        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub24       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | mul9        | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add24       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub25       | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U94                                                    | 8   |        | mul10       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | add25       | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U95                                                    | 8   |        | mul11       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_18     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_18     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_19     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_19     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | add26       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | add27       | dadd | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U90                                                   | 3   |        | tmp_2       | dsub | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U91                                                   | 3   |        | sub26       | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U96                                                    | 8   |        | mul12       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub27       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U97                                                    | 8   |        | mul13       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | sub28       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add28       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add29       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub29       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub30       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add30       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add31       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub31       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub32       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_23     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_23     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_22     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_22     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | add32       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | add33       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | tmp_3       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | sub33       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | mul14       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub34       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | mul15       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | sub35       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add34       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add35       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub36       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub37       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add36       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add37       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub38       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub39       | dsub | fulldsp | 3       |
+|   add_ln301_fu_3716_p2                                                                 |     |        | add_ln301   | add  | fabric  | 0       |
+|   add_ln307_fu_3767_p2                                                                 |     |        | add_ln307   | add  | fabric  | 0       |
+|   add_ln308_fu_3801_p2                                                                 |     |        | add_ln308   | add  | fabric  | 0       |
+|   add_ln309_fu_3812_p2                                                                 |     |        | add_ln309   | add  | fabric  | 0       |
+|   add_ln310_fu_3842_p2                                                                 |     |        | add_ln310   | add  | fabric  | 0       |
+|   add_ln311_fu_3852_p2                                                                 |     |        | add_ln311   | add  | fabric  | 0       |
+|   add_ln312_fu_3889_p2                                                                 |     |        | add_ln312   | add  | fabric  | 0       |
+|   add_ln313_fu_3899_p2                                                                 |     |        | add_ln313   | add  | fabric  | 0       |
+|   add_ln317_fu_3919_p2                                                                 |     |        | add_ln317   | add  | fabric  | 0       |
+|   add_ln324_fu_3956_p2                                                                 |     |        | add_ln324   | add  | fabric  | 0       |
+|   add_ln325_fu_4000_p2                                                                 |     |        | add_ln325   | add  | fabric  | 0       |
+|   add_ln326_fu_4010_p2                                                                 |     |        | add_ln326   | add  | fabric  | 0       |
+|   add_ln327_fu_4040_p2                                                                 |     |        | add_ln327   | add  | fabric  | 0       |
+|   add_ln328_fu_4050_p2                                                                 |     |        | add_ln328   | add  | fabric  | 0       |
+|   add_ln329_fu_4080_p2                                                                 |     |        | add_ln329   | add  | fabric  | 0       |
+|   add_ln330_fu_4090_p2                                                                 |     |        | add_ln330   | add  | fabric  | 0       |
+|   add_ln334_fu_4129_p2                                                                 |     |        | add_ln334   | add  | fabric  | 0       |
+|   add_ln341_fu_4180_p2                                                                 |     |        | add_ln341   | add  | fabric  | 0       |
+|   add_ln342_fu_4214_p2                                                                 |     |        | add_ln342   | add  | fabric  | 0       |
+|   add_ln343_fu_4225_p2                                                                 |     |        | add_ln343   | add  | fabric  | 0       |
+|   add_ln344_fu_4255_p2                                                                 |     |        | add_ln344   | add  | fabric  | 0       |
+|   add_ln345_fu_4265_p2                                                                 |     |        | add_ln345   | add  | fabric  | 0       |
+|   add_ln346_fu_4302_p2                                                                 |     |        | add_ln346   | add  | fabric  | 0       |
+|   add_ln347_fu_4312_p2                                                                 |     |        | add_ln347   | add  | fabric  | 0       |
+|   add_ln350_fu_4332_p2                                                                 |     |        | add_ln350   | add  | fabric  | 0       |
+|   add_ln376_fu_4466_p2                                                                 |     |        | add_ln376   | add  | fabric  | 0       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_33     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_33     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_25     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_25     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_27     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_27     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | tmp_1_6     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub40       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add38       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add39       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | tmp_1_7     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub41       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | add40       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | add41       | dadd | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U90                                                   | 3   |        | tmp_1_8     | dsub | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U91                                                   | 3   |        | sub42       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub43       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | c0_x_32     | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add42       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | c0_y_32     | dmul | maxdsp  | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | mul16       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub44       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | mul17       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add43       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub45       | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U94                                                    | 8   |        | mul18       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | add44       | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U95                                                    | 8   |        | mul19       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_30     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_30     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_31     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_31     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | add45       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | add46       | dadd | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U90                                                   | 3   |        | tmp_4       | dsub | fulldsp | 3       |
+|   dsub_64ns_64ns_64_4_full_dsp_1_U91                                                   | 3   |        | sub46       | dsub | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U96                                                    | 8   |        | mul20       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub47       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U97                                                    | 8   |        | mul21       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | sub48       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add47       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add48       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub49       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub50       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add49       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add50       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub51       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub52       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | c0_x_35     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | c0_y_35     | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | c0_x_34     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | c0_y_34     | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | add51       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | add52       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U88                                               | 3   |        | tmp_5       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U89                                               | 3   |        | sub53       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U92                                                    | 8   |        | mul22       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | sub54       | dadd | fulldsp | 3       |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U93                                                    | 8   |        | mul23       | dmul | maxdsp  | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | sub55       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add53       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add54       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub56       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub57       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U84                                               | 3   |        | add55       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U85                                               | 3   |        | add56       | dadd | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U86                                               | 3   |        | sub58       | dsub | fulldsp | 3       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U87                                               | 3   |        | sub59       | dsub | fulldsp | 3       |
+|   add_ln406_fu_4805_p2                                                                 |     |        | add_ln406   | add  | fabric  | 0       |
+|  + twiddles8                                                                           | 202 |        |             |      |         |         |
+|    dmul_64ns_64ns_64_4_max_dsp_1_U64                                                   | 8   |        | mul         | dmul | maxdsp  | 3       |
+|    ddiv_64ns_64ns_64_14_no_dsp_1_U68                                                   |     |        | div         | ddiv | fabric  | 13      |
+|    dmul_64ns_64ns_64_4_max_dsp_1_U64                                                   | 8   |        | phi         | dmul | maxdsp  | 3       |
+|    dmul_64ns_64ns_64_4_max_dsp_1_U64                                                   | 8   |        | mul8        | dmul | maxdsp  | 3       |
+|    dmul_64ns_64ns_64_4_max_dsp_1_U65                                                   | 8   |        | mul1        | dmul | maxdsp  | 3       |
+|    dsub_64ns_64ns_64_4_full_dsp_1_U62                                                  | 3   |        | sub         | dsub | fulldsp | 3       |
+|    dmul_64ns_64ns_64_4_max_dsp_1_U66                                                   | 8   |        | mul2        | dmul | maxdsp  | 3       |
+|    dmul_64ns_64ns_64_4_max_dsp_1_U67                                                   | 8   |        | mul3        | dmul | maxdsp  | 3       |
+|    dadd_64ns_64ns_64_4_full_dsp_1_U63                                                  | 3   |        | add         | dadd | fulldsp | 3       |
+|    add_ln28_fu_228_p2                                                                  |     |        | add_ln28    | add  | fabric  | 0       |
+|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_109)                               | 82  |        |             |      |         |         |
+|     Ex_fu_566_p2                                                                       |     |        | Ex          | add  | fabric  | 0       |
+|     add_ln396_fu_384_p2                                                                |     |        | add_ln396   | add  | fabric  | 0       |
+|     mul_170s_53ns_170_2_1_U40                                                          | 27  |        | h           | mul  | auto    | 1       |
+|     Mx_bits_1_fu_500_p2                                                                |     |        | Mx_bits_1   | sub  | fabric  | 0       |
+|     Ex_1_fu_599_p2                                                                     |     |        | Ex_1        | sub  | fabric  | 0       |
+|     sub_ln506_fu_613_p2                                                                |     |        | sub_ln506   | sub  | fabric  | 0       |
+|     mul_49ns_49ns_98_1_1_U36                                                           | 9   |        | mul_ln25    | mul  | auto    | 0       |
+|     mul_49ns_49ns_98_1_1_U36                                                           | 9   |        | mul_ln26    | mul  | auto    | 0       |
+|     mul_49ns_49ns_98_1_1_U37                                                           | 9   |        | mul_ln27    | mul  | auto    | 0       |
+|     mul_56ns_52s_108_1_1_U38                                                           | 9   |        | mul_ln33    | mul  | auto    | 0       |
+|     mul_49ns_44s_93_1_1_U35                                                            | 6   |        | mul_ln34    | mul  | auto    | 0       |
+|     mul_42ns_33ns_75_1_1_U34                                                           | 4   |        | mul_ln35    | mul  | auto    | 0       |
+|     mul_35ns_25ns_60_1_1_U33                                                           | 2   |        | mul_ln36    | mul  | auto    | 0       |
+|     mul_64s_63ns_126_1_1_U39                                                           | 16  |        | mul_ln37    | mul  | auto    | 0       |
+|     sub_ln252_fu_959_p2                                                                |     |        | sub_ln252   | sub  | fabric  | 0       |
+|    + scaled_fixed2ieee_63_1_s (grp_scaled_fixed2ieee_63_1_s_fu_314)                    | 0   |        |             |      |         |         |
+|      sub_ln432_fu_232_p2                                                               |     |        | sub_ln432   | sub  | fabric  | 0       |
+|      newexp_fu_242_p2                                                                  |     |        | newexp      | sub  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_1 (grp_scaled_fixed2ieee_63_1_Pipeline_1_fu_112) | 0   |        |             |      |         |         |
+|       add_ln400_fu_84_p2                                                               |     |        | add_ln400   | add  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_2 (grp_scaled_fixed2ieee_63_1_Pipeline_2_fu_119) | 0   |        |             |      |         |         |
+|       i_3_fu_148_p2                                                                    |     |        | i_3         | add  | fabric  | 0       |
+|       sub_ln404_fu_162_p2                                                              |     |        | sub_ln404   | sub  | fabric  | 0       |
+|       sub_ln403_fu_168_p2                                                              |     |        | sub_ln403   | sub  | fabric  | 0       |
+|       sub_ln403_1_fu_190_p2                                                            |     |        | sub_ln403_1 | sub  | fabric  | 0       |
+|       sub_ln403_2_fu_196_p2                                                            |     |        | sub_ln403_2 | sub  | fabric  | 0       |
+|       sub_ln403_3_fu_202_p2                                                            |     |        | sub_ln403_3 | sub  | fabric  | 0       |
+|       sub_ln403_4_fu_232_p2                                                            |     |        | sub_ln403_4 | sub  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_3 (grp_scaled_fixed2ieee_63_1_Pipeline_3_fu_131) | 0   |        |             |      |         |         |
+|       add_ln414_fu_142_p2                                                              |     |        | add_ln414   | add  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_4 (grp_scaled_fixed2ieee_63_1_Pipeline_4_fu_143) | 0   |        |             |      |         |         |
+|       add_ln421_fu_175_p2                                                              |     |        | add_ln421   | add  | fabric  | 0       |
+|       shift_1_out                                                                      |     |        | shift_1     | add  | fabric  | 0       |
+|       sub_ln423_fu_214_p2                                                              |     |        | sub_ln423   | sub  | fabric  | 0       |
+|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_128)                               | 82  |        |             |      |         |         |
+|     Ex_fu_566_p2                                                                       |     |        | Ex          | add  | fabric  | 0       |
+|     add_ln396_fu_384_p2                                                                |     |        | add_ln396   | add  | fabric  | 0       |
+|     mul_170s_53ns_170_2_1_U40                                                          | 27  |        | h           | mul  | auto    | 1       |
+|     Mx_bits_1_fu_500_p2                                                                |     |        | Mx_bits_1   | sub  | fabric  | 0       |
+|     Ex_1_fu_599_p2                                                                     |     |        | Ex_1        | sub  | fabric  | 0       |
+|     sub_ln506_fu_613_p2                                                                |     |        | sub_ln506   | sub  | fabric  | 0       |
+|     mul_49ns_49ns_98_1_1_U36                                                           | 9   |        | mul_ln25    | mul  | auto    | 0       |
+|     mul_49ns_49ns_98_1_1_U36                                                           | 9   |        | mul_ln26    | mul  | auto    | 0       |
+|     mul_49ns_49ns_98_1_1_U37                                                           | 9   |        | mul_ln27    | mul  | auto    | 0       |
+|     mul_56ns_52s_108_1_1_U38                                                           | 9   |        | mul_ln33    | mul  | auto    | 0       |
+|     mul_49ns_44s_93_1_1_U35                                                            | 6   |        | mul_ln34    | mul  | auto    | 0       |
+|     mul_42ns_33ns_75_1_1_U34                                                           | 4   |        | mul_ln35    | mul  | auto    | 0       |
+|     mul_35ns_25ns_60_1_1_U33                                                           | 2   |        | mul_ln36    | mul  | auto    | 0       |
+|     mul_64s_63ns_126_1_1_U39                                                           | 16  |        | mul_ln37    | mul  | auto    | 0       |
+|     sub_ln252_fu_959_p2                                                                |     |        | sub_ln252   | sub  | fabric  | 0       |
+|    + scaled_fixed2ieee_63_1_s (grp_scaled_fixed2ieee_63_1_s_fu_314)                    | 0   |        |             |      |         |         |
+|      sub_ln432_fu_232_p2                                                               |     |        | sub_ln432   | sub  | fabric  | 0       |
+|      newexp_fu_242_p2                                                                  |     |        | newexp      | sub  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_1 (grp_scaled_fixed2ieee_63_1_Pipeline_1_fu_112) | 0   |        |             |      |         |         |
+|       add_ln400_fu_84_p2                                                               |     |        | add_ln400   | add  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_2 (grp_scaled_fixed2ieee_63_1_Pipeline_2_fu_119) | 0   |        |             |      |         |         |
+|       i_3_fu_148_p2                                                                    |     |        | i_3         | add  | fabric  | 0       |
+|       sub_ln404_fu_162_p2                                                              |     |        | sub_ln404   | sub  | fabric  | 0       |
+|       sub_ln403_fu_168_p2                                                              |     |        | sub_ln403   | sub  | fabric  | 0       |
+|       sub_ln403_1_fu_190_p2                                                            |     |        | sub_ln403_1 | sub  | fabric  | 0       |
+|       sub_ln403_2_fu_196_p2                                                            |     |        | sub_ln403_2 | sub  | fabric  | 0       |
+|       sub_ln403_3_fu_202_p2                                                            |     |        | sub_ln403_3 | sub  | fabric  | 0       |
+|       sub_ln403_4_fu_232_p2                                                            |     |        | sub_ln403_4 | sub  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_3 (grp_scaled_fixed2ieee_63_1_Pipeline_3_fu_131) | 0   |        |             |      |         |         |
+|       add_ln414_fu_142_p2                                                              |     |        | add_ln414   | add  | fabric  | 0       |
+|     + scaled_fixed2ieee_63_1_Pipeline_4 (grp_scaled_fixed2ieee_63_1_Pipeline_4_fu_143) | 0   |        |             |      |         |         |
+|       add_ln421_fu_175_p2                                                              |     |        | add_ln421   | add  | fabric  | 0       |
+|       shift_1_out                                                                      |     |        | shift_1     | add  | fabric  | 0       |
+|       sub_ln423_fu_214_p2                                                              |     |        | sub_ln423   | sub  | fabric  | 0       |
+|  + loady8                                                                              | 0   |        |             |      |         |         |
+|    add_ln105_fu_213_p2                                                                 |     |        | add_ln105   | add  | fabric  | 0       |
+|    add_ln106_fu_224_p2                                                                 |     |        | add_ln106   | add  | fabric  | 0       |
+|    add_ln107_fu_234_p2                                                                 |     |        | add_ln107   | add  | fabric  | 0       |
+|    add_ln108_fu_244_p2                                                                 |     |        | add_ln108   | add  | fabric  | 0       |
+|    add_ln109_fu_254_p2                                                                 |     |        | add_ln109   | add  | fabric  | 0       |
+|    add_ln110_fu_264_p2                                                                 |     |        | add_ln110   | add  | fabric  | 0       |
+|    add_ln111_fu_274_p2                                                                 |     |        | add_ln111   | add  | fabric  | 0       |
++----------------------------------------------------------------------------------------+-----+--------+-------------+------+---------+---------+
 
 
 ================================================================
@@ -464,14 +507,14 @@
 |   smem_U                                                 | ram_t2p array |      | 4    |      |        | smem                           | auto   | 1       | 64, 576, 1       |
 |  + twiddles8                                             |               |      | 0    | 0    |        |                                |        |         |                  |
 |    twiddles8_reversed8_U                                 | rom_1p        |      |      |      |        | twiddles8_reversed8            | auto   | 1       | 32, 8, 1         |
-|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_119) |               |      | 0    | 0    |        |                                |        |         |                  |
+|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_109) |               |      | 0    | 0    |        |                                |        |         |                  |
 |     ref_4oPi_table_256_U                                 | rom_1p        |      |      |      |        | ref_4oPi_table_256             | auto   | 1       | 256, 10, 1       |
 |     fourth_order_double_sin_cos_K0_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K0 | lutram | 1       | 59, 256, 1       |
 |     fourth_order_double_sin_cos_K1_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K1 | lutram | 1       | 52, 256, 1       |
 |     fourth_order_double_sin_cos_K2_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K2 | lutram | 1       | 44, 256, 1       |
 |     fourth_order_double_sin_cos_K3_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K3 | lutram | 1       | 33, 256, 1       |
 |     fourth_order_double_sin_cos_K4_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K4 | lutram | 1       | 25, 256, 1       |
-|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_138) |               |      | 0    | 0    |        |                                |        |         |                  |
+|   + sin_or_cos_double_s (grp_sin_or_cos_double_s_fu_128) |               |      | 0    | 0    |        |                                |        |         |                  |
 |     ref_4oPi_table_256_U                                 | rom_1p        |      |      |      |        | ref_4oPi_table_256             | auto   | 1       | 256, 10, 1       |
 |     fourth_order_double_sin_cos_K0_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K0 | lutram | 1       | 59, 256, 1       |
 |     fourth_order_double_sin_cos_K1_U                     | rom_1p        |      |      |      | pragma | fourth_order_double_sin_cos_K1 | lutram | 1       | 52, 256, 1       |
@@ -485,36 +528,43 @@
 == Pragma Report
 ================================================================
 * Valid Pragma Syntax
-+----------------+----------------------+-------------------------------------------------------------+
-| Type           | Options              | Location                                                    |
-+----------------+----------------------+-------------------------------------------------------------+
-| loop_tripcount | min=7 max=7 avg=7    | data/benchmarks/trans_fft/transposed_fft.c:29 in twiddles8  |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:129 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:177 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:192 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:209 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:225 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:251 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:302 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:318 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:335 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:351 in fft1d_512 |
-| loop_tripcount | min=64 max=64 avg=64 | data/benchmarks/trans_fft/transposed_fft.c:377 in fft1d_512 |
-| loop_flatten   | off=true             | ../base_directives/trans_fft.tcl:12 in fft1d_512            |
-| loop_flatten   | off=true             | ../base_directives/trans_fft.tcl:13 in fft1d_512            |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:1 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:2 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:3 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:4 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:5 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:6 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:7 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:8 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:9 in fft1d_512             |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:10 in fft1d_512            |
-| pipeline       | off=true             | ../base_directives/trans_fft.tcl:11 in fft1d_512            |
-| inline         | off=true             | ../base_directives/trans_fft.tcl:15 in twiddles8            |
-| loop_flatten   | off=true             | ../base_directives/trans_fft.tcl:14 in twiddles8            |
-+----------------+----------------------+-------------------------------------------------------------+
++-----------------+----------------------------+------------------------------------------------------------------+
+| Type            | Options                    | Location                                                         |
++-----------------+----------------------------+------------------------------------------------------------------+
+| loop_tripcount  | min=7 max=7 avg=7          | data/benchmarks/transposed_fft/transposed_fft.c:29 in twiddles8  |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:129 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:177 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:192 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:209 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:225 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:251 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:302 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:318 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:335 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:351 in fft1d_512 |
+| loop_tripcount  | min=64 max=64 avg=64       | data/benchmarks/transposed_fft/transposed_fft.c:377 in fft1d_512 |
+| array_partition | off=true variable=data_x   | ../base_directives/transposed_fft.tcl:21 in fft1d_512, data_x    |
+| array_partition | off=true variable=data_y   | ../base_directives/transposed_fft.tcl:22 in fft1d_512, data_y    |
+| array_partition | off=true variable=reversed | ../base_directives/transposed_fft.tcl:20 in fft1d_512, reversed  |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:1 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:2 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:3 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:4 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:5 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:6 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:7 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:8 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:9 in fft1d_512             |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:10 in fft1d_512            |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:11 in fft1d_512            |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:13 in fft1d_512            |
+| inline          | off=true                   | ../base_directives/transposed_fft.tcl:18 in loadx8               |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:15 in loadx8               |
+| inline          | off=true                   | ../base_directives/transposed_fft.tcl:19 in loady8               |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:16 in loady8               |
+| inline          | off=true                   | ../base_directives/transposed_fft.tcl:17 in twiddles8            |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:12 in twiddles8            |
+| pipeline        | off=true                   | ../base_directives/transposed_fft.tcl:14 in twiddles8            |
++-----------------+----------------------------+------------------------------------------------------------------+
 
 

@@ -296,7 +296,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>13104882</spirit:value>
+            <spirit:value>e5dbe035</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -312,7 +312,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>04b4bbc2</spirit:value>
+            <spirit:value>7b6bb86d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -328,7 +328,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>9f53aab7</spirit:value>
+            <spirit:value>c79949b8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -344,7 +344,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ce969b7c</spirit:value>
+            <spirit:value>e99ded71</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -832,7 +832,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/stencil3d.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_bbab4f63</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_21e0fa59</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -917,8 +917,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Stencil3d</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114104922</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-05-29T23:03:08Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114163014</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-07-09T07:15:05Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -927,7 +927,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="cca4aeb0"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="755c935f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="71d72165"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="ab9d0089"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="2389c103"/>
     </xilinx:packagingInfo>

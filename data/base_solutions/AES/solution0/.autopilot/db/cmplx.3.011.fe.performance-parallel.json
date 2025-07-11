@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "8 7",
+    "calls": "6 7",
     "file": "aes.c",
     "fileloc": 66,
     "instructions": 3,
@@ -9,20 +9,20 @@
     "total_instructions": 1271
   },
   "1": {
-    "basicblocks": 3,
+    "basicblocks": 25,
     "calls": "",
     "file": "aes_key.c",
-    "fileloc": 447,
-    "instructions": 37,
+    "fileloc": 319,
+    "instructions": 159,
     "loads": {
       "G": 4,
-      "L": 4
+      "L": 16
     },
-    "name": "AddRoundKey",
+    "name": "MixColumn_AddRoundKey",
     "stores": {
-      "L": 4
+      "L": 24
     },
-    "total_instructions": 37
+    "total_instructions": 159
   },
   "2": {
     "basicblocks": 1,
@@ -57,6 +57,22 @@
     "total_instructions": 171
   },
   "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 199,
+    "instructions": 145,
+    "loads": {
+      "G": 16,
+      "L": 16
+    },
+    "name": "InversShiftRow_ByteSub",
+    "stores": {
+      "L": 16
+    },
+    "total_instructions": 145
+  },
+  "5": {
     "basicblocks": 12,
     "calls": "",
     "file": "aes_key.c",
@@ -73,41 +89,18 @@
     },
     "total_instructions": 93
   },
-  "5": {
-    "basicblocks": 25,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 319,
-    "instructions": 159,
-    "loads": {
-      "G": 4,
-      "L": 16
-    },
-    "name": "MixColumn_AddRoundKey",
-    "stores": {
-      "L": 24
-    },
-    "total_instructions": 159
-  },
   "6": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 199,
-    "instructions": 145,
-    "loads": {
-      "G": 16,
-      "L": 16
-    },
-    "name": "InversShiftRow_ByteSub",
-    "stores": {
-      "L": 16
-    },
-    "total_instructions": 145
+    "basicblocks": 3,
+    "calls": "5 8 2 1 2 8",
+    "file": "aes_enc.c",
+    "fileloc": 66,
+    "instructions": 12,
+    "name": "encrypt",
+    "total_instructions": 628
   },
   "7": {
     "basicblocks": 3,
-    "calls": "4 1 6 3 6 1",
+    "calls": "5 8 4 3 4 8",
     "file": "aes_dec.c",
     "fileloc": 66,
     "instructions": 12,
@@ -116,11 +109,18 @@
   },
   "8": {
     "basicblocks": 3,
-    "calls": "4 1 2 5 2 1",
-    "file": "aes_enc.c",
-    "fileloc": 66,
-    "instructions": 12,
-    "name": "encrypt",
-    "total_instructions": 628
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 447,
+    "instructions": 37,
+    "loads": {
+      "G": 4,
+      "L": 4
+    },
+    "name": "AddRoundKey",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 37
   }
 }

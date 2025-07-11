@@ -4,7 +4,7 @@
     "calls": "",
     "file": "stencil.c",
     "fileloc": 10,
-    "instructions": 168,
+    "instructions": 174,
     "loads": {
       "T": 15
     },
@@ -12,6 +12,6 @@
     "stores": {
       "T": 7
     },
-    "total_instructions": 168
+    "total_instructions": 174
   }
 }

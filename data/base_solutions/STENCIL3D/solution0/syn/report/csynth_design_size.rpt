@@ -28,14 +28,14 @@
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
 |               | (1) lowering                | 142          | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           | 168          | high level synthesis optimizations                                                     |
+|               | (2) optimizations           | 174          | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
 +-------------+--------------+--------------+---------------+--------------+-------------+---------------+
 | Function    | Location     | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +-------------+--------------+--------------+---------------+--------------+-------------+---------------+
-|   stencil3d | stencil.c:10 | 227          | 135           | 136          | 136         | 168           |
+|   stencil3d | stencil.c:10 | 227          | 135           | 136          | 136         | 174           |
 +-------------+--------------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings

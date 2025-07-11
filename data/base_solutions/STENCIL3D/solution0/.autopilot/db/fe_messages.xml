@@ -1,4 +1,7 @@
 <xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=stencil3d" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
@@ -7,6 +10,9 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/stencil3d/stencil.c:16:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=16 max=16 avg=16" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:11:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:2:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
@@ -20,6 +26,9 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/stencil3d/stencil.c:24:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=14 max=14 avg=14" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:12:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:4:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
@@ -31,6 +40,9 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/stencil3d/stencil.c:32:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=14 max=14 avg=14" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:6:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
@@ -44,11 +56,17 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/stencil3d/stencil.c:43:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=14 max=14 avg=14" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:14:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:8:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/stencil3d/stencil.c:45:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=14 max=14 avg=14" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:15:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="loop_flatten" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:9:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="stencil3d" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>

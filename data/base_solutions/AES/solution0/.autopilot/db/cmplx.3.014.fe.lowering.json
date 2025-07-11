@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "4 8",
+    "calls": "8 1",
     "file": "aes.c",
     "fileloc": 66,
     "instructions": 7,
@@ -9,6 +9,15 @@
     "total_instructions": 1275
   },
   "1": {
+    "basicblocks": 3,
+    "calls": "3 5 6 2 6 5",
+    "file": "aes_dec.c",
+    "fileloc": 66,
+    "instructions": 12,
+    "name": "decrypt",
+    "total_instructions": 640
+  },
+  "2": {
     "basicblocks": 9,
     "calls": "",
     "file": "aes_key.c",
@@ -23,22 +32,6 @@
       "L": 9
     },
     "total_instructions": 171
-  },
-  "2": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 79,
-    "instructions": 145,
-    "loads": {
-      "G": 16,
-      "L": 16
-    },
-    "name": "ByteSub_ShiftRow",
-    "stores": {
-      "L": 16
-    },
-    "total_instructions": 145
   },
   "3": {
     "basicblocks": 12,
@@ -58,15 +51,6 @@
     "total_instructions": 93
   },
   "4": {
-    "basicblocks": 3,
-    "calls": "3 7 2 5 2 7",
-    "file": "aes_enc.c",
-    "fileloc": 66,
-    "instructions": 12,
-    "name": "encrypt",
-    "total_instructions": 628
-  },
-  "5": {
     "basicblocks": 25,
     "calls": "",
     "file": "aes_key.c",
@@ -81,6 +65,22 @@
       "L": 24
     },
     "total_instructions": 159
+  },
+  "5": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 447,
+    "instructions": 37,
+    "loads": {
+      "G": 4,
+      "L": 4
+    },
+    "name": "AddRoundKey",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 37
   },
   "6": {
     "basicblocks": 1,
@@ -99,28 +99,28 @@
     "total_instructions": 145
   },
   "7": {
-    "basicblocks": 3,
+    "basicblocks": 1,
     "calls": "",
     "file": "aes_key.c",
-    "fileloc": 447,
-    "instructions": 37,
+    "fileloc": 79,
+    "instructions": 145,
     "loads": {
-      "G": 4,
-      "L": 4
+      "G": 16,
+      "L": 16
     },
-    "name": "AddRoundKey",
+    "name": "ByteSub_ShiftRow",
     "stores": {
-      "L": 4
+      "L": 16
     },
-    "total_instructions": 37
+    "total_instructions": 145
   },
   "8": {
     "basicblocks": 3,
-    "calls": "3 7 6 1 6 7",
-    "file": "aes_dec.c",
+    "calls": "3 5 7 4 7 5",
+    "file": "aes_enc.c",
     "fileloc": 66,
     "instructions": 12,
-    "name": "decrypt",
-    "total_instructions": 640
+    "name": "encrypt",
+    "total_instructions": 628
   }
 }

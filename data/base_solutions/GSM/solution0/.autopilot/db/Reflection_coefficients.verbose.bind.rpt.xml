@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Reflection_coefficients'" level="0">
-<item name = "Date">Fri May 30 22:03:38 2025
+<item name = "Date">Wed Jul  9 03:57:16 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 3.530 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 3.923 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,15 +24,20 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">11, 557, 88.000 ns, 4.456 us, 11, 557, no</column>
+<column name="">11, 588, 88.000 ns, 4.704 us, 11, 588, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_gsm_norm_fu_298">gsm_norm, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_gsm_div_fu_306">gsm_div, 1, 18, 8.000 ns, 0.144 us, 1, 18, no</column>
+<column name="grp_gsm_norm_fu_276">gsm_norm, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
+<column name="temp_2_gsm_abs_fu_284">gsm_abs, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
+<column name="grp_gsm_div_fu_290">gsm_div, 1, 15, 8.000 ns, 0.120 us, 1, 15, no</column>
+<column name="grp_gsm_mult_r_fu_298">gsm_mult_r, 3, 3, 24.000 ns, 24.000 ns, 3, 3, no</column>
+<column name="grp_gsm_mult_r_fu_305">gsm_mult_r, 3, 3, 24.000 ns, 24.000 ns, 3, 3, no</column>
+<column name="grp_gsm_add_fu_312">gsm_add, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="tmp_6_gsm_add_fu_320">gsm_add, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -41,8 +46,8 @@
 <column name="- Reflection_coefficients_label1">18, 18, 2, -, -, 9, no</column>
 <column name="- Reflection_coefficients_label2">14, 14, 2, -, -, 7, no</column>
 <column name="- Reflection_coefficients_label3">18, 18, 2, -, -, 9, no</column>
-<column name="- Reflection_coefficients_label4">14, 491, 14 ~ 61, -, -, 1 ~ 8, no</column>
-<column name=" + Reflection_coefficients_label5">5, 35, 5, -, -, 1 ~ 7, no</column>
+<column name="- Reflection_coefficients_label4">15, 522, 15 ~ 65, -, -, 1 ~ 8, no</column>
+<column name=" + Reflection_coefficients_label5">6, 42, 6, -, -, 1 ~ 7, no</column>
 <column name="- Reflection_coefficients_label6">1, 8, 1, -, -, 1 ~ 8, no</column>
 </table>
 </item>

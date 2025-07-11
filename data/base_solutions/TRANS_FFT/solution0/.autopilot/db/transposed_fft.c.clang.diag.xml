@@ -1,13 +1,13 @@
 <dict>
   <key>main-file</key>
-  <string>data/benchmarks/trans_fft/transposed_fft.c</string>
+  <string>data/benchmarks/transposed_fft/transposed_fft.c</string>
   <key>diagnostics</key>
   <array>
     <dict>
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>data/benchmarks/trans_fft/transposed_fft.h</string>
+      <string>data/benchmarks/transposed_fft/transposed_fft.h</string>
       <key>line</key>
       <integer>18</integer>
       <key>column</key>

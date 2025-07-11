@@ -28,14 +28,14 @@
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
 |               | (1) lowering                |  98          | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           | 104          | high level synthesis optimizations                                                     |
+|               | (2) optimizations           | 110          | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
 +----------------------+------------------+--------------+---------------+--------------+-------------+---------------+
 | Function             | Location         | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +----------------------+------------------+--------------+---------------+--------------+-------------+---------------+
-|   kernel_gramschmidt | gramschmidt.c:75 | 130          | 83            | 85           | 78          | 104           |
+|   kernel_gramschmidt | gramschmidt.c:75 | 130          | 83            | 85           | 78          | 110           |
 +----------------------+------------------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings

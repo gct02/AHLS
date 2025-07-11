@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri May 30 22:04:06 2025" VIVADOVERSION="2023.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jul  9 03:57:43 2025" VIVADOVERSION="2023.2">
 
   <SYSTEMINFO ARCH="virtexuplusHBM" DEVICE="xcu50" NAME="bd_0" PACKAGE="fsvh2104" SPEEDGRADE="-2"/>
 
@@ -109,6 +109,11 @@
         <CONNECTION INSTANCE="hls_inst" PORT="indata_d0"/>
       </CONNECTIONS>
     </PORT>
+    <PORT DIR="O" LEFT="15" NAME="indata_d1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_d1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_d1"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="I" LEFT="15" NAME="indata_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_indata_q0">
       <CONNECTIONS>
         <CONNECTION INSTANCE="hls_inst" PORT="indata_q0"/>
@@ -122,6 +127,11 @@
     <PORT DIR="O" NAME="indata_we0" SIGIS="undef" SIGNAME="hls_inst_indata_we0">
       <CONNECTIONS>
         <CONNECTION INSTANCE="hls_inst" PORT="indata_we0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="indata_we1" SIGIS="undef" SIGNAME="hls_inst_indata_we1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hls_inst" PORT="indata_we1"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -138,14 +148,14 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE COREREVISION="2114106483" FULLNAME="/hls_inst" HWVERSION="1.0" INSTANCE="hls_inst" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Gsm_LPC_Analysis" VLNV="xilinx.com:hls:Gsm_LPC_Analysis:1.0">
+    <MODULE COREREVISION="2114162997" FULLNAME="/hls_inst" HWVERSION="1.0" INSTANCE="hls_inst" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Gsm_LPC_Analysis" VLNV="xilinx.com:hls:Gsm_LPC_Analysis:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="bd_0_hls_inst_0"/>
         <PARAMETER NAME="II" VALUE="x"/>
         <PARAMETER NAME="clk_period" VALUE="8"/>
         <PARAMETER NAME="combinational" VALUE="0"/>
-        <PARAMETER NAME="latency" VALUE="1160"/>
+        <PARAMETER NAME="latency" VALUE="1310"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -255,6 +265,11 @@
             <CONNECTION INSTANCE="External_Ports" PORT="indata_d0"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="15" NAME="indata_d1" RIGHT="0" SIGIS="data" SIGNAME="hls_inst_indata_d1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_d1"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" LEFT="15" NAME="indata_q0" RIGHT="0" SIGIS="data" SIGNAME="External_Ports_indata_q0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="indata_q0"/>
@@ -268,6 +283,11 @@
         <PORT DIR="O" NAME="indata_we0" SIGIS="undef" SIGNAME="hls_inst_indata_we0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="indata_we0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="indata_we1" SIGIS="undef" SIGNAME="hls_inst_indata_we1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="indata_we1"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

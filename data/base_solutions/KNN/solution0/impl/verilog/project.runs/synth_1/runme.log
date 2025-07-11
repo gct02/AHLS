@@ -12,7 +12,7 @@
 
 source bd_0_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 Command: synth_design -top bd_0_wrapper -part xcu50-fsvh2104-2-e -mode out_of_context
 Starting synth_design
@@ -21,48 +21,48 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
 INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 140886
+INFO: [Synth 8-7075] Helper process launched with PID 221850
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3006.320 ; gain = 396.715 ; free physical = 4067 ; free virtual = 14411
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3006.234 ; gain = 396.715 ; free physical = 5548 ; free virtual = 13934
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_wrapper' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:13]
-INFO: [Synth 8-6157] synthesizing module 'bd_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v:13]
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.runs/synth_1/.Xil/Vivado-140739-gabriel-Inspiron-15-3511/realtime/bd_0_hls_inst_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.runs/synth_1/.Xil/Vivado-140739-gabriel-Inspiron-15-3511/realtime/bd_0_hls_inst_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_wrapper' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_wrapper' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'bd_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v:13]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.runs/synth_1/.Xil/Vivado-221737-gabriel-Inspiron-15-3511/realtime/bd_0_hls_inst_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.runs/synth_1/.Xil/Vivado-221737-gabriel-Inspiron-15-3511/realtime/bd_0_hls_inst_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_wrapper' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:13]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3087.289 ; gain = 477.684 ; free physical = 3964 ; free virtual = 14309
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3087.203 ; gain = 477.684 ; free physical = 5445 ; free virtual = 13833
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3102.133 ; gain = 492.527 ; free physical = 3963 ; free virtual = 14308
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3102.047 ; gain = 492.527 ; free physical = 5445 ; free virtual = 13833
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3102.133 ; gain = 492.527 ; free physical = 3963 ; free virtual = 14308
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3102.047 ; gain = 492.527 ; free physical = 5445 ; free virtual = 13833
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3102.133 ; gain = 0.000 ; free physical = 3963 ; free virtual = 14308
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3102.047 ; gain = 0.000 ; free physical = 5445 ; free virtual = 13833
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/md_kernel.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/md_kernel.xdc]
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/md_kernel.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/md_kernel.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3186.945 ; gain = 0.000 ; free physical = 3938 ; free virtual = 14283
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3189.828 ; gain = 0.000 ; free physical = 5429 ; free virtual = 13818
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3186.980 ; gain = 0.000 ; free physical = 3937 ; free virtual = 14283
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3189.863 ; gain = 0.000 ; free physical = 5429 ; free virtual = 13818
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 3186.980 ; gain = 577.375 ; free physical = 3931 ; free virtual = 14277
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 3189.863 ; gain = 580.344 ; free physical = 5444 ; free virtual = 13832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -70,7 +70,7 @@ Start Loading Part and Timing Information
 Loading part: xcu50-fsvh2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 3186.980 ; gain = 577.375 ; free physical = 3931 ; free virtual = 14277
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 3189.863 ; gain = 580.344 ; free physical = 5444 ; free virtual = 13832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -78,10 +78,10 @@ Start Applying 'set_property' XDC Constraints
 Applied set_property KEEP_HIERARCHY = SOFT for bd_0_i. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for bd_0_i/hls_inst. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 3186.980 ; gain = 577.375 ; free physical = 3931 ; free virtual = 14277
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 3189.863 ; gain = 580.344 ; free physical = 5444 ; free virtual = 13832
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 3186.980 ; gain = 577.375 ; free physical = 3930 ; free virtual = 14276
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3189.863 ; gain = 580.344 ; free physical = 5444 ; free virtual = 13833
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -104,25 +104,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3186.980 ; gain = 577.375 ; free physical = 3930 ; free virtual = 14276
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3189.863 ; gain = 580.344 ; free physical = 5444 ; free virtual = 13834
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3518.773 ; gain = 909.168 ; free physical = 3598 ; free virtual = 13944
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 3511.555 ; gain = 902.035 ; free physical = 5119 ; free virtual = 13509
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3519.773 ; gain = 910.168 ; free physical = 3598 ; free virtual = 13944
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 3511.555 ; gain = 902.035 ; free physical = 5111 ; free virtual = 13501
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3528.789 ; gain = 919.184 ; free physical = 3590 ; free virtual = 13936
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 3520.570 ; gain = 911.051 ; free physical = 5103 ; free virtual = 13493
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -140,37 +140,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5129 ; free virtual = 13520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5129 ; free virtual = 13520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5129 ; free virtual = 13520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5129 ; free virtual = 13520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5129 ; free virtual = 13520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5128 ; free virtual = 13518
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -190,16 +190,16 @@ Report Cell Usage:
 |1     |bd_0_hls_inst |     1|
 +------+--------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.664 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.445 ; gain = 925.926 ; free physical = 5126 ; free virtual = 13516
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3543.664 ; gain = 849.211 ; free physical = 3592 ; free virtual = 13938
-Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3543.672 ; gain = 934.059 ; free physical = 3592 ; free virtual = 13938
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 3535.445 ; gain = 838.109 ; free physical = 5098 ; free virtual = 13489
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3535.453 ; gain = 925.926 ; free physical = 5098 ; free virtual = 13489
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3543.672 ; gain = 0.000 ; free physical = 3592 ; free virtual = 13938
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3535.453 ; gain = 0.000 ; free physical = 5098 ; free virtual = 13489
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3605.102 ; gain = 0.000 ; free physical = 3828 ; free virtual = 14175
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3596.914 ; gain = 0.000 ; free physical = 5324 ; free virtual = 13715
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -207,9 +207,9 @@ Synth Design complete | Checksum: 5721831c
 INFO: [Common 17-83] Releasing license: Synthesis
 22 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:26 . Memory (MB): peak = 3605.137 ; gain = 2239.938 ; free physical = 3828 ; free virtual = 14175
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3150.975; main = 2879.646; forked = 377.507
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4510.305; main = 3605.105; forked = 981.512
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/KNN/solution0/impl/verilog/project.runs/synth_1/bd_0_wrapper.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:26 . Memory (MB): peak = 3596.949 ; gain = 2248.148 ; free physical = 5324 ; free virtual = 13715
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3154.534; main = 2882.005; forked = 377.603
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4502.074; main = 3596.918; forked = 981.500
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/project.runs/synth_1/bd_0_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_wrapper_utilization_synth.rpt -pb bd_0_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu May 29 16:59:30 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 04:05:27 2025...

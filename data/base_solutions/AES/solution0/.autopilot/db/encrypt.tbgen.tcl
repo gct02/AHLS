@@ -103,30 +103,30 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_62", "Port" : "statemt", "Inst_start_state" : "10", "Inst_end_state" : "11"},
-					{"ID" : "8", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_81", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "8"},
-					{"ID" : "6", "SubInstance" : "grp_ByteSub_ShiftRow_fu_73", "Port" : "statemt", "Inst_start_state" : "5", "Inst_end_state" : "9"}]},
+					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_64", "Port" : "statemt", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "6", "SubInstance" : "grp_ByteSub_ShiftRow_fu_75", "Port" : "statemt", "Inst_start_state" : "5", "Inst_end_state" : "9"},
+					{"ID" : "8", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_83", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "8"}]},
 			{"Name" : "key", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "word", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_62", "Port" : "word", "Inst_start_state" : "10", "Inst_end_state" : "11"},
-					{"ID" : "8", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_81", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "8"}]},
+					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_64", "Port" : "word", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "8", "SubInstance" : "grp_MixColumn_AddRoundKey_fu_83", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "8"},
+					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "Rcon0", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_50", "Port" : "Rcon0", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
+					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_52", "Port" : "Rcon0", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "Sbox_1", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "6", "SubInstance" : "grp_ByteSub_ShiftRow_fu_73", "Port" : "Sbox_1", "Inst_start_state" : "5", "Inst_end_state" : "9"}]}],
+					{"ID" : "6", "SubInstance" : "grp_ByteSub_ShiftRow_fu_75", "Port" : "Sbox_1", "Inst_start_state" : "5", "Inst_end_state" : "9"}]}],
 		"Loop" : [
 			{"Name" : "encrypt_label1", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "11", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state8"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state4"], "PostState" : ["ap_ST_fsm_state9"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_50", "Parent" : "0", "Child" : ["2", "3", "4"],
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_52", "Parent" : "0", "Child" : ["2", "3", "4"],
 		"CDFG" : "KeySchedule",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -154,10 +154,10 @@ set RtlHierarchyInfo {[
 				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state9", "LastState" : ["ap_ST_fsm_state10"], "QuitState" : ["ap_ST_fsm_state9"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state5"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "KeySchedule_label6", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "10", "FirstState" : "ap_ST_fsm_state5", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state5"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_50.Sbox_U", "Parent" : "1"},
-	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_50.Rcon0_U", "Parent" : "1"},
-	{"ID" : "4", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_50.mux_4_2_32_1_1_U1", "Parent" : "1"},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_AddRoundKey_fu_62", "Parent" : "0",
+	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_52.Sbox_U", "Parent" : "1"},
+	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_52.Rcon0_U", "Parent" : "1"},
+	{"ID" : "4", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_KeySchedule_fu_52.mux_4_2_32_1_1_U1", "Parent" : "1"},
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_AddRoundKey_fu_64", "Parent" : "0",
 		"CDFG" : "AddRoundKey",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -178,7 +178,7 @@ set RtlHierarchyInfo {[
 		"Loop" : [
 			{"Name" : "AddRoundKey_label0", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "5", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_ByteSub_ShiftRow_fu_73", "Parent" : "0", "Child" : ["7"],
+	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_ByteSub_ShiftRow_fu_75", "Parent" : "0", "Child" : ["7"],
 		"CDFG" : "ByteSub_ShiftRow",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -195,8 +195,8 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "Sbox_1", "Type" : "Memory", "Direction" : "I"}]},
-	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_ByteSub_ShiftRow_fu_73.Sbox_1_U", "Parent" : "6"},
-	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_MixColumn_AddRoundKey_fu_81", "Parent" : "0", "Child" : ["9"],
+	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_ByteSub_ShiftRow_fu_75.Sbox_1_U", "Parent" : "6"},
+	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_MixColumn_AddRoundKey_fu_83", "Parent" : "0", "Child" : ["9"],
 		"CDFG" : "MixColumn_AddRoundKey",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -219,7 +219,7 @@ set RtlHierarchyInfo {[
 				"LoopDec" : {"FSMBitwidth" : "8", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state6"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "MixColumn_AddRoundKey_label1", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "8", "FirstState" : "ap_ST_fsm_state6", "LastState" : ["ap_ST_fsm_state8"], "QuitState" : ["ap_ST_fsm_state6"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "9", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MixColumn_AddRoundKey_fu_81.ret_U", "Parent" : "8"}]}
+	{"ID" : "9", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MixColumn_AddRoundKey_fu_83.ret_U", "Parent" : "8"}]}
 
 
 set ArgLastReadFirstWriteLatency {

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Thu May 29 17:03:05 2025
+| Date              : Wed Jul  9 04:09:13 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file ./report/md_kernel_timing_routed.rpt
 | Design            : bd_0_wrapper
@@ -379,7 +379,7 @@ Slack (MET) :             1.584ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.029ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/reg_270_reg[36]/C
+  Source:                 bd_0_i/hls_inst/inst/reg_272_reg[36]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/din1_buf1_reg[36]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
@@ -398,10 +398,10 @@ Slack (MET) :             0.029ns  (arrival time - required time)
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=4330, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X53Y131        FDRE                                         r  bd_0_i/hls_inst/inst/reg_270_reg[36]/C
+    SLICE_X53Y131        FDRE                                         r  bd_0_i/hls_inst/inst/reg_272_reg[36]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X53Y131        FDRE (Prop_HFF_SLICEM_C_Q)
-                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/reg_270_reg[36]/Q
+                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/reg_272_reg[36]/Q
                          net (fo=6, routed)           0.043     0.095    bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/din1_buf1_reg[63]_0[36]
     SLICE_X53Y131        FDRE                                         r  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U6/din1_buf1_reg[36]/D
   -------------------------------------------------------------------    -------------------

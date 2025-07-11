@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Fri May 30 22:04:12 2025
-# Process ID: 169109
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GSM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
+# Start of session at: Wed Jul  9 03:57:48 2025
+# Process ID: 211776
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GSM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1
 # Command line: vivado -log bd_0_hls_inst_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_hls_inst_0.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GSM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GSM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 1967.756 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GSM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.vds
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GSM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 744.684 MHz, CPU Physical cores: 4, Host memory: 16492 MB
 #-----------------------------------------------------------
 source bd_0_hls_inst_0.tcl -notrace

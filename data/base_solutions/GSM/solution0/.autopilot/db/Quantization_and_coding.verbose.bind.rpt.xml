@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Quantization_and_coding'" level="0">
-<item name = "Date">Fri May 30 22:03:38 2025
+<item name = "Date">Wed Jul  9 03:57:16 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 5.672 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 4.696 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -31,6 +31,12 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_gsm_mult_fu_195">gsm_mult, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_gsm_mult_fu_203">gsm_mult, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_gsm_add_fu_215">gsm_add, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_gsm_add_fu_222">gsm_add, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_gsm_add_fu_230">gsm_add, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_gsm_add_fu_237">gsm_add, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

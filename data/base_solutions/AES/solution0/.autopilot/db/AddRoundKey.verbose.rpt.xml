@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'AddRoundKey'" level="0">
-<item name = "Date">Sat May 31 00:10:17 2025
+<item name = "Date">Wed Jul  9 03:26:54 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -80,23 +80,23 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln469_fu_190_p2">+, 0, 0, 10, 3, 1</column>
-<column name="add_ln471_fu_200_p2">+, 0, 0, 13, 6, 6</column>
-<column name="add_ln472_fu_214_p2">+, 0, 0, 15, 8, 7</column>
-<column name="add_ln473_fu_261_p2">+, 0, 0, 16, 9, 8</column>
-<column name="add_ln474_fu_272_p2">+, 0, 0, 16, 9, 9</column>
-<column name="icmp_ln469_fu_184_p2">icmp, 0, 0, 12, 3, 4</column>
-<column name="or_ln472_fu_242_p2">or, 0, 0, 4, 4, 1</column>
-<column name="or_ln473_fu_283_p2">or, 0, 0, 4, 4, 2</column>
-<column name="or_ln474_fu_293_p2">or, 0, 0, 4, 4, 2</column>
-<column name="grp_fu_146_p2">xor, 0, 0, 32, 32, 32</column>
-<column name="grp_fu_152_p2">xor, 0, 0, 32, 32, 32</column>
+<column name="add_ln469_fu_192_p2">+, 0, 0, 10, 3, 1</column>
+<column name="add_ln471_fu_202_p2">+, 0, 0, 13, 6, 6</column>
+<column name="add_ln472_fu_216_p2">+, 0, 0, 15, 8, 7</column>
+<column name="add_ln473_fu_263_p2">+, 0, 0, 16, 9, 8</column>
+<column name="add_ln474_fu_274_p2">+, 0, 0, 16, 9, 9</column>
+<column name="icmp_ln469_fu_186_p2">icmp, 0, 0, 12, 3, 4</column>
+<column name="or_ln472_fu_244_p2">or, 0, 0, 4, 4, 1</column>
+<column name="or_ln473_fu_285_p2">or, 0, 0, 4, 4, 2</column>
+<column name="or_ln474_fu_295_p2">or, 0, 0, 4, 4, 2</column>
+<column name="grp_fu_148_p2">xor, 0, 0, 32, 32, 32</column>
+<column name="grp_fu_154_p2">xor, 0, 0, 32, 32, 32</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">31, 6, 1, 6</column>
-<column name="j_fu_54">9, 2, 3, 6</column>
+<column name="j_fu_56">9, 2, 3, 6</column>
 <column name="statemt_address0">26, 5, 5, 25</column>
 <column name="statemt_address1">26, 5, 5, 25</column>
 <column name="word_address0">14, 3, 9, 27</column>
@@ -105,17 +105,17 @@
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln471_reg_318">6, 0, 6, 0</column>
+<column name="add_ln471_reg_320">6, 0, 6, 0</column>
 <column name="ap_CS_fsm">5, 0, 5, 0</column>
-<column name="j_fu_54">3, 0, 3, 0</column>
-<column name="mul_reg_310">4, 0, 6, 2</column>
-<column name="reg_158">32, 0, 32, 0</column>
-<column name="reg_163">32, 0, 32, 0</column>
-<column name="shl_ln_reg_333">2, 0, 4, 2</column>
-<column name="statemt_addr_49_reg_344">2, 0, 5, 3</column>
-<column name="statemt_addr_50_reg_359">2, 0, 5, 3</column>
-<column name="statemt_addr_51_reg_364">2, 0, 5, 3</column>
-<column name="statemt_addr_reg_339">2, 0, 5, 3</column>
+<column name="j_fu_56">3, 0, 3, 0</column>
+<column name="mul_reg_312">4, 0, 6, 2</column>
+<column name="reg_160">32, 0, 32, 0</column>
+<column name="reg_165">32, 0, 32, 0</column>
+<column name="shl_ln_reg_335">2, 0, 4, 2</column>
+<column name="statemt_addr_49_reg_346">2, 0, 5, 3</column>
+<column name="statemt_addr_50_reg_361">2, 0, 5, 3</column>
+<column name="statemt_addr_51_reg_366">2, 0, 5, 3</column>
+<column name="statemt_addr_reg_341">2, 0, 5, 3</column>
 </table>
 </item>
 </section>

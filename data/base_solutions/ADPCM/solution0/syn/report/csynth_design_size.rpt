@@ -11,54 +11,54 @@
 | Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
 |               | (1) unroll                  | 1,371        | user unroll pragmas are applied                                                        |
 |               | (2) simplification          | 1,134        | simplification of applied user unroll pragmas                                          |
-|               | (3) inline                  | 1,019        | user inline pragmas are applied                                                        |
-|               | (4) simplification          |   984        | simplification of applied user inline pragmas                                          |
+|               | (3) inline                  | 1,067        | user inline pragmas are applied                                                        |
+|               | (4) simplification          | 1,068        | simplification of applied user inline pragmas                                          |
 |               |                             |              |                                                                                        |
 | Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
-|               | (1) array partition         |   990        | user array partition pragmas are applied                                               |
-|               | (2) simplification          |   984        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
-|               | (3) aggregate/disaggregate  |   984        | user struct aggregate/disaggregate pragmas are applied                                 |
-|               | (4) array reshape           |   984        | apply array reshape pragmas                                                            |
-|               | (5) access patterns         | 1,002        | array access pattern optmizations                                                      |
+|               | (1) array partition         | 1,074        | user array partition pragmas are applied                                               |
+|               | (2) simplification          | 1,068        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  | 1,068        | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           | 1,068        | apply array reshape pragmas                                                            |
+|               | (5) access patterns         | 1,086        | array access pattern optmizations                                                      |
 |               |                             |              |                                                                                        |
 | Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
-|               | (1) loop simplification     |   993        | loop and instruction simplification                                                    |
-|               | (2) parallelization         |   984        | loops are unrolled or pipelined to meet performance targets                            |
-|               | (3) simplification          |   984        | simplification of design after performance transformations                             |
+|               | (1) loop simplification     | 1,077        | loop and instruction simplification                                                    |
+|               | (2) parallelization         | 1,068        | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) simplification          | 1,068        | simplification of design after performance transformations                             |
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
-|               | (1) lowering                |   990        | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           | 1,081        | high level synthesis optimizations                                                     |
+|               | (1) lowering                | 1,074        | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           | 1,222        | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
-+--------------+-------------+----------------+---------------+----------------+---------------+----------------+
-| Function     | Location    | Compile/Link   | Unroll/Inline | Array/Struct   | Performance   | HW Transforms  |
-+--------------+-------------+----------------+---------------+----------------+---------------+----------------+
-| + adpcm_main | adpcm.c:207 | 1,497          | 984           | 1,002          | 984           | 1,081          |
-|    reset     | adpcm.c:416 |   98           |  75           |   75           |  75           |   88           |
-|  + encode    | adpcm.c:240 |  702           | 453           |  463           | 453           |  491           |
-|     filtez   | adpcm.c:458 |   58 (2 calls) |  52 (2 calls) |   54 (2 calls) |  52 (2 calls) |   60 (2 calls) |
-|     filtep   | adpcm.c:474 |   24 (2 calls) |               |                |               |                |
-|   + quantl   | adpcm.c:484 |   39           |  31           |   32           |  30           |   35           |
-|      abs     | adpcm.c:231 |    7           |               |                |               |                |
-|     logscl   | adpcm.c:509 |   18           |               |                |               |                |
-|     scalel   | adpcm.c:521 |   22 (2 calls) |               |                |               |                |
-|     upzero   | adpcm.c:531 |  150 (2 calls) | 106 (2 calls) |  108 (2 calls) | 104 (2 calls) |  122 (2 calls) |
-|     uppol2   | adpcm.c:565 |   70 (2 calls) |               |                |               |                |
-|     uppol1   | adpcm.c:593 |   54 (2 calls) |               |                |               |                |
-|     abs      | adpcm.c:231 |    7           |               |                |               |                |
-|     logsch   | adpcm.c:617 |   17           |               |                |               |                |
-|  + decode    | adpcm.c:331 |  651           | 424           |  432           | 424           |  457           |
-|     filtez   | adpcm.c:458 |   58 (2 calls) |  52 (2 calls) |   54 (2 calls) |  52 (2 calls) |   60 (2 calls) |
-|     filtep   | adpcm.c:474 |   24 (2 calls) |               |                |               |                |
-|     logscl   | adpcm.c:509 |   18           |               |                |               |                |
-|     scalel   | adpcm.c:521 |   22 (2 calls) |               |                |               |                |
-|     upzero   | adpcm.c:531 |  150 (2 calls) | 106 (2 calls) |  108 (2 calls) | 104 (2 calls) |  122 (2 calls) |
-|     uppol2   | adpcm.c:565 |   70 (2 calls) |               |                |               |                |
-|     uppol1   | adpcm.c:593 |   54 (2 calls) |               |                |               |                |
-|     logsch   | adpcm.c:617 |   17           |               |                |               |                |
-+--------------+-------------+----------------+---------------+----------------+---------------+----------------+
++--------------+-------------+----------------+----------------+----------------+----------------+----------------+
+| Function     | Location    | Compile/Link   | Unroll/Inline  | Array/Struct   | Performance    | HW Transforms  |
++--------------+-------------+----------------+----------------+----------------+----------------+----------------+
+| + adpcm_main | adpcm.c:207 | 1,497          | 1,068          | 1,086          | 1,068          | 1,222          |
+|    reset     | adpcm.c:416 |   98           |   75           |   75           |   75           |   89           |
+|  + encode    | adpcm.c:240 |  702           |  498           |  508           |  498           |  566           |
+|     filtez   | adpcm.c:458 |   58 (2 calls) |   52 (2 calls) |   54 (2 calls) |   52 (2 calls) |   62 (2 calls) |
+|     filtep   | adpcm.c:474 |   24 (2 calls) |   24 (2 calls) |   24 (2 calls) |   24 (2 calls) |   28 (2 calls) |
+|   + quantl   | adpcm.c:484 |   39           |   34           |   35           |   33           |   41           |
+|      abs     | adpcm.c:231 |    7           |    4           |    4           |    4           |    6           |
+|     logscl   | adpcm.c:509 |   18           |   14           |   14           |   14           |   16           |
+|     scalel   | adpcm.c:521 |   22 (2 calls) |   22 (2 calls) |   22 (2 calls) |   22 (2 calls) |   26 (2 calls) |
+|     upzero   | adpcm.c:531 |  150 (2 calls) |  106 (2 calls) |  108 (2 calls) |  104 (2 calls) |  124 (2 calls) |
+|     uppol2   | adpcm.c:565 |   70 (2 calls) |   50 (2 calls) |   50 (2 calls) |   50 (2 calls) |   54 (2 calls) |
+|     uppol1   | adpcm.c:593 |   54 (2 calls) |   36 (2 calls) |   36 (2 calls) |   36 (2 calls) |   40 (2 calls) |
+|     abs      | adpcm.c:231 |    7           |    4           |    4           |    4           |    6           |
+|     logsch   | adpcm.c:617 |   17           |   13           |   13           |   13           |   15           |
+|  + decode    | adpcm.c:331 |  651           |  463           |  471           |  463           |  521           |
+|     filtez   | adpcm.c:458 |   58 (2 calls) |   52 (2 calls) |   54 (2 calls) |   52 (2 calls) |   62 (2 calls) |
+|     filtep   | adpcm.c:474 |   24 (2 calls) |   24 (2 calls) |   24 (2 calls) |   24 (2 calls) |   28 (2 calls) |
+|     logscl   | adpcm.c:509 |   18           |   14           |   14           |   14           |   16           |
+|     scalel   | adpcm.c:521 |   22 (2 calls) |   22 (2 calls) |   22 (2 calls) |   22 (2 calls) |   26 (2 calls) |
+|     upzero   | adpcm.c:531 |  150 (2 calls) |  106 (2 calls) |  108 (2 calls) |  104 (2 calls) |  124 (2 calls) |
+|     uppol2   | adpcm.c:565 |   70 (2 calls) |   50 (2 calls) |   50 (2 calls) |   50 (2 calls) |   54 (2 calls) |
+|     uppol1   | adpcm.c:593 |   54 (2 calls) |   36 (2 calls) |   36 (2 calls) |   36 (2 calls) |   40 (2 calls) |
+|     logsch   | adpcm.c:617 |   17           |   13           |   13           |   13           |   15           |
++--------------+-------------+----------------+----------------+----------------+----------------+----------------+
 
 * Design Size Message Settings
 +---------------------------------------------+--------+------------------------------------------------------------------+

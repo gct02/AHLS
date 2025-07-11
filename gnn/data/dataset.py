@@ -218,7 +218,8 @@ class HLSDataset(Dataset):
             
         log_scaling_keys = [
             'min_trip_count', 'max_trip_count',
-            'min_latency', 'max_latency', 'ii',
+            'min_latency', 'max_latency', 
+            'achieved_ii_base', 'target_ii',
             'num_instrs', 'num_loads', 'num_stores',
             'num_allocas', 'num_getelementptrs', 
             'num_phis', 'num_calls', 'dims',
@@ -256,23 +257,13 @@ def compute_scaling_stats(
         Dict[str, Dict[str, float]]: Scaling statistics for each numerical feature.
     """
     numerical_feats = {
-        'primitive_bitwidth': [],
-        'delay': [],
-        'dims': [],
-        'partition_factor': [],
-
-        'ii': [],
-        'latency': [],
-        'trip_count': [],
-        'unroll_factor': [],
-
-        'num_instrs': [],
-        'num_loads': [],
-        'num_stores': [],
-        'num_allocas': [],
-        'num_getelementptrs': [],
-        'num_phis': [],
-        'num_calls': [],
+        'primitive_bitwidth': [], 'delay': [], 'dims': [], 
+        'partition_factor': [], 'unroll_factor': [],
+        'achieved_ii_base': [], 'target_ii': [],
+        'latency': [], 'trip_count': [],
+        'num_instrs': [], 'num_loads': [], 'num_stores': [],
+        'num_allocas': [], 'num_getelementptrs': [],
+        'num_phis': [], 'num_calls': [],
     }
     for metric in TARGET_AREA_METRICS:
         numerical_feats[metric] = []

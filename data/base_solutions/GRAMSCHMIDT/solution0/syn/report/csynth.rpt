@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'kernel_gramschmidt'
 ================================================================
 + General Information: 
-    * Date:           Fri May 30 13:02:07 2025
+    * Date:           Wed Jul  9 03:51:05 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        GRAMSCHMIDT
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -108,29 +108,29 @@
 | Name                                    | DSP | Pragma | Variable    | Op    | Impl    | Latency |
 +-----------------------------------------+-----+--------+-------------+-------+---------+---------+
 | + kernel_gramschmidt                    | 11  |        |             |       |         |         |
-|   add_ln100_fu_332_p2                   |     |        | add_ln100   | add   | fabric  | 0       |
-|   add_ln94_fu_350_p2                    |     |        | add_ln94    | add   | fabric  | 0       |
-|   add_ln89_fu_378_p2                    |     |        | add_ln89    | add   | fabric  | 0       |
-|   add_ln92_fu_392_p2                    |     |        | add_ln92    | add   | fabric  | 0       |
+|   add_ln100_fu_334_p2                   |     |        | add_ln100   | add   | fabric  | 0       |
+|   add_ln94_fu_352_p2                    |     |        | add_ln94    | add   | fabric  | 0       |
+|   add_ln89_fu_380_p2                    |     |        | add_ln89    | add   | fabric  | 0       |
+|   add_ln92_fu_394_p2                    |     |        | add_ln92    | add   | fabric  | 0       |
 |   dmul_64ns_64ns_64_4_max_dsp_1_U2      | 8   |        | mul         | dmul  | maxdsp  | 3       |
 |   dadddsub_64ns_64ns_64_4_full_dsp_1_U1 | 3   |        | nrm_1       | dadd  | fulldsp | 3       |
 |   dsqrt_64ns_64ns_64_12_no_dsp_1_U4     |     |        | tmp         | dsqrt | fabric  | 11      |
-|   add_ln95_fu_425_p2                    |     |        | add_ln95    | add   | fabric  | 0       |
-|   add_ln98_fu_439_p2                    |     |        | add_ln98    | add   | fabric  | 0       |
+|   add_ln95_fu_427_p2                    |     |        | add_ln95    | add   | fabric  | 0       |
+|   add_ln98_fu_441_p2                    |     |        | add_ln98    | add   | fabric  | 0       |
 |   ddiv_64ns_64ns_64_14_no_dsp_1_U3      |     |        | div         | ddiv  | fabric  | 13      |
-|   add_ln103_fu_471_p2                   |     |        | add_ln103   | add   | fabric  | 0       |
-|   add_ln104_fu_509_p2                   |     |        | add_ln104   | add   | fabric  | 0       |
-|   add_ln107_fu_523_p2                   |     |        | add_ln107   | add   | fabric  | 0       |
-|   add_ln107_1_fu_533_p2                 |     |        | add_ln107_1 | add   | fabric  | 0       |
+|   add_ln103_fu_473_p2                   |     |        | add_ln103   | add   | fabric  | 0       |
+|   add_ln104_fu_511_p2                   |     |        | add_ln104   | add   | fabric  | 0       |
+|   add_ln107_fu_525_p2                   |     |        | add_ln107   | add   | fabric  | 0       |
+|   add_ln107_1_fu_535_p2                 |     |        | add_ln107_1 | add   | fabric  | 0       |
 |   dmul_64ns_64ns_64_4_max_dsp_1_U2      | 8   |        | mul1        | dmul  | maxdsp  | 3       |
 |   dadddsub_64ns_64ns_64_4_full_dsp_1_U1 | 3   |        | add         | dadd  | fulldsp | 3       |
-|   add_ln109_fu_570_p2                   |     |        | add_ln109   | add   | fabric  | 0       |
-|   add_ln112_fu_584_p2                   |     |        | add_ln112   | add   | fabric  | 0       |
-|   add_ln112_1_fu_589_p2                 |     |        | add_ln112_1 | add   | fabric  | 0       |
+|   add_ln109_fu_572_p2                   |     |        | add_ln109   | add   | fabric  | 0       |
+|   add_ln112_fu_586_p2                   |     |        | add_ln112   | add   | fabric  | 0       |
+|   add_ln112_1_fu_591_p2                 |     |        | add_ln112_1 | add   | fabric  | 0       |
 |   dmul_64ns_64ns_64_4_max_dsp_1_U2      | 8   |        | mul2        | dmul  | maxdsp  | 3       |
 |   dadddsub_64ns_64ns_64_4_full_dsp_1_U1 | 3   |        | sub         | dadd  | fulldsp | 3       |
-|   add_ln100_1_fu_599_p2                 |     |        | add_ln100_1 | add   | fabric  | 0       |
-|   add_ln85_fu_481_p2                    |     |        | add_ln85    | add   | fabric  | 0       |
+|   add_ln100_1_fu_601_p2                 |     |        | add_ln100_1 | add   | fabric  | 0       |
+|   add_ln85_fu_483_p2                    |     |        | add_ln85    | add   | fabric  | 0       |
 +-----------------------------------------+-----+--------+-------------+-------+---------+---------+
 
 
@@ -152,12 +152,18 @@
 | loop_tripcount | min=1 avg=256 max=511   | data/benchmarks/gramschmidt/gramschmidt.c:102 in kernel_gramschmidt |
 | loop_tripcount | min=512 avg=512 max=512 | data/benchmarks/gramschmidt/gramschmidt.c:106 in kernel_gramschmidt |
 | loop_tripcount | min=512 avg=512 max=512 | data/benchmarks/gramschmidt/gramschmidt.c:111 in kernel_gramschmidt |
+| loop_flatten   | off=true                | ../base_directives/gramschmidt.tcl:8 in kernel_gramschmidt          |
+| loop_flatten   | off=true                | ../base_directives/gramschmidt.tcl:9 in kernel_gramschmidt          |
+| loop_flatten   | off=true                | ../base_directives/gramschmidt.tcl:10 in kernel_gramschmidt         |
+| loop_flatten   | off=true                | ../base_directives/gramschmidt.tcl:11 in kernel_gramschmidt         |
+| loop_flatten   | off=true                | ../base_directives/gramschmidt.tcl:12 in kernel_gramschmidt         |
 | pipeline       | off=true                | ../base_directives/gramschmidt.tcl:1 in kernel_gramschmidt          |
 | pipeline       | off=true                | ../base_directives/gramschmidt.tcl:2 in kernel_gramschmidt          |
 | pipeline       | off=true                | ../base_directives/gramschmidt.tcl:3 in kernel_gramschmidt          |
 | pipeline       | off=true                | ../base_directives/gramschmidt.tcl:4 in kernel_gramschmidt          |
 | pipeline       | off=true                | ../base_directives/gramschmidt.tcl:5 in kernel_gramschmidt          |
 | pipeline       | off=true                | ../base_directives/gramschmidt.tcl:6 in kernel_gramschmidt          |
+| pipeline       | off=true                | ../base_directives/gramschmidt.tcl:7 in kernel_gramschmidt          |
 +----------------+-------------------------+---------------------------------------------------------------------+
 
 

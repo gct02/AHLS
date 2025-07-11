@@ -23,10 +23,10 @@ module backprop_get_delta_matrix_weights3 (
         last_activations_address0,
         last_activations_ce0,
         last_activations_q0,
-        grp_fu_990_p_din0,
-        grp_fu_990_p_din1,
-        grp_fu_990_p_dout0,
-        grp_fu_990_p_ce
+        grp_fu_994_p_din0,
+        grp_fu_994_p_din1,
+        grp_fu_994_p_dout0,
+        grp_fu_994_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 7'd1;
@@ -53,10 +53,10 @@ input  [63:0] p_read2;
 output  [5:0] last_activations_address0;
 output   last_activations_ce0;
 input  [63:0] last_activations_q0;
-output  [63:0] grp_fu_990_p_din0;
-output  [63:0] grp_fu_990_p_din1;
-input  [63:0] grp_fu_990_p_dout0;
-output   grp_fu_990_p_ce;
+output  [63:0] grp_fu_994_p_din0;
+output  [63:0] grp_fu_994_p_din1;
+input  [63:0] grp_fu_994_p_dout0;
+output   grp_fu_994_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -67,30 +67,30 @@ reg last_activations_ce0;
 
 (* fsm_encoding = "none" *) reg   [6:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [6:0] add_ln125_fu_122_p2;
-reg   [6:0] add_ln125_reg_220;
+wire   [6:0] add_ln125_fu_128_p2;
+reg   [6:0] add_ln125_reg_226;
 wire    ap_CS_fsm_state2;
-reg   [63:0] last_activations_load_reg_230;
+reg   [63:0] last_activations_load_reg_236;
 wire    ap_CS_fsm_state3;
-wire   [7:0] empty_52_fu_147_p2;
-reg   [7:0] empty_52_reg_235;
-wire   [1:0] add_ln128_fu_159_p2;
-reg   [1:0] add_ln128_reg_243;
+wire   [7:0] empty_52_fu_153_p2;
+reg   [7:0] empty_52_reg_241;
+wire   [1:0] add_ln128_fu_165_p2;
+reg   [1:0] add_ln128_reg_249;
 wire    ap_CS_fsm_state4;
-wire   [63:0] tmp_fu_169_p5;
-wire   [7:0] add_ln130_fu_179_p2;
-reg   [7:0] add_ln130_reg_253;
-reg   [1:0] j_reg_92;
+wire   [63:0] tmp_fu_175_p5;
+wire   [7:0] add_ln130_fu_185_p2;
+reg   [7:0] add_ln130_reg_259;
+reg   [1:0] j_reg_98;
 wire    ap_CS_fsm_state7;
-wire   [63:0] zext_ln125_fu_128_p1;
-wire   [0:0] icmp_ln125_fu_116_p2;
-wire   [63:0] zext_ln130_fu_188_p1;
-reg   [6:0] i_fu_44;
-wire   [0:0] icmp_ln128_fu_153_p2;
-wire   [5:0] empty_fu_136_p1;
-wire   [7:0] p_shl_fu_139_p3;
-wire   [7:0] zext_ln125_1_fu_133_p1;
-wire   [7:0] zext_ln128_fu_165_p1;
+wire   [63:0] zext_ln125_fu_134_p1;
+wire   [0:0] icmp_ln125_fu_122_p2;
+wire   [63:0] zext_ln130_fu_194_p1;
+reg   [6:0] i_fu_50;
+wire   [0:0] icmp_ln128_fu_159_p2;
+wire   [5:0] empty_fu_142_p1;
+wire   [7:0] p_shl_fu_145_p3;
+wire   [7:0] zext_ln125_1_fu_139_p1;
+wire   [7:0] zext_ln128_fu_171_p1;
 reg   [6:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
@@ -104,7 +104,7 @@ wire    ap_ce_reg;
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 7'd1;
-#0 i_fu_44 = 7'd0;
+#0 i_fu_50 = 7'd0;
 end
 
 backprop_mux_3_2_64_1_1 #(
@@ -115,12 +115,12 @@ backprop_mux_3_2_64_1_1 #(
     .din2_WIDTH( 64 ),
     .din3_WIDTH( 2 ),
     .dout_WIDTH( 64 ))
-mux_3_2_64_1_1_U116(
+mux_3_2_64_1_1_U79(
     .din0(p_read),
     .din1(p_read1),
     .din2(p_read2),
-    .din3(j_reg_92),
-    .dout(tmp_fu_169_p5)
+    .din3(j_reg_98),
+    .dout(tmp_fu_175_p5)
 );
 
 always @ (posedge ap_clk) begin
@@ -133,37 +133,37 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-        i_fu_44 <= 7'd0;
-    end else if (((icmp_ln128_fu_153_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
-        i_fu_44 <= add_ln125_reg_220;
+        i_fu_50 <= 7'd0;
+    end else if (((icmp_ln128_fu_159_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
+        i_fu_50 <= add_ln125_reg_226;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        j_reg_92 <= 2'd0;
+        j_reg_98 <= 2'd0;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
-        j_reg_92 <= add_ln128_reg_243;
+        j_reg_98 <= add_ln128_reg_249;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        add_ln125_reg_220 <= add_ln125_fu_122_p2;
+        add_ln125_reg_226 <= add_ln125_fu_128_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        add_ln128_reg_243 <= add_ln128_fu_159_p2;
-        add_ln130_reg_253 <= add_ln130_fu_179_p2;
+        add_ln128_reg_249 <= add_ln128_fu_165_p2;
+        add_ln130_reg_259 <= add_ln130_fu_185_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        empty_52_reg_235 <= empty_52_fu_147_p2;
-        last_activations_load_reg_230 <= last_activations_q0;
+        empty_52_reg_241 <= empty_52_fu_153_p2;
+        last_activations_load_reg_236 <= last_activations_q0;
     end
 end
 
@@ -188,7 +188,7 @@ assign ap_ST_fsm_state6_blk = 1'b0;
 assign ap_ST_fsm_state7_blk = 1'b0;
 
 always @ (*) begin
-    if ((((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)) | ((icmp_ln125_fu_116_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+    if ((((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)) | ((icmp_ln125_fu_122_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -204,7 +204,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln125_fu_116_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
+    if (((icmp_ln125_fu_122_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -245,7 +245,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((icmp_ln125_fu_116_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
+            if (((icmp_ln125_fu_122_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state3;
@@ -255,7 +255,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state4;
         end
         ap_ST_fsm_state4 : begin
-            if (((icmp_ln128_fu_153_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
+            if (((icmp_ln128_fu_159_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state5;
@@ -276,11 +276,11 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln125_fu_122_p2 = (i_fu_44 + 7'd1);
+assign add_ln125_fu_128_p2 = (i_fu_50 + 7'd1);
 
-assign add_ln128_fu_159_p2 = (j_reg_92 + 2'd1);
+assign add_ln128_fu_165_p2 = (j_reg_98 + 2'd1);
 
-assign add_ln130_fu_179_p2 = (zext_ln128_fu_165_p1 + empty_52_reg_235);
+assign add_ln130_fu_185_p2 = (zext_ln128_fu_171_p1 + empty_52_reg_241);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -292,34 +292,34 @@ assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
 assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
 
-assign delta_weights3_address0 = zext_ln130_fu_188_p1;
+assign delta_weights3_address0 = zext_ln130_fu_194_p1;
 
-assign delta_weights3_d0 = grp_fu_990_p_dout0;
+assign delta_weights3_d0 = grp_fu_994_p_dout0;
 
-assign empty_52_fu_147_p2 = (p_shl_fu_139_p3 - zext_ln125_1_fu_133_p1);
+assign empty_52_fu_153_p2 = (p_shl_fu_145_p3 - zext_ln125_1_fu_139_p1);
 
-assign empty_fu_136_p1 = i_fu_44[5:0];
+assign empty_fu_142_p1 = i_fu_50[5:0];
 
-assign grp_fu_990_p_ce = 1'b1;
+assign grp_fu_994_p_ce = 1'b1;
 
-assign grp_fu_990_p_din0 = last_activations_load_reg_230;
+assign grp_fu_994_p_din0 = last_activations_load_reg_236;
 
-assign grp_fu_990_p_din1 = tmp_fu_169_p5;
+assign grp_fu_994_p_din1 = tmp_fu_175_p5;
 
-assign icmp_ln125_fu_116_p2 = ((i_fu_44 == 7'd64) ? 1'b1 : 1'b0);
+assign icmp_ln125_fu_122_p2 = ((i_fu_50 == 7'd64) ? 1'b1 : 1'b0);
 
-assign icmp_ln128_fu_153_p2 = ((j_reg_92 == 2'd3) ? 1'b1 : 1'b0);
+assign icmp_ln128_fu_159_p2 = ((j_reg_98 == 2'd3) ? 1'b1 : 1'b0);
 
-assign last_activations_address0 = zext_ln125_fu_128_p1;
+assign last_activations_address0 = zext_ln125_fu_134_p1;
 
-assign p_shl_fu_139_p3 = {{empty_fu_136_p1}, {2'd0}};
+assign p_shl_fu_145_p3 = {{empty_fu_142_p1}, {2'd0}};
 
-assign zext_ln125_1_fu_133_p1 = i_fu_44;
+assign zext_ln125_1_fu_139_p1 = i_fu_50;
 
-assign zext_ln125_fu_128_p1 = i_fu_44;
+assign zext_ln125_fu_134_p1 = i_fu_50;
 
-assign zext_ln128_fu_165_p1 = j_reg_92;
+assign zext_ln128_fu_171_p1 = j_reg_98;
 
-assign zext_ln130_fu_188_p1 = add_ln130_reg_253;
+assign zext_ln130_fu_194_p1 = add_ln130_reg_259;
 
 endmodule //backprop_get_delta_matrix_weights3

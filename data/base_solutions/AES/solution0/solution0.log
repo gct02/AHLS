@@ -15,17 +15,26 @@ INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey_InversMixC
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3 
-INFO: [HLS 200-1510] Running: set_directive_pipeline -off encrypt/encrypt_label1 
-INFO: [HLS 200-1510] Running: set_directive_pipeline -off decrypt/decrypt_label4 
-INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey/AddRoundKey_label0 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey/AddRoundKey_label0 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule/KeySchedule_label4 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule/KeySchedule_label5 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule/KeySchedule_label6 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule/KeySchedule_label7 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule/KeySchedule_label8 
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule/KeySchedule_label9 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off encrypt/encrypt_label1 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off decrypt/decrypt_label4 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off aes_main 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off MixColumn_AddRoundKey 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey_InversMixColumn 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off InversShiftRow_ByteSub 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off encrypt 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off decrypt 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off KeySchedule 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off ByteSub_ShiftRow 
+INFO: [HLS 200-1510] Running: set_directive_pipeline -off AddRoundKey 
 INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1 
 INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off KeySchedule/KeySchedule_label5 
 INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off KeySchedule/KeySchedule_label6 
@@ -34,36 +43,35 @@ INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off KeySchedule/KeySch
 INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off KeySchedule/KeySchedule_label9 
 INFO: [HLS 200-1510] Running: set_directive_inline -off MixColumn_AddRoundKey 
 INFO: [HLS 200-1510] Running: set_directive_inline -off AddRoundKey_InversMixColumn 
+INFO: [HLS 200-1510] Running: set_directive_inline -off InversShiftRow_ByteSub 
 INFO: [HLS 200-1510] Running: set_directive_inline -off encrypt 
 INFO: [HLS 200-1510] Running: set_directive_inline -off decrypt 
 INFO: [HLS 200-1510] Running: set_directive_inline -off KeySchedule 
 INFO: [HLS 200-1510] Running: set_directive_inline -off ByteSub_ShiftRow 
-INFO: [HLS 200-1510] Running: set_directive_inline -off InversShiftRow_ByteSub 
 INFO: [HLS 200-1510] Running: set_directive_inline -off AddRoundKey 
-INFO: [HLS 200-1510] Running: set_directive_inline -off aes_main 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 233.168 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 227.676 MB.
 INFO: [HLS 200-10] Analyzing design file 'data/benchmarks/aes/aes_dec.c' ... 
 INFO: [HLS 200-10] Analyzing design file 'data/benchmarks/aes/aes_enc.c' ... 
-INFO: [HLS 200-10] Analyzing design file 'data/benchmarks/aes/aes_key.c' ... 
 INFO: [HLS 200-10] Analyzing design file 'data/benchmarks/aes/aes.c' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.66 seconds. CPU system time: 0.79 seconds. Elapsed time: 1.45 seconds; current allocated memory: 235.848 MB.
+INFO: [HLS 200-10] Analyzing design file 'data/benchmarks/aes/aes_key.c' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.72 seconds. CPU system time: 0.83 seconds. Elapsed time: 1.57 seconds; current allocated memory: 230.508 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 5,165 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,969 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,334 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,289 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,267 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,275 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 1,358 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 5,165 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,969 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,334 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,289 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,267 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,271 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,275 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 1,372 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/syn/report/csynth_design_size.rpt
 WARNING: [HLS 214-398] Updating loop upper bound from 13 to 9 for loop 'decrypt_label4' (data/benchmarks/aes/aes_dec.c:116:5) in function 'decrypt'. (data/benchmarks/aes/aes_dec.c:66:0)
 WARNING: [HLS 214-398] Updating loop lower bound from 32 to 40 for loop 'KeySchedule_label6' (data/benchmarks/aes/aes_key.c:565:5) in function 'KeySchedule'. (data/benchmarks/aes/aes_key.c:480:0)
 WARNING: [HLS 214-398] Updating loop upper bound from 116 to 40 for loop 'KeySchedule_label6' (data/benchmarks/aes/aes_key.c:565:5) in function 'KeySchedule'. (data/benchmarks/aes/aes_key.c:480:0)
@@ -75,19 +83,19 @@ WARNING: [HLS 214-398] Updating loop upper bound from 8 to 4 for loop 'AddRoundK
 WARNING: [HLS 214-398] Updating loop upper bound from 13 to 9 for loop 'encrypt_label1' (data/benchmarks/aes/aes_enc.c:110:5) in function 'encrypt'. (data/benchmarks/aes/aes_enc.c:66:0)
 WARNING: [HLS 214-398] Updating loop upper bound from 8 to 4 for loop 'MixColumn_AddRoundKey_label1' (data/benchmarks/aes/aes_key.c:364:5) in function 'MixColumn_AddRoundKey'. (data/benchmarks/aes/aes_key.c:319:0)
 WARNING: [HLS 214-398] Updating loop upper bound from 8 to 4 for loop 'MixColumn_AddRoundKey_label0' (data/benchmarks/aes/aes_key.c:324:5) in function 'MixColumn_AddRoundKey'. (data/benchmarks/aes/aes_key.c:319:0)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.13 seconds. CPU system time: 0.27 seconds. Elapsed time: 6.87 seconds; current allocated memory: 237.988 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 237.988 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.36 seconds. CPU system time: 0.32 seconds. Elapsed time: 7.1 seconds; current allocated memory: 232.562 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 232.562 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 238.836 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 233.465 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 239.668 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 234.309 MB.
 INFO: [XFORM 203-102] Automatically partitioning small array 'temp' (data/benchmarks/aes/aes_key.c:501) completely based on array size.
 INFO: [XFORM 203-101] Partitioning array 'temp' (data/benchmarks/aes/aes_key.c:501) in dimension 1 completely.
 INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (data/benchmarks/aes/aes_key.c:501:12) to (data/benchmarks/aes/aes_key.c:592:9) in function 'KeySchedule'... converting 4 basic blocks.
 INFO: [XFORM 203-11] Balancing expressions in function 'MixColumn_AddRoundKey' (data/benchmarks/aes/aes_key.c:320:5)...16 expression(s) balanced.
-INFO: [XFORM 203-11] Balancing expressions in function 'AddRoundKey_InversMixColumn' (data/benchmarks/aes/aes_key.c:16:9)...6 expression(s) balanced.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.15 seconds. CPU system time: 0 seconds. Elapsed time: 0.15 seconds; current allocated memory: 262.957 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.14 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.15 seconds; current allocated memory: 334.398 MB.
+INFO: [XFORM 203-11] Balancing expressions in function 'AddRoundKey_InversMixColumn' (data/benchmarks/aes/aes_key.c:25:9)...6 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.16 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.16 seconds; current allocated memory: 257.637 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.14 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.17 seconds; current allocated memory: 329.094 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'aes_main' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -95,109 +103,109 @@ INFO: [HLS 200-42] -- Implementing module 'KeySchedule'
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.11 seconds; current allocated memory: 337.312 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 332.008 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 337.312 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 332.008 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AddRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 337.500 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 332.172 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 337.500 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 332.172 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'ByteSub_ShiftRow' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 338.402 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 333.125 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 338.402 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 333.125 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'MixColumn_AddRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 339.848 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 334.559 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 339.848 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 334.559 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'encrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 339.863 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 334.559 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 339.863 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 334.559 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'InversShiftRow_ByteSub' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 340.777 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 335.457 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 340.777 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 335.457 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'AddRoundKey_InversMixColumn' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 342.668 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 337.352 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 342.668 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 337.352 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'decrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 342.695 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 337.410 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 342.695 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 337.410 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_main' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 342.695 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 337.410 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 342.695 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 337.410 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'KeySchedule' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -205,45 +213,45 @@ INFO: [RTGEN 206-100] Generating core module 'mux_4_2_32_1_1': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'KeySchedule'.
 INFO: [RTMG 210-279] Implementing memory 'aes_main_KeySchedule_Sbox_ROM_AUTO_1R' using auto ROMs.
 INFO: [RTMG 210-279] Implementing memory 'aes_main_KeySchedule_Rcon0_ROM_AUTO_1R' using auto ROMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 343.457 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 338.168 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AddRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AddRoundKey'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 347.016 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 341.715 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'ByteSub_ShiftRow' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'ByteSub_ShiftRow'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 348.613 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 343.277 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'MixColumn_AddRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'MixColumn_AddRoundKey'.
 INFO: [RTMG 210-278] Implementing memory 'aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 351.449 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 346.117 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'encrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'encrypt'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 354.645 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 349.297 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'InversShiftRow_ByteSub' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'InversShiftRow_ByteSub'.
 INFO: [RTMG 210-279] Implementing memory 'aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R' using auto ROMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 355.910 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 350.594 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'AddRoundKey_InversMixColumn' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'AddRoundKey_InversMixColumn'.
 INFO: [RTMG 210-278] Implementing memory 'aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 359.039 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 353.750 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'decrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'decrypt'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 363.148 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 357.895 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_main' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -252,17 +260,17 @@ INFO: [RTGEN 206-500] Setting interface mode on port 'aes_main/key' to 'ap_memor
 INFO: [RTGEN 206-500] Setting interface mode on function 'aes_main' to 'ap_ctrl_hs'.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_main'.
 INFO: [RTMG 210-278] Implementing memory 'aes_main_word_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 364.148 MB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.14 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.16 seconds; current allocated memory: 367.414 MB.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.4 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.41 seconds; current allocated memory: 372.309 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 358.879 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.13 seconds. CPU system time: 0 seconds. Elapsed time: 0.15 seconds; current allocated memory: 362.102 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.42 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.44 seconds; current allocated memory: 367.164 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for aes_main.
 INFO: [VLOG 209-307] Generating Verilog RTL for aes_main.
 INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
 INFO: [HLS 200-789] **** Estimated Fmax: 200.90 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 4.76 seconds. CPU system time: 1.23 seconds. Elapsed time: 10.46 seconds; current allocated memory: 140.148 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5.18 seconds. CPU system time: 1.32 seconds. Elapsed time: 10.94 seconds; current allocated memory: 140.828 MB.
 INFO: [HLS 200-1510] Running: export_design -flow impl -format syn_dcp -rtl verilog 
 INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 INFO: [IMPL 213-8] Starting RTL evaluation using Vivado ...
-INFO: [HLS 200-802] Generated output file data/base_instances/AES/solution0/impl/export.dcp
-INFO: [HLS 200-802] Generated output file data/base_instances/AES/solution0/impl/export.veo
-INFO: [HLS 200-111] Finished Command export_design CPU user time: 161.38 seconds. CPU system time: 9.11 seconds. Elapsed time: 314.11 seconds; current allocated memory: 7.133 MB.
+INFO: [HLS 200-802] Generated output file data/base_solutions/AES/solution0/impl/export.dcp
+INFO: [HLS 200-802] Generated output file data/base_solutions/AES/solution0/impl/export.veo
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 174.69 seconds. CPU system time: 11.16 seconds. Elapsed time: 348.75 seconds; current allocated memory: 7.504 MB.

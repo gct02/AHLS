@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:fft1D_512:1.0
-// IP Revision: 2114106550
+// IP Revision: 2114163019
 
 `timescale 1ns/1ps
 

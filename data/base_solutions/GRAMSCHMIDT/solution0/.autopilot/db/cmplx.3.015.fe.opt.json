@@ -4,7 +4,7 @@
     "calls": "",
     "file": "gramschmidt.c",
     "fileloc": 75,
-    "instructions": 104,
+    "instructions": 110,
     "loads": {
       "T": 6
     },
@@ -12,6 +12,6 @@
     "stores": {
       "T": 5
     },
-    "total_instructions": 104
+    "total_instructions": 110
   }
 }

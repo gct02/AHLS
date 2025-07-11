@@ -26,6 +26,11 @@
             </pragma>
         </directive>
         <directive functionName="bbgemm" label="" functionLabel="">
+            <pragma name="PIPELINE">
+                <option name="off" value="true" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+        <directive functionName="bbgemm" label="" functionLabel="">
             <pragma name="TOP">
                 <option name="name" value="bbgemm"/>
             </pragma>

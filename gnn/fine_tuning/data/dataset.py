@@ -159,8 +159,11 @@ class HLSFineTuningDataset(Dataset):
     def _standardize_features(self, kernel_info: VitisKernelInfo):
         TO_LOG_TRANSFORM_KEYS = [
             'min_trip_count', 'max_trip_count',
-            'min_latency', 'max_latency',
-            'num_instrs', 'dims',
+            'min_latency', 'max_latency', 
+            'achieved_ii_base', 'target_ii',
+            'num_instrs', 'num_loads', 'num_stores',
+            'num_allocas', 'num_getelementptrs', 
+            'num_phis', 'num_calls', 'dims',
             'unroll_factor', 'partition_factor'
         ]
         if self.log_transform:

@@ -28,24 +28,24 @@
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
 |               | (1) lowering                | 1,275        | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           | 1,358        | high level synthesis optimizations                                                     |
+|               | (2) optimizations           | 1,372        | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
 +---------------------------------+---------------+-----------------+----------------+----------------+----------------+----------------+
 | Function                        | Location      | Compile/Link    | Unroll/Inline  | Array/Struct   | Performance    | HW Transforms  |
 +---------------------------------+---------------+-----------------+----------------+----------------+----------------+----------------+
-| + aes_main                      | aes.c:66      | 5,165           | 1,267          | 1,271          | 1,271          | 1,358          |
-|  + encrypt                      | aes_enc.c:66  | 2,606           |  626           |  628           |  628           |  665           |
-|     KeySchedule                 | aes_key.c:480 |  215            |   93           |   93           |   93           |  109           |
-|     AddRoundKey                 | aes_key.c:447 |  122 (2 calls)  |   74 (2 calls) |   74 (2 calls) |   74 (2 calls) |   82 (2 calls) |
-|     ByteSub_ShiftRow            | aes_key.c:79  | 1,882 (2 calls) |  288 (2 calls) |  290 (2 calls) |  290 (2 calls) |  292 (2 calls) |
-|     MixColumn_AddRoundKey       | aes_key.c:319 |  362            |  159           |  159           |  159           |  166           |
-|  + decrypt                      | aes_dec.c:66  | 2,556           |  638           |  640           |  640           |  684           |
-|     KeySchedule                 | aes_key.c:480 |  215            |   93           |   93           |   93           |  109           |
-|     AddRoundKey                 | aes_key.c:447 |  122 (2 calls)  |   74 (2 calls) |   74 (2 calls) |   74 (2 calls) |   82 (2 calls) |
-|     InversShiftRow_ByteSub      | aes_key.c:199 | 1,882 (2 calls) |  288 (2 calls) |  290 (2 calls) |  290 (2 calls) |  292 (2 calls) |
-|     AddRoundKey_InversMixColumn | aes_key.c:375 |  311            |  171           |  171           |  171           |  185           |
+| + aes_main                      | aes.c:66      | 5,165           | 1,267          | 1,271          | 1,271          | 1,372          |
+|  + encrypt                      | aes_enc.c:66  | 2,606           |  626           |  628           |  628           |  672           |
+|     KeySchedule                 | aes_key.c:480 |  215            |   93           |   93           |   93           |  110           |
+|     AddRoundKey                 | aes_key.c:447 |  122 (2 calls)  |   74 (2 calls) |   74 (2 calls) |   74 (2 calls) |   84 (2 calls) |
+|     ByteSub_ShiftRow            | aes_key.c:79  | 1,882 (2 calls) |  288 (2 calls) |  290 (2 calls) |  290 (2 calls) |  294 (2 calls) |
+|     MixColumn_AddRoundKey       | aes_key.c:319 |  362            |  159           |  159           |  159           |  167           |
+|  + decrypt                      | aes_dec.c:66  | 2,556           |  638           |  640           |  640           |  691           |
+|     KeySchedule                 | aes_key.c:480 |  215            |   93           |   93           |   93           |  110           |
+|     AddRoundKey                 | aes_key.c:447 |  122 (2 calls)  |   74 (2 calls) |   74 (2 calls) |   74 (2 calls) |   84 (2 calls) |
+|     InversShiftRow_ByteSub      | aes_key.c:199 | 1,882 (2 calls) |  288 (2 calls) |  290 (2 calls) |  290 (2 calls) |  294 (2 calls) |
+|     AddRoundKey_InversMixColumn | aes_key.c:375 |  311            |  171           |  171           |  171           |  186           |
 +---------------------------------+---------------+-----------------+----------------+----------------+----------------+----------------+
 
 * Design Size Message Settings
