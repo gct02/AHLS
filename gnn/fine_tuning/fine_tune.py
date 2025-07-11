@@ -12,6 +12,7 @@ from torch_geometric.loader import DataLoader
 from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
+from gnn.evaluate import evaluate_model_on_bench
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -79,7 +80,7 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
     model.load_state_dict(
         torch.load(model_path, map_location=DEVICE)
     )
-    return model
+    return model, model_args
 
 
 def main(args: Dict[str, str]):
@@ -107,6 +108,9 @@ def main(args: Dict[str, str]):
 
     if not output_dir:
         output_dir = os.path.dirname(model_path)
+        output_dir = os.path.join(output_dir, 'fine_tuning')
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
     
     with open(pretraining_args_path, 'r') as f:
         pretraining_args = json.load(f)
@@ -121,6 +125,7 @@ def main(args: Dict[str, str]):
     log_transform = pretraining_args.get('log_transform', False)
     seed = pretraining_args.get('seed', 42)
     loss = pretraining_args.get('loss', 'l1')
+    huber_delta = pretraining_args.get('huber_delta', 1.0)
 
     set_random_seeds(seed)
 
@@ -133,10 +138,17 @@ def main(args: Dict[str, str]):
     )
     
     # Load the model
-    model = load_model(model_path, model_args_path).to(DEVICE)
+    model, model_args = load_model(model_path, model_args_path)
+    model = model.to(DEVICE)
 
     # Set model to training mode and enable gradients for fine-tuning
     model.train()
+
+    for param in model.parameters():
+        param.requires_grad = False
+
+    for param in model.graph_mlp.parameters():
+        param.requires_grad = True
 
     # Prepare the optimizer
     grouped_params = get_optimizer_param_groups(model, weight_decay)
@@ -151,7 +163,6 @@ def main(args: Dict[str, str]):
     elif loss == 'mse':
         loss_fn = nn.MSELoss()
     elif loss == 'huber':
-        huber_delta = pretraining_args.get('huber_delta', 1.0)
         loss_fn = nn.HuberLoss(delta=huber_delta)
     else:
         raise ValueError(f"Unsupported loss function: {loss}")
@@ -171,10 +182,50 @@ def main(args: Dict[str, str]):
     output_dir = f"{output_dir}/run_{run_number}"
     os.makedirs(output_dir, exist_ok=True)
 
-    model_name = os.path.basename(model_path).split('.')[0]
-    new_model_path = os.path.join(output_dir, f"{model_name}_fine_tuned.pt")
+    new_model_path = os.path.join(output_dir, os.path.basename(model_path))
     torch.save(model.state_dict(), new_model_path)
     print(f"Fine-tuned model saved to {new_model_path}")
+
+    with open(os.path.join(output_dir, 'fine_tuned_model_params.txt'), 'w') as f:
+        for name, param in model.named_parameters():
+            if param.requires_grad:
+                f.write(f"{name}: {param.data.shape}\n")
+
+    with open(os.path.join(output_dir, 'model_args.json'), 'w') as f:
+        json.dump(model_args, f, indent=4)
+
+    fine_tuning_args = {
+        "batch_size": batch_size,
+        "epochs": epochs,
+        "learning_rate": lr,
+        "betas": betas,
+        "weight_decay": weight_decay,
+        "max_norm": max_norm,
+        "log_transform": log_transform,
+        "loss": loss,
+        "huber_delta": huber_delta,
+        "seed": seed
+    }
+    with open(os.path.join(output_dir, 'fine_tuning_args.json'), 'w') as f:
+        json.dump(fine_tuning_args, f, indent=4)
+
+    with open(os.path.join(output_dir, 'solutions.txt'), 'w') as f:
+        for data in loader.dataset:
+            f.write(f"{data.solution_index}\n")
+
+    benchmark = pretraining_args.get('test_bench')
+    benchmark = benchmark.upper()
+
+    evaluate_model_on_bench(
+        dataset_dir="gnn/dataset",
+        model=model,
+        benchmark=benchmark,
+        output_dir=output_dir,
+        target_metric=target_metric,
+        log_transform=log_transform,
+        scaling_stats_path=scaling_stats_path,
+        batch_size=batch_size
+    )
 
 
 def get_optimizer_param_groups(model, weight_decay_val):
