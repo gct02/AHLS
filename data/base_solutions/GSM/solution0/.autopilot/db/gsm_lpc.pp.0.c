@@ -193,7 +193,11 @@ void Autocorrelation(
     longword *L_ACF
 )
 {
-#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 38 "data/benchmarks/gsm/gsm_lpc.c"
+
+#line 32 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 38 "data/benchmarks/gsm/gsm_lpc.c"
 
@@ -225,9 +229,13 @@ void Autocorrelation(
         scalauto = 4 - gsm_norm((longword)smax << 16);
 
     if (scalauto > 0 && scalauto <= 4) {
-        Autocorrelation_label1:
         n = scalauto;
-        VITIS_LOOP_65_1: for (k = 0; k <= 159; k++) {
+        Autocorrelation_label1:
+        for (k = 0; k <= 159; k++) {
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 65 "data/benchmarks/gsm/gsm_lpc.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
  s[k] = gsm_mult_r(s[k], 16384 >> (n - 1));
         }
@@ -242,6 +250,10 @@ void Autocorrelation(
 
     Autocorrelation_label2:
     for (k = 8; k >= 0; k--) {
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 79 "data/benchmarks/gsm/gsm_lpc.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
  L_ACF[k] = 0;
     }
@@ -292,6 +304,10 @@ void Autocorrelation(
 
     Autocorrelation_label3:
     for (i = 8; i <= 159; i++) {
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 129 "data/benchmarks/gsm/gsm_lpc.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=152 max=152 avg=152
  sl = *++sp;
         L_ACF[0] += ((longword)sl * sp[-(0)]);;
@@ -307,6 +323,10 @@ void Autocorrelation(
 
     Autocorrelation_label4:
     for (k = 8; k >= 0; k--) {
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 144 "data/benchmarks/gsm/gsm_lpc.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
  L_ACF[k] <<= 1;
     }
@@ -315,6 +335,10 @@ void Autocorrelation(
     if (scalauto > 0) {
         Autocorrelation_label5:
         for (k = 159; k >= 0; k--) {
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 152 "data/benchmarks/gsm/gsm_lpc.c"
+
 #pragma HLS LOOP_TRIPCOUNT min=160 max=160 avg=160
  *s++ <<= scalauto;
         }
@@ -327,7 +351,11 @@ void Reflection_coefficients(
     register word *r
 )
 {
-#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 164 "data/benchmarks/gsm/gsm_lpc.c"
+
+#line 33 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 164 "data/benchmarks/gsm/gsm_lpc.c"
 
@@ -397,7 +425,7 @@ void Reflection_coefficients(
         if (P[0] < temp) {
             Reflection_coefficients_label6:
             for (i = n; i <= 8; i++) {
-#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 210 "data/benchmarks/gsm/gsm_lpc.c"
 
@@ -424,12 +452,12 @@ void Reflection_coefficients(
 
         Reflection_coefficients_label5:
         for (m = 1; m <= 8 - n; m++) {
-#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
+#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 229 "data/benchmarks/gsm/gsm_lpc.c"
 
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
 # 229 "data/benchmarks/gsm/gsm_lpc.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=1 max=7

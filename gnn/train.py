@@ -80,12 +80,15 @@ def evaluate(
     if mape < evaluate.min_mape:
         if output_dir and epoch > 20: # Avoid saving model at the first few epochs
             model_path = f"{output_dir}/model.pt"
-            preds_path = f"{output_dir}/predictions.csv"
+            preds_path = f"{output_dir}/info/predictions.csv"
+            mape_path = f"{output_dir}/info/mape.txt"
+
+            with open(mape_path, "w") as f:
+                f.write(f"Epoch {epoch + 1}: MAPE = {mape:.3f}%\n")
+
             torch.save(obj=model.state_dict(), f=model_path)
-            indices = [
-                data.solution_index 
-                for data in loader.dataset
-            ]
+
+            indices = [data.solution_index for data in loader.dataset]
             with open(preds_path, "w") as f:
                 f.write(f"index,target,prediction\n")
                 for index, target, pred in zip(
@@ -94,6 +97,7 @@ def evaluate(
                     preds.tolist()
                 ):
                     f.write(f"{index},{target},{pred}\n")
+
         evaluate.min_mape = mape
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
@@ -200,9 +204,6 @@ def main(args: Dict[str, Any]):
     full_dataset_dir = f"{dataset_dir}/full"
     if not os.path.exists(full_dataset_dir):
         raise FileNotFoundError(f"Dataset directory {full_dataset_dir} does not exist.")
-    
-    if not output_dir:
-        output_dir = os.path.dirname(os.path.abspath(__file__))
 
     matplotlib.use('Agg')
 
@@ -210,6 +211,8 @@ def main(args: Dict[str, Any]):
     torch.set_printoptions(edgeitems=20, linewidth=200, sci_mode=False)
 
     set_random_seeds(seed)
+
+    test_bench = test_bench.upper()
 
     benches = sorted(os.listdir(full_dataset_dir))
     train_benches = [b for b in benches if b != test_bench]
@@ -234,27 +237,30 @@ def main(args: Dict[str, Any]):
     else:
         raise ValueError(f"Unsupported loss function: {loss}")
     
-    model_dir = f"{output_dir}/models/{target_metric}/{test_bench}"
-    run_number = 1
-    while os.path.exists(f"{model_dir}/run_{run_number}"):
-        run_number += 1
-    model_dir = f"{model_dir}/run_{run_number}"
-    os.makedirs(model_dir, exist_ok=True)
+    if not output_dir:
+        output_dir = os.path.dirname(os.path.abspath(__file__))
+        output_dir = os.path.join(output_dir, f'{target_metric}_models')
 
-    pretrained_dir = f"{model_dir}/pretrained"
-    model_info_dir = f"{model_dir}/model_info"
-    checkpoint_dir = f"{model_dir}/checkpoint"
-    plots_dir = f"{model_info_dir}/plots"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
 
-    os.makedirs(model_info_dir, exist_ok=True)
-    os.makedirs(pretrained_dir, exist_ok=True)
-    os.makedirs(checkpoint_dir, exist_ok=True)
-    os.makedirs(plots_dir, exist_ok=True)
+    output_dir = os.path.join(output_dir, test_bench)
+    if not os.path.exists(output_dir):
+        output_dir = os.path.join(output_dir, "run_1")
+    else:
+        run_number = 1
+        while os.path.exists(f"{output_dir}/run_{run_number}"):
+            run_number += 1
+        output_dir = f"{output_dir}/run_{run_number}"
+    os.makedirs(output_dir, exist_ok=True)
 
-    with open(f"{model_info_dir}/training_args.json", 'w') as f:
+    info_dir = os.path.join(output_dir, "info")
+    os.makedirs(info_dir, exist_ok=True)
+
+    with open(f"{info_dir}/pretraining_args.json", 'w') as f:
         json.dump(args, f, indent=2)
 
-    with open(f"{model_info_dir}/model_args.json", 'w') as f:
+    with open(f"{info_dir}/model_args.json", 'w') as f:
         json.dump(model_args, f, indent=2)
     
     train_loader, test_loader, scaling_stats = prepare_data_loaders(
@@ -265,7 +271,7 @@ def main(args: Dict[str, Any]):
         batch_size=batch_size, 
         log_transform=log_transform
     )
-    with open(f"{model_info_dir}/scaling_stats.json", 'w') as f:
+    with open(f"{info_dir}/scaling_stats.json", 'w') as f:
         json.dump(scaling_stats, f, indent=2)
 
     grouped_params = get_optimizer_param_groups(
@@ -313,7 +319,7 @@ def main(args: Dict[str, Any]):
         scheduler=scheduler, 
         max_norm=max_norm,
         exp_adjust=log_transform,
-        output_dir=checkpoint_dir,
+        output_dir=output_dir,
         available_resources=available_resources
     )
 
@@ -334,19 +340,14 @@ def main(args: Dict[str, Any]):
             available_resources=available_resources
         )
         targets.extend(target.tolist())
-
-    with open(f"{model_info_dir}/predictions.csv", 'w') as f:
-        f.write("index,target,prediction\n")
-        for index, target, pred in zip(indices, targets, preds):
-            f.write(f"{index},{target},{pred}\n")
-
+        
     plot_prediction_bars(
         targets=targets,
         preds=preds,
         indices=indices, 
         benchmark=test_bench, 
         metric=target_metric, 
-        output_path=f"{plots_dir}/predictions.png", 
+        output_path=f"{info_dir}/predictions.png", 
         mean_error=evaluate.min_mape
     )
     save_training_artifacts(
@@ -354,15 +355,8 @@ def main(args: Dict[str, Any]):
         test_preds=preds,
         test_errors=test_errors,
         train_errors=train_errors,
-        output_dir=plots_dir
+        output_dir=info_dir
     )
-
-    checkpoint_model_path = f"{checkpoint_dir}/model.pt"
-    model_path = f"{pretrained_dir}/{target_metric}_estimator.pt"
-    if os.path.exists(checkpoint_model_path):
-        shutil.copyfile(checkpoint_model_path, model_path)
-    else:
-        torch.save(obj=model.state_dict(), f=model_path)
 
 
 def save_training_artifacts(
@@ -485,7 +479,7 @@ def prepare_data_loaders(
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--dataset-dir', type=str, required=True, 
+    parser.add_argument('-d', '--dataset-dir', type=str, required=False, default='gnn/dataset', 
                         help='The root directory of the dataset.')
     parser.add_argument('-tb', '--test-bench', type=str, required=True, 
                         help='The name of the benchmark to use for testing.')

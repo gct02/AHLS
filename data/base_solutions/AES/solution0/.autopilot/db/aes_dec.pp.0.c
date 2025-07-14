@@ -402,7 +402,11 @@ int aes_main (int statemt[32], int key[32]);
 # 65 "data/benchmarks/aes/aes_dec.c" 2
 
 int decrypt(int statemt[32], int key[32], int type) {
-#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 66 "data/benchmarks/aes/aes_dec.c"
+
+#line 35 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 66 "data/benchmarks/aes/aes_dec.c"
 
@@ -456,7 +460,7 @@ int decrypt(int statemt[32], int key[32], int type) {
 
     decrypt_label4:
     for (i = round_val - 1; i >= 1; --i) {
-#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 116 "data/benchmarks/aes/aes_dec.c"
 

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'upzero'" level="0">
-<item name = "Date">Fri May 30 21:17:06 2025
+<item name = "Date">Wed Jul  9 03:20:00 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -65,7 +65,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="mul_16s_16s_32_1_1_U55">mul_16s_16s_32_1_1, 0, 1, 0, 5, 0</column>
+<column name="mul_16s_16s_32_1_1_U70">mul_16s_16s_32_1_1, 0, 1, 0, 5, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -82,13 +82,13 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln550_fu_278_p2">+, 0, 0, 39, 32, 32</column>
-<column name="grp_fu_168_p2">+, 0, 0, 10, 3, 1</column>
-<column name="sub_ln539_fu_297_p2">-, 0, 0, 47, 40, 40</column>
-<column name="sub_ln549_fu_262_p2">-, 0, 0, 47, 40, 40</column>
-<column name="grp_fu_162_p2">icmp, 0, 0, 10, 3, 3</column>
-<column name="icmp_ln535_fu_180_p2">icmp, 0, 0, 23, 16, 1</column>
-<column name="select_ln549_fu_242_p3">select, 0, 0, 9, 1, 9</column>
+<column name="add_ln550_fu_284_p2">+, 0, 0, 39, 32, 32</column>
+<column name="grp_fu_174_p2">+, 0, 0, 10, 3, 1</column>
+<column name="sub_ln539_fu_303_p2">-, 0, 0, 47, 40, 40</column>
+<column name="sub_ln549_fu_268_p2">-, 0, 0, 47, 40, 40</column>
+<column name="grp_fu_168_p2">icmp, 0, 0, 10, 3, 3</column>
+<column name="icmp_ln535_fu_186_p2">icmp, 0, 0, 23, 16, 1</column>
+<column name="select_ln549_fu_248_p3">select, 0, 0, 9, 1, 9</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -99,21 +99,21 @@
 <column name="dlti_address0">37, 7, 3, 21</column>
 <column name="dlti_address1">31, 6, 3, 18</column>
 <column name="dlti_d1">20, 4, 16, 64</column>
-<column name="i_fu_58">9, 2, 3, 6</column>
-<column name="reg_174">9, 2, 16, 32</column>
+<column name="i_fu_64">9, 2, 3, 6</column>
+<column name="reg_180">9, 2, 16, 32</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">8, 0, 8, 0</column>
-<column name="bli_addr_1_reg_350">3, 0, 3, 0</column>
-<column name="bli_addr_reg_358">3, 0, 3, 0</column>
-<column name="dlti_load_2_reg_373">16, 0, 16, 0</column>
-<column name="dlti_load_4_reg_390">16, 0, 16, 0</column>
-<column name="i_fu_58">3, 0, 3, 0</column>
-<column name="icmp_ln535_reg_324">1, 0, 1, 0</column>
-<column name="reg_174">16, 0, 16, 0</column>
-<column name="sext_ln543_reg_337">32, 0, 32, 0</column>
+<column name="bli_addr_1_reg_356">3, 0, 3, 0</column>
+<column name="bli_addr_reg_364">3, 0, 3, 0</column>
+<column name="dlti_load_2_reg_379">16, 0, 16, 0</column>
+<column name="dlti_load_4_reg_396">16, 0, 16, 0</column>
+<column name="i_fu_64">3, 0, 3, 0</column>
+<column name="icmp_ln535_reg_330">1, 0, 1, 0</column>
+<column name="reg_180">16, 0, 16, 0</column>
+<column name="sext_ln543_reg_343">32, 0, 32, 0</column>
 </table>
 </item>
 </section>

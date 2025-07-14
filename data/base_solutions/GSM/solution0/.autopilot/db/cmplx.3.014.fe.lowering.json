@@ -1,10 +1,10 @@
 {
   "0": {
-    "basicblocks": 10,
-    "calls": "4 5 1",
+    "basicblocks": 8,
+    "calls": "9 8 2 5",
     "file": "gsm.c",
     "fileloc": 7,
-    "instructions": 49,
+    "instructions": 42,
     "loads": {
       "T": 1
     },
@@ -12,34 +12,25 @@
     "stores": {
       "T": 1
     },
-    "total_instructions": 863
+    "total_instructions": 979
   },
   "1": {
-    "basicblocks": 17,
-    "calls": "",
-    "file": "gsm_lpc.c",
-    "fileloc": 267,
-    "instructions": 235,
-    "loads": {
-      "L": 8
-    },
-    "name": "Quantization_and_coding",
-    "stores": {
-      "L": 8
-    },
-    "total_instructions": 235
-  },
-  "2": {
-    "basicblocks": 12,
+    "basicblocks": 3,
     "calls": "",
     "file": "gsm_add.c",
-    "fileloc": 70,
-    "instructions": 48,
-    "loads": {
-      "G": 4
-    },
-    "name": "gsm_norm",
-    "total_instructions": 48
+    "fileloc": 51,
+    "instructions": 14,
+    "name": "gsm_mult_r",
+    "total_instructions": 14
+  },
+  "2": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 65,
+    "instructions": 10,
+    "name": "gsm_abs",
+    "total_instructions": 10
   },
   "3": {
     "basicblocks": 4,
@@ -51,26 +42,56 @@
     "total_instructions": 22
   },
   "4": {
-    "basicblocks": 21,
-    "calls": "2",
-    "file": "gsm_lpc.c",
-    "fileloc": 34,
-    "instructions": 287,
-    "loads": {
-      "L": 30
-    },
-    "name": "Autocorrelation",
-    "stores": {
-      "L": 21
-    },
-    "total_instructions": 335
+    "basicblocks": 1,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 43,
+    "instructions": 6,
+    "name": "gsm_mult",
+    "total_instructions": 6
   },
   "5": {
-    "basicblocks": 26,
-    "calls": "2 3",
+    "basicblocks": 17,
+    "calls": "4 7 7 4 7 7 4 7 7 4 7 7 4 7 7 4 7 7 4 7 7 4 7 7",
+    "file": "gsm_lpc.c",
+    "fileloc": 267,
+    "instructions": 129,
+    "loads": {
+      "L": 8
+    },
+    "name": "Quantization_and_coding",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 321
+  },
+  "6": {
+    "basicblocks": 12,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 70,
+    "instructions": 48,
+    "loads": {
+      "G": 4
+    },
+    "name": "gsm_norm",
+    "total_instructions": 48
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 36,
+    "instructions": 9,
+    "name": "gsm_add",
+    "total_instructions": 9
+  },
+  "8": {
+    "basicblocks": 22,
+    "calls": "6 2 3 1 7 1 7 1 7",
     "file": "gsm_lpc.c",
     "fileloc": 160,
-    "instructions": 174,
+    "instructions": 118,
     "loads": {
       "L": 9
     },
@@ -78,6 +99,21 @@
     "stores": {
       "L": 10
     },
-    "total_instructions": 244
+    "total_instructions": 267
+  },
+  "9": {
+    "basicblocks": 17,
+    "calls": "2 6 1",
+    "file": "gsm_lpc.c",
+    "fileloc": 34,
+    "instructions": 267,
+    "loads": {
+      "L": 30
+    },
+    "name": "Autocorrelation",
+    "stores": {
+      "L": 21
+    },
+    "total_instructions": 339
   }
 }

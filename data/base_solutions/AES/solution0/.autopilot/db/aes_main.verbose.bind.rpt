@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'aes_main'
 ================================================================
-* Date:           Sat May 31 00:10:16 2025
+* Date:           Wed Jul  9 03:26:54 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -38,8 +38,8 @@
         |                   |         |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
         |      Instance     |  Module |   min   |   max   |    min    |    max    |  min |  max |   Type  |
         +-------------------+---------+---------+---------+-----------+-----------+------+------+---------+
-        |grp_encrypt_fu_34  |encrypt  |     1059|     1059|   8.472 us|   8.472 us|  1059|  1059|       no|
-        |grp_decrypt_fu_50  |decrypt  |     1572|     1572|  12.576 us|  12.576 us|  1572|  1572|       no|
+        |grp_encrypt_fu_38  |encrypt  |     1059|     1059|   8.472 us|   8.472 us|  1059|  1059|       no|
+        |grp_decrypt_fu_54  |decrypt  |     1572|     1572|  12.576 us|  12.576 us|  1572|  1572|       no|
         +-------------------+---------+---------+---------+-----------+-----------+------+------+---------+
 
         * Loop: 
@@ -94,13 +94,14 @@ ST_3 : Operation 7 [2/2] (0.00ns)   --->   "%call_ln68 = call void @decrypt, i32
 
 State 4 <SV = 3> <Delay = 0.00>
 ST_4 : Operation 8 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 0"   --->   Operation 8 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 9 [1/1] (0.00ns)   --->   "%spectopmodule_ln66 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_0" [data/benchmarks/aes/aes.c:66]   --->   Operation 9 'spectopmodule' 'spectopmodule_ln66' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %statemt, void @empty_11, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 11 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %statemt"   --->   Operation 11 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %key, void @empty_11, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 13 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %key"   --->   Operation 13 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 14 [1/2] (0.00ns)   --->   "%call_ln68 = call void @decrypt, i32 %statemt, i32 %key, i32 %word, i8 %Sbox, i8 %Rcon0, i8 %invSbox" [data/benchmarks/aes/aes.c:68]   --->   Operation 14 'call' 'call_ln68' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_4 : Operation 15 [1/1] (0.00ns)   --->   "%ret_ln69 = ret i32 0" [data/benchmarks/aes/aes.c:69]   --->   Operation 15 'ret' 'ret_ln69' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 9 [1/1] (0.00ns)   --->   "%specpipeline_ln16 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:16]   --->   Operation 9 'specpipeline' 'specpipeline_ln16' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 10 [1/1] (0.00ns)   --->   "%spectopmodule_ln66 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_0" [data/benchmarks/aes/aes.c:66]   --->   Operation 10 'spectopmodule' 'spectopmodule_ln66' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %statemt, void @empty_11, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 12 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %statemt"   --->   Operation 12 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %key, void @empty_11, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 14 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %key"   --->   Operation 14 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 15 [1/2] (0.00ns)   --->   "%call_ln68 = call void @decrypt, i32 %statemt, i32 %key, i32 %word, i8 %Sbox, i8 %Rcon0, i8 %invSbox" [data/benchmarks/aes/aes.c:68]   --->   Operation 15 'call' 'call_ln68' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 16 [1/1] (0.00ns)   --->   "%ret_ln69 = ret i32 0" [data/benchmarks/aes/aes.c:69]   --->   Operation 16 'ret' 'ret_ln69' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -129,6 +130,7 @@ Port [ invSbox]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; ex
 <method=bitvector/>
 call_ln67          (call         ) [ 00000]
 specbitsmap_ln0    (specbitsmap  ) [ 00000]
+specpipeline_ln16  (specpipeline ) [ 00000]
 spectopmodule_ln66 (spectopmodule) [ 00000]
 specinterface_ln0  (specinterface) [ 00000]
 specbitsmap_ln0    (specbitsmap  ) [ 00000]
@@ -252,7 +254,7 @@ ret_ln69           (ret          ) [ 00000]
 <pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+<StgValue><ssdm name="_ssdm_op_SpecPipeline"/></StgValue>
 </bind>
 </comp>
 
@@ -261,7 +263,7 @@ ret_ln69           (ret          ) [ 00000]
 <pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_0"/></StgValue>
+<StgValue><ssdm name=""/></StgValue>
 </bind>
 </comp>
 
@@ -270,7 +272,7 @@ ret_ln69           (ret          ) [ 00000]
 <pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+<StgValue><ssdm name="empty"/></StgValue>
 </bind>
 </comp>
 
@@ -279,7 +281,7 @@ ret_ln69           (ret          ) [ 00000]
 <pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_11"/></StgValue>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
 </bind>
 </comp>
 
@@ -288,7 +290,7 @@ ret_ln69           (ret          ) [ 00000]
 <pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty"/></StgValue>
+<StgValue><ssdm name="empty_0"/></StgValue>
 </bind>
 </comp>
 
@@ -297,20 +299,38 @@ ret_ln69           (ret          ) [ 00000]
 <pin id="33" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_11"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
 <StgValue><ssdm name=""/></StgValue>
 </bind>
 </comp>
 
-<comp id="34" class="1004" name="grp_encrypt_fu_34">
+<comp id="38" class="1004" name="grp_encrypt_fu_38">
 <pin_list>
-<pin id="35" dir="0" index="0" bw="0" slack="0"/>
-<pin id="36" dir="0" index="1" bw="32" slack="0"/>
-<pin id="37" dir="0" index="2" bw="32" slack="0"/>
-<pin id="38" dir="0" index="3" bw="32" slack="0"/>
-<pin id="39" dir="0" index="4" bw="8" slack="0"/>
-<pin id="40" dir="0" index="5" bw="8" slack="0"/>
-<pin id="41" dir="0" index="6" bw="8" slack="0"/>
-<pin id="42" dir="1" index="7" bw="0" slack="2147483647"/>
+<pin id="39" dir="0" index="0" bw="0" slack="0"/>
+<pin id="40" dir="0" index="1" bw="32" slack="0"/>
+<pin id="41" dir="0" index="2" bw="32" slack="0"/>
+<pin id="42" dir="0" index="3" bw="32" slack="0"/>
+<pin id="43" dir="0" index="4" bw="8" slack="0"/>
+<pin id="44" dir="0" index="5" bw="8" slack="0"/>
+<pin id="45" dir="0" index="6" bw="8" slack="0"/>
+<pin id="46" dir="1" index="7" bw="0" slack="2147483647"/>
 </pin_list>
 <bind>
 <opcode="call(48) " fcode="call"/>
@@ -318,16 +338,16 @@ ret_ln69           (ret          ) [ 00000]
 </bind>
 </comp>
 
-<comp id="50" class="1004" name="grp_decrypt_fu_50">
+<comp id="54" class="1004" name="grp_decrypt_fu_54">
 <pin_list>
-<pin id="51" dir="0" index="0" bw="0" slack="0"/>
-<pin id="52" dir="0" index="1" bw="32" slack="0"/>
-<pin id="53" dir="0" index="2" bw="32" slack="0"/>
-<pin id="54" dir="0" index="3" bw="32" slack="0"/>
-<pin id="55" dir="0" index="4" bw="8" slack="0"/>
-<pin id="56" dir="0" index="5" bw="8" slack="0"/>
-<pin id="57" dir="0" index="6" bw="8" slack="0"/>
-<pin id="58" dir="1" index="7" bw="0" slack="2147483647"/>
+<pin id="55" dir="0" index="0" bw="0" slack="0"/>
+<pin id="56" dir="0" index="1" bw="32" slack="0"/>
+<pin id="57" dir="0" index="2" bw="32" slack="0"/>
+<pin id="58" dir="0" index="3" bw="32" slack="0"/>
+<pin id="59" dir="0" index="4" bw="8" slack="0"/>
+<pin id="60" dir="0" index="5" bw="8" slack="0"/>
+<pin id="61" dir="0" index="6" bw="8" slack="0"/>
+<pin id="62" dir="1" index="7" bw="0" slack="2147483647"/>
 </pin_list>
 <bind>
 <opcode="call(48) " fcode="call"/>
@@ -338,33 +358,33 @@ ret_ln69           (ret          ) [ 00000]
 </comp_list>
 
 <net_list>
-<net id="43"><net_src comp="14" pin="0"/><net_sink comp="34" pin=0"/></net>
+<net id="47"><net_src comp="14" pin="0"/><net_sink comp="38" pin=0"/></net>
 
-<net id="44"><net_src comp="0" pin="0"/><net_sink comp="34" pin=1"/></net>
+<net id="48"><net_src comp="0" pin="0"/><net_sink comp="38" pin=1"/></net>
 
-<net id="45"><net_src comp="2" pin="0"/><net_sink comp="34" pin=2"/></net>
+<net id="49"><net_src comp="2" pin="0"/><net_sink comp="38" pin=2"/></net>
 
-<net id="46"><net_src comp="4" pin="0"/><net_sink comp="34" pin=3"/></net>
+<net id="50"><net_src comp="4" pin="0"/><net_sink comp="38" pin=3"/></net>
 
-<net id="47"><net_src comp="6" pin="0"/><net_sink comp="34" pin=4"/></net>
+<net id="51"><net_src comp="6" pin="0"/><net_sink comp="38" pin=4"/></net>
 
-<net id="48"><net_src comp="8" pin="0"/><net_sink comp="34" pin=5"/></net>
+<net id="52"><net_src comp="8" pin="0"/><net_sink comp="38" pin=5"/></net>
 
-<net id="49"><net_src comp="10" pin="0"/><net_sink comp="34" pin=6"/></net>
+<net id="53"><net_src comp="10" pin="0"/><net_sink comp="38" pin=6"/></net>
 
-<net id="59"><net_src comp="16" pin="0"/><net_sink comp="50" pin=0"/></net>
+<net id="63"><net_src comp="16" pin="0"/><net_sink comp="54" pin=0"/></net>
 
-<net id="60"><net_src comp="0" pin="0"/><net_sink comp="50" pin=1"/></net>
+<net id="64"><net_src comp="0" pin="0"/><net_sink comp="54" pin=1"/></net>
 
-<net id="61"><net_src comp="2" pin="0"/><net_sink comp="50" pin=2"/></net>
+<net id="65"><net_src comp="2" pin="0"/><net_sink comp="54" pin=2"/></net>
 
-<net id="62"><net_src comp="4" pin="0"/><net_sink comp="50" pin=3"/></net>
+<net id="66"><net_src comp="4" pin="0"/><net_sink comp="54" pin=3"/></net>
 
-<net id="63"><net_src comp="6" pin="0"/><net_sink comp="50" pin=4"/></net>
+<net id="67"><net_src comp="6" pin="0"/><net_sink comp="54" pin=4"/></net>
 
-<net id="64"><net_src comp="8" pin="0"/><net_sink comp="50" pin=5"/></net>
+<net id="68"><net_src comp="8" pin="0"/><net_sink comp="54" pin=5"/></net>
 
-<net id="65"><net_src comp="12" pin="0"/><net_sink comp="50" pin=6"/></net>
+<net id="69"><net_src comp="12" pin="0"/><net_sink comp="54" pin=6"/></net>
 
 </net_list>
 
@@ -398,8 +418,8 @@ ret_ln69           (ret          ) [ 00000]
 |----------|-------------------|---------|---------|---------|---------|---------|
 | Operation|  Functional Unit  |   BRAM  |  Delay  |    FF   |   LUT   |   URAM  |
 |----------|-------------------|---------|---------|---------|---------|---------|
-|   call   | grp_encrypt_fu_34 |    0    | 12.9686 |   1708  |   3269  |    0    |
-|          | grp_decrypt_fu_50 |    0    | 13.5205 |   1490  |   3517  |    0    |
+|   call   | grp_encrypt_fu_38 |    0    | 12.9686 |   1708  |   3269  |    0    |
+|          | grp_decrypt_fu_54 |    0    | 13.5205 |   1490  |   3517  |    0    |
 |----------|-------------------|---------|---------|---------|---------|---------|
 |   Total  |                   |    0    | 26.4891 |   3198  |   6786  |    0    |
 |----------|-------------------|---------|---------|---------|---------|---------|

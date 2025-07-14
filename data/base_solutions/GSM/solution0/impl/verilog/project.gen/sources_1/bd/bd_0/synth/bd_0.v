@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-//Date        : Fri May 30 22:04:06 2025
+//Date        : Wed Jul  9 03:57:43 2025
 //Host        : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target bd_0.bd
 //Design      : bd_0
@@ -33,9 +33,11 @@ module bd_0
     indata_ce0,
     indata_ce1,
     indata_d0,
+    indata_d1,
     indata_q0,
     indata_q1,
-    indata_we0);
+    indata_we0,
+    indata_we1);
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.LARC_ADDRESS0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.LARC_ADDRESS0, LAYERED_METADATA undef" *) output [2:0]LARc_address0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.LARC_ADDRESS1 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.LARC_ADDRESS1, LAYERED_METADATA undef" *) output [2:0]LARc_address1;
   output LARc_ce0;
@@ -57,9 +59,11 @@ module bd_0
   output indata_ce0;
   output indata_ce1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.INDATA_D0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.INDATA_D0, LAYERED_METADATA undef" *) output [15:0]indata_d0;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.INDATA_D1 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.INDATA_D1, LAYERED_METADATA undef" *) output [15:0]indata_d1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.INDATA_Q0 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.INDATA_Q0, LAYERED_METADATA undef" *) input [15:0]indata_q0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.INDATA_Q1 DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.INDATA_Q1, LAYERED_METADATA undef" *) input [15:0]indata_q1;
   output indata_we0;
+  output indata_we1;
 
   wire [15:0]LARc_q0_0_1;
   wire [15:0]LARc_q1_0_1;
@@ -82,7 +86,9 @@ module bd_0
   wire hls_inst_indata_ce0;
   wire hls_inst_indata_ce1;
   wire [15:0]hls_inst_indata_d0;
+  wire [15:0]hls_inst_indata_d1;
   wire hls_inst_indata_we0;
+  wire hls_inst_indata_we1;
   wire [15:0]indata_q0_0_1;
   wire [15:0]indata_q1_0_1;
 
@@ -107,9 +113,11 @@ module bd_0
   assign indata_ce0 = hls_inst_indata_ce0;
   assign indata_ce1 = hls_inst_indata_ce1;
   assign indata_d0[15:0] = hls_inst_indata_d0;
+  assign indata_d1[15:0] = hls_inst_indata_d1;
   assign indata_q0_0_1 = indata_q0[15:0];
   assign indata_q1_0_1 = indata_q1[15:0];
   assign indata_we0 = hls_inst_indata_we0;
+  assign indata_we1 = hls_inst_indata_we1;
   bd_0_hls_inst_0 hls_inst
        (.LARc_address0(hls_inst_LARc_address0),
         .LARc_address1(hls_inst_LARc_address1),
@@ -132,7 +140,9 @@ module bd_0
         .indata_ce0(hls_inst_indata_ce0),
         .indata_ce1(hls_inst_indata_ce1),
         .indata_d0(hls_inst_indata_d0),
+        .indata_d1(hls_inst_indata_d1),
         .indata_q0(indata_q0_0_1),
         .indata_q1(indata_q1_0_1),
-        .indata_we0(hls_inst_indata_we0));
+        .indata_we0(hls_inst_indata_we0),
+        .indata_we1(hls_inst_indata_we1));
 endmodule

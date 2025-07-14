@@ -4,7 +4,7 @@
       "Name": "wl_code_table",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "wl_code_table_load" }, { "FunctionName": "encode", "LoadInstName": "wl_code_table_load" }]
+      "Loads": [{ "FunctionName": "logscl", "LoadInstName": "wl_code_table_load" }]
     },
     {
       "Name": "tqmf",
@@ -40,7 +40,7 @@
       "Name": "ilb_table",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "ilb_table_load_2" }, { "FunctionName": "decode", "LoadInstName": "ilb_table_load" }, { "FunctionName": "encode", "LoadInstName": "ilb_table_load_1" }, { "FunctionName": "encode", "LoadInstName": "ilb_table_load" }]
+      "Loads": [{ "FunctionName": "scalel", "LoadInstName": "ilb_table_load" }]
     },
     {
       "Name": "h",
@@ -58,7 +58,7 @@
       "Name": "delay_dhx",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp_2" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp_7" }, { "FunctionName": "reset", "LoadInstName": "" }]
     },
     {
       "Name": "delay_bpl",
@@ -70,7 +70,7 @@
       "Name": "delay_bph",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp_2" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp_7" }, { "FunctionName": "reset", "LoadInstName": "" }]
     },
     {
       "Name": "decis_levl",
@@ -88,7 +88,7 @@
       "Name": "dec_del_dhx",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp_3" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp_17" }, { "FunctionName": "reset", "LoadInstName": "" }]
     },
     {
       "Name": "dec_del_bpl",
@@ -100,7 +100,7 @@
       "Name": "dec_del_bph",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp_3" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp_17" }, { "FunctionName": "reset", "LoadInstName": "" }]
     },
     {
       "Name": "accumd",
@@ -148,7 +148,7 @@
       "Name": "empty_4",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "abs", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "filtep", "LoadInstName": "" }, { "FunctionName": "filtez", "LoadInstName": "" }, { "FunctionName": "logsch", "LoadInstName": "" }, { "FunctionName": "logscl", "LoadInstName": "" }, { "FunctionName": "quantl", "LoadInstName": "" }, { "FunctionName": "reset", "LoadInstName": "" }, { "FunctionName": "scalel", "LoadInstName": "" }, { "FunctionName": "uppol1", "LoadInstName": "" }, { "FunctionName": "uppol2", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "" }]
     },
     {
       "Name": "empty_5",

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'decrypt'" level="0">
-<item name = "Date">Sat May 31 00:10:17 2025
+<item name = "Date">Wed Jul  9 03:26:55 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -31,10 +31,10 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_KeySchedule_fu_52">KeySchedule, 562, 562, 4.496 us, 4.496 us, 562, 562, no</column>
-<column name="grp_AddRoundKey_fu_64">AddRoundKey, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
-<column name="grp_InversShiftRow_ByteSub_fu_75">InversShiftRow_ByteSub, 15, 15, 0.120 us, 0.120 us, 15, 15, no</column>
-<column name="grp_AddRoundKey_InversMixColumn_fu_83">AddRoundKey_InversMixColumn, 87, 87, 0.696 us, 0.696 us, 87, 87, no</column>
+<column name="grp_KeySchedule_fu_54">KeySchedule, 562, 562, 4.496 us, 4.496 us, 562, 562, no</column>
+<column name="grp_AddRoundKey_fu_66">AddRoundKey, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
+<column name="grp_InversShiftRow_ByteSub_fu_77">InversShiftRow_ByteSub, 15, 15, 0.120 us, 0.120 us, 15, 15, no</column>
+<column name="grp_AddRoundKey_InversMixColumn_fu_85">AddRoundKey_InversMixColumn, 87, 87, 0.696 us, 0.696 us, 87, 87, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -68,10 +68,10 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_AddRoundKey_fu_64">AddRoundKey, 0, 0, 92, 278, 0</column>
-<column name="grp_AddRoundKey_InversMixColumn_fu_83">AddRoundKey_InversMixColumn, 0, 0, 230, 2130, 0</column>
-<column name="grp_InversShiftRow_ByteSub_fu_75">InversShiftRow_ByteSub, 0, 0, 152, 472, 0</column>
-<column name="grp_KeySchedule_fu_52">KeySchedule, 0, 0, 313, 994, 0</column>
+<column name="grp_AddRoundKey_fu_66">AddRoundKey, 0, 0, 92, 278, 0</column>
+<column name="grp_AddRoundKey_InversMixColumn_fu_85">AddRoundKey_InversMixColumn, 0, 0, 230, 2130, 0</column>
+<column name="grp_InversShiftRow_ByteSub_fu_77">InversShiftRow_ByteSub, 0, 0, 152, 472, 0</column>
+<column name="grp_KeySchedule_fu_54">KeySchedule, 0, 0, 313, 994, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -88,15 +88,15 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="i_fu_107_p2">+, 0, 0, 12, 4, 2</column>
-<column name="icmp_ln116_fu_101_p2">icmp, 0, 0, 12, 4, 1</column>
+<column name="i_fu_109_p2">+, 0, 0, 12, 4, 2</column>
+<column name="icmp_ln116_fu_103_p2">icmp, 0, 0, 12, 4, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">65, 12, 1, 12</column>
-<column name="grp_AddRoundKey_fu_64_n">14, 3, 4, 12</column>
-<column name="i_01_fu_48">9, 2, 4, 8</column>
+<column name="grp_AddRoundKey_fu_66_n">14, 3, 4, 12</column>
+<column name="i_01_fu_50">9, 2, 4, 8</column>
 <column name="statemt_address0">20, 4, 5, 20</column>
 <column name="statemt_address1">20, 4, 5, 20</column>
 <column name="statemt_ce0">20, 4, 1, 4</column>
@@ -115,12 +115,12 @@
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">11, 0, 11, 0</column>
-<column name="grp_AddRoundKey_InversMixColumn_fu_83_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_AddRoundKey_fu_64_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_InversShiftRow_ByteSub_fu_75_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_KeySchedule_fu_52_ap_start_reg">1, 0, 1, 0</column>
-<column name="i_01_fu_48">4, 0, 4, 0</column>
-<column name="i_4_reg_125">4, 0, 4, 0</column>
+<column name="grp_AddRoundKey_InversMixColumn_fu_85_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_AddRoundKey_fu_66_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_InversShiftRow_ByteSub_fu_77_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_KeySchedule_fu_54_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_01_fu_50">4, 0, 4, 0</column>
+<column name="i_4_reg_127">4, 0, 4, 0</column>
 </table>
 </item>
 </section>

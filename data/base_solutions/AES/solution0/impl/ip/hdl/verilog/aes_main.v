@@ -81,49 +81,49 @@ wire   [31:0] word_q0;
 reg   [8:0] word_address1;
 reg    word_ce1;
 wire   [31:0] word_q1;
-wire    grp_encrypt_fu_34_ap_start;
-wire    grp_encrypt_fu_34_ap_done;
-wire    grp_encrypt_fu_34_ap_idle;
-wire    grp_encrypt_fu_34_ap_ready;
-wire   [4:0] grp_encrypt_fu_34_statemt_address0;
-wire    grp_encrypt_fu_34_statemt_ce0;
-wire    grp_encrypt_fu_34_statemt_we0;
-wire   [31:0] grp_encrypt_fu_34_statemt_d0;
-wire   [4:0] grp_encrypt_fu_34_statemt_address1;
-wire    grp_encrypt_fu_34_statemt_ce1;
-wire    grp_encrypt_fu_34_statemt_we1;
-wire   [31:0] grp_encrypt_fu_34_statemt_d1;
-wire   [4:0] grp_encrypt_fu_34_key_address0;
-wire    grp_encrypt_fu_34_key_ce0;
-wire   [8:0] grp_encrypt_fu_34_word_address0;
-wire    grp_encrypt_fu_34_word_ce0;
-wire    grp_encrypt_fu_34_word_we0;
-wire   [31:0] grp_encrypt_fu_34_word_d0;
-wire   [8:0] grp_encrypt_fu_34_word_address1;
-wire    grp_encrypt_fu_34_word_ce1;
-wire    grp_decrypt_fu_50_ap_start;
-wire    grp_decrypt_fu_50_ap_done;
-wire    grp_decrypt_fu_50_ap_idle;
-wire    grp_decrypt_fu_50_ap_ready;
-wire   [4:0] grp_decrypt_fu_50_statemt_address0;
-wire    grp_decrypt_fu_50_statemt_ce0;
-wire    grp_decrypt_fu_50_statemt_we0;
-wire   [31:0] grp_decrypt_fu_50_statemt_d0;
-wire   [4:0] grp_decrypt_fu_50_statemt_address1;
-wire    grp_decrypt_fu_50_statemt_ce1;
-wire    grp_decrypt_fu_50_statemt_we1;
-wire   [31:0] grp_decrypt_fu_50_statemt_d1;
-wire   [4:0] grp_decrypt_fu_50_key_address0;
-wire    grp_decrypt_fu_50_key_ce0;
-wire   [8:0] grp_decrypt_fu_50_word_address0;
-wire    grp_decrypt_fu_50_word_ce0;
-wire    grp_decrypt_fu_50_word_we0;
-wire   [31:0] grp_decrypt_fu_50_word_d0;
-wire   [8:0] grp_decrypt_fu_50_word_address1;
-wire    grp_decrypt_fu_50_word_ce1;
-reg    grp_encrypt_fu_34_ap_start_reg;
+wire    grp_encrypt_fu_38_ap_start;
+wire    grp_encrypt_fu_38_ap_done;
+wire    grp_encrypt_fu_38_ap_idle;
+wire    grp_encrypt_fu_38_ap_ready;
+wire   [4:0] grp_encrypt_fu_38_statemt_address0;
+wire    grp_encrypt_fu_38_statemt_ce0;
+wire    grp_encrypt_fu_38_statemt_we0;
+wire   [31:0] grp_encrypt_fu_38_statemt_d0;
+wire   [4:0] grp_encrypt_fu_38_statemt_address1;
+wire    grp_encrypt_fu_38_statemt_ce1;
+wire    grp_encrypt_fu_38_statemt_we1;
+wire   [31:0] grp_encrypt_fu_38_statemt_d1;
+wire   [4:0] grp_encrypt_fu_38_key_address0;
+wire    grp_encrypt_fu_38_key_ce0;
+wire   [8:0] grp_encrypt_fu_38_word_address0;
+wire    grp_encrypt_fu_38_word_ce0;
+wire    grp_encrypt_fu_38_word_we0;
+wire   [31:0] grp_encrypt_fu_38_word_d0;
+wire   [8:0] grp_encrypt_fu_38_word_address1;
+wire    grp_encrypt_fu_38_word_ce1;
+wire    grp_decrypt_fu_54_ap_start;
+wire    grp_decrypt_fu_54_ap_done;
+wire    grp_decrypt_fu_54_ap_idle;
+wire    grp_decrypt_fu_54_ap_ready;
+wire   [4:0] grp_decrypt_fu_54_statemt_address0;
+wire    grp_decrypt_fu_54_statemt_ce0;
+wire    grp_decrypt_fu_54_statemt_we0;
+wire   [31:0] grp_decrypt_fu_54_statemt_d0;
+wire   [4:0] grp_decrypt_fu_54_statemt_address1;
+wire    grp_decrypt_fu_54_statemt_ce1;
+wire    grp_decrypt_fu_54_statemt_we1;
+wire   [31:0] grp_decrypt_fu_54_statemt_d1;
+wire   [4:0] grp_decrypt_fu_54_key_address0;
+wire    grp_decrypt_fu_54_key_ce0;
+wire   [8:0] grp_decrypt_fu_54_word_address0;
+wire    grp_decrypt_fu_54_word_ce0;
+wire    grp_decrypt_fu_54_word_we0;
+wire   [31:0] grp_decrypt_fu_54_word_d0;
+wire   [8:0] grp_decrypt_fu_54_word_address1;
+wire    grp_decrypt_fu_54_word_ce1;
+reg    grp_encrypt_fu_38_ap_start_reg;
 wire    ap_CS_fsm_state2;
-reg    grp_decrypt_fu_50_ap_start_reg;
+reg    grp_decrypt_fu_54_ap_start_reg;
 wire    ap_CS_fsm_state3;
 wire    ap_CS_fsm_state4;
 reg   [3:0] ap_NS_fsm;
@@ -136,8 +136,8 @@ wire    ap_ce_reg;
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 4'd1;
-#0 grp_encrypt_fu_34_ap_start_reg = 1'b0;
-#0 grp_decrypt_fu_50_ap_start_reg = 1'b0;
+#0 grp_encrypt_fu_38_ap_start_reg = 1'b0;
+#0 grp_decrypt_fu_54_ap_start_reg = 1'b0;
 end
 
 aes_main_word_RAM_AUTO_1R1W #(
@@ -157,63 +157,63 @@ word_U(
     .q1(word_q1)
 );
 
-aes_main_encrypt grp_encrypt_fu_34(
+aes_main_encrypt grp_encrypt_fu_38(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_encrypt_fu_34_ap_start),
-    .ap_done(grp_encrypt_fu_34_ap_done),
-    .ap_idle(grp_encrypt_fu_34_ap_idle),
-    .ap_ready(grp_encrypt_fu_34_ap_ready),
-    .statemt_address0(grp_encrypt_fu_34_statemt_address0),
-    .statemt_ce0(grp_encrypt_fu_34_statemt_ce0),
-    .statemt_we0(grp_encrypt_fu_34_statemt_we0),
-    .statemt_d0(grp_encrypt_fu_34_statemt_d0),
+    .ap_start(grp_encrypt_fu_38_ap_start),
+    .ap_done(grp_encrypt_fu_38_ap_done),
+    .ap_idle(grp_encrypt_fu_38_ap_idle),
+    .ap_ready(grp_encrypt_fu_38_ap_ready),
+    .statemt_address0(grp_encrypt_fu_38_statemt_address0),
+    .statemt_ce0(grp_encrypt_fu_38_statemt_ce0),
+    .statemt_we0(grp_encrypt_fu_38_statemt_we0),
+    .statemt_d0(grp_encrypt_fu_38_statemt_d0),
     .statemt_q0(statemt_q0),
-    .statemt_address1(grp_encrypt_fu_34_statemt_address1),
-    .statemt_ce1(grp_encrypt_fu_34_statemt_ce1),
-    .statemt_we1(grp_encrypt_fu_34_statemt_we1),
-    .statemt_d1(grp_encrypt_fu_34_statemt_d1),
+    .statemt_address1(grp_encrypt_fu_38_statemt_address1),
+    .statemt_ce1(grp_encrypt_fu_38_statemt_ce1),
+    .statemt_we1(grp_encrypt_fu_38_statemt_we1),
+    .statemt_d1(grp_encrypt_fu_38_statemt_d1),
     .statemt_q1(statemt_q1),
-    .key_address0(grp_encrypt_fu_34_key_address0),
-    .key_ce0(grp_encrypt_fu_34_key_ce0),
+    .key_address0(grp_encrypt_fu_38_key_address0),
+    .key_ce0(grp_encrypt_fu_38_key_ce0),
     .key_q0(key_q0),
-    .word_address0(grp_encrypt_fu_34_word_address0),
-    .word_ce0(grp_encrypt_fu_34_word_ce0),
-    .word_we0(grp_encrypt_fu_34_word_we0),
-    .word_d0(grp_encrypt_fu_34_word_d0),
+    .word_address0(grp_encrypt_fu_38_word_address0),
+    .word_ce0(grp_encrypt_fu_38_word_ce0),
+    .word_we0(grp_encrypt_fu_38_word_we0),
+    .word_d0(grp_encrypt_fu_38_word_d0),
     .word_q0(word_q0),
-    .word_address1(grp_encrypt_fu_34_word_address1),
-    .word_ce1(grp_encrypt_fu_34_word_ce1),
+    .word_address1(grp_encrypt_fu_38_word_address1),
+    .word_ce1(grp_encrypt_fu_38_word_ce1),
     .word_q1(word_q1)
 );
 
-aes_main_decrypt grp_decrypt_fu_50(
+aes_main_decrypt grp_decrypt_fu_54(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_decrypt_fu_50_ap_start),
-    .ap_done(grp_decrypt_fu_50_ap_done),
-    .ap_idle(grp_decrypt_fu_50_ap_idle),
-    .ap_ready(grp_decrypt_fu_50_ap_ready),
-    .statemt_address0(grp_decrypt_fu_50_statemt_address0),
-    .statemt_ce0(grp_decrypt_fu_50_statemt_ce0),
-    .statemt_we0(grp_decrypt_fu_50_statemt_we0),
-    .statemt_d0(grp_decrypt_fu_50_statemt_d0),
+    .ap_start(grp_decrypt_fu_54_ap_start),
+    .ap_done(grp_decrypt_fu_54_ap_done),
+    .ap_idle(grp_decrypt_fu_54_ap_idle),
+    .ap_ready(grp_decrypt_fu_54_ap_ready),
+    .statemt_address0(grp_decrypt_fu_54_statemt_address0),
+    .statemt_ce0(grp_decrypt_fu_54_statemt_ce0),
+    .statemt_we0(grp_decrypt_fu_54_statemt_we0),
+    .statemt_d0(grp_decrypt_fu_54_statemt_d0),
     .statemt_q0(statemt_q0),
-    .statemt_address1(grp_decrypt_fu_50_statemt_address1),
-    .statemt_ce1(grp_decrypt_fu_50_statemt_ce1),
-    .statemt_we1(grp_decrypt_fu_50_statemt_we1),
-    .statemt_d1(grp_decrypt_fu_50_statemt_d1),
+    .statemt_address1(grp_decrypt_fu_54_statemt_address1),
+    .statemt_ce1(grp_decrypt_fu_54_statemt_ce1),
+    .statemt_we1(grp_decrypt_fu_54_statemt_we1),
+    .statemt_d1(grp_decrypt_fu_54_statemt_d1),
     .statemt_q1(statemt_q1),
-    .key_address0(grp_decrypt_fu_50_key_address0),
-    .key_ce0(grp_decrypt_fu_50_key_ce0),
+    .key_address0(grp_decrypt_fu_54_key_address0),
+    .key_ce0(grp_decrypt_fu_54_key_ce0),
     .key_q0(key_q0),
-    .word_address0(grp_decrypt_fu_50_word_address0),
-    .word_ce0(grp_decrypt_fu_50_word_ce0),
-    .word_we0(grp_decrypt_fu_50_word_we0),
-    .word_d0(grp_decrypt_fu_50_word_d0),
+    .word_address0(grp_decrypt_fu_54_word_address0),
+    .word_ce0(grp_decrypt_fu_54_word_ce0),
+    .word_we0(grp_decrypt_fu_54_word_we0),
+    .word_d0(grp_decrypt_fu_54_word_d0),
     .word_q0(word_q0),
-    .word_address1(grp_decrypt_fu_50_word_address1),
-    .word_ce1(grp_decrypt_fu_50_word_ce1),
+    .word_address1(grp_decrypt_fu_54_word_address1),
+    .word_ce1(grp_decrypt_fu_54_word_ce1),
     .word_q1(word_q1)
 );
 
@@ -227,24 +227,24 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_decrypt_fu_50_ap_start_reg <= 1'b0;
+        grp_decrypt_fu_54_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state3)) begin
-            grp_decrypt_fu_50_ap_start_reg <= 1'b1;
-        end else if ((grp_decrypt_fu_50_ap_ready == 1'b1)) begin
-            grp_decrypt_fu_50_ap_start_reg <= 1'b0;
+            grp_decrypt_fu_54_ap_start_reg <= 1'b1;
+        end else if ((grp_decrypt_fu_54_ap_ready == 1'b1)) begin
+            grp_decrypt_fu_54_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_encrypt_fu_34_ap_start_reg <= 1'b0;
+        grp_encrypt_fu_38_ap_start_reg <= 1'b0;
     end else begin
         if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-            grp_encrypt_fu_34_ap_start_reg <= 1'b1;
-        end else if ((grp_encrypt_fu_34_ap_ready == 1'b1)) begin
-            grp_encrypt_fu_34_ap_start_reg <= 1'b0;
+            grp_encrypt_fu_38_ap_start_reg <= 1'b1;
+        end else if ((grp_encrypt_fu_38_ap_ready == 1'b1)) begin
+            grp_encrypt_fu_38_ap_start_reg <= 1'b0;
         end
     end
 end
@@ -258,7 +258,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((grp_encrypt_fu_34_ap_done == 1'b0)) begin
+    if ((grp_encrypt_fu_38_ap_done == 1'b0)) begin
         ap_ST_fsm_state2_blk = 1'b1;
     end else begin
         ap_ST_fsm_state2_blk = 1'b0;
@@ -268,7 +268,7 @@ end
 assign ap_ST_fsm_state3_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_decrypt_fu_50_ap_done == 1'b0)) begin
+    if ((grp_decrypt_fu_54_ap_done == 1'b0)) begin
         ap_ST_fsm_state4_blk = 1'b1;
     end else begin
         ap_ST_fsm_state4_blk = 1'b0;
@@ -276,7 +276,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((grp_decrypt_fu_50_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
+    if (((grp_decrypt_fu_54_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -292,7 +292,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((grp_decrypt_fu_50_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
+    if (((grp_decrypt_fu_54_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -301,9 +301,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        key_address0 = grp_decrypt_fu_50_key_address0;
+        key_address0 = grp_decrypt_fu_54_key_address0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        key_address0 = grp_encrypt_fu_34_key_address0;
+        key_address0 = grp_encrypt_fu_38_key_address0;
     end else begin
         key_address0 = 'bx;
     end
@@ -311,9 +311,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        key_ce0 = grp_decrypt_fu_50_key_ce0;
+        key_ce0 = grp_decrypt_fu_54_key_ce0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        key_ce0 = grp_encrypt_fu_34_key_ce0;
+        key_ce0 = grp_encrypt_fu_38_key_ce0;
     end else begin
         key_ce0 = 1'b0;
     end
@@ -321,9 +321,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_address0 = grp_decrypt_fu_50_statemt_address0;
+        statemt_address0 = grp_decrypt_fu_54_statemt_address0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_address0 = grp_encrypt_fu_34_statemt_address0;
+        statemt_address0 = grp_encrypt_fu_38_statemt_address0;
     end else begin
         statemt_address0 = 'bx;
     end
@@ -331,9 +331,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_address1 = grp_decrypt_fu_50_statemt_address1;
+        statemt_address1 = grp_decrypt_fu_54_statemt_address1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_address1 = grp_encrypt_fu_34_statemt_address1;
+        statemt_address1 = grp_encrypt_fu_38_statemt_address1;
     end else begin
         statemt_address1 = 'bx;
     end
@@ -341,9 +341,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_ce0 = grp_decrypt_fu_50_statemt_ce0;
+        statemt_ce0 = grp_decrypt_fu_54_statemt_ce0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_ce0 = grp_encrypt_fu_34_statemt_ce0;
+        statemt_ce0 = grp_encrypt_fu_38_statemt_ce0;
     end else begin
         statemt_ce0 = 1'b0;
     end
@@ -351,9 +351,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_ce1 = grp_decrypt_fu_50_statemt_ce1;
+        statemt_ce1 = grp_decrypt_fu_54_statemt_ce1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_ce1 = grp_encrypt_fu_34_statemt_ce1;
+        statemt_ce1 = grp_encrypt_fu_38_statemt_ce1;
     end else begin
         statemt_ce1 = 1'b0;
     end
@@ -361,9 +361,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_d0 = grp_decrypt_fu_50_statemt_d0;
+        statemt_d0 = grp_decrypt_fu_54_statemt_d0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_d0 = grp_encrypt_fu_34_statemt_d0;
+        statemt_d0 = grp_encrypt_fu_38_statemt_d0;
     end else begin
         statemt_d0 = 'bx;
     end
@@ -371,9 +371,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_d1 = grp_decrypt_fu_50_statemt_d1;
+        statemt_d1 = grp_decrypt_fu_54_statemt_d1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_d1 = grp_encrypt_fu_34_statemt_d1;
+        statemt_d1 = grp_encrypt_fu_38_statemt_d1;
     end else begin
         statemt_d1 = 'bx;
     end
@@ -381,9 +381,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_we0 = grp_decrypt_fu_50_statemt_we0;
+        statemt_we0 = grp_decrypt_fu_54_statemt_we0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_we0 = grp_encrypt_fu_34_statemt_we0;
+        statemt_we0 = grp_encrypt_fu_38_statemt_we0;
     end else begin
         statemt_we0 = 1'b0;
     end
@@ -391,9 +391,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        statemt_we1 = grp_decrypt_fu_50_statemt_we1;
+        statemt_we1 = grp_decrypt_fu_54_statemt_we1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        statemt_we1 = grp_encrypt_fu_34_statemt_we1;
+        statemt_we1 = grp_encrypt_fu_38_statemt_we1;
     end else begin
         statemt_we1 = 1'b0;
     end
@@ -401,9 +401,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        word_address0 = grp_decrypt_fu_50_word_address0;
+        word_address0 = grp_decrypt_fu_54_word_address0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        word_address0 = grp_encrypt_fu_34_word_address0;
+        word_address0 = grp_encrypt_fu_38_word_address0;
     end else begin
         word_address0 = 'bx;
     end
@@ -411,9 +411,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        word_address1 = grp_decrypt_fu_50_word_address1;
+        word_address1 = grp_decrypt_fu_54_word_address1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        word_address1 = grp_encrypt_fu_34_word_address1;
+        word_address1 = grp_encrypt_fu_38_word_address1;
     end else begin
         word_address1 = 'bx;
     end
@@ -421,9 +421,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        word_ce0 = grp_decrypt_fu_50_word_ce0;
+        word_ce0 = grp_decrypt_fu_54_word_ce0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        word_ce0 = grp_encrypt_fu_34_word_ce0;
+        word_ce0 = grp_encrypt_fu_38_word_ce0;
     end else begin
         word_ce0 = 1'b0;
     end
@@ -431,9 +431,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        word_ce1 = grp_decrypt_fu_50_word_ce1;
+        word_ce1 = grp_decrypt_fu_54_word_ce1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        word_ce1 = grp_encrypt_fu_34_word_ce1;
+        word_ce1 = grp_encrypt_fu_38_word_ce1;
     end else begin
         word_ce1 = 1'b0;
     end
@@ -441,9 +441,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        word_d0 = grp_decrypt_fu_50_word_d0;
+        word_d0 = grp_decrypt_fu_54_word_d0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        word_d0 = grp_encrypt_fu_34_word_d0;
+        word_d0 = grp_encrypt_fu_38_word_d0;
     end else begin
         word_d0 = 'bx;
     end
@@ -451,9 +451,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        word_we0 = grp_decrypt_fu_50_word_we0;
+        word_we0 = grp_decrypt_fu_54_word_we0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        word_we0 = grp_encrypt_fu_34_word_we0;
+        word_we0 = grp_encrypt_fu_38_word_we0;
     end else begin
         word_we0 = 1'b0;
     end
@@ -469,7 +469,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((grp_encrypt_fu_34_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
+            if (((grp_encrypt_fu_38_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
                 ap_NS_fsm = ap_ST_fsm_state3;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state2;
@@ -479,7 +479,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state4;
         end
         ap_ST_fsm_state4 : begin
-            if (((grp_decrypt_fu_50_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
+            if (((grp_decrypt_fu_54_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state4;
@@ -501,8 +501,8 @@ assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
 assign ap_return = 32'd0;
 
-assign grp_decrypt_fu_50_ap_start = grp_decrypt_fu_50_ap_start_reg;
+assign grp_decrypt_fu_54_ap_start = grp_decrypt_fu_54_ap_start_reg;
 
-assign grp_encrypt_fu_34_ap_start = grp_encrypt_fu_34_ap_start_reg;
+assign grp_encrypt_fu_38_ap_start = grp_encrypt_fu_38_ap_start_reg;
 
 endmodule //aes_main

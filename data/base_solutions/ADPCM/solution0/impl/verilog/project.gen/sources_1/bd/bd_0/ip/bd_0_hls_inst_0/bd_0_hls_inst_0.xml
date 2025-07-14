@@ -471,11 +471,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:18:45 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:21:38 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:17ce6144</spirit:value>
+            <spirit:value>9:e36c65f3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -486,7 +486,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:17ce6144</spirit:value>
+            <spirit:value>9:e36c65f3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -502,11 +502,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:17:36 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:20:29 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:6ac85ab8</spirit:value>
+            <spirit:value>9:c13d4f4c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -522,11 +522,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:17:36 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:20:29 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:6ac85ab8</spirit:value>
+            <spirit:value>9:c13d4f4c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -542,11 +542,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:17:36 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:20:29 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:17ce6144</spirit:value>
+            <spirit:value>9:e36c65f3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -562,11 +562,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:17:36 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:20:29 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:17ce6144</spirit:value>
+            <spirit:value>9:e36c65f3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -983,16 +983,21 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_abs_r.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_decode.v</spirit:name>
+        <spirit:name>hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_decode.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1001,7 +1006,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1010,7 +1015,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1019,17 +1024,22 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_encode.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_encode.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_filtez.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_filtep.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_filtez.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1038,76 +1048,86 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_logsch.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_logscl.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1116,12 +1136,12 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1130,7 +1150,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1139,7 +1159,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1148,12 +1168,26 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_reset.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_reset.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_scalel.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1162,26 +1196,27 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_upzero.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_uppol1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_uppol2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_upzero.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1202,15 +1237,19 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_abs_r.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_accumc_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_decode.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_decode.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1218,7 +1257,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_decode_qq6_code6_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1226,7 +1265,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_delay_bpl_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1234,15 +1273,19 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_delay_dltx_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_encode.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_encode.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_filtez.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_filtep.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_filtez.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1250,63 +1293,71 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_h_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_logsch.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_logscl.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_ilb_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_logscl_wl_code_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_14s_15ns_29_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_11ns_25_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_15ns_15ns_30_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_15s_32s_47_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_15ns_31_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_16s_32_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_47_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_16s_32s_48_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_7s_39_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mul_32s_32s_64_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_11_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_mux_4_2_14_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1314,11 +1365,11 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_qq4_code4_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1326,7 +1377,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl_decis_levl_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1334,7 +1385,7 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_neg_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1342,11 +1393,23 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_quantl_quant26bt_pos_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_reset.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_reset.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_scalel.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_scalel_ilb_table_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1354,23 +1417,23 @@
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_tqmf_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_upzero.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_uppol1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main_wl_code_table_ROM_AUTO_1R.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_uppol2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6662/hdl/verilog/adpcm_main.v</spirit:name>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main_upzero.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/07d4/hdl/verilog/adpcm_main.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1424,7 +1487,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">13404</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">13704</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1449,7 +1512,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>Adpcm_main</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114106437</xilinx:coreRevision>
+      <xilinx:coreRevision>2114162960</xilinx:coreRevision>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1481,9 +1544,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="40c53adc"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0832c210"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4c90452e"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="f4871302"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="1cf4924d"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="a28b5ce2"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

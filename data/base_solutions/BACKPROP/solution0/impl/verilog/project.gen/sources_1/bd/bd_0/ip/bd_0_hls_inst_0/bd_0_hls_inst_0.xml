@@ -768,11 +768,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:46:37 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:36:56 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:a1f073f1</spirit:value>
+            <spirit:value>9:de3508ac</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -783,7 +783,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:a1f073f1</spirit:value>
+            <spirit:value>9:de3508ac</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -826,11 +826,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:43:49 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:33:31 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:af45ea4f</spirit:value>
+            <spirit:value>9:e2f1dbd5</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -846,11 +846,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:43:49 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:33:31 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:af45ea4f</spirit:value>
+            <spirit:value>9:e2f1dbd5</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -893,11 +893,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:43:49 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:33:31 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:a1f073f1</spirit:value>
+            <spirit:value>9:de3508ac</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -913,11 +913,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat May 31 00:43:49 UTC 2025</spirit:value>
+            <spirit:value>Wed Jul 09 06:33:31 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:a1f073f1</spirit:value>
+            <spirit:value>9:de3508ac</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1749,197 +1749,167 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_backprop_loop1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_add_bias_to_activations_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_add_bias_to_activations_clone_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_RELU_loop12.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop2.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_take_difference_loop1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dactivations1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_delta_matrix_weights1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_delta_matrix_weights2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_delta_matrix_weights3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_oracle_activations1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_oracle_activations2_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_delta_matrix_weights1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_delta_matrix_weights2.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_delta_matrix_weights3.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_RELU.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_oracle_activations1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_RELU_clone.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_oracle_activations2_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_soft_max.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_take_difference_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_update_weights_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_update_weights_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -2095,27 +2065,27 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dmul_64ns_64ns_64_4_max_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dadd_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dexp_64ns_64ns_64_10_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/ip/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -2124,135 +2094,111 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_activations1_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_backprop_loop1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_add_bias_to_activations_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_RELU_loop1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_add_bias_to_activations_clone_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_RELU_loop11.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_RELU_loop12.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_soft_max_loop2.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_backprop_Pipeline_take_difference_loop1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dactivations1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dadd_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dadddsub_64ns_64ns_64_4_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_ddiv_64ns_64ns_64_14_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_delta_weights1_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_delta_matrix_weights1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_delta_weights2_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_delta_matrix_weights2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_delta_weights3_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_delta_matrix_weights3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dexp_64ns_64ns_64_10_full_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_oracle_activations1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dmul_64ns_64ns_64_4_max_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_get_oracle_activations2_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_dsqrt_64ns_64ns_64_12_no_dsp_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_flow_control_loop_pipe_sequential_init.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_delta_matrix_weights1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_delta_matrix_weights2.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_delta_matrix_weights3.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_RELU.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_oracle_activations1_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_RELU_clone.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_get_oracle_activations2_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_soft_max.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_take_difference_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop_update_weights_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_mux_3_2_64_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop_update_weights_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/80db/hdl/verilog/backprop.v</spirit:name>
+        <spirit:name>../../ipshared/ce26/hdl/verilog/backprop.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -2306,7 +2252,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">50132118</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">50857142</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2331,7 +2277,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>Backprop</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114106463</xilinx:coreRevision>
+      <xilinx:coreRevision>2114162973</xilinx:coreRevision>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -2374,9 +2320,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="f5988edd"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bc6cb061"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ba2f8f7e"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="896f84d0"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="16869873"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="5ec02c40"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

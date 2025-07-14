@@ -23,6 +23,15 @@
       "Dimensions": [256]
     },
     {
+      "Name": "L_ACF",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "BaseBitwidth": 64,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9]
+    },
+    {
       "Name": "ACF",
       "FunctionName": "Reflection_coefficients",
       "BaseBitwidth": 16,
@@ -44,15 +53,6 @@
       "Name": "K",
       "FunctionName": "Reflection_coefficients",
       "BaseBitwidth": 16,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "TotalSize": 9,
-      "Dimensions": [9]
-    },
-    {
-      "Name": "L_ACF",
-      "FunctionName": "Gsm_LPC_Analysis",
-      "BaseBitwidth": 64,
       "BaseType": 11,
       "NumDimensions": 1,
       "TotalSize": 9,

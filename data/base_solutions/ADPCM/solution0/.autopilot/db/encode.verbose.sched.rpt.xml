@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'encode'" level="0">
-<item name = "Date">Fri May 30 21:17:05 2025
+<item name = "Date">Wed Jul  9 03:19:59 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">165, 167, 1.320 us, 1.336 us, 165, 167, no</column>
+<column name="">168, 170, 1.344 us, 1.360 us, 168, 170, no</column>
 </table>
 </item>
 <item name = "Detail">

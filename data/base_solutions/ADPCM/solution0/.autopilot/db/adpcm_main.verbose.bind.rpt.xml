@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'adpcm_main'" level="0">
-<item name = "Date">Fri May 30 21:17:05 2025
+<item name = "Date">Wed Jul  9 03:19:59 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -24,22 +24,22 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">13404, 13504, 0.107 ms, 0.108 ms, 13405, 13505, no</column>
+<column name="">13704, 13804, 0.110 ms, 0.110 ms, 13705, 13805, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_reset_fu_241">reset, 51, 51, 0.408 us, 0.408 us, 51, 51, no</column>
-<column name="grp_encode_fu_331">encode, 165, 167, 1.320 us, 1.336 us, 165, 167, no</column>
-<column name="grp_decode_fu_397">decode, 95, 95, 0.760 us, 0.760 us, 95, 95, no</column>
+<column name="grp_reset_fu_243">reset, 51, 51, 0.408 us, 0.408 us, 51, 51, no</column>
+<column name="grp_encode_fu_333">encode, 168, 170, 1.344 us, 1.360 us, 168, 170, no</column>
+<column name="grp_decode_fu_399">decode, 98, 98, 0.784 us, 0.784 us, 98, 98, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- adpcm_main_label12">8400, 8500, 168 ~ 170, -, -, 50, no</column>
-<column name="- adpcm_main_label13">4950, 4950, 99, -, -, 50, no</column>
+<column name="- adpcm_main_label12">8550, 8650, 171 ~ 173, -, -, 50, no</column>
+<column name="- adpcm_main_label13">5100, 5100, 102, -, -, 50, no</column>
 </table>
 </item>
 </section>

@@ -2,6 +2,7 @@ import json
 import os
 from typing import Optional, Union, List
 
+import numpy as np
 import torch
 import torch.nn as nn
 from torch import Tensor
@@ -103,7 +104,7 @@ def prepare_data_loader(
         scaling_stats=scaling_stats,
         benchmarks=benchmarks, 
         log_transform=log_transform,
-        mode="test"
+        mode="evaluate"
     )
     loader = DataLoader(
         dataset, 
@@ -120,7 +121,7 @@ def main(args):
     model_path = args.get("model_path")
     model_args_path = args.get("model_args")
     benchmark = args.get("benchmark")
-    target_metric = args.get("target", "snru")
+    target_metric = args.get("target", "area")
     log_transform = args.get("log_transform", False)
     scaling_stats_path = args.get("scaling_stats")
     batch_size = args.get("batch_size", 16)
@@ -151,13 +152,15 @@ def main(args):
         available_resources=available_resources
     )
 
-    indices = [data.solution_index for data in loader.dataset]
-
     if not output_dir:
-        output_dir = os.path.dirname(os.path.abspath(__file__))
+        output_dir = os.path.dirname(model_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+
     output_csv = os.path.join(output_dir, f"predictions.csv")
     output_png = os.path.join(output_dir, f"predictions.png")
 
+    indices = [data.solution_index for data in loader.dataset]
     with open(output_csv, 'w') as f:
         f.write("index,target,prediction\n")
         for idx, target, pred in zip(indices, targets, preds):
@@ -187,7 +190,7 @@ if __name__ == "__main__":
                         help="Benchmark name for evaluation")
     parser.add_argument("-t", "--target", type=str, default="area", 
                         help="Target metric for evaluation")
-    parser.add_argument("-ss", "--scaling_stats", type=str, required=True, 
+    parser.add_argument("-s", "--scaling_stats", type=str, required=True, 
                         help="Path to the file containing statistics for standardization")
     parser.add_argument("-lt", "--log_transform", action='store_true', 
                         help="Apply log transform to the targets")

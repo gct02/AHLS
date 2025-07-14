@@ -196,6 +196,132 @@
     "insert_position": "",
     "label": "",
     "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl",
+    "sourceLine": 10,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "stencil3d",
+    "id": 10,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "height_bound_row",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl",
+    "sourceLine": 11,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "stencil3d",
+    "id": 11,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "col_bound_row",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl",
+    "sourceLine": 12,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "stencil3d",
+    "id": 12,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "row_bound_col",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl",
+    "sourceLine": 13,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "stencil3d",
+    "id": 13,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loop_col",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl",
+    "sourceLine": 14,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "stencil3d",
+    "id": 14,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "loop_row",
+    "pragma": {
+      "name": "LOOP_FLATTEN",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl",
+    "sourceLine": 15,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "stencil3d",
+    "id": 15,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
       "name": "TOP",
       "option": [
         {

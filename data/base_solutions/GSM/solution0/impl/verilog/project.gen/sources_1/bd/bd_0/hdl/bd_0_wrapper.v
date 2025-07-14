@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-//Date        : Fri May 30 22:04:06 2025
+//Date        : Wed Jul  9 03:57:43 2025
 //Host        : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 //Command     : generate_target bd_0_wrapper.bd
 //Design      : bd_0_wrapper
@@ -32,9 +32,11 @@ module bd_0_wrapper
     indata_ce0,
     indata_ce1,
     indata_d0,
+    indata_d1,
     indata_q0,
     indata_q1,
-    indata_we0);
+    indata_we0,
+    indata_we1);
   output [2:0]LARc_address0;
   output [2:0]LARc_address1;
   output LARc_ce0;
@@ -56,9 +58,11 @@ module bd_0_wrapper
   output indata_ce0;
   output indata_ce1;
   output [15:0]indata_d0;
+  output [15:0]indata_d1;
   input [15:0]indata_q0;
   input [15:0]indata_q1;
   output indata_we0;
+  output indata_we1;
 
   wire [2:0]LARc_address0;
   wire [2:0]LARc_address1;
@@ -81,9 +85,11 @@ module bd_0_wrapper
   wire indata_ce0;
   wire indata_ce1;
   wire [15:0]indata_d0;
+  wire [15:0]indata_d1;
   wire [15:0]indata_q0;
   wire [15:0]indata_q1;
   wire indata_we0;
+  wire indata_we1;
 
   bd_0 bd_0_i
        (.LARc_address0(LARc_address0),
@@ -107,7 +113,9 @@ module bd_0_wrapper
         .indata_ce0(indata_ce0),
         .indata_ce1(indata_ce1),
         .indata_d0(indata_d0),
+        .indata_d1(indata_d1),
         .indata_q0(indata_q0),
         .indata_q1(indata_q1),
-        .indata_we0(indata_we0));
+        .indata_we0(indata_we0),
+        .indata_we1(indata_we1));
 endmodule

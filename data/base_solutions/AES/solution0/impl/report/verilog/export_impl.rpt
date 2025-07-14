@@ -2,7 +2,7 @@
 == Vivado Place & Route Results
 ================================================================
 + General Information:
-    * Date:            Sat May 31 00:15:32 -03 2025
+    * Date:            Wed Jul 09 03:32:44 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         AES
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -63,31 +63,31 @@ SRL:              0
 +-----------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 | inst                                          | 1437 | 1557 |     | 8    |      |     |        |      |         |          |        |
 |   (inst)                                      | 1    | 7    |     |      |      |     |        |      |         |          |        |
-|   grp_decrypt_fu_50                           | 682  | 785  |     | 2    |      |     |        |      |         |          |        |
-|     (grp_decrypt_fu_50)                       | 8    | 23   |     |      |      |     |        |      |         |          |        |
-|     grp_AddRoundKey_InversMixColumn_fu_83     | 327  | 244  |     |      |      |     |        |      |         |          |        |
-|       (grp_AddRoundKey_InversMixColumn_fu_83) | 138  | 180  |     |      |      |     |        |      |         |          |        |
+|   grp_decrypt_fu_54                           | 682  | 785  |     | 2    |      |     |        |      |         |          |        |
+|     (grp_decrypt_fu_54)                       | 8    | 23   |     |      |      |     |        |      |         |          |        |
+|     grp_AddRoundKey_InversMixColumn_fu_85     | 327  | 244  |     |      |      |     |        |      |         |          |        |
+|       (grp_AddRoundKey_InversMixColumn_fu_85) | 138  | 180  |     |      |      |     |        |      |         |          |        |
 |       ret_U                                   | 191  | 64   |     |      |      |     |        |      |         |          |        |
-|     grp_AddRoundKey_fu_64                     | 81   | 79   |     |      |      |     |        |      |         |          |        |
-|     grp_InversShiftRow_ByteSub_fu_75          | 96   | 144  |     | 1    |      |     |        |      |         |          |        |
-|       (grp_InversShiftRow_ByteSub_fu_75)      | 31   | 144  |     |      |      |     |        |      |         |          |        |
+|     grp_AddRoundKey_fu_66                     | 81   | 79   |     |      |      |     |        |      |         |          |        |
+|     grp_InversShiftRow_ByteSub_fu_77          | 96   | 144  |     | 1    |      |     |        |      |         |          |        |
+|       (grp_InversShiftRow_ByteSub_fu_77)      | 31   | 144  |     |      |      |     |        |      |         |          |        |
 |       invSbox_U                               | 67   |      |     | 1    |      |     |        |      |         |          |        |
-|     grp_KeySchedule_fu_52                     | 172  | 295  |     | 1    |      |     |        |      |         |          |        |
-|       (grp_KeySchedule_fu_52)                 | 147  | 287  |     |      |      |     |        |      |         |          |        |
+|     grp_KeySchedule_fu_54                     | 172  | 295  |     | 1    |      |     |        |      |         |          |        |
+|       (grp_KeySchedule_fu_54)                 | 147  | 287  |     |      |      |     |        |      |         |          |        |
 |       Rcon0_U                                 | 4    | 8    |     |      |      |     |        |      |         |          |        |
 |       Sbox_U                                  | 21   |      |     | 1    |      |     |        |      |         |          |        |
-|   grp_encrypt_fu_34                           | 663  | 765  |     | 4    |      |     |        |      |         |          |        |
-|     (grp_encrypt_fu_34)                       | 7    | 23   |     |      |      |     |        |      |         |          |        |
-|     grp_AddRoundKey_fu_62                     | 31   | 79   |     |      |      |     |        |      |         |          |        |
-|     grp_ByteSub_ShiftRow_fu_73                | 113  | 144  |     | 1    |      |     |        |      |         |          |        |
-|       (grp_ByteSub_ShiftRow_fu_73)            | 30   | 144  |     |      |      |     |        |      |         |          |        |
+|   grp_encrypt_fu_38                           | 663  | 765  |     | 4    |      |     |        |      |         |          |        |
+|     (grp_encrypt_fu_38)                       | 7    | 23   |     |      |      |     |        |      |         |          |        |
+|     grp_AddRoundKey_fu_64                     | 31   | 79   |     |      |      |     |        |      |         |          |        |
+|     grp_ByteSub_ShiftRow_fu_75                | 113  | 144  |     | 1    |      |     |        |      |         |          |        |
+|       (grp_ByteSub_ShiftRow_fu_75)            | 30   | 144  |     |      |      |     |        |      |         |          |        |
 |       Sbox_1_U                                | 83   |      |     | 1    |      |     |        |      |         |          |        |
-|     grp_KeySchedule_fu_50                     | 167  | 295  |     | 1    |      |     |        |      |         |          |        |
-|       (grp_KeySchedule_fu_50)                 | 142  | 287  |     |      |      |     |        |      |         |          |        |
+|     grp_KeySchedule_fu_52                     | 167  | 295  |     | 1    |      |     |        |      |         |          |        |
+|       (grp_KeySchedule_fu_52)                 | 142  | 287  |     |      |      |     |        |      |         |          |        |
 |       Rcon0_U                                 | 4    | 8    |     |      |      |     |        |      |         |          |        |
 |       Sbox_U                                  | 21   |      |     | 1    |      |     |        |      |         |          |        |
-|     grp_MixColumn_AddRoundKey_fu_81           | 346  | 224  |     | 2    |      |     |        |      |         |          |        |
-|       (grp_MixColumn_AddRoundKey_fu_81)       | 142  | 224  |     |      |      |     |        |      |         |          |        |
+|     grp_MixColumn_AddRoundKey_fu_83           | 346  | 224  |     | 2    |      |     |        |      |         |          |        |
+|       (grp_MixColumn_AddRoundKey_fu_83)       | 142  | 224  |     |      |      |     |        |      |         |          |        |
 |       ret_U                                   | 207  |      |     | 2    |      |     |        |      |         |          |        |
 |   word_U                                      | 103  |      |     | 2    |      |     |        |      |         |          |        |
 +-----------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
@@ -139,46 +139,46 @@ SRL:              0
 | Path2 | 5.325 | word_U/ram_reg_bram_0/CLKBWRCLK                                            | word_U/ram_reg_bram_0/DINADIN[26]                                         |            2 |          9 |          2.361 |          1.042 |        1.319 |
 | Path3 | 5.499 | word_U/ram_reg_bram_0/CLKBWRCLK                                            | word_U/ram_reg_bram_0/DINADIN[28]                                         |            2 |          9 |          2.187 |          1.088 |        1.099 |
 | Path4 | 5.509 | word_U/ram_reg_bram_0/CLKBWRCLK                                            | word_U/ram_reg_bram_0/DINADIN[27]                                         |            1 |          9 |          2.157 |          0.999 |        1.158 |
-| Path5 | 5.520 | grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ap_CS_fsm_reg[2]/C | grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/reg_351_reg[4]/CE |            1 |         66 |          2.376 |          0.130 |        2.246 |
+| Path5 | 5.520 | grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/ap_CS_fsm_reg[2]/C | grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/reg_353_reg[4]/CE |            1 |         66 |          2.376 |          0.130 |        2.246 |
 +-------+-------+----------------------------------------------------------------------------+---------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
 
     +-----------------------------------------------------------------+------------------------+
     | Path1 Cells                                                     | Primitive Type         |
     +-----------------------------------------------------------------+------------------------+
     | word_U/ram_reg_bram_0                                           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_117__0 | CLB.LUT.LUT5           |
-    | grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_23__0  | CLB.LUT.LUT6           |
+    | grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_117__0 | CLB.LUT.LUT5           |
+    | grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_23__0  | CLB.LUT.LUT6           |
     +-----------------------------------------------------------------+------------------------+
 
     +-----------------------------------------------------------------+------------------------+
     | Path2 Cells                                                     | Primitive Type         |
     +-----------------------------------------------------------------+------------------------+
     | word_U/ram_reg_bram_0                                           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_120__0 | CLB.LUT.LUT5           |
-    | grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_26__0  | CLB.LUT.LUT6           |
+    | grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_120__0 | CLB.LUT.LUT5           |
+    | grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_26__0  | CLB.LUT.LUT6           |
     +-----------------------------------------------------------------+------------------------+
 
     +-----------------------------------------------------------------+------------------------+
     | Path3 Cells                                                     | Primitive Type         |
     +-----------------------------------------------------------------+------------------------+
     | word_U/ram_reg_bram_0                                           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_118__0 | CLB.LUT.LUT5           |
-    | grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_24__0  | CLB.LUT.LUT6           |
+    | grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_118__0 | CLB.LUT.LUT5           |
+    | grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_24__0  | CLB.LUT.LUT6           |
     +-----------------------------------------------------------------+------------------------+
 
     +----------------------------------------------------------------+------------------------+
     | Path4 Cells                                                    | Primitive Type         |
     +----------------------------------------------------------------+------------------------+
     | word_U/ram_reg_bram_0                                          | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_25__0 | CLB.LUT.LUT6           |
+    | grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_25__0 | CLB.LUT.LUT6           |
     +----------------------------------------------------------------+------------------------+
 
     +--------------------------------------------------------------------------+-------------------+
     | Path5 Cells                                                              | Primitive Type    |
     +--------------------------------------------------------------------------+-------------------+
-    | grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ap_CS_fsm_reg[2] | REGISTER.SDR.FDRE |
-    | grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/reg_356[31]_i_1  | CLB.LUT.LUT2      |
-    | grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/reg_351_reg[4]   | REGISTER.SDR.FDRE |
+    | grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/ap_CS_fsm_reg[2] | REGISTER.SDR.FDRE |
+    | grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/reg_358[31]_i_1  | CLB.LUT.LUT2      |
+    | grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/reg_353_reg[4]   | REGISTER.SDR.FDRE |
     +--------------------------------------------------------------------------+-------------------+
 
 

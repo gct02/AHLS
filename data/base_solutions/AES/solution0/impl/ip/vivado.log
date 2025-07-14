@@ -3,17 +3,17 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sat May 31 00:10:20 2025
-# Process ID: 216453
-# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/ip
+# Start of session at: Wed Jul  9 03:26:57 2025
+# Process ID: 158982
+# Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
-# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/ip/vivado.log
-# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/ip/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+# Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/ip/vivado.log
+# Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/ip/vivado.jou
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3680.731 MHz, CPU Physical cores: 4, Host memory: 16492 MB
 #-----------------------------------------------------------
 source run_ippack.tcl -notrace
-ipx::create_core: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1340.469 ; gain = 37.836 ; free physical = 862 ; free virtual = 15610
+ipx::create_core: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1370.918 ; gain = 0.023 ; free physical = 7915 ; free virtual = 15896
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Sat May 31 00:10:30 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 03:27:06 2025...

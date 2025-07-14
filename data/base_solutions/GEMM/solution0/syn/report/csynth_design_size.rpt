@@ -28,14 +28,14 @@
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
 |               | (1) lowering                | 54           | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           | 70           | high level synthesis optimizations                                                     |
+|               | (2) optimizations           | 71           | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
 +----------+-----------+--------------+---------------+--------------+-------------+---------------+
 | Function | Location  | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +----------+-----------+--------------+---------------+--------------+-------------+---------------+
-|   bbgemm | gemm.c:10 | 62           | 44            | 44           | 44          | 70            |
+|   bbgemm | gemm.c:10 | 62           | 44            | 44           | 44          | 71            |
 +----------+-----------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings

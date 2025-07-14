@@ -256,8 +256,8 @@ Args:
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, Line: 23, 
-                   Column: 0 }
+DebugLoc:        { File: data/benchmarks/transposed_fft/transposed_fft.c, 
+                   Line: 23, Column: 0 }
 Function:        twiddles8
 Args:            
   - String:          'Inlining function '''
@@ -266,15 +266,15 @@ Args:
                        Line: 12, Column: 0 }
   - String:          ''' into '''
   - Caller:          twiddles8
-    DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
+    DebugLoc:        { File: data/benchmarks/transposed_fft/transposed_fft.c, 
                        Line: 23, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
-DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, Line: 23, 
-                   Column: 0 }
+DebugLoc:        { File: data/benchmarks/transposed_fft/transposed_fft.c, 
+                   Line: 23, Column: 0 }
 Function:        twiddles8
 Args:            
   - String:          'Inlining function '''
@@ -283,25 +283,8 @@ Args:
                        Line: 7, Column: 0 }
   - String:          ''' into '''
   - Caller:          twiddles8
-    DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
+    DebugLoc:        { File: data/benchmarks/transposed_fft/transposed_fft.c, 
                        Line: 23, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            Inline
-DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, Line: 114, 
-                   Column: 0 }
-Function:        fft1D_512
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          loady8
-    DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
-                       Line: 103, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          fft1D_512
-    DebugLoc:        { File: data/benchmarks/trans_fft/transposed_fft.c, 
-                       Line: 114, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
@@ -412,150 +395,38 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        twiddles
+  - LoopName:        unknown
   - String:          '> at '
-  - LoopLoc:         'data/benchmarks/trans_fft/transposed_fft.c:28:14'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        twiddles
-  - String:          '> at '
-  - LoopLoc:         'data/benchmarks/trans_fft/transposed_fft.c:28:14'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        twiddles
-  - String:          '> at '
-  - LoopLoc:         'data/benchmarks/trans_fft/transposed_fft.c:28:14'
-  - String:          ' '
-...
---- !HLSReportInfo
-Pass:            auto-loop-pipeline
-Name:            AutoLoopPipeline
-Args:            
-  - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        twiddles
-  - String:          '> at '
-  - LoopLoc:         'data/benchmarks/trans_fft/transposed_fft.c:28:14'
-  - String:          ' '
-...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 421, Column: 5 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Loop '''
-  - LoopName:        anonymous
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
-...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 414, Column: 5 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Loop '''
-  - LoopName:        anonymous
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
-...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 401, Column: 5 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Loop '''
-  - LoopName:        anonymous
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
-...
---- !Passed
-Pass:            reflow-infer-unroll
-Name:            ImplicitUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 400, Column: 41 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Loop '''
-  - LoopName:        anonymous
-  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 390, Column: 0 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        anonymous
-  - String:          ''' ('
-  - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          'scaled_fixed2ieee<63, 1>'
-  - String:          ''' completely with a factor of '
-  - Factor:          '4'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 390, Column: 0 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        anonymous
-  - String:          ''' ('
-  - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:414:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          'scaled_fixed2ieee<63, 1>'
-  - String:          ''' completely with a factor of '
-  - Factor:          '4'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 390, Column: 0 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        anonymous
-  - String:          ''' ('
-  - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:401:5'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          'scaled_fixed2ieee<63, 1>'
-  - String:          ''' completely with a factor of '
-  - Factor:          '3'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h, 
-                   Line: 390, Column: 0 }
-Function:        _Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        anonymous
-  - String:          ''' ('
   - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:400:41'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          'scaled_fixed2ieee<63, 1>'
-  - String:          ''' completely with a factor of '
-  - Factor:          '4'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        unknown
+  - String:          '> at '
+  - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:401:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        unknown
+  - String:          '> at '
+  - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:414:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        unknown
+  - String:          '> at '
+  - LoopLoc:         '/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5'
+  - String:          ' '
 ...

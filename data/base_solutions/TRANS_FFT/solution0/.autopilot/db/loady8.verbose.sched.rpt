@@ -1,0 +1,204 @@
+
+
+================================================================
+== Vitis HLS Report for 'loady8'
+================================================================
+* Date:           Wed Jul  9 04:19:50 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        TRANS_FFT
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  1.925 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        4|        4|  32.000 ns|  32.000 ns|    4|    4|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.92>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%offset_read = read i10 @_ssdm_op_Read.ap_auto.i10, i10 %offset" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 6 'read' 'offset_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%zext_ln104 = zext i10 %offset_read" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 7 'zext' 'zext_ln104' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%x_addr = getelementptr i64 %x, i64 0, i64 %zext_ln104" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 8 'getelementptr' 'x_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [2/2] (1.20ns)   --->   "%x_load = load i10 %x_addr" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 9 'load' 'x_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_1 : Operation 10 [1/1] (0.72ns)   --->   "%add_ln105 = add i10 %offset_read, i10 8" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 10 'add' 'add_ln105' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%zext_ln105 = zext i10 %add_ln105" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 11 'zext' 'zext_ln105' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%x_addr_1 = getelementptr i64 %x, i64 0, i64 %zext_ln105" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 12 'getelementptr' 'x_addr_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [2/2] (1.20ns)   --->   "%x_load_1 = load i10 %x_addr_1" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 13 'load' 'x_load_1' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+
+State 2 <SV = 1> <Delay = 1.92>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%a_y_addr = getelementptr i64 %a_y, i64 0, i64 0" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 14 'getelementptr' 'a_y_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/2] (1.20ns)   --->   "%x_load = load i10 %x_addr" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 15 'load' 'x_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_2 : Operation 16 [1/2] (1.20ns)   --->   "%x_load_1 = load i10 %x_addr_1" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 16 'load' 'x_load_1' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%a_y_addr_1 = getelementptr i64 %a_y, i64 0, i64 1" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 17 'getelementptr' 'a_y_addr_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.72ns)   --->   "%add_ln106 = add i10 %offset_read, i10 16" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 18 'add' 'add_ln106' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln106 = zext i10 %add_ln106" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 19 'zext' 'zext_ln106' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%x_addr_2 = getelementptr i64 %x, i64 0, i64 %zext_ln106" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 20 'getelementptr' 'x_addr_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [2/2] (1.20ns)   --->   "%x_load_2 = load i10 %x_addr_2" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 21 'load' 'x_load_2' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_2 : Operation 22 [1/1] (0.72ns)   --->   "%add_ln107 = add i10 %offset_read, i10 24" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 22 'add' 'add_ln107' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln107 = zext i10 %add_ln107" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 23 'zext' 'zext_ln107' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%x_addr_3 = getelementptr i64 %x, i64 0, i64 %zext_ln107" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 24 'getelementptr' 'x_addr_3' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [2/2] (1.20ns)   --->   "%x_load_3 = load i10 %x_addr_3" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 25 'load' 'x_load_3' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_2 : Operation 26 [1/1] (0.71ns)   --->   "%store_ln104 = store i64 %x_load, i3 %a_y_addr" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 26 'store' 'store_ln104' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_2 : Operation 27 [1/1] (0.71ns)   --->   "%store_ln105 = store i64 %x_load_1, i3 %a_y_addr_1" [data/benchmarks/transposed_fft/transposed_fft.c:105]   --->   Operation 27 'store' 'store_ln105' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 3 <SV = 2> <Delay = 1.92>
+ST_3 : Operation 28 [1/2] (1.20ns)   --->   "%x_load_2 = load i10 %x_addr_2" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 28 'load' 'x_load_2' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_3 : Operation 29 [1/1] (0.00ns)   --->   "%a_y_addr_2 = getelementptr i64 %a_y, i64 0, i64 2" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 29 'getelementptr' 'a_y_addr_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 30 [1/2] (1.20ns)   --->   "%x_load_3 = load i10 %x_addr_3" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 30 'load' 'x_load_3' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%a_y_addr_3 = getelementptr i64 %a_y, i64 0, i64 3" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 31 'getelementptr' 'a_y_addr_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.72ns)   --->   "%add_ln108 = add i10 %offset_read, i10 32" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 32 'add' 'add_ln108' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%zext_ln108 = zext i10 %add_ln108" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 33 'zext' 'zext_ln108' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%x_addr_4 = getelementptr i64 %x, i64 0, i64 %zext_ln108" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 34 'getelementptr' 'x_addr_4' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 35 [2/2] (1.20ns)   --->   "%x_load_4 = load i10 %x_addr_4" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 35 'load' 'x_load_4' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_3 : Operation 36 [1/1] (0.72ns)   --->   "%add_ln109 = add i10 %offset_read, i10 40" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 36 'add' 'add_ln109' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln109 = zext i10 %add_ln109" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 37 'zext' 'zext_ln109' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%x_addr_5 = getelementptr i64 %x, i64 0, i64 %zext_ln109" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 38 'getelementptr' 'x_addr_5' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 39 [2/2] (1.20ns)   --->   "%x_load_5 = load i10 %x_addr_5" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 39 'load' 'x_load_5' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_3 : Operation 40 [1/1] (0.71ns)   --->   "%store_ln106 = store i64 %x_load_2, i3 %a_y_addr_2" [data/benchmarks/transposed_fft/transposed_fft.c:106]   --->   Operation 40 'store' 'store_ln106' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_3 : Operation 41 [1/1] (0.71ns)   --->   "%store_ln107 = store i64 %x_load_3, i3 %a_y_addr_3" [data/benchmarks/transposed_fft/transposed_fft.c:107]   --->   Operation 41 'store' 'store_ln107' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 4 <SV = 3> <Delay = 1.92>
+ST_4 : Operation 42 [1/2] (1.20ns)   --->   "%x_load_4 = load i10 %x_addr_4" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 42 'load' 'x_load_4' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%a_y_addr_4 = getelementptr i64 %a_y, i64 0, i64 4" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 43 'getelementptr' 'a_y_addr_4' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 44 [1/2] (1.20ns)   --->   "%x_load_5 = load i10 %x_addr_5" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 44 'load' 'x_load_5' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%a_y_addr_5 = getelementptr i64 %a_y, i64 0, i64 5" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 45 'getelementptr' 'a_y_addr_5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 46 [1/1] (0.72ns)   --->   "%add_ln110 = add i10 %offset_read, i10 48" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 46 'add' 'add_ln110' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 47 [1/1] (0.00ns)   --->   "%zext_ln110 = zext i10 %add_ln110" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 47 'zext' 'zext_ln110' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 48 [1/1] (0.00ns)   --->   "%x_addr_6 = getelementptr i64 %x, i64 0, i64 %zext_ln110" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 48 'getelementptr' 'x_addr_6' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 49 [2/2] (1.20ns)   --->   "%x_load_6 = load i10 %x_addr_6" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 49 'load' 'x_load_6' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_4 : Operation 50 [1/1] (0.72ns)   --->   "%add_ln111 = add i10 %offset_read, i10 56" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 50 'add' 'add_ln111' <Predicate = true> <Delay = 0.72> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 51 [1/1] (0.00ns)   --->   "%zext_ln111 = zext i10 %add_ln111" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 51 'zext' 'zext_ln111' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%x_addr_7 = getelementptr i64 %x, i64 0, i64 %zext_ln111" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 52 'getelementptr' 'x_addr_7' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 53 [2/2] (1.20ns)   --->   "%x_load_7 = load i10 %x_addr_7" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 53 'load' 'x_load_7' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_4 : Operation 54 [1/1] (0.71ns)   --->   "%store_ln108 = store i64 %x_load_4, i3 %a_y_addr_4" [data/benchmarks/transposed_fft/transposed_fft.c:108]   --->   Operation 54 'store' 'store_ln108' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_4 : Operation 55 [1/1] (0.71ns)   --->   "%store_ln109 = store i64 %x_load_5, i3 %a_y_addr_5" [data/benchmarks/transposed_fft/transposed_fft.c:109]   --->   Operation 55 'store' 'store_ln109' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 5 <SV = 4> <Delay = 1.91>
+ST_5 : Operation 56 [1/1] (0.00ns)   --->   "%specpipeline_ln104 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_9" [data/benchmarks/transposed_fft/transposed_fft.c:104]   --->   Operation 56 'specpipeline' 'specpipeline_ln104' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 57 [1/2] (1.20ns)   --->   "%x_load_6 = load i10 %x_addr_6" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 57 'load' 'x_load_6' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_5 : Operation 58 [1/1] (0.00ns)   --->   "%a_y_addr_6 = getelementptr i64 %a_y, i64 0, i64 6" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 58 'getelementptr' 'a_y_addr_6' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 59 [1/2] (1.20ns)   --->   "%x_load_7 = load i10 %x_addr_7" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 59 'load' 'x_load_7' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 576> <RAM>
+ST_5 : Operation 60 [1/1] (0.00ns)   --->   "%a_y_addr_7 = getelementptr i64 %a_y, i64 0, i64 7" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 60 'getelementptr' 'a_y_addr_7' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 61 [1/1] (0.71ns)   --->   "%store_ln110 = store i64 %x_load_6, i3 %a_y_addr_6" [data/benchmarks/transposed_fft/transposed_fft.c:110]   --->   Operation 61 'store' 'store_ln110' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_5 : Operation 62 [1/1] (0.71ns)   --->   "%store_ln111 = store i64 %x_load_7, i3 %a_y_addr_7" [data/benchmarks/transposed_fft/transposed_fft.c:111]   --->   Operation 62 'store' 'store_ln111' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_5 : Operation 63 [1/1] (0.00ns)   --->   "%ret_ln112 = ret" [data/benchmarks/transposed_fft/transposed_fft.c:112]   --->   Operation 63 'ret' 'ret_ln112' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 1.925ns
+The critical path consists of the following:
+	wire read operation ('offset_read', data/benchmarks/transposed_fft/transposed_fft.c:104) on port 'offset' (data/benchmarks/transposed_fft/transposed_fft.c:104) [5]  (0.000 ns)
+	'add' operation 10 bit ('add_ln105', data/benchmarks/transposed_fft/transposed_fft.c:105) [10]  (0.725 ns)
+	'getelementptr' operation 10 bit ('x_addr_1', data/benchmarks/transposed_fft/transposed_fft.c:105) [12]  (0.000 ns)
+	'load' operation 64 bit ('x_load_1', data/benchmarks/transposed_fft/transposed_fft.c:105) on array 'x' [13]  (1.200 ns)
+
+ <State 2>: 1.925ns
+The critical path consists of the following:
+	'add' operation 10 bit ('add_ln106', data/benchmarks/transposed_fft/transposed_fft.c:106) [15]  (0.725 ns)
+	'getelementptr' operation 10 bit ('x_addr_2', data/benchmarks/transposed_fft/transposed_fft.c:106) [17]  (0.000 ns)
+	'load' operation 64 bit ('x_load_2', data/benchmarks/transposed_fft/transposed_fft.c:106) on array 'x' [18]  (1.200 ns)
+
+ <State 3>: 1.925ns
+The critical path consists of the following:
+	'add' operation 10 bit ('add_ln108', data/benchmarks/transposed_fft/transposed_fft.c:108) [25]  (0.725 ns)
+	'getelementptr' operation 10 bit ('x_addr_4', data/benchmarks/transposed_fft/transposed_fft.c:108) [27]  (0.000 ns)
+	'load' operation 64 bit ('x_load_4', data/benchmarks/transposed_fft/transposed_fft.c:108) on array 'x' [28]  (1.200 ns)
+
+ <State 4>: 1.925ns
+The critical path consists of the following:
+	'add' operation 10 bit ('add_ln110', data/benchmarks/transposed_fft/transposed_fft.c:110) [35]  (0.725 ns)
+	'getelementptr' operation 10 bit ('x_addr_6', data/benchmarks/transposed_fft/transposed_fft.c:110) [37]  (0.000 ns)
+	'load' operation 64 bit ('x_load_6', data/benchmarks/transposed_fft/transposed_fft.c:110) on array 'x' [38]  (1.200 ns)
+
+ <State 5>: 1.914ns
+The critical path consists of the following:
+	'load' operation 64 bit ('x_load_6', data/benchmarks/transposed_fft/transposed_fft.c:110) on array 'x' [38]  (1.200 ns)
+	'store' operation 0 bit ('store_ln110', data/benchmarks/transposed_fft/transposed_fft.c:110) of variable 'x_load_6', data/benchmarks/transposed_fft/transposed_fft.c:110 on array 'a_y' [51]  (0.714 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

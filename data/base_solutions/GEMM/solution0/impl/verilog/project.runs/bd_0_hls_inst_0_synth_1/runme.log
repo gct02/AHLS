@@ -12,7 +12,7 @@
 
 source bd_0_hls_inst_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
 Command: synth_design -top bd_0_hls_inst_0 -part xcu50-fsvh2104-2-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
@@ -22,24 +22,24 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
 INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 52495
+INFO: [Synth 8-7075] Helper process launched with PID 188961
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3008.168 ; gain = 397.684 ; free physical = 4263 ; free virtual = 15522
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3008.020 ; gain = 397.715 ; free physical = 5554 ; free virtual = 13704
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'bbgemm' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/verilog/bbgemm.v:9]
-INFO: [Synth 8-6157] synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/verilog/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/ip/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bbgemm' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/verilog/bbgemm.v:9]
+INFO: [Synth 8-6157] synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/verilog/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/ip/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip.v:53]
 INFO: [Synth 8-6157] synthesizing module 'LUT1' [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
 INFO: [Synth 8-6155] done synthesizing module 'LUT1' (0#1) [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
-INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/ip/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/verilog/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/verilog/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/ip/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/ip/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/verilog/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bbgemm' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/72cc/hdl/verilog/bbgemm.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/ip/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dadd_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/verilog/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/verilog/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/ip/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/ip/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'bbgemm_dmul_64ns_64ns_64_4_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/verilog/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bbgemm' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/9cda/hdl/verilog/bbgemm.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
 WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized5 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized5 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_7_viv__parameterized5 is either unconnected or has no load
@@ -142,41 +142,41 @@ WARNING: [Synth 8-7129] Port MANT_CASC_IN[40] in module flt_mult_round is either
 WARNING: [Synth 8-7129] Port MANT_CASC_IN[39] in module flt_mult_round is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3166.137 ; gain = 555.652 ; free physical = 4073 ; free virtual = 15337
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3165.988 ; gain = 555.684 ; free physical = 5384 ; free virtual = 13530
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3169.105 ; gain = 558.621 ; free physical = 4073 ; free virtual = 15337
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3165.988 ; gain = 555.684 ; free physical = 5384 ; free virtual = 13531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3169.105 ; gain = 558.621 ; free physical = 4073 ; free virtual = 15337
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3165.988 ; gain = 555.684 ; free physical = 5384 ; free virtual = 13531
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 3180.074 ; gain = 0.000 ; free physical = 4073 ; free virtual = 15337
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.06 . Memory (MB): peak = 3176.957 ; gain = 0.000 ; free physical = 5373 ; free virtual = 13518
 INFO: [Netlist 29-17] Analyzing 357 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/bbgemm_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/bbgemm_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/bbgemm_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/bbgemm_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3289.520 ; gain = 0.000 ; free physical = 4049 ; free virtual = 15314
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3290.402 ; gain = 0.000 ; free physical = 5312 ; free virtual = 13491
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 16 instances were transformed.
   DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 4 instances
   DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 7 instances
   FDE => FDRE: 5 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3289.555 ; gain = 0.000 ; free physical = 4049 ; free virtual = 15314
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3290.438 ; gain = 0.000 ; free physical = 5312 ; free virtual = 13491
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 3289.555 ; gain = 679.070 ; free physical = 4048 ; free virtual = 15314
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 3290.438 ; gain = 680.133 ; free physical = 5092 ; free virtual = 13479
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -184,18 +184,18 @@ Start Loading Part and Timing Information
 Loading part: xcu50-fsvh2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 3289.555 ; gain = 679.070 ; free physical = 4048 ; free virtual = 15314
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 3290.438 ; gain = 680.133 ; free physical = 5092 ; free virtual = 13480
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 3289.555 ; gain = 679.070 ; free physical = 4048 ; free virtual = 15314
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 3290.438 ; gain = 680.133 ; free physical = 5091 ; free virtual = 13480
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 3289.555 ; gain = 679.070 ; free physical = 4046 ; free virtual = 15313
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 3290.438 ; gain = 680.133 ; free physical = 5067 ; free virtual = 13495
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/ALIGN_BLK/SUB_DELAY' (delay__parameterized1) to 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/ALIGN_BLK/SUBTRACT_PREADD_DEL'
 INFO: [Synth 8-223] decloning instance 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized1) to 'inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/bbgemm_dadd_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXTRA_LSB_RND1_DEL'
@@ -228,25 +228,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 3289.555 ; gain = 679.070 ; free physical = 4047 ; free virtual = 15316
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 3290.438 ; gain = 680.133 ; free physical = 4281 ; free virtual = 12991
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 3556.707 ; gain = 946.223 ; free physical = 3744 ; free virtual = 15040
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 3548.387 ; gain = 938.082 ; free physical = 3491 ; free virtual = 12443
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3633 ; free virtual = 14929
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3294 ; free virtual = 12244
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3635 ; free virtual = 14931
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3284 ; free virtual = 12241
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -264,37 +264,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3276 ; free virtual = 12237
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12236
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -353,18 +353,18 @@ Report Cell Usage:
 |35    |FDSE            |     1|
 +------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.051 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 3661.730 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12234
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 211 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 3670.051 ; gain = 939.117 ; free physical = 3636 ; free virtual = 14932
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 3670.059 ; gain = 1059.566 ; free physical = 3636 ; free virtual = 14932
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3661.730 ; gain = 926.977 ; free physical = 3275 ; free virtual = 12234
+Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 3661.738 ; gain = 1051.426 ; free physical = 3275 ; free virtual = 12234
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3670.059 ; gain = 0.000 ; free physical = 3922 ; free virtual = 15218
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3661.738 ; gain = 0.000 ; free physical = 3562 ; free virtual = 12521
 INFO: [Netlist 29-17] Analyzing 311 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3705.035 ; gain = 0.000 ; free physical = 3922 ; free virtual = 15218
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3693.746 ; gain = 0.000 ; free physical = 3553 ; free virtual = 12509
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 52 instances were transformed.
   (CARRY4) => CARRY8: 36 instances
@@ -372,18 +372,18 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 7 instances
   FDE => FDRE: 5 instances
 
-Synth Design complete | Checksum: 4ba45fc2
+Synth Design complete | Checksum: 7aec6094
 INFO: [Common 17-83] Releasing license: Synthesis
 49 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:38 . Memory (MB): peak = 3705.070 ; gain = 2350.367 ; free physical = 3922 ; free virtual = 15218
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3301.083; main = 2976.583; forked = 376.787
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4651.598; main = 3705.039; forked = 981.543
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3729.047 ; gain = 0.000 ; free physical = 3922 ; free virtual = 15218
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 792ec2d4b4f06ba6
+synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:47 . Memory (MB): peak = 3693.781 ; gain = 2339.258 ; free physical = 3557 ; free virtual = 12518
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3304.093; main = 2976.221; forked = 377.563
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4643.234; main = 3693.750; forked = 981.500
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3717.758 ; gain = 0.000 ; free physical = 3557 ; free virtual = 12517
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = a6d1436674c6c172
 INFO: [Coretcl 2-1174] Renamed 141 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3729.047 ; gain = 0.000 ; free physical = 3869 ; free virtual = 15172
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3717.758 ; gain = 0.000 ; free physical = 3478 ; free virtual = 12447
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu May 29 16:29:38 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 03:46:39 2025...

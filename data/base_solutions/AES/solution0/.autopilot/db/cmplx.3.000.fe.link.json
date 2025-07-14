@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "5 7",
+    "calls": "6 4",
     "file": "aes.c",
     "fileloc": 66,
     "instructions": 3,
@@ -12,35 +12,19 @@
     "basicblocks": 5,
     "calls": "",
     "file": "aes_key.c",
-    "fileloc": 199,
+    "fileloc": 79,
     "instructions": 941,
     "loads": {
       "G": 72,
       "L": 144
     },
-    "name": "InversShiftRow_ByteSub",
+    "name": "ByteSub_ShiftRow",
     "stores": {
       "L": 72
     },
     "total_instructions": 941
   },
   "2": {
-    "basicblocks": 10,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 447,
-    "instructions": 61,
-    "loads": {
-      "G": 4,
-      "L": 4
-    },
-    "name": "AddRoundKey",
-    "stores": {
-      "L": 4
-    },
-    "total_instructions": 61
-  },
-  "3": {
     "basicblocks": 45,
     "calls": "",
     "file": "aes_key.c",
@@ -57,7 +41,57 @@
     },
     "total_instructions": 215
   },
+  "3": {
+    "basicblocks": 45,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 375,
+    "instructions": 311,
+    "loads": {
+      "G": 4,
+      "L": 22
+    },
+    "name": "AddRoundKey_InversMixColumn",
+    "stores": {
+      "L": 12
+    },
+    "total_instructions": 311
+  },
   "4": {
+    "basicblocks": 14,
+    "calls": "2 5 8 3 8 5",
+    "file": "aes_dec.c",
+    "fileloc": 66,
+    "instructions": 26,
+    "name": "decrypt",
+    "total_instructions": 2556
+  },
+  "5": {
+    "basicblocks": 10,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 447,
+    "instructions": 61,
+    "loads": {
+      "G": 4,
+      "L": 4
+    },
+    "name": "AddRoundKey",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 61
+  },
+  "6": {
+    "basicblocks": 13,
+    "calls": "2 5 1 7 1 5",
+    "file": "aes_enc.c",
+    "fileloc": 66,
+    "instructions": 25,
+    "name": "encrypt",
+    "total_instructions": 2606
+  },
+  "7": {
     "basicblocks": 31,
     "calls": "",
     "file": "aes_key.c",
@@ -73,54 +107,20 @@
     },
     "total_instructions": 362
   },
-  "5": {
-    "basicblocks": 13,
-    "calls": "3 2 6 4 6 2",
-    "file": "aes_enc.c",
-    "fileloc": 66,
-    "instructions": 25,
-    "name": "encrypt",
-    "total_instructions": 2606
-  },
-  "6": {
+  "8": {
     "basicblocks": 5,
     "calls": "",
     "file": "aes_key.c",
-    "fileloc": 79,
+    "fileloc": 199,
     "instructions": 941,
     "loads": {
       "G": 72,
       "L": 144
     },
-    "name": "ByteSub_ShiftRow",
+    "name": "InversShiftRow_ByteSub",
     "stores": {
       "L": 72
     },
     "total_instructions": 941
-  },
-  "7": {
-    "basicblocks": 14,
-    "calls": "3 2 1 8 1 2",
-    "file": "aes_dec.c",
-    "fileloc": 66,
-    "instructions": 26,
-    "name": "decrypt",
-    "total_instructions": 2556
-  },
-  "8": {
-    "basicblocks": 45,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 375,
-    "instructions": 311,
-    "loads": {
-      "G": 4,
-      "L": 22
-    },
-    "name": "AddRoundKey_InversMixColumn",
-    "stores": {
-      "L": 12
-    },
-    "total_instructions": 311
   }
 }

@@ -4,7 +4,7 @@
     "calls": "",
     "file": "md.c",
     "fileloc": 10,
-    "instructions": 88,
+    "instructions": 90,
     "loads": {
       "T": 7
     },
@@ -12,6 +12,6 @@
     "stores": {
       "T": 3
     },
-    "total_instructions": 88
+    "total_instructions": 90
   }
 }

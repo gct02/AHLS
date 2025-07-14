@@ -27,6 +27,11 @@
         <fractionWidth>0</fractionWidth>
       </RtlPort>
       <RtlPort>
+        <name>indata_d1</name>
+        <type>Signed</type>
+        <fractionWidth>0</fractionWidth>
+      </RtlPort>
+      <RtlPort>
         <name>indata_q0</name>
         <type>Signed</type>
         <fractionWidth>0</fractionWidth>
@@ -38,6 +43,11 @@
       </RtlPort>
       <RtlPort>
         <name>indata_we0</name>
+        <type>bool</type>
+        <fractionWidth>0</fractionWidth>
+      </RtlPort>
+      <RtlPort>
+        <name>indata_we1</name>
         <type>bool</type>
         <fractionWidth>0</fractionWidth>
       </RtlPort>
@@ -98,7 +108,7 @@
   <Machine>64</Machine>
   <modelParameters>
     <combinational>0</combinational>
-    <latency>1160</latency>
-    <II>1161 ~ 2035</II>
+    <latency>1310</latency>
+    <II>1311 ~ 3169</II>
   </modelParameters>
 </AdditionalInfo>

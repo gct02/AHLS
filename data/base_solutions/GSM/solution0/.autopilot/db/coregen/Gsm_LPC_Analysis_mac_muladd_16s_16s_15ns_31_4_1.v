@@ -7,7 +7,7 @@
 // ==============================================================
 `timescale 1 ns / 1 ps
 
-module Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6(
+module Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0(
     input clk,
     input rst,
     input ce,
@@ -71,7 +71,7 @@ output[dout_WIDTH - 1:0] dout;
 
 
 
-Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6 Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U(
+Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0 Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U(
     .clk( clk ),
     .rst( reset ),
     .ce( ce ),

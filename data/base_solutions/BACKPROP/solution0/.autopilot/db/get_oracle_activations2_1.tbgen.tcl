@@ -32,7 +32,7 @@ set C_modelArgMapList {[
  	{ "Name" : "oracle_activations", "interface" : "memory", "bitwidth" : 64, "direction" : "WRITEONLY"} , 
  	{ "Name" : "dactivations", "interface" : "memory", "bitwidth" : 64, "direction" : "READONLY"} ]}
 # RTL Port declarations: 
-set portNum 28
+set portNum 24
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -53,15 +53,11 @@ set portList {
 	{ dactivations_address0 sc_out sc_lv 6 signal 5 } 
 	{ dactivations_ce0 sc_out sc_logic 1 signal 5 } 
 	{ dactivations_q0 sc_in sc_lv 64 signal 5 } 
-	{ grp_fu_986_p_din0 sc_out sc_lv 64 signal -1 } 
-	{ grp_fu_986_p_din1 sc_out sc_lv 64 signal -1 } 
-	{ grp_fu_986_p_opcode sc_out sc_lv 1 signal -1 } 
-	{ grp_fu_986_p_dout0 sc_in sc_lv 64 signal -1 } 
-	{ grp_fu_986_p_ce sc_out sc_logic 1 signal -1 } 
-	{ grp_fu_1006_p_din0 sc_out sc_lv 64 signal -1 } 
-	{ grp_fu_1006_p_din1 sc_out sc_lv 64 signal -1 } 
-	{ grp_fu_1006_p_dout0 sc_in sc_lv 64 signal -1 } 
-	{ grp_fu_1006_p_ce sc_out sc_logic 1 signal -1 } 
+	{ grp_fu_990_p_din0 sc_out sc_lv 64 signal -1 } 
+	{ grp_fu_990_p_din1 sc_out sc_lv 64 signal -1 } 
+	{ grp_fu_990_p_opcode sc_out sc_lv 1 signal -1 } 
+	{ grp_fu_990_p_dout0 sc_in sc_lv 64 signal -1 } 
+	{ grp_fu_990_p_ce sc_out sc_logic 1 signal -1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -83,18 +79,14 @@ set NewPortList {[
  	{ "name": "dactivations_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "dactivations", "role": "address0" }} , 
  	{ "name": "dactivations_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "dactivations", "role": "ce0" }} , 
  	{ "name": "dactivations_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "dactivations", "role": "q0" }} , 
- 	{ "name": "grp_fu_986_p_din0", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_986_p_din0", "role": "default" }} , 
- 	{ "name": "grp_fu_986_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_986_p_din1", "role": "default" }} , 
- 	{ "name": "grp_fu_986_p_opcode", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_fu_986_p_opcode", "role": "default" }} , 
- 	{ "name": "grp_fu_986_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_986_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_fu_986_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_fu_986_p_ce", "role": "default" }} , 
- 	{ "name": "grp_fu_1006_p_din0", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_1006_p_din0", "role": "default" }} , 
- 	{ "name": "grp_fu_1006_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_1006_p_din1", "role": "default" }} , 
- 	{ "name": "grp_fu_1006_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_1006_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_fu_1006_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_fu_1006_p_ce", "role": "default" }}  ]}
+ 	{ "name": "grp_fu_990_p_din0", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_990_p_din0", "role": "default" }} , 
+ 	{ "name": "grp_fu_990_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_990_p_din1", "role": "default" }} , 
+ 	{ "name": "grp_fu_990_p_opcode", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_fu_990_p_opcode", "role": "default" }} , 
+ 	{ "name": "grp_fu_990_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_fu_990_p_dout0", "role": "default" }} , 
+ 	{ "name": "grp_fu_990_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_fu_990_p_ce", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2"],
 		"CDFG" : "get_oracle_activations2_1",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -120,7 +112,8 @@ set RtlHierarchyInfo {[
 				"LoopDec" : {"FSMBitwidth" : "15", "FirstState" : "ap_ST_fsm_state3", "LastState" : ["ap_ST_fsm_state11"], "QuitState" : ["ap_ST_fsm_state3"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state12"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "get_oracle_activations2_loop1", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "15", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state15"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_3_2_64_1_1_U124", "Parent" : "0"}]}
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.dmul_64ns_64ns_64_4_max_dsp_1_U86", "Parent" : "0"},
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_3_2_64_1_1_U87", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {

@@ -18,18 +18,18 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>4.810</EstimatedClockPeriod>
+<EstimatedClockPeriod>3.507</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
 <Best-caseLatency>118414</Best-caseLatency>
-<Average-caseLatency>124769</Average-caseLatency>
-<Worst-caseLatency>132027</Worst-caseLatency>
+<Average-caseLatency>124768</Average-caseLatency>
+<Worst-caseLatency>132025</Worst-caseLatency>
 <Best-caseRealTimeLatency>0.947 ms</Best-caseRealTimeLatency>
 <Average-caseRealTimeLatency>0.998 ms</Average-caseRealTimeLatency>
 <Worst-caseRealTimeLatency>1.056 ms</Worst-caseRealTimeLatency>
 <Interval-min>118415</Interval-min>
-<Interval-max>132028</Interval-max>
+<Interval-max>132026</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <sha_stream_label0>
@@ -56,6 +56,15 @@
 <InstanceList>
 </InstanceList>
 </sha_stream_label0>
+<sha_stream_label2>
+<Slack>5.84</Slack>
+<TripCount>5</TripCount>
+<Latency>10</Latency>
+<AbsoluteTimeLatency>80</AbsoluteTimeLatency>
+<IterationLatency>2</IterationLatency>
+<InstanceList>
+</InstanceList>
+</sha_stream_label2>
 </SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
@@ -68,6 +77,12 @@
 <ViolationType>-</ViolationType>
 <SourceLocation>data/benchmarks/sha/sha.c:216</SourceLocation>
 </sha_stream_label0>
+<sha_stream_label2>
+<Name>sha_stream_label2</Name>
+<IssueType>-</IssueType>
+<ViolationType>-</ViolationType>
+<SourceLocation>data/benchmarks/sha/sha.c:225</SourceLocation>
+</sha_stream_label2>
 </SummaryOfLoopViolations>
 </SummaryOfViolations>
 </PerformanceEstimates>
@@ -75,8 +90,8 @@
 <AreaEstimates>
 <Resources>
 <BRAM_18K>8</BRAM_18K>
-<FF>2910</FF>
-<LUT>5924</LUT>
+<FF>2877</FF>
+<LUT>6043</LUT>
 <URAM>0</URAM>
 <DSP>0</DSP>
 </Resources>

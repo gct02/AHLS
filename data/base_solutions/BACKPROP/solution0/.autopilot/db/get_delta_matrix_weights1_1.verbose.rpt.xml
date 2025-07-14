@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'get_delta_matrix_weights1_1'" level="0">
-<item name = "Date">Fri May 30 21:43:16 2025
+<item name = "Date">Wed Jul  9 03:32:57 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -81,31 +81,31 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln191_fu_132_p2">+, 0, 0, 12, 4, 1</column>
-<column name="add_ln194_fu_169_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln196_fu_184_p2">+, 0, 0, 17, 10, 10</column>
-<column name="p_sum_fu_142_p2">+, 0, 0, 19, 12, 12</column>
-<column name="icmp_ln191_fu_126_p2">icmp, 0, 0, 12, 4, 3</column>
-<column name="icmp_ln194_fu_163_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="add_ln191_fu_134_p2">+, 0, 0, 12, 4, 1</column>
+<column name="add_ln194_fu_171_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln196_fu_186_p2">+, 0, 0, 17, 10, 10</column>
+<column name="p_sum_fu_144_p2">+, 0, 0, 19, 12, 12</column>
+<column name="icmp_ln191_fu_128_p2">icmp, 0, 0, 12, 4, 3</column>
+<column name="icmp_ln194_fu_165_p2">icmp, 0, 0, 15, 7, 8</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">49, 9, 1, 9</column>
-<column name="i_fu_52">9, 2, 4, 8</column>
-<column name="j_reg_101">9, 2, 7, 14</column>
+<column name="i_fu_54">9, 2, 4, 8</column>
+<column name="j_reg_103">9, 2, 7, 14</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln191_reg_215">4, 0, 4, 0</column>
-<column name="add_ln194_reg_238">7, 0, 7, 0</column>
-<column name="add_ln196_reg_248">10, 0, 10, 0</column>
+<column name="add_ln191_reg_217">4, 0, 4, 0</column>
+<column name="add_ln194_reg_240">7, 0, 7, 0</column>
+<column name="add_ln196_reg_250">10, 0, 10, 0</column>
 <column name="ap_CS_fsm">8, 0, 8, 0</column>
-<column name="empty_reg_225">64, 0, 64, 0</column>
-<column name="i_fu_52">4, 0, 4, 0</column>
-<column name="j_reg_101">7, 0, 7, 0</column>
-<column name="tmp_reg_230">4, 0, 10, 6</column>
+<column name="empty_reg_227">64, 0, 64, 0</column>
+<column name="i_fu_54">4, 0, 4, 0</column>
+<column name="j_reg_103">7, 0, 7, 0</column>
+<column name="tmp_reg_232">4, 0, 10, 6</column>
 </table>
 </item>
 </section>
@@ -121,10 +121,10 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
-<column name="grp_fu_990_p_din0">out, 64, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
-<column name="grp_fu_990_p_din1">out, 64, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
-<column name="grp_fu_990_p_dout0">in, 64, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
-<column name="grp_fu_990_p_ce">out, 1, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
+<column name="grp_fu_994_p_din0">out, 64, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
+<column name="grp_fu_994_p_din1">out, 64, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
+<column name="grp_fu_994_p_dout0">in, 64, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
+<column name="grp_fu_994_p_ce">out, 1, ap_ctrl_hs, get_delta_matrix_weights1.1, return value</column>
 <column name="delta_weights1_address0">out, 10, ap_memory, delta_weights1, array</column>
 <column name="delta_weights1_ce0">out, 1, ap_memory, delta_weights1, array</column>
 <column name="delta_weights1_we0">out, 1, ap_memory, delta_weights1, array</column>

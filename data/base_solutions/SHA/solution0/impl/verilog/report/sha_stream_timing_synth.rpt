@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Fri May 30 23:27:44 2025
+| Date              : Wed Jul  9 04:11:59 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file ./report/sha_stream_timing_synth.rpt
 | Design            : bd_0_wrapper
@@ -139,7 +139,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      5.481        0.000                      0                 5945        0.045        0.000                      0                 5945        3.458        0.000                       0                  2699  
+      5.383        0.000                      0                 5832        0.047        0.000                      0                 5832        3.458        0.000                       0                  2676  
 
 
 All user specified timing constraints are met.
@@ -162,7 +162,7 @@ ap_clk  {0.000 4.000}        8.000           125.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-ap_clk              5.481        0.000                      0                 5945        0.045        0.000                      0                 5945        3.458        0.000                       0                  2699  
+ap_clk              5.383        0.000                      0                 5832        0.047        0.000                      0                 5832        3.458        0.000                       0                  2676  
 
 
 ------------------------------------------------------------------------------------------------
@@ -193,15 +193,15 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  ap_clk
   To Clock:  ap_clk
 
-Setup :            0  Failing Endpoints,  Worst Slack        5.481ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.045ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        5.383ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.047ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        3.458ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             5.481ns  (required time - arrival time)
+Slack (MET) :             5.383ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[25]
@@ -209,7 +209,7 @@ Slack (MET) :             5.481ns  (required time - arrival time)
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        2.187ns  (logic 1.733ns (79.241%)  route 0.454ns (20.759%))
+  Data Path Delay:        2.285ns  (logic 1.780ns (77.899%)  route 0.505ns (22.101%))
   Logic Levels:           4  (LUT4=1 RAMB36E2=3)
   Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.039ns = ( 8.039 - 8.000 ) 
@@ -225,7 +225,7 @@ Slack (MET) :             5.481ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
+                         net (fo=2675, unset)         0.076     0.076    bd_0_i/hls_inst/inst/local_indata_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0/CLKARDCLK
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKARDCLK_CASDOUTA[1])
@@ -239,15 +239,15 @@ Slack (MET) :             5.481ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.036     1.747    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_2_n_42
                          RAMB36E2 (Prop_RAMB36E2_CASDINA[1]_DOUTADOUT[1])
                                                       0.117     1.864 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3/DOUTADOUT[1]
-                         net (fo=2, unplaced)         0.190     2.054    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[1]
-                         LUT4 (Prop_LUT4_I2_O)        0.053     2.107 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_12__3/O
-                         net (fo=1, unplaced)         0.156     2.263    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[25]
+                         net (fo=2, unplaced)         0.241     2.105    bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_3_0[1]
+                         LUT4 (Prop_LUT4_I0_O)        0.100     2.205 r  bd_0_i/hls_inst/inst/local_indata_U/ram_reg_bram_0_i_13__3/O
+                         net (fo=1, unplaced)         0.156     2.361    bd_0_i/hls_inst/inst/sha_info_data_U/DINADIN[25]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINADIN[25]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2675, unset)         0.039     8.039    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
@@ -255,9 +255,9 @@ Slack (MET) :             5.481ns  (required time - arrival time)
                                                      -0.260     7.744    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                          7.744    
-                         arrival time                          -2.263    
+                         arrival time                          -2.361    
   -------------------------------------------------------------------
-                         slack                                  5.481    
+                         slack                                  5.383    
 
 
 
@@ -265,7 +265,7 @@ Slack (MET) :             5.481ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.045ns  (arrival time - required time)
+Slack (MET) :             0.047ns  (arrival time - required time)
   Source:                 bd_0_i/hls_inst/inst/sha_info_count_hi_reg[13]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINBDIN[13]
@@ -273,7 +273,7 @@ Slack (MET) :             0.045ns  (arrival time - required time)
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        0.081ns  (logic 0.037ns (45.679%)  route 0.044ns (54.321%))
+  Data Path Delay:        0.083ns  (logic 0.037ns (44.578%)  route 0.046ns (55.422%))
   Logic Levels:           0  
   Clock Path Skew:        0.041ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    0.054ns
@@ -284,26 +284,26 @@ Slack (MET) :             0.045ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
+                         net (fo=2675, unset)         0.013     0.013    bd_0_i/hls_inst/inst/ap_clk
                          FDRE                                         r  bd_0_i/hls_inst/inst/sha_info_count_hi_reg[13]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_FDRE_C_Q)         0.037     0.050 r  bd_0_i/hls_inst/inst/sha_info_count_hi_reg[13]/Q
-                         net (fo=2, unplaced)         0.044     0.094    bd_0_i/hls_inst/inst/sha_info_data_U/Q[13]
+                         net (fo=3, unplaced)         0.046     0.096    bd_0_i/hls_inst/inst/sha_info_data_U/Q[13]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/DINBDIN[13]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.054     0.054    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
+                         net (fo=2675, unset)         0.054     0.054    bd_0_i/hls_inst/inst/sha_info_data_U/ap_clk
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0/CLKBWRCLK
                          clock pessimism              0.000     0.054    
                          RAMB36E2 (Hold_RAMB36E2_CLKBWRCLK_DINBDIN[13])
                                                      -0.005     0.049    bd_0_i/hls_inst/inst/sha_info_data_U/ram_reg_bram_0
   -------------------------------------------------------------------
                          required time                         -0.049    
-                         arrival time                           0.094    
+                         arrival time                           0.096    
   -------------------------------------------------------------------
-                         slack                                  0.045    
+                         slack                                  0.047    
 
 
 
@@ -317,9 +317,9 @@ Period(ns):         8.000
 Sources:            { ap_clk }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
-Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.569         8.000       6.431                bd_0_i/hls_inst/inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0/CLKARDCLK
-Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458                bd_0_i/hls_inst/inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0/CLKARDCLK
-High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458                bd_0_i/hls_inst/inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0/CLKARDCLK
+Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.569         8.000       6.431                bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKARDCLK
+Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458                bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKARDCLK
+High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458                bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKARDCLK
 
 
 

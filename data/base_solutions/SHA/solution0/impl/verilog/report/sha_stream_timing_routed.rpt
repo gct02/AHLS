@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Fri May 30 23:30:25 2025
+| Date              : Wed Jul  9 04:14:40 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file ./report/sha_stream_timing_routed.rpt
 | Design            : bd_0_wrapper
@@ -143,7 +143,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      4.206        0.000                      0                 5945        0.042        0.000                      0                 5945        3.458        0.000                       0                  2699  
+      4.335        0.000                      0                 5832        0.043        0.000                      0                 5832        3.458        0.000                       0                  2676  
 
 
 All user specified timing constraints are met.
@@ -166,7 +166,7 @@ ap_clk  {0.000 4.000}        8.000           125.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-ap_clk              4.206        0.000                      0                 5945        0.042        0.000                      0                 5945        3.458        0.000                       0                  2699  
+ap_clk              4.335        0.000                      0                 5832        0.043        0.000                      0                 5832        3.458        0.000                       0                  2676  
 
 
 ------------------------------------------------------------------------------------------------
@@ -197,24 +197,24 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  ap_clk
   To Clock:  ap_clk
 
-Setup :            0  Failing Endpoints,  Worst Slack        4.206ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.042ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        4.335ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.043ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        3.458ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             4.206ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/ram_reg_bram_0/CLKARDCLK
+Slack (MET) :             4.335ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKBWRCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/B_7_fu_178_reg[26]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[22]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        3.728ns  (logic 1.455ns (39.029%)  route 2.273ns (60.971%))
-  Logic Levels:           5  (CARRY8=2 LUT3=1 LUT4=2)
+  Data Path Delay:        3.599ns  (logic 1.431ns (39.765%)  route 2.168ns (60.235%))
+  Logic Levels:           4  (CARRY8=1 LUT3=2 LUT4=1)
   Clock Path Skew:        -0.056ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.020ns = ( 8.020 - 8.000 ) 
     Source Clock Delay      (SCD):    0.076ns
@@ -229,43 +229,40 @@ Slack (MET) :             4.206ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.076     0.076    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/ap_clk
-    RAMB36_X4Y10         RAMB36E2                                     r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/ram_reg_bram_0/CLKARDCLK
+                         net (fo=2675, unset)         0.076     0.076    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ap_clk
+    RAMB36_X4Y5          RAMB36E2                                     r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKBWRCLK
   -------------------------------------------------------------------    -------------------
-    RAMB36_X4Y10         RAMB36E2 (Prop_RAMB36E2_RAMB36_CLKARDCLK_DOUTADOUT[20])
-                                                      0.881     0.957 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/ram_reg_bram_0/DOUTADOUT[20]
-                         net (fo=6, routed)           1.754     2.711    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/DOUTADOUT[20]
-    SLICE_X75Y111        LUT3 (Prop_E5LUT_SLICEL_I1_O)
-                                                      0.114     2.825 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178[23]_i_5/O
-                         net (fo=2, routed)           0.174     2.999    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178[23]_i_5_n_8
-    SLICE_X75Y111        LUT4 (Prop_F6LUT_SLICEL_I3_O)
-                                                      0.089     3.088 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178[23]_i_13/O
-                         net (fo=1, routed)           0.011     3.099    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178[23]_i_13_n_8
-    SLICE_X75Y111        CARRY8 (Prop_CARRY8_SLICEL_S[5]_CO[7])
-                                                      0.155     3.254 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178_reg[23]_i_2/CO[7]
-                         net (fo=1, routed)           0.026     3.280    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178_reg[23]_i_2_n_8
-    SLICE_X75Y112        CARRY8 (Prop_CARRY8_SLICEL_CI_O[2])
-                                                      0.067     3.347 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178_reg[31]_i_3/O[2]
-                         net (fo=1, routed)           0.260     3.607    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/temp_fu_1126_p2[26]
-    SLICE_X75Y115        LUT4 (Prop_G6LUT_SLICEL_I3_O)
-                                                      0.149     3.756 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U/B_7_fu_178[26]_i_1/O
-                         net (fo=1, routed)           0.048     3.804    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/W_U_n_109
-    SLICE_X75Y115        FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/B_7_fu_178_reg[26]/D
+    RAMB36_X4Y5          RAMB36E2 (Prop_RAMB36E2_RAMB36_CLKBWRCLK_DOUTBDOUT[16])
+                                                      0.857     0.933 r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/DOUTBDOUT[16]
+                         net (fo=6, routed)           1.272     2.205    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/DOUTBDOUT[16]
+    SLICE_X63Y61         LUT3 (Prop_A5LUT_SLICEM_I1_O)
+                                                      0.163     2.368 r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_9/O
+                         net (fo=2, routed)           0.359     2.727    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_9_n_8
+    SLICE_X63Y61         LUT4 (Prop_B6LUT_SLICEM_I3_O)
+                                                      0.089     2.816 r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_17/O
+                         net (fo=1, routed)           0.016     2.832    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_17_n_8
+    SLICE_X63Y61         CARRY8 (Prop_CARRY8_SLICEM_S[1]_O[6])
+                                                      0.224     3.056 r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[23]_i_2/O[6]
+                         net (fo=1, routed)           0.473     3.529    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/A_9_fu_661_p2[22]
+    SLICE_X64Y64         LUT3 (Prop_A6LUT_SLICEL_I1_O)
+                                                      0.098     3.627 r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[22]_i_1/O
+                         net (fo=1, routed)           0.048     3.675    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U_n_178
+    SLICE_X64Y64         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[22]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.020     8.020    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/ap_clk
-    SLICE_X75Y115        FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/B_7_fu_178_reg[26]/C
+                         net (fo=2675, unset)         0.020     8.020    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/ap_clk
+    SLICE_X64Y64         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[22]/C
                          clock pessimism              0.000     8.020    
                          clock uncertainty           -0.035     7.985    
-    SLICE_X75Y115        FDRE (Setup_GFF_SLICEL_C_D)
-                                                      0.025     8.010    bd_0_i/hls_inst/inst/grp_sha_update_fu_166/grp_sha_transform_fu_96/B_7_fu_178_reg[26]
+    SLICE_X64Y64         FDRE (Setup_AFF_SLICEL_C_D)
+                                                      0.025     8.010    bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[22]
   -------------------------------------------------------------------
                          required time                          8.010    
-                         arrival time                          -3.804    
+                         arrival time                          -3.675    
   -------------------------------------------------------------------
-                         slack                                  4.206    
+                         slack                                  4.335    
 
 
 
@@ -273,49 +270,49 @@ Slack (MET) :             4.206ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.042ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg/C
+Slack (MET) :             0.043ns  (arrival time - required time)
+  Source:                 bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/C_1_fu_120_reg[25]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg/D
+  Destination:            bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/D_1_fu_124_reg[25]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        0.094ns  (logic 0.054ns (57.390%)  route 0.040ns (42.610%))
-  Logic Levels:           1  (LUT6=1)
+  Data Path Delay:        0.096ns  (logic 0.059ns (61.217%)  route 0.037ns (38.783%))
+  Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.006ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    0.018ns
-    Source Clock Delay      (SCD):    0.012ns
+    Destination Clock Delay (DCD):    0.019ns
+    Source Clock Delay      (SCD):    0.013ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.012     0.012    bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_clk
-    SLICE_X64Y70         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg/C
+                         net (fo=2675, unset)         0.013     0.013    bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/ap_clk
+    SLICE_X82Y73         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/C_1_fu_120_reg[25]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X64Y70         FDRE (Prop_BFF_SLICEL_C_Q)
-                                                      0.039     0.051 r  bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg/Q
-                         net (fo=4, routed)           0.025     0.076    bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache
-    SLICE_X64Y70         LUT6 (Prop_B6LUT_SLICEL_I5_O)
-                                                      0.015     0.091 r  bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_i_1__1/O
-                         net (fo=1, routed)           0.015     0.106    bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_i_1__1_n_8
-    SLICE_X64Y70         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg/D
+    SLICE_X82Y73         FDRE (Prop_GFF_SLICEL_C_Q)
+                                                      0.039     0.052 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/C_1_fu_120_reg[25]/Q
+                         net (fo=5, routed)           0.031     0.083    bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/C_1_fu_120[25]
+    SLICE_X82Y73         LUT3 (Prop_G5LUT_SLICEL_I1_O)
+                                                      0.020     0.103 r  bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/D_1_fu_124[25]_i_1__0/O
+                         net (fo=1, routed)           0.006     0.109    bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/D_1_fu_124[25]_i_1__0_n_8
+    SLICE_X82Y73         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/D_1_fu_124_reg[25]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2698, unset)         0.018     0.018    bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_clk
-    SLICE_X64Y70         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg/C
-                         clock pessimism              0.000     0.018    
-    SLICE_X64Y70         FDRE (Hold_BFF_SLICEL_C_D)
-                                                      0.046     0.064    bd_0_i/hls_inst/inst/grp_sha_stream_Pipeline_sha_stream_label2_fu_201/flow_control_loop_pipe_sequential_init_U/ap_done_cache_reg
+                         net (fo=2675, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/ap_clk
+    SLICE_X82Y73         FDRE                                         r  bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/D_1_fu_124_reg[25]/C
+                         clock pessimism              0.000     0.019    
+    SLICE_X82Y73         FDRE (Hold_GFF2_SLICEL_C_D)
+                                                      0.047     0.066    bd_0_i/hls_inst/inst/grp_sha_update_fu_148/grp_sha_transform_fu_100/D_1_fu_124_reg[25]
   -------------------------------------------------------------------
-                         required time                         -0.064    
-                         arrival time                           0.106    
+                         required time                         -0.066    
+                         arrival time                           0.109    
   -------------------------------------------------------------------
-                         slack                                  0.042    
+                         slack                                  0.043    
 
 
 
@@ -328,10 +325,10 @@ Waveform(ns):       { 0.000 4.000 }
 Period(ns):         8.000
 Sources:            { ap_clk }
 
-Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.569         8.000       6.431      RAMB36_X4Y11  bd_0_i/hls_inst/inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0/CLKARDCLK
-Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB36_X4Y11  bd_0_i/hls_inst/inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0/CLKARDCLK
-High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB36_X4Y11  bd_0_i/hls_inst/inst/grp_sha_transform_fu_193/W_U/ram_reg_bram_0/CLKARDCLK
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location     Pin
+Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.569         8.000       6.431      RAMB36_X4Y5  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKARDCLK
+Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB36_X4Y5  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKARDCLK
+High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB36_X4Y5  bd_0_i/hls_inst/inst/grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKARDCLK
 
 
 

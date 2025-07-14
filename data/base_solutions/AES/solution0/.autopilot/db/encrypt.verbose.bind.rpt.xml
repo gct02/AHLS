@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'encrypt'" level="0">
-<item name = "Date">Sat May 31 00:10:16 2025
+<item name = "Date">Wed Jul  9 03:26:54 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -31,10 +31,10 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_KeySchedule_fu_50">KeySchedule, 562, 562, 4.496 us, 4.496 us, 562, 562, no</column>
-<column name="grp_AddRoundKey_fu_62">AddRoundKey, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
-<column name="grp_ByteSub_ShiftRow_fu_73">ByteSub_ShiftRow, 15, 15, 0.120 us, 0.120 us, 15, 15, no</column>
-<column name="grp_MixColumn_AddRoundKey_fu_81">MixColumn_AddRoundKey, 30, 30, 0.240 us, 0.240 us, 30, 30, no</column>
+<column name="grp_KeySchedule_fu_52">KeySchedule, 562, 562, 4.496 us, 4.496 us, 562, 562, no</column>
+<column name="grp_AddRoundKey_fu_64">AddRoundKey, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
+<column name="grp_ByteSub_ShiftRow_fu_75">ByteSub_ShiftRow, 15, 15, 0.120 us, 0.120 us, 15, 15, no</column>
+<column name="grp_MixColumn_AddRoundKey_fu_83">MixColumn_AddRoundKey, 30, 30, 0.240 us, 0.240 us, 30, 30, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

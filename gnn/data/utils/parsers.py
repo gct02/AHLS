@@ -211,8 +211,9 @@ def extract_module_utilization(solution_dir, filtered=False):
 def extract_auto_dcts_from_log(hls_log_path):
     AUTO_INLINE_CODE = '[HLS 214-178]'
     AUTO_PIPE_CODE = '[HLS 214-376]'
-    AUTO_AP_CODE = '[XFORM 203-102]'
-    AUTO_LF_CODE = '[XFORM 203-541]'
+    # AUTO_AP_CODE = '[XFORM 203-102]'
+    # AUTO_LF_CODE = '[XFORM 203-541]'
+    FINISHED_OPT_MESSAGE = '[HLS 200-111] Finished Compiling Optimization and Transform'
 
     with open(hls_log_path, "r") as f:
         lines = f.readlines()
@@ -220,11 +221,14 @@ def extract_auto_dcts_from_log(hls_log_path):
     auto_dcts = {
         "inline": set(),
         "pipeline": set(),
-        "array_partition": set(),
-        "loop_flatten": set()
+        # "array_partition": set(),
+        # "loop_flatten": set()
     }
 
     for line in lines:
+        if FINISHED_OPT_MESSAGE in line:
+            break
+
         if AUTO_INLINE_CODE in line:
             if 'Inlining function \'' not in line:
                 continue
@@ -237,18 +241,18 @@ def extract_auto_dcts_from_log(hls_log_path):
             loop = line.split('automatically set the pipeline for Loop<')[1].split('>')[0].strip()
             auto_dcts['pipeline'].add(loop)
 
-        elif AUTO_AP_CODE in line:
-            if 'Automatically partitioning small array \'' not in line:
-                continue
-            array = line.split('Automatically partitioning small array \'')[1].split('\'')[0].strip()
-            auto_dcts['array_partition'].add(array)
+        # elif AUTO_AP_CODE in line:
+        #     if 'Automatically partitioning small array \'' not in line:
+        #         continue
+        #     array = line.split('Automatically partitioning small array \'')[1].split('\'')[0].strip()
+        #     auto_dcts['array_partition'].add(array)
 
-        elif AUTO_LF_CODE in line:
-            if 'Flattening a loop nest \'' not in line or 'in function \'' not in line:
-                continue
-            loop = line.split('Flattening a loop nest \'')[1].split('\'')[0].strip()
-            function = line.split('in function \'')[1].split('\'')[0].strip()
-            auto_dcts['loop_flatten'].add((loop, function))
+        # elif AUTO_LF_CODE in line:
+        #     if 'Flattening a loop nest \'' not in line or 'in function \'' not in line:
+        #         continue
+        #     loop = line.split('Flattening a loop nest \'')[1].split('\'')[0].strip()
+        #     function = line.split('in function \'')[1].split('\'')[0].strip()
+        #     auto_dcts['loop_flatten'].add((loop, function))
 
     return auto_dcts 
 

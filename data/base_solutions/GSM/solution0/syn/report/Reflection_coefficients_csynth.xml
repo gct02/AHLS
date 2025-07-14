@@ -18,18 +18,18 @@
 <PipelineType>no</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>3.530</EstimatedClockPeriod>
+<EstimatedClockPeriod>3.923</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
 <Best-caseLatency>11</Best-caseLatency>
-<Average-caseLatency>146</Average-caseLatency>
-<Worst-caseLatency>557</Worst-caseLatency>
+<Average-caseLatency>151</Average-caseLatency>
+<Worst-caseLatency>588</Worst-caseLatency>
 <Best-caseRealTimeLatency>88.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>1.168 us</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>4.456 us</Worst-caseRealTimeLatency>
+<Average-caseRealTimeLatency>1.208 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>4.704 us</Worst-caseRealTimeLatency>
 <Interval-min>11</Interval-min>
-<Interval-max>557</Interval-max>
+<Interval-max>588</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <Reflection_coefficients_label0>
@@ -78,20 +78,20 @@
 </TripCount>
 <Latency>
 <range>
-<min>14</min>
-<max>491</max>
+<min>15</min>
+<max>522</max>
 </range>
 </Latency>
 <AbsoluteTimeLatency>
 <range>
-<min>112</min>
-<max>3928</max>
+<min>120</min>
+<max>4176</max>
 </range>
 </AbsoluteTimeLatency>
 <IterationLatency>
 <range>
-<min>14</min>
-<max>61</max>
+<min>15</min>
+<max>65</max>
 </range>
 </IterationLatency>
 <InstanceList>
@@ -106,17 +106,17 @@
 </TripCount>
 <Latency>
 <range>
-<min>5</min>
-<max>35</max>
+<min>6</min>
+<max>42</max>
 </range>
 </Latency>
 <AbsoluteTimeLatency>
 <range>
-<min>40</min>
-<max>280</max>
+<min>48</min>
+<max>336</max>
 </range>
 </AbsoluteTimeLatency>
-<IterationLatency>5</IterationLatency>
+<IterationLatency>6</IterationLatency>
 <InstanceList>
 </InstanceList>
 </Reflection_coefficients_label5>
@@ -149,7 +149,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>data/benchmarks/gsm/gsm_lpc.c:167</SourceLocation>
+<SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:23</SourceLocation>
 <SummaryOfLoopViolations>
 <Reflection_coefficients_label0>
 <Name>Reflection_coefficients_label0</Name>
@@ -200,9 +200,9 @@
 <AreaEstimates>
 <Resources>
 <BRAM_18K>0</BRAM_18K>
-<DSP>3</DSP>
-<FF>620</FF>
-<LUT>1897</LUT>
+<DSP>1</DSP>
+<FF>601</FF>
+<LUT>1399</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
@@ -282,7 +282,128 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_gsm_norm_fu_323_p_din1</name>
+<name>grp_gsm_add_fu_310_p_din1</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_add_fu_310_p_din2</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_add_fu_310_p_dout0</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_add_fu_310_p_ready</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_din1</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_din2</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_dout0</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_start</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_ready</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_done</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_mult_r_fu_300_p_idle</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_gsm_norm_fu_305_p_din1</name>
 <Object>Reflection_coefficients</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -293,7 +414,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_gsm_norm_fu_323_p_dout0</name>
+<name>grp_gsm_norm_fu_305_p_dout0</name>
 <Object>Reflection_coefficients</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -304,7 +425,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_gsm_norm_fu_323_p_start</name>
+<name>grp_gsm_norm_fu_305_p_start</name>
 <Object>Reflection_coefficients</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -315,7 +436,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_gsm_norm_fu_323_p_ready</name>
+<name>grp_gsm_norm_fu_305_p_ready</name>
 <Object>Reflection_coefficients</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -326,7 +447,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_gsm_norm_fu_323_p_done</name>
+<name>grp_gsm_norm_fu_305_p_done</name>
 <Object>Reflection_coefficients</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -337,7 +458,84 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_gsm_norm_fu_323_p_idle</name>
+<name>grp_gsm_norm_fu_305_p_idle</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>temp_37_gsm_abs_fu_120_p_din1</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>temp_37_gsm_abs_fu_120_p_dout0</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>temp_37_gsm_abs_fu_120_p_ready</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>tmp_6_gsm_add_fu_315_p_din1</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>tmp_6_gsm_add_fu_315_p_din2</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>tmp_6_gsm_add_fu_315_p_dout0</name>
+<Object>Reflection_coefficients</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>16</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>tmp_6_gsm_add_fu_315_p_ready</name>
 <Object>Reflection_coefficients</Object>
 <Type>return value</Type>
 <Scope></Scope>

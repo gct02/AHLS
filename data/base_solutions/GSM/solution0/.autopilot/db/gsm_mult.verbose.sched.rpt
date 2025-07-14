@@ -1,0 +1,113 @@
+
+
+================================================================
+== Vitis HLS Report for 'gsm_mult'
+================================================================
+* Date:           Wed Jul  9 03:57:16 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        GSM
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  1.940 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 0
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.94>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%specpipeline_ln19 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:19]   --->   Operation 2 'specpipeline' 'specpipeline_ln19' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%b_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %b" [data/benchmarks/gsm/gsm_add.c:48]   --->   Operation 3 'read' 'b_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%a_read = read i15 @_ssdm_op_Read.ap_auto.i15, i15 %a" [data/benchmarks/gsm/gsm_add.c:48]   --->   Operation 4 'read' 'a_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%zext_ln48 = zext i15 %a_read" [data/benchmarks/gsm/gsm_add.c:48]   --->   Operation 5 'zext' 'zext_ln48' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%sext_ln48 = sext i16 %b_read" [data/benchmarks/gsm/gsm_add.c:48]   --->   Operation 6 'sext' 'sext_ln48' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (1.94ns)   --->   "%mul_ln48 = mul i31 %sext_ln48, i31 %zext_ln48" [data/benchmarks/gsm/gsm_add.c:48]   --->   Operation 7 'mul' 'mul_ln48' <Predicate = true> <Delay = 1.94> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%trunc_ln = partselect i16 @_ssdm_op_PartSelect.i16.i31.i32.i32, i31 %mul_ln48, i32 15, i32 30" [data/benchmarks/gsm/gsm_add.c:48]   --->   Operation 8 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%ret_ln49 = ret i16 %trunc_ln" [data/benchmarks/gsm/gsm_add.c:49]   --->   Operation 9 'ret' 'ret_ln49' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 1.940ns
+The critical path consists of the following:
+	wire read operation ('b_read', data/benchmarks/gsm/gsm_add.c:48) on port 'b' (data/benchmarks/gsm/gsm_add.c:48) [4]  (0.000 ns)
+	'mul' operation 31 bit ('mul_ln48', data/benchmarks/gsm/gsm_add.c:48) [8]  (1.940 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

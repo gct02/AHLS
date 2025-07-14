@@ -441,7 +441,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>md_kernel</ModuleName>
-            <BindInstances>add_ln25_fu_307_p2 add_ln33_fu_349_p2 add_ln36_fu_359_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dadddsub_64ns_64ns_64_4_full_dsp_1_U2 dadddsub_64ns_64ns_64_4_full_dsp_1_U3 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U5 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dmul_64ns_64ns_64_4_max_dsp_1_U4 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 ddiv_64ns_64ns_64_14_no_dsp_1_U7 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dmul_64ns_64ns_64_4_max_dsp_1_U5 dadddsub_64ns_64ns_64_4_full_dsp_1_U2 dmul_64ns_64ns_64_4_max_dsp_1_U6 dadddsub_64ns_64ns_64_4_full_dsp_1_U3</BindInstances>
+            <BindInstances>add_ln25_fu_309_p2 add_ln33_fu_351_p2 add_ln36_fu_361_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dadddsub_64ns_64ns_64_4_full_dsp_1_U2 dadddsub_64ns_64ns_64_4_full_dsp_1_U3 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U5 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dmul_64ns_64ns_64_4_max_dsp_1_U4 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 ddiv_64ns_64ns_64_14_no_dsp_1_U7 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dmul_64ns_64ns_64_4_max_dsp_1_U4 dadddsub_64ns_64ns_64_4_full_dsp_1_U1 dmul_64ns_64ns_64_4_max_dsp_1_U5 dadddsub_64ns_64ns_64_4_full_dsp_1_U2 dmul_64ns_64ns_64_4_max_dsp_1_U6 dadddsub_64ns_64ns_64_4_full_dsp_1_U3</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -532,9 +532,9 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_i" OPTYPE="add" PRAGMA="" RTLNAME="add_ln25_fu_307_p2" SOURCE="data/benchmarks/knn/md.c:25" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln25"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_j" OPTYPE="add" PRAGMA="" RTLNAME="add_ln33_fu_349_p2" SOURCE="data/benchmarks/knn/md.c:33" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln33"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_j" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_359_p2" SOURCE="data/benchmarks/knn/md.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_i" OPTYPE="add" PRAGMA="" RTLNAME="add_ln25_fu_309_p2" SOURCE="data/benchmarks/knn/md.c:25" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_j" OPTYPE="add" PRAGMA="" RTLNAME="add_ln33_fu_351_p2" SOURCE="data/benchmarks/knn/md.c:33" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln33"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loop_j" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_361_p2" SOURCE="data/benchmarks/knn/md.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop_j" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U1" SOURCE="data/benchmarks/knn/md.c:42" STORAGESUBTYPE="" URAM="0" VARIABLE="delx"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop_j" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U2" SOURCE="data/benchmarks/knn/md.c:43" STORAGESUBTYPE="" URAM="0" VARIABLE="dely"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loop_j" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U3" SOURCE="data/benchmarks/knn/md.c:44" STORAGESUBTYPE="" URAM="0" VARIABLE="delz"/>
@@ -889,8 +889,10 @@
     <PragmaReport>
         <Pragma type="loop_tripcount" location="data/benchmarks/knn/md.c:26" status="valid" parentFunction="md_kernel" variable="" isDirective="0" options="min=256 max=256 avg=256"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/knn/md.c:34" status="valid" parentFunction="md_kernel" variable="" isDirective="0" options="min=16 max=16 avg=16"/>
+        <Pragma type="loop_flatten" location="../base_directives/knn.tcl:4" status="valid" parentFunction="md_kernel" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/knn.tcl:1" status="valid" parentFunction="md_kernel" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/knn.tcl:2" status="valid" parentFunction="md_kernel" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/knn.tcl:3" status="valid" parentFunction="md_kernel" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

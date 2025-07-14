@@ -327,7 +327,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>bbgemm</ModuleName>
-            <BindInstances>add_ln19_fu_217_p2 add_ln21_fu_235_p2 add_ln25_fu_259_p2 add_ln26_fu_291_p2 add_ln28_fu_301_p2 dmul_64ns_64ns_64_4_max_dsp_1_U2 dadd_64ns_64ns_64_4_full_dsp_1_U1 add_ln17_fu_223_p2 add_ln15_fu_201_p2</BindInstances>
+            <BindInstances>add_ln19_fu_219_p2 add_ln21_fu_237_p2 add_ln25_fu_261_p2 add_ln26_fu_293_p2 add_ln28_fu_303_p2 dmul_64ns_64ns_64_4_max_dsp_1_U2 dadd_64ns_64ns_64_4_full_dsp_1_U1 add_ln17_fu_225_p2 add_ln15_fu_203_p2</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -475,15 +475,15 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopi" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_217_p2" SOURCE="data/benchmarks/gemm/gemm.c:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopk" OPTYPE="add" PRAGMA="" RTLNAME="add_ln21_fu_235_p2" SOURCE="data/benchmarks/gemm/gemm.c:21" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln21"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopk" OPTYPE="add" PRAGMA="" RTLNAME="add_ln25_fu_259_p2" SOURCE="data/benchmarks/gemm/gemm.c:25" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln25"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopj" OPTYPE="add" PRAGMA="" RTLNAME="add_ln26_fu_291_p2" SOURCE="data/benchmarks/gemm/gemm.c:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln26"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopj" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_301_p2" SOURCE="data/benchmarks/gemm/gemm.c:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopi" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_219_p2" SOURCE="data/benchmarks/gemm/gemm.c:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopk" OPTYPE="add" PRAGMA="" RTLNAME="add_ln21_fu_237_p2" SOURCE="data/benchmarks/gemm/gemm.c:21" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln21"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopk" OPTYPE="add" PRAGMA="" RTLNAME="add_ln25_fu_261_p2" SOURCE="data/benchmarks/gemm/gemm.c:25" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln25"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopj" OPTYPE="add" PRAGMA="" RTLNAME="add_ln26_fu_293_p2" SOURCE="data/benchmarks/gemm/gemm.c:26" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln26"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopj" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_303_p2" SOURCE="data/benchmarks/gemm/gemm.c:28" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln28"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="loopj" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U2" SOURCE="data/benchmarks/gemm/gemm.c:28" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="loopj" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_4_full_dsp_1_U1" SOURCE="data/benchmarks/gemm/gemm.c:29" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopkk" OPTYPE="add" PRAGMA="" RTLNAME="add_ln17_fu_223_p2" SOURCE="data/benchmarks/gemm/gemm.c:17" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln17"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopjj" OPTYPE="add" PRAGMA="" RTLNAME="add_ln15_fu_201_p2" SOURCE="data/benchmarks/gemm/gemm.c:15" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopkk" OPTYPE="add" PRAGMA="" RTLNAME="add_ln17_fu_225_p2" SOURCE="data/benchmarks/gemm/gemm.c:17" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="loopjj" OPTYPE="add" PRAGMA="" RTLNAME="add_ln15_fu_203_p2" SOURCE="data/benchmarks/gemm/gemm.c:15" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln15"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
@@ -695,6 +695,7 @@
         <Pragma type="pipeline" location="../base_directives/gemm.tcl:3" status="valid" parentFunction="bbgemm" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/gemm.tcl:4" status="valid" parentFunction="bbgemm" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/gemm.tcl:5" status="valid" parentFunction="bbgemm" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/gemm.tcl:6" status="valid" parentFunction="bbgemm" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

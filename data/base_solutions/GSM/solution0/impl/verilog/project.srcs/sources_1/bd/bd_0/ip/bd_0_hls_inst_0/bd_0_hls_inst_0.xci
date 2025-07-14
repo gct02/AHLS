@@ -4,7 +4,7 @@
     "xci_name": "bd_0_hls_inst_0",
     "cell_name": "hls_inst",
     "component_reference": "xilinx.com:hls:Gsm_LPC_Analysis:1.0",
-    "ip_revision": "2114106483",
+    "ip_revision": "2114162997",
     "gen_directory": "../../../../../../project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0",
     "parameters": {
       "component_parameters": {
@@ -12,7 +12,7 @@
         "clk_period": [ { "value": "8", "enabled": false, "usage": "all" } ],
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
-        "latency": [ { "value": "1160", "enabled": false, "usage": "all" } ],
+        "latency": [ { "value": "1310", "enabled": false, "usage": "all" } ],
         "II": [ { "value": "x", "enabled": false, "usage": "all" } ]
       },
       "project_parameters": {
@@ -30,7 +30,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114106483" } ],
+        "IPREVISION": [ { "value": "2114162997" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
@@ -44,6 +44,7 @@
         "indata_ce0": [ { "direction": "out" } ],
         "indata_we0": [ { "direction": "out" } ],
         "indata_ce1": [ { "direction": "out" } ],
+        "indata_we1": [ { "direction": "out" } ],
         "LARc_ce0": [ { "direction": "out" } ],
         "LARc_we0": [ { "direction": "out" } ],
         "LARc_ce1": [ { "direction": "out" } ],
@@ -58,6 +59,7 @@
         "indata_d0": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
         "indata_q0": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "indata_address1": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "indata_d1": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
         "indata_q1": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "LARc_address0": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
         "LARc_d0": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
@@ -150,6 +152,17 @@
           },
           "port_maps": {
             "DATA": [ { "physical_name": "indata_address1" } ]
+          }
+        },
+        "indata_d1": {
+          "vlnv": "xilinx.com:signal:data:1.0",
+          "abstraction_type": "xilinx.com:signal:data_rtl:1.0",
+          "mode": "master",
+          "parameters": {
+            "LAYERED_METADATA": [ { "value": "undef", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ]
+          },
+          "port_maps": {
+            "DATA": [ { "physical_name": "indata_d1" } ]
           }
         },
         "indata_q1": {

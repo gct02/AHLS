@@ -223,7 +223,7 @@
     "components": {
       "hls_inst": {
         "vlnv": "xilinx.com:hls:kernel_gramschmidt:1.0",
-        "ip_revision": "2114105942",
+        "ip_revision": "2114162991",
         "xci_name": "bd_0_hls_inst_0",
         "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
         "inst_hier_path": "hls_inst"

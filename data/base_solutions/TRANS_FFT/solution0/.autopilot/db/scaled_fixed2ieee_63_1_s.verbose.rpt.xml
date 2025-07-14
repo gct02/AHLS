@@ -1,0 +1,146 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'scaled_fixed2ieee_63_1_s'" level="0">
+<item name = "Date">Wed Jul  9 04:19:51 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">TRANS_FFT</item>
+<item name = "Solution">solution0 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 3.813 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">26, 30, 0.208 us, 0.240 us, 26, 30, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_1_fu_112">scaled_fixed2ieee_63_1_Pipeline_1, 5, 5, 40.000 ns, 40.000 ns, 5, 5, no</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_2_fu_119">scaled_fixed2ieee_63_1_Pipeline_2, 5, 5, 40.000 ns, 40.000 ns, 5, 5, no</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_3_fu_131">scaled_fixed2ieee_63_1_Pipeline_3, 6, 6, 48.000 ns, 48.000 ns, 6, 6, no</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_4_fu_143">scaled_fixed2ieee_63_1_Pipeline_4, 2, 6, 16.000 ns, 48.000 ns, 2, 6, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 277, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, 435, 1550, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 63, -</column>
+<column name="Register">-, -, 392, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_1_fu_112">scaled_fixed2ieee_63_1_Pipeline_1, 0, 0, 100, 169, 0</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_2_fu_119">scaled_fixed2ieee_63_1_Pipeline_2, 0, 0, 100, 613, 0</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_3_fu_131">scaled_fixed2ieee_63_1_Pipeline_3, 0, 0, 133, 69, 0</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_4_fu_143">scaled_fixed2ieee_63_1_Pipeline_4, 0, 0, 102, 699, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="newexp_fu_242_p2">-, 0, 0, 39, 32, 32</column>
+<column name="sub_ln432_fu_232_p2">-, 0, 0, 19, 10, 12</column>
+<column name="icmp_ln433_fu_208_p2">icmp, 0, 0, 70, 63, 1</column>
+<column name="or_ln433_fu_256_p2">or, 0, 0, 2, 1, 1</column>
+<column name="out_exp_fu_300_p3">select, 0, 0, 11, 1, 1</column>
+<column name="select_ln421_1_fu_281_p3">select, 0, 0, 52, 1, 52</column>
+<column name="select_ln421_fu_225_p3">select, 0, 0, 32, 1, 32</column>
+<column name="significand_fu_292_p3">select, 0, 0, 52, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">54, 10, 1, 10</column>
+<column name="ap_return">9, 2, 63, 126</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">9, 0, 9, 0</column>
+<column name="ap_return_preg">63, 0, 64, 1</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_1_fu_112_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_2_fu_119_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_3_fu_131_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_scaled_fixed2ieee_63_1_Pipeline_4_fu_143_ap_start_reg">1, 0, 1, 0</column>
+<column name="icmp_ln433_reg_453">1, 0, 1, 0</column>
+<column name="in_shift_1_loc_fu_44">62, 0, 62, 0</column>
+<column name="in_shift_loc_fu_52">62, 0, 62, 0</column>
+<column name="out_bits_0_1_loc_fu_88">32, 0, 32, 0</column>
+<column name="out_bits_1_1_loc_fu_92">32, 0, 32, 0</column>
+<column name="out_bits_2_1_loc_fu_96">32, 0, 32, 0</column>
+<column name="out_bits_3_reg_436">15, 0, 32, 17</column>
+<column name="shift_1_loc_fu_48">32, 0, 32, 0</column>
+<column name="shift_loc_fu_56">32, 0, 32, 0</column>
+<column name="targetBlock_reg_458">1, 0, 1, 0</column>
+<column name="trunc_ln408_reg_422">15, 0, 15, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="ap_return">out, 64, ap_ctrl_hs, scaled_fixed2ieee&lt;63, 1&gt;, return value</column>
+<column name="in_val">in, 63, ap_none, in_val, scalar</column>
+<column name="prescale">in, 12, ap_none, prescale, scalar</column>
+</table>
+</item>
+</section>
+</profile>

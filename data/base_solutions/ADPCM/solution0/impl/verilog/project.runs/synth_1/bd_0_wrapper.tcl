@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/synth_1/bd_0_wrapper.tcl"
+  variable script "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/synth_1/bd_0_wrapper.tcl"
   variable category "vivado_synth"
 }
 
@@ -78,21 +78,21 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.cache/wt [current_project]
-set_property parent.project_path /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.xpr [current_project]
+set_property webtalk.parent_dir /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.cache/wt [current_project]
+set_property parent.project_path /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_repo_paths /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/ip [current_project]
+set_property ip_repo_paths /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/ip [current_project]
 update_ip_catalog
-set_property ip_output_repo /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.cache/ip [current_project]
+set_property ip_output_repo /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v
-add_files /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.srcs/sources_1/bd/bd_0/bd_0.bd
-set_property used_in_implementation false [get_files -all /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/adpcm_main_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/bd_0_ooc.xdc]
+read_verilog -library xil_defaultlib /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v
+add_files /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.srcs/sources_1/bd/bd_0/bd_0.bd
+set_property used_in_implementation false [get_files -all /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/adpcm_main_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/bd_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -103,8 +103,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/adpcm_main.xdc
-set_property used_in_implementation false [get_files /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/adpcm_main.xdc]
+read_xdc /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/adpcm_main.xdc
+set_property used_in_implementation false [get_files /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/adpcm_main.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]

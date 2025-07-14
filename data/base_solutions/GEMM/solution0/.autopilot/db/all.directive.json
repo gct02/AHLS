@@ -112,6 +112,27 @@
     "insert_position": "",
     "label": "",
     "pragma": {
+      "name": "PIPELINE",
+      "option": [
+        {
+          "name": "off",
+          "value": "true"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl",
+    "sourceLine": 6,
+    "success": true
+  },
+  {
+    "functionLabel": "",
+    "functionName": "bbgemm",
+    "id": 6,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
       "name": "TOP",
       "option": [
         {

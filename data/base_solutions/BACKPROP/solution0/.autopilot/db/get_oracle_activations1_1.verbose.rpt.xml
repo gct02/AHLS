@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'get_oracle_activations1_1'" level="0">
-<item name = "Date">Fri May 30 21:43:16 2025
+<item name = "Date">Wed Jul  9 03:32:57 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -81,36 +81,36 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln174_fu_150_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln178_fu_179_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln180_fu_189_p2">+, 0, 0, 19, 12, 12</column>
-<column name="icmp_ln174_fu_144_p2">icmp, 0, 0, 15, 7, 8</column>
-<column name="icmp_ln178_fu_173_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="add_ln174_fu_152_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln178_fu_181_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln180_fu_191_p2">+, 0, 0, 19, 12, 12</column>
+<column name="icmp_ln174_fu_146_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="icmp_ln178_fu_175_p2">icmp, 0, 0, 15, 7, 8</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="add113_reg_111">9, 2, 64, 128</column>
+<column name="add113_reg_113">9, 2, 64, 128</column>
 <column name="ap_NS_fsm">81, 17, 1, 17</column>
-<column name="grp_fu_128_p0">14, 3, 64, 192</column>
-<column name="grp_fu_128_p1">14, 3, 64, 192</column>
-<column name="i_fu_44">9, 2, 7, 14</column>
-<column name="j_reg_99">9, 2, 7, 14</column>
+<column name="grp_fu_130_p0">14, 3, 64, 192</column>
+<column name="grp_fu_130_p1">14, 3, 64, 192</column>
+<column name="i_fu_46">9, 2, 7, 14</column>
+<column name="j_reg_101">9, 2, 7, 14</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add113_reg_111">64, 0, 64, 0</column>
-<column name="add_ln174_reg_222">7, 0, 7, 0</column>
-<column name="add_ln178_reg_245">7, 0, 7, 0</column>
+<column name="add113_reg_113">64, 0, 64, 0</column>
+<column name="add_ln174_reg_224">7, 0, 7, 0</column>
+<column name="add_ln178_reg_247">7, 0, 7, 0</column>
 <column name="ap_CS_fsm">16, 0, 16, 0</column>
-<column name="i_fu_44">7, 0, 7, 0</column>
-<column name="j_reg_99">7, 0, 7, 0</column>
-<column name="mul8_reg_280">64, 0, 64, 0</column>
-<column name="oracle_activations_addr_reg_232">6, 0, 6, 0</column>
-<column name="tmp_s_reg_237">6, 0, 12, 6</column>
-<column name="weights2_load_reg_265">64, 0, 64, 0</column>
-<column name="zext_ln174_reg_227">7, 0, 64, 57</column>
+<column name="i_fu_46">7, 0, 7, 0</column>
+<column name="j_reg_101">7, 0, 7, 0</column>
+<column name="mul8_reg_282">64, 0, 64, 0</column>
+<column name="oracle_activations_addr_reg_234">6, 0, 6, 0</column>
+<column name="tmp_s_reg_239">6, 0, 12, 6</column>
+<column name="weights2_load_reg_267">64, 0, 64, 0</column>
+<column name="zext_ln174_reg_229">7, 0, 64, 57</column>
 </table>
 </item>
 </section>
@@ -126,15 +126,15 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
-<column name="grp_fu_986_p_din0">out, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
-<column name="grp_fu_986_p_din1">out, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
-<column name="grp_fu_986_p_opcode">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
-<column name="grp_fu_986_p_dout0">in, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
-<column name="grp_fu_986_p_ce">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="grp_fu_990_p_din0">out, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="grp_fu_990_p_din1">out, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
+<column name="grp_fu_990_p_opcode">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="grp_fu_990_p_dout0">in, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="grp_fu_990_p_ce">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
+<column name="grp_fu_994_p_din0">out, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
+<column name="grp_fu_994_p_din1">out, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
+<column name="grp_fu_994_p_dout0">in, 64, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
+<column name="grp_fu_994_p_ce">out, 1, ap_ctrl_hs, get_oracle_activations1.1, return value</column>
 <column name="weights2_address0">out, 12, ap_memory, weights2, array</column>
 <column name="weights2_ce0">out, 1, ap_memory, weights2, array</column>
 <column name="weights2_q0">in, 64, ap_memory, weights2, array</column>

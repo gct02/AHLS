@@ -41,8 +41,8 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 FEATURE_SIZE_BY_TYPE = {
     "instr": 69, 
     "port": 25,
-    "const": 5,
-    "region": 18,
+    "const": 4,
+    "region": 22,
     "block": 14,
     "array": 24
 }
@@ -261,11 +261,15 @@ def update_with_directives(
                       f"(function '{function_name}') not found in nodes.")
                 continue
 
-            if dct == "pipeline" and region_node.is_loop:
+            if dct == "pipeline":
                 # Pipeline pragma in a loop implies the complete
                 # unrolling of all its subloops (if any)
-                # region_node.attrs["ii"] = max(1, int(args.get("ii", 1)))
+                ii = max(1, int(args.get("ii", 1)))
+                region_node.attrs["target_ii"] = ii
+                region_node.attrs["achieved_ii_base"] = 0
+                region_node.attrs["pipeline"] = [0, 1, 0] # Pipelined by user directive
                 unroll_pipelined_subloops(region_node)
+                continue
 
             if dct == "unroll" and region_node.attrs.get("unroll", 0) == 0:
                 unroll_factor = int(args.get("factor", 0))
@@ -283,30 +287,22 @@ def update_with_directives(
         return kernel_info
     
     auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
+    auto_inline = auto_dcts.get("inline", set())
+    auto_pipeline = auto_dcts.get("pipeline", set())
 
-    for dct, dct_info_set in auto_dcts.items():
-        for dct_info in dct_info_set:
-            if dct == "loop_flatten":
-                loop_name, function_name = dct_info
-                for node in kernel_info.nodes.get('region', []):
-                    if (node.name == loop_name 
-                        and node.function_name == function_name):
-                        node.attrs["loop_flatten"] = 1
-                        break
-            elif dct == "inline":
-                function_name = dct_info
-                for node in kernel_info.nodes.get('region', []):
-                    if node.name == function_name:
-                        node.attrs["inline"] = 1
-                        break
-            elif dct == "pipeline":
-                loop_name = dct_info
-                for node in kernel_info.nodes.get('region', []):
-                    if node.name == loop_name:
-                        node.attrs["pipeline"] = 1
-                        if node.is_loop:
-                            unroll_pipelined_subloops(node)
-                        break
+    for function_name in auto_inline:
+        for node in kernel_info.nodes.get('region', []):
+            if node.name == function_name:
+                node.attrs["inline"] = 1
+                break
+
+    for loop_name in auto_pipeline:
+        for node in kernel_info.nodes.get('region', []):
+            if node.name == loop_name:
+                node.attrs["pipeline"] = [0, 0, 1] # Pipelined automatically by HLS
+                if node.attrs["achieved_ii_base"] == 0:
+                    node.attrs["target_ii"] = 1
+                unroll_pipelined_subloops(node)
 
     return kernel_info
 

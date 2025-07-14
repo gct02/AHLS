@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Thu May 29 20:05:20 2025
+| Date         : Wed Jul  9 04:17:12 2025
 | Host         : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_design_analysis -file ./report/stencil3d_design_analysis_synth.rpt
 | Design       : bd_0_wrapper
@@ -48,8 +48,8 @@ Table of Contents
 | Mark Debug                | 0                                                                                                                                                                                                    |
 | Start Point Pin Primitive | FDRE/C                                                                                                                                                                                               |
 | End Point Pin Primitive   | FDRE/D                                                                                                                                                                                               |
-| Start Point Pin           | add_ln57_reg_1113_reg[0]/C                                                                                                                                                                           |
-| End Point Pin             | mul_ln57_1_reg_1118_reg[31]/D                                                                                                                                                                        |
+| Start Point Pin           | add_ln57_reg_1115_reg[0]/C                                                                                                                                                                           |
+| End Point Pin             | mul_ln57_1_reg_1120_reg[31]/D                                                                                                                                                                        |
 +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 * Bounding box calculated as % of dimensions for the target device (5130, 1068)
 

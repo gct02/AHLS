@@ -1472,6 +1472,10 @@ __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d( int32_t C[2], int32_
 # 9 "data/benchmarks/stencil3d/stencil.c" 2
 
 __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d(int32_t C[2], int32_t orig[(8 * 16 * 16)], int32_t sol[(8 * 16 * 16)]) {
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 10 "data/benchmarks/stencil3d/stencil.c"
+
 #line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=stencil3d
 # 10 "data/benchmarks/stencil3d/stencil.c"
@@ -1487,6 +1491,10 @@ __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d(int32_t C[2], int32_t
 
 #pragma HLS LOOP_TRIPCOUNT min=16 max=16 avg=16
  height_bound_row : for(k=0; k<8; k++) {
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 17 "data/benchmarks/stencil3d/stencil.c"
+
 #line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 17 "data/benchmarks/stencil3d/stencil.c"
@@ -1503,6 +1511,10 @@ __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d(int32_t C[2], int32_t
 
 #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
  col_bound_row : for(k=0; k<8; k++) {
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 25 "data/benchmarks/stencil3d/stencil.c"
+
 #line 4 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 25 "data/benchmarks/stencil3d/stencil.c"
@@ -1519,6 +1531,10 @@ __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d(int32_t C[2], int32_t
 
 #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
  row_bound_col : for(j=1; j<16 -1; j++) {
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 33 "data/benchmarks/stencil3d/stencil.c"
+
 #line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 33 "data/benchmarks/stencil3d/stencil.c"
@@ -1538,12 +1554,20 @@ __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d(int32_t C[2], int32_t
 
 #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
  loop_col : for(j = 1; j < 16 - 1; j++){
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 44 "data/benchmarks/stencil3d/stencil.c"
+
 #line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 44 "data/benchmarks/stencil3d/stencil.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=14 max=14 avg=14
  loop_row : for(k = 1; k < 8 - 1; k++){
+#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+# 46 "data/benchmarks/stencil3d/stencil.c"
+
 #line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 46 "data/benchmarks/stencil3d/stencil.c"

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'ByteSub_ShiftRow'" level="0">
-<item name = "Date">Sat May 31 00:10:17 2025
+<item name = "Date">Wed Jul  9 03:26:54 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">AES</item>
@@ -96,22 +96,22 @@
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">16, 0, 16, 0</column>
-<column name="trunc_ln102_reg_554">8, 0, 8, 0</column>
-<column name="trunc_ln103_reg_559">8, 0, 8, 0</column>
-<column name="trunc_ln104_reg_574">8, 0, 8, 0</column>
-<column name="trunc_ln105_reg_579">8, 0, 8, 0</column>
-<column name="trunc_ln107_reg_594">8, 0, 8, 0</column>
-<column name="trunc_ln108_reg_599">8, 0, 8, 0</column>
-<column name="trunc_ln110_reg_614">8, 0, 8, 0</column>
-<column name="trunc_ln111_reg_619">8, 0, 8, 0</column>
-<column name="trunc_ln113_reg_634">8, 0, 8, 0</column>
-<column name="trunc_ln114_reg_639">8, 0, 8, 0</column>
-<column name="trunc_ln115_reg_654">8, 0, 8, 0</column>
-<column name="trunc_ln116_reg_659">8, 0, 8, 0</column>
-<column name="trunc_ln118_reg_684">8, 0, 8, 0</column>
-<column name="trunc_ln119_reg_689">8, 0, 8, 0</column>
-<column name="trunc_ln120_reg_714">8, 0, 8, 0</column>
-<column name="trunc_ln121_reg_719">8, 0, 8, 0</column>
+<column name="trunc_ln102_reg_558">8, 0, 8, 0</column>
+<column name="trunc_ln103_reg_563">8, 0, 8, 0</column>
+<column name="trunc_ln104_reg_578">8, 0, 8, 0</column>
+<column name="trunc_ln105_reg_583">8, 0, 8, 0</column>
+<column name="trunc_ln107_reg_598">8, 0, 8, 0</column>
+<column name="trunc_ln108_reg_603">8, 0, 8, 0</column>
+<column name="trunc_ln110_reg_618">8, 0, 8, 0</column>
+<column name="trunc_ln111_reg_623">8, 0, 8, 0</column>
+<column name="trunc_ln113_reg_638">8, 0, 8, 0</column>
+<column name="trunc_ln114_reg_643">8, 0, 8, 0</column>
+<column name="trunc_ln115_reg_658">8, 0, 8, 0</column>
+<column name="trunc_ln116_reg_663">8, 0, 8, 0</column>
+<column name="trunc_ln118_reg_688">8, 0, 8, 0</column>
+<column name="trunc_ln119_reg_693">8, 0, 8, 0</column>
+<column name="trunc_ln120_reg_718">8, 0, 8, 0</column>
+<column name="trunc_ln121_reg_723">8, 0, 8, 0</column>
 </table>
 </item>
 </section>

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'backprop'" level="0">
-<item name = "Date">Fri May 30 21:43:14 2025
+<item name = "Date">Wed Jul  9 03:32:57 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">50132118, 50132118, 0.401 sec, 0.401 sec, 50132119, 50132119, no</column>
+<column name="">50857142, 50857142, 0.407 sec, 0.407 sec, 50857143, 50857143, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- backprop_loop1">50132117, 50132117, 307559, -, -, 163, no</column>
+<column name="- backprop_loop1">50857141, 50857141, 312007, -, -, 163, no</column>
+<column name=" + backprop_loop1_1">128, 128, 2, -, -, 64, no</column>
 </table>
 </item>
 </section>

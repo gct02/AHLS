@@ -1,10 +1,10 @@
 {
   "0": {
-    "basicblocks": 10,
-    "calls": "1 5 4",
+    "basicblocks": 8,
+    "calls": "1 7 9 3",
     "file": "gsm.c",
     "fileloc": 7,
-    "instructions": 45,
+    "instructions": 38,
     "loads": {
       "T": 1
     },
@@ -12,14 +12,14 @@
     "stores": {
       "T": 1
     },
-    "total_instructions": 860
+    "total_instructions": 968
   },
   "1": {
-    "basicblocks": 23,
-    "calls": "3",
+    "basicblocks": 19,
+    "calls": "9 5 2",
     "file": "gsm_lpc.c",
     "fileloc": 34,
-    "instructions": 278,
+    "instructions": 258,
     "loads": {
       "L": 37
     },
@@ -27,18 +27,42 @@
     "stores": {
       "L": 21
     },
-    "total_instructions": 326
+    "total_instructions": 330
   },
   "2": {
-    "basicblocks": 5,
+    "basicblocks": 3,
     "calls": "",
     "file": "gsm_add.c",
-    "fileloc": 118,
-    "instructions": 23,
-    "name": "gsm_div",
-    "total_instructions": 23
+    "fileloc": 51,
+    "instructions": 14,
+    "name": "gsm_mult_r",
+    "total_instructions": 14
   },
   "3": {
+    "basicblocks": 17,
+    "calls": "4 6 6 4 6 6 4 6 6 4 6 6 4 6 6 4 6 6 4 6 6 4 6 6",
+    "file": "gsm_lpc.c",
+    "fileloc": 267,
+    "instructions": 128,
+    "loads": {
+      "L": 8
+    },
+    "name": "Quantization_and_coding",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 320
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 43,
+    "instructions": 6,
+    "name": "gsm_mult",
+    "total_instructions": 6
+  },
+  "5": {
     "basicblocks": 12,
     "calls": "",
     "file": "gsm_add.c",
@@ -50,27 +74,21 @@
     "name": "gsm_norm",
     "total_instructions": 48
   },
-  "4": {
-    "basicblocks": 17,
+  "6": {
+    "basicblocks": 1,
     "calls": "",
-    "file": "gsm_lpc.c",
-    "fileloc": 267,
-    "instructions": 234,
-    "loads": {
-      "L": 8
-    },
-    "name": "Quantization_and_coding",
-    "stores": {
-      "L": 8
-    },
-    "total_instructions": 234
+    "file": "gsm_add.c",
+    "fileloc": 36,
+    "instructions": 9,
+    "name": "gsm_add",
+    "total_instructions": 9
   },
-  "5": {
-    "basicblocks": 33,
-    "calls": "3 2",
+  "7": {
+    "basicblocks": 25,
+    "calls": "5 9 8 2 6 2 6 2 6",
     "file": "gsm_lpc.c",
     "fileloc": 160,
-    "instructions": 184,
+    "instructions": 120,
     "loads": {
       "L": 11
     },
@@ -78,6 +96,24 @@
     "stores": {
       "L": 10
     },
-    "total_instructions": 255
+    "total_instructions": 270
+  },
+  "8": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 118,
+    "instructions": 23,
+    "name": "gsm_div",
+    "total_instructions": 23
+  },
+  "9": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 65,
+    "instructions": 10,
+    "name": "gsm_abs",
+    "total_instructions": 10
   }
 }

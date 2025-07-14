@@ -1,0 +1,229 @@
+
+
+================================================================
+== Vitis HLS Report for 'scaled_fixed2ieee_63_1_s'
+================================================================
+* Date:           Wed Jul  9 04:19:50 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        TRANS_FFT
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  3.813 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       26|       30|  0.208 us|  0.240 us|   26|   30|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 9
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%in_shift_1_loc = alloca i64 1"   --->   Operation 10 'alloca' 'in_shift_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%shift_1_loc = alloca i64 1"   --->   Operation 11 'alloca' 'shift_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%in_shift_loc = alloca i64 1"   --->   Operation 12 'alloca' 'in_shift_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%shift_loc = alloca i64 1"   --->   Operation 13 'alloca' 'shift_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%c_3_02_loc = alloca i64 1"   --->   Operation 14 'alloca' 'c_3_02_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%c_0_03_loc = alloca i64 1"   --->   Operation 15 'alloca' 'c_0_03_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%c_1_04_loc = alloca i64 1"   --->   Operation 16 'alloca' 'c_1_04_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%c_2_05_loc = alloca i64 1"   --->   Operation 17 'alloca' 'c_2_05_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%out_bits_0_21_loc = alloca i64 1"   --->   Operation 18 'alloca' 'out_bits_0_21_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%out_bits_1_2_loc = alloca i64 1"   --->   Operation 19 'alloca' 'out_bits_1_2_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%out_bits_2_2_loc = alloca i64 1"   --->   Operation 20 'alloca' 'out_bits_2_2_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%out_bits_0_1_loc = alloca i64 1"   --->   Operation 21 'alloca' 'out_bits_0_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%out_bits_1_1_loc = alloca i64 1"   --->   Operation 22 'alloca' 'out_bits_1_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%out_bits_2_1_loc = alloca i64 1"   --->   Operation 23 'alloca' 'out_bits_2_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [2/2] (0.00ns)   --->   "%call_ln0 = call void @scaled_fixed2ieee<63, 1>_Pipeline_1, i32 %out_bits_2_1_loc, i32 %out_bits_1_1_loc, i32 %out_bits_0_1_loc"   --->   Operation 24 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 1.05>
+ST_2 : Operation 25 [1/2] (1.05ns)   --->   "%call_ln0 = call void @scaled_fixed2ieee<63, 1>_Pipeline_1, i32 %out_bits_2_1_loc, i32 %out_bits_1_1_loc, i32 %out_bits_0_1_loc"   --->   Operation 25 'call' 'call_ln0' <Predicate = true> <Delay = 1.05> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 1.77>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "%in_val_read = read i63 @_ssdm_op_Read.ap_auto.i63, i63 %in_val"   --->   Operation 26 'read' 'in_val_read' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%out_bits_2_1_loc_load = load i32 %out_bits_2_1_loc"   --->   Operation 27 'load' 'out_bits_2_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 28 [1/1] (0.00ns)   --->   "%out_bits_1_1_loc_load = load i32 %out_bits_1_1_loc"   --->   Operation 28 'load' 'out_bits_1_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 29 [1/1] (0.00ns)   --->   "%out_bits_0_1_loc_load = load i32 %out_bits_0_1_loc"   --->   Operation 29 'load' 'out_bits_0_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 30 [2/2] (1.77ns)   --->   "%call_ln0 = call void @scaled_fixed2ieee<63, 1>_Pipeline_2, i32 %out_bits_2_1_loc_load, i32 %out_bits_1_1_loc_load, i32 %out_bits_0_1_loc_load, i63 %in_val_read, i32 %out_bits_2_2_loc, i32 %out_bits_1_2_loc, i32 %out_bits_0_21_loc"   --->   Operation 30 'call' 'call_ln0' <Predicate = true> <Delay = 1.77> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%trunc_ln408 = trunc i63 %in_val_read" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:408]   --->   Operation 31 'trunc' 'trunc_ln408' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 0.82>
+ST_4 : Operation 32 [1/2] (0.82ns)   --->   "%call_ln0 = call void @scaled_fixed2ieee<63, 1>_Pipeline_2, i32 %out_bits_2_1_loc_load, i32 %out_bits_1_1_loc_load, i32 %out_bits_0_1_loc_load, i63 %in_val_read, i32 %out_bits_2_2_loc, i32 %out_bits_1_2_loc, i32 %out_bits_0_21_loc"   --->   Operation 32 'call' 'call_ln0' <Predicate = true> <Delay = 0.82> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.45>
+ST_5 : Operation 33 [1/1] (0.00ns)   --->   "%out_bits_2_2_loc_load = load i32 %out_bits_2_2_loc"   --->   Operation 33 'load' 'out_bits_2_2_loc_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 34 [1/1] (0.00ns)   --->   "%out_bits_1_2_loc_load = load i32 %out_bits_1_2_loc"   --->   Operation 34 'load' 'out_bits_1_2_loc_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 35 [1/1] (0.00ns)   --->   "%out_bits_0_21_loc_load = load i32 %out_bits_0_21_loc"   --->   Operation 35 'load' 'out_bits_0_21_loc_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%out_bits_3 = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i15.i17, i15 %trunc_ln408, i17 65536" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:410]   --->   Operation 36 'bitconcatenate' 'out_bits_3' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 37 [2/2] (0.45ns)   --->   "%call_ln410 = call void @scaled_fixed2ieee<63, 1>_Pipeline_3, i32 %out_bits_0_21_loc_load, i32 %out_bits_1_2_loc_load, i32 %out_bits_2_2_loc_load, i32 %out_bits_3, i32 %c_2_05_loc, i32 %c_1_04_loc, i32 %c_0_03_loc, i32 %c_3_02_loc" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:410]   --->   Operation 37 'call' 'call_ln410' <Predicate = true> <Delay = 0.45> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.95>
+ST_6 : Operation 38 [1/2] (0.95ns)   --->   "%call_ln410 = call void @scaled_fixed2ieee<63, 1>_Pipeline_3, i32 %out_bits_0_21_loc_load, i32 %out_bits_1_2_loc_load, i32 %out_bits_2_2_loc_load, i32 %out_bits_3, i32 %c_2_05_loc, i32 %c_1_04_loc, i32 %c_0_03_loc, i32 %c_3_02_loc" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:410]   --->   Operation 38 'call' 'call_ln410' <Predicate = true> <Delay = 0.95> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 1.13>
+ST_7 : Operation 39 [1/1] (0.00ns)   --->   "%c_2_05_loc_load = load i32 %c_2_05_loc"   --->   Operation 39 'load' 'c_2_05_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 40 [1/1] (0.00ns)   --->   "%c_1_04_loc_load = load i32 %c_1_04_loc"   --->   Operation 40 'load' 'c_1_04_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 41 [1/1] (0.00ns)   --->   "%c_0_03_loc_load = load i32 %c_0_03_loc"   --->   Operation 41 'load' 'c_0_03_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 42 [1/1] (0.00ns)   --->   "%c_3_02_loc_load = load i32 %c_3_02_loc"   --->   Operation 42 'load' 'c_3_02_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 43 [2/2] (0.38ns)   --->   "%targetBlock = call i1 @scaled_fixed2ieee<63, 1>_Pipeline_4, i63 %in_val_read, i32 %c_0_03_loc_load, i32 %c_1_04_loc_load, i32 %c_2_05_loc_load, i32 %c_3_02_loc_load, i32 %shift_loc, i62 %in_shift_loc, i32 %shift_1_loc, i62 %in_shift_1_loc"   --->   Operation 43 'call' 'targetBlock' <Predicate = true> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 44 [1/1] (1.13ns)   --->   "%icmp_ln433 = icmp_eq  i63 %in_val_read, i63 0" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433]   --->   Operation 44 'icmp' 'icmp_ln433' <Predicate = true> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.05>
+ST_8 : Operation 45 [1/2] (3.05ns)   --->   "%targetBlock = call i1 @scaled_fixed2ieee<63, 1>_Pipeline_4, i63 %in_val_read, i32 %c_0_03_loc_load, i32 %c_1_04_loc_load, i32 %c_2_05_loc_load, i32 %c_3_02_loc_load, i32 %shift_loc, i62 %in_shift_loc, i32 %shift_1_loc, i62 %in_shift_1_loc"   --->   Operation 45 'call' 'targetBlock' <Predicate = true> <Delay = 3.05> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 9 <SV = 8> <Delay = 2.04>
+ST_9 : Operation 46 [1/1] (0.00ns)   --->   "%prescale_read = read i12 @_ssdm_op_Read.ap_auto.i12, i12 %prescale"   --->   Operation 46 'read' 'prescale_read' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 47 [1/1] (0.00ns)   --->   "%shift_loc_load = load i32 %shift_loc"   --->   Operation 47 'load' 'shift_loc_load' <Predicate = (targetBlock)> <Delay = 0.00>
+ST_9 : Operation 48 [1/1] (0.00ns)   --->   "%in_shift_loc_load = load i62 %in_shift_loc"   --->   Operation 48 'load' 'in_shift_loc_load' <Predicate = (targetBlock)> <Delay = 0.00>
+ST_9 : Operation 49 [1/1] (0.00ns)   --->   "%shift_1_loc_load = load i32 %shift_1_loc"   --->   Operation 49 'load' 'shift_1_loc_load' <Predicate = (!targetBlock)> <Delay = 0.00>
+ST_9 : Operation 50 [1/1] (0.00ns)   --->   "%in_shift_1_loc_load = load i62 %in_shift_1_loc"   --->   Operation 50 'load' 'in_shift_1_loc_load' <Predicate = (!targetBlock)> <Delay = 0.00>
+ST_9 : Operation 51 [1/1] (0.00ns) (grouped into LUT with out node newexp)   --->   "%select_ln421 = select i1 %targetBlock, i32 %shift_loc_load, i32 %shift_1_loc_load" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421]   --->   Operation 51 'select' 'select_ln421' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.22> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 52 [1/1] (0.74ns)   --->   "%sub_ln432 = sub i12 1023, i12 %prescale_read" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:432]   --->   Operation 52 'sub' 'sub_ln432' <Predicate = true> <Delay = 0.74> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 53 [1/1] (0.00ns) (grouped into LUT with out node newexp)   --->   "%sext_ln432 = sext i12 %sub_ln432" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:432]   --->   Operation 53 'sext' 'sext_ln432' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 54 [1/1] (0.88ns) (out node of the LUT)   --->   "%newexp = sub i32 %sext_ln432, i32 %select_ln421" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:432]   --->   Operation 54 'sub' 'newexp' <Predicate = true> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 55 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i32.i32, i32 %newexp, i32 31" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433]   --->   Operation 55 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 56 [1/1] (0.12ns)   --->   "%or_ln433 = or i1 %tmp, i1 %icmp_ln433" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433]   --->   Operation 56 'or' 'or_ln433' <Predicate = true> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 57 [1/1] (0.00ns) (grouped into LUT with out node significand)   --->   "%tmp_14 = partselect i52 @_ssdm_op_PartSelect.i52.i62.i32.i32, i62 %in_shift_loc_load, i32 10, i32 61"   --->   Operation 57 'partselect' 'tmp_14' <Predicate = (targetBlock)> <Delay = 0.00>
+ST_9 : Operation 58 [1/1] (0.00ns) (grouped into LUT with out node significand)   --->   "%tmp_15 = partselect i52 @_ssdm_op_PartSelect.i52.i62.i32.i32, i62 %in_shift_1_loc_load, i32 10, i32 61"   --->   Operation 58 'partselect' 'tmp_15' <Predicate = (!targetBlock)> <Delay = 0.00>
+ST_9 : Operation 59 [1/1] (0.00ns) (grouped into LUT with out node significand)   --->   "%select_ln421_1 = select i1 %targetBlock, i52 %tmp_14, i52 %tmp_15" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421]   --->   Operation 59 'select' 'select_ln421_1' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.27> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 60 [1/1] (0.00ns)   --->   "%empty = trunc i32 %newexp" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:432]   --->   Operation 60 'trunc' 'empty' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 61 [1/1] (0.27ns) (out node of the LUT)   --->   "%significand = select i1 %or_ln433, i52 0, i52 %select_ln421_1" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433]   --->   Operation 61 'select' 'significand' <Predicate = true> <Delay = 0.27> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.27> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 62 [1/1] (0.30ns)   --->   "%out_exp = select i1 %or_ln433, i11 0, i11 %empty" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433]   --->   Operation 62 'select' 'out_exp' <Predicate = true> <Delay = 0.30> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.30> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 63 [1/1] (0.00ns)   --->   "%t = bitconcatenate i64 @_ssdm_op_BitConcatenate.i64.i1.i11.i52, i1 0, i11 %out_exp, i52 %significand" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:479->/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:496->/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:510->/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:446]   --->   Operation 63 'bitconcatenate' 't' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 64 [1/1] (0.00ns)   --->   "%bitcast_ln497 = bitcast i64 %t" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:497->/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:510->/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:446]   --->   Operation 64 'bitcast' 'bitcast_ln497' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 65 [1/1] (0.00ns)   --->   "%ret_ln447 = ret i64 %bitcast_ln497" [/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:447]   --->   Operation 65 'ret' 'ret_ln447' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 0.000ns
+The critical path consists of the following:
+
+ <State 2>: 1.050ns
+The critical path consists of the following:
+	'call' operation 0 bit ('call_ln0') to 'scaled_fixed2ieee<63, 1>_Pipeline_1' [19]  (1.050 ns)
+
+ <State 3>: 1.779ns
+The critical path consists of the following:
+	wire read operation ('in_val_read') on port 'in_val' [4]  (0.000 ns)
+	'call' operation 0 bit ('call_ln0') to 'scaled_fixed2ieee<63, 1>_Pipeline_2' [23]  (1.779 ns)
+
+ <State 4>: 0.823ns
+The critical path consists of the following:
+	'call' operation 0 bit ('call_ln0') to 'scaled_fixed2ieee<63, 1>_Pipeline_2' [23]  (0.823 ns)
+
+ <State 5>: 0.453ns
+The critical path consists of the following:
+	'load' operation 32 bit ('out_bits_2_2_loc_load') on local variable 'out_bits_2_2_loc' [24]  (0.000 ns)
+	'call' operation 0 bit ('call_ln410', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:410) to 'scaled_fixed2ieee<63, 1>_Pipeline_3' [29]  (0.453 ns)
+
+ <State 6>: 0.959ns
+The critical path consists of the following:
+	'call' operation 0 bit ('call_ln410', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:410) to 'scaled_fixed2ieee<63, 1>_Pipeline_3' [29]  (0.959 ns)
+
+ <State 7>: 1.134ns
+The critical path consists of the following:
+	'icmp' operation 1 bit ('icmp_ln433', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433) [44]  (1.134 ns)
+
+ <State 8>: 3.050ns
+The critical path consists of the following:
+	'call' operation 1 bit ('targetBlock') to 'scaled_fixed2ieee<63, 1>_Pipeline_4' [34]  (3.050 ns)
+
+ <State 9>: 2.048ns
+The critical path consists of the following:
+	wire read operation ('prescale_read') on port 'prescale' [3]  (0.000 ns)
+	'sub' operation 12 bit ('sub_ln432', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:432) [40]  (0.745 ns)
+	'sub' operation 32 bit ('newexp', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:432) [42]  (0.880 ns)
+	'or' operation 1 bit ('or_ln433', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433) [45]  (0.122 ns)
+	'select' operation 11 bit ('out.exp', /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:433) [51]  (0.301 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

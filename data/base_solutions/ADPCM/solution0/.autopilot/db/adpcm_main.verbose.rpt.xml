@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'adpcm_main'" level="0">
-<item name = "Date">Fri May 30 21:17:06 2025
+<item name = "Date">Wed Jul  9 03:20:00 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -24,22 +24,22 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">13404, 13504, 0.107 ms, 0.108 ms, 13405, 13505, no</column>
+<column name="">13704, 13804, 0.110 ms, 0.110 ms, 13705, 13805, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_reset_fu_241">reset, 51, 51, 0.408 us, 0.408 us, 51, 51, no</column>
-<column name="grp_encode_fu_331">encode, 165, 167, 1.320 us, 1.336 us, 165, 167, no</column>
-<column name="grp_decode_fu_397">decode, 95, 95, 0.760 us, 0.760 us, 95, 95, no</column>
+<column name="grp_reset_fu_243">reset, 51, 51, 0.408 us, 0.408 us, 51, 51, no</column>
+<column name="grp_encode_fu_333">encode, 168, 170, 1.344 us, 1.360 us, 168, 170, no</column>
+<column name="grp_decode_fu_399">decode, 98, 98, 0.784 us, 0.784 us, 98, 98, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- adpcm_main_label12">8400, 8500, 168 ~ 170, -, -, 50, no</column>
-<column name="- adpcm_main_label13">4950, 4950, 99, -, -, 50, no</column>
+<column name="- adpcm_main_label12">8550, 8650, 171 ~ 173, -, -, 50, no</column>
+<column name="- adpcm_main_label13">5100, 5100, 102, -, -, 50, no</column>
 </table>
 </item>
 </section>
@@ -54,23 +54,29 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 66, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">0, 54, 1747, 7658, -</column>
-<column name="Memory">0, -, 352, 367, 0</column>
-<column name="Multiplexer">-, -, -, 1248, -</column>
+<column name="Instance">0, 54, 2259, 6768, -</column>
+<column name="Memory">0, -, 320, 333, 0</column>
+<column name="Multiplexer">-, -, -, 1486, -</column>
 <column name="Register">-, -, 926, -, -</column>
 <specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
-<specialColumn name="Utilization SLR (%)">0, 1, ~0, 2, 0</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 1, ~0, 1, 0</specialColumn>
 <specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
-<specialColumn name="Utilization (%)">0, ~0, ~0, 1, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, ~0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_decode_fu_397">decode, 0, 22, 640, 3389, 0</column>
-<column name="grp_encode_fu_331">encode, 0, 32, 1087, 4114, 0</column>
-<column name="grp_reset_fu_241">reset, 0, 0, 20, 155, 0</column>
+<column name="grp_decode_fu_399">decode, 0, 12, 833, 2272, 0</column>
+<column name="grp_encode_fu_333">encode, 0, 26, 1284, 3385, 0</column>
+<column name="grp_filtep_fu_650">filtep, 0, 4, 0, 94, 0</column>
+<column name="tmp_s_logsch_fu_684">logsch, 0, 0, 0, 130, 0</column>
+<column name="grp_logscl_fu_657">logscl, 0, 0, 33, 150, 0</column>
+<column name="grp_reset_fu_243">reset, 0, 0, 20, 155, 0</column>
+<column name="grp_scalel_fu_663">scalel, 0, 0, 34, 89, 0</column>
+<column name="grp_uppol1_fu_669">uppol1, 0, 4, 36, 239, 0</column>
+<column name="grp_uppol2_fu_676">uppol2, 0, 8, 19, 254, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -90,10 +96,8 @@
 <column name="dec_del_dltx_U">delay_dltx_RAM_AUTO_1R1W, 0, 16, 17, 0, 6, 16, 1, 96</column>
 <column name="dec_del_dhx_U">delay_dltx_RAM_AUTO_1R1W, 0, 16, 17, 0, 6, 16, 1, 96</column>
 <column name="h_U">h_ROM_AUTO_1R, 0, 16, 17, 0, 24, 15, 1, 360</column>
-<column name="ilb_table_U">ilb_table_ROM_AUTO_1R, 0, 16, 17, 0, 32, 12, 1, 384</column>
 <column name="qq4_code4_table_U">qq4_code4_table_ROM_AUTO_1R, 0, 16, 17, 0, 16, 16, 1, 256</column>
 <column name="tqmf_U">tqmf_RAM_AUTO_1R1W, 0, 32, 33, 0, 24, 32, 1, 768</column>
-<column name="wl_code_table_U">wl_code_table_ROM_AUTO_1R, 0, 16, 17, 0, 16, 13, 1, 208</column>
 </table>
 </item>
 <item name = "FIFO"><table name="" hasTotal="1">
@@ -102,12 +106,12 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln217_fu_476_p2">+, 0, 0, 13, 6, 1</column>
-<column name="add_ln223_fu_534_p2">+, 0, 0, 13, 6, 1</column>
-<column name="icmp_ln217_fu_470_p2">icmp, 0, 0, 13, 6, 5</column>
-<column name="icmp_ln223_fu_528_p2">icmp, 0, 0, 13, 6, 5</column>
-<column name="or_ln219_fu_495_p2">or, 0, 0, 7, 7, 1</column>
-<column name="or_ln227_fu_577_p2">or, 0, 0, 7, 7, 1</column>
+<column name="add_ln217_fu_478_p2">+, 0, 0, 13, 6, 1</column>
+<column name="add_ln223_fu_536_p2">+, 0, 0, 13, 6, 1</column>
+<column name="icmp_ln217_fu_472_p2">icmp, 0, 0, 13, 6, 5</column>
+<column name="icmp_ln223_fu_530_p2">icmp, 0, 0, 13, 6, 5</column>
+<column name="or_ln219_fu_497_p2">or, 0, 0, 7, 7, 1</column>
+<column name="or_ln227_fu_579_p2">or, 0, 0, 7, 7, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -184,16 +188,33 @@
 <column name="deth">9, 2, 15, 30</column>
 <column name="detl">9, 2, 15, 30</column>
 <column name="encoded_address0">14, 3, 6, 18</column>
+<column name="grp_filtep_fu_650_al1">14, 3, 16, 48</column>
+<column name="grp_filtep_fu_650_al2">14, 3, 15, 45</column>
+<column name="grp_filtep_fu_650_rlt1">14, 3, 31, 93</column>
+<column name="grp_filtep_fu_650_rlt2">14, 3, 31, 93</column>
+<column name="grp_logscl_fu_657_ap_start">14, 3, 1, 3</column>
+<column name="grp_logscl_fu_657_il">14, 3, 6, 18</column>
+<column name="grp_logscl_fu_657_nbl">14, 3, 15, 45</column>
+<column name="grp_scalel_fu_663_ap_start">14, 3, 1, 3</column>
+<column name="grp_scalel_fu_663_nbl">14, 3, 15, 45</column>
+<column name="grp_scalel_fu_663_shift_constant">14, 3, 4, 12</column>
+<column name="grp_uppol1_fu_669_al1">14, 3, 16, 48</column>
+<column name="grp_uppol1_fu_669_ap_start">14, 3, 1, 3</column>
+<column name="grp_uppol1_fu_669_apl2">14, 3, 15, 45</column>
+<column name="grp_uppol1_fu_669_plt">14, 3, 32, 96</column>
+<column name="grp_uppol1_fu_669_plt1">14, 3, 32, 96</column>
+<column name="grp_uppol2_fu_676_al1">14, 3, 16, 48</column>
+<column name="grp_uppol2_fu_676_al2">14, 3, 15, 45</column>
+<column name="grp_uppol2_fu_676_ap_start">14, 3, 1, 3</column>
+<column name="grp_uppol2_fu_676_plt">14, 3, 32, 96</column>
+<column name="grp_uppol2_fu_676_plt1">14, 3, 32, 96</column>
+<column name="grp_uppol2_fu_676_plt2">14, 3, 32, 96</column>
 <column name="h_address0">14, 3, 5, 15</column>
 <column name="h_address1">14, 3, 5, 15</column>
 <column name="h_ce0">14, 3, 1, 3</column>
 <column name="h_ce1">14, 3, 1, 3</column>
-<column name="i_11_fu_166">9, 2, 6, 12</column>
-<column name="i_fu_162">9, 2, 6, 12</column>
-<column name="ilb_table_address0">14, 3, 5, 15</column>
-<column name="ilb_table_address1">14, 3, 5, 15</column>
-<column name="ilb_table_ce0">14, 3, 1, 3</column>
-<column name="ilb_table_ce1">14, 3, 1, 3</column>
+<column name="i_11_fu_168">9, 2, 6, 12</column>
+<column name="i_fu_164">9, 2, 6, 12</column>
 <column name="nbh">9, 2, 15, 30</column>
 <column name="nbl">9, 2, 15, 30</column>
 <column name="ph1">9, 2, 32, 64</column>
@@ -206,14 +227,14 @@
 <column name="rh2">9, 2, 31, 62</column>
 <column name="rlt1">9, 2, 31, 62</column>
 <column name="rlt2">9, 2, 31, 62</column>
+<column name="tmp_s_logsch_fu_684_ih">14, 3, 2, 6</column>
+<column name="tmp_s_logsch_fu_684_nbh">14, 3, 15, 45</column>
 <column name="tqmf_address0">14, 3, 5, 15</column>
 <column name="tqmf_ce0">14, 3, 1, 3</column>
 <column name="tqmf_ce1">9, 2, 1, 2</column>
 <column name="tqmf_d0">14, 3, 32, 96</column>
 <column name="tqmf_we0">14, 3, 1, 3</column>
 <column name="tqmf_we1">9, 2, 1, 2</column>
-<column name="wl_code_table_address0">14, 3, 4, 12</column>
-<column name="wl_code_table_ce0">14, 3, 1, 3</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
@@ -241,16 +262,16 @@
 <column name="dec_rlt2">31, 0, 31, 0</column>
 <column name="deth">15, 0, 15, 0</column>
 <column name="detl">15, 0, 15, 0</column>
-<column name="grp_decode_fu_397_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_encode_fu_331_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_reset_fu_241_ap_start_reg">1, 0, 1, 0</column>
-<column name="i_11_fu_166">6, 0, 6, 0</column>
-<column name="i_18_reg_595">6, 0, 6, 0</column>
-<column name="i_19_reg_630">6, 0, 6, 0</column>
-<column name="i_fu_162">6, 0, 6, 0</column>
+<column name="grp_decode_fu_399_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_encode_fu_333_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_reset_fu_243_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_11_fu_168">6, 0, 6, 0</column>
+<column name="i_18_reg_597">6, 0, 6, 0</column>
+<column name="i_19_reg_632">6, 0, 6, 0</column>
+<column name="i_fu_164">6, 0, 6, 0</column>
 <column name="il">6, 0, 6, 0</column>
-<column name="in_data_load_1_reg_625">32, 0, 32, 0</column>
-<column name="in_data_load_reg_620">32, 0, 32, 0</column>
+<column name="in_data_load_1_reg_627">32, 0, 32, 0</column>
+<column name="in_data_load_reg_622">32, 0, 32, 0</column>
 <column name="nbh">15, 0, 15, 0</column>
 <column name="nbl">15, 0, 15, 0</column>
 <column name="ph1">32, 0, 32, 0</column>
@@ -261,7 +282,7 @@
 <column name="rh2">31, 0, 31, 0</column>
 <column name="rlt1">31, 0, 31, 0</column>
 <column name="rlt2">31, 0, 31, 0</column>
-<column name="trunc_ln225_reg_643">8, 0, 8, 0</column>
+<column name="trunc_ln225_reg_645">8, 0, 8, 0</column>
 <column name="xout1">32, 0, 32, 0</column>
 <column name="xout2">32, 0, 32, 0</column>
 </table>

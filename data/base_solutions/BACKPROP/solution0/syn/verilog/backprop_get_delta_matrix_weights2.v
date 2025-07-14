@@ -23,10 +23,10 @@ module backprop_get_delta_matrix_weights2 (
         last_activations_address0,
         last_activations_ce0,
         last_activations_q0,
-        grp_fu_990_p_din0,
-        grp_fu_990_p_din1,
-        grp_fu_990_p_dout0,
-        grp_fu_990_p_ce
+        grp_fu_994_p_din0,
+        grp_fu_994_p_din1,
+        grp_fu_994_p_dout0,
+        grp_fu_994_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 9'd1;
@@ -55,10 +55,10 @@ input  [63:0] output_difference_q0;
 output  [5:0] last_activations_address0;
 output   last_activations_ce0;
 input  [63:0] last_activations_q0;
-output  [63:0] grp_fu_990_p_din0;
-output  [63:0] grp_fu_990_p_din1;
-input  [63:0] grp_fu_990_p_dout0;
-output   grp_fu_990_p_ce;
+output  [63:0] grp_fu_994_p_din0;
+output  [63:0] grp_fu_994_p_din1;
+input  [63:0] grp_fu_994_p_dout0;
+output   grp_fu_994_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -70,31 +70,31 @@ reg last_activations_ce0;
 
 (* fsm_encoding = "none" *) reg   [8:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [6:0] add_ln158_fu_103_p2;
-reg   [6:0] add_ln158_reg_169;
+wire   [6:0] add_ln158_fu_109_p2;
+reg   [6:0] add_ln158_reg_175;
 wire    ap_CS_fsm_state2;
-wire   [5:0] empty_fu_114_p1;
-reg   [5:0] empty_reg_179;
-reg   [63:0] last_activations_load_reg_184;
+wire   [5:0] empty_fu_120_p1;
+reg   [5:0] empty_reg_185;
+reg   [63:0] last_activations_load_reg_190;
 wire    ap_CS_fsm_state3;
-wire   [11:0] tmp_s_fu_118_p3;
-reg   [11:0] tmp_s_reg_189;
-wire   [6:0] add_ln161_fu_131_p2;
-reg   [6:0] add_ln161_reg_197;
+wire   [11:0] tmp_s_fu_124_p3;
+reg   [11:0] tmp_s_reg_195;
+wire   [6:0] add_ln161_fu_137_p2;
+reg   [6:0] add_ln161_reg_203;
 wire    ap_CS_fsm_state4;
-wire   [11:0] add_ln163_fu_146_p2;
-reg   [11:0] add_ln163_reg_207;
-reg   [63:0] mul_reg_217;
+wire   [11:0] add_ln163_fu_152_p2;
+reg   [11:0] add_ln163_reg_213;
+reg   [63:0] mul_reg_223;
 wire    ap_CS_fsm_state8;
-reg   [6:0] j_reg_73;
+reg   [6:0] j_reg_79;
 wire    ap_CS_fsm_state9;
-wire   [63:0] zext_ln158_fu_109_p1;
-wire   [0:0] icmp_ln158_fu_97_p2;
-wire   [63:0] zext_ln161_fu_137_p1;
-wire   [0:0] icmp_ln161_fu_125_p2;
-wire   [63:0] zext_ln163_fu_155_p1;
-reg   [6:0] i_fu_30;
-wire   [11:0] zext_ln161_1_fu_142_p1;
+wire   [63:0] zext_ln158_fu_115_p1;
+wire   [0:0] icmp_ln158_fu_103_p2;
+wire   [63:0] zext_ln161_fu_143_p1;
+wire   [0:0] icmp_ln161_fu_131_p2;
+wire   [63:0] zext_ln163_fu_161_p1;
+reg   [6:0] i_fu_36;
+wire   [11:0] zext_ln161_1_fu_148_p1;
 reg   [8:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
@@ -110,7 +110,7 @@ wire    ap_ce_reg;
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 9'd1;
-#0 i_fu_30 = 7'd0;
+#0 i_fu_36 = 7'd0;
 end
 
 always @ (posedge ap_clk) begin
@@ -123,44 +123,44 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-        i_fu_30 <= 7'd0;
-    end else if (((1'b1 == ap_CS_fsm_state4) & (icmp_ln161_fu_125_p2 == 1'd1))) begin
-        i_fu_30 <= add_ln158_reg_169;
+        i_fu_36 <= 7'd0;
+    end else if (((1'b1 == ap_CS_fsm_state4) & (icmp_ln161_fu_131_p2 == 1'd1))) begin
+        i_fu_36 <= add_ln158_reg_175;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        j_reg_73 <= 7'd0;
+        j_reg_79 <= 7'd0;
     end else if ((1'b1 == ap_CS_fsm_state9)) begin
-        j_reg_73 <= add_ln161_reg_197;
+        j_reg_79 <= add_ln161_reg_203;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        add_ln158_reg_169 <= add_ln158_fu_103_p2;
-        empty_reg_179 <= empty_fu_114_p1;
+        add_ln158_reg_175 <= add_ln158_fu_109_p2;
+        empty_reg_185 <= empty_fu_120_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        add_ln161_reg_197 <= add_ln161_fu_131_p2;
-        add_ln163_reg_207 <= add_ln163_fu_146_p2;
+        add_ln161_reg_203 <= add_ln161_fu_137_p2;
+        add_ln163_reg_213 <= add_ln163_fu_152_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        last_activations_load_reg_184 <= last_activations_q0;
-        tmp_s_reg_189[11 : 6] <= tmp_s_fu_118_p3[11 : 6];
+        last_activations_load_reg_190 <= last_activations_q0;
+        tmp_s_reg_195[11 : 6] <= tmp_s_fu_124_p3[11 : 6];
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        mul_reg_217 <= grp_fu_990_p_dout0;
+        mul_reg_223 <= grp_fu_994_p_dout0;
     end
 end
 
@@ -189,7 +189,7 @@ assign ap_ST_fsm_state8_blk = 1'b0;
 assign ap_ST_fsm_state9_blk = 1'b0;
 
 always @ (*) begin
-    if ((((1'b1 == ap_CS_fsm_state2) & (icmp_ln158_fu_97_p2 == 1'd1)) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)))) begin
+    if ((((1'b1 == ap_CS_fsm_state2) & (icmp_ln158_fu_103_p2 == 1'd1)) | ((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -205,7 +205,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln158_fu_97_p2 == 1'd1))) begin
+    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln158_fu_103_p2 == 1'd1))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -254,7 +254,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln158_fu_97_p2 == 1'd1))) begin
+            if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln158_fu_103_p2 == 1'd1))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state3;
@@ -264,7 +264,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state4;
         end
         ap_ST_fsm_state4 : begin
-            if (((1'b1 == ap_CS_fsm_state4) & (icmp_ln161_fu_125_p2 == 1'd1))) begin
+            if (((1'b1 == ap_CS_fsm_state4) & (icmp_ln161_fu_131_p2 == 1'd1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state5;
@@ -291,11 +291,11 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln158_fu_103_p2 = (i_fu_30 + 7'd1);
+assign add_ln158_fu_109_p2 = (i_fu_36 + 7'd1);
 
-assign add_ln161_fu_131_p2 = (j_reg_73 + 7'd1);
+assign add_ln161_fu_137_p2 = (j_reg_79 + 7'd1);
 
-assign add_ln163_fu_146_p2 = (zext_ln161_1_fu_142_p1 + tmp_s_reg_189);
+assign add_ln163_fu_152_p2 = (zext_ln161_1_fu_148_p1 + tmp_s_reg_195);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -309,38 +309,38 @@ assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 
 assign ap_CS_fsm_state9 = ap_CS_fsm[32'd8];
 
-assign delta_weights2_address0 = zext_ln163_fu_155_p1;
+assign delta_weights2_address0 = zext_ln163_fu_161_p1;
 
-assign delta_weights2_d0 = mul_reg_217;
+assign delta_weights2_d0 = mul_reg_223;
 
-assign empty_fu_114_p1 = i_fu_30[5:0];
+assign empty_fu_120_p1 = i_fu_36[5:0];
 
-assign grp_fu_990_p_ce = 1'b1;
+assign grp_fu_994_p_ce = 1'b1;
 
-assign grp_fu_990_p_din0 = last_activations_load_reg_184;
+assign grp_fu_994_p_din0 = last_activations_load_reg_190;
 
-assign grp_fu_990_p_din1 = output_difference_q0;
+assign grp_fu_994_p_din1 = output_difference_q0;
 
-assign icmp_ln158_fu_97_p2 = ((i_fu_30 == 7'd64) ? 1'b1 : 1'b0);
+assign icmp_ln158_fu_103_p2 = ((i_fu_36 == 7'd64) ? 1'b1 : 1'b0);
 
-assign icmp_ln161_fu_125_p2 = ((j_reg_73 == 7'd64) ? 1'b1 : 1'b0);
+assign icmp_ln161_fu_131_p2 = ((j_reg_79 == 7'd64) ? 1'b1 : 1'b0);
 
-assign last_activations_address0 = zext_ln158_fu_109_p1;
+assign last_activations_address0 = zext_ln158_fu_115_p1;
 
-assign output_difference_address0 = zext_ln161_fu_137_p1;
+assign output_difference_address0 = zext_ln161_fu_143_p1;
 
-assign tmp_s_fu_118_p3 = {{empty_reg_179}, {6'd0}};
+assign tmp_s_fu_124_p3 = {{empty_reg_185}, {6'd0}};
 
-assign zext_ln158_fu_109_p1 = i_fu_30;
+assign zext_ln158_fu_115_p1 = i_fu_36;
 
-assign zext_ln161_1_fu_142_p1 = j_reg_73;
+assign zext_ln161_1_fu_148_p1 = j_reg_79;
 
-assign zext_ln161_fu_137_p1 = j_reg_73;
+assign zext_ln161_fu_143_p1 = j_reg_79;
 
-assign zext_ln163_fu_155_p1 = add_ln163_reg_207;
+assign zext_ln163_fu_161_p1 = add_ln163_reg_213;
 
 always @ (posedge ap_clk) begin
-    tmp_s_reg_189[5:0] <= 6'b000000;
+    tmp_s_reg_195[5:0] <= 6'b000000;
 end
 
 endmodule //backprop_get_delta_matrix_weights2

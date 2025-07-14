@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Sat May 31 00:15:26 2025
+| Date              : Wed Jul  9 03:32:37 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file ./report/aes_main_timing_routed.rpt
 | Design            : bd_0_wrapper
@@ -234,12 +234,12 @@ Slack (MET) :             5.018ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
     RAMB36_X4Y9          RAMB36E2 (Prop_RAMB36E2_RAMB36_CLKBWRCLK_DOUTBDOUT[29])
                                                       0.863     0.939 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[29]
-                         net (fo=9, routed)           1.090     2.029    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[29]
+                         net (fo=9, routed)           1.090     2.029    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[29]
     SLICE_X64Y63         LUT5 (Prop_F6LUT_SLICEL_I4_O)
-                                                      0.123     2.152 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_117__0/O
-                         net (fo=1, routed)           0.040     2.192    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_16
+                                                      0.123     2.152 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_117__0/O
+                         net (fo=1, routed)           0.040     2.192    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_16
     SLICE_X64Y63         LUT6 (Prop_H6LUT_SLICEL_I5_O)
-                                                      0.090     2.282 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_23__0/O
+                                                      0.090     2.282 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_23__0/O
                          net (fo=1, routed)           0.434     2.716    bd_0_i/hls_inst/inst/word_U/DINADIN[29]
     RAMB36_X4Y9          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[29]
   -------------------------------------------------------------------    -------------------
@@ -265,9 +265,9 @@ Slack (MET) :             5.018ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.046ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/reg_294_reg[11]/C
+  Source:                 bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/reg_296_reg[11]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/temp_1_2_reg_1233_reg[11]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/temp_1_2_reg_1235_reg[11]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
@@ -283,22 +283,22 @@ Slack (MET) :             0.046ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1632, unset)         0.013     0.013    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ap_clk
-    SLICE_X61Y62         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/reg_294_reg[11]/C
+                         net (fo=1632, unset)         0.013     0.013    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ap_clk
+    SLICE_X61Y62         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/reg_296_reg[11]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X61Y62         FDRE (Prop_DFF2_SLICEM_C_Q)
-                                                      0.041     0.054 r  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/reg_294_reg[11]/Q
-                         net (fo=2, routed)           0.058     0.112    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/reg_294[11]
-    SLICE_X62Y62         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/temp_1_2_reg_1233_reg[11]/D
+                                                      0.041     0.054 r  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/reg_296_reg[11]/Q
+                         net (fo=2, routed)           0.058     0.112    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/reg_296[11]
+    SLICE_X62Y62         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/temp_1_2_reg_1235_reg[11]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=1632, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ap_clk
-    SLICE_X62Y62         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/temp_1_2_reg_1233_reg[11]/C
+                         net (fo=1632, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ap_clk
+    SLICE_X62Y62         FDRE                                         r  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/temp_1_2_reg_1235_reg[11]/C
                          clock pessimism              0.000     0.019    
     SLICE_X62Y62         FDRE (Hold_FFF2_SLICEL_C_D)
-                                                      0.047     0.066    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/temp_1_2_reg_1233_reg[11]
+                                                      0.047     0.066    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/temp_1_2_reg_1235_reg[11]
   -------------------------------------------------------------------
                          required time                         -0.066    
                          arrival time                           0.112    
@@ -317,9 +317,9 @@ Period(ns):         8.000
 Sources:            { ap_clk }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.569         8.000       6.431      RAMB36_X4Y10  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg_bram_0/CLKARDCLK
-Low Pulse Width   Slow    RAMB18E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB18_X4Y14  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q0_reg/CLKARDCLK
-High Pulse Width  Slow    RAMB18E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB18_X4Y14  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q0_reg/CLKARDCLK
+Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.569         8.000       6.431      RAMB36_X4Y10  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg_bram_0/CLKARDCLK
+Low Pulse Width   Slow    RAMB18E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB18_X4Y14  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q0_reg/CLKARDCLK
+High Pulse Width  Slow    RAMB18E2/CLKARDCLK  n/a            0.542         4.000       3.458      RAMB18_X4Y14  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q0_reg/CLKARDCLK
 
 
 

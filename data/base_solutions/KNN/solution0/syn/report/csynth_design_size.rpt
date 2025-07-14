@@ -28,14 +28,14 @@
 |               |                             |              |                                                                                        |
 | HW Transforms |                             |              | After hardware transfomations                                                          |
 |               | (1) lowering                | 81           | initial conversion to HW specific instructions                                         |
-|               | (2) optimizations           | 88           | high level synthesis optimizations                                                     |
+|               | (2) optimizations           | 90           | high level synthesis optimizations                                                     |
 +---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
 
 * Instructions per Function for each Compilation Phase
 +-------------+----------+--------------+---------------+--------------+-------------+---------------+
 | Function    | Location | Compile/Link | Unroll/Inline | Array/Struct | Performance | HW Transforms |
 +-------------+----------+--------------+---------------+--------------+-------------+---------------+
-|   md_kernel | md.c:10  | 73           | 58            | 61           | 58          | 88            |
+|   md_kernel | md.c:10  | 73           | 58            | 61           | 58          | 90            |
 +-------------+----------+--------------+---------------+--------------+-------------+---------------+
 
 * Design Size Message Settings

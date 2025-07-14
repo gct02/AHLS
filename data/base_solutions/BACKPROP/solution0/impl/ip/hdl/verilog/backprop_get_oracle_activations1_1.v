@@ -26,15 +26,15 @@ module backprop_get_oracle_activations1_1 (
         dactivations_address0,
         dactivations_ce0,
         dactivations_q0,
-        grp_fu_986_p_din0,
-        grp_fu_986_p_din1,
-        grp_fu_986_p_opcode,
-        grp_fu_986_p_dout0,
-        grp_fu_986_p_ce,
         grp_fu_990_p_din0,
         grp_fu_990_p_din1,
+        grp_fu_990_p_opcode,
         grp_fu_990_p_dout0,
-        grp_fu_990_p_ce
+        grp_fu_990_p_ce,
+        grp_fu_994_p_din0,
+        grp_fu_994_p_din1,
+        grp_fu_994_p_dout0,
+        grp_fu_994_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 16'd1;
@@ -73,15 +73,15 @@ output  [63:0] oracle_activations_d0;
 output  [5:0] dactivations_address0;
 output   dactivations_ce0;
 input  [63:0] dactivations_q0;
-output  [63:0] grp_fu_986_p_din0;
-output  [63:0] grp_fu_986_p_din1;
-output  [0:0] grp_fu_986_p_opcode;
-input  [63:0] grp_fu_986_p_dout0;
-output   grp_fu_986_p_ce;
 output  [63:0] grp_fu_990_p_din0;
 output  [63:0] grp_fu_990_p_din1;
+output  [0:0] grp_fu_990_p_opcode;
 input  [63:0] grp_fu_990_p_dout0;
 output   grp_fu_990_p_ce;
+output  [63:0] grp_fu_994_p_din0;
+output  [63:0] grp_fu_994_p_din1;
+input  [63:0] grp_fu_994_p_dout0;
+output   grp_fu_994_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -94,38 +94,38 @@ reg dactivations_ce0;
 
 (* fsm_encoding = "none" *) reg   [15:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [6:0] add_ln174_fu_150_p2;
-reg   [6:0] add_ln174_reg_222;
+wire   [6:0] add_ln174_fu_152_p2;
+reg   [6:0] add_ln174_reg_224;
 wire    ap_CS_fsm_state2;
-wire   [63:0] zext_ln174_fu_156_p1;
-reg   [63:0] zext_ln174_reg_227;
-reg   [5:0] oracle_activations_addr_reg_232;
-wire   [11:0] tmp_s_fu_165_p3;
-reg   [11:0] tmp_s_reg_237;
-wire   [6:0] add_ln178_fu_179_p2;
-reg   [6:0] add_ln178_reg_245;
+wire   [63:0] zext_ln174_fu_158_p1;
+reg   [63:0] zext_ln174_reg_229;
+reg   [5:0] oracle_activations_addr_reg_234;
+wire   [11:0] tmp_s_fu_167_p3;
+reg   [11:0] tmp_s_reg_239;
+wire   [6:0] add_ln178_fu_181_p2;
+reg   [6:0] add_ln178_reg_247;
 wire    ap_CS_fsm_state3;
 wire    ap_CS_fsm_state4;
-reg   [63:0] weights2_load_reg_265;
+reg   [63:0] weights2_load_reg_267;
 wire    ap_CS_fsm_state5;
-wire   [63:0] bitcast_ln180_fu_208_p1;
-reg   [63:0] mul8_reg_280;
+wire   [63:0] bitcast_ln180_fu_210_p1;
+reg   [63:0] mul8_reg_282;
 wire    ap_CS_fsm_state8;
 wire    ap_CS_fsm_state12;
 wire    ap_CS_fsm_state13;
-reg   [6:0] j_reg_99;
-wire   [0:0] icmp_ln174_fu_144_p2;
-reg   [63:0] add113_reg_111;
-wire   [63:0] zext_ln180_fu_194_p1;
-wire   [0:0] icmp_ln178_fu_173_p2;
-wire   [63:0] zext_ln178_fu_203_p1;
-reg   [6:0] i_fu_44;
+reg   [6:0] j_reg_101;
+wire   [0:0] icmp_ln174_fu_146_p2;
+reg   [63:0] add113_reg_113;
+wire   [63:0] zext_ln180_fu_196_p1;
+wire   [0:0] icmp_ln178_fu_175_p2;
+wire   [63:0] zext_ln178_fu_205_p1;
+reg   [6:0] i_fu_46;
 wire    ap_CS_fsm_state16;
-reg   [63:0] grp_fu_128_p0;
-reg   [63:0] grp_fu_128_p1;
-wire   [5:0] empty_fu_161_p1;
-wire   [11:0] zext_ln178_1_fu_185_p1;
-wire   [11:0] add_ln180_fu_189_p2;
+reg   [63:0] grp_fu_130_p0;
+reg   [63:0] grp_fu_130_p1;
+wire   [5:0] empty_fu_163_p1;
+wire   [11:0] zext_ln178_1_fu_187_p1;
+wire   [11:0] add_ln180_fu_191_p2;
 reg   [15:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
@@ -148,7 +148,7 @@ wire    ap_ce_reg;
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 16'd1;
-#0 i_fu_44 = 7'd0;
+#0 i_fu_46 = 7'd0;
 end
 
 always @ (posedge ap_clk) begin
@@ -160,53 +160,53 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_144_p2 == 1'd0))) begin
-        add113_reg_111 <= 64'd0;
+    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_146_p2 == 1'd0))) begin
+        add113_reg_113 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state12)) begin
-        add113_reg_111 <= grp_fu_986_p_dout0;
+        add113_reg_113 <= grp_fu_990_p_dout0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        i_fu_44 <= 7'd0;
-    end else if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln178_fu_173_p2 == 1'd1))) begin
-        i_fu_44 <= add_ln174_reg_222;
+        i_fu_46 <= 7'd0;
+    end else if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln178_fu_175_p2 == 1'd1))) begin
+        i_fu_46 <= add_ln174_reg_224;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_144_p2 == 1'd0))) begin
-        j_reg_99 <= 7'd0;
+    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_146_p2 == 1'd0))) begin
+        j_reg_101 <= 7'd0;
     end else if ((1'b1 == ap_CS_fsm_state12)) begin
-        j_reg_99 <= add_ln178_reg_245;
+        j_reg_101 <= add_ln178_reg_247;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        add_ln174_reg_222 <= add_ln174_fu_150_p2;
-        oracle_activations_addr_reg_232 <= zext_ln174_fu_156_p1;
-        tmp_s_reg_237[11 : 6] <= tmp_s_fu_165_p3[11 : 6];
-        zext_ln174_reg_227[6 : 0] <= zext_ln174_fu_156_p1[6 : 0];
+        add_ln174_reg_224 <= add_ln174_fu_152_p2;
+        oracle_activations_addr_reg_234 <= zext_ln174_fu_158_p1;
+        tmp_s_reg_239[11 : 6] <= tmp_s_fu_167_p3[11 : 6];
+        zext_ln174_reg_229[6 : 0] <= zext_ln174_fu_158_p1[6 : 0];
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        add_ln178_reg_245 <= add_ln178_fu_179_p2;
+        add_ln178_reg_247 <= add_ln178_fu_181_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        mul8_reg_280 <= grp_fu_990_p_dout0;
+        mul8_reg_282 <= grp_fu_994_p_dout0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        weights2_load_reg_265 <= weights2_q0;
+        weights2_load_reg_267 <= weights2_q0;
     end
 end
 
@@ -249,7 +249,7 @@ assign ap_ST_fsm_state8_blk = 1'b0;
 assign ap_ST_fsm_state9_blk = 1'b0;
 
 always @ (*) begin
-    if ((((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_144_p2 == 1'd1)) | ((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1)))) begin
+    if ((((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_146_p2 == 1'd1)) | ((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -265,7 +265,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_144_p2 == 1'd1))) begin
+    if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_146_p2 == 1'd1))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -282,21 +282,21 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_128_p0 = add113_reg_111;
+        grp_fu_130_p0 = add113_reg_113;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_128_p0 = output_differences_q0;
+        grp_fu_130_p0 = output_differences_q0;
     end else begin
-        grp_fu_128_p0 = 'bx;
+        grp_fu_130_p0 = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state13)) begin
-        grp_fu_128_p1 = dactivations_q0;
+        grp_fu_130_p1 = dactivations_q0;
     end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        grp_fu_128_p1 = bitcast_ln180_fu_208_p1;
+        grp_fu_130_p1 = bitcast_ln180_fu_210_p1;
     end else begin
-        grp_fu_128_p1 = 'bx;
+        grp_fu_130_p1 = 'bx;
     end
 end
 
@@ -342,14 +342,14 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_144_p2 == 1'd1))) begin
+            if (((1'b1 == ap_CS_fsm_state2) & (icmp_ln174_fu_146_p2 == 1'd1))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state3;
             end
         end
         ap_ST_fsm_state3 : begin
-            if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln178_fu_173_p2 == 1'd1))) begin
+            if (((1'b1 == ap_CS_fsm_state3) & (icmp_ln178_fu_175_p2 == 1'd1))) begin
                 ap_NS_fsm = ap_ST_fsm_state13;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state4;
@@ -400,11 +400,11 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln174_fu_150_p2 = (i_fu_44 + 7'd1);
+assign add_ln174_fu_152_p2 = (i_fu_46 + 7'd1);
 
-assign add_ln178_fu_179_p2 = (j_reg_99 + 7'd1);
+assign add_ln178_fu_181_p2 = (j_reg_101 + 7'd1);
 
-assign add_ln180_fu_189_p2 = (zext_ln178_1_fu_185_p1 + tmp_s_reg_237);
+assign add_ln180_fu_191_p2 = (zext_ln178_1_fu_187_p1 + tmp_s_reg_239);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -424,51 +424,51 @@ assign ap_CS_fsm_state5 = ap_CS_fsm[32'd4];
 
 assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 
-assign bitcast_ln180_fu_208_p1 = weights2_load_reg_265;
+assign bitcast_ln180_fu_210_p1 = weights2_load_reg_267;
 
-assign dactivations_address0 = zext_ln174_reg_227;
+assign dactivations_address0 = zext_ln174_reg_229;
 
-assign empty_fu_161_p1 = i_fu_44[5:0];
-
-assign grp_fu_986_p_ce = 1'b1;
-
-assign grp_fu_986_p_din0 = add113_reg_111;
-
-assign grp_fu_986_p_din1 = mul8_reg_280;
-
-assign grp_fu_986_p_opcode = 2'd0;
+assign empty_fu_163_p1 = i_fu_46[5:0];
 
 assign grp_fu_990_p_ce = 1'b1;
 
-assign grp_fu_990_p_din0 = grp_fu_128_p0;
+assign grp_fu_990_p_din0 = add113_reg_113;
 
-assign grp_fu_990_p_din1 = grp_fu_128_p1;
+assign grp_fu_990_p_din1 = mul8_reg_282;
 
-assign icmp_ln174_fu_144_p2 = ((i_fu_44 == 7'd64) ? 1'b1 : 1'b0);
+assign grp_fu_990_p_opcode = 2'd0;
 
-assign icmp_ln178_fu_173_p2 = ((j_reg_99 == 7'd64) ? 1'b1 : 1'b0);
+assign grp_fu_994_p_ce = 1'b1;
 
-assign oracle_activations_address0 = oracle_activations_addr_reg_232;
+assign grp_fu_994_p_din0 = grp_fu_130_p0;
 
-assign oracle_activations_d0 = grp_fu_990_p_dout0;
+assign grp_fu_994_p_din1 = grp_fu_130_p1;
 
-assign output_differences_address0 = zext_ln178_fu_203_p1;
+assign icmp_ln174_fu_146_p2 = ((i_fu_46 == 7'd64) ? 1'b1 : 1'b0);
 
-assign tmp_s_fu_165_p3 = {{empty_fu_161_p1}, {6'd0}};
+assign icmp_ln178_fu_175_p2 = ((j_reg_101 == 7'd64) ? 1'b1 : 1'b0);
 
-assign weights2_address0 = zext_ln180_fu_194_p1;
+assign oracle_activations_address0 = oracle_activations_addr_reg_234;
 
-assign zext_ln174_fu_156_p1 = i_fu_44;
+assign oracle_activations_d0 = grp_fu_994_p_dout0;
 
-assign zext_ln178_1_fu_185_p1 = j_reg_99;
+assign output_differences_address0 = zext_ln178_fu_205_p1;
 
-assign zext_ln178_fu_203_p1 = j_reg_99;
+assign tmp_s_fu_167_p3 = {{empty_fu_163_p1}, {6'd0}};
 
-assign zext_ln180_fu_194_p1 = add_ln180_fu_189_p2;
+assign weights2_address0 = zext_ln180_fu_196_p1;
+
+assign zext_ln174_fu_158_p1 = i_fu_46;
+
+assign zext_ln178_1_fu_187_p1 = j_reg_101;
+
+assign zext_ln178_fu_205_p1 = j_reg_101;
+
+assign zext_ln180_fu_196_p1 = add_ln180_fu_191_p2;
 
 always @ (posedge ap_clk) begin
-    zext_ln174_reg_227[63:7] <= 57'b000000000000000000000000000000000000000000000000000000000;
-    tmp_s_reg_237[5:0] <= 6'b000000;
+    zext_ln174_reg_229[63:7] <= 57'b000000000000000000000000000000000000000000000000000000000;
+    tmp_s_reg_239[5:0] <= 6'b000000;
 end
 
 endmodule //backprop_get_oracle_activations1_1

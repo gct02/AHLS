@@ -1,4 +1,17 @@
 set SynModuleInfo {
+  {SRCNAME {scaled_fixed2ieee<63, 1>_Pipeline_1} MODELNAME scaled_fixed2ieee_63_1_Pipeline_1 RTLNAME fft1D_512_scaled_fixed2ieee_63_1_Pipeline_1
+    SUBMODULES {
+      {MODELNAME fft1D_512_flow_control_loop_pipe_sequential_init RTLNAME fft1D_512_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME fft1D_512_flow_control_loop_pipe_sequential_init_U}
+    }
+  }
+  {SRCNAME {scaled_fixed2ieee<63, 1>_Pipeline_2} MODELNAME scaled_fixed2ieee_63_1_Pipeline_2 RTLNAME fft1D_512_scaled_fixed2ieee_63_1_Pipeline_2}
+  {SRCNAME {scaled_fixed2ieee<63, 1>_Pipeline_3} MODELNAME scaled_fixed2ieee_63_1_Pipeline_3 RTLNAME fft1D_512_scaled_fixed2ieee_63_1_Pipeline_3
+    SUBMODULES {
+      {MODELNAME fft1D_512_mux_4_2_32_1_1 RTLNAME fft1D_512_mux_4_2_32_1_1 BINDTYPE op TYPE mux IMPL auto LATENCY 0 ALLOW_PRAGMA 1}
+    }
+  }
+  {SRCNAME {scaled_fixed2ieee<63, 1>_Pipeline_4} MODELNAME scaled_fixed2ieee_63_1_Pipeline_4 RTLNAME fft1D_512_scaled_fixed2ieee_63_1_Pipeline_4}
+  {SRCNAME {scaled_fixed2ieee<63, 1>} MODELNAME scaled_fixed2ieee_63_1_s RTLNAME fft1D_512_scaled_fixed2ieee_63_1_s}
   {SRCNAME sin_or_cos<double> MODELNAME sin_or_cos_double_s RTLNAME fft1D_512_sin_or_cos_double_s
     SUBMODULES {
       {MODELNAME fft1D_512_mul_35ns_25ns_60_1_1 RTLNAME fft1D_512_mul_35ns_25ns_60_1_1 BINDTYPE op TYPE mul IMPL auto LATENCY 0 ALLOW_PRAGMA 1}
@@ -28,6 +41,7 @@ set SynModuleInfo {
       {MODELNAME fft1D_512_twiddles8_twiddles8_reversed8_ROM_AUTO_1R RTLNAME fft1D_512_twiddles8_twiddles8_reversed8_ROM_AUTO_1R BINDTYPE storage TYPE rom IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
     }
   }
+  {SRCNAME loady8 MODELNAME loady8 RTLNAME fft1D_512_loady8}
   {SRCNAME fft1D_512 MODELNAME fft1D_512 RTLNAME fft1D_512 IS_TOP 1
     SUBMODULES {
       {MODELNAME fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1 RTLNAME fft1D_512_dadddsub_64ns_64ns_64_4_full_dsp_1 BINDTYPE op TYPE dadd IMPL fulldsp LATENCY 3 ALLOW_PRAGMA 1}

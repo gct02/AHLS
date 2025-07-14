@@ -10,13 +10,13 @@
       "Name": "sha_info_digest",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "sha_info_digest_load" }]
+      "Loads": [{ "FunctionName": "sha_stream", "LoadInstName": "sha_info_digest_load" }]
     },
     {
       "Name": "sha_info_data",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "local_memcpy", "LoadInstName": "" }, { "FunctionName": "local_memset_Pipeline_local_memset_label1", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_transform", "LoadInstName": "sha_info_data_load" }]
+      "Loads": [{ "FunctionName": "local_memcpy", "LoadInstName": "" }, { "FunctionName": "local_memset", "LoadInstName": "" }, { "FunctionName": "sha_final", "LoadInstName": "" }, { "FunctionName": "sha_transform", "LoadInstName": "sha_info_data_load" }]
     },
     {
       "Name": "local_indata",
@@ -52,7 +52,7 @@
       "Name": "empty_3",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }]
     },
     {
       "Name": "empty_4",
@@ -70,13 +70,13 @@
       "Name": "empty_6",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "sha_stream", "LoadInstName": "" }]
     },
     {
       "Name": "empty_7",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "local_memset_Pipeline_local_memset_label1", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "local_memcpy", "LoadInstName": "" }, { "FunctionName": "local_memset", "LoadInstName": "" }, { "FunctionName": "sha_final", "LoadInstName": "" }, { "FunctionName": "sha_init", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "LoadInstName": "" }, { "FunctionName": "sha_transform", "LoadInstName": "" }, { "FunctionName": "sha_update", "LoadInstName": "" }]
     },
     {
       "Name": "empty_8",
@@ -106,7 +106,7 @@
       "Name": "empty_12",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "local_memset_Pipeline_local_memset_label1", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "local_memset", "LoadInstName": "" }]
     },
     {
       "Name": "W",
@@ -119,12 +119,6 @@
       "FunctionName": "sha_update",
       "Stores": [],
       "Loads": [{ "FunctionName": "sha_update", "LoadInstName": "" }, { "FunctionName": "sha_update", "LoadInstName": "" }]
-    },
-    {
-      "Name": "outdata",
-      "FunctionName": "sha_stream_Pipeline_sha_stream_label2",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }, { "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "LoadInstName": "" }]
     },
     {
       "Name": "indata",

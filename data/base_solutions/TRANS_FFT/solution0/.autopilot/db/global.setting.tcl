@@ -42,7 +42,7 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xcu50:-fsvh2104:-2-e
-set SourceFiles {sc {} c ../../../benchmarks/trans_fft/transposed_fft.c}
+set SourceFiles {sc {} c ../../../benchmarks/transposed_fft/transposed_fft.c}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile {}
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

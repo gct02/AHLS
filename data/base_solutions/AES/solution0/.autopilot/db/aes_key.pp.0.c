@@ -415,7 +415,11 @@ int word[4][120];
 
 
 void ByteSub_ShiftRow (int statemt[32], int nb) {
-#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 79 "data/benchmarks/aes/aes_key.c"
+
+#line 37 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 79 "data/benchmarks/aes/aes_key.c"
 
@@ -539,7 +543,11 @@ void ByteSub_ShiftRow (int statemt[32], int nb) {
 
 
 void InversShiftRow_ByteSub (int statemt[32], int nb) {
-#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 199 "data/benchmarks/aes/aes_key.c"
+
+#line 33 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 199 "data/benchmarks/aes/aes_key.c"
 
@@ -663,7 +671,11 @@ void InversShiftRow_ByteSub (int statemt[32], int nb) {
 
 
 int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
-#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 319 "data/benchmarks/aes/aes_key.c"
+
+#line 31 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 319 "data/benchmarks/aes/aes_key.c"
 
@@ -672,7 +684,7 @@ int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
 
     MixColumn_AddRoundKey_label0:
     for (j = 0; j < nb; ++j) {
-#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 5 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 324 "data/benchmarks/aes/aes_key.c"
 
@@ -716,7 +728,7 @@ int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
 
     MixColumn_AddRoundKey_label1:
     for (j = 0; j < nb; ++j) {
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 364 "data/benchmarks/aes/aes_key.c"
 
@@ -731,7 +743,11 @@ int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
 
 
 int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
-#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 375 "data/benchmarks/aes/aes_key.c"
+
+#line 32 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 375 "data/benchmarks/aes/aes_key.c"
 
@@ -760,12 +776,12 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
  AddRoundKey_InversMixColumn_label1:
         for (i = 0; i < 4; ++i) {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
-# 392 "data/benchmarks/aes/aes_key.c"
-
 #line 2 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
+# 392 "data/benchmarks/aes/aes_key.c"
+
+#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 392 "data/benchmarks/aes/aes_key.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
@@ -827,7 +843,11 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 
 
 int AddRoundKey (int statemt[32], int type, int n) {
-#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 447 "data/benchmarks/aes/aes_key.c"
+
+#line 38 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 447 "data/benchmarks/aes/aes_key.c"
 
@@ -868,7 +888,11 @@ int AddRoundKey (int statemt[32], int type, int n) {
 
 
 int KeySchedule (int type, int key[32]) {
-#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 480 "data/benchmarks/aes/aes_key.c"
+
+#line 36 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 480 "data/benchmarks/aes/aes_key.c"
 
@@ -946,19 +970,19 @@ int KeySchedule (int type, int key[32]) {
 
     KeySchedule_label4:
     for (j = 0; j < nk; ++j) {
-#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 8 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 554 "data/benchmarks/aes/aes_key.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
  KeySchedule_label5:
         for (i = 0; i < 4; ++i) {
-#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
+#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 557 "data/benchmarks/aes/aes_key.c"
 
-#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
 # 557 "data/benchmarks/aes/aes_key.c"
 
 #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
@@ -969,11 +993,11 @@ int KeySchedule (int type, int key[32]) {
 
     KeySchedule_label6:
     for (j = nk; j < nb * (round_val + 1); ++j) {
-#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 10 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 565 "data/benchmarks/aes/aes_key.c"
 
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 565 "data/benchmarks/aes/aes_key.c"
 
@@ -993,11 +1017,11 @@ int KeySchedule (int type, int key[32]) {
             temp[2] = word[2][j - 1];
             temp[3] = word[3][j - 1];
         }
-#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 11 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 581 "data/benchmarks/aes/aes_key.c"
 
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 581 "data/benchmarks/aes/aes_key.c"
 
@@ -1005,11 +1029,11 @@ int KeySchedule (int type, int key[32]) {
         if (nk > 6 && j % nk == 4) {
             KeySchedule_label8:
             for (i = 0; i < 4; ++i) {
-#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 585 "data/benchmarks/aes/aes_key.c"
 
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 585 "data/benchmarks/aes/aes_key.c"
 
@@ -1020,11 +1044,11 @@ int KeySchedule (int type, int key[32]) {
 
         KeySchedule_label9:
         for (i = 0; i < 4; ++i) {
-#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 592 "data/benchmarks/aes/aes_key.c"
 
-#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 30 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 592 "data/benchmarks/aes/aes_key.c"
 

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'bbgemm'" level="0">
-<item name = "Date">Thu May 29 16:28:18 2025
+<item name = "Date">Wed Jul  9 03:45:05 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GEMM</item>
@@ -86,52 +86,52 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln15_fu_201_p2">+, 0, 0, 14, 7, 4</column>
-<column name="add_ln17_fu_223_p2">+, 0, 0, 14, 7, 4</column>
-<column name="add_ln19_fu_217_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln21_fu_235_p2">+, 0, 0, 12, 4, 1</column>
-<column name="add_ln25_fu_259_p2">+, 0, 0, 13, 6, 6</column>
-<column name="add_ln26_fu_291_p2">+, 0, 0, 12, 4, 1</column>
-<column name="add_ln28_fu_301_p2">+, 0, 0, 13, 6, 6</column>
-<column name="icmp_ln19_fu_211_p2">icmp, 0, 0, 15, 7, 8</column>
-<column name="icmp_ln21_fu_229_p2">icmp, 0, 0, 12, 4, 5</column>
-<column name="icmp_ln26_fu_285_p2">icmp, 0, 0, 12, 4, 5</column>
+<column name="add_ln15_fu_203_p2">+, 0, 0, 14, 7, 4</column>
+<column name="add_ln17_fu_225_p2">+, 0, 0, 14, 7, 4</column>
+<column name="add_ln19_fu_219_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln21_fu_237_p2">+, 0, 0, 12, 4, 1</column>
+<column name="add_ln25_fu_261_p2">+, 0, 0, 13, 6, 6</column>
+<column name="add_ln26_fu_293_p2">+, 0, 0, 12, 4, 1</column>
+<column name="add_ln28_fu_303_p2">+, 0, 0, 13, 6, 6</column>
+<column name="icmp_ln19_fu_213_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="icmp_ln21_fu_231_p2">icmp, 0, 0, 12, 4, 5</column>
+<column name="icmp_ln26_fu_287_p2">icmp, 0, 0, 12, 4, 5</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">86, 18, 1, 18</column>
-<column name="i_reg_127">9, 2, 7, 14</column>
-<column name="j_reg_150">9, 2, 4, 8</column>
-<column name="jj_fu_72">9, 2, 7, 14</column>
-<column name="k_reg_139">9, 2, 4, 8</column>
-<column name="kk_reg_115">9, 2, 7, 14</column>
+<column name="i_reg_129">9, 2, 7, 14</column>
+<column name="j_reg_152">9, 2, 4, 8</column>
+<column name="jj_fu_74">9, 2, 7, 14</column>
+<column name="k_reg_141">9, 2, 4, 8</column>
+<column name="kk_reg_117">9, 2, 7, 14</column>
 <column name="prod_address0">14, 3, 12, 36</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln19_reg_371">7, 0, 7, 0</column>
-<column name="add_ln21_reg_384">4, 0, 4, 0</column>
-<column name="add_ln26_reg_417">4, 0, 4, 0</column>
-<column name="add_ln28_reg_422">6, 0, 6, 0</column>
-<column name="add_reg_462">64, 0, 64, 0</column>
+<column name="add_ln19_reg_373">7, 0, 7, 0</column>
+<column name="add_ln21_reg_386">4, 0, 4, 0</column>
+<column name="add_ln26_reg_419">4, 0, 4, 0</column>
+<column name="add_ln28_reg_424">6, 0, 6, 0</column>
+<column name="add_reg_464">64, 0, 64, 0</column>
 <column name="ap_CS_fsm">17, 0, 17, 0</column>
-<column name="i_reg_127">7, 0, 7, 0</column>
-<column name="j_reg_150">4, 0, 4, 0</column>
-<column name="jj_fu_72">7, 0, 7, 0</column>
-<column name="k_reg_139">4, 0, 4, 0</column>
-<column name="kk_reg_115">7, 0, 7, 0</column>
-<column name="m2_load_reg_432">64, 0, 64, 0</column>
-<column name="mul_reg_447">64, 0, 64, 0</column>
-<column name="prod_addr_reg_442">12, 0, 12, 0</column>
-<column name="prod_load_reg_452">64, 0, 64, 0</column>
-<column name="temp_x_reg_409">64, 0, 64, 0</column>
-<column name="tmp_1_reg_394">3, 0, 3, 0</column>
-<column name="trunc_ln15_reg_355">6, 0, 6, 0</column>
-<column name="trunc_ln17_reg_363">6, 0, 6, 0</column>
-<column name="trunc_ln24_reg_389">3, 0, 3, 0</column>
-<column name="trunc_ln25_reg_399">6, 0, 6, 0</column>
+<column name="i_reg_129">7, 0, 7, 0</column>
+<column name="j_reg_152">4, 0, 4, 0</column>
+<column name="jj_fu_74">7, 0, 7, 0</column>
+<column name="k_reg_141">4, 0, 4, 0</column>
+<column name="kk_reg_117">7, 0, 7, 0</column>
+<column name="m2_load_reg_434">64, 0, 64, 0</column>
+<column name="mul_reg_449">64, 0, 64, 0</column>
+<column name="prod_addr_reg_444">12, 0, 12, 0</column>
+<column name="prod_load_reg_454">64, 0, 64, 0</column>
+<column name="temp_x_reg_411">64, 0, 64, 0</column>
+<column name="tmp_1_reg_396">3, 0, 3, 0</column>
+<column name="trunc_ln15_reg_357">6, 0, 6, 0</column>
+<column name="trunc_ln17_reg_365">6, 0, 6, 0</column>
+<column name="trunc_ln24_reg_391">3, 0, 3, 0</column>
+<column name="trunc_ln25_reg_401">6, 0, 6, 0</column>
 </table>
 </item>
 </section>

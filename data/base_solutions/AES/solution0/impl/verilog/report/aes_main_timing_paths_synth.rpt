@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Sat May 31 00:12:51 2025
+| Date              : Wed Jul  9 03:29:41 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing -max_paths 10 -file ./report/aes_main_timing_paths_synth.rpt
 | Design            : bd_0_wrapper
@@ -42,10 +42,10 @@ Slack (MET) :             6.029ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[0])
                                                       0.963     1.039 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[0]
-                         net (fo=12, unplaced)        0.180     1.219    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[0]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.257 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_146__0/O
-                         net (fo=1, unplaced)         0.185     1.442    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_45
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.480 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_52__0/O
+                         net (fo=12, unplaced)        0.180     1.219    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[0]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.257 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_146__0/O
+                         net (fo=1, unplaced)         0.185     1.442    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_45
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.480 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_52__0/O
                          net (fo=1, unplaced)         0.201     1.681    bd_0_i/hls_inst/inst/word_U/DINADIN[0]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[0]
   -------------------------------------------------------------------    -------------------
@@ -93,10 +93,10 @@ Slack (MET) :             6.065ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[4])
                                                       0.890     0.966 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[4]
-                         net (fo=11, unplaced)        0.274     1.240    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[4]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.278 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_142__0/O
-                         net (fo=1, unplaced)         0.185     1.463    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_41
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.501 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_48__0/O
+                         net (fo=11, unplaced)        0.274     1.240    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[4]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.278 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_142__0/O
+                         net (fo=1, unplaced)         0.185     1.463    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_41
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.501 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_48__0/O
                          net (fo=1, unplaced)         0.150     1.651    bd_0_i/hls_inst/inst/word_U/DINADIN[4]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[4]
   -------------------------------------------------------------------    -------------------
@@ -144,10 +144,10 @@ Slack (MET) :             6.081ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[1])
                                                       0.916     0.992 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[1]
-                         net (fo=11, unplaced)        0.269     1.261    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[1]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.299 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_145__0/O
-                         net (fo=1, unplaced)         0.185     1.484    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_44
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.522 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_51__0/O
+                         net (fo=11, unplaced)        0.269     1.261    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[1]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.299 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_145__0/O
+                         net (fo=1, unplaced)         0.185     1.484    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_44
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.522 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_51__0/O
                          net (fo=1, unplaced)         0.107     1.629    bd_0_i/hls_inst/inst/word_U/DINADIN[1]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[1]
   -------------------------------------------------------------------    -------------------
@@ -195,10 +195,10 @@ Slack (MET) :             6.106ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[2])
                                                       0.906     0.982 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[2]
-                         net (fo=11, unplaced)        0.226     1.208    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[2]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.246 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_144__0/O
-                         net (fo=1, unplaced)         0.185     1.431    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_43
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.469 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_50__0/O
+                         net (fo=11, unplaced)        0.226     1.208    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[2]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.246 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_144__0/O
+                         net (fo=1, unplaced)         0.185     1.431    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_43
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.469 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_50__0/O
                          net (fo=1, unplaced)         0.153     1.622    bd_0_i/hls_inst/inst/word_U/DINADIN[2]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[2]
   -------------------------------------------------------------------    -------------------
@@ -246,10 +246,10 @@ Slack (MET) :             6.114ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[3])
                                                       0.908     0.984 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[3]
-                         net (fo=11, unplaced)        0.172     1.156    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[3]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.194 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_143__0/O
-                         net (fo=1, unplaced)         0.185     1.379    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_42
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.417 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_49__0/O
+                         net (fo=11, unplaced)        0.172     1.156    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[3]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.194 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_143__0/O
+                         net (fo=1, unplaced)         0.185     1.379    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_42
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.417 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_49__0/O
                          net (fo=1, unplaced)         0.205     1.622    bd_0_i/hls_inst/inst/word_U/DINADIN[3]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[3]
   -------------------------------------------------------------------    -------------------
@@ -271,7 +271,7 @@ Slack (MET) :             6.114ns  (required time - arrival time)
 Slack (MET) :             6.118ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg/ADDRARDADDR[5]
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg/ADDRARDADDR[5]
                             (rising edge-triggered cell RAMB18E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
@@ -299,18 +299,18 @@ Slack (MET) :             6.118ns  (required time - arrival time)
                                                       0.932     1.008 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTADOUT[1]
                          net (fo=9, unplaced)         0.270     1.278    bd_0_i/hls_inst/inst/word_U/DOUTADOUT[1]
                          LUT3 (Prop_LUT3_I0_O)        0.112     1.390 r  bd_0_i/hls_inst/inst/word_U/q1_reg_i_8__0/O
-                         net (fo=2, unplaced)         0.211     1.601    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/D[1]
-                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg/ADDRARDADDR[5]
+                         net (fo=2, unplaced)         0.211     1.601    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/D[1]
+                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg/ADDRARDADDR[5]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1632, unset)         0.039     8.039    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/ap_clk
-                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg/CLKARDCLK
+                         net (fo=1632, unset)         0.039     8.039    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/ap_clk
+                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
                          RAMB18E2 (Setup_RAMB18E2_CLKARDCLK_ADDRARDADDR[5])
-                                                     -0.285     7.719    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg
+                                                     -0.285     7.719    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg
   -------------------------------------------------------------------
                          required time                          7.719    
                          arrival time                          -1.601    
@@ -320,7 +320,7 @@ Slack (MET) :             6.118ns  (required time - arrival time)
 Slack (MET) :             6.118ns  (required time - arrival time)
   Source:                 bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/CLKARDCLK
                             (rising edge-triggered cell RAMB36E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg/ADDRARDADDR[5]
+  Destination:            bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg/ADDRARDADDR[5]
                             (rising edge-triggered cell RAMB18E2 clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
@@ -348,18 +348,18 @@ Slack (MET) :             6.118ns  (required time - arrival time)
                                                       0.932     1.008 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTADOUT[1]
                          net (fo=9, unplaced)         0.270     1.278    bd_0_i/hls_inst/inst/word_U/DOUTADOUT[1]
                          LUT3 (Prop_LUT3_I0_O)        0.112     1.390 r  bd_0_i/hls_inst/inst/word_U/q1_reg_i_8/O
-                         net (fo=2, unplaced)         0.211     1.601    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/D[1]
-                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg/ADDRARDADDR[5]
+                         net (fo=2, unplaced)         0.211     1.601    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/D[1]
+                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg/ADDRARDADDR[5]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=1632, unset)         0.039     8.039    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/ap_clk
-                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg/CLKARDCLK
+                         net (fo=1632, unset)         0.039     8.039    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/ap_clk
+                         RAMB18E2                                     r  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg/CLKARDCLK
                          clock pessimism              0.000     8.039    
                          clock uncertainty           -0.035     8.004    
                          RAMB18E2 (Setup_RAMB18E2_CLKARDCLK_ADDRARDADDR[5])
-                                                     -0.285     7.719    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg
+                                                     -0.285     7.719    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg
   -------------------------------------------------------------------
                          required time                          7.719    
                          arrival time                          -1.601    
@@ -395,10 +395,10 @@ Slack (MET) :             6.124ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[10])
                                                       0.875     0.951 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[10]
-                         net (fo=9, unplaced)         0.270     1.221    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[10]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.259 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_136__0/O
-                         net (fo=1, unplaced)         0.185     1.444    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_35
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.482 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_42__0/O
+                         net (fo=9, unplaced)         0.270     1.221    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[10]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.259 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_136__0/O
+                         net (fo=1, unplaced)         0.185     1.444    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_35
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.482 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_42__0/O
                          net (fo=1, unplaced)         0.150     1.632    bd_0_i/hls_inst/inst/word_U/DINADIN[10]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[10]
   -------------------------------------------------------------------    -------------------
@@ -446,10 +446,10 @@ Slack (MET) :             6.145ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[6])
                                                       0.899     0.975 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[6]
-                         net (fo=11, unplaced)        0.271     1.246    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[6]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.284 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_140__0/O
-                         net (fo=1, unplaced)         0.185     1.469    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_39
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.507 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_46__0/O
+                         net (fo=11, unplaced)        0.271     1.246    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[6]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.284 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_140__0/O
+                         net (fo=1, unplaced)         0.185     1.469    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_39
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.507 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_46__0/O
                          net (fo=1, unplaced)         0.108     1.615    bd_0_i/hls_inst/inst/word_U/DINADIN[6]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[6]
   -------------------------------------------------------------------    -------------------
@@ -497,10 +497,10 @@ Slack (MET) :             6.151ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          RAMB36E2 (Prop_RAMB36E2_CLKBWRCLK_DOUTBDOUT[9])
                                                       0.884     0.960 r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DOUTBDOUT[9]
-                         net (fo=9, unplaced)         0.168     1.128    bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/DOUTBDOUT[9]
-                         LUT5 (Prop_LUT5_I4_O)        0.038     1.166 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/ram_reg_bram_0_i_137__0/O
-                         net (fo=1, unplaced)         0.185     1.351    bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_36
-                         LUT6 (Prop_LUT6_I5_O)        0.038     1.389 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/ram_reg_bram_0_i_43__0/O
+                         net (fo=9, unplaced)         0.168     1.128    bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/DOUTBDOUT[9]
+                         LUT5 (Prop_LUT5_I4_O)        0.038     1.166 f  bd_0_i/hls_inst/inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/ram_reg_bram_0_i_137__0/O
+                         net (fo=1, unplaced)         0.185     1.351    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_36
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.389 r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/ram_reg_bram_0_i_43__0/O
                          net (fo=1, unplaced)         0.205     1.594    bd_0_i/hls_inst/inst/word_U/DINADIN[9]
                          RAMB36E2                                     r  bd_0_i/hls_inst/inst/word_U/ram_reg_bram_0/DINADIN[9]
   -------------------------------------------------------------------    -------------------

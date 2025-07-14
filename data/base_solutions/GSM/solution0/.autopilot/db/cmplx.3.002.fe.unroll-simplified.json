@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "2 9 4 8",
+    "calls": "1 7 9 3",
     "file": "gsm.c",
     "fileloc": 7,
     "instructions": 7,
@@ -9,26 +9,8 @@
     "total_instructions": 978
   },
   "1": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "gsm_add.c",
-    "fileloc": 36,
-    "instructions": 9,
-    "name": "gsm_add",
-    "total_instructions": 9
-  },
-  "10": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "gsm_add.c",
-    "fileloc": 43,
-    "instructions": 6,
-    "name": "gsm_mult",
-    "total_instructions": 6
-  },
-  "2": {
     "basicblocks": 17,
-    "calls": "3 7 6",
+    "calls": "10 5 2",
     "file": "gsm_lpc.c",
     "fileloc": 34,
     "instructions": 260,
@@ -41,7 +23,7 @@
     },
     "total_instructions": 334
   },
-  "3": {
+  "10": {
     "basicblocks": 4,
     "calls": "",
     "file": "gsm_add.c",
@@ -50,31 +32,7 @@
     "name": "gsm_abs",
     "total_instructions": 12
   },
-  "4": {
-    "basicblocks": 8,
-    "calls": "3",
-    "file": "gsm_lpc.c",
-    "fileloc": 241,
-    "instructions": 34,
-    "loads": {
-      "L": 1
-    },
-    "name": "Transformation_to_Log_Area_Ratios",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 46
-  },
-  "5": {
-    "basicblocks": 4,
-    "calls": "",
-    "file": "gsm_add.c",
-    "fileloc": 118,
-    "instructions": 22,
-    "name": "gsm_div",
-    "total_instructions": 22
-  },
-  "6": {
+  "2": {
     "basicblocks": 3,
     "calls": "",
     "file": "gsm_add.c",
@@ -83,21 +41,9 @@
     "name": "gsm_mult_r",
     "total_instructions": 14
   },
-  "7": {
-    "basicblocks": 12,
-    "calls": "",
-    "file": "gsm_add.c",
-    "fileloc": 70,
-    "instructions": 48,
-    "loads": {
-      "G": 4
-    },
-    "name": "gsm_norm",
-    "total_instructions": 48
-  },
-  "8": {
+  "3": {
     "basicblocks": 17,
-    "calls": "10 1 1 10 1 1 10 1 1 10 1 1 10 1 1 10 1 1 10 1 1 10 1 1",
+    "calls": "4 6 6 4 6 6 4 6 6 4 6 6 4 6 6 4 6 6 4 6 6 4 6 6",
     "file": "gsm_lpc.c",
     "fileloc": 267,
     "instructions": 128,
@@ -110,9 +56,39 @@
     },
     "total_instructions": 320
   },
-  "9": {
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 43,
+    "instructions": 6,
+    "name": "gsm_mult",
+    "total_instructions": 6
+  },
+  "5": {
+    "basicblocks": 12,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 70,
+    "instructions": 48,
+    "loads": {
+      "G": 4
+    },
+    "name": "gsm_norm",
+    "total_instructions": 48
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 36,
+    "instructions": 9,
+    "name": "gsm_add",
+    "total_instructions": 9
+  },
+  "7": {
     "basicblocks": 21,
-    "calls": "7 3 5 6 1 6 1 6 1",
+    "calls": "5 10 8 2 6 2 6 2 6",
     "file": "gsm_lpc.c",
     "fileloc": 160,
     "instructions": 120,
@@ -124,5 +100,29 @@
       "L": 10
     },
     "total_instructions": 271
+  },
+  "8": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "gsm_add.c",
+    "fileloc": 118,
+    "instructions": 22,
+    "name": "gsm_div",
+    "total_instructions": 22
+  },
+  "9": {
+    "basicblocks": 8,
+    "calls": "10",
+    "file": "gsm_lpc.c",
+    "fileloc": 241,
+    "instructions": 34,
+    "loads": {
+      "L": 1
+    },
+    "name": "Transformation_to_Log_Area_Ratios",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 46
   }
 }

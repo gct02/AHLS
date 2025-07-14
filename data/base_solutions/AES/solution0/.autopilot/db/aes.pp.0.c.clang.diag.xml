@@ -1,6 +1,6 @@
 <dict>
   <key>main-file</key>
-  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/.autopilot/db/aes.pp.0.c</string>
+  <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/.autopilot/db/aes.pp.0.c</string>
   <key>diagnostics</key>
   <array>
     <dict>
@@ -9,11 +9,11 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl</string>
       <key>line</key>
-      <integer>30</integer>
+      <integer>16</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=aes_main_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=aes_main_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>

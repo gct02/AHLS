@@ -1,31 +1,11 @@
 {
-    "0": {
-        "name": "fft1D_512",
-        "file": "transposed_fft.c",
-        "fileloc": "114",
-        "instructions": "1379",
-        "total_instructions": "2231",
-        "calls": "1 1",
-        "basicblocks": "34",
-        "loads": {
-            "L": "147",
-            "T": "16"
-        },
-        "stores": {
-            "L": "166",
-            "T": "16"
-        },
-        "loops": {
-            "L": "11"
-        }
-    },
     "1": {
         "name": "twiddles8",
         "file": "transposed_fft.c",
         "fileloc": "23",
         "instructions": "40",
-        "total_instructions": "426",
-        "calls": "2 2",
+        "total_instructions": "782",
+        "calls": "5 5",
         "basicblocks": "4",
         "loads": {
             "G": "1",
@@ -39,15 +19,134 @@
         }
     },
     "2": {
+        "name": "scaled_fixed2ieee<63, 1>_Pipeline_3",
+        "file": "\/wrk\/ci\/prod\/2023.2\/hls_product\/continuous\/689\/2023.2\/src\/shared\/hls\/clib\/src\/hls\/utils\/x_hls_float_utils.h",
+        "fileloc": "414",
+        "instructions": "41",
+        "total_instructions": "41",
+        "calls": "",
+        "basicblocks": "9",
+        "loads": {
+            "L": "5"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "scaled_fixed2ieee<63, 1>",
+        "file": "\/wrk\/ci\/prod\/2023.2\/hls_product\/continuous\/689\/2023.2\/src\/shared\/hls\/clib\/src\/hls\/utils\/x_hls_float_utils.h",
+        "fileloc": "392",
+        "instructions": "52",
+        "total_instructions": "226",
+        "calls": "7 6 2 4",
+        "basicblocks": "1",
+        "loads": {
+            "L": "14"
+        }
+    },
+    "4": {
+        "name": "scaled_fixed2ieee<63, 1>_Pipeline_4",
+        "file": "\/wrk\/ci\/prod\/2023.2\/hls_product\/continuous\/689\/2023.2\/src\/shared\/hls\/clib\/src\/hls\/utils\/x_hls_float_utils.h",
+        "fileloc": "418",
+        "instructions": "49",
+        "total_instructions": "49",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "6"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
         "name": "sin_or_cos<double>",
         "file": "hls_hotbm.h",
         "fileloc": "209",
-        "instructions": "193",
-        "total_instructions": "193",
-        "calls": "",
+        "instructions": "145",
+        "total_instructions": "371",
+        "calls": "3",
         "basicblocks": "1",
         "loads": {
             "G": "6"
+        }
+    },
+    "6": {
+        "name": "scaled_fixed2ieee<63, 1>_Pipeline_2",
+        "file": "\/wrk\/ci\/prod\/2023.2\/hls_product\/continuous\/689\/2023.2\/src\/shared\/hls\/clib\/src\/hls\/utils\/x_hls_float_utils.h",
+        "fileloc": "401",
+        "instructions": "55",
+        "total_instructions": "55",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "scaled_fixed2ieee<63, 1>_Pipeline_1",
+        "file": "\/wrk\/ci\/prod\/2023.2\/hls_product\/continuous\/689\/2023.2\/src\/shared\/hls\/clib\/src\/hls\/utils\/x_hls_float_utils.h",
+        "fileloc": "400",
+        "instructions": "29",
+        "total_instructions": "29",
+        "calls": "",
+        "basicblocks": "3",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "5"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "8": {
+        "name": "loady8",
+        "file": "transposed_fft.c",
+        "fileloc": "103",
+        "instructions": "50",
+        "total_instructions": "50",
+        "calls": "",
+        "basicblocks": "1",
+        "loads": {
+            "L": "8"
+        },
+        "stores": {
+            "L": "8"
+        }
+    },
+    "0": {
+        "name": "fft1D_512",
+        "file": "transposed_fft.c",
+        "fileloc": "114",
+        "instructions": "1336",
+        "total_instructions": "3000",
+        "calls": "1 8 1 8",
+        "basicblocks": "34",
+        "loads": {
+            "L": "155",
+            "T": "16"
+        },
+        "stores": {
+            "L": "166",
+            "T": "16"
+        },
+        "loops": {
+            "L": "11"
         }
     }
 }

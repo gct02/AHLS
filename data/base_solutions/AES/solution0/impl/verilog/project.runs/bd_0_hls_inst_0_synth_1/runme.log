@@ -12,7 +12,7 @@
 
 source bd_0_hls_inst_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/ip'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: bd_0_hls_inst_0
 Command: synth_design -top bd_0_hls_inst_0 -part xcu50-fsvh2104-2-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
@@ -22,48 +22,48 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
 INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 217199
+INFO: [Synth 8-7075] Helper process launched with PID 159533
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3007.113 ; gain = 398.629 ; free physical = 204 ; free virtual = 12968
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3006.230 ; gain = 396.629 ; free physical = 5115 ; free virtual = 13291
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'aes_main' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_word_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_word_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-3876] $readmem data file './aes_main_word_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_word_RAM_AUTO_1R1W.v:40]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_word_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_word_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_encrypt' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_encrypt.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_KeySchedule' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_KeySchedule_Sbox_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './aes_main_KeySchedule_Sbox_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v:33]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_KeySchedule_Sbox_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_KeySchedule_Rcon0_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v:28]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_KeySchedule_Rcon0_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_mux_4_2_32_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_mux_4_2_32_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_mux_4_2_32_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_mux_4_2_32_1_1.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_KeySchedule' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_KeySchedule.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_AddRoundKey' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_AddRoundKey.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_AddRoundKey' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_AddRoundKey.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_ByteSub_ShiftRow' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_ByteSub_ShiftRow.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_ByteSub_ShiftRow' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_ByteSub_ShiftRow.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_MixColumn_AddRoundKey' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_MixColumn_AddRoundKey.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_MixColumn_AddRoundKey' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_MixColumn_AddRoundKey.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_encrypt' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_encrypt.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_decrypt' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_decrypt.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_InversShiftRow_ByteSub' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_InversShiftRow_ByteSub.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-3876] $readmem data file './aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.v:33]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_InversShiftRow_ByteSub' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_InversShiftRow_ByteSub.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_AddRoundKey_InversMixColumn' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_AddRoundKey_InversMixColumn.v:9]
-INFO: [Synth 8-6157] synthesizing module 'aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_AddRoundKey_InversMixColumn' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_AddRoundKey_InversMixColumn.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main_decrypt' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main_decrypt.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'aes_main' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e4ea/hdl/verilog/aes_main.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'aes_main' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_word_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_word_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-3876] $readmem data file './aes_main_word_RAM_AUTO_1R1W.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_word_RAM_AUTO_1R1W.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_word_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_word_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_encrypt' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_encrypt.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_KeySchedule' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_KeySchedule_Sbox_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './aes_main_KeySchedule_Sbox_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_KeySchedule_Sbox_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule_Sbox_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_KeySchedule_Rcon0_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_KeySchedule_Rcon0_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule_Rcon0_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_mux_4_2_32_1_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_mux_4_2_32_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_mux_4_2_32_1_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_mux_4_2_32_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_KeySchedule' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_KeySchedule.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_AddRoundKey' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_AddRoundKey.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_AddRoundKey' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_AddRoundKey.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_ByteSub_ShiftRow' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_ByteSub_ShiftRow.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_ByteSub_ShiftRow' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_ByteSub_ShiftRow.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_MixColumn_AddRoundKey' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_MixColumn_AddRoundKey.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_MixColumn_AddRoundKey' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_MixColumn_AddRoundKey.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_encrypt' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_encrypt.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_decrypt' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_decrypt.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_InversShiftRow_ByteSub' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_InversShiftRow_ByteSub.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-3876] $readmem data file './aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.dat' is read successfully [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_InversShiftRow_ByteSub' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_InversShiftRow_ByteSub.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_AddRoundKey_InversMixColumn' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_AddRoundKey_InversMixColumn.v:9]
+INFO: [Synth 8-6157] synthesizing module 'aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_AddRoundKey_InversMixColumn' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_AddRoundKey_InversMixColumn.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main_decrypt' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main_decrypt.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'aes_main' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/4a6a/hdl/verilog/aes_main.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
 WARNING: [Synth 8-7129] Port reset in module aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module aes_main_InversShiftRow_ByteSub_invSbox_ROM_AUTO_1R is either unconnected or has no load
 WARNING: [Synth 8-7129] Port statemt_q0[31] in module aes_main_InversShiftRow_ByteSub is either unconnected or has no load
@@ -166,36 +166,36 @@ WARNING: [Synth 8-7129] Port statemt_q1[10] in module aes_main_ByteSub_ShiftRow 
 WARNING: [Synth 8-7129] Port statemt_q1[9] in module aes_main_ByteSub_ShiftRow is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3108.082 ; gain = 499.598 ; free physical = 265 ; free virtual = 12862
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 3108.168 ; gain = 498.566 ; free physical = 4981 ; free virtual = 13162
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3122.926 ; gain = 514.441 ; free physical = 263 ; free virtual = 12860
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3123.012 ; gain = 513.410 ; free physical = 4981 ; free virtual = 13162
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3122.926 ; gain = 514.441 ; free physical = 263 ; free virtual = 12860
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3123.012 ; gain = 513.410 ; free physical = 4981 ; free virtual = 13162
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3122.926 ; gain = 0.000 ; free physical = 258 ; free virtual = 12855
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3123.012 ; gain = 0.000 ; free physical = 5009 ; free virtual = 13188
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/aes_main_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/aes_main_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/aes_main_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/constraints/aes_main_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3288.551 ; gain = 0.000 ; free physical = 285 ; free virtual = 12808
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3288.637 ; gain = 0.000 ; free physical = 4999 ; free virtual = 13178
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3288.586 ; gain = 0.000 ; free physical = 285 ; free virtual = 12809
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3288.672 ; gain = 0.000 ; free physical = 4998 ; free virtual = 13177
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3288.586 ; gain = 680.102 ; free physical = 362 ; free virtual = 12836
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 3288.672 ; gain = 679.070 ; free physical = 4992 ; free virtual = 13173
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -203,14 +203,14 @@ Start Loading Part and Timing Information
 Loading part: xcu50-fsvh2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3288.586 ; gain = 680.102 ; free physical = 362 ; free virtual = 12836
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 3288.672 ; gain = 679.070 ; free physical = 4992 ; free virtual = 13173
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 3288.586 ; gain = 680.102 ; free physical = 362 ; free virtual = 12836
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 3288.672 ; gain = 679.070 ; free physical = 4992 ; free virtual = 13173
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
@@ -226,7 +226,7 @@ INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of 
 INFO: [Synth 8-3971] The signal "aes_main_MixColumn_AddRoundKey_ret_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
 INFO: [Synth 8-6904] The RAM "aes_main_AddRoundKey_InversMixColumn_ret_RAM_AUTO_1R1W:/ram_reg" of size (depth=32 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 3288.586 ; gain = 680.102 ; free physical = 362 ; free virtual = 12837
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 3288.672 ; gain = 679.070 ; free physical = 4980 ; free virtual = 13162
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -304,15 +304,15 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-INFO: [Synth 8-6904] The RAM "inst/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ret_U/ram_reg" of size (depth=32 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "inst/grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/ret_U/ram_reg" of size (depth=32 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 RAM ("inst/word_U/ram_reg") is too shallow (depth = 480) to use URAM. Choosing BRAM instead of URAM 
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "inst/word_U/ram_reg"
-RAM ("inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg") is too shallow (depth = 32) to use URAM. Choosing BRAM instead of URAM 
-INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg"
-INFO: [Synth 8-3971] The signal "inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg" was recognized as a true dual port RAM template.
-INFO: [Synth 8-6904] The RAM "inst/grp_decrypt_fu_50/grp_AddRoundKey_InversMixColumn_fu_83/ret_U/ram_reg" of size (depth=32 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+RAM ("inst/grp_encrypt_fu_38/grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg") is too shallow (depth = 32) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "inst/grp_encrypt_fu_38/grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg"
+INFO: [Synth 8-3971] The signal "inst/grp_encrypt_fu_38/grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "inst/grp_decrypt_fu_54/grp_AddRoundKey_InversMixColumn_fu_85/ret_U/ram_reg" of size (depth=32 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 3288.586 ; gain = 680.102 ; free physical = 311 ; free virtual = 12795
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 3288.672 ; gain = 679.070 ; free physical = 4924 ; free virtual = 13121
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -333,14 +333,14 @@ ROM: Preliminary Mapping Report
 |aes_main_KeySchedule                   | p_0_out                                           | 32x8          | LUT            | 
 |aes_main_InversShiftRow_ByteSub        | invSbox_U/q0_reg                                  | 256x8         | Block RAM      | 
 |aes_main_InversShiftRow_ByteSub        | invSbox_U/q1_reg                                  | 256x8         | Block RAM      | 
-|aes_main_encrypt                       | grp_KeySchedule_fu_50/Sbox_U/q1_reg               | 256x8         | Block RAM      | 
-|aes_main_encrypt                       | grp_KeySchedule_fu_50/Sbox_U/q0_reg               | 256x8         | Block RAM      | 
-|aes_main_encrypt                       | grp_ByteSub_ShiftRow_fu_73/Sbox_1_U/q0_reg        | 256x8         | Block RAM      | 
-|aes_main_encrypt                       | grp_ByteSub_ShiftRow_fu_73/Sbox_1_U/q1_reg        | 256x8         | Block RAM      | 
-|aes_main_decrypt                       | grp_KeySchedule_fu_52/Sbox_U/q1_reg               | 256x8         | Block RAM      | 
-|aes_main_decrypt                       | grp_KeySchedule_fu_52/Sbox_U/q0_reg               | 256x8         | Block RAM      | 
-|aes_main_decrypt                       | grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q0_reg | 256x8         | Block RAM      | 
-|aes_main_decrypt                       | grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q1_reg | 256x8         | Block RAM      | 
+|aes_main_encrypt                       | grp_KeySchedule_fu_52/Sbox_U/q1_reg               | 256x8         | Block RAM      | 
+|aes_main_encrypt                       | grp_KeySchedule_fu_52/Sbox_U/q0_reg               | 256x8         | Block RAM      | 
+|aes_main_encrypt                       | grp_ByteSub_ShiftRow_fu_75/Sbox_1_U/q0_reg        | 256x8         | Block RAM      | 
+|aes_main_encrypt                       | grp_ByteSub_ShiftRow_fu_75/Sbox_1_U/q1_reg        | 256x8         | Block RAM      | 
+|aes_main_decrypt                       | grp_KeySchedule_fu_54/Sbox_U/q1_reg               | 256x8         | Block RAM      | 
+|aes_main_decrypt                       | grp_KeySchedule_fu_54/Sbox_U/q0_reg               | 256x8         | Block RAM      | 
+|aes_main_decrypt                       | grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q0_reg | 256x8         | Block RAM      | 
+|aes_main_decrypt                       | grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q1_reg | 256x8         | Block RAM      | 
 +---------------------------------------+---------------------------------------------------+---------------+----------------+
 
 
@@ -349,7 +349,7 @@ Block RAM: Preliminary Mapping Report (see note below)
 |Module Name            | RTL Object                                    | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
 +-----------------------+-----------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
 |inst                   | word_U/ram_reg                                | 480 x 32(READ_FIRST)   | W | R | 480 x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 1               | 
-|inst/grp_encrypt_fu_34 | grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg | 32 x 32(READ_FIRST)    | W | R | 32 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
+|inst/grp_encrypt_fu_38 | grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg | 32 x 32(READ_FIRST)    | W | R | 32 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 +-----------------------+-----------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
@@ -358,7 +358,7 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 +-----------------------+-----------------------------------------------------+-----------+----------------------+----------------+
 |Module Name            | RTL Object                                          | Inference | Size (Depth x Width) | Primitives     | 
 +-----------------------+-----------------------------------------------------+-----------+----------------------+----------------+
-|inst/grp_decrypt_fu_50 | grp_AddRoundKey_InversMixColumn_fu_83/ret_U/ram_reg | Implied   | 32 x 32              | RAM32X1D x 32  | 
+|inst/grp_decrypt_fu_54 | grp_AddRoundKey_InversMixColumn_fu_85/ret_U/ram_reg | Implied   | 32 x 32              | RAM32X1D x 32  | 
 +-----------------------+-----------------------------------------------------+-----------+----------------------+----------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
@@ -369,13 +369,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 3539.566 ; gain = 931.082 ; free physical = 246 ; free virtual = 12462
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 3539.652 ; gain = 930.051 ; free physical = 4597 ; free virtual = 12799
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 279 ; free virtual = 12442
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4517 ; free virtual = 12719
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -386,7 +386,7 @@ Block RAM: Final Mapping Report
 |Module Name            | RTL Object                                    | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
 +-----------------------+-----------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
 |inst                   | word_U/ram_reg                                | 480 x 32(READ_FIRST)   | W | R | 480 x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 1               | 
-|inst/grp_encrypt_fu_34 | grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg | 32 x 32(READ_FIRST)    | W | R | 32 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
+|inst/grp_encrypt_fu_38 | grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg | 32 x 32(READ_FIRST)    | W | R | 32 x 32(READ_FIRST)    | W | R | Port A and B     | 0      | 1      | 1               | 
 +-----------------------+-----------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
 
 
@@ -394,7 +394,7 @@ Distributed RAM: Final Mapping Report
 +-----------------------+-----------------------------------------------------+-----------+----------------------+----------------+
 |Module Name            | RTL Object                                          | Inference | Size (Depth x Width) | Primitives     | 
 +-----------------------+-----------------------------------------------------+-----------+----------------------+----------------+
-|inst/grp_decrypt_fu_50 | grp_AddRoundKey_InversMixColumn_fu_83/ret_U/ram_reg | Implied   | 32 x 32              | RAM32X1D x 32  | 
+|inst/grp_decrypt_fu_54 | grp_AddRoundKey_InversMixColumn_fu_85/ret_U/ram_reg | Implied   | 32 x 32              | RAM32X1D x 32  | 
 +-----------------------+-----------------------------------------------------+-----------+----------------------+----------------+
 
 ---------------------------------------------------------------------------------
@@ -405,18 +405,18 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-7052] The timing for the instance inst/word_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance inst/word_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/Sbox_1_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/Sbox_1_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_34/grp_MixColumn_AddRoundKey_fu_81/ret_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_38/grp_ByteSub_ShiftRow_fu_75/Sbox_1_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_38/grp_ByteSub_ShiftRow_fu_75/Sbox_1_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_38/grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_encrypt_fu_38/grp_MixColumn_AddRoundKey_fu_83/ret_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 303 ; free virtual = 12453
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4528 ; free virtual = 12730
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -434,37 +434,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4508 ; free virtual = 12709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4508 ; free virtual = 12709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4507 ; free virtual = 12709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4507 ; free virtual = 12709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4506 ; free virtual = 12708
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4506 ; free virtual = 12707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -495,38 +495,38 @@ Report Cell Usage:
 |15    |FDSE     |    16|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.621 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.707 ; gain = 1002.105 ; free physical = 4506 ; free virtual = 12707
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 97 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 3611.621 ; gain = 837.477 ; free physical = 291 ; free virtual = 12410
-Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 3611.629 ; gain = 1003.137 ; free physical = 291 ; free virtual = 12410
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 3611.707 ; gain = 836.445 ; free physical = 4506 ; free virtual = 12707
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 3611.715 ; gain = 1002.105 ; free physical = 4506 ; free virtual = 12707
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3619.621 ; gain = 0.000 ; free physical = 567 ; free virtual = 12686
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3619.707 ; gain = 0.000 ; free physical = 4787 ; free virtual = 12989
 INFO: [Netlist 29-17] Analyzing 56 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_decrypt_fu_50/grp_InversShiftRow_ByteSub_fu_75/invSbox_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
-INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_decrypt_fu_50/grp_KeySchedule_fu_52/Sbox_U/q1_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
-INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_encrypt_fu_34/grp_ByteSub_ShiftRow_fu_73/Sbox_1_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
-INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_encrypt_fu_34/grp_KeySchedule_fu_50/Sbox_U/q1_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3668.480 ; gain = 0.000 ; free physical = 566 ; free virtual = 12687
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/invSbox_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_decrypt_fu_54/grp_KeySchedule_fu_54/Sbox_U/q1_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_encrypt_fu_38/grp_ByteSub_ShiftRow_fu_75/Sbox_1_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_encrypt_fu_38/grp_KeySchedule_fu_52/Sbox_U/q1_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3668.566 ; gain = 0.000 ; free physical = 4790 ; free virtual = 12987
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 32 instances were transformed.
   RAM32X1D => RAM32X1D (RAMD32(x2)): 32 instances
 
-Synth Design complete | Checksum: 915525c2
+Synth Design complete | Checksum: 76cda200
 INFO: [Common 17-83] Releasing license: Synthesis
 93 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:38 . Memory (MB): peak = 3668.516 ; gain = 2313.844 ; free physical = 564 ; free virtual = 12684
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3252.781; main = 2938.629; forked = 377.650
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4593.156; main = 3668.484; forked = 981.531
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3692.492 ; gain = 0.000 ; free physical = 564 ; free virtual = 12684
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 948b526d1626771b
+synth_design: Time (s): cpu = 00:00:43 ; elapsed = 00:00:41 . Memory (MB): peak = 3668.602 ; gain = 2313.750 ; free physical = 4794 ; free virtual = 12992
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3251.422; main = 2938.506; forked = 377.555
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4593.211; main = 3668.570; forked = 981.500
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3692.578 ; gain = 0.000 ; free physical = 4794 ; free virtual = 12991
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 040ed305421842b1
 INFO: [Coretcl 2-1174] Renamed 20 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3692.492 ; gain = 0.000 ; free physical = 508 ; free virtual = 12632
-INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3692.578 ; gain = 0.000 ; free physical = 4710 ; free virtual = 12911
+INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/AES/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat May 31 00:11:39 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 03:28:20 2025...

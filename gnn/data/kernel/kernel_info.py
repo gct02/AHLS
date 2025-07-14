@@ -144,17 +144,18 @@ class RegionNode(Node):
             min_tc = max(0, findint(element, 'mMinTripCount', 0))
             max_tc = max(min_tc, findint(element, 'mMaxTripCount', 0))
 
-            # ii = findint(element, 'mII', 0)
-            # if ii <= 0:
-            #     if max_tc > 0:
-            #         ii = max_lat // max_tc
-            #     else:
-            #         ii = 1
+            ii = findint(element, 'mII', 0)
+            if ii > 0:
+                pipeline_type = [0, 0, 1] # Pipelined automatically by HLS
+            else:
+                pipeline_type = [1, 0, 0] # Not pipelined
+                ii = 0
         else:
             loop_depth = 0
             min_tc = 0
             max_tc = 0
-            # ii = 0
+            ii = 0
+            pipeline_type = [1, 0, 0]
 
         encoded_loop_depth = [0] * (MAX_LOOP_DEPTH + 1)
         encoded_loop_depth[loop_depth] = 1
@@ -164,8 +165,9 @@ class RegionNode(Node):
             'min_trip_count': min_tc, 'max_trip_count': max_tc,
             'is_loop': int(self.is_loop), 
             'loop_depth': encoded_loop_depth, 
-            # 'ii': ii, 
-            'pipeline': 0, 'unroll': 0, 'unroll_factor': 0,
+            'achieved_ii_base': ii, 'target_ii': 0,
+            'pipeline': pipeline_type,
+            'unroll': 0, 'unroll_factor': 0,
             'loop_merge': 0, 'loop_flatten': 0,
             'dataflow': 0, 'inline': 0,
         }

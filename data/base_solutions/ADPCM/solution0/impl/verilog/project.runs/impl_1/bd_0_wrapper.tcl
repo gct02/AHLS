@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/impl_1/bd_0_wrapper.tcl"
+  variable script "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/impl_1/bd_0_wrapper.tcl"
   variable category "vivado_impl"
 }
 
@@ -130,12 +130,12 @@ set rc [catch {
   set_param power.enableLutRouteBelPower 1
   set_param runs.launchOptions { -jobs 1  }
   reset_param project.defaultXPMLibraries 
-  open_checkpoint /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.runs/impl_1/bd_0_wrapper.dcp
-  set_property webtalk.parent_dir /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.cache/wt [current_project]
-  set_property parent.project_path /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.xpr [current_project]
-  set_property ip_repo_paths /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/ip [current_project]
+  open_checkpoint /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.runs/impl_1/bd_0_wrapper.dcp
+  set_property webtalk.parent_dir /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.cache/wt [current_project]
+  set_property parent.project_path /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.xpr [current_project]
+  set_property ip_repo_paths /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/ip [current_project]
   update_ip_catalog
-  set_property ip_output_repo /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_instances/ADPCM/solution0/impl/verilog/project.cache/ip [current_project]
+  set_property ip_output_repo /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/ADPCM/solution0/impl/verilog/project.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
 OPTRACE "init_design_reports" START { REPORT }

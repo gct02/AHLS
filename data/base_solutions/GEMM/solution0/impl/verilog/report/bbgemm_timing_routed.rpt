@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Thu May 29 16:33:48 2025
+| Date              : Wed Jul  9 03:50:49 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file ./report/bbgemm_timing_routed.rpt
 | Design            : bd_0_wrapper
@@ -313,7 +313,7 @@ Slack (MET) :             2.306ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.043ns  (arrival time - required time)
-  Source:                 bd_0_i/hls_inst/inst/prod_load_reg_452_reg[55]/C
+  Source:                 bd_0_i/hls_inst/inst/prod_load_reg_454_reg[55]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            bd_0_i/hls_inst/inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/din0_buf1_reg[55]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
@@ -332,10 +332,10 @@ Slack (MET) :             0.043ns  (arrival time - required time)
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1053, unset)         0.012     0.012    bd_0_i/hls_inst/inst/ap_clk
-    SLICE_X73Y28         FDRE                                         r  bd_0_i/hls_inst/inst/prod_load_reg_452_reg[55]/C
+    SLICE_X73Y28         FDRE                                         r  bd_0_i/hls_inst/inst/prod_load_reg_454_reg[55]/C
   -------------------------------------------------------------------    -------------------
     SLICE_X73Y28         FDRE (Prop_CFF_SLICEL_C_Q)
-                                                      0.039     0.051 r  bd_0_i/hls_inst/inst/prod_load_reg_452_reg[55]/Q
+                                                      0.039     0.051 r  bd_0_i/hls_inst/inst/prod_load_reg_454_reg[55]/Q
                          net (fo=1, routed)           0.058     0.109    bd_0_i/hls_inst/inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/Q[55]
     SLICE_X73Y28         FDRE                                         r  bd_0_i/hls_inst/inst/dadd_64ns_64ns_64_4_full_dsp_1_U1/din0_buf1_reg[55]/D
   -------------------------------------------------------------------    -------------------
@@ -366,8 +366,8 @@ Sources:            { ap_clk }
 
 Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
 Min Period        n/a     DSP_OUTPUT/CLK  n/a            0.650         8.000       7.350      DSP48E2_X10Y0  bd_0_i/hls_inst/inst/dmul_64ns_64ns_64_4_max_dsp_1_U2/bbgemm_dmul_64ns_64ns_64_4_max_dsp_1_ip_u/inst/i_synth/MULT.OP/i_non_prim.MULT/DSP48E2_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP/DSP_OUTPUT_INST/CLK
-Low Pulse Width   Slow    FDRE/C          n/a            0.275         4.000       3.725      SLICE_X63Y21   bd_0_i/hls_inst/inst/add_ln19_reg_371_reg[0]/C
-High Pulse Width  Slow    FDRE/C          n/a            0.275         4.000       3.725      SLICE_X63Y21   bd_0_i/hls_inst/inst/add_ln19_reg_371_reg[0]/C
+Low Pulse Width   Slow    FDRE/C          n/a            0.275         4.000       3.725      SLICE_X63Y21   bd_0_i/hls_inst/inst/add_ln19_reg_373_reg[0]/C
+High Pulse Width  Slow    FDRE/C          n/a            0.275         4.000       3.725      SLICE_X63Y21   bd_0_i/hls_inst/inst/add_ln19_reg_373_reg[0]/C
 
 
 

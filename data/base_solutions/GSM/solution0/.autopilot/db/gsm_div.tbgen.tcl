@@ -49,13 +49,13 @@ set NewPortList {[
  	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "",
 		"CDFG" : "gsm_div",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1", "EstimateLatencyMax" : "18",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1", "EstimateLatencyMax" : "15",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -65,47 +65,22 @@ set RtlHierarchyInfo {[
 		"IsBlackBox" : "0",
 		"Port" : [
 			{"Name" : "num", "Type" : "None", "Direction" : "I"},
-			{"Name" : "denum", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_gsm_div_Pipeline_gsm_div_label0_fu_39", "Parent" : "0", "Child" : ["2"],
-		"CDFG" : "gsm_div_Pipeline_gsm_div_label0",
-		"Protocol" : "ap_ctrl_hs",
-		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
-		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "16", "EstimateLatencyMax" : "16",
-		"Combinational" : "0",
-		"Datapath" : "0",
-		"ClockEnable" : "0",
-		"HasSubDataflow" : "0",
-		"InDataflowNetwork" : "0",
-		"HasNonBlockingOperation" : "0",
-		"IsBlackBox" : "0",
-		"Port" : [
-			{"Name" : "sext_ln120", "Type" : "None", "Direction" : "I"},
-			{"Name" : "sext_ln126", "Type" : "None", "Direction" : "I"},
-			{"Name" : "sext_ln121", "Type" : "None", "Direction" : "I"},
-			{"Name" : "div_3_out", "Type" : "Vld", "Direction" : "O"}],
+			{"Name" : "denum", "Type" : "None", "Direction" : "I"}],
 		"Loop" : [
-			{"Name" : "gsm_div_label0", "PipelineType" : "UPC",
-				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter1", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
-	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_gsm_div_Pipeline_gsm_div_label0_fu_39.flow_control_loop_pipe_sequential_init_U", "Parent" : "1"}]}
+			{"Name" : "gsm_div_label0", "PipelineType" : "no",
+				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state2"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state2_blk"}}]}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	gsm_div {
 		num {Type I LastRead 0 FirstWrite -1}
-		denum {Type I LastRead 0 FirstWrite -1}}
-	gsm_div_Pipeline_gsm_div_label0 {
-		sext_ln120 {Type I LastRead 0 FirstWrite -1}
-		sext_ln126 {Type I LastRead 0 FirstWrite -1}
-		sext_ln121 {Type I LastRead 0 FirstWrite -1}
-		div_3_out {Type O LastRead -1 FirstWrite 1}}}
+		denum {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "1", "Max" : "18"}
-	, {"Name" : "Interval", "Min" : "1", "Max" : "18"}
+	{"Name" : "Latency", "Min" : "1", "Max" : "15"}
+	, {"Name" : "Interval", "Min" : "1", "Max" : "15"}
 ]}
 
 set PipelineEnableSignalInfo {[

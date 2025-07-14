@@ -3,8 +3,8 @@
         "name": "bbgemm",
         "file": "gemm.c",
         "fileloc": "10",
-        "instructions": "79",
-        "total_instructions": "79",
+        "instructions": "80",
+        "total_instructions": "80",
         "calls": "",
         "basicblocks": "16",
         "loads": {

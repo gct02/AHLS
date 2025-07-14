@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'local_memcpy'" level="0">
-<item name = "Date">Fri May 30 23:25:08 2025
+<item name = "Date">Wed Jul  9 04:09:34 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">SHA</item>
@@ -80,42 +80,42 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln73_1_fu_244_p2">+, 0, 0, 21, 14, 14</column>
-<column name="add_ln73_fu_239_p2">+, 0, 0, 21, 14, 14</column>
-<column name="add_ln79_1_fu_226_p2">+, 0, 0, 12, 5, 1</column>
-<column name="add_ln79_fu_270_p2">+, 0, 0, 39, 32, 3</column>
-<column name="add_ln82_1_fu_260_p2">+, 0, 0, 16, 14, 14</column>
-<column name="add_ln82_fu_254_p2">+, 0, 0, 16, 14, 1</column>
-<column name="add_ln83_1_fu_291_p2">+, 0, 0, 16, 14, 14</column>
-<column name="add_ln83_fu_286_p2">+, 0, 0, 16, 14, 2</column>
-<column name="add_ln84_1_fu_306_p2">+, 0, 0, 16, 14, 14</column>
-<column name="add_ln84_fu_301_p2">+, 0, 0, 16, 14, 2</column>
-<column name="sub_ln76_1_fu_176_p2">-, 0, 0, 38, 1, 31</column>
-<column name="sub_ln76_fu_156_p2">-, 0, 0, 39, 1, 32</column>
-<column name="icmp_ln79_fu_221_p2">icmp, 0, 0, 38, 31, 31</column>
-<column name="m_fu_196_p3">select, 0, 0, 31, 1, 31</column>
+<column name="add_ln73_1_fu_248_p2">+, 0, 0, 21, 14, 14</column>
+<column name="add_ln73_fu_243_p2">+, 0, 0, 21, 14, 14</column>
+<column name="add_ln79_1_fu_230_p2">+, 0, 0, 12, 5, 1</column>
+<column name="add_ln79_fu_274_p2">+, 0, 0, 39, 32, 3</column>
+<column name="add_ln82_1_fu_264_p2">+, 0, 0, 16, 14, 14</column>
+<column name="add_ln82_fu_258_p2">+, 0, 0, 16, 14, 1</column>
+<column name="add_ln83_1_fu_295_p2">+, 0, 0, 16, 14, 14</column>
+<column name="add_ln83_fu_290_p2">+, 0, 0, 16, 14, 2</column>
+<column name="add_ln84_1_fu_310_p2">+, 0, 0, 16, 14, 14</column>
+<column name="add_ln84_fu_305_p2">+, 0, 0, 16, 14, 2</column>
+<column name="sub_ln76_1_fu_180_p2">-, 0, 0, 38, 1, 31</column>
+<column name="sub_ln76_fu_160_p2">-, 0, 0, 39, 1, 32</column>
+<column name="icmp_ln79_fu_225_p2">icmp, 0, 0, 38, 31, 31</column>
+<column name="m_fu_200_p3">select, 0, 0, 31, 1, 31</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">26, 5, 1, 5</column>
-<column name="idx9_fu_60">9, 2, 5, 10</column>
-<column name="idx_fu_64">9, 2, 32, 64</column>
+<column name="idx9_fu_64">9, 2, 5, 10</column>
+<column name="idx_fu_68">9, 2, 32, 64</column>
 <column name="s2_address0">14, 3, 14, 42</column>
 <column name="s2_address1">14, 3, 14, 42</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln73_reg_371">14, 0, 14, 0</column>
+<column name="add_ln73_reg_375">14, 0, 14, 0</column>
 <column name="ap_CS_fsm">4, 0, 4, 0</column>
-<column name="idx9_fu_60">5, 0, 5, 0</column>
-<column name="idx9_load_reg_363">5, 0, 5, 0</column>
-<column name="idx_fu_64">32, 0, 32, 0</column>
-<column name="m_reg_358">31, 0, 31, 0</column>
-<column name="p2_1_load_reg_397">8, 0, 8, 0</column>
-<column name="p2_load_reg_387">8, 0, 8, 0</column>
-<column name="tmp_9_reg_350">1, 0, 14, 13</column>
+<column name="idx9_fu_64">5, 0, 5, 0</column>
+<column name="idx9_load_reg_367">5, 0, 5, 0</column>
+<column name="idx_fu_68">32, 0, 32, 0</column>
+<column name="m_reg_362">31, 0, 31, 0</column>
+<column name="p2_1_load_reg_401">8, 0, 8, 0</column>
+<column name="p2_load_reg_391">8, 0, 8, 0</column>
+<column name="tmp_9_reg_354">1, 0, 14, 13</column>
 </table>
 </item>
 </section>

@@ -2,7 +2,7 @@
 <Messages>
 	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1776" tag="" content="Exporting RTL as a Vivado IP." resolution=""/>
 	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1773" tag="" content="Starting RTL evaluation using Vivado ..." resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file data/base_instances/STENCIL3D/solution0/impl/export.dcp" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file data/base_instances/STENCIL3D/solution0/impl/export.veo" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 146.76 seconds. CPU system time: 7.87 seconds. Elapsed time: 287.91 seconds; current allocated memory: 6.156 MB." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file data/base_solutions/STENCIL3D/solution0/impl/export.dcp" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file data/base_solutions/STENCIL3D/solution0/impl/export.veo" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 141.31 seconds. CPU system time: 7.88 seconds. Elapsed time: 282.63 seconds; current allocated memory: 6.215 MB." resolution=""/>
 </Messages>

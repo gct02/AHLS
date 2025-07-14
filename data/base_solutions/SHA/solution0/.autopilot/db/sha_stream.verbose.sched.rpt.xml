@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'sha_stream'" level="0">
-<item name = "Date">Fri May 30 23:25:08 2025
+<item name = "Date">Wed Jul  9 04:09:34 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">SHA</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 4.810 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 3.507 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">118414, 132027, 0.947 ms, 1.056 ms, 118415, 132028, no</column>
+<column name="">118414, 132025, 0.947 ms, 1.056 ms, 118415, 132026, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -36,6 +36,7 @@
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- sha_stream_label0">101612, 114796, 50806 ~ 57398, -, -, 2, no</column>
+<column name="- sha_stream_label2">10, 10, 2, -, -, 5, no</column>
 </table>
 </item>
 </section>

@@ -21,6 +21,8 @@ Gsm_LPC_Analysis export (
   .indata_q0(indata_q0),       // input [15:0] indata_q0
   .indata_address1(indata_address1),       // output [7:0] indata_address1
   .indata_ce1(indata_ce1),       // output  indata_ce1
+  .indata_we1(indata_we1),       // output  indata_we1
+  .indata_d1(indata_d1),       // output [15:0] indata_d1
   .indata_q1(indata_q1),       // input [15:0] indata_q1
   .LARc_address0(LARc_address0),       // output [2:0] LARc_address0
   .LARc_ce0(LARc_ce0),       // output  LARc_ce0

@@ -156,6 +156,10 @@ __attribute__((sdx_kernel("bbgemm", 0))) void bbgemm(double m1[64*64], double m2
 # 9 "data/benchmarks/gemm/gemm.c" 2
 
 __attribute__((sdx_kernel("bbgemm", 0))) void bbgemm(double m1[64*64], double m2[64*64], double prod[64*64]){
+#line 6 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gemm.tcl"
+#pragma HLSDIRECTIVE PIPELINE off=true
+# 10 "data/benchmarks/gemm/gemm.c"
+
 #line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
 #pragma HLSDIRECTIVE TOP name=bbgemm
 # 10 "data/benchmarks/gemm/gemm.c"
