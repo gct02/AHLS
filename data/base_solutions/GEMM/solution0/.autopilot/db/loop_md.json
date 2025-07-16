@@ -3,27 +3,42 @@
     {
       "Name": "loopjj",
       "FunctionName": "bbgemm",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "loopkk",
       "FunctionName": "bbgemm",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "loopi",
       "FunctionName": "bbgemm",
-      "Depth": 3
+      "Depth": 3,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "loopk",
       "FunctionName": "bbgemm",
-      "Depth": 4
+      "Depth": 4,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "loopj",
       "FunctionName": "bbgemm",
-      "Depth": 5
+      "Depth": 5,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 0
     }
   ]
 }

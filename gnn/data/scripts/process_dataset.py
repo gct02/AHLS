@@ -75,7 +75,8 @@ def main(args: Dict[str, Any]):
 
         instance_count = 0
         for sol in bench_dir.iterdir():
-            if not sol.is_dir():
+            if (not sol.is_dir() or 
+                not sol.name.startswith("solution")):
                 continue
 
             hls_data_json_path = sol / f"{sol.stem}_data.json"
@@ -96,7 +97,7 @@ def main(args: Dict[str, Any]):
             sol_out_dir.mkdir(parents=True, exist_ok=True)
 
             metrics = extract_metrics(
-                sol, filtered=filtered and sol.stem != "solution0"
+                sol, filtered=filtered and sol.name != "solution0"
             )
             with open(sol_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
@@ -119,11 +120,9 @@ def parse_args():
     )
     parser.add_argument("-d", "--dataset-dir", required=True,
                         help="Path to the dataset directory")
-    parser.add_argument("-o", "--output-dir", required=False, 
-                        default="gnn/dataset/full",
+    parser.add_argument("-o", "--output-dir", default="gnn/dataset/full",
                         help="Path to the output directory")
-    parser.add_argument("-b", "--benchmark-info-path", required=False, 
-                        default="data/benchmarks/benchmark_info.json",
+    parser.add_argument("-b", "--benchmark-info-path", default="data/benchmarks/benchmark_info.json",
                         help="Path to the benchmark info JSON file")
     parser.add_argument("-f", "--filtered", action="store_true",
                         help="Signal that the dataset is filtered")

@@ -40,7 +40,8 @@ CDFG_EDGE_TYPES = [
     ("block", "control", "block"), 
 
     # Call flow edges
-    ("instr", "call", "instr"),
+    ("instr", "call", "region"),
+    ("region", "ret", "instr"),
 
     # Edges for hierarchical relationships
     ("region", "hrchy", "region"), 
@@ -50,6 +51,7 @@ CDFG_EDGE_TYPES = [
 ]
 MAX_ARRAY_DIM = 4
 MAX_LOOP_DEPTH = 5
+INLINE_THRESHOLD = 30
 
 
 Metadata = Dict[str, Union[str, int, List[int]]]
@@ -121,24 +123,37 @@ class RegionNode(Node):
         
         self.name = element.findtext('mTag')
         self.function_name = function_name
-
         self.label = (f"{self.function_name}/{self.name}" 
                       if self.name and self.name != self.function_name
                       else self.function_name).replace(' ', '_')
 
         self.is_loop = findint(element, 'mType', 0) == 1
+        self.is_function = self.name == self.function_name
+
+        if self.is_function:
+            region_type = [0, 1, 0]
+        elif self.is_loop:
+            region_type = [0, 0, 1]
+        else:
+            region_type = [1, 0, 0]
 
         min_lat = max(0, findint(element, 'mMinLatency', 0))
         max_lat = max(min_lat, findint(element, 'mMaxLatency', 0))
 
         if self.is_loop:
             if loop_md is not None:
+                is_top_level_loop = loop_md.get('IsTopLevel', 0)
+                has_perfectly_nested_child = loop_md.get('HasPerfectlyNestedChild', 0)
+                is_part_of_perfect_nest = loop_md.get('IsPartOfPerfectNest', 0)
                 loop_depth = loop_md.get('Depth', 1)
                 if loop_depth <= 0:
                     loop_depth = 1
                 elif loop_depth > MAX_LOOP_DEPTH:
                     loop_depth = MAX_LOOP_DEPTH
             else:
+                is_top_level_loop = 0
+                has_perfectly_nested_child = 0
+                is_part_of_perfect_nest = 0
                 loop_depth = 1
 
             min_tc = max(0, findint(element, 'mMinTripCount', 0))
@@ -151,6 +166,9 @@ class RegionNode(Node):
                 pipeline_type = [1, 0, 0] # Not pipelined
                 ii = 0
         else:
+            is_top_level_loop = 0
+            has_perfectly_nested_child = 0
+            is_part_of_perfect_nest = 0
             loop_depth = 0
             min_tc = 0
             max_tc = 0
@@ -163,7 +181,10 @@ class RegionNode(Node):
         self.attrs = {
             'min_latency': min_lat, 'max_latency': max_lat,
             'min_trip_count': min_tc, 'max_trip_count': max_tc,
-            'is_loop': int(self.is_loop), 
+            'region_type': region_type, 
+            'is_top_level_loop': is_top_level_loop,
+            'has_perfectly_nested_child': has_perfectly_nested_child,
+            'is_part_of_perfect_nest': is_part_of_perfect_nest,
             'loop_depth': encoded_loop_depth, 
             'achieved_ii_base': ii, 'target_ii': 0,
             'pipeline': pipeline_type,
@@ -171,7 +192,6 @@ class RegionNode(Node):
             'loop_merge': 0, 'loop_flatten': 0,
             'dataflow': 0, 'inline': 0,
         }
-
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
         self.instrs = []
@@ -193,8 +213,8 @@ class RegionNode(Node):
             'id': self.id,
             'label': self.label, 
             'attributes': attributes,
-            'sub_regions': self.sub_regions,
-            'blocks': self.blocks
+            'sub_regions': list(self.sub_regions),
+            'blocks': list(self.blocks)
         }
     
     def __str__(self):
@@ -226,6 +246,13 @@ class PortNode(CDFGNode):
         
         if self.is_array:
             self.total_size = max(1, array_md.get('TotalSize', 1))
+            if is_top_level:
+                array_impl = [0, 1, 0, 0] # Top-level interface: synthesized as RTL ports
+            elif self.total_size < 1024:
+                array_impl = [0, 0, 1, 0] # Small array: synthesized as shift register
+            else:
+                array_impl = [0, 0, 0, 1] # Large array: synthesized into BRAM, LUTRAM or URAM
+
             primitive_bitwidth = array_md.get('BaseBitwidth', 0)
             base_type = array_md.get('BaseType', -1)
             dims = array_md.get('Dimensions', [])
@@ -241,6 +268,7 @@ class PortNode(CDFGNode):
                 dims.extend([1] * (MAX_ARRAY_DIM - num_dims))
         else:
             self.total_size = 0
+            array_impl = [1, 0, 0, 0]
             primitive_bitwidth = findint(element, 'Value/bitwidth', 0)
             base_type = -1
             dims = [0] * MAX_ARRAY_DIM
@@ -252,9 +280,10 @@ class PortNode(CDFGNode):
         self.attrs.update({
             'direction': direction,
             'is_top_level': int(is_top_level),
-            'if_type': element.findtext('if_type', '-1'),
+            'if_type': str(element.findtext('if_type', -1)),
             'primitive_bitwidth': primitive_bitwidth,
             'base_type': str(base_type),
+            'array_impl': array_impl,
             'dims': dims,
             'array_partition': 0,
             'partition_type': [0, 0, 0],
@@ -275,8 +304,14 @@ class ArrayNode(CDFGNode):
         super().__init__(element, function_name)
 
         self.label = f'{self.function_name}/{self.name}'
+
         self.total_size = max(1, array_md.get('TotalSize', 1))
         self.is_global_mem = is_global_mem
+
+        if self.total_size < 1024:
+            array_impl = [1, 0]
+        else:
+            array_impl = [0, 1]
 
         dims = array_md.get('Dimensions', [])
         num_dims = len(dims)
@@ -293,6 +328,7 @@ class ArrayNode(CDFGNode):
             'is_global_mem': int(is_global_mem),
             'primitive_bitwidth': array_md.get('BaseBitwidth', 0),
             'base_type': str(array_md.get('BaseType', -1)),
+            'array_impl': array_impl,
             'dims': dims,
             'array_partition': 0,
             'partition_type': [0, 0, 0],
@@ -376,7 +412,7 @@ class BlockNode(CDFGNode):
 
     def as_dict(self):
         node_dict = super().as_dict()
-        node_dict.update({'instructions': self.instrs})
+        node_dict.update({'instructions': list(self.instrs)})
         return node_dict
 
 
@@ -548,12 +584,11 @@ class CDFG:
             node.instrs = updated_instrs
 
             node.attrs.update({
-                f"{res}_sum": 0 for res in AREA_METRICS
+                f"block_{res}_sum": 0 for res in AREA_METRICS
             })
             num_instrs_by_type = {
-                'load': 0, 'store': 0, 
-                'alloca': 0, 'getelementptr': 0,
-                'phi': 0, 'call': 0
+                'load': 0, 'store': 0, 'alloca': 0, 
+                'getelementptr': 0, 'phi': 0, 'call': 0
             }
             is_on_critical_path = False
             is_start_of_path = False
@@ -563,7 +598,7 @@ class CDFG:
                 instr = self.nodes['instr'][instr_id - instr_offset]
 
                 for res in AREA_METRICS:
-                    node.attrs[f"{res}_sum"] += instr.attrs.get(res, 0)
+                    node.attrs[f"block_{res}_sum"] += instr.attrs.get(res, 0)
 
                 if instr.opcode in num_instrs_by_type:
                     num_instrs_by_type[instr.opcode] += 1
@@ -576,16 +611,25 @@ class CDFG:
                     is_start_of_path = True
 
             for opcode, count in num_instrs_by_type.items():
-                node.attrs[f'num_{opcode}s'] = count
+                node.attrs[f'num_{opcode}s_in_block'] = count
 
+            node.attrs['num_instrs_in_block'] = len(node.instrs)
             node.attrs['is_on_critical_path'] = int(is_on_critical_path)
             node.attrs['is_start_of_path'] = int(is_start_of_path)
             node.attrs['is_terminal'] = int(is_terminal)
-            node.attrs['num_instrs'] = len(node.instrs)
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions, loop_md_list):
-        offset = self._offsets['region']
+        region_offset = self._offsets['region']
+        block_offset = self._offsets['block']
+
+        def get_all_sub_regions(region_node):
+            all_sub_regions = set(region_node.sub_regions)
+            for sub_region_id in region_node.sub_regions:
+                sub_region = self.nodes['region'][sub_region_id - region_offset]
+                all_sub_regions.update(get_all_sub_regions(sub_region))
+            return all_sub_regions
+    
         for elem in regions.findall('item'):
             loop_md = None
             if findint(elem, 'mType', 0) == 1:
@@ -597,9 +641,9 @@ class CDFG:
                         break    
 
             node = RegionNode(elem, self.original_name, loop_md=loop_md)
-            node.id += offset - 1
+            node.id += region_offset - 1
             node.sub_regions = [
-                sub_region_id + offset - 1
+                sub_region_id + region_offset - 1
                 for sub_region_id in node.sub_regions
             ]
             node.blocks = [
@@ -608,6 +652,43 @@ class CDFG:
                 if block_id in self._node_id_map
             ]
             self.nodes['region'].append(node)
+
+        for region_node in self.nodes['region']:
+            region_node.sub_regions = get_all_sub_regions(region_node)
+
+            all_blocks = set(region_node.blocks)
+            for sub_region_id in region_node.sub_regions:
+                sub_region = self.nodes['region'][sub_region_id - region_offset]
+                all_blocks.update(sub_region.blocks)
+            region_node.blocks = list(all_blocks)
+
+            region_node.attrs.update({
+                f"region_{res}_sum": 0 for res in AREA_METRICS
+            })
+            region_node.attrs.update({
+                "num_instrs_in_region": 0,
+                "num_loads_in_region": 0,
+                "num_stores_in_region": 0,
+                "num_allocas_in_region": 0,
+                "num_getelementptrs_in_region": 0,
+                "num_phis_in_region": 0,
+                "num_calls_in_region": 0
+            })
+            for block_id in region_node.blocks:
+                block_node = self.nodes['block'][block_id - block_offset]
+                for attr, value in block_node.attrs.items():
+                    if attr.startswith('num_') or attr.startswith('block_'):
+                        attr_name = attr.replace('block', 'region')
+                        region_node.attrs[attr_name] += value
+            
+            region_node.attrs['num_sub_regions'] = len(region_node.sub_regions)
+            region_node.attrs['num_blocks'] = len(region_node.blocks)
+
+            if (region_node.is_function and 
+                region_node.attrs['num_instrs_in_region'] < INLINE_THRESHOLD):
+                region_node.attrs['is_small_function'] = 1
+            else:
+                region_node.attrs['is_small_function'] = 0
 
     def _parse_edges(self, cdfg):
         src_pointer_offset_ids = []
@@ -842,15 +923,23 @@ class VitisKernelInfo:
             self.edges[edge_type].extend(edges)
 
     def _include_call_flow(self):
-        call_edge_type = ('instr', 'call', 'instr')
+        call_edge_type = ('instr', 'call', 'region')
+        ret_edge_type = ('region', 'ret', 'instr')
+
         for cdfg in self._cdfgs.values():
             for function_call in cdfg.function_calls:
+                call_instr_id = function_call[0]
                 callee = function_call[1]
                 callee_cdfg = self._cdfgs[callee]
-                callee_start = callee_cdfg.nodes['instr'][0]
-                self.edges[call_edge_type].append(
-                    (function_call[0], callee_start.id)
-                )
+                callee_region = callee_cdfg.nodes['region'][0]
+                self.edges[call_edge_type].append((call_instr_id, callee_region.id))
+                self.edges[ret_edge_type].append((callee_region.id, call_instr_id))
+                call_instr = self.nodes['instr'][call_instr_id]
+                call_instr.attrs['callee_size'] = callee_region.attrs.get('num_instrs_in_region', 0)
+
+        for instr_node in self.nodes['instr']:
+            if 'callee_size' not in instr_node.attrs:
+                instr_node.attrs['callee_size'] = 0
 
     def _update_array_access_edges(self):
         def get_global_array_node(array_name):

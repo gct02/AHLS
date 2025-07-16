@@ -19,9 +19,9 @@ llvm/profiler/
 llvm/utils/
 llvm/clang_plugins/
 
-models/
-results/
-dataset/
+*models/
+*results/
+*dataset/
 
 vitis_hls.log
 

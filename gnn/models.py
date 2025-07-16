@@ -181,14 +181,14 @@ class HLSQoREstimator(nn.Module):
             nt: nn.Sequential(
                 Linear(hidden_channels[-1] * 3, hidden_channels[-1]),
                 nn.LayerNorm(hidden_channels[-1]), nn.GELU(), nn.Dropout(dropout),
-                Linear(hidden_channels[-1], 32)
+                Linear(hidden_channels[-1], 64)
             ) for nt in self.node_types
         })
 
         self.graph_mlp = nn.Sequential(
-            Linear(len(self.node_types) * 32 + 16, 64), 
-            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
-            Linear(64, METRIC_SIZES_BY_CATEGORY[target_metric])
+            Linear(len(self.node_types) * 64 + 16, 128), 
+            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout),
+            Linear(128, METRIC_SIZES_BY_CATEGORY[target_metric])
         )
         self.reset_parameters()
 

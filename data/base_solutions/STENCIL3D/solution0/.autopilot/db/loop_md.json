@@ -3,47 +3,74 @@
     {
       "Name": "loop_height",
       "FunctionName": "stencil3d",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "loop_col",
       "FunctionName": "stencil3d",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "loop_row",
       "FunctionName": "stencil3d",
-      "Depth": 3
+      "Depth": 3,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "row_bound_height",
       "FunctionName": "stencil3d",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "row_bound_col",
       "FunctionName": "stencil3d",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "col_bound_height",
       "FunctionName": "stencil3d",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "col_bound_row",
       "FunctionName": "stencil3d",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "height_bound_col",
       "FunctionName": "stencil3d",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "height_bound_row",
       "FunctionName": "stencil3d",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     }
   ]
 }

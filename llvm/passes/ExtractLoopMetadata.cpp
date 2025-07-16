@@ -9,6 +9,7 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/Analysis/LoopPass.h"
+#include "llvm/Analysis/IVDescriptors.h"
 #include "llvm/IR/Constant.h"
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/IR/Function.h"
@@ -92,7 +93,7 @@ struct ExtractLoopMetadataPass : public ModulePass {
                 OFS << ",\n";
                 OFS << "      \"" << MDItem.first << "\": " << MDItem.second;
             }
-            OFS << ",\n    }";
+            OFS << "\n    }";
         }
         OFS << "\n  ]\n";
         OFS << "}\n";
@@ -120,6 +121,9 @@ struct ExtractLoopMetadataPass : public ModulePass {
 
                         LoopMetadata* LM = new LoopMetadata(LoopName, FunctionName);
                         LM->setAttribute("Depth", CurrentLoop->getLoopDepth());
+                        LM->setAttribute("IsTopLevel", CurrentLoop->getParentLoop() == nullptr ? 1 : 0);
+                        LM->setAttribute("HasPerfectlyNestedChild", hasPerfectlyNestedChild(CurrentLoop) ? 1 : 0);
+                        LM->setAttribute("IsPartOfPerfectNest", isPartOfPerfectNest(CurrentLoop) ? 1 : 0);
                         ModuleLoopMetadata.push_back(LM);
 
                         for (Loop* SubLoop : CurrentLoop->getSubLoops()) {
@@ -129,6 +133,55 @@ struct ExtractLoopMetadataPass : public ModulePass {
                 }
             }
         }
+    }
+
+    bool isTrivialGOTOBlock(const BasicBlock* BB) {
+        if (BB->size() != 1) {
+            return false;
+        }
+        const Instruction* Terminator = BB->getTerminator();
+        if (auto* Branch = dyn_cast<BranchInst>(Terminator)) {
+            return Branch->isUnconditional();
+        }
+        return false;
+    }
+
+
+    bool hasPerfectlyNestedChild(Loop* Outer) {
+        if (!Outer) return false;
+
+        if (Outer->getSubLoops().size() != 1) {
+            return false;
+        }
+        Loop* Inner = Outer->getSubLoops()[0];
+        BasicBlock* OuterHeader = Outer->getHeader();
+        BasicBlock* InnerPreheader = Inner->getLoopPreheader();
+        BasicBlock* InnerHeader = Inner->getHeader();
+
+        for (BasicBlock* Succ : successors(OuterHeader)) {
+            if (Succ == InnerPreheader) {
+                return true;
+            }
+            if (isTrivialGOTOBlock(Succ)) {
+                BasicBlock* NextSucc = Succ->getTerminator()->getSuccessor(0);
+                if (NextSucc == InnerPreheader || NextSucc == InnerHeader) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool isPartOfPerfectNest(Loop* L) {
+        if (!L) return false;
+
+        if (hasPerfectlyNestedChild(L)) {
+            return true;
+        }
+        if (Loop* ParentLoop = L->getParentLoop()) {
+            return hasPerfectlyNestedChild(ParentLoop);
+        }
+        return false;
     }
 
     std::string getLoopName(Loop* L) {

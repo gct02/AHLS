@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Optional, Union, List
+from typing import Optional, Union, List, Dict, Any
 
 import numpy as np
 import torch
@@ -24,7 +24,6 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
-    exp_adjust: bool = False,
     available_resources: Optional[Tensor] = None
 ):
     preds, targets = [], []
@@ -41,30 +40,27 @@ def evaluate(
             preds.append(pred)
             targets.append(data.y)
 
-    preds = torch.cat(preds)
-    targets = torch.cat(targets)
-    if exp_adjust:
-        preds = preds.expm1()
-        targets = targets.expm1()
-
     preds = aggregate_qor_metrics(
-        preds, loader.dataset.target_metric,
+        torch.cat(preds.expm1()), loader.dataset.target_metric,
         available_resources=available_resources
     )
     targets = aggregate_qor_metrics(
-        targets, loader.dataset.target_metric,
+        torch.cat(targets.expm1()), loader.dataset.target_metric,
         available_resources=available_resources
     )
     mape = robust_mape(preds, targets).mean().item()
 
-    for p, t in zip(preds.tolist(), targets.tolist()):
+    preds = preds.tolist()
+    targets = targets.tolist()
+
+    for p, t in zip(preds, targets):
         print(f"Target: {t}; Prediction: {p}")
-    print(f"MAPE: {mape:.2f}%")
+    print(f"MAPE: {mape:.4f}%")
     
-    return preds.tolist(), targets.tolist()
+    return preds, targets, mape
 
 
-def load_model(model_path: str, model_args_path: str) -> nn.Module:
+def load_model_args(model_args_path: str) -> Dict[str, Any]:
     with open(model_args_path, 'r') as f:
         model_args = json.load(f)
 
@@ -73,38 +69,33 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
         metadata[0], 
         [(et[0], et[1], et[2]) for et in metadata[1]]
     )
+    return model_args
+
+
+def load_model(model_path: str, model_args_path: str) -> nn.Module:
+    model_args = load_model_args(model_args_path)
     model = HLSQoREstimator(**model_args)
-    model.load_state_dict(
-        torch.load(model_path, map_location=DEVICE)
-    )
-    return model
+    model.load_state_dict(torch.load(model_path, map_location=DEVICE))
+    return model.to(DEVICE)
 
 
 def prepare_data_loader(
     dataset_dir: str,
     target_metric: str,
     benchmarks: Union[str, List[str]],
-    log_transform: bool = False,
+    scaling_stats: Dict[str, Dict[str, float]],
     batch_size: int = 16,
-    scaling_stats_path: Optional[str] = None
+    mode: str = "evaluate",
 ) -> DataLoader:
-    if scaling_stats_path:
-        with open(scaling_stats_path, 'r') as f:
-            scaling_stats = json.load(f)
-    else:
-        scaling_stats = None
-
     if isinstance(benchmarks, str):
         benchmarks = [benchmarks]
 
     dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
-        standardize=True, 
         scaling_stats=scaling_stats,
         benchmarks=benchmarks, 
-        log_transform=log_transform,
-        mode="evaluate"
+        mode=mode
     )
     loader = DataLoader(
         dataset, 
@@ -122,20 +113,21 @@ def main(args):
     model_args_path = args.get("model_args")
     benchmark = args.get("benchmark")
     target_metric = args.get("target", "area")
-    log_transform = args.get("log_transform", False)
     scaling_stats_path = args.get("scaling_stats")
     batch_size = args.get("batch_size", 16)
     output_dir = args.get("output_dir", "")
+
+    with open(scaling_stats_path, 'r') as f:
+        scaling_stats = json.load(f)
 
     loader = prepare_data_loader(
         dataset_dir, 
         target_metric, 
         benchmark, 
-        log_transform=log_transform,
-        batch_size=batch_size,
-        scaling_stats_path=scaling_stats_path
+        scaling_stats, 
+        batch_size=batch_size
     )
-    model = load_model(model_path, model_args_path).to(DEVICE)
+    model = load_model(model_path, model_args_path)
 
     if target_metric == "area":
         available_resources = torch.tensor(
@@ -147,9 +139,7 @@ def main(args):
         available_resources = None
 
     preds, targets = evaluate(
-        model, loader, 
-        exp_adjust=log_transform,
-        available_resources=available_resources
+        model, loader, available_resources=available_resources
     )
 
     if not output_dir:
@@ -161,6 +151,7 @@ def main(args):
     output_png = os.path.join(output_dir, f"predictions.png")
 
     indices = [data.solution_index for data in loader.dataset]
+
     with open(output_csv, 'w') as f:
         f.write("index,target,prediction\n")
         for idx, target, pred in zip(indices, targets, preds):
@@ -180,7 +171,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Evaluate HLS model")
-    parser.add_argument("-d", "--dataset_dir", type=str, required=True, 
+    parser.add_argument("-d", "--dataset_dir", type=str, default="gnn/dataset",
                         help="Path to dataset directory")
     parser.add_argument("-m", "--model_path", type=str, required=True, 
                         help="Path to the trained model")
@@ -192,8 +183,6 @@ if __name__ == "__main__":
                         help="Target metric for evaluation")
     parser.add_argument("-s", "--scaling_stats", type=str, required=True, 
                         help="Path to the file containing statistics for standardization")
-    parser.add_argument("-lt", "--log_transform", action='store_true', 
-                        help="Apply log transform to the targets")
     parser.add_argument("-bs", "--batch_size", type=int, default=16,
                         help="Batch size for evaluation")
     parser.add_argument("-o", "--output_dir", type=str, default="",

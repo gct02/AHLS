@@ -95,10 +95,9 @@ def evaluate_fine_tuning_config(config, epochs=10):
         
         betas = pretraining_args.get('betas', (0.9, 0.999))
         max_norm = pretraining_args.get('max_norm', 5.0)
-        log_transform = pretraining_args.get('log_transform', False)
         seed = pretraining_args.get('seed', 42)
         loss = pretraining_args.get('loss', 'l1')
-        weight_decay = pretraining_args.get('weight_decay', 0.0)
+        weight_decay = pretraining_args.get('weight_decay', 1e-4)
         huber_delta = pretraining_args.get('huber_delta', 1.0)
 
         set_random_seeds(seed)
@@ -172,7 +171,6 @@ def evaluate_fine_tuning_config(config, epochs=10):
         with torch.no_grad():
             _, _, mape = evaluate_fine_tuning(
                 model, eval_loader, 
-                exp_adjust=log_transform,
                 available_resources=available_resources,
                 device=DEVICE
             )
@@ -247,7 +245,7 @@ def save_config(config, file_path):
 def vns(
     initial_config, 
     dataset_dir, 
-    max_iter=100, 
+    max_iter=50, 
     k_max=3, 
     n_points=5,
     epochs=10,
@@ -286,7 +284,6 @@ def vns(
         with open(pretraining_args_path, 'r') as f:
             pretraining_args = json.load(f)
         
-        log_transform = pretraining_args.get('log_transform', False)
         target_metric = pretraining_args.get('target_metric', 'area')
 
         model = load_pretrained_model(
@@ -298,8 +295,7 @@ def vns(
             f'{dataset_dir}/{bench_name}', 
             target_metric=target_metric,
             batch_size=batch_size,
-            scaling_stats=scaling_stats,
-            log_transform=log_transform
+            scaling_stats=scaling_stats
         )
         eval_loader = prepare_evaluation_data_loader(
             'gnn/dataset',
@@ -307,7 +303,6 @@ def vns(
             benchmarks=bench_name,
             batch_size=batch_size,
             scaling_stats=scaling_stats,
-            log_transform=log_transform,
             mode=f"evaluate_{bench_name}"
         )
 
@@ -376,7 +371,7 @@ def parse_args():
                         help='Path to save the best configuration')
     parser.add_argument('-b', '--batch_size', type=int, default=8, 
                         help='Batch size for data loaders')
-    parser.add_argument('-m', '--max_iter', type=int, default=100, 
+    parser.add_argument('-m', '--max_iter', type=int, default=50, 
                         help='Maximum number of iterations for VNS')
     parser.add_argument('-e', '--epochs', type=int, default=10, 
                         help='Number of epochs for fine-tuning')

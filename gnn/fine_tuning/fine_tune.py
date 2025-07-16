@@ -28,7 +28,6 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
-    exp_adjust: bool = False,
     available_resources: Optional[Tensor] = None
 ):
     preds, targets = [], []
@@ -45,37 +44,31 @@ def evaluate(
             preds.append(pred)
             targets.append(data.y)
 
-    preds = torch.cat(preds)
-    targets = torch.cat(targets)
-    if exp_adjust:
-        preds = preds.expm1()
-        targets = targets.expm1()
-
     preds = aggregate_qor_metrics(
-        preds, loader.dataset.target_metric,
+        torch.cat(preds).expm1(), 
+        loader.dataset.target_metric,
         available_resources=available_resources
     )
     targets = aggregate_qor_metrics(
-        targets, loader.dataset.target_metric,
+        torch.cat(targets).expm1(), 
+        loader.dataset.target_metric,
         available_resources=available_resources
     )
     mape = robust_mape(preds, targets).mean().item()
+
     return preds.tolist(), targets.tolist(), mape
 
 
-def prepare_data_loader(
+def prepare_data_loader_ft(
     dataset_dir: str, 
     target_metric: str,
+    scaling_stats: Dict[str, Dict[str, float]],
     batch_size: int = 16,
-    scaling_stats: Dict[str, Dict[str, float]] = None,
-    log_transform: bool = False,
 ) -> DataLoader:
     dataset = HLSFineTuningDataset(
         root=dataset_dir,
-        target_metric=target_metric, 
-        standardize=True,
         scaling_stats=scaling_stats,
-        log_transform=log_transform
+        target_metric=target_metric
     )
     loader = DataLoader(
         dataset, 
@@ -90,22 +83,16 @@ def prepare_data_loader(
 def prepare_data_loader_eval(
     dataset_dir: str,
     target_metric: str,
-    benchmarks: Union[str, List[str]],
-    scaling_stats: Dict[str, Any] = None,
-    log_transform: bool = False,
+    benchmark: str,
+    scaling_stats: Dict[str, Any],
     batch_size: int = 16
 ) -> DataLoader:
-    if isinstance(benchmarks, str):
-        benchmarks = [benchmarks]
-
     dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
-        standardize=True, 
         scaling_stats=scaling_stats,
-        benchmarks=benchmarks, 
-        log_transform=log_transform,
-        mode="evaluate"
+        benchmarks=[benchmark], 
+        mode=f"evaluate_{benchmark}"
     )
     loader = DataLoader(
         dataset, 
@@ -117,7 +104,7 @@ def prepare_data_loader_eval(
     return loader
 
 
-def load_model(model_path: str, model_args_path: str) -> nn.Module:
+def load_model_args(model_args_path: str) -> Dict[str, Any]:
     with open(model_args_path, 'r') as f:
         model_args = json.load(f)
 
@@ -127,10 +114,13 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
         [(et[0], et[1], et[2]) for et in metadata[1]]
     )
     model_args["dropout"] = 0.0
+    return model_args
+
+
+def load_model(model_path: str, model_args_path: str) -> nn.Module:
+    model_args = load_model_args(model_args_path)
     model = HLSQoREstimator(**model_args)
-    model.load_state_dict(
-        torch.load(model_path, map_location=DEVICE)
-    )
+    model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     return model, model_args
 
 
@@ -151,11 +141,11 @@ def main(args: Dict[str, str]):
     if not pretraining_args_path or not os.path.exists(pretraining_args_path):
         raise ValueError("Pretraining arguments file does not exist.")
     
-    if scaling_stats_path:
-        with open(scaling_stats_path, 'r') as f:
-            scaling_stats = json.load(f)
-    else:
-        scaling_stats = None
+    if not scaling_stats_path or not os.path.exists(scaling_stats_path):
+        raise ValueError("Scaling statistics file does not exist.")
+    
+    with open(scaling_stats_path, 'r') as f:
+        scaling_stats = json.load(f)
 
     if not output_dir:
         output_dir = os.path.dirname(model_path)
@@ -173,7 +163,6 @@ def main(args: Dict[str, str]):
     betas = pretraining_args.get('betas', (0.9, 0.999))
     weight_decay = pretraining_args.get('weight_decay', 1e-4)
     max_norm = pretraining_args.get('max_norm', 5.0)
-    log_transform = pretraining_args.get('log_transform', True)
     seed = pretraining_args.get('seed', 42)
     loss = pretraining_args.get('loss', 'l1')
     huber_delta = pretraining_args.get('huber_delta', 1.0)
@@ -181,57 +170,27 @@ def main(args: Dict[str, str]):
     set_random_seeds(seed)
 
     # Load the dataset
-    ft_loader = prepare_data_loader(
+    ft_loader = prepare_data_loader_ft(
         dataset_dir, target_metric,
         batch_size=batch_size,
-        scaling_stats=scaling_stats,
-        log_transform=log_transform
+        scaling_stats=scaling_stats
     )
     
     # Load the model
     model, model_args = load_model(model_path, model_args_path)
     model = model.to(DEVICE)
-    # model.train()
-
-    # for param in model.parameters():
-    #     param.requires_grad = False
-    
-    # for param in model.graph_mlp.parameters():
-    #     param.requires_grad = True
-
-    # for param in model.node_type_mlp.parameters():
-    #     param.requires_grad = True
-
-    # for param in model.y_base_mlp.parameters():
-    #     param.requires_grad = True
 
     # Prepare the optimizer
-    # grouped_params = get_optimizer_param_groups(model, weight_decay)
     grouped_params = get_layerwise_decay_params(
         model,
         initial_lr=lr,
         weight_decay=weight_decay,
-        decay_rate=0.8
+        decay_rate=0.9
     )
     optimizer = torch.optim.AdamW(
         grouped_params, 
-        # lr=lr,
         betas=betas
     )
-
-    # steps_per_epoch = len(ft_loader)
-    # warmup_steps = 10 * steps_per_epoch
-    # annealing_steps = (epochs - 10) * steps_per_epoch
-
-    # warmup = torch.optim.lr_scheduler.LinearLR(
-    #     optimizer, start_factor=0.1, end_factor=1.0, total_iters=warmup_steps
-    # )
-    # cosine = torch.optim.lr_scheduler.CosineAnnealingLR(
-    #     optimizer, T_max=annealing_steps, eta_min=0.0
-    # )
-    # scheduler = torch.optim.lr_scheduler.SequentialLR(
-    #     optimizer, schedulers=[warmup, cosine], milestones=[warmup_steps]
-    # )
 
     if loss == 'l1':
         loss_fn = nn.L1Loss()
@@ -242,15 +201,13 @@ def main(args: Dict[str, str]):
     else:
         raise ValueError(f"Unsupported loss function: {loss}")
     
-    benchmark = pretraining_args.get('test_bench')
-    benchmark = benchmark.upper()
+    benchmark = pretraining_args.get('test_bench').upper()
 
     loader = prepare_data_loader_eval(
         "gnn/dataset", 
         target_metric,
         benchmark, 
         scaling_stats=scaling_stats,
-        log_transform=log_transform,
         batch_size=8
     )
 
@@ -286,7 +243,6 @@ def main(args: Dict[str, str]):
         "betas": betas,
         "weight_decay": weight_decay,
         "max_norm": max_norm,
-        "log_transform": log_transform,
         "loss": loss,
         "huber_delta": huber_delta,
         "seed": seed
@@ -298,10 +254,7 @@ def main(args: Dict[str, str]):
         for data in ft_loader.dataset:
             f.write(f"{data.solution_index}\n")
 
-    min_mape = float('inf')
-    best_epoch_preds = None
-    best_epoch_targets = None
-    for epoch in range(epochs):
+    for _ in range(epochs):
         model.train()
         for data in ft_loader:
             optimizer.zero_grad()
@@ -316,32 +269,21 @@ def main(args: Dict[str, str]):
             loss.backward()
             clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
-            # scheduler.step()
         
-        model.eval()
-        preds, targets, mape = evaluate(
-            model, loader, 
-            exp_adjust=log_transform,
-            available_resources=available_resources
-        )
-        if mape < min_mape:
-            min_mape = mape
-            best_epoch_preds = preds
-            best_epoch_targets = targets
-            torch.save(model.state_dict(), new_model_path)
-            print(f"New best model saved with MAPE: {min_mape:.4f} (epoch {epoch + 1})")
-        else:
-            print(f"Epoch {epoch + 1}: MAPE did not improve ({mape:.4f} vs {min_mape:.4f})")
-
+    model.eval()
+    preds, targets, _ = evaluate(
+        model, loader, available_resources=available_resources
+    )
     indices = [data.solution_index for data in loader.dataset]
+
     with open(os.path.join(output_dir, f"predictions.csv"), 'w') as f:
         f.write("index,target,prediction\n")
         for idx, target, pred in zip(indices, targets, preds):
             f.write(f"{idx},{target},{pred}\n")
 
     plot_prediction_bars(
-        targets=best_epoch_targets,
-        preds=best_epoch_preds,
+        targets=targets,
+        preds=preds,
         indices=indices,
         benchmark=benchmark,
         metric=target_metric,
@@ -458,7 +400,7 @@ if __name__ == "__main__":
                         help="Path to the statistics for standardization.")
     parser.add_argument("-e", "--epochs", type=int, default=15, 
                         help="Number of epochs for fine-tuning.")
-    parser.add_argument("-bs", "--batch_size", type=int, default=16,
+    parser.add_argument("-b", "--batch_size", type=int, default=8,
                         help="Batch size for fine-tuning.")
     parser.add_argument("-o", "--output_dir", type=str, default="", 
                         help="Directory to save the fine-tuned model.")

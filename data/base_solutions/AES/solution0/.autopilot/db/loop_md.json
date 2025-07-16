@@ -3,72 +3,114 @@
     {
       "Name": "decrypt_label4",
       "FunctionName": "decrypt",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "KeySchedule_label6",
       "FunctionName": "KeySchedule",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "KeySchedule_label9",
       "FunctionName": "KeySchedule",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 0
     },
     {
       "Name": "KeySchedule_label8",
       "FunctionName": "KeySchedule",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 0
     },
     {
       "Name": "KeySchedule_label4",
       "FunctionName": "KeySchedule",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "KeySchedule_label5",
       "FunctionName": "KeySchedule",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "AddRoundKey_label0",
       "FunctionName": "AddRoundKey",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "AddRoundKey_InversMixColumn_label3",
       "FunctionName": "AddRoundKey_InversMixColumn",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "AddRoundKey_InversMixColumn_label0",
       "FunctionName": "AddRoundKey_InversMixColumn",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
     },
     {
       "Name": "AddRoundKey_InversMixColumn_label1",
       "FunctionName": "AddRoundKey_InversMixColumn",
-      "Depth": 2
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
     },
     {
       "Name": "AddRoundKey_InversMixColumn_label2",
       "FunctionName": "AddRoundKey_InversMixColumn",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "encrypt_label1",
       "FunctionName": "encrypt",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "MixColumn_AddRoundKey_label1",
       "FunctionName": "MixColumn_AddRoundKey",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     },
     {
       "Name": "MixColumn_AddRoundKey_label0",
       "FunctionName": "MixColumn_AddRoundKey",
-      "Depth": 1
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
     }
   ]
 }

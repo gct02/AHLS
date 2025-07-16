@@ -2,7 +2,6 @@ import os
 import argparse
 import random
 import json
-import shutil
 from typing import List, Dict, Tuple, Optional, Union, Any
 
 import matplotlib
@@ -19,10 +18,7 @@ from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
 from gnn.data.dataset import HLSDataset
-from gnn.data.graph import (
-    METADATA,
-    FEATURE_SIZE_BY_TYPE
-)
+from gnn.data.graph import METADATA, FEATURE_SIZE_BY_TYPE
 from gnn.analysis.utils import (
     plot_prediction_bars,
     plot_prediction_scatter,
@@ -44,7 +40,6 @@ def evaluate(
     model: nn.Module,
     loader: DataLoader,
     epoch: int,
-    exp_adjust: bool = False,
     output_dir: Optional[str] = None,
     available_resources: Optional[Tensor] = None
 ) -> float:
@@ -59,22 +54,17 @@ def evaluate(
         )
         targets.append(data.y)
         preds.append(pred)
-        
-    targets = torch.cat(targets, dim=0)
-    preds = torch.cat(preds, dim=0)
-    if exp_adjust:
-        targets = torch.expm1(targets)
-        preds = torch.expm1(preds)
 
     targets = aggregate_qor_metrics(
-        targets, loader.dataset.target_metric,
+        torch.expm1(torch.cat(targets, dim=0)), 
+        loader.dataset.target_metric,
         available_resources=available_resources
     )
     preds = aggregate_qor_metrics(
-        preds, loader.dataset.target_metric,
+        torch.expm1(torch.cat(preds, dim=0)), 
+        loader.dataset.target_metric,
         available_resources=available_resources
     )
-
     mape = robust_mape(preds, targets).mean().item()
     
     if mape < evaluate.min_mape:
@@ -84,7 +74,7 @@ def evaluate(
             mape_path = f"{output_dir}/info/mape.txt"
 
             with open(mape_path, "w") as f:
-                f.write(f"Epoch {epoch + 1}: MAPE = {mape:.3f}%\n")
+                f.write(f"Epoch {epoch + 1}: MAPE = {mape:.4f}%\n")
 
             torch.save(obj=model.state_dict(), f=model_path)
 
@@ -102,8 +92,8 @@ def evaluate(
         evaluate.best_epoch = epoch
         evaluate.best_preds = preds
 
-    print(f"\nMAPE at epoch {epoch + 1}: {mape:.2f}%")
-    print(f"Best MAPE so far: {evaluate.min_mape:.2f}%"
+    print(f"\nMAPE at epoch {epoch + 1}: {mape:.4f}%")
+    print(f"Best MAPE so far: {evaluate.min_mape:.4f}%"
           f" at epoch {evaluate.best_epoch + 1}\n")
     
     return mape
@@ -118,15 +108,13 @@ def train_model(
     epochs: int,
     max_norm: float = 5.0,
     scheduler: Optional[LRScheduler] = None,
-    exp_adjust: bool = False,
     output_dir: Optional[str] = None,
     available_resources: Optional[Tensor] = None
 ) -> Tuple[List[float], List[float]]:
     train_mapes, test_mapes = [], []
 
     for epoch in range(epochs):
-        targets, preds = [], []
-                
+        targets, preds = [], []  
         model.train()
         for data in train_loader:
             optimizer.zero_grad()
@@ -139,11 +127,7 @@ def train_model(
             )
             loss = loss_fn(pred, data.y)
             loss.backward()
-
-            clip_grad_norm_(
-                model.parameters(), 
-                max_norm=max_norm
-            )
+            clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
             if scheduler is not None:
                 scheduler.step()
@@ -151,18 +135,14 @@ def train_model(
             targets.append(data.y)
             preds.append(pred)
 
-        targets = torch.cat(targets, dim=0)
-        preds = torch.cat(preds, dim=0)
-        if exp_adjust:
-            targets = torch.expm1(targets)
-            preds = torch.expm1(preds)
-
         targets = aggregate_qor_metrics(
-            targets, train_loader.dataset.target_metric,
+            torch.cat(targets, dim=0).expm1(), 
+            train_loader.dataset.target_metric,
             available_resources=available_resources
         )
         preds = aggregate_qor_metrics(
-            preds, train_loader.dataset.target_metric,
+            torch.cat(preds, dim=0).expm1(), 
+            train_loader.dataset.target_metric,
             available_resources=available_resources
         )
         train_mape = robust_mape(preds, targets).mean().item()
@@ -174,7 +154,6 @@ def train_model(
                 model=model, 
                 loader=test_loader, 
                 epoch=epoch,
-                exp_adjust=exp_adjust,
                 output_dir=output_dir,
                 available_resources=available_resources
             )
@@ -195,32 +174,36 @@ def main(args: Dict[str, Any]):
     weight_decay = float(args['weight_decay'])
     max_norm = float(args['max_norm'])
     loss = args['loss']
-    log_transform = args['log_transform']
     output_dir = args['output_dir']
-
-    if not dataset_dir:
-        raise ValueError("Dataset directory must be specified with -d or --dataset-dir.")
     
-    full_dataset_dir = f"{dataset_dir}/full"
+    if not dataset_dir.endswith("/full"):
+        if not dataset_dir:
+            raise ValueError(
+                "Dataset directory must be specified with -d or --dataset-dir."
+            )
+        full_dataset_dir = f"{dataset_dir}/full"
+    else:
+        full_dataset_dir = dataset_dir
+
     if not os.path.exists(full_dataset_dir):
-        raise FileNotFoundError(f"Dataset directory {full_dataset_dir} does not exist.")
-
+        raise FileNotFoundError(
+            f"Dataset directory {full_dataset_dir} does not exist."
+        )
+    
     matplotlib.use('Agg')
-
     torch.autograd.set_detect_anomaly(True)
     torch.set_printoptions(edgeitems=20, linewidth=200, sci_mode=False)
 
     set_random_seeds(seed)
 
     test_bench = test_bench.upper()
-
     benches = sorted(os.listdir(full_dataset_dir))
     train_benches = [b for b in benches if b != test_bench]
 
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [128, 128, 128],
+        'hidden_channels': [256, 256, 256],
         'num_layers': 3,
         'metadata': METADATA,
         'heads': [4, 4, 4],
@@ -268,8 +251,7 @@ def main(args: Dict[str, Any]):
         target_metric=target_metric, 
         test_benches=test_bench, 
         train_benches=train_benches, 
-        batch_size=batch_size, 
-        log_transform=log_transform
+        batch_size=batch_size
     )
     with open(f"{info_dir}/scaling_stats.json", 'w') as f:
         json.dump(scaling_stats, f, indent=2)
@@ -283,7 +265,6 @@ def main(args: Dict[str, Any]):
         lr=learning_rate, 
         betas=betas,
     )
-
     steps_per_epoch = len(train_loader)
     warmup_steps = 10 * steps_per_epoch
     annealing_steps = 100 * steps_per_epoch
@@ -318,25 +299,19 @@ def main(args: Dict[str, Any]):
         train_loader, test_loader, epochs, 
         scheduler=scheduler, 
         max_norm=max_norm,
-        exp_adjust=log_transform,
         output_dir=output_dir,
         available_resources=available_resources
     )
 
     indices = [
-        data.solution_index 
-        for data in test_loader.dataset
+        data.solution_index for data in test_loader.dataset
     ]
     preds = evaluate.best_preds.tolist()
     targets = []
     for data in test_loader:
         data = data.to(DEVICE)
-        if log_transform:
-            target = torch.expm1(data.y)
-        else:
-            target = data.y
         target = aggregate_qor_metrics(
-            target, target_metric,
+            torch.expm1(data.y), target_metric,
             available_resources=available_resources
         )
         targets.extend(target.tolist())
@@ -440,24 +415,19 @@ def prepare_data_loaders(
     target_metric: str,
     test_benches: Union[List[str], str],
     train_benches: Union[List[str], str],
-    batch_size: int = 32,
-    log_transform: bool = False
+    batch_size: int = 32
 ) -> Tuple[DataLoader, DataLoader, Dict[str, Dict[str, float]]]:
     train_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
-        standardize=True, 
         benchmarks=train_benches, 
-        log_transform=log_transform,
         mode="train"
     )
     test_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric,
-        standardize=True,
         scaling_stats=train_dataset.scaling_stats,
         benchmarks=test_benches,
-        log_transform=log_transform,
         mode="test"
     )
     train_loader = DataLoader(
@@ -501,8 +471,6 @@ def parse_arguments():
                         help='Weight decay for the optimizer (default: 1e-4).')
     parser.add_argument('-mn', '--max-norm', type=float, default=5.0,
                         help='Maximum norm for gradient clipping (default: 5.0).')
-    parser.add_argument('-lt', '--log-transform', action='store_true',
-                        help='Apply log transformation to the target variable.')
     parser.add_argument('-hd', '--huber-delta', type=float, default=1.0,
                         help='Delta parameter for Huber loss (default: 1.0). Only used if loss is set to "huber".')
     parser.add_argument('-o', '--output-dir', type=str, default='',

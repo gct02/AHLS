@@ -83,16 +83,13 @@ def set_random_seeds(seed: int):
 def prepare_fine_tuning_data_loader(
     dataset_dir: str, 
     target_metric: str,
+    scaling_stats: Dict[str, Dict[str, float]],
     batch_size: int = 16,
-    scaling_stats: Dict[str, Dict[str, float]] = None,
-    log_transform: bool = False,
 ) -> DataLoader:
     dataset = HLSFineTuningDataset(
         root=dataset_dir,
         target_metric=target_metric, 
-        standardize=True,
         scaling_stats=scaling_stats,
-        log_transform=log_transform
     )
     loader = DataLoader(
         dataset, 
@@ -110,7 +107,6 @@ def prepare_evaluation_data_loader(
     benchmarks: Union[str, List[str]],
     batch_size: int = 16,
     scaling_stats: Dict[str, Any] = None,
-    log_transform: bool = False,
     mode: str = "evaluate"
 ) -> DataLoader:
     if isinstance(benchmarks, str):
@@ -118,10 +114,8 @@ def prepare_evaluation_data_loader(
     dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
-        standardize=True, 
         scaling_stats=scaling_stats,
         benchmarks=benchmarks, 
-        log_transform=log_transform,
         mode=mode
     )
     loader = DataLoader(
@@ -137,7 +131,6 @@ def prepare_evaluation_data_loader(
 def evaluate_fine_tuning(
     model: nn.Module,
     loader: DataLoader,
-    exp_adjust: bool = False,
     available_resources: Optional[Tensor] = None,
     device: Optional[torch.device] = None
 ):
@@ -158,11 +151,8 @@ def evaluate_fine_tuning(
             preds.append(pred)
             targets.append(data.y)
 
-    preds = torch.cat(preds)
-    targets = torch.cat(targets)
-    if exp_adjust:
-        preds = preds.expm1()
-        targets = targets.expm1()
+    preds = torch.cat(preds).exp1m()
+    targets = torch.cat(targets).expm1()
 
     preds = aggregate_qor_metrics(
         preds, loader.dataset.target_metric,
@@ -173,6 +163,7 @@ def evaluate_fine_tuning(
         available_resources=available_resources
     )
     mape = robust_mape(preds, targets).mean().item()
+    
     return preds.tolist(), targets.tolist(), mape
 
 

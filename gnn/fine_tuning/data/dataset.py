@@ -4,11 +4,15 @@ import shutil
 import json
 import pickle
 import math
-from typing import Optional, Dict
+from typing import Dict
 
 from torch_geometric.data import Dataset
 
-from gnn.data.dataset import TARGET_METRICS, is_valid_report
+from gnn.data.dataset import (
+    TARGET_METRICS, 
+    NO_LOG_SCALING_KEYS,
+    is_valid_report
+)
 from gnn.data.kernel.kernel_info import VitisKernelInfo
 from gnn.data.graph import to_hetero_data
 
@@ -16,11 +20,9 @@ from gnn.data.graph import to_hetero_data
 class HLSFineTuningDataset(Dataset):
     def __init__(
         self, 
-        root: str, 
-        target_metric: str,
-        standardize: bool = False,
-        scaling_stats: Optional[Dict[str, Dict[str, float]]] = None,
-        log_transform: bool = False,
+        root,
+        scaling_stats: Dict[str, Dict[str, float]],
+        target_metric: str = "area",
         benchmark: str = "",
         **kwargs
     ):
@@ -32,8 +34,6 @@ class HLSFineTuningDataset(Dataset):
             )
         self.evaluation_metrics = TARGET_METRICS[target_metric]
         self.root = root
-        self.log_transform = log_transform
-        self.standardize = standardize
         self.scaling_stats = scaling_stats
         self.benchmark = benchmark
 
@@ -59,21 +59,18 @@ class HLSFineTuningDataset(Dataset):
                 f"Missing or invalid base metrics in {base_metrics_path}."
             )
 
-        self.base_target = torch.tensor([
-            float(base_metrics[metric]) for metric in self.evaluation_metrics
-        ]).unsqueeze(0)
-        if self.log_transform:
-            self.base_target = torch.log1p(self.base_target)
+        self.base_target = torch.tensor(
+            [float(base_metrics[key]) for key in self.evaluation_metrics]
+        ).log1p().unsqueeze(0)
 
         self.solution_dirs = []
         self._raw_file_names = []
         self._processed_file_names = []
 
         for solution in os.listdir(self.raw_dir):
-            if not solution.startswith("solution"):
-                continue
             solution_dir = os.path.join(self.raw_dir, solution)
-            if not os.path.isdir(solution_dir):
+            if (not os.path.isdir(solution_dir) or
+                not solution.startswith("solution")):
                 continue
 
             kernel_info_path = os.path.join(solution_dir, "vitis_kernel_info.pkl")
@@ -96,8 +93,9 @@ class HLSFineTuningDataset(Dataset):
                 shutil.rmtree(solution_dir)
                 continue
 
-            self._raw_file_names.append((f"{solution}/graph.json",
-                                         f"{solution}/metrics.json"))
+            self._raw_file_names.append(
+                (f"{solution}/graph.json", f"{solution}/metrics.json")
+            )
             self.solution_dirs.append(solution_dir)
 
         super(HLSFineTuningDataset, self).__init__(self.root, **kwargs)
@@ -127,17 +125,14 @@ class HLSFineTuningDataset(Dataset):
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            target = torch.tensor([
-                float(metrics[metric]) for metric in self.evaluation_metrics
-            ]).unsqueeze(0)
-            if self.log_transform:
-                target = torch.log1p(target)
+            target = torch.tensor(
+                [float(metrics[key]) for key in self.evaluation_metrics]
+            ).log1p().unsqueeze(0)
 
             with open(kernel_info_path, 'rb') as f:
                 kernel_info = pickle.load(f)
-                
-            if self.standardize:
-                self._standardize_features(kernel_info)
+            
+            self._standardize_features(kernel_info)
 
             data = to_hetero_data(kernel_info)
             data.y = target
@@ -147,6 +142,7 @@ class HLSFineTuningDataset(Dataset):
 
             output_path = os.path.join(self.processed_dir, f"{self.benchmark}_{idx}.pt")
             torch.save(data, output_path)
+
             self._processed_file_names.append(f"{self.benchmark}_{idx}.pt")
 
     def len(self):
@@ -157,40 +153,26 @@ class HLSFineTuningDataset(Dataset):
         return data 
     
     def _standardize_features(self, kernel_info: VitisKernelInfo):
-        TO_LOG_TRANSFORM_KEYS = [
-            'min_trip_count', 'max_trip_count',
-            'min_latency', 'max_latency', 
-            'achieved_ii_base', 'target_ii',
-            'num_instrs', 'num_loads', 'num_stores',
-            'num_allocas', 'num_getelementptrs', 
-            'num_phis', 'num_calls', 'dims',
-            'unroll_factor', 'partition_factor'
-        ]
-        if self.log_transform:
-            TO_LOG_TRANSFORM_KEYS += self.evaluation_metrics
-
         def log_transform(value):
             if isinstance(value, (list, tuple)):
                 return [math.log1p(float(v)) for v in value]
-            else:
-                return math.log1p(float(value))
+            return math.log1p(float(value))
             
-        def scale(key, value, mean, std):
-            if key in TO_LOG_TRANSFORM_KEYS:
-                 value = log_transform(value)
+        def scale(value, mean, std):
             if isinstance(value, (list, tuple)):
                 return [(float(v) - mean) / std for v in value]
-            else:
-                return (float(value) - mean) / std
+            return (float(value) - mean) / std
             
-        for nt, nodes in kernel_info.nodes.items():
+        for nodes in kernel_info.nodes.values():
             for node in nodes:
                 for key, value in node.attrs.items():
                     if key not in self.scaling_stats:
                         continue
                     mean = self.scaling_stats[key]['mean']
                     std = self.scaling_stats[key]['std']
-                    if std == 0:
+                    if std < 1e-8:
                         std = 1
-                    node.attrs[key] = scale(key, value, mean, std)
+                    if key not in NO_LOG_SCALING_KEYS:
+                        value = log_transform(value)
+                    node.attrs[key] = scale(value, mean, std)
 
