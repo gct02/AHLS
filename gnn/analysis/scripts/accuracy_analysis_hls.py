@@ -2,6 +2,7 @@ from typing import List, Union, Optional
 from pathlib import Path
 
 import torch
+import numpy as np
 
 from gnn.data.utils.parsers import (
     extract_utilization,
@@ -29,7 +30,7 @@ def compute_baseline_error(
         if report is None or not isinstance(report, dict):
             return False
         for metric in metrics:
-            if metric not in report or report[metric] < 0:
+            if metric not in report or float(report[metric]) < -1e-6:
                 return False
         return True
     
@@ -40,18 +41,16 @@ def compute_baseline_error(
     mape_list = []
 
     for benchmark_dir in Path(dataset_dir).iterdir():
-        if not benchmark_dir.is_dir():
+        if (not benchmark_dir.is_dir() 
+            or (benchmarks is not None and benchmark_dir.name not in benchmarks)):
             continue
 
-        if (benchmarks is not None and 
-            benchmark_dir.name not in benchmarks):
-            continue
-        
+        preds = []
+        targets = []
         for solution_dir in Path(benchmark_dir).iterdir():
             if (not solution_dir.is_dir() or 
                 not solution_dir.name.startswith("solution")):
                 continue
-
             filtered = solution_dir.name != "solution0"
 
             impl_util_rpt = extract_utilization(solution_dir, filtered)
@@ -76,12 +75,25 @@ def compute_baseline_error(
             )
             ground_truth = compute_snru(ground_truth, avail_resources)
             estimates = compute_snru(estimates, avail_resources)
-            mape_list.append(robust_mape(estimates, ground_truth))
+
+            targets.append(ground_truth)
+            preds.append(estimates)
+
+        if not preds or not targets:
+            if verbose:
+                print(f"No valid solutions found for benchmark {benchmark_dir.name}")
+            continue
+
+        preds = torch.stack(preds, dim=0).unsqueeze(0)
+        targets = torch.stack(targets, dim=0).unsqueeze(0)
+        mape = robust_mape(preds, targets).mean().item()
+        mape_list.append(mape)
+        print(f"Benchmark {benchmark_dir.name} MAPE: {mape:.2f}%")
 
     if not mape_list:
         return -1.0  # No valid reports found
     
-    return torch.stack(mape_list).mean().item()
+    return np.mean(mape_list)  # Return the average MAPE across all benchmarks
 
 
 if __name__ == "__main__":

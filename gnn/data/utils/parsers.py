@@ -100,6 +100,8 @@ def extract_hls_cc_report(solution_dir, filtered=False) -> Dict[str, int]:
 def extract_hls_area_estimates(solution_dir, filtered=False) -> Dict[str, int]:
     if filtered:
         rpt_path = Path(solution_dir) / 'reports/csynth.xml'
+        if not os.path.exists(rpt_path):
+            rpt_path = Path(solution_dir) / 'reports/synth.xml'
     else:
         rpt_path = Path(solution_dir) / 'syn/report/csynth.xml'
 

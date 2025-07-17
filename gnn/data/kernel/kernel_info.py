@@ -197,10 +197,10 @@ class RegionNode(Node):
         self.instrs = []
     
     def _extract_items(self, element, tag):
-        return [
-            int(item.text) 
-            for item in element.find(tag).findall('item')
-        ]
+        parent_tag = element.find(tag)
+        if parent_tag is None:
+            return []
+        return [int(item.text) for item in parent_tag.findall('item')]
     
     def as_dict(self):
         attributes = {}
@@ -368,10 +368,13 @@ class InstructionNode(CDFGNode):
             for res in AREA_METRICS:
                 self.attrs[res] = utilization.get(res, 0)
 
-        self.operand_edges = [
-            int(edge.text) 
-            for edge in element.find('oprand_edges').findall('item')
-        ]
+        operand_edges = element.find('oprand_edges') # ** This is not a typo **
+        if operand_edges is None:
+            self.operand_edges = []
+        else:
+            self.operand_edges = [
+                int(edge.text) for edge in operand_edges.findall('item')
+            ]
 
     def as_dict(self):
         node_dict = super().as_dict()
@@ -405,10 +408,10 @@ class BlockNode(CDFGNode):
         self.instrs = self._extract_items(element, 'node_objs')
 
     def _extract_items(self, element, tag):
-        return [
-            int(item.text) 
-            for item in element.find(tag).findall('item')
-        ]
+        parent_tag = element.find(tag)
+        if parent_tag is None:
+            return []
+        return [int(item.text) for item in parent_tag.findall('item')]
 
     def as_dict(self):
         node_dict = super().as_dict()
@@ -575,12 +578,10 @@ class CDFG:
 
             updated_instrs = []
             for instr_id in node.instrs:
-                if instr_id not in self._node_id_map:
-                    continue
-                instr_id, instr_nt = self._node_id_map[instr_id]
-                if instr_nt != 'instr':
-                    continue
-                updated_instrs.append(instr_id)
+                if instr_id in self._node_id_map:
+                    instr_id, instr_nt = self._node_id_map[instr_id]
+                    if instr_nt == 'instr':
+                        updated_instrs.append(instr_id)
             node.instrs = updated_instrs
 
             node.attrs.update({
@@ -617,18 +618,12 @@ class CDFG:
             node.attrs['is_on_critical_path'] = int(is_on_critical_path)
             node.attrs['is_start_of_path'] = int(is_start_of_path)
             node.attrs['is_terminal'] = int(is_terminal)
+
             self.nodes['block'].append(node)
 
     def _process_regions(self, regions, loop_md_list):
         region_offset = self._offsets['region']
         block_offset = self._offsets['block']
-
-        def get_all_sub_regions(region_node):
-            all_sub_regions = set(region_node.sub_regions)
-            for sub_region_id in region_node.sub_regions:
-                sub_region = self.nodes['region'][sub_region_id - region_offset]
-                all_sub_regions.update(get_all_sub_regions(sub_region))
-            return all_sub_regions
     
         for elem in regions.findall('item'):
             loop_md = None
@@ -654,17 +649,16 @@ class CDFG:
             self.nodes['region'].append(node)
 
         for region_node in self.nodes['region']:
-            region_node.sub_regions = get_all_sub_regions(region_node)
+            all_sub_regions = self._get_all_sub_regions(region_node)
 
             all_blocks = set(region_node.blocks)
-            for sub_region_id in region_node.sub_regions:
+            for sub_region_id in all_sub_regions:
                 sub_region = self.nodes['region'][sub_region_id - region_offset]
                 all_blocks.update(sub_region.blocks)
-            region_node.blocks = list(all_blocks)
 
-            region_node.attrs.update({
-                f"region_{res}_sum": 0 for res in AREA_METRICS
-            })
+            region_node.attrs.update(
+                {f"region_{res}_sum": 0 for res in AREA_METRICS}
+            )
             region_node.attrs.update({
                 "num_instrs_in_region": 0,
                 "num_loads_in_region": 0,
@@ -674,18 +668,18 @@ class CDFG:
                 "num_phis_in_region": 0,
                 "num_calls_in_region": 0
             })
-            for block_id in region_node.blocks:
+            for block_id in all_blocks:
                 block_node = self.nodes['block'][block_id - block_offset]
                 for attr, value in block_node.attrs.items():
-                    if attr.startswith('num_') or attr.startswith('block_'):
+                    if attr.startswith('num_') or attr.endswith('_sum'):
                         attr_name = attr.replace('block', 'region')
                         region_node.attrs[attr_name] += value
             
-            region_node.attrs['num_sub_regions'] = len(region_node.sub_regions)
-            region_node.attrs['num_blocks'] = len(region_node.blocks)
+            region_node.attrs['num_sub_regions'] = len(all_sub_regions)
+            region_node.attrs['num_blocks'] = len(all_blocks)
 
-            if (region_node.is_function and 
-                region_node.attrs['num_instrs_in_region'] < INLINE_THRESHOLD):
+            num_instrs = region_node.attrs['num_instrs_in_region']
+            if region_node.is_function and num_instrs < INLINE_THRESHOLD:
                 region_node.attrs['is_small_function'] = 1
             else:
                 region_node.attrs['is_small_function'] = 0
@@ -716,6 +710,7 @@ class CDFG:
                 if dst is not None and dst_nt == 'instr':
                     src_pointer_offset_ids.append((src, dst))
                 continue
+
             if dst in self._pointer_offset_ids:
                 src, src_nt = self._node_id_map.get(src, (None, None))
                 if src is not None:
@@ -799,6 +794,13 @@ class CDFG:
                     self.nodes['region'][i].instrs.append(instr_id)
                     self.edges[('region', 'hrchy', 'instr')].append((region.id, instr_id))
                     self.edges[('block', 'hrchy', 'instr')].append((block_id, instr_id))
+
+    def _get_all_sub_regions(self, region_node):
+        all_sub_regions = set(region_node.sub_regions)
+        for sub_region_id in region_node.sub_regions:
+            sub_region = self.nodes['region'][sub_region_id - self._offsets['region']]
+            all_sub_regions.update(self._get_all_sub_regions(sub_region))
+        return all_sub_regions
 
     def as_dict(self):
         return {
@@ -1056,10 +1058,7 @@ def collect_adb_files(solution_dir, filtered=False):
 
 
 def _edge_exists(edges, src: int, dst: int, et: Tuple[str, str, str]) -> bool:
-    return any(
-        src == edge[0] and dst == edge[1] 
-        for edge in edges.get(et, [])
-    )
+    return any(src == edge[0] and dst == edge[1] for edge in edges.get(et, []))
 
 
 if __name__ == "__main__":

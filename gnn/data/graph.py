@@ -299,6 +299,8 @@ def update_with_directives(
     for loop_name in auto_pipeline:
         for node in kernel_info.nodes.get('region', []):
             if node.name == loop_name:
+                if node.attrs["pipeline"][-1] == 1:
+                    continue
                 node.attrs["pipeline"] = [0, 0, 1] # Pipelined automatically by HLS
                 if node.attrs["achieved_ii_base"] == 0:
                     node.attrs["target_ii"] = 1

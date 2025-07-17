@@ -493,3 +493,29 @@ def aggregate_qor_metrics(
         return compute_power(values)
     else:
         raise ValueError(f"Unsupported target metric: {target_metric}")
+    
+
+def parse_predictions(
+    predictions_path: str
+) -> Tuple[List[int], List[float], List[float]]:
+    if not os.path.exists(predictions_path):
+        raise FileNotFoundError(f"Predictions file not found: {predictions_path}")
+
+    with open(predictions_path, 'r') as file:
+        lines = file.readlines()
+
+    if len(lines) < 1:
+        raise ValueError("Predictions file is empty or malformed")
+
+    lines = lines[1:]  # Skip header
+
+    targets = []
+    preds = []
+    indices = []
+    for line in lines:
+        idx, target, pred = line.strip().split(',')
+        targets.append(float(target))
+        preds.append(float(pred))
+        indices.append(int(idx))
+
+    return indices, targets, preds
