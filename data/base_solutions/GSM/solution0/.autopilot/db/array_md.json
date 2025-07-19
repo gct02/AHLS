@@ -1,17 +1,6 @@
 {
   "ArrayMetadata": [
     {
-      "Name": "llvm.global_ctors",
-      "FunctionName": "",
-      "BaseBitwidth": 0,
-      "BaseType": 13,
-      "IsGlobal": 1,
-      "IsInternalConst": 0,
-      "NumDimensions": 1,
-      "TotalSize": 0,
-      "Dimensions": [0]
-    },
-    {
       "Name": "bitoff",
       "FunctionName": "gsm_norm",
       "BaseBitwidth": 8,

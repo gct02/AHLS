@@ -32,8 +32,7 @@ struct ArrayAccessInfo {
     std::vector<std::pair<std::string, std::string>> Loads;
     std::vector<std::pair<std::string, uint32_t>> Stores;
 
-    ArrayAccessInfo(const std::string& Name,
-                    const std::string& FunctionName)
+    ArrayAccessInfo(const std::string& Name, const std::string& FunctionName)
           : Name(Name), FunctionName(FunctionName) {}
 
     void addLoad(const std::string& FunctionName, const std::string& LoadInstName) {
@@ -58,6 +57,7 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
             errs() << "Output file not specified.\n";
             return false;
         }
+        assignIndicesToStores(M);
         extractArrayAccessInfo(M);
         serializeArrayMetadataToJson(M);
 
@@ -152,19 +152,19 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
     }
 
     void extractLocalArrayAccessInfo(Module& M) {
-        // Arrays allocated in the function body
         for (Function& F : M) {
-            if (F.isIntrinsic() || F.size() == 0) continue;
-            std::string FunctionName = F.hasName() ? F.getName().str() : "";
+            if (F.isIntrinsic() || F.size() == 0 || !F.hasName()) continue;
+            std::string FunctionName = F.getName().str();
+
+            // Arrays allocated in the function body
             for (BasicBlock& BB : F) {
                 for (Instruction& I : BB) {
+                    if (!I.hasName()) continue;
                     if (AllocaInst* AI = dyn_cast<AllocaInst>(&I)) {
                         Type* Ty = AI->getAllocatedType();
-                        if (Ty->isPointerTy()) {
-                            Ty = Ty->getPointerElementType();
-                        }
+                        if (Ty->isPointerTy()) Ty = Ty->getPointerElementType();
                         if (Ty->isArrayTy()) {
-                            std::string Name = I.hasName() ? I.getName().str() : "";
+                            std::string Name = I.getName().str();
                             ArrayAccessInfo* AccessInfo = new ArrayAccessInfo(Name, FunctionName);
                             collectArrayUses(AccessInfo, AI);
                             ModuleArrayAccessInfo.push_back(AccessInfo);
@@ -172,24 +172,13 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
                     }
                 }
             }
-        }
-        // Arrays parameters
-        for (Function& F : M) {
-            if (F.isIntrinsic() || F.size() == 0) continue;
-            std::string FunctionName = F.hasName() ? F.getName().str() : "";
+            // Array parameters
             for (Argument& A : F.args()) {
                 Type* Ty = A.getType();
-                if (Ty->isPointerTy()) {
-                    uint32_t DecayedDimSize = getDecayedDimSize(&A);
-                    if (DecayedDimSize > 0) {
-                        Ty = ArrayType::get(Ty->getPointerElementType(), DecayedDimSize);
-                    } else {
-                        Ty = Ty->getPointerElementType();
-                    }
-                }
-                if (Ty->isArrayTy()) {
-                    std::string Name = A.getName().str();
-                    ArrayAccessInfo* AccessInfo = new ArrayAccessInfo(Name, FunctionName);
+                if (Ty->isArrayTy() || 
+                    (Ty->isPointerTy() && Ty->getPointerElementType()->isArrayTy()) || 
+                    getDecayedDimSize(&A) > 0) {
+                    ArrayAccessInfo* AccessInfo = new ArrayAccessInfo(A.getName().str(), FunctionName);
                     collectArrayUses(AccessInfo, &A);
                     ModuleArrayAccessInfo.push_back(AccessInfo);
                 }
@@ -200,17 +189,16 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
     void collectArrayUses(ArrayAccessInfo* AccessInfo, Value* ArrayVal) {
         for (auto& U : ArrayVal->uses()) {
             if (auto* I = dyn_cast<Instruction>(U.getUser())) {
-                // If the instruction is a GEPOperator, we need to check its users
-                // to find the actual load/store instructions that use the array.
                 if (auto* GEP = dyn_cast<GEPOperator>(I)) {
+                    // If the instruction is a GEPOperator, we need to check its users
+                    // to find the actual load/store instructions that uses the array.
                     for (auto Use : GEP->users()) {
                         if (auto* Inst = dyn_cast<Instruction>(Use)) {
                             getArrayUseMetadata(AccessInfo, Inst);
                         }
                     }
-                } else {
-                    getArrayUseMetadata(AccessInfo, I);
                 }
+                getArrayUseMetadata(AccessInfo, I);
             }
         }
     }
@@ -223,12 +211,15 @@ struct ExtractArrayAccessInfoPass : public ModulePass {
             }
         }
         if (FunctionName.empty()) return;
-        Optional<uint32_t> StoreIdx = getStoreIndex(*Instr);
-        if (StoreIdx.hasValue()) {
+
+        if (auto* SI = dyn_cast<StoreInst>(Instr)) {
+            Optional<uint32_t> StoreIdx = getStoreIndex(*Instr);
+            if (!StoreIdx.hasValue()) return;
             AccessInfo->addStore(FunctionName, StoreIdx.getValue());
         } else {
-            std::string LoadInstName = Instr->hasName() ? Instr->getName().str() : "";
-            AccessInfo->addLoad(FunctionName, LoadInstName);
+            std::string InstName = Instr->hasName() ? Instr->getName().str() : "";
+            if (InstName.empty()) return;
+            AccessInfo->addLoad(FunctionName, InstName);
         }
     }
 

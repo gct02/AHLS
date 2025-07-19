@@ -203,11 +203,12 @@ def main(args: Dict[str, Any]):
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [256, 256, 256],
-        'num_layers': 3,
+        'hidden_channels': [256, 256, 256, 256],
+        'num_layers': 4,
         'metadata': METADATA,
-        'heads': [4, 4, 4],
-        'dropout': 0.1
+        'heads': [4, 4, 4, 4],
+        'dropout': 0.1,
+        'jk_mode': 'cat'
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -284,10 +285,7 @@ def main(args: Dict[str, Any]):
         from gnn.data.dataset import TARGET_AREA_METRICS
 
         available_resources = torch.tensor(
-            [
-                AVAILABLE_RESOURCES[metric] 
-                for metric in TARGET_AREA_METRICS
-            ],
+            [AVAILABLE_RESOURCES[key] for key in TARGET_AREA_METRICS],
             dtype=torch.float32,
             device=DEVICE
         )
@@ -303,9 +301,7 @@ def main(args: Dict[str, Any]):
         available_resources=available_resources
     )
 
-    indices = [
-        data.solution_index for data in test_loader.dataset
-    ]
+    indices = [data.solution_index for data in test_loader.dataset]
     preds = evaluate.best_preds.tolist()
     targets = []
     for data in test_loader:
@@ -404,7 +400,7 @@ def get_optimizer_param_groups(model, weight_decay_val):
         },
         {
             "params": no_decay_params,
-            "weight_decay": 0.0, # NO weight decay for this group
+            "weight_decay": 0.0, # No weight decay for this group
         },
     ]
     return optimizer_grouped_parameters
@@ -420,6 +416,7 @@ def prepare_data_loaders(
     train_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
+        scaling_stats=None,  # Will be computed
         benchmarks=train_benches, 
         mode="train"
     )
@@ -449,7 +446,7 @@ def prepare_data_loaders(
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--dataset-dir', type=str, required=False, default='gnn/dataset', 
+    parser.add_argument('-d', '--dataset-dir', type=str, default='gnn/dataset', 
                         help='The root directory of the dataset.')
     parser.add_argument('-tb', '--test-bench', type=str, required=True, 
                         help='The name of the benchmark to use for testing.')

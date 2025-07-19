@@ -121,7 +121,10 @@ class RegionNode(Node):
         if self.id is None:
             raise ValueError("Element does not contain 'mId' tag")
         
-        self.name = element.findtext('mTag')
+        self.name = element.findtext('mNormTag')
+        if self.name is None:
+            self.name = element.findtext('mTag', '')
+            
         self.function_name = function_name
         self.label = (f"{self.function_name}/{self.name}" 
                       if self.name and self.name != self.function_name

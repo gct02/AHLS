@@ -14,6 +14,8 @@ from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
+from gnn.fine_tuning.utils import get_no_decay_param_names
+from gnn.fine_tuning.heuristic.domain import PARAM_GROUPS
 from gnn.data.dataset import HLSDataset, TARGET_METRICS
 from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 from gnn.analysis.utils import (
@@ -124,6 +126,56 @@ def load_model(model_path: str, model_args_path: str) -> nn.Module:
     return model, model_args
 
 
+def load_lr_config(model: nn.Module, weight_decay_val: float):
+    lr_config_path = "gnn/fine_tuning/heuristic/best_config.json"
+    if not os.path.exists(lr_config_path):
+        lr_config_path = "gnn/fine_tuning/heuristic/initial_config.json"
+
+    with open(lr_config_path, 'r') as f:
+        lr_config_list = json.load(f)
+
+    param_group_dict = {}
+    for i, group in enumerate(PARAM_GROUPS):
+        for param in group:
+            param_group_dict[param] = i
+
+    decay_param_groups = [
+        {
+            'params': [],
+            'lr': lr_config["lr"],
+            'weight_decay': weight_decay_val
+        }
+        for lr_config in lr_config_list
+    ]
+    no_decay_param_groups = [
+        {
+            'params': [],
+            'lr': lr_config["lr"],
+            'weight_decay': 0.0
+        }
+        for lr_config in lr_config_list
+    ]
+    no_decay_param_names = get_no_decay_param_names(model)
+
+    for param_name, param in model.named_parameters():
+        group_index = param_group_dict.get(param_name, 0)
+        lr = lr_config_list[group_index]["lr"]
+        if lr < 1e-6:
+            param.requires_grad = False
+            continue
+        param.requires_grad = True
+        if param_name in no_decay_param_names:
+            no_decay_param_groups[group_index]['params'].append(param)
+        else:
+            decay_param_groups[group_index]['params'].append(param)
+
+    param_groups = [
+        group for group in decay_param_groups + no_decay_param_groups
+        if group['params']
+    ]
+    return param_groups
+
+
 def main(args: Dict[str, str]):
     dataset_dir = args.get("dataset_dir")
     model_path = args.get("model")
@@ -181,12 +233,13 @@ def main(args: Dict[str, str]):
     model = model.to(DEVICE)
 
     # Prepare the optimizer
-    grouped_params = get_layerwise_decay_params(
-        model,
-        initial_lr=lr,
-        weight_decay=weight_decay,
-        decay_rate=0.9
-    )
+    # grouped_params = get_layerwise_decay_params(
+    #     model,
+    #     initial_lr=lr,
+    #     weight_decay=weight_decay,
+    #     decay_rate=0.9
+    # )
+    grouped_params = load_lr_config(model, weight_decay)
     optimizer = torch.optim.AdamW(
         grouped_params, 
         betas=betas
@@ -225,8 +278,6 @@ def main(args: Dict[str, str]):
         run_number += 1
     output_dir = f"{output_dir}/run_{run_number}"
     os.makedirs(output_dir, exist_ok=True)
-
-    new_model_path = os.path.join(output_dir, os.path.basename(model_path))
 
     with open(os.path.join(output_dir, 'fine_tuned_model_params.txt'), 'w') as f:
         for name, param in model.named_parameters():
@@ -270,10 +321,7 @@ def main(args: Dict[str, str]):
             clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
         
-    model.eval()
-    preds, targets, _ = evaluate(
-        model, loader, available_resources=available_resources
-    )
+    preds, targets, _ = evaluate(model, loader, available_resources=available_resources)
     indices = [data.solution_index for data in loader.dataset]
 
     with open(os.path.join(output_dir, f"predictions.csv"), 'w') as f:
@@ -289,6 +337,9 @@ def main(args: Dict[str, str]):
         metric=target_metric,
         output_path=os.path.join(output_dir, f"predictions.png")
     )
+
+    new_model_path = os.path.join(output_dir, os.path.basename(model_path))
+    torch.save(model.state_dict(), new_model_path)
 
 
 def get_layerwise_decay_params(model, initial_lr, weight_decay, decay_rate=0.9):

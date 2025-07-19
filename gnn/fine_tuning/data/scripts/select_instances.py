@@ -331,7 +331,7 @@ if __name__ == "__main__":
     num_solutions = args.num_solutions
     # num_solutions_random = max(1, math.ceil(num_solutions * 0.75))
     # num_solutions_critical = max(1, num_solutions - num_solutions_random)
-    num_solutions_critical = 2
+    num_solutions_critical = 3
     num_solutions_random = num_solutions - num_solutions_critical
 
     filter_processed_instances(

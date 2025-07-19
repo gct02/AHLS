@@ -26,13 +26,15 @@ class HGTJK(nn.Module):
         num_layers: int,
         out_channels: int,
         metadata: Metadata,
-        heads: Union[int, List[int]]
+        heads: Union[int, List[int]],
+        jk_mode: str = 'cat'
     ):
         super().__init__()
 
         self.node_types = metadata[0]
         self.edge_types = metadata[1]
         self.num_layers = num_layers
+        self.jk_mode = jk_mode
 
         if isinstance(hidden_channels, int):
             hidden_channels = [hidden_channels] * num_layers
@@ -58,13 +60,21 @@ class HGTJK(nn.Module):
             self.norm_dicts.append(norm_dict)
 
         self.jk_dict = nn.ModuleDict({
-            nt: JumpingKnowledge(mode='cat')
+            nt: JumpingKnowledge(
+                mode=jk_mode, 
+                channels=hidden_channels[-1], 
+                num_layers=num_layers
+            )
             for nt in metadata[0]
         })
 
+        if jk_mode == 'cat':
+            out_lin_input_size = sum(hidden_channels)
+        else:
+            out_lin_input_size = hidden_channels[-1]
+
         self.out_lin = HeteroDictLinear(
-            sum(hidden_channels),
-            out_channels,
+            out_lin_input_size, out_channels,
             types=metadata[0]
         )
 
@@ -78,6 +88,10 @@ class HGTJK(nn.Module):
         for norm_dict in self.norm_dicts:
             for nt in self.node_types:
                 norm_dict[nt].reset_parameters()
+
+        if self.jk_mode == 'lstm':
+            for nt in self.node_types:
+                self.jk_dict[nt].reset_parameters()
 
         self.out_lin.reset_parameters()
 
@@ -126,6 +140,7 @@ class HLSQoREstimator(nn.Module):
         heads (Union[int, List[int]]): Number of attention heads for GNN (HGTConv) 
             layers. Default is 1.
         dropout (float, optional): Dropout rate for MLP layers. Default is 0.0.
+        jk_mode (str, optional): Jumping knowledge mode. Default is 'cat'.
     """
     def __init__(
         self,
@@ -135,12 +150,14 @@ class HLSQoREstimator(nn.Module):
         num_layers: int,
         metadata: Metadata,
         heads: Union[int, List[int]] = 1,
-        dropout: float = 0.0
+        dropout: float = 0.0,
+        jk_mode: str = 'cat'
     ):
         super().__init__()
 
         self.node_types = metadata[0]
         self.edge_types = metadata[1]
+        self.num_outputs = METRIC_SIZES_BY_CATEGORY[target_metric]
 
         if isinstance(in_channels, int):
             in_channels = {nt: in_channels for nt in self.node_types}
@@ -167,12 +184,13 @@ class HLSQoREstimator(nn.Module):
             num_layers=num_layers,
             out_channels=hidden_channels[-1],
             metadata=metadata,
-            heads=heads
+            heads=heads,
+            jk_mode=jk_mode
         )
 
         # Small MLP to process y_base
         self.y_base_mlp = nn.Sequential(
-            Linear(METRIC_SIZES_BY_CATEGORY[target_metric], 16), 
+            Linear(self.num_outputs, 16), 
             nn.PReLU(16),
             Linear(16, 16)
         )
@@ -185,11 +203,20 @@ class HLSQoREstimator(nn.Module):
             ) for nt in self.node_types
         })
 
-        self.graph_mlp = nn.Sequential(
-            Linear(len(self.node_types) * 64 + 16, 128), 
-            nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout),
-            Linear(128, METRIC_SIZES_BY_CATEGORY[target_metric])
+        graph_mlp_input_size = len(self.node_types) * 64 + 16
+        self.graph_mlps = nn.ModuleList(
+            [
+                nn.Sequential(
+                    Linear(graph_mlp_input_size, 128), 
+                    nn.LayerNorm(128), nn.GELU(), nn.Dropout(dropout),
+                    Linear(128, 64),
+                    nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout),
+                    Linear(64, 1)
+                )
+                for _ in range(self.num_outputs)
+            ]
         )
+
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -209,9 +236,10 @@ class HLSQoREstimator(nn.Module):
                 if hasattr(m, 'reset_parameters'):
                     m.reset_parameters()
 
-        for m in self.graph_mlp.modules():
-            if hasattr(m, 'reset_parameters'):
-                m.reset_parameters()
+        for graph_mlp in self.graph_mlps:
+            for m in graph_mlp.modules():
+                if hasattr(m, 'reset_parameters'):
+                    m.reset_parameters()
 
     def forward(
         self, 
@@ -264,12 +292,19 @@ class HLSQoREstimator(nn.Module):
             )
             x_pooled_list.append(self.node_type_mlp[nt](x_pooled))
 
-        x_aggr = torch.cat(x_pooled_list, dim=1)
-
         y_base_processed = self.y_base_mlp(y_base)
-        x_out = torch.cat([x_aggr, y_base_processed], dim=1)
+        x_aggr = torch.cat(
+            [torch.cat(x_pooled_list, dim=1), y_base_processed], 
+            dim=1
+        )
 
-        return self.graph_mlp(x_out)
+        x_out_list = []
+        for graph_mlp in self.graph_mlps:
+            x_out = graph_mlp(x_aggr)
+            x_out_list.append(x_out)
+
+        x_out = torch.cat(x_out_list, dim=1)
+        return x_out
     
     def _compute_batch_size(self, batch_dict: Dict[NodeType, Tensor]) -> int:
         batch_size = 0

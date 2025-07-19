@@ -1,4 +1,4 @@
-; ModuleID = '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/.autopilot/db/a.g.ld.5.gdce.bc'
+; ModuleID = 'data/base_solutions/SHA/solution0/.autopilot/db/apatb_sha_stream_ir.bc'
 source_filename = "llvm-link"
 target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:2048-i4096:4096-n8:16:32:64-S128-v16:16-v24:32-v32:32-v48:64-v96:128-v192:256-v256:256-v512:512-v1024:1024"
 target triple = "fpga64-xilinx-none"
@@ -22,8 +22,8 @@ entry:
 
 declare noalias i8* @malloc(i64) local_unnamed_addr
 
-; Function Attrs: argmemonly noinline norecurse willreturn
-define internal fastcc void @copy_in([2 x [8192 x i8]]* noalias readonly, [2 x [8192 x i8]]* noalias, [2 x i32]* noalias readonly, [2 x i32]* noalias align 512, [5 x i32]* noalias readonly, [5 x i32]* noalias align 512) unnamed_addr #1 {
+; Function Attrs: argmemonly nocf_check noinline norecurse
+define internal fastcc void @copy_in([2 x [8192 x i8]]* noalias readonly %0, [2 x [8192 x i8]]* noalias %1, [2 x i32]* noalias readonly %2, [2 x i32]* noalias align 512 %3, [5 x i32]* noalias readonly %4, [5 x i32]* noalias align 512 %5) unnamed_addr #1 {
 entry:
   call fastcc void @onebyonecpy_hls.p0a2a8192i8([2 x [8192 x i8]]* %1, [2 x [8192 x i8]]* %0)
   call fastcc void @onebyonecpy_hls.p0a2i32([2 x i32]* align 512 %3, [2 x i32]* %2)
@@ -31,7 +31,7 @@ entry:
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define internal fastcc void @onebyonecpy_hls.p0a2a8192i8([2 x [8192 x i8]]* noalias %dst, [2 x [8192 x i8]]* noalias readonly %src) unnamed_addr #2 {
 entry:
   %0 = icmp eq [2 x [8192 x i8]]* %dst, null
@@ -47,7 +47,7 @@ ret:                                              ; preds = %copy, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define void @arraycpy_hls.p0a2a8192i8([2 x [8192 x i8]]* %dst, [2 x [8192 x i8]]* readonly %src, i64 %num) local_unnamed_addr #3 {
 entry:
   %0 = icmp eq [2 x [8192 x i8]]* %src, null
@@ -78,7 +78,7 @@ ret:                                              ; preds = %copy.split, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define void @arraycpy_hls.p0a8192i8([8192 x i8]* %dst, [8192 x i8]* readonly %src, i64 %num) local_unnamed_addr #3 {
 entry:
   %0 = icmp eq [8192 x i8]* %src, null
@@ -110,7 +110,7 @@ ret:                                              ; preds = %copy.split, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define internal fastcc void @onebyonecpy_hls.p0a2i32([2 x i32]* noalias align 512 %dst, [2 x i32]* noalias readonly %src) unnamed_addr #2 {
 entry:
   %0 = icmp eq [2 x i32]* %dst, null
@@ -126,7 +126,7 @@ ret:                                              ; preds = %copy, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define void @arraycpy_hls.p0a2i32([2 x i32]* %dst, [2 x i32]* readonly %src, i64 %num) local_unnamed_addr #3 {
 entry:
   %0 = icmp eq [2 x i32]* %src, null
@@ -158,7 +158,7 @@ ret:                                              ; preds = %copy.split, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define internal fastcc void @onebyonecpy_hls.p0a5i32([5 x i32]* noalias align 512 %dst, [5 x i32]* noalias readonly %src) unnamed_addr #2 {
 entry:
   %0 = icmp eq [5 x i32]* %dst, null
@@ -174,7 +174,7 @@ ret:                                              ; preds = %copy, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
+; Function Attrs: argmemonly nocf_check noinline norecurse
 define void @arraycpy_hls.p0a5i32([5 x i32]* %dst, [5 x i32]* readonly %src, i64 %num) local_unnamed_addr #3 {
 entry:
   %0 = icmp eq [5 x i32]* %src, null
@@ -206,8 +206,8 @@ ret:                                              ; preds = %copy.split, %entry
   ret void
 }
 
-; Function Attrs: argmemonly noinline norecurse willreturn
-define internal fastcc void @copy_out([2 x [8192 x i8]]* noalias, [2 x [8192 x i8]]* noalias readonly, [2 x i32]* noalias, [2 x i32]* noalias readonly align 512, [5 x i32]* noalias, [5 x i32]* noalias readonly align 512) unnamed_addr #4 {
+; Function Attrs: argmemonly nocf_check noinline norecurse
+define internal fastcc void @copy_out([2 x [8192 x i8]]* noalias %0, [2 x [8192 x i8]]* noalias readonly %1, [2 x i32]* noalias %2, [2 x i32]* noalias readonly align 512 %3, [5 x i32]* noalias %4, [5 x i32]* noalias readonly align 512 %5) unnamed_addr #4 {
 entry:
   call fastcc void @onebyonecpy_hls.p0a2a8192i8([2 x [8192 x i8]]* %0, [2 x [8192 x i8]]* %1)
   call fastcc void @onebyonecpy_hls.p0a2i32([2 x i32]* %2, [2 x i32]* align 512 %3)
@@ -219,14 +219,14 @@ declare void @free(i8*) local_unnamed_addr
 
 declare void @apatb_sha_stream_hw([2 x [8192 x i8]]*, [2 x i32]*, [5 x i32]*)
 
-; Function Attrs: argmemonly noinline norecurse willreturn
-define internal fastcc void @copy_back([2 x [8192 x i8]]* noalias, [2 x [8192 x i8]]* noalias readonly, [2 x i32]* noalias, [2 x i32]* noalias readonly align 512, [5 x i32]* noalias, [5 x i32]* noalias readonly align 512) unnamed_addr #4 {
+; Function Attrs: argmemonly nocf_check noinline norecurse
+define internal fastcc void @copy_back([2 x [8192 x i8]]* noalias %0, [2 x [8192 x i8]]* noalias readonly %1, [2 x i32]* noalias %2, [2 x i32]* noalias readonly align 512 %3, [5 x i32]* noalias %4, [5 x i32]* noalias readonly align 512 %5) unnamed_addr #4 {
 entry:
   call fastcc void @onebyonecpy_hls.p0a5i32([5 x i32]* %4, [5 x i32]* align 512 %5)
   ret void
 }
 
-define void @sha_stream_hw_stub_wrapper([2 x [8192 x i8]]*, [2 x i32]*, [5 x i32]*) #5 {
+define void @sha_stream_hw_stub_wrapper([2 x [8192 x i8]]* %0, [2 x i32]* %1, [5 x i32]* %2) #5 {
 entry:
   call void @copy_out([2 x [8192 x i8]]* null, [2 x [8192 x i8]]* %0, [2 x i32]* null, [2 x i32]* %1, [5 x i32]* null, [5 x i32]* %2)
   %3 = bitcast [2 x [8192 x i8]]* %0 to [8192 x i8]*
@@ -240,10 +240,10 @@ entry:
 declare void @sha_stream_hw_stub([8192 x i8]*, i32*, i32*)
 
 attributes #0 = { noinline "fpga.wrapper.func"="wrapper" }
-attributes #1 = { argmemonly noinline norecurse willreturn "fpga.wrapper.func"="copyin" }
-attributes #2 = { argmemonly noinline norecurse willreturn "fpga.wrapper.func"="onebyonecpy_hls" }
-attributes #3 = { argmemonly noinline norecurse willreturn "fpga.wrapper.func"="arraycpy_hls" }
-attributes #4 = { argmemonly noinline norecurse willreturn "fpga.wrapper.func"="copyout" }
+attributes #1 = { argmemonly nocf_check noinline norecurse "fpga.wrapper.func"="copyin" }
+attributes #2 = { argmemonly nocf_check noinline norecurse "fpga.wrapper.func"="onebyonecpy_hls" }
+attributes #3 = { argmemonly nocf_check noinline norecurse "fpga.wrapper.func"="arraycpy_hls" }
+attributes #4 = { argmemonly nocf_check noinline norecurse "fpga.wrapper.func"="copyout" }
 attributes #5 = { "fpga.wrapper.func"="stub" }
 
 !llvm.dbg.cu = !{}

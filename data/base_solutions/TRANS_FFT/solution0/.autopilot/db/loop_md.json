@@ -9,38 +9,6 @@
       "IsTopLevel": 1
     },
     {
-      "Name": "for.end45",
-      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
-      "Depth": 1,
-      "HasPerfectlyNestedChild": 0,
-      "IsPartOfPerfectNest": 0,
-      "IsTopLevel": 1
-    },
-    {
-      "Name": "for.end",
-      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
-      "Depth": 1,
-      "HasPerfectlyNestedChild": 0,
-      "IsPartOfPerfectNest": 0,
-      "IsTopLevel": 1
-    },
-    {
-      "Name": "arrayinit.end",
-      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
-      "Depth": 1,
-      "HasPerfectlyNestedChild": 0,
-      "IsPartOfPerfectNest": 0,
-      "IsTopLevel": 1
-    },
-    {
-      "Name": "entry",
-      "FunctionName": "_Z17scaled_fixed2ieeeILi63ELi1EEv9ap_ufixedIXT_EXT0_EL9ap_q_mode5EL9ap_o_mode3ELi0EERdi",
-      "Depth": 1,
-      "HasPerfectlyNestedChild": 0,
-      "IsPartOfPerfectNest": 0,
-      "IsTopLevel": 1
-    },
-    {
       "Name": "loop11",
       "FunctionName": "fft1D_512",
       "Depth": 1,

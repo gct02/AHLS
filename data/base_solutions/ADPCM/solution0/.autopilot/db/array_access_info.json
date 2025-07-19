@@ -4,259 +4,259 @@
       "Name": "wl_code_table",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "logscl", "LoadInstName": "wl_code_table_load" }]
+      "Loads": [{ "FunctionName": "logscl", "LoadInstName": "wl_code_table_load" }, { "FunctionName": "logscl", "LoadInstName": "wl_code_table_addr" }]
     },
     {
       "Name": "tqmf",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr1_load" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr_1_load" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr_load" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "encode", "StoreInstIndex": 10 }, { "FunctionName": "reset", "StoreInstIndex": 46 }],
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "tqmf_ptr_2" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr1_load" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr1" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr_1_load" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr_1" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr_load" }, { "FunctionName": "encode", "LoadInstName": "tqmf_ptr" }, { "FunctionName": "reset", "LoadInstName": "tqmf_addr" }]
     },
     {
       "Name": "quant26bt_pos",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "ril" }]
+      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "ril" }, { "FunctionName": "quantl", "LoadInstName": "quant26bt_pos_addr" }]
     },
     {
       "Name": "quant26bt_neg",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "ril_1" }]
+      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "ril_1" }, { "FunctionName": "quantl", "LoadInstName": "quant26bt_neg_addr" }]
     },
     {
       "Name": "qq6_code6_table",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "qq6_code6_table_load" }]
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "qq6_code6_table_load" }, { "FunctionName": "decode", "LoadInstName": "qq6_code6_table_addr" }]
     },
     {
       "Name": "qq4_code4_table",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "qq4_code4_table_load" }, { "FunctionName": "encode", "LoadInstName": "qq4_code4_table_load" }]
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "qq4_code4_table_load" }, { "FunctionName": "decode", "LoadInstName": "qq4_code4_table_addr" }, { "FunctionName": "encode", "LoadInstName": "qq4_code4_table_load" }, { "FunctionName": "encode", "LoadInstName": "qq4_code4_table_addr" }]
     },
     {
       "Name": "ilb_table",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "scalel", "LoadInstName": "ilb_table_load" }]
+      "Loads": [{ "FunctionName": "scalel", "LoadInstName": "ilb_table_load" }, { "FunctionName": "scalel", "LoadInstName": "ilb_table_addr" }]
     },
     {
       "Name": "h",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "h_ptr_2_load" }, { "FunctionName": "decode", "LoadInstName": "h_ptr_load" }, { "FunctionName": "encode", "LoadInstName": "h_ptr_1_load" }, { "FunctionName": "encode", "LoadInstName": "h_ptr_load" }]
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "h_ptr_2_load" }, { "FunctionName": "decode", "LoadInstName": "h_ptr_2" }, { "FunctionName": "decode", "LoadInstName": "h_ptr_load" }, { "FunctionName": "decode", "LoadInstName": "h_ptr" }, { "FunctionName": "encode", "LoadInstName": "h_ptr_1_load" }, { "FunctionName": "encode", "LoadInstName": "h_ptr_1" }, { "FunctionName": "encode", "LoadInstName": "h_ptr_load" }, { "FunctionName": "encode", "LoadInstName": "h_ptr" }]
     },
     {
       "Name": "delay_dltx",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 34 }],
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "delay_dltx_addr" }]
     },
     {
       "Name": "delay_dhx",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp_7" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 35 }],
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "tmp_7" }, { "FunctionName": "reset", "LoadInstName": "delay_dhx_addr" }]
     },
     {
       "Name": "delay_bpl",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 40 }],
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "delay_bpl_addr" }]
     },
     {
       "Name": "delay_bph",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "tmp_7" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 41 }],
+      "Loads": [{ "FunctionName": "encode", "LoadInstName": "tmp_7" }, { "FunctionName": "reset", "LoadInstName": "delay_bph_addr" }]
     },
     {
       "Name": "decis_levl",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "decis_levl_load" }]
+      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "decis_levl_load" }, { "FunctionName": "quantl", "LoadInstName": "decis_levl_addr" }]
     },
     {
       "Name": "dec_del_dltx",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 36 }],
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "dec_del_dltx_addr" }]
     },
     {
       "Name": "dec_del_dhx",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp_17" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 37 }],
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "tmp_17" }, { "FunctionName": "reset", "LoadInstName": "dec_del_dhx_addr" }]
     },
     {
       "Name": "dec_del_bpl",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 42 }],
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "tmp" }, { "FunctionName": "reset", "LoadInstName": "dec_del_bpl_addr" }]
     },
     {
       "Name": "dec_del_bph",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "tmp_17" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "reset", "StoreInstIndex": 43 }],
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "tmp_17" }, { "FunctionName": "reset", "LoadInstName": "dec_del_bph_addr" }]
     },
     {
       "Name": "accumd",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "ad_ptr1_load" }, { "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "ad_ptr_load" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "decode", "StoreInstIndex": 29 }, { "FunctionName": "reset", "StoreInstIndex": 49 }],
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "ad_ptr1_load" }, { "FunctionName": "decode", "LoadInstName": "ad_ptr1" }, { "FunctionName": "decode", "LoadInstName": "ad_ptr_1" }, { "FunctionName": "decode", "LoadInstName": "ad_ptr_load" }, { "FunctionName": "decode", "LoadInstName": "ad_ptr" }, { "FunctionName": "reset", "LoadInstName": "accumd_addr" }]
     },
     {
       "Name": "accumc",
       "FunctionName": "",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "ac_ptr1_load" }, { "FunctionName": "decode", "LoadInstName": "ac_ptr_load" }, { "FunctionName": "reset", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "decode", "StoreInstIndex": 28 }, { "FunctionName": "reset", "StoreInstIndex": 48 }],
+      "Loads": [{ "FunctionName": "decode", "LoadInstName": "ac_ptr_1" }, { "FunctionName": "decode", "LoadInstName": "ac_ptr1_load" }, { "FunctionName": "decode", "LoadInstName": "ac_ptr1" }, { "FunctionName": "decode", "LoadInstName": "ac_ptr_load" }, { "FunctionName": "decode", "LoadInstName": "ac_ptr" }, { "FunctionName": "reset", "LoadInstName": "accumc_addr" }]
     },
     {
       "Name": "empty",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "upzero", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_0",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "upzero", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_1",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_2",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_3",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "decode", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_4",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "abs", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "decode", "LoadInstName": "" }, { "FunctionName": "encode", "LoadInstName": "" }, { "FunctionName": "filtep", "LoadInstName": "" }, { "FunctionName": "filtez", "LoadInstName": "" }, { "FunctionName": "logsch", "LoadInstName": "" }, { "FunctionName": "logscl", "LoadInstName": "" }, { "FunctionName": "quantl", "LoadInstName": "" }, { "FunctionName": "reset", "LoadInstName": "" }, { "FunctionName": "scalel", "LoadInstName": "" }, { "FunctionName": "uppol1", "LoadInstName": "" }, { "FunctionName": "uppol2", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_5",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_6",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_7",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_8",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "encode", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_9",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_10",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_11",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "quantl", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_12",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "filtez", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_13",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_14",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_15",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "reset", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "dlti",
       "FunctionName": "upzero",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_4" }, { "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_3" }, { "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_2" }, { "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_1" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load" }, { "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_5" }]
+      "Stores": [{ "FunctionName": "upzero", "StoreInstIndex": 10 }, { "FunctionName": "upzero", "StoreInstIndex": 9 }, { "FunctionName": "upzero", "StoreInstIndex": 8 }, { "FunctionName": "upzero", "StoreInstIndex": 6 }, { "FunctionName": "upzero", "StoreInstIndex": 7 }, { "FunctionName": "upzero", "StoreInstIndex": 11 }],
+      "Loads": [{ "FunctionName": "upzero", "LoadInstName": "dlti_load_4" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr_6" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_3" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr_5" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_2" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr_4" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr_3" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_1" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr_2" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr_1" }, { "FunctionName": "upzero", "LoadInstName": "dlti_load_5" }, { "FunctionName": "upzero", "LoadInstName": "dlti_addr" }]
     },
     {
       "Name": "bli",
       "FunctionName": "upzero",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "bli_load_1" }, { "FunctionName": "upzero", "LoadInstName": "" }, { "FunctionName": "upzero", "LoadInstName": "bli_load" }]
+      "Stores": [{ "FunctionName": "upzero", "StoreInstIndex": 4 }, { "FunctionName": "upzero", "StoreInstIndex": 1 }],
+      "Loads": [{ "FunctionName": "upzero", "LoadInstName": "bli_load_1" }, { "FunctionName": "upzero", "LoadInstName": "bli_addr_1" }, { "FunctionName": "upzero", "LoadInstName": "bli_load" }, { "FunctionName": "upzero", "LoadInstName": "bli_addr" }]
     },
     {
       "Name": "bpl",
       "FunctionName": "filtez",
       "Stores": [],
-      "Loads": [{ "FunctionName": "filtez", "LoadInstName": "bpl_load_1" }, { "FunctionName": "filtez", "LoadInstName": "bpl_load" }]
+      "Loads": [{ "FunctionName": "filtez", "LoadInstName": "bpl_load_1" }, { "FunctionName": "filtez", "LoadInstName": "bpl_addr_1" }, { "FunctionName": "filtez", "LoadInstName": "bpl_load" }, { "FunctionName": "filtez", "LoadInstName": "bpl_addr" }]
     },
     {
       "Name": "dlt",
       "FunctionName": "filtez",
       "Stores": [],
-      "Loads": [{ "FunctionName": "filtez", "LoadInstName": "dlt_load_1" }, { "FunctionName": "filtez", "LoadInstName": "dlt_load" }]
+      "Loads": [{ "FunctionName": "filtez", "LoadInstName": "dlt_load_1" }, { "FunctionName": "filtez", "LoadInstName": "dlt_addr_1" }, { "FunctionName": "filtez", "LoadInstName": "dlt_load" }, { "FunctionName": "filtez", "LoadInstName": "dlt_addr" }]
     },
     {
       "Name": "in_data",
       "FunctionName": "adpcm_main",
       "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "in_data_load_1" }, { "FunctionName": "adpcm_main", "LoadInstName": "in_data_load" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "in_data_load_1" }, { "FunctionName": "adpcm_main", "LoadInstName": "in_data_addr_1" }, { "FunctionName": "adpcm_main", "LoadInstName": "in_data_load" }, { "FunctionName": "adpcm_main", "LoadInstName": "in_data_addr" }]
     },
     {
       "Name": "encoded",
       "FunctionName": "adpcm_main",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "encoded_load" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "adpcm_main", "StoreInstIndex": 2 }],
+      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "encoded_load" }, { "FunctionName": "adpcm_main", "LoadInstName": "encoded_addr_1" }, { "FunctionName": "adpcm_main", "LoadInstName": "encoded_addr" }]
     },
     {
       "Name": "decoded",
       "FunctionName": "adpcm_main",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }, { "FunctionName": "adpcm_main", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "adpcm_main", "StoreInstIndex": 5 }, { "FunctionName": "adpcm_main", "StoreInstIndex": 4 }],
+      "Loads": [{ "FunctionName": "adpcm_main", "LoadInstName": "decoded_addr_1" }, { "FunctionName": "adpcm_main", "LoadInstName": "decoded_addr" }]
     }
   ]
 }

@@ -40,11 +40,11 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 # Feature dimensions for each node type
 FEATURE_SIZE_BY_TYPE = {
     "instr": 71, 
-    "port": 29,
+    "port": 28,
     "const": 4,
     "region": 41,
     "block": 14,
-    "array": 26
+    "array": 25
 }
 
 

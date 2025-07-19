@@ -4,91 +4,91 @@
       "Name": "empty",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_0",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_1",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_2",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_3",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_4",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_5",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_6",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_7",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_8",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_9",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_10",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "C",
       "FunctionName": "stencil3d",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "C_load_1" }, { "FunctionName": "stencil3d", "LoadInstName": "C_load" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "C_load_1" }, { "FunctionName": "stencil3d", "LoadInstName": "C_addr_1" }, { "FunctionName": "stencil3d", "LoadInstName": "C_load" }, { "FunctionName": "stencil3d", "LoadInstName": "C_addr" }]
     },
     {
       "Name": "orig",
       "FunctionName": "stencil3d",
       "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "orig_load_12" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_11" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_10" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_9" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_8" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_7" }, { "FunctionName": "stencil3d", "LoadInstName": "sum0" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_5" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_4" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_3" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_2" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_1" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "orig_load_12" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_12" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_11" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_11" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_10" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_10" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_9" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_9" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_8" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_8" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_7" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_7" }, { "FunctionName": "stencil3d", "LoadInstName": "sum0" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_6" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_5" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_5" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_4" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_4" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_3" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_3" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_2" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_2" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load_1" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr_1" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_load" }, { "FunctionName": "stencil3d", "LoadInstName": "orig_addr" }]
     },
     {
       "Name": "sol",
       "FunctionName": "stencil3d",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }, { "FunctionName": "stencil3d", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "stencil3d", "StoreInstIndex": 13 }, { "FunctionName": "stencil3d", "StoreInstIndex": 10 }, { "FunctionName": "stencil3d", "StoreInstIndex": 9 }, { "FunctionName": "stencil3d", "StoreInstIndex": 7 }, { "FunctionName": "stencil3d", "StoreInstIndex": 6 }, { "FunctionName": "stencil3d", "StoreInstIndex": 3 }, { "FunctionName": "stencil3d", "StoreInstIndex": 2 }],
+      "Loads": [{ "FunctionName": "stencil3d", "LoadInstName": "sol_addr_6" }, { "FunctionName": "stencil3d", "LoadInstName": "sol_addr_5" }, { "FunctionName": "stencil3d", "LoadInstName": "sol_addr_4" }, { "FunctionName": "stencil3d", "LoadInstName": "sol_addr_3" }, { "FunctionName": "stencil3d", "LoadInstName": "sol_addr_2" }, { "FunctionName": "stencil3d", "LoadInstName": "sol_addr_1" }, { "FunctionName": "stencil3d", "LoadInstName": "sol_addr" }]
     }
   ]
 }

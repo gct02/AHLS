@@ -22,7 +22,7 @@ def extract_llvm_ir_array_info(
     if not os.path.exists(hls_ir_dir):
         raise FileNotFoundError(f"HLS IR directory not found: {hls_ir_dir}")
     
-    ir_base = os.path.join(hls_ir_dir, "a.g.ld.5.gdce.bc")
+    ir_base = os.path.join(hls_ir_dir, "a.g.ld.0.bc")
     ir_lowered = os.path.join(hls_ir_dir, "a.o.3.bc")
     if not os.path.exists(ir_base) or not os.path.exists(ir_lowered):
         raise FileNotFoundError(f"Required IR files not found in {hls_ir_dir}")

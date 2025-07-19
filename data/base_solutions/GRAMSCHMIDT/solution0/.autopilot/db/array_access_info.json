@@ -4,79 +4,79 @@
       "Name": "empty",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_0",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_1",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_2",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_3",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_4",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_5",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_6",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_7",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "empty_8",
       "FunctionName": "",
       "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Loads": []
     },
     {
       "Name": "A",
       "FunctionName": "kernel_gramschmidt",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load_3" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load_2" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "kernel_gramschmidt", "StoreInstIndex": 5 }],
+      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load_3" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_addr_3" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load_2" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_addr_2" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_addr_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_load" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "A_addr" }]
     },
     {
       "Name": "R",
       "FunctionName": "kernel_gramschmidt",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "kernel_gramschmidt", "StoreInstIndex": 4 }, { "FunctionName": "kernel_gramschmidt", "StoreInstIndex": 2 }],
+      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "R_addr_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "R_addr" }]
     },
     {
       "Name": "Q",
       "FunctionName": "kernel_gramschmidt",
-      "Stores": [],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_load_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_load" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "" }]
+      "Stores": [{ "FunctionName": "kernel_gramschmidt", "StoreInstIndex": 3 }],
+      "Loads": [{ "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_load_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_addr_2" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_load" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_addr_1" }, { "FunctionName": "kernel_gramschmidt", "LoadInstName": "Q_addr" }]
     }
   ]
 }

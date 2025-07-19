@@ -23,15 +23,15 @@
       "Dimensions": [4, 120]
     },
     {
-      "Name": "llvm.global_ctors",
-      "FunctionName": "",
-      "BaseBitwidth": 0,
-      "BaseType": 13,
+      "Name": "Sbox",
+      "FunctionName": "ByteSub_ShiftRow",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
       "IsGlobal": 1,
-      "IsInternalConst": 0,
-      "NumDimensions": 1,
-      "TotalSize": 0,
-      "Dimensions": [0]
+      "IsInternalConst": 1,
+      "NumDimensions": 2,
+      "TotalSize": 256,
+      "Dimensions": [16, 16]
     },
     {
       "Name": "invSbox",
@@ -56,24 +56,13 @@
       "Dimensions": [16, 16]
     },
     {
-      "Name": "Sbox",
-      "FunctionName": "ByteSub_ShiftRow",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsGlobal": 1,
-      "IsInternalConst": 1,
-      "NumDimensions": 2,
-      "TotalSize": 256,
-      "Dimensions": [16, 16]
-    },
-    {
-      "Name": "temp",
-      "FunctionName": "KeySchedule",
+      "Name": "ret",
+      "FunctionName": "MixColumn_AddRoundKey",
       "BaseBitwidth": 32,
       "BaseType": 11,
       "NumDimensions": 1,
-      "TotalSize": 4,
-      "Dimensions": [4]
+      "TotalSize": 32,
+      "Dimensions": [32]
     },
     {
       "Name": "ret",
@@ -85,39 +74,29 @@
       "Dimensions": [32]
     },
     {
-      "Name": "ret",
-      "FunctionName": "MixColumn_AddRoundKey",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "statemt",
-      "FunctionName": "decrypt",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsParam": 1,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "key",
-      "FunctionName": "decrypt",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsParam": 1,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "key",
+      "Name": "temp",
       "FunctionName": "KeySchedule",
       "BaseBitwidth": 32,
       "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 4,
+      "Dimensions": [4]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "decrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "decrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
       "IsParam": 1,
       "NumDimensions": 1,
       "TotalSize": 32,
@@ -125,7 +104,47 @@
     },
     {
       "Name": "statemt",
-      "FunctionName": "AddRoundKey",
+      "FunctionName": "encrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "encrypt",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "aes_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "key",
+      "FunctionName": "aes_main",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "ByteSub_ShiftRow",
       "BaseBitwidth": 32,
       "BaseType": 11,
       "IsParam": 1,
@@ -145,46 +164,6 @@
     },
     {
       "Name": "statemt",
-      "FunctionName": "AddRoundKey_InversMixColumn",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsParam": 1,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "statemt",
-      "FunctionName": "encrypt",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsParam": 1,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "key",
-      "FunctionName": "encrypt",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsParam": 1,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "statemt",
-      "FunctionName": "ByteSub_ShiftRow",
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "IsParam": 1,
-      "NumDimensions": 1,
-      "TotalSize": 32,
-      "Dimensions": [32]
-    },
-    {
-      "Name": "statemt",
       "FunctionName": "MixColumn_AddRoundKey",
       "BaseBitwidth": 32,
       "BaseType": 11,
@@ -195,7 +174,17 @@
     },
     {
       "Name": "statemt",
-      "FunctionName": "aes_main",
+      "FunctionName": "AddRoundKey_InversMixColumn",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32]
+    },
+    {
+      "Name": "statemt",
+      "FunctionName": "AddRoundKey",
       "BaseBitwidth": 32,
       "BaseType": 11,
       "IsParam": 1,
@@ -205,7 +194,7 @@
     },
     {
       "Name": "key",
-      "FunctionName": "aes_main",
+      "FunctionName": "KeySchedule",
       "BaseBitwidth": 32,
       "BaseType": 11,
       "IsParam": 1,
