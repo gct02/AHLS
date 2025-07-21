@@ -39,12 +39,11 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 FEATURE_SIZE_BY_TYPE = {
-    "instr": 70, 
+    "instr": 90, 
     "port": 28,
     "const": 4,
     "region": 43,
-    "block": 14,
-    "array": 25
+    "block": 14
 }
 
 
@@ -164,18 +163,17 @@ def find_array_node(
     ret_node_type=False
 ):
     if function_name:
-        for nt in ['port', 'array']:
+        for nt in ['port', 'instr']:
             for node in kernel_info.nodes.get(nt, []):
-                if (node.name == array_name 
-                    and node.function_name == function_name
-                    and node.attrs.get('array_partition', 0) == 0):
+                if (node.is_array 
+                    and node.name == array_name 
+                    and node.function_name == function_name):
                     return (node, nt) if ret_node_type else node
-
+                
     # If not found, search for array_name only
-    for nt in ['port', 'array']:
+    for nt in ['port', 'instr']:
         for node in kernel_info.nodes.get(nt, []):
-            if (node.name == array_name 
-                and node.attrs.get('array_partition', 0) == 0):
+            if node.is_array and node.name == array_name:
                 return (node, nt) if ret_node_type else node
 
     return (None, None) if ret_node_type else None
@@ -186,6 +184,7 @@ def find_region_node(kernel_info, region_name, function_name):
         if (node.name == region_name
             and node.function_name == function_name):
             return node
+        
     # If not found, search for region_name only
     for node in kernel_info.nodes.get('region', []):
         if node.name == region_name:
@@ -271,7 +270,9 @@ def update_with_directives(
                 unroll_pipelined_subloops(region_node)
                 continue
 
-            if dct == "unroll" and region_node.attrs.get("unroll", 0) == 0:
+            if dct == "unroll":
+                if region_node.attrs["unroll"][-1] == 1:
+                    continue
                 unroll_factor = int(args.get("factor", 0))
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
@@ -365,26 +366,19 @@ def plot_data(
     from matplotlib.patches import Patch
 
     node_color_dict = {
-        "instr": "#489edb",
-        "port": "#1ac983",
-        "const": "#f06dae",
-        "array": "#a462f0",
+        "instr": "#3791d1",
+        "port": "#17b466",
+        "const": "#e16df0",
         "block": "#c9913e",
-        "region": "#df5e5e"
+        "region": "#e26363"
     }
     edge_color_dict = {
-        ("const", "data", "instr"): "#30b5c7",
-        ("instr", "data", "instr"): "#30b5c7",
-        ("port", "data", "instr"): "#30b5c7",
-        ('array', 'data', 'instr'): "#30b5c7",
-        ("instr", "alloca", "array"): "#3A4497",
-        ("instr", "store", "array"): "#A19A2F",
-        ("instr", "store", "instr"): "#A19A2F",
-        ("instr", "store", "port"): "#A19A2F",
+        ("const", "data", "instr"): "#3bc0d1",
+        ("instr", "data", "instr"): "#3bc0d1",
+        ("port", "data", "instr"): "#3bc0d1",
         ("block", "control", "instr"): "#22833F",
         ("block", "control", "block"): "#22833F",
-        ("instr", "mem", "instr"): "#C75E21",
-        ("instr", "call", "region"): "#cc53cc",
+        ("instr", "control", "region"): "#cc53cc",
         ("region", "hrchy", "region"): "#9C9C9C",
         ("region", "hrchy", "block"): "#9C9C9C",
         ("block", "hrchy", "instr"): "#9C9C9C"
