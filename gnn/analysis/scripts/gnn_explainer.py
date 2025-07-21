@@ -13,7 +13,7 @@ from interpret.glassbox import ExplainableBoostingRegressor
 from interpret import set_visualize_provider
 from interpret.provider import DashProvider
 
-from gnn.analysis.utils import encode_directives, robust_mape, compute_snru
+from gnn.analysis.utils import encode_directives, smape_loss, compute_snru
 from gnn.data.utils.parsers import (
     extract_utilization,
     extract_hls_area_estimates,
@@ -74,7 +74,7 @@ def extract_errors_hls(dataset_dir, filtered=False):
         target_snru = compute_snru(target, available_resources)
         pred_snru = compute_snru(pred, available_resources)
 
-        mape = robust_mape(pred_snru, target_snru).mean().item()
+        mape = smape_loss(pred_snru, target_snru).mean().item()
         
         solution_idx = int(solution.split('solution')[1])
         error_dict[solution_idx] = mape

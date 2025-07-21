@@ -20,7 +20,7 @@ from gnn.data.dataset import HLSDataset, TARGET_METRICS
 from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 from gnn.analysis.utils import (
     plot_prediction_bars,
-    robust_mape,
+    smape_loss,
     aggregate_qor_metrics
 )
 
@@ -56,7 +56,7 @@ def evaluate(
         loader.dataset.target_metric,
         available_resources=available_resources
     )
-    mape = robust_mape(preds, targets).mean().item()
+    mape = smape_loss(preds, targets).mean().item()
 
     return preds.tolist(), targets.tolist(), mape
 

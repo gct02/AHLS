@@ -13,7 +13,7 @@ from gnn.data.utils.parsers import (
     AREA_METRICS
 )
 from gnn.analysis.utils import (
-    robust_mape, 
+    smape_loss, 
     compute_snru
 )
 
@@ -86,7 +86,7 @@ def compute_baseline_error(
 
         preds = torch.stack(preds, dim=0).unsqueeze(0)
         targets = torch.stack(targets, dim=0).unsqueeze(0)
-        mape = robust_mape(preds, targets).mean().item()
+        mape = smape_loss(preds, targets).mean().item()
         mape_list.append(mape)
         print(f"Benchmark {benchmark_dir.name} MAPE: {mape:.2f}%")
 

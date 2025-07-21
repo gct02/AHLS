@@ -23,7 +23,7 @@ from gnn.analysis.utils import (
     plot_prediction_bars,
     plot_prediction_scatter,
     plot_learning_curves,
-    robust_mape,
+    mape_loss,
     aggregate_qor_metrics
 )
 from gnn.utils import static_vars
@@ -132,9 +132,9 @@ def evaluate(
         loader.dataset.target_metric,
         available_resources=available_resources
     )
-    mape = robust_mape(preds, targets).mean().item()
+    mape = mape_loss(preds, targets).item()
 
-    print(f"\nMAPE at epoch {epoch + 1}: {mape:.4f}%")
+    print(f"\nMAPE at epoch {epoch + 1}: {mape:.4f}")
 
     if evaluate.checkpoint_manager.is_best_checkpoint(mape, epoch):
         indices = [data.solution_index for data in loader.dataset]
@@ -146,7 +146,7 @@ def evaluate(
             targets=targets, 
             indices=indices
         )
-        print(f"Saving model at epoch {epoch + 1} with MAPE = {mape:.4f}%")
+        print(f"Saving model at epoch {epoch + 1} with MAPE = {mape:.4f}")
 
     return mape
 
@@ -197,7 +197,7 @@ def train_model(
             train_loader.dataset.target_metric,
             available_resources=available_resources
         )
-        train_mape = robust_mape(preds, targets).mean().item()
+        train_mape = mape_loss(preds, targets).item()
         train_mapes.append(train_mape)
 
         model.eval()

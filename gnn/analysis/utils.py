@@ -238,41 +238,17 @@ def encode_directives(
     return encoded_dcts
 
 
-def robust_mape(pred: Tensor, target: Tensor) -> Tensor:
+def smape_loss(pred: Tensor, target: Tensor, eps: float = 1e-6) -> Tensor:
     pred, target = map(torch.as_tensor, (pred, target))
-    avg = (torch.abs(pred) + torch.abs(target)) / 2
-    return torch.where(
-        target == 0, 
-        torch.abs(pred - target) / (avg + 1e-8),  # Avoid division by zero
-        torch.abs(pred - target) / torch.abs(target)
-    ) * 100
+    num = torch.abs(pred - target)
+    denom = (torch.abs(pred) + torch.abs(target)) / 2
+    loss = num / (denom + eps)
+    return torch.mean(loss)
 
 
-def bounded_mape(pred: Tensor, target: Tensor, floor: float = 0.1) -> Tensor:
-    """
-    Computes a bounded version of the Mean Absolute Percentage Error (MAPE).
-
-    This version is designed to be more stable when targets are close to or are zero.
-    The error is calculated as:
-    100 * mean(abs((targets - estimates) / max(abs(targets), floor)))
-
-    By setting a 'floor' for the denominator (default is 0.1), it prevents the
-    error from becoming excessively large for small deviations when the target
-    is near zero.
-
-    Args:
-        pred (torch.Tensor): The tensor of predicted values.
-        target (torch.Tensor): The tensor of ground truth values.
-        floor (float): The minimum value for the denominator. Defaults to 0.1.
-
-    Returns:
-        torch.Tensor: A single-value tensor representing the bounded MAPE in percentage.
-    """
-    pred, target = pred.float(), target.float()
-    floor_tensor = torch.full_like(target, floor)
-    denominator = torch.max(torch.abs(target), floor_tensor)
-    bounded_mape = torch.mean(torch.abs((target - pred) / denominator)) * 100.0
-    return bounded_mape
+def mape_loss(pred: Tensor, target: Tensor, eps: float = 1e-6) -> Tensor:
+    loss = torch.abs(pred - target) / (torch.abs(target) + eps)
+    return torch.mean(loss)
 
 
 def plot_learning_curves(
@@ -354,7 +330,7 @@ def plot_prediction_scatter(
 
     if mean_error is None:
         if errors is None:
-            errors = robust_mape(preds, targets).tolist()
+            errors = smape_loss(preds, targets).tolist()
         else:
             errors = errors.tolist()
         mean_error = np.mean(errors)
@@ -362,7 +338,7 @@ def plot_prediction_scatter(
     r2 = r2_score(targets, preds)
     plt.text(
         min_val*1.05, max_val*0.9, 
-        f'MAPE: {mean_error:.2f}\nR²: {r2:.2f}', 
+        f'MAPE: {mean_error:.4f}\nR²: {r2:.4f}', 
         bbox=dict(facecolor='white', alpha=0.8)
     )
     
@@ -392,7 +368,7 @@ def plot_prediction_bars(
         raise ValueError("Mismatch in number of targets, predictions and indices")
     
     if errors is None:
-        errors = [robust_mape(p, t).item() for p, t in zip(preds, targets)]
+        errors = [smape_loss(p, t).item() for p, t in zip(preds, targets)]
 
     if mean_error is None:
         mean_error = np.mean(errors)
@@ -418,6 +394,7 @@ def plot_prediction_bars(
 
     for i, row in df.iterrows():
         p, t, r = row['prediction'], row['target'], row['error']
+        r = r * 100  # Convert to percentage
         ax.text(
         	i, max(p, t) + 0.005 * max_val, f"{r:.2f}%", 
         	rotation=90, ha='center', fontsize=4, alpha=0.9
@@ -429,6 +406,7 @@ def plot_prediction_bars(
         df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
     )
 
+    mean_error = mean_error * 100  # Convert to percentage
     ax.text(
         0.12, 0.95, f"MAPE: {mean_error:.2f}%", 
         transform=ax.transAxes, fontsize=11, ha='center'
@@ -449,14 +427,16 @@ def compute_snru(util_resources: Tensor, avail_resources: Tensor) -> Tensor:
         util_resources = util_resources.unsqueeze(0)
     if avail_resources.dim() == 1:
         avail_resources = avail_resources.unsqueeze(0)
+
     if util_resources.size(1) != avail_resources.size(1):
         raise ValueError(
             f"Expected util_resources and avail_resources with same number of columns, "
             f"got {util_resources.size(1)} and {avail_resources.size(1)}"
         )
-    snru = (torch.sum(util_resources / avail_resources, dim=1)
-            / avail_resources.size(1))
-    return snru * 100  # Convert to percentage
+    
+    avail_resources = avail_resources.to(util_resources.device)
+    snru = torch.sum(util_resources / avail_resources, dim=1)
+    return snru * 100
 
 
 def compute_time(timing_metrics: Tensor) -> Tensor:

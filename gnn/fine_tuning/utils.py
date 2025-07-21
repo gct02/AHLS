@@ -13,7 +13,7 @@ from gnn.models import HLSQoREstimator
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
 from gnn.data.dataset import HLSDataset
 from gnn.analysis.utils import (
-    robust_mape,
+    smape_loss,
     aggregate_qor_metrics
 )
 
@@ -162,7 +162,7 @@ def evaluate_fine_tuning(
         targets, loader.dataset.target_metric,
         available_resources=available_resources
     )
-    mape = robust_mape(preds, targets).mean().item()
+    mape = smape_loss(preds, targets).mean().item()
     
     return preds.tolist(), targets.tolist(), mape
 

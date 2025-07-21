@@ -6,7 +6,7 @@ import torch
 
 from gnn.analysis.utils import (
     parse_predictions,
-    robust_mape
+    smape_loss
 )
 
 
@@ -35,7 +35,7 @@ def evaluate_results_on_benchmark(
     preds = torch.tensor(preds, dtype=torch.float32)
     targets = torch.tensor(targets, dtype=torch.float32)
     
-    return robust_mape(preds, targets).mean().item()
+    return smape_loss(preds, targets).mean().item()
 
 
 def evaluate_results(
