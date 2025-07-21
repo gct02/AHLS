@@ -373,9 +373,10 @@ def plot_data(
         "region": "#e26363"
     }
     edge_color_dict = {
-        ("const", "data", "instr"): "#3bc0d1",
-        ("instr", "data", "instr"): "#3bc0d1",
-        ("port", "data", "instr"): "#3bc0d1",
+        ("const", "data", "instr"): "#4b91b9",
+        ("instr", "data", "instr"): "#4b91b9",
+        ("port", "data", "instr"): "#4b91b9",
+        ("instr", "data", "port"): "#14387a",
         ("block", "control", "instr"): "#22833F",
         ("block", "control", "block"): "#22833F",
         ("instr", "control", "region"): "#cc53cc",

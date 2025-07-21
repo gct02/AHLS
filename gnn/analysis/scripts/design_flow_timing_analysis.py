@@ -22,8 +22,6 @@ def extract_hls_elapsed_time(solution_dir: Path) -> float:
 
     total_elapsed_time = 0.0
     for line in lines:
-        if 'INFO: [HLS 200-111] Finished Command csynth_design' in line:
-            break
         if 'Elapsed time: ' in line:
             time_str = line.split('Elapsed time: ')[1].split(' ')[0]
             try:
@@ -32,6 +30,10 @@ def extract_hls_elapsed_time(solution_dir: Path) -> float:
                 print(f"Could not parse elapsed time from line: {line.strip()}")
                 elapsed_time = 0.0
             total_elapsed_time += elapsed_time
+
+        if ('INFO: [HLS 200-111] Finished Command csynth_design' in line 
+            or 'INFO: [HLS 200-111] Finished Generating all RTL models' in line):
+            break
 
     return total_elapsed_time
 
@@ -89,19 +91,20 @@ def summarize_timing_info(dataset_dir: Path):
             solution_index = int(solution_dir.name.split("solution")[-1])
 
             hls_elapsed_time = extract_hls_elapsed_time(solution_dir)
+            if hls_elapsed_time < 1 or hls_elapsed_time > 2000: # Ignore extreme values
+                continue
+
             impl_elapsed_time = extract_impl_elapsed_time(solution_dir)
+            impl_elapsed_time += hls_elapsed_time
+            if impl_elapsed_time < 1 or impl_elapsed_time > 10000: # Ignore extreme values
+                continue
 
-            if hls_elapsed_time >= 0:
-                if solution_index <= last_base_index:
-                    elapsed_times_base_hls.append(hls_elapsed_time)
-                else:
-                    elapsed_times_non_base_hls.append(hls_elapsed_time)
-
-            if impl_elapsed_time >= 0:
-                if solution_index <= last_base_index:
-                    elapsed_times_base_impl.append(impl_elapsed_time)
-                else:
-                    elapsed_times_non_base_impl.append(impl_elapsed_time)
+            if solution_index <= last_base_index:
+                elapsed_times_base_hls.append(hls_elapsed_time)
+                elapsed_times_base_impl.append(impl_elapsed_time)
+            else:
+                elapsed_times_non_base_hls.append(hls_elapsed_time)
+                elapsed_times_non_base_impl.append(impl_elapsed_time)
 
     elapsed_times_base_hls = np.array(elapsed_times_base_hls)
     elapsed_times_base_impl = np.array(elapsed_times_base_impl)
@@ -136,8 +139,8 @@ def summarize_timing_info(dataset_dir: Path):
     }
 
     for key, value in stats.items():
-        print(f"{key} - Mean: {value['mean']:.2f}, Std: {value['std']:.2f}, "
-              f"Max: {value['max']:.2f}, Min: {value['min']:.2f}")
+        print(f"{key} - Mean: {value['mean']:.4f}, Std: {value['std']:.4f}, "
+              f"Max: {value['max']:.4f}, Min: {value['min']:.4f}")
         
 
 if __name__ == "__main__":

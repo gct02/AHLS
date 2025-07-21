@@ -255,7 +255,7 @@ def main(args: Dict[str, Any]):
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [256, 256, 256],
+        'hidden_channels': [128, 128, 128],
         'num_layers': 3,
         'metadata': METADATA,
         'heads': [4, 4, 4],

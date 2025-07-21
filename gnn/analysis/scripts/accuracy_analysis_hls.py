@@ -13,7 +13,7 @@ from gnn.data.utils.parsers import (
     AREA_METRICS
 )
 from gnn.analysis.utils import (
-    smape_loss, 
+    mape_loss, 
     compute_snru
 )
 
@@ -86,9 +86,9 @@ def compute_baseline_error(
 
         preds = torch.stack(preds, dim=0).unsqueeze(0)
         targets = torch.stack(targets, dim=0).unsqueeze(0)
-        mape = smape_loss(preds, targets).mean().item()
+        mape = mape_loss(preds, targets).item()
         mape_list.append(mape)
-        print(f"Benchmark {benchmark_dir.name} MAPE: {mape:.2f}%")
+        print(f"Benchmark {benchmark_dir.name} MAPE: {mape:.4f}")
 
     if not mape_list:
         return -1.0  # No valid reports found
@@ -122,4 +122,4 @@ if __name__ == "__main__":
     if error < 0:
         print("No valid reports found.")
     else:
-        print(f"Baseline MAPE: {error:.2f}%")
+        print(f"Baseline MAPE: {error:.4f}")

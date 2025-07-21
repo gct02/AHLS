@@ -36,12 +36,10 @@ CDFG_EDGE_TYPES = [
     ("region", "hrchy", "instr"),
     ("block", "hrchy", "instr"),
 ]
+
 MAX_ARRAY_DIM = 4
 MAX_LOOP_DEPTH = 5
 INLINE_THRESHOLD = 30
-
-
-Metadata = Dict[str, Union[str, int, List[int]]]
 
 
 class Node(ABC):
@@ -95,6 +93,9 @@ class CDFGNode(Node):
     
     def __repr__(self):
         return self.__str__()
+
+
+Metadata = Dict[str, Union[str, int, List[int]]]
     
 
 class RegionNode(Node):
@@ -708,21 +709,23 @@ class CDFG:
             ('instr', 'data', 'port'): []
         }
 
-        # Add a (Node -> Instr) edge for each (Node -> GEP -> Instr) path
+        # Add a (Elem -> Instr) edge for each (Elem -> GEP -> Instr) path
         for nt in ['port', 'instr']:
-            for array, instr in self.edges.get((nt, "data", "instr"), []):
+            for elem, instr in self.edges.get((nt, "data", "instr"), []):
                 instr_node = self.nodes['instr'][instr - instr_offset]
                 if instr_node.opcode == 'getelementptr':
                     for src_instr, dst_instr in self.edges.get(("instr", "data", "instr"), []):
                         if src_instr == instr:
-                            new_data_edges[(nt, "data", "instr")].append((array, dst_instr))
+                            new_data_edges[(nt, "data", "instr")].append((elem, dst_instr))
 
-        # Include edges for store instructions
-        for nt in ['instr', 'port']:
-            for src, dst in self.edges.get((nt, "data", "instr"), []):
-                instr_node = self.nodes['instr'][dst - instr_offset]
-                if instr_node.opcode == 'store':
-                    new_data_edges[("instr", "data", nt)].append((dst, src))
+        # Add a (Store -> Addr) edge for each (Addr -> Store) edge
+        for instr_node in self.nodes['instr']:
+            if instr_node.opcode == 'store' and len(instr_node.operand_edges) > 1:
+                addr_id = instr_node.operand_edges[1]
+                if addr_id not in self._node_id_map:
+                    continue
+                addr, addr_nt = self._node_id_map[addr_id]
+                new_data_edges[("instr", "data", addr_nt)].append((instr_node.id, addr))
             
         # Add the new edges to the edges dictionary
         for et, edges in new_data_edges.items():
