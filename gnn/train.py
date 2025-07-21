@@ -31,18 +31,85 @@ from gnn.utils import static_vars
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
-@static_vars(
-    min_mape=float('inf'), 
-    best_epoch=-1, 
-    best_preds=None
-)
+class CheckpointManager:
+    def __init__(self, output_dir: str):
+        self.output_dir = output_dir
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
+
+        self._mape_checkpoints = [float('inf')] * 4
+        self._preds_checkpoints = [None] * 4
+
+    def is_best_checkpoint(self, mape: float, epoch: int) -> bool:
+        if epoch <= 15:
+            return False
+        elif 15 < epoch <= 50:
+            if mape < self._mape_checkpoints[0]:
+                self._mape_checkpoints[0] = mape
+                return True
+        elif 50 < epoch <= 100:
+            if mape < self._mape_checkpoints[1]:
+                self._mape_checkpoints[1] = mape
+                return True
+        elif 100 < epoch <= 200:
+            if mape < self._mape_checkpoints[2]:
+                self._mape_checkpoints[2] = mape
+                return True
+        else:
+            if mape <= self._mape_checkpoints[3]:
+                self._mape_checkpoints[3] = mape
+                return True
+        return False
+    
+    def get_min_mape(self) -> float:
+        return min(self._mape_checkpoints)
+    
+    def get_best_predictions(self) -> Optional[Tensor]:
+        best_index = self._mape_checkpoints.index(min(self._mape_checkpoints))
+        return self._preds_checkpoints[best_index]
+
+    def save(
+        self, model: nn.Module, epoch: int, mape: float,
+        preds: Tensor, targets: Tensor, indices: List[int]
+    ):
+        if epoch <= 50:
+            epoch_index = 0
+        elif 50 < epoch <= 100:
+            epoch_index = 1
+        elif 100 < epoch <= 200:
+            epoch_index = 2
+        else:
+            epoch_index = 3
+
+        self._preds_checkpoints[epoch_index] = preds
+        self._mape_checkpoints[epoch_index] = mape
+
+        model_path = f"{self.output_dir}/model_{epoch_index}.pt"
+        preds_path = f"{self.output_dir}/predictions_{epoch_index}.csv"
+        mape_path = f"{self.output_dir}/mape_{epoch_index}.txt"
+
+        torch.save(obj=model.state_dict(), f=model_path)
+
+        with open(preds_path, "w") as f:
+            f.write(f"index,target,prediction\n")
+            for index, target, pred in zip(indices, targets.tolist(), preds.tolist()):
+                f.write(f"{index},{target},{pred}\n")
+        
+        with open(mape_path, "w") as f:
+            f.write(f"Epoch {epoch + 1}: MAPE = {mape:.4f}%\n")
+
+
+@static_vars(checkpoint_manager=None)
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
     epoch: int,
-    output_dir: Optional[str] = None,
+    output_dir: str,
     available_resources: Optional[Tensor] = None
 ) -> float:
+    if not evaluate.checkpoint_manager:
+        evaluate.checkpoint_manager = CheckpointManager(output_dir)
+
     targets, preds = [], []
     for data in loader:
         data = data.to(DEVICE)
@@ -66,36 +133,21 @@ def evaluate(
         available_resources=available_resources
     )
     mape = robust_mape(preds, targets).mean().item()
-    
-    if mape < evaluate.min_mape:
-        if output_dir and epoch > 20: # Avoid saving model at the first few epochs
-            model_path = f"{output_dir}/model.pt"
-            preds_path = f"{output_dir}/info/predictions.csv"
-            mape_path = f"{output_dir}/info/mape.txt"
-
-            with open(mape_path, "w") as f:
-                f.write(f"Epoch {epoch + 1}: MAPE = {mape:.4f}%\n")
-
-            torch.save(obj=model.state_dict(), f=model_path)
-
-            indices = [data.solution_index for data in loader.dataset]
-            with open(preds_path, "w") as f:
-                f.write(f"index,target,prediction\n")
-                for index, target, pred in zip(
-                    indices, 
-                    targets.tolist(), 
-                    preds.tolist()
-                ):
-                    f.write(f"{index},{target},{pred}\n")
-
-        evaluate.min_mape = mape
-        evaluate.best_epoch = epoch
-        evaluate.best_preds = preds
 
     print(f"\nMAPE at epoch {epoch + 1}: {mape:.4f}%")
-    print(f"Best MAPE so far: {evaluate.min_mape:.4f}%"
-          f" at epoch {evaluate.best_epoch + 1}\n")
-    
+
+    if evaluate.checkpoint_manager.is_best_checkpoint(mape, epoch):
+        indices = [data.solution_index for data in loader.dataset]
+        evaluate.checkpoint_manager.save(
+            model=model, 
+            epoch=epoch, 
+            mape=mape, 
+            preds=preds, 
+            targets=targets, 
+            indices=indices
+        )
+        print(f"Saving model at epoch {epoch + 1} with MAPE = {mape:.4f}%")
+
     return mape
 
 
@@ -106,9 +158,9 @@ def train_model(
     train_loader: DataLoader,
     test_loader: DataLoader,
     epochs: int,
+    output_dir: str,
     max_norm: float = 5.0,
     scheduler: Optional[LRScheduler] = None,
-    output_dir: Optional[str] = None,
     available_resources: Optional[Tensor] = None
 ) -> Tuple[List[float], List[float]]:
     train_mapes, test_mapes = [], []
@@ -203,10 +255,10 @@ def main(args: Dict[str, Any]):
     model_args = {
         'target_metric': target_metric,
         'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [256, 256, 256, 256],
-        'num_layers': 4,
+        'hidden_channels': [256, 256, 256],
+        'num_layers': 3,
         'metadata': METADATA,
-        'heads': [4, 4, 4, 4],
+        'heads': [4, 4, 4],
         'dropout': 0.1,
         'jk_mode': 'cat'
     }
@@ -302,7 +354,7 @@ def main(args: Dict[str, Any]):
     )
 
     indices = [data.solution_index for data in test_loader.dataset]
-    preds = evaluate.best_preds.tolist()
+    preds = evaluate.checkpoint_manager.get_best_predictions()
     targets = []
     for data in test_loader:
         data = data.to(DEVICE)

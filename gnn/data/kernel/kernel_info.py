@@ -191,7 +191,8 @@ class RegionNode(Node):
             'loop_depth': encoded_loop_depth, 
             'achieved_ii_base': ii, 'target_ii': 0,
             'pipeline': pipeline_type,
-            'unroll': 0, 'unroll_factor': 0,
+            'unroll': [1, 0, 0], # Not unrolled 
+            'unroll_factor': 0,
             'loop_merge': 0, 'loop_flatten': 0,
             'dataflow': 0, 'inline': 0,
         }
@@ -389,18 +390,13 @@ class ConstantNode(CDFGNode):
     def __init__(self, element: ET.Element, function_name: str):
         super().__init__(element, function_name)
 
-        self.label = f'{self.function_name}/{self.name}'
         self.content = element.findtext('content', '')
+        self.label = f'{self.function_name}/{self.name} ({self.content})'
 
         self.attrs.update({
             'primitive_bitwidth': findint(element, 'Value/bitwidth', 0),
             'const_type': str(element.findtext('const_type', '-1')),
         })
-
-    def as_dict(self):
-        node_dict = super().as_dict()
-        node_dict.update({'content': self.content})
-        return node_dict
 
 
 class BlockNode(CDFGNode):
@@ -541,7 +537,10 @@ class CDFG:
                 raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
             name = obj.findtext('name', '')
 
-            array_md = fetch_array_md(array_md_list, name, self.original_name, is_global_mem=True)
+            array_md = fetch_array_md(
+                array_md_list, name, self.original_name, 
+                is_global_mem=True
+            )
             node = PortNode(
                 elem, self.original_name, self.is_top_level, 
                 array_md=array_md
@@ -734,7 +733,7 @@ class CDFG:
                 print(f"Skipping edge type: {et}")
                 continue
 
-            elif src_nt == "instr" and rel == "data":
+            if src_nt == "instr" and rel == "data":
                 # For data edges from instructions, check if it's an alloca
                 if src in self._alloca_array_map:
                     array = self._alloca_array_map[src]
@@ -947,23 +946,37 @@ class VitisKernelInfo:
                 instr_node.attrs['callee_size'] = 0
 
     def _update_array_access_edges(self):
-        def get_global_array_node(array_name):
+        def get_array_node(array_name, function_name):
             for node in self.nodes['array']:
-                if node.name == array_name and node.is_global_mem:
-                    return node
-            return None
+                if (node.name == array_name 
+                    and ((node.is_global_mem and not function_name) 
+                         or node.function_name == function_name)):
+                    return node, 'array'
+            for node in self.nodes['port']:
+                if node.name == array_name and node.function_name == function_name:
+                    return node, 'port'
+            return None, None
         
         for array_md in self.array_access_info:
-            array_node = get_global_array_node(array_md['Name'])
+            md_array_name = array_md.get('Name', '')
+            md_function_name = array_md.get('FunctionName', '')
+
+            array_node, nt = get_array_node(md_array_name, md_function_name)
             if array_node is None:
                 continue
             
-            new_edges = []
+            new_edge_dict = {
+                ('array', 'data', 'instr'): [],
+                ('port', 'data', 'instr'): [],
+                ('instr', 'store', 'array'): [],
+                ('instr', 'store', 'port'): []
+            }
             for store_info in array_md.get('Stores', []):
                 function_name = store_info.get('FunctionName', '')
                 store_idx = store_info.get('StoreInstIndex', -1)
                 if not function_name or store_idx < 0:
                     continue
+
                 cdfg = self._cdfgs.get(function_name)
                 if cdfg is None:
                     continue
@@ -972,7 +985,8 @@ class VitisKernelInfo:
                 for node in cdfg.nodes['instr']:
                     if node.opcode == 'store':
                         if store_count == store_idx:
-                            new_edges.append((array_node.id, node.id))
+                            new_edge_dict[(nt, 'data', 'instr')].append((array_node.id, node.id))
+                            new_edge_dict[('instr', 'store', nt)].append((node.id, array_node.id))
                             break
                         store_count += 1
 
@@ -981,6 +995,7 @@ class VitisKernelInfo:
                 instr_name = load_info.get('Name', '')
                 if not function_name or not instr_name:
                     continue
+
                 cdfg = self._cdfgs.get(function_name)
                 if cdfg is None:
                     continue
@@ -988,25 +1003,41 @@ class VitisKernelInfo:
                 for node in cdfg.nodes['instr']:
                     if (node.name == instr_name 
                         and node.opcode in ['load', 'getelementptr']):
-                        new_edges.append((array_node.id, node.id))
+                        new_edge_dict[(nt, 'data', 'instr')].append((array_node.id, node.id))
+                        break
 
-            for src, dst in new_edges:
-                if not _edge_exists(self.edges, src, dst, ('array', 'data', 'instr')):
-                    self.edges[('array', 'data', 'instr')].append((src, dst))
+            for et, new_edges in new_edge_dict.items():
+                for src, dst in new_edges:
+                    if not _edge_exists(self.edges, src, dst, et):
+                        self.edges[et].append((src, dst))
 
     def as_dict(self):
+        node_dict = {
+            nt: [n.as_dict() for n in nodes] 
+            for nt, nodes in self.nodes.items()
+        }
+        edge_dict = {}
+        for et, edges in self.edges.items():
+            edges_with_labels = []
+            for src, dst in edges:
+                src_node = self.nodes[et[0]][src]
+                dst_node = self.nodes[et[2]][dst]
+                edges_with_labels.append({
+                    'src': src,
+                    'dst': dst,
+                    'src_label': src_node.label,
+                    'dst_label': dst_node.label
+                })
+            et_str = f"{et[0]}__{et[1]}__{et[2]}"
+            edge_dict[et_str] = edges_with_labels
+
         return {
             'benchmark_name': self.benchmark_name,
             'top_level_function': self.top_level_name,
             'qor_metrics': self.qor_metrics,
-            'nodes': {
-                nt: [n.as_dict() for n in nodes] 
-                for nt, nodes in self.nodes.items()
-            },
-            'edges': {
-                f"{et[0]}__{et[1]}__{et[2]}": edges 
-                for et, edges in self.edges.items()
-            }
+            'cdfgs': [cdfg.name for cdfg in self._cdfgs.values()],
+            'nodes': node_dict,
+            'edges': edge_dict
         }
 
     def save_as_json(self, filepath):

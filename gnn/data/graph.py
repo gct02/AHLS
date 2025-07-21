@@ -39,10 +39,10 @@ METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 FEATURE_SIZE_BY_TYPE = {
-    "instr": 71, 
+    "instr": 70, 
     "port": 28,
     "const": 4,
-    "region": 41,
+    "region": 43,
     "block": 14,
     "array": 25
 }
@@ -202,10 +202,10 @@ def update_with_directives(
         """Completely unroll all subloops of a pipelined loop."""
         for sub_region in loop_node.sub_regions:
             node = kernel_info.nodes['region'][sub_region]
-            if node.is_loop:
+            if node.is_loop and node.attrs["unroll"][1] == 0:
                 trip_count = node.attrs.get("max_trip_count", 0)
                 node.attrs["unroll_factor"] = trip_count
-                node.attrs["unroll"] = 1
+                node.attrs["unroll"] = [0, 0, 1] # Unroll implied by pipeline
             unroll_pipelined_subloops(node)
 
     kernel_info = deepcopy(base_kernel_info)
@@ -276,6 +276,8 @@ def update_with_directives(
                 if unroll_factor <= 0:
                     unroll_factor = region_node.attrs.get("max_trip_count", 1)
                 region_node.attrs["unroll_factor"] = unroll_factor
+                region_node.attrs["unroll"] = [0, 1, 0] # Unrolled by user directive
+                continue
 
             region_node.attrs[dct] = 1
 
@@ -363,47 +365,45 @@ def plot_data(
     from matplotlib.patches import Patch
 
     node_color_dict = {
-        "instr": "#449ad8",
+        "instr": "#489edb",
         "port": "#1ac983",
-        "const": "#9a59e4",
-        "array": "#f06db9",
-        "block": "#c99d3e",
-        "region": "#d84c4c"
+        "const": "#f06dae",
+        "array": "#a462f0",
+        "block": "#c9913e",
+        "region": "#df5e5e"
     }
     edge_color_dict = {
-        ("const", "data", "instr"): "#4bd2d4",
-        ("instr", "data", "instr"): "#27a4b4",
-        ("port", "data", "instr"): "#1f8a96",
-        ('array', 'data', 'instr'): "#057581",
-        ("instr", "alloca", "array"): "#f06db9",
-        ("instr", "store", "array"): "#c01579",
-        ("instr", "store", "instr"): "#c01579",
-        ("instr", "store", "port"): "#c01579",
-        ("instr", "data", "const"): "#249741",
-        ("port", "data", "const"): "#249741",
-        ('array', 'data', 'const'): "#249741",
-        ("block", "control", "instr"): "#c5882d",
-        ("block", "control", "block"): "#c5882d",
-        ("instr", "mem", "instr"): "#e73939",
-        ("instr", "call", "instr"): "#8040c9",
-        ("region", "hrchy", "region"): "#979b9e",
-        ("region", "hrchy", "block"): "#979b9e",
-        ("block", "hrchy", "instr"): "#979b9e"
+        ("const", "data", "instr"): "#30b5c7",
+        ("instr", "data", "instr"): "#30b5c7",
+        ("port", "data", "instr"): "#30b5c7",
+        ('array', 'data', 'instr'): "#30b5c7",
+        ("instr", "alloca", "array"): "#3A4497",
+        ("instr", "store", "array"): "#A19A2F",
+        ("instr", "store", "instr"): "#A19A2F",
+        ("instr", "store", "port"): "#A19A2F",
+        ("block", "control", "instr"): "#22833F",
+        ("block", "control", "block"): "#22833F",
+        ("instr", "mem", "instr"): "#C75E21",
+        ("instr", "call", "region"): "#cc53cc",
+        ("region", "hrchy", "region"): "#9C9C9C",
+        ("region", "hrchy", "block"): "#9C9C9C",
+        ("block", "hrchy", "instr"): "#9C9C9C"
     }
-    if plt_type == "full":
+    if "full" in plt_type:
         edge_types = edge_color_dict.keys()
         node_types = node_color_dict.keys()
     else:
-        edge_types = [
-            et for et in edge_color_dict.keys() 
-            if et[1] == plt_type
-        ]
+        plt_types = plt_type.split("_")
+        edge_types = []
         node_types = set()
-        for et in edge_types:
-            node_types.add(et[0])
-            node_types.add(et[2])
+        for et in edge_color_dict.keys():
+            if et[1] in plt_types:
+                edge_types.append(et)
+                node_types.add(et[0])
+                node_types.add(et[2])
 
     filtered_data = HeteroData()
+    
     node_indices = {nt: set() for nt in node_types}
     for et, edge_index in data.edge_index_dict.items():
         if et in edge_types:
@@ -414,38 +414,50 @@ def plot_data(
     node_indices = {
         nt: list(indices) 
         for nt, indices in node_indices.items()
+        if indices
     }
     for nt, x in data.x_dict.items():
-        if nt in node_types:
-            if len(node_indices[nt]) == 0:
-                filtered_data[nt].x = torch.empty(
-                    (0, x.size(1)), dtype=x.dtype
-                )
-                filtered_data[nt].label = []
-            else:
-                filtered_data[nt].x = x[node_indices[nt]]
-                filtered_data[nt].label = [
-                    data[nt].label[i] 
-                    for i in node_indices[nt]
-                ]
+        if nt in node_indices and node_indices[nt]:
+            filtered_data[nt].x = x[node_indices[nt]]
+            filtered_data[nt].label = [
+                data[nt].label[i] for i in node_indices[nt]
+            ]
 
     G = to_networkx(
         data=filtered_data, 
-        node_attrs=['x', 'label'], 
-        remove_self_loops=True
+        node_attrs=['x', 'label']
     )
+
+    nodes_to_remove = []
+    for node, attrs in G.nodes(data=True):
+        nt = attrs.get("type")
+        if nt is None or nt not in node_types:
+            nodes_to_remove.append(node)
+
+    edges_to_remove = []
+    for src, dst, attrs in G.edges(data=True):
+        et = attrs.get("type")
+        if et is None or et not in edge_types:
+            edges_to_remove.append((src, dst))
+
+    G.remove_edges_from(edges_to_remove)
+    G.remove_nodes_from(nodes_to_remove)
+
     ncolors, nlabels = [], {}
     for node, attrs in G.nodes(data=True):
-        if (nt := attrs.get("type")) is None:
-            continue
-        ncolors.append(node_color_dict.get(nt, "#ffffff"))
-        nlabels[node] = attrs.get("label", "")
+        nt = attrs.get("type")
+        label = attrs.get("label", "")
+        ncolor = node_color_dict.get(nt, '#ffffff')
+        ncolors.append(ncolor)
+        nlabels[node] = label
+        G.nodes[node]["color"] = ncolor
+        G.nodes[node]["type"] = nt
+        G.nodes[node]["label"] = label
 
     ecolors = []
     for src, dst, attrs in G.edges(data=True):
-        if (et := attrs.get("type")) is None:
-            continue
-        ecolor = edge_color_dict.get(et, "#ffffff")
+        et = attrs.get("type")
+        ecolor = edge_color_dict.get(et, '#ffffff')
         ecolors.append(ecolor)
         G.edges[src, dst]["color"] = ecolor
 
@@ -460,21 +472,16 @@ def plot_data(
         if et in edge_types
     ]
 
-    if plt_type in ["full", "data", "control", "hrchy", "hrchy_rev"]:
-        # Large graphs
-        if batched:
-            pos = nx.spring_layout(G, scale=2)
-        else:
-            pos = nx.kamada_kawai_layout(G, scale=2)
+    if batched:
+        pos = nx.spring_layout(G, scale=2)
     else:
-        # Small graphs
-        pos = nx.planar_layout(G, scale=2)
+        pos = nx.kamada_kawai_layout(G, scale=2)
 
     plt.figure(figsize=(12, 8))
     nx.draw_networkx(
         G, pos, labels=nlabels, node_color=ncolors, 
         edge_color=ecolors, style="dashed", node_size=150, 
-        font_size=8, arrowsize=9, width=.8, alpha=.8
+        font_size=8, arrowsize=9, width=.9, alpha=.7
     )
     plt.legend(
         handles=node_legend + edge_legend, loc='lower center', 
@@ -492,6 +499,7 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--benchmark", default="")
     parser.add_argument("-p", "--plot-type", default="full")
     parser.add_argument("-f", "--filtered", action="store_true")
+    parser.add_argument("-o", "--output-path", type=str, default=None)
     args = parser.parse_args()
 
     sol_dir = args.solution_dir[0]
@@ -504,6 +512,9 @@ if __name__ == "__main__":
         solution_info_list=[(sol_dir, kernel_name, top_fn_name)], 
         filtered=filtered
     )[kernel_name]
+
+    if args.output_path:
+        kernel_info.save_as_json(args.output_path)
 
     data = to_hetero_data(kernel_info)
 

@@ -1,6 +1,6 @@
 import os
 import sys
-import time
+import pickle
 
 import torch
 import shap
@@ -82,25 +82,127 @@ def extract_errors_hls(dataset_dir, filtered=False):
     return error_dict
 
 
-def associate_directives_with_errors(error_dict, dataset_dir, dct_config_path):
-    dct_error_pairs = []
+# def associate_directives_with_errors(error_dict, dataset_dir, dct_config_path):
+#     dct_error_pairs = []
+#     feat_names = None
+
+#     for idx, error in error_dict.items():
+#         dct_tcl_path = os.path.join(dataset_dir, f"solution{idx}/directives.tcl")
+#         if not os.path.exists(dct_tcl_path):
+#             continue
+
+#         if feat_names is None:
+#             dct, feat_names = encode_directives(
+#                 dct_config_path, dct_tcl_path, return_feat_names=True
+#             )
+#         else:
+#             dct = encode_directives(dct_config_path, dct_tcl_path)
+        
+#         dct_error_pairs.append((idx, dct, error))
+
+#     return dct_error_pairs, feat_names
+
+
+def associate_feats_with_errors(error_dict, dataset_dir):
+    feat_error_pairs = []
     feat_names = None
 
     for idx, error in error_dict.items():
-        dct_tcl_path = os.path.join(dataset_dir, f"solution{idx}/directives.tcl")
-        if not os.path.exists(dct_tcl_path):
+        sol_dir = os.path.join(dataset_dir, f"solution{idx}")
+        if not os.path.exists(sol_dir):
+            print(f"Warning: Solution directory does not exist: {sol_dir}")
             continue
 
-        if feat_names is None:
-            dct, feat_names = encode_directives(
-                dct_config_path, dct_tcl_path, return_feat_names=True
-            )
-        else:
-            dct = encode_directives(dct_config_path, dct_tcl_path)
-        
-        dct_error_pairs.append((idx, dct, error))
+        kernel_info_path = os.path.join(sol_dir, "vitis_kernel_info.pkl")
+        if not os.path.exists(kernel_info_path):
+            print(f"Warning: Kernel info file does not exist: {kernel_info_path}")
+            continue
 
-    return dct_error_pairs, feat_names
+        with open(kernel_info_path, 'rb') as f:
+            kernel_info = pickle.load(f)
+
+        region_nodes = kernel_info.nodes.get('region', [])
+        # instr_nodes = kernel_info.nodes.get('instr', [])
+        # const_nodes = kernel_info.nodes.get('const', [])
+        # block_nodes = kernel_info.nodes.get('block', [])
+        array_nodes = kernel_info.nodes.get('array', [])
+        port_nodes = kernel_info.nodes.get('port', [])
+
+        region_feat_names = []
+        # instr_feat_names = []
+        # const_feat_names = []
+        # block_feat_names = []
+        array_feat_names = []
+        port_feat_names = []
+
+        region_feats = []
+        # instr_feats = []
+        # const_feats = []
+        # block_feats = []
+        array_feats = []
+        port_feats = []
+
+        for i, region_node in enumerate(region_nodes):
+            for key, value in region_node.attrs.items():
+                if isinstance(value, (list, tuple)):
+                    region_feat_names.extend([f"{region_node.label}_{key}_{j}" for j in range(len(value))])
+                    region_feats.extend(value)
+                else:
+                    region_feat_names.append(f"{region_node.label}_{key}")
+                    region_feats.append(value)
+
+        # for i, instr_node in enumerate(instr_nodes):
+        #     for key, value in instr_node.attrs.items():
+        #         if isinstance(value, (list, tuple)):
+        #             instr_feat_names.extend([f"instr_{i}_{key}_{j}" for j in range(len(value))])
+        #             instr_feats.extend(value)
+        #         else:
+        #             instr_feat_names.append(f"instr_{i}_{key}")
+        #             instr_feats.append(value)
+
+        # for i, const_node in enumerate(const_nodes):
+        #     for key, value in const_node.attrs.items():
+        #         if isinstance(value, (list, tuple)):
+        #             const_feat_names.extend([f"const_{i}_{key}_{j}" for j in range(len(value))])
+        #             const_feats.extend(value)
+        #         else:
+        #             const_feat_names.append(f"const_{i}_{key}")
+        #             const_feats.append(value)
+
+        # for i, block_node in enumerate(block_nodes):
+        #     for key, value in block_node.attrs.items():
+        #         if isinstance(value, (list, tuple)):
+        #             block_feat_names.extend([f"block_{i}_{key}_{j}" for j in range(len(value))])
+        #             block_feats.extend(value)
+        #         else:
+        #             block_feat_names.append(f"block_{i}_{key}")
+        #             block_feats.append(value)
+
+        for i, array_node in enumerate(array_nodes):
+            for key, value in array_node.attrs.items():
+                if isinstance(value, (list, tuple)):
+                    array_feat_names.extend([f"{array_node.label}_{key}_{j}" for j in range(len(value))])
+                    array_feats.extend(value)
+                else:
+                    array_feat_names.append(f"{array_node.label}_{key}")
+                    array_feats.append(value)
+
+        for i, port_node in enumerate(port_nodes):
+            for key, value in port_node.attrs.items():
+                if isinstance(value, (list, tuple)):
+                    port_feat_names.extend([f"{port_node.label}_{key}_{j}" for j in range(len(value))])
+                    port_feats.extend(value)
+                else:
+                    port_feat_names.append(f"{port_node.label}_{key}")
+                    port_feats.append(value)
+
+        feats = np.concatenate([region_feats, array_feats, port_feats])
+        if feat_names is None:
+            feat_names = (region_feat_names + array_feat_names + port_feat_names)
+        
+        feat_error_pairs.append((idx, feats, error))
+
+    return feat_error_pairs, feat_names
 
 
 def sort_by_error(dct_error_pairs):
@@ -108,10 +210,10 @@ def sort_by_error(dct_error_pairs):
     return sorted(dct_error_pairs, key=lambda x: x[2], reverse=True)
 
 
-def process_errors_and_directives(error_dict, dataset_dir, dct_config_path):
+def process_errors_and_directives(error_dict, dataset_dir):
     """Return (solution_idx, directives, mean_error) tuples."""
-    dct_error_pairs, feat_names = associate_directives_with_errors(
-        error_dict, dataset_dir, dct_config_path
+    dct_error_pairs, feat_names = associate_feats_with_errors(
+        error_dict, dataset_dir
     )
     return sorted(dct_error_pairs, key=lambda x: x[2], reverse=True), feat_names
 
@@ -239,7 +341,7 @@ if __name__ == "__main__":
 
     benchmark = args.benchmark.upper()
     dataset_dir = args.dataset_dir
-    dct_config_path = args.dct_config
+    # dct_config_path = args.dct_config
     predictions_path = args.predictions
     fine_tuned = args.fine_tuned
     surrogate = args.surrogate
@@ -253,15 +355,15 @@ if __name__ == "__main__":
         print(f"Dataset directory does not exist: {dataset_dir}")
         sys.exit(1)
 
-    if not dct_config_path:
-        benchmark_name = benchmark.lower()
-        if benchmark_name == "trans_fft":
-            benchmark_name = "transposed_fft"
-        dct_config_path = f"data/directives/{benchmark_name}.json"
+    # if not dct_config_path:
+    #     benchmark_name = benchmark.lower()
+    #     if benchmark_name == "trans_fft":
+    #         benchmark_name = "transposed_fft"
+    #     dct_config_path = f"data/directives/{benchmark_name}.json"
 
-    if not os.path.exists(dct_config_path):
-        print(f"Directives config file does not exist: {dct_config_path}")
-        sys.exit(1)
+    # if not os.path.exists(dct_config_path):
+    #     print(f"Directives config file does not exist: {dct_config_path}")
+    #     sys.exit(1)
 
     if args.hls:
         error_dict = extract_errors_hls(dataset_dir, filtered=True)
@@ -279,7 +381,7 @@ if __name__ == "__main__":
         error_dict = extract_errors(predictions_path)
 
     dct_error_pairs, feat_names = process_errors_and_directives(
-        error_dict, dataset_dir, dct_config_path
+        error_dict, dataset_dir
     )
 
     X_dct, y_error = build_dataset(dct_error_pairs)
@@ -310,6 +412,6 @@ if __name__ == "__main__":
         shap_interaction_values = explain_model_with_interactions(model, X_dct)
         plot_shap_interaction(shap_interaction_values, X_dct, output_path, feat_names)
     else:
-        # shap_values = explain_model(model, X_dct, surrogate=surrogate)
-        # plot_shap_values(X_dct, shap_values, output_path, feat_names)
-        explain_model_ebm(X_dct, y_error, feat_names=feat_names)
+        shap_values = explain_model(model, X_dct, surrogate=surrogate)
+        plot_shap_values(X_dct, shap_values, output_path, feat_names)
+        # explain_model_ebm(X_dct, y_error, feat_names=feat_names)

@@ -36,3 +36,5 @@ inspect_gramschmidt.py
 area_model_analysis.py
 
 shap_values/
+
+gnn/test

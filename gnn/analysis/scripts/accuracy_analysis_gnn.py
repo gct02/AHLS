@@ -9,6 +9,7 @@ from gnn.analysis.utils import (
     robust_mape
 )
 
+
 def evaluate_results_on_benchmark(
     predictions_path: Union[str, Path],
     solution_type: Optional[str] = None,

@@ -267,74 +267,284 @@
     {
       "Name": "weights1",
       "FunctionName": "update_weights.1",
-      "Stores": [{ "FunctionName": "update_weights.1", "StoreInstIndex": 11 }, { "FunctionName": "update_weights.1", "StoreInstIndex": 4 }],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "weights1_load_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights1_addr_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights1_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights1_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 11
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 4
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights1_load_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights1_addr_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights1_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights1_addr"
+        }
+      ]
     },
     {
       "Name": "weights2",
       "FunctionName": "update_weights.1",
-      "Stores": [{ "FunctionName": "update_weights.1", "StoreInstIndex": 27 }, { "FunctionName": "update_weights.1", "StoreInstIndex": 20 }],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "weights2_load_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights2_addr_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights2_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights2_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 27
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 20
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights2_load_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights2_addr_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights2_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights2_addr"
+        }
+      ]
     },
     {
       "Name": "weights3",
       "FunctionName": "update_weights.1",
-      "Stores": [{ "FunctionName": "update_weights.1", "StoreInstIndex": 43 }, { "FunctionName": "update_weights.1", "StoreInstIndex": 36 }],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "weights3_load_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights3_addr_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights3_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "weights3_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 43
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 36
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights3_load_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights3_addr_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights3_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "weights3_addr"
+        }
+      ]
     },
     {
       "Name": "d_weights1",
       "FunctionName": "update_weights.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "d_weights1_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "d_weights1_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_weights1_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_weights1_addr"
+        }
+      ]
     },
     {
       "Name": "d_weights2",
       "FunctionName": "update_weights.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "d_weights2_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "d_weights2_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_weights2_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_weights2_addr"
+        }
+      ]
     },
     {
       "Name": "d_weights3",
       "FunctionName": "update_weights.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "d_weights3_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "d_weights3_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_weights3_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_weights3_addr"
+        }
+      ]
     },
     {
       "Name": "biases1",
       "FunctionName": "update_weights.1",
-      "Stores": [{ "FunctionName": "update_weights.1", "StoreInstIndex": 16 }, { "FunctionName": "update_weights.1", "StoreInstIndex": 7 }],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "biases1_load_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases1_addr_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases1_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases1_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 16
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 7
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases1_load_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases1_addr_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases1_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases1_addr"
+        }
+      ]
     },
     {
       "Name": "biases2",
       "FunctionName": "update_weights.1",
-      "Stores": [{ "FunctionName": "update_weights.1", "StoreInstIndex": 32 }, { "FunctionName": "update_weights.1", "StoreInstIndex": 23 }],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "biases2_load_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases2_addr_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases2_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases2_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 32
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 23
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases2_load_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases2_addr_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases2_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases2_addr"
+        }
+      ]
     },
     {
       "Name": "biases3",
       "FunctionName": "update_weights.1",
-      "Stores": [{ "FunctionName": "update_weights.1", "StoreInstIndex": 46 }, { "FunctionName": "update_weights.1", "StoreInstIndex": 39 }],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "biases3_load_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases3_addr_1" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases3_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "biases3_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 46
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "StoreInstIndex": 39
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases3_load_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases3_addr_1"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases3_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "biases3_addr"
+        }
+      ]
     },
     {
       "Name": "d_biases1",
       "FunctionName": "update_weights.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "d_biases1_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "d_biases1_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_biases1_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_biases1_addr"
+        }
+      ]
     },
     {
       "Name": "d_biases2",
       "FunctionName": "update_weights.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "update_weights.1", "LoadInstName": "d_biases2_load" }, { "FunctionName": "update_weights.1", "LoadInstName": "d_biases2_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_biases2_load"
+        },
+        {
+          "FunctionName": "update_weights.1",
+          "LoadInstName": "d_biases2_addr"
+        }
+      ]
     },
     {
       "Name": "training_targets",
       "FunctionName": "take_difference.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "take_difference.1", "LoadInstName": "training_targets_load" }, { "FunctionName": "take_difference.1", "LoadInstName": "training_targets_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "take_difference.1",
+          "LoadInstName": "training_targets_load"
+        },
+        {
+          "FunctionName": "take_difference.1",
+          "LoadInstName": "training_targets_addr"
+        }
+      ]
     },
     {
       "Name": "biases2",
@@ -346,37 +556,88 @@
       "Name": "weights2",
       "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_second_layer.1", "LoadInstName": "weights2_load" }, { "FunctionName": "matrix_vector_product_with_bias_second_layer.1", "LoadInstName": "weights2_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
+          "LoadInstName": "weights2_load"
+        },
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
+          "LoadInstName": "weights2_addr"
+        }
+      ]
     },
     {
       "Name": "activations",
       "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
-      "Stores": [{ "FunctionName": "matrix_vector_product_with_bias_second_layer.1", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_second_layer.1", "LoadInstName": "activations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
+          "LoadInstName": "activations_addr"
+        }
+      ]
     },
     {
       "Name": "input_activations",
       "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_second_layer.1", "LoadInstName": "input_activations_load" }, { "FunctionName": "matrix_vector_product_with_bias_second_layer.1", "LoadInstName": "input_activations_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
+          "LoadInstName": "input_activations_load"
+        },
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer.1",
+          "LoadInstName": "input_activations_addr"
+        }
+      ]
     },
     {
       "Name": "biases3",
       "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_output_layer.1", "LoadInstName": "call_ret" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
+          "LoadInstName": "call_ret"
+        }
+      ]
     },
     {
       "Name": "weights3",
       "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_output_layer.1", "LoadInstName": "weights3_load" }, { "FunctionName": "matrix_vector_product_with_bias_output_layer.1", "LoadInstName": "weights3_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
+          "LoadInstName": "weights3_load"
+        },
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
+          "LoadInstName": "weights3_addr"
+        }
+      ]
     },
     {
       "Name": "input_activations",
       "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_output_layer.1", "LoadInstName": "input_activations_load" }, { "FunctionName": "matrix_vector_product_with_bias_output_layer.1", "LoadInstName": "input_activations_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
+          "LoadInstName": "input_activations_load"
+        },
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer.1",
+          "LoadInstName": "input_activations_addr"
+        }
+      ]
     },
     {
       "Name": "biases1",
@@ -388,121 +649,313 @@
       "Name": "weights1",
       "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_input_layer.1", "LoadInstName": "weights1_load" }, { "FunctionName": "matrix_vector_product_with_bias_input_layer.1", "LoadInstName": "weights1_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
+          "LoadInstName": "weights1_load"
+        },
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
+          "LoadInstName": "weights1_addr"
+        }
+      ]
     },
     {
       "Name": "activations",
       "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
-      "Stores": [{ "FunctionName": "matrix_vector_product_with_bias_input_layer.1", "StoreInstIndex": 2 }],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_input_layer.1", "LoadInstName": "activations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
+          "LoadInstName": "activations_addr"
+        }
+      ]
     },
     {
       "Name": "training_data",
       "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "matrix_vector_product_with_bias_input_layer.1", "LoadInstName": "training_data_load" }, { "FunctionName": "matrix_vector_product_with_bias_input_layer.1", "LoadInstName": "training_data_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
+          "LoadInstName": "training_data_load"
+        },
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer.1",
+          "LoadInstName": "training_data_addr"
+        }
+      ]
     },
     {
       "Name": "weights3",
       "FunctionName": "get_oracle_activations2.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_oracle_activations2.1", "LoadInstName": "weights3_load" }, { "FunctionName": "get_oracle_activations2.1", "LoadInstName": "weights3_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations2.1",
+          "LoadInstName": "weights3_load"
+        },
+        {
+          "FunctionName": "get_oracle_activations2.1",
+          "LoadInstName": "weights3_addr"
+        }
+      ]
     },
     {
       "Name": "oracle_activations",
       "FunctionName": "get_oracle_activations2.1",
-      "Stores": [{ "FunctionName": "get_oracle_activations2.1", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "get_oracle_activations2.1", "LoadInstName": "oracle_activations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations2.1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations2.1",
+          "LoadInstName": "oracle_activations_addr"
+        }
+      ]
     },
     {
       "Name": "dactivations",
       "FunctionName": "get_oracle_activations2.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_oracle_activations2.1", "LoadInstName": "dactivations_load" }, { "FunctionName": "get_oracle_activations2.1", "LoadInstName": "dactivations_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations2.1",
+          "LoadInstName": "dactivations_load"
+        },
+        {
+          "FunctionName": "get_oracle_activations2.1",
+          "LoadInstName": "dactivations_addr"
+        }
+      ]
     },
     {
       "Name": "weights2",
       "FunctionName": "get_oracle_activations1.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_oracle_activations1.1", "LoadInstName": "weights2_load" }, { "FunctionName": "get_oracle_activations1.1", "LoadInstName": "weights2_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "weights2_load"
+        },
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "weights2_addr"
+        }
+      ]
     },
     {
       "Name": "output_differences",
       "FunctionName": "get_oracle_activations1.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_oracle_activations1.1", "LoadInstName": "output_differences_load" }, { "FunctionName": "get_oracle_activations1.1", "LoadInstName": "output_differences_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "output_differences_load"
+        },
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "output_differences_addr"
+        }
+      ]
     },
     {
       "Name": "oracle_activations",
       "FunctionName": "get_oracle_activations1.1",
-      "Stores": [{ "FunctionName": "get_oracle_activations1.1", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "get_oracle_activations1.1", "LoadInstName": "oracle_activations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "oracle_activations_addr"
+        }
+      ]
     },
     {
       "Name": "dactivations",
       "FunctionName": "get_oracle_activations1.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_oracle_activations1.1", "LoadInstName": "dactivations_load" }, { "FunctionName": "get_oracle_activations1.1", "LoadInstName": "dactivations_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "dactivations_load"
+        },
+        {
+          "FunctionName": "get_oracle_activations1.1",
+          "LoadInstName": "dactivations_addr"
+        }
+      ]
     },
     {
       "Name": "delta_weights3",
       "FunctionName": "get_delta_matrix_weights3",
-      "Stores": [{ "FunctionName": "get_delta_matrix_weights3", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights3", "LoadInstName": "delta_weights3_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights3",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights3",
+          "LoadInstName": "delta_weights3_addr"
+        }
+      ]
     },
     {
       "Name": "last_activations",
       "FunctionName": "get_delta_matrix_weights3",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights3", "LoadInstName": "last_activations_load" }, { "FunctionName": "get_delta_matrix_weights3", "LoadInstName": "last_activations_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights3",
+          "LoadInstName": "last_activations_load"
+        },
+        {
+          "FunctionName": "get_delta_matrix_weights3",
+          "LoadInstName": "last_activations_addr"
+        }
+      ]
     },
     {
       "Name": "delta_weights2",
       "FunctionName": "get_delta_matrix_weights2",
-      "Stores": [{ "FunctionName": "get_delta_matrix_weights2", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights2", "LoadInstName": "delta_weights2_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights2",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights2",
+          "LoadInstName": "delta_weights2_addr"
+        }
+      ]
     },
     {
       "Name": "output_difference",
       "FunctionName": "get_delta_matrix_weights2",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights2", "LoadInstName": "output_difference_load" }, { "FunctionName": "get_delta_matrix_weights2", "LoadInstName": "output_difference_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights2",
+          "LoadInstName": "output_difference_load"
+        },
+        {
+          "FunctionName": "get_delta_matrix_weights2",
+          "LoadInstName": "output_difference_addr"
+        }
+      ]
     },
     {
       "Name": "last_activations",
       "FunctionName": "get_delta_matrix_weights2",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights2", "LoadInstName": "last_activations_load" }, { "FunctionName": "get_delta_matrix_weights2", "LoadInstName": "last_activations_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights2",
+          "LoadInstName": "last_activations_load"
+        },
+        {
+          "FunctionName": "get_delta_matrix_weights2",
+          "LoadInstName": "last_activations_addr"
+        }
+      ]
     },
     {
       "Name": "delta_weights1",
       "FunctionName": "get_delta_matrix_weights1.1",
-      "Stores": [{ "FunctionName": "get_delta_matrix_weights1.1", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights1.1", "LoadInstName": "delta_weights1_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights1.1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights1.1",
+          "LoadInstName": "delta_weights1_addr"
+        }
+      ]
     },
     {
       "Name": "output_difference",
       "FunctionName": "get_delta_matrix_weights1.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights1.1", "LoadInstName": "output_difference_load" }, { "FunctionName": "get_delta_matrix_weights1.1", "LoadInstName": "output_difference_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights1.1",
+          "LoadInstName": "output_difference_load"
+        },
+        {
+          "FunctionName": "get_delta_matrix_weights1.1",
+          "LoadInstName": "output_difference_addr"
+        }
+      ]
     },
     {
       "Name": "training_data",
       "FunctionName": "get_delta_matrix_weights1.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "get_delta_matrix_weights1.1", "LoadInstName": "training_data_load" }, { "FunctionName": "get_delta_matrix_weights1.1", "LoadInstName": "training_data_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "get_delta_matrix_weights1.1",
+          "LoadInstName": "training_data_load"
+        },
+        {
+          "FunctionName": "get_delta_matrix_weights1.1",
+          "LoadInstName": "training_data_addr"
+        }
+      ]
     },
     {
       "Name": "activations1",
       "FunctionName": "backprop",
-      "Stores": [{ "FunctionName": "backprop", "StoreInstIndex": 2 }],
-      "Loads": [{ "FunctionName": "backprop", "LoadInstName": "activations1_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "backprop",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "activations1_addr"
+        }
+      ]
     },
     {
       "Name": "activations2",
       "FunctionName": "backprop",
-      "Stores": [{ "FunctionName": "backprop", "StoreInstIndex": 3 }],
-      "Loads": [{ "FunctionName": "backprop", "LoadInstName": "call_ret1" }, { "FunctionName": "backprop", "LoadInstName": "activations2_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "backprop",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "call_ret1"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "activations2_addr"
+        }
+      ]
     },
     {
       "Name": "dactivations1",
@@ -562,7 +1015,12 @@
       "Name": "weights3",
       "FunctionName": "backprop",
       "Stores": [],
-      "Loads": [{ "FunctionName": "backprop", "LoadInstName": "call_ret1" }]
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "call_ret1"
+        }
+      ]
     },
     {
       "Name": "biases1",
@@ -580,7 +1038,12 @@
       "Name": "biases3",
       "FunctionName": "backprop",
       "Stores": [],
-      "Loads": [{ "FunctionName": "backprop", "LoadInstName": "call_ret1" }]
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "call_ret1"
+        }
+      ]
     },
     {
       "Name": "training_data",
@@ -592,37 +1055,663 @@
       "Name": "training_targets",
       "FunctionName": "backprop",
       "Stores": [],
-      "Loads": [{ "FunctionName": "backprop", "LoadInstName": "call_ret3" }]
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "call_ret3"
+        }
+      ]
     },
     {
       "Name": "biases2",
       "FunctionName": "add_bias_to_activations.clone.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "add_bias_to_activations.clone.1", "LoadInstName": "biases2_load" }, { "FunctionName": "add_bias_to_activations.clone.1", "LoadInstName": "biases2_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "add_bias_to_activations.clone.1",
+          "LoadInstName": "biases2_load"
+        },
+        {
+          "FunctionName": "add_bias_to_activations.clone.1",
+          "LoadInstName": "biases2_addr"
+        }
+      ]
     },
     {
       "Name": "activations",
       "FunctionName": "add_bias_to_activations.clone.1",
-      "Stores": [{ "FunctionName": "add_bias_to_activations.clone.1", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "add_bias_to_activations.clone.1", "LoadInstName": "activations_load" }, { "FunctionName": "add_bias_to_activations.clone.1", "LoadInstName": "activations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "add_bias_to_activations.clone.1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "add_bias_to_activations.clone.1",
+          "LoadInstName": "activations_load"
+        },
+        {
+          "FunctionName": "add_bias_to_activations.clone.1",
+          "LoadInstName": "activations_addr"
+        }
+      ]
     },
     {
       "Name": "biases3",
       "FunctionName": "add_bias_to_activations.1",
       "Stores": [],
-      "Loads": [{ "FunctionName": "add_bias_to_activations.1", "LoadInstName": "biases3_load" }, { "FunctionName": "add_bias_to_activations.1", "LoadInstName": "biases3_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "add_bias_to_activations.1",
+          "LoadInstName": "biases3_load"
+        },
+        {
+          "FunctionName": "add_bias_to_activations.1",
+          "LoadInstName": "biases3_addr"
+        }
+      ]
     },
     {
       "Name": "activations",
       "FunctionName": "RELU",
-      "Stores": [{ "FunctionName": "RELU", "StoreInstIndex": 2 }],
-      "Loads": [{ "FunctionName": "RELU", "LoadInstName": "activations_load" }, { "FunctionName": "RELU", "LoadInstName": "activations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "RELU",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "RELU",
+          "LoadInstName": "activations_load"
+        },
+        {
+          "FunctionName": "RELU",
+          "LoadInstName": "activations_addr"
+        }
+      ]
     },
     {
       "Name": "dactivations",
       "FunctionName": "RELU",
-      "Stores": [{ "FunctionName": "RELU", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "RELU", "LoadInstName": "dactivations_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "RELU",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "RELU",
+          "LoadInstName": "dactivations_addr"
+        }
+      ]
+    },
+    {
+      "Name": "net_outputs",
+      "FunctionName": "soft_max",
+      "Stores": [
+        {
+          "FunctionName": "soft_max",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "soft_max",
+      "Stores": [
+        {
+          "FunctionName": "soft_max",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "add_bias_to_activations",
+      "Stores": [
+        {
+          "FunctionName": "add_bias_to_activations",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "add_bias_to_activations",
+      "Stores": [
+        {
+          "FunctionName": "add_bias_to_activations",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "input_sample",
+      "FunctionName": "matrix_vector_product_with_bias_input_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_input_layer",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "input_activations",
+      "FunctionName": "matrix_vector_product_with_bias_second_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_second_layer",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "activations",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "input_activations",
+      "FunctionName": "matrix_vector_product_with_bias_output_layer",
+      "Stores": [
+        {
+          "FunctionName": "matrix_vector_product_with_bias_output_layer",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "net_outputs",
+      "FunctionName": "take_difference",
+      "Stores": [
+        {
+          "FunctionName": "take_difference",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "solutions",
+      "FunctionName": "take_difference",
+      "Stores": [
+        {
+          "FunctionName": "take_difference",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "take_difference",
+      "Stores": [
+        {
+          "FunctionName": "take_difference",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "take_difference",
+      "Stores": [
+        {
+          "FunctionName": "take_difference",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "get_delta_matrix_weights3",
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights3",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights3",
+      "FunctionName": "get_oracle_activations2",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations2",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "output_differences",
+      "FunctionName": "get_oracle_activations2",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations2",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "oracle_activations",
+      "FunctionName": "get_oracle_activations2",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations2",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "get_oracle_activations2",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations2",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights2",
+      "FunctionName": "get_oracle_activations1",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations1",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "output_differences",
+      "FunctionName": "get_oracle_activations1",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "oracle_activations",
+      "FunctionName": "get_oracle_activations1",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations1",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "dactivations",
+      "FunctionName": "get_oracle_activations1",
+      "Stores": [
+        {
+          "FunctionName": "get_oracle_activations1",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "delta_weights1",
+      "FunctionName": "get_delta_matrix_weights1",
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights1",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "get_delta_matrix_weights1",
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights1",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "last_activations",
+      "FunctionName": "get_delta_matrix_weights1",
+      "Stores": [
+        {
+          "FunctionName": "get_delta_matrix_weights1",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights1",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights2",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "weights3",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 2
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "d_weights1",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 3
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "d_weights2",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 4
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "d_weights3",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 5
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases1",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 6
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases2",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 7
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "biases3",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 8
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "d_biases1",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 9
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "d_biases2",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 10
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "d_biases3",
+      "FunctionName": "update_weights",
+      "Stores": [
+        {
+          "FunctionName": "update_weights",
+          "StoreInstIndex": 11
+        }
+      ],
+      "Loads": []
+    },
+    {
+      "Name": "activations3",
+      "FunctionName": "backprop",
+      "Stores": [
+        {
+          "FunctionName": "backprop",
+          "StoreInstIndex": 12
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay22"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay19"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay17"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arrayidx8"
+        }
+      ]
+    },
+    {
+      "Name": "dactivations3",
+      "FunctionName": "backprop",
+      "Stores": [],
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay28"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay20"
+        }
+      ]
+    },
+    {
+      "Name": "net_outputs",
+      "FunctionName": "backprop",
+      "Stores": [],
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay23"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay21"
+        }
+      ]
+    },
+    {
+      "Name": "output_difference",
+      "FunctionName": "backprop",
+      "Stores": [],
+      "Loads": [
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay51"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay32"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay30"
+        },
+        {
+          "FunctionName": "backprop",
+          "LoadInstName": "arraydecay27"
+        }
+      ]
     }
   ]
 }

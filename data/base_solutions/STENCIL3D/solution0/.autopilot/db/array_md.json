@@ -1,6 +1,162 @@
 {
   "ArrayMetadata": [
     {
+      "Name": "empty",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 10,
+      "Dimensions": [
+        10
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 1,
+      "Dimensions": [
+        1
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 10,
+      "Dimensions": [
+        10
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [
+        9
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [
+        9
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 12,
+      "Dimensions": [
+        12
+      ]
+    },
+    {
+      "Name": "empty_5",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 14,
+      "Dimensions": [
+        14
+      ]
+    },
+    {
+      "Name": "empty_6",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 17,
+      "Dimensions": [
+        17
+      ]
+    },
+    {
+      "Name": "empty_7",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 14,
+      "Dimensions": [
+        14
+      ]
+    },
+    {
+      "Name": "empty_8",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 17,
+      "Dimensions": [
+        17
+      ]
+    },
+    {
+      "Name": "empty_9",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 17,
+      "Dimensions": [
+        17
+      ]
+    },
+    {
+      "Name": "empty_10",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 17,
+      "Dimensions": [
+        17
+      ]
+    },
+    {
       "Name": "C",
       "FunctionName": "stencil3d",
       "BaseBitwidth": 32,
@@ -8,7 +164,9 @@
       "IsParam": 1,
       "NumDimensions": 1,
       "TotalSize": 2,
-      "Dimensions": [2]
+      "Dimensions": [
+        2
+      ]
     },
     {
       "Name": "orig",
@@ -18,7 +176,9 @@
       "IsParam": 1,
       "NumDimensions": 1,
       "TotalSize": 2048,
-      "Dimensions": [2048]
+      "Dimensions": [
+        2048
+      ]
     },
     {
       "Name": "sol",
@@ -28,7 +188,9 @@
       "IsParam": 1,
       "NumDimensions": 1,
       "TotalSize": 2048,
-      "Dimensions": [2048]
+      "Dimensions": [
+        2048
+      ]
     }
   ]
 }

@@ -1,4 +1,5 @@
 import os
+import json
 import subprocess
 from typing import Optional
 
@@ -27,25 +28,125 @@ def extract_llvm_ir_array_info(
     if not os.path.exists(ir_base) or not os.path.exists(ir_lowered):
         raise FileNotFoundError(f"Required IR files not found in {hls_ir_dir}")
     
+    array_md_out_path_tmp1 = array_md_out_path + ".tmp1"
+    array_md_out_path_tmp2 = array_md_out_path + ".tmp2"
+    array_access_info_out_path_tmp1 = array_access_info_out_path + ".tmp1"
+    array_access_info_out_path_tmp2 = array_access_info_out_path + ".tmp2"
+    
     try:
-        subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-array-md -out-array-md "
-            f"{array_md_out_path} < {ir_base}", 
-            shell=True, stderr=subprocess.STDOUT
-        )
         subprocess.check_output(
             f"{opt} -load {dse_lib} -extract-loop-md -out-loop-md "
             f"{loop_md_out_path} < {ir_base}",
             shell=True, stderr=subprocess.STDOUT
         )
+
         subprocess.check_output(
-            f"{opt} -load {dse_lib} -extract-array-access-info -out-access-info "
-            f"{array_access_info_out_path} < {ir_lowered}",
+            f"{opt} -load {dse_lib} -extract-array-md -out-array-md "
+            f"{array_md_out_path_tmp1} < {ir_lowered}",
             shell=True, stderr=subprocess.STDOUT
         )
+        subprocess.check_output(
+            f"{opt} -load {dse_lib} -extract-array-md -out-array-md "
+            f"{array_md_out_path_tmp2} < {ir_base}", 
+            shell=True, stderr=subprocess.STDOUT
+        )
+        _merge_array_md_files(
+            array_md_out_path, 
+            array_md_out_path_tmp1, 
+            array_md_out_path_tmp2
+        )
+        os.remove(array_md_out_path_tmp1)
+        os.remove(array_md_out_path_tmp2)
+
+        subprocess.check_output(
+            f"{opt} -load {dse_lib} -extract-array-access-info -out-access-info "
+            f"{array_access_info_out_path_tmp1} < {ir_lowered}",
+            shell=True, stderr=subprocess.STDOUT
+        )
+        subprocess.check_output(
+            f"{opt} -load {dse_lib} -extract-array-access-info -out-access-info "
+            f"{array_access_info_out_path_tmp2} < {ir_base}",
+            shell=True, stderr=subprocess.STDOUT
+        )
+        _merge_array_access_info_files(
+            array_access_info_out_path, 
+            array_access_info_out_path_tmp1, 
+            array_access_info_out_path_tmp2
+        )
+        os.remove(array_access_info_out_path_tmp1)
+        os.remove(array_access_info_out_path_tmp2)
+
     except subprocess.CalledProcessError as e:
         if os.path.exists(array_md_out_path):
             os.remove(array_md_out_path)
         if os.path.exists(array_access_info_out_path):
             os.remove(array_access_info_out_path)
+        if os.path.exists(loop_md_out_path):
+            os.remove(loop_md_out_path)
+        if os.path.exists(array_md_out_path_tmp1):
+            os.remove(array_md_out_path_tmp1)
+        if os.path.exists(array_md_out_path_tmp2):
+            os.remove(array_md_out_path_tmp2)
         raise RuntimeError(f"Error processing IR: {e.output.decode()}")
+    
+
+def _merge_array_md_files(
+    array_md_out_path: str,
+    array_md_out_path_tmp1: str,
+    array_md_out_path_tmp2: str
+):
+    with open(array_md_out_path_tmp1, 'r') as f1:
+        md1 = json.load(f1)
+
+    with open(array_md_out_path_tmp2, 'r') as f2:
+        md2 = json.load(f2)
+
+    md1_list = md1.get("ArrayMetadata", [])
+    md2_list = md2.get("ArrayMetadata", [])
+    md_list = md1_list + md2_list
+
+    merged_md_dict = {}
+    for md in md_list:
+        name = md.get("Name")
+        if name is not None:
+            function = md.get("FunctionName", "global")
+            label = f"{function}.{name}"
+            if label not in merged_md_dict:
+                merged_md_dict[label] = md
+    
+    merged_md_list = list(merged_md_dict.values())
+    merged_md = {"ArrayMetadata": merged_md_list}
+
+    with open(array_md_out_path, 'w') as out_file:
+        json.dump(merged_md, out_file, indent=2)
+
+
+def _merge_array_access_info_files(
+    array_access_info_out_path: str,
+    array_access_info_out_path_tmp1: str,
+    array_access_info_out_path_tmp2: str
+):
+    with open(array_access_info_out_path_tmp1, 'r') as f1:
+        info1 = json.load(f1)
+
+    with open(array_access_info_out_path_tmp2, 'r') as f2:
+        info2 = json.load(f2)
+
+    info1_list = info1.get("ArrayAccessInfo", [])
+    info2_list = info2.get("ArrayAccessInfo", [])
+    info_list = info1_list + info2_list
+
+    merged_info_dict = {}
+    for info in info_list:
+        name = info.get("Name")
+        if name is not None:
+            function = info.get("FunctionName", "global")
+            label = f"{function}.{name}"
+            if label not in merged_info_dict:
+                merged_info_dict[label] = info
+    
+    merged_info_list = list(merged_info_dict.values())
+    merged_info = {"ArrayAccessInfo": merged_info_list}
+
+    with open(array_access_info_out_path, 'w') as out_file:
+        json.dump(merged_info, out_file, indent=2)

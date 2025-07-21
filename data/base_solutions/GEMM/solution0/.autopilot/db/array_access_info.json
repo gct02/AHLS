@@ -52,19 +52,51 @@
       "Name": "m1",
       "FunctionName": "bbgemm",
       "Stores": [],
-      "Loads": [{ "FunctionName": "bbgemm", "LoadInstName": "m1_load" }, { "FunctionName": "bbgemm", "LoadInstName": "m1_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "bbgemm",
+          "LoadInstName": "m1_load"
+        },
+        {
+          "FunctionName": "bbgemm",
+          "LoadInstName": "m1_addr"
+        }
+      ]
     },
     {
       "Name": "m2",
       "FunctionName": "bbgemm",
       "Stores": [],
-      "Loads": [{ "FunctionName": "bbgemm", "LoadInstName": "m2_load" }, { "FunctionName": "bbgemm", "LoadInstName": "m2_addr" }]
+      "Loads": [
+        {
+          "FunctionName": "bbgemm",
+          "LoadInstName": "m2_load"
+        },
+        {
+          "FunctionName": "bbgemm",
+          "LoadInstName": "m2_addr"
+        }
+      ]
     },
     {
       "Name": "prod",
       "FunctionName": "bbgemm",
-      "Stores": [{ "FunctionName": "bbgemm", "StoreInstIndex": 1 }],
-      "Loads": [{ "FunctionName": "bbgemm", "LoadInstName": "prod_load" }, { "FunctionName": "bbgemm", "LoadInstName": "prod_addr" }]
+      "Stores": [
+        {
+          "FunctionName": "bbgemm",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "bbgemm",
+          "LoadInstName": "prod_load"
+        },
+        {
+          "FunctionName": "bbgemm",
+          "LoadInstName": "prod_addr"
+        }
+      ]
     }
   ]
 }
