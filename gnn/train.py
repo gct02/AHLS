@@ -354,7 +354,7 @@ def main(args: Dict[str, Any]):
     )
 
     indices = [data.solution_index for data in test_loader.dataset]
-    preds = evaluate.checkpoint_manager.get_best_predictions()
+    preds = evaluate.checkpoint_manager.get_best_predictions().tolist()
     targets = []
     for data in test_loader:
         data = data.to(DEVICE)
@@ -363,6 +363,8 @@ def main(args: Dict[str, Any]):
             available_resources=available_resources
         )
         targets.extend(target.tolist())
+
+    min_mape = evaluate.checkpoint_manager.get_min_mape()
         
     plot_prediction_bars(
         targets=targets,
@@ -371,13 +373,14 @@ def main(args: Dict[str, Any]):
         benchmark=test_bench, 
         metric=target_metric, 
         output_path=f"{info_dir}/predictions.png", 
-        mean_error=evaluate.min_mape
+        mean_error=min_mape
     )
     save_training_artifacts(
         test_targets=targets,
         test_preds=preds,
         test_errors=test_errors,
         train_errors=train_errors,
+        min_mape=min_mape,
         output_dir=info_dir
     )
 
@@ -387,19 +390,19 @@ def save_training_artifacts(
     test_preds: List[float],
     test_errors: List[float],
     train_errors: List[float],
+    min_mape: float,
     output_dir: str
 ):
     plot_learning_curves(
         train_errors=train_errors, 
         test_errors=test_errors, 
-        output_path=f"{output_dir}/learning_curve.png",
-        best_epoch=evaluate.best_epoch
+        output_path=f"{output_dir}/learning_curve.png"
     )
     plot_prediction_scatter(
         targets=test_targets, 
         preds=test_preds, 
         output_path=f"{output_dir}/predictions_scatter.png", 
-        mean_error=evaluate.min_mape
+        mean_error=min_mape
     )
     
 

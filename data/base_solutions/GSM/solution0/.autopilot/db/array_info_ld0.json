@@ -1,0 +1,79 @@
+{
+  "Global": {
+    "bitoff": {
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 256,
+      "Dimensions": [256],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  },
+  "Local": {
+    "Gsm_LPC_Analysis/indata": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 160,
+      "Dimensions": [160],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Gsm_LPC_Analysis/LARc": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Gsm_LPC_Analysis/L_ACF": {
+      "BaseBitwidth": 64,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Reflection_coefficients/ACF": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Reflection_coefficients/P": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Reflection_coefficients/K": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

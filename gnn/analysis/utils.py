@@ -254,8 +254,7 @@ def mape_loss(pred: Tensor, target: Tensor, eps: float = 1e-6) -> Tensor:
 def plot_learning_curves(
     train_errors: List[float], 
     test_errors: List[float], 
-    output_path: str,
-    best_epoch: Optional[int] = None
+    output_path: str
 ):
     num_epochs = len(train_errors)
     if num_epochs != len(test_errors):
@@ -285,12 +284,6 @@ def plot_learning_curves(
     plt.ylabel('MAPE', fontsize=12)
     plt.legend()
 
-    if best_epoch is not None:
-        ax.axvline(best_epoch, color='blue', linestyle='--', alpha=0.7)
-        ax.text(
-            best_epoch, np.max(test_errors), 
-            f'Best Epoch: {best_epoch}', color='blue', fontsize=10
-        )
     if np.max(test_errors) / np.min(test_errors) > 100:
         plt.yscale('log')
 

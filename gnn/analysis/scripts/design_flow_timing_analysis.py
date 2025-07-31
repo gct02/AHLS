@@ -1,7 +1,68 @@
 import json
 from pathlib import Path
+from typing import List, Optional
 
 import numpy as np
+
+
+def find_lines_containing(lines: List[str], search_str: str) -> List[str]:
+    """
+    Find all lines in the list that contain the specified search string.
+    
+    Args:
+        lines (List[str]): List of lines to search through.
+        search_str (str): The string to search for in each line.
+    
+    Returns:
+        List[str]: List of lines that contain the search string.
+    """
+    return [line for line in lines if search_str in line]
+
+
+def find_line_containing(
+    lines: List[str], 
+    search_str: str, 
+    start_index: int = 0, 
+    get_last: bool = False,
+) -> Optional[int]:
+    num_lines = len(lines)
+    if start_index < 0 or start_index >= num_lines:
+        print(f"Invalid start index {start_index} for lines of length {num_lines}.")
+        return None
+
+    if get_last:
+        for i in range(num_lines - 1, start_index - 1, -1):
+            if search_str in lines[i]:
+                return i
+        return None
+    
+    for i in range(start_index, num_lines):
+        if search_str in lines[i]:
+            return i
+    return None
+
+def get_elapsed_time_from_line_hls(line: str) -> float:
+    if 'Elapsed time: ' in line:
+        time_str = line.split('Elapsed time: ')[1].split(' ')[0]
+        try:
+            return float(time_str)
+        except ValueError:
+            print(f"Could not parse elapsed time from line: {line.strip()}")
+            return -1.0
+    return -1.0
+
+
+def get_elapsed_time_from_line_impl(line: str) -> float:
+    if 'elapsed = ' in line:
+        time_str = line.split('elapsed = ')[1].split(' ')[0]
+        hours, minutes, seconds = time_str.split(':')
+        try:
+            total_seconds = int(hours) * 3600 + int(minutes) * 60 + float(seconds)
+            return total_seconds
+        except ValueError:
+            print(f"Could not parse elapsed time from line: {line.strip()}")
+            return -1.0
+    return -1.0
 
 
 def extract_hls_elapsed_time(solution_dir: Path) -> float:
@@ -13,29 +74,110 @@ def extract_hls_elapsed_time(solution_dir: Path) -> float:
     with open(log_file, "r") as f:
         lines = f.readlines()
 
-    start_index = 0
-    for i, line in enumerate(lines):
-        if 'INFO: [HLS 200-1505]' in line:
-            start_index = i
+    finished_csynth_idx = find_line_containing(
+        lines, 'INFO: [HLS 200-111] Finished Command csynth_design', get_last=True
+    )
+    if finished_csynth_idx is not None:
+        finished_csynth_line = lines[finished_csynth_idx]
+        csynth_time = get_elapsed_time_from_line_hls(finished_csynth_line)
+        if csynth_time >= 0:
+            return csynth_time
+
+    # Some logs of failed runs may not have been deleted and the 
+    # log of the successful run may have been appended to it.
+    # We will search for the last occurrence of the command indicating
+    # the start of the synthesis process and start parsing from there.
+    start_index = find_line_containing(lines, 'INFO: [HLS 200-1505]', get_last=True)
+    if start_index is None:
+        print(f"Could not find the start of synthesis in {log_file}.")
+        return -1.0
 
     lines = lines[start_index:]
+    csynth_time = 0.0
 
-    total_elapsed_time = 0.0
-    for line in lines:
-        if 'Elapsed time: ' in line:
-            time_str = line.split('Elapsed time: ')[1].split(' ')[0]
-            try:
-                elapsed_time = float(time_str)
-            except ValueError:
-                print(f"Could not parse elapsed time from line: {line.strip()}")
-                elapsed_time = 0.0
-            total_elapsed_time += elapsed_time
+    finished_compiling_opt_idx = find_line_containing(
+        lines, 'INFO: [HLS 200-111] Finished Compiling Optimization and Transform'
+    )
+    if finished_compiling_opt_idx is not None:
+        finished_compiling_opt_line = lines[finished_compiling_opt_idx]
+        elapsed_time = get_elapsed_time_from_line_hls(finished_compiling_opt_line)
+        if elapsed_time >= 0:
+            csynth_time += elapsed_time
+        else:
+            lines_before_compiling_opt = find_lines_containing(
+                lines[:finished_compiling_opt_idx], 'Elapsed time: '
+            )
+            for line in lines_before_compiling_opt:
+                elapsed_time = get_elapsed_time_from_line_hls(line)
+                if elapsed_time >= 0:
+                    csynth_time += elapsed_time
+        lines = lines[finished_compiling_opt_idx + 1:]
 
-        if ('INFO: [HLS 200-111] Finished Command csynth_design' in line 
-            or 'INFO: [HLS 200-111] Finished Generating all RTL models' in line):
-            break
+    finished_arch_synth_idx = find_line_containing(
+        lines, 'INFO: [HLS 200-111] Finished Architecture Synthesis'
+    )
+    if finished_arch_synth_idx is not None:
+        finished_arch_synth_line = lines[finished_arch_synth_idx]
+        elapsed_time = get_elapsed_time_from_line_hls(finished_arch_synth_line)
+        if elapsed_time >= 0:
+            csynth_time += elapsed_time
+        else:
+            lines_before_arch_synth = find_lines_containing(
+                lines[:finished_arch_synth_idx], 'Elapsed time: '
+            )
+            for line in lines_before_arch_synth:
+                elapsed_time = get_elapsed_time_from_line_hls(line)
+                if elapsed_time >= 0:
+                    csynth_time += elapsed_time
+        lines = lines[finished_arch_synth_idx + 1:]
 
-    return total_elapsed_time
+    finished_rtl_gen_idx = find_line_containing(
+        lines, 'INFO: [HLS 200-111] Finished Generating all RTL models'
+    )
+    if finished_rtl_gen_idx is not None:
+        finished_rtl_gen_line = lines[finished_rtl_gen_idx]
+        elapsed_time = get_elapsed_time_from_line_hls(finished_rtl_gen_line)
+        if elapsed_time >= 0:
+            csynth_time += elapsed_time
+        else:
+            lines_before_rtl_gen = find_lines_containing(
+                lines[:finished_rtl_gen_idx], 'Elapsed time: '
+            )
+            for line in lines_before_rtl_gen:
+                elapsed_time = get_elapsed_time_from_line_hls(line)
+                if elapsed_time >= 0:
+                    csynth_time += elapsed_time
+    else:
+        lines_with_elapsed_time = find_lines_containing(lines, 'Elapsed time: ')
+        for line in lines_with_elapsed_time:
+            elapsed_time = get_elapsed_time_from_line_hls(line)
+            if elapsed_time >= 0:
+                csynth_time += elapsed_time
+
+    return csynth_time
+
+
+def extract_synth_elapsed_time(solution_dir: Path) -> float:
+    log_file = solution_dir / "reports/synth_runme.log"
+    if not log_file.exists():
+        print(f"Log file {log_file} does not exist for {solution_dir.name}.")
+        return -1.0
+    
+    with open(log_file, "r") as f:
+        lines = f.readlines()
+
+    finished_synth_idx = find_line_containing(lines, 'synth_design: ')
+    if finished_synth_idx is None:
+        print(f"Could not find 'synth_design' in {log_file}.")
+        return -1.0
+    
+    finished_synth_line = lines[finished_synth_idx]
+    elapsed_time = get_elapsed_time_from_line_impl(finished_synth_line)
+    if elapsed_time < 0:
+        print(f"Could not parse elapsed time from line: {finished_synth_line.strip()}")
+        return -1.0
+    
+    return elapsed_time
 
 
 def extract_impl_elapsed_time(solution_dir: Path) -> float:
@@ -47,19 +189,30 @@ def extract_impl_elapsed_time(solution_dir: Path) -> float:
     with open(log_file, "r") as f:
         lines = f.readlines()
 
-    total_elapsed_time = 0.0
-    prev_reported_time = 0.0
-    for line in lines:
-        if 'elapsed = ' in line:
-            time_str = line.split('elapsed = ')[1].split(' ')[0]
-            hours, minutes, seconds = time_str.split(':')
-            total_seconds = int(hours) * 3600 + int(minutes) * 60 + float(seconds)
-            elapsed_time = total_seconds
-            if elapsed_time < prev_reported_time:
-                total_elapsed_time += prev_reported_time
-            prev_reported_time = elapsed_time
+    place_completed_idx = find_line_containing(lines, 'place_design: ')
+    if place_completed_idx is None:
+        print(f"Could not find 'place_design' in {log_file}.")
+        return -1.0
 
-    return total_elapsed_time
+    route_completed_idx = find_line_containing(lines, 'route_design: ')
+    if route_completed_idx is None:
+        print(f"Could not find 'route_design' in {log_file}.")
+        return -1.0
+    
+    place_completed_line = lines[place_completed_idx]
+    route_completed_line = lines[route_completed_idx]
+
+    place_elapsed_time = get_elapsed_time_from_line_impl(place_completed_line)
+    if place_elapsed_time < 0:
+        print(f"Could not parse elapsed time from line: {place_completed_line.strip()}")
+        return -1.0
+    
+    route_elapsed_time = get_elapsed_time_from_line_impl(route_completed_line)
+    if route_elapsed_time < 0:
+        print(f"Could not parse elapsed time from line: {route_completed_line.strip()}")
+        return -1.0
+    
+    return place_elapsed_time + route_elapsed_time
 
 
 def summarize_timing_info(dataset_dir: Path):
@@ -91,20 +244,28 @@ def summarize_timing_info(dataset_dir: Path):
             solution_index = int(solution_dir.name.split("solution")[-1])
 
             hls_elapsed_time = extract_hls_elapsed_time(solution_dir)
-            if hls_elapsed_time < 1 or hls_elapsed_time > 2000: # Ignore extreme values
+            if hls_elapsed_time < 0:
+                print(f"Skipping {solution_dir.name} due to missing HLS time.")
                 continue
 
-            impl_elapsed_time = extract_impl_elapsed_time(solution_dir)
-            impl_elapsed_time += hls_elapsed_time
-            if impl_elapsed_time < 1 or impl_elapsed_time > 10000: # Ignore extreme values
+            synth_elaped_time = extract_synth_elapsed_time(solution_dir)
+            if synth_elaped_time < 0:
+                print(f"Skipping {solution_dir.name} due to missing synthesis time.")
                 continue
+            
+            impl_elapsed_time = extract_impl_elapsed_time(solution_dir)
+            if impl_elapsed_time < 0:
+                print(f"Skipping {solution_dir.name} due to missing implementation time.")
+                continue
+
+            total_elapsed_time = hls_elapsed_time + synth_elaped_time + impl_elapsed_time
 
             if solution_index <= last_base_index:
                 elapsed_times_base_hls.append(hls_elapsed_time)
-                elapsed_times_base_impl.append(impl_elapsed_time)
+                elapsed_times_base_impl.append(total_elapsed_time)
             else:
                 elapsed_times_non_base_hls.append(hls_elapsed_time)
-                elapsed_times_non_base_impl.append(impl_elapsed_time)
+                elapsed_times_non_base_impl.append(total_elapsed_time)
 
     elapsed_times_base_hls = np.array(elapsed_times_base_hls)
     elapsed_times_base_impl = np.array(elapsed_times_base_impl)

@@ -1,0 +1,40 @@
+{
+  "Global": {
+
+  },
+  "Local": {
+    "stencil3d/C": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2,
+      "Dimensions": [2],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "stencil3d", "Name": "C_load_1" }, { "FunctionName": "stencil3d", "Name": "C_load" }],
+      "GEPs": [{ "FunctionName": "stencil3d", "Name": "C_addr_1" }, { "FunctionName": "stencil3d", "Name": "C_addr" }]
+    },
+    "stencil3d/orig": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2048,
+      "Dimensions": [2048],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "stencil3d", "Name": "orig_load_12" }, { "FunctionName": "stencil3d", "Name": "orig_load_11" }, { "FunctionName": "stencil3d", "Name": "orig_load_10" }, { "FunctionName": "stencil3d", "Name": "orig_load_9" }, { "FunctionName": "stencil3d", "Name": "orig_load_8" }, { "FunctionName": "stencil3d", "Name": "orig_load_7" }, { "FunctionName": "stencil3d", "Name": "sum0" }, { "FunctionName": "stencil3d", "Name": "orig_load_5" }, { "FunctionName": "stencil3d", "Name": "orig_load_4" }, { "FunctionName": "stencil3d", "Name": "orig_load_3" }, { "FunctionName": "stencil3d", "Name": "orig_load_2" }, { "FunctionName": "stencil3d", "Name": "orig_load_1" }, { "FunctionName": "stencil3d", "Name": "orig_load" }],
+      "GEPs": [{ "FunctionName": "stencil3d", "Name": "orig_addr_12" }, { "FunctionName": "stencil3d", "Name": "orig_addr_11" }, { "FunctionName": "stencil3d", "Name": "orig_addr_10" }, { "FunctionName": "stencil3d", "Name": "orig_addr_9" }, { "FunctionName": "stencil3d", "Name": "orig_addr_8" }, { "FunctionName": "stencil3d", "Name": "orig_addr_7" }, { "FunctionName": "stencil3d", "Name": "orig_addr_6" }, { "FunctionName": "stencil3d", "Name": "orig_addr_5" }, { "FunctionName": "stencil3d", "Name": "orig_addr_4" }, { "FunctionName": "stencil3d", "Name": "orig_addr_3" }, { "FunctionName": "stencil3d", "Name": "orig_addr_2" }, { "FunctionName": "stencil3d", "Name": "orig_addr_1" }, { "FunctionName": "stencil3d", "Name": "orig_addr" }]
+    },
+    "stencil3d/sol": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2048,
+      "Dimensions": [2048],
+      "Stores": [{ "FunctionName": "stencil3d", "Index": 13 }, { "FunctionName": "stencil3d", "Index": 10 }, { "FunctionName": "stencil3d", "Index": 9 }, { "FunctionName": "stencil3d", "Index": 7 }, { "FunctionName": "stencil3d", "Index": 6 }, { "FunctionName": "stencil3d", "Index": 3 }, { "FunctionName": "stencil3d", "Index": 2 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "stencil3d", "Name": "sol_addr_6" }, { "FunctionName": "stencil3d", "Name": "sol_addr_5" }, { "FunctionName": "stencil3d", "Name": "sol_addr_4" }, { "FunctionName": "stencil3d", "Name": "sol_addr_3" }, { "FunctionName": "stencil3d", "Name": "sol_addr_2" }, { "FunctionName": "stencil3d", "Name": "sol_addr_1" }, { "FunctionName": "stencil3d", "Name": "sol_addr" }]
+    }
+  }
+}

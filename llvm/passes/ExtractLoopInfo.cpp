@@ -22,8 +22,8 @@
 
 using namespace llvm;
 
-static cl::opt<std::string> OutputFilePath(
-    "out-loop-md", 
+static cl::opt<std::string> Output(
+    "out-loop", 
     cl::desc("Path to the file to write the loop metadata to"),
     cl::value_desc("filepath")
 );
@@ -51,51 +51,49 @@ struct LoopMetadata {
     }
 };
 
-struct ExtractLoopMetadataPass : public ModulePass {
+struct ExtractLoopInfoPass : public ModulePass {
     static char ID;
-    ExtractLoopMetadataPass() : ModulePass(ID) {}
+    ExtractLoopInfoPass() : ModulePass(ID) {}
 
     std::vector<LoopMetadata*> ModuleLoopMetadata;
 
     bool runOnModule(Module& M) override {
-        #define DEBUG_TYPE "extract-loop-md"
+        #define DEBUG_TYPE "extract-loop-info"
 
-        if (OutputFilePath.empty()) {
+        if (Output.empty()) {
             errs() << "Output file not specified.\n";
             return false;
         }
         extractLoopMetadata(M);
-        serializeLoopMetadataToJson(M);
+        serializeLoopMetadata(M);
 
         return false; // Module is not modified
     }
 
-    void serializeLoopMetadataToJson(Module& M) {
-        std::ofstream OFS(OutputFilePath);
+    void serializeLoopMetadata(Module& M) {
+        std::ofstream OFS(Output);
         if (!OFS.is_open()) {
-            errs() << "Error opening file: " << OutputFilePath << "\n";
+            errs() << "Error opening file: " << Output << "\n";
             return;
         }
 
-        OFS << "{\n  \"LoopMetadata\": [\n";
+        OFS << "{\n";
 
         bool FirstEntry = true;
         for (const auto* It : ModuleLoopMetadata) {
-            if (!FirstEntry)
-                OFS << ",\n";
+            if (!FirstEntry) OFS << ",\n";
             FirstEntry = false;
 
-            OFS << "    {\n";
-            OFS << "      \"Name\": \"" << It->Name << "\",\n";
-            OFS << "      \"FunctionName\": \"" << It->FunctionName << "\"";
+            OFS << "  \"" << It->FunctionName << "/" << It->Name << "\": {\n";
 
+            bool FirstAttr = true;
             for (const auto& MDItem : It->Attributes) {
-                OFS << ",\n";
-                OFS << "      \"" << MDItem.first << "\": " << MDItem.second;
+                if (!FirstAttr) OFS << ",\n";
+                FirstAttr = false;
+                OFS << "    \"" << MDItem.first << "\": " << MDItem.second;
             }
-            OFS << "\n    }";
+            OFS << "\n  }";
         }
-        OFS << "\n  ]\n";
         OFS << "}\n";
     }
 
@@ -145,7 +143,6 @@ struct ExtractLoopMetadataPass : public ModulePass {
         }
         return false;
     }
-
 
     bool hasPerfectlyNestedChild(Loop* Outer) {
         if (!Outer) return false;
@@ -198,14 +195,14 @@ struct ExtractLoopMetadataPass : public ModulePass {
     }
 
 };
-// End struct ExtractLoopMetadataPass
+// End struct ExtractLoopInfoPass
 
 }
 // End namespace
 
-char ExtractLoopMetadataPass::ID = 0;
-static RegisterPass<ExtractLoopMetadataPass> X(
-    "extract-loop-md", 
+char ExtractLoopInfoPass::ID = 0;
+static RegisterPass<ExtractLoopInfoPass> X(
+    "extract-loop-info", 
     "Extract loop metadata from the module",
     false /* Only looks at CFG */,
     false /* Analysis Pass */

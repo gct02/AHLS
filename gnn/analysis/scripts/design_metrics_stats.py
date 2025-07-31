@@ -1,109 +1,82 @@
 import os
-from argparse import ArgumentParser
-from typing import Optional, Union, List
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from numpy.typing import NDArray
 
-from gnn.analysis.utils import collate_data_for_analysis
+from gnn.data.utils.parsers import extract_utilization
 
+METRICS = ['lut', 'ff', 'dsp', 'bram']
+BENCHMARKS = [
+    'ADPCM', 'AES', 'BACKPROP', 'GEMM', 'GRAMSCHMIDT', 
+    'GSM', 'KNN', 'SHA', 'STENCIL3D', 'TRANS_FFT'
+]
 
-def extract_metric_from_data(
-    dataset_dir: str, 
-    metric: str, 
-    filtered: bool = False, 
-    benchmarks: Optional[Union[List[str], str]] = None
-) -> NDArray[np.float32]:
-    if benchmarks is None:
-        benchmarks = os.listdir(dataset_dir)
-    elif isinstance(benchmarks, str):
-        benchmarks = [benchmarks]
+dataset_dir = '../dataset-filtered'
+base_sols_dir = 'data/base_solutions'
 
-    reports = []
-    for bench in benchmarks:
-        rpt, _ = collate_data_for_analysis(dataset_dir, bench, filtered=filtered)
-        for v in rpt[metric].values:
-            if v >= 0:
-                reports.append(float(v))
+plot_distribution = True
 
-    return np.array(reports, dtype=np.float32)
+for bench in BENCHMARKS:
+    bench_dir = os.path.join(dataset_dir, bench)
+    if not os.path.exists(bench_dir):
+        print(f"Benchmark directory not found: {bench_dir}")
+        continue
 
+    util_dict = {metric: [] for metric in METRICS}
+    for sol in os.listdir(bench_dir):
+        sol_dir = os.path.join(bench_dir, sol)
+        if (not os.path.isdir(sol_dir) or 
+            not sol.startswith('solution') or
+            sol == 'solution0'):
+            continue
 
-def plot_distribution(
-    dataset_dir: str, 
-    metric: str, 
-    filtered: bool = False, 
-    benchmarks: Optional[Union[List[str], str]] = None
-):
-    reports = extract_metric_from_data(dataset_dir, metric, filtered, benchmarks)
-    # reports = np.float_power(reports, 0.2)
-    stats = {
-        'mean': np.mean(reports),
-        'std': np.std(reports),
-        'skew': pd.Series(reports).skew(),
-        'kurtosis': pd.Series(reports).kurtosis(),
-        'min': np.min(reports),
-        'max': np.max(reports),
-        'median': np.median(reports),
-        'q1': np.percentile(reports, 25),
-        'q3': np.percentile(reports, 75)
-    }
+        util = extract_utilization(sol_dir, filtered=True)
+        if any(util[metric] < 0 for metric in METRICS):
+            continue
 
-    metric = metric.upper()
-    print(f'{metric} mean: {stats["mean"]:.2f}')
-    print(f'{metric} std: {stats["std"]:.2f}')
-    print(f'{metric} kurtosis: {stats["kurtosis"]:.2f}')
-    print(f'{metric} skewness: {stats["skew"]:.2f}')
-    print(f'{metric} min: {stats["min"]:.2f}')
-    print(f'{metric} max: {stats["max"]:.2f}')
-    print(f'{metric} median: {stats["median"]:.2f}')
-    print(f'{metric} Q1: {stats["q1"]:.2f}')
-    print(f'{metric} Q3: {stats["q3"]:.2f}')
+        for metric in METRICS:
+            util_dict[metric].append(float(util[metric]))
 
-    plt.figure(figsize=(12, 8), dpi=150)
-    
-    # Plot histogram with KDE
-    sns.histplot(reports, bins='auto', kde=True, color='blue', edgecolor='black', alpha=0.7)
+    sol0_util = None
+    # sol0_dir = os.path.join(bench_dir, 'solution0')
+    sol0_dir = os.path.join(base_sols_dir, bench, 'solution0')
+    if os.path.exists(sol0_dir):
+        sol0_util = extract_utilization(sol0_dir)
+        if any(sol0_util[metric] < 0 for metric in METRICS):
+            sol0_util = None
 
-    # Plot mean and std deviation
-    plt.axvline(stats["mean"], color='red', linestyle='dashed', linewidth=2, 
-                label=f'Mean: {stats["mean"]:.2f}')
-    plt.axvline(stats["mean"] + stats["std"], color='green', linestyle='dashed', linewidth=1, 
-                label=f'+1 Std Dev: {stats["mean"] + stats["std"]:.2f}')
-    plt.axvline(stats["mean"] - stats["std"], color='green', linestyle='dashed', linewidth=1, 
-                label=f'-1 Std Dev: {stats["mean"] - stats["std"]:.2f}')
+    for metric in METRICS:
+        metric_util = util_dict.get(metric, [])
+        if not metric_util:
+            print(f"No data for {metric} in benchmark {bench}.")
+            continue
 
-    plt.title(f'{metric} Distribution', fontsize=14)
-    plt.xlabel(metric, fontsize=12)
-    plt.ylabel('Frequency', fontsize=12)
-    plt.legend()
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
+        metric_util = np.array(metric_util, dtype=np.float32)
+        mean = np.mean(metric_util)
+        std = np.std(metric_util)
+        min_val = np.min(metric_util)
+        max_val = np.max(metric_util)
 
-    plt.show()
-    plt.close()
+        print(f'{bench} - {metric}')
+        print(f'Mean: {mean:.3f}, Std: {std:.3f}, Min: {min_val:.3f}, Max: {max_val:.3f}')
 
+        if sol0_util is not None:
+            sol0_metric_util = sol0_util.get(metric, -1)
+            if sol0_metric_util >= 0:
+                print(f'Solution 0 {metric}: {sol0_metric_util}')
+            else:
+                print(f'Solution 0 {metric}: Not available')
 
-def parse_args():
-    parser = ArgumentParser()
-    parser.add_argument('-d', '--dataset', required=True, 
-                        help='Dataset directory path')
-    parser.add_argument('-m', '--metric', required=True, 
-                        help='Metric to analyze')
-    parser.add_argument('-f', '--filtered', action='store_true',
-                        help='Sinalize if the dataset is filtered')
-    parser.add_argument('-b', '--benchmarks', nargs='+',
-                        help='List of benchmarks to analyze')
-    return parser.parse_args()
-
-
-if __name__ == '__main__':
-    args = parse_args()
-    dataset_dir = args.dataset
-    metric = args.metric
-    filtered = args.filtered
-    benchmarks = args.benchmarks
-
-    plot_distribution(dataset_dir, metric, filtered, benchmarks)
+        if plot_distribution:
+            plt.figure(figsize=(10, 6))
+            sns.histplot(metric_util, bins='auto', kde=True, color='blue', edgecolor='black', alpha=0.7)
+            plt.axvline(mean, color='red', linestyle='dashed', linewidth=2, label=f'Mean: {mean:.3f}')
+            plt.axvline(mean + std, color='green', linestyle='dashed', linewidth=1, label=f'+1 Std Dev: {mean + std:.3f}')
+            plt.axvline(mean - std, color='green', linestyle='dashed', linewidth=1, label=f'-1 Std Dev: {mean - std:.3f}')
+            plt.title(f'{bench} - {metric} Distribution', fontsize=14)
+            plt.xlabel(f'{metric} Utilization', fontsize=12)
+            plt.ylabel('Frequency', fontsize=12)
+            plt.legend()
+            plt.show()

@@ -1,0 +1,70 @@
+{
+  "Global": {
+
+  },
+  "Local": {
+    "kernel_gramschmidt/A": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 2,
+      "Param": 1,
+      "TotalSize": 262144,
+      "Dimensions": [512, 512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "kernel_gramschmidt/R": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 2,
+      "Param": 1,
+      "TotalSize": 262144,
+      "Dimensions": [512, 512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "kernel_gramschmidt/Q": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 2,
+      "Param": 1,
+      "TotalSize": 262144,
+      "Dimensions": [512, 512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "kernel_gramschmidt/A.addr": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "kernel_gramschmidt/R.addr": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "kernel_gramschmidt/Q.addr": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

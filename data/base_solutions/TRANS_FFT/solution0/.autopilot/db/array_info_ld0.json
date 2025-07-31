@@ -1,0 +1,132 @@
+{
+  "Global": {
+    "reversed8": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "reversed": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  },
+  "Local": {
+    "twiddles8/a_x": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "twiddles8/a_y": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "twiddles8/reversed8": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/work_x": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/work_y": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/DATA_x": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/DATA_y": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 512,
+      "Dimensions": [512],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/data_x": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/data_y": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "fft1D_512/smem": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "TotalSize": 576,
+      "Dimensions": [576],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

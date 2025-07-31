@@ -13,7 +13,7 @@ from gnn.data.dataset import (
     NO_LOG_SCALING_KEYS,
     is_valid_report
 )
-from gnn.data.kernel.kernel_info import VitisKernelInfo
+from gnn.data.kernel_graph import VitisKernelInfo
 from gnn.data.graph import to_hetero_data
 
 

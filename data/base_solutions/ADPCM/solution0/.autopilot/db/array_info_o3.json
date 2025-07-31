@@ -1,0 +1,292 @@
+{
+  "Global": {
+    "wl_code_table": {
+      "BaseBitwidth": 13,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "logscl", "Name": "wl_code_table_load" }],
+      "GEPs": [{ "FunctionName": "logscl", "Name": "wl_code_table_addr" }]
+    },
+    "tqmf": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 24,
+      "Dimensions": [24],
+      "Stores": [{ "FunctionName": "encode", "Index": 10 }, { "FunctionName": "reset", "Index": 46 }],
+      "Loads": [{ "FunctionName": "encode", "Name": "tqmf_ptr1_load" }, { "FunctionName": "encode", "Name": "tqmf_ptr_1_load" }, { "FunctionName": "encode", "Name": "tqmf_ptr_load" }],
+      "GEPs": [{ "FunctionName": "encode", "Name": "tqmf_ptr_2" }, { "FunctionName": "encode", "Name": "tqmf_ptr1" }, { "FunctionName": "encode", "Name": "tqmf_ptr_1" }, { "FunctionName": "encode", "Name": "tqmf_ptr" }, { "FunctionName": "reset", "Name": "tqmf_addr" }]
+    },
+    "quant26bt_pos": {
+      "BaseBitwidth": 6,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 31,
+      "Dimensions": [31],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "quantl", "Name": "ril" }],
+      "GEPs": [{ "FunctionName": "quantl", "Name": "quant26bt_pos_addr" }]
+    },
+    "quant26bt_neg": {
+      "BaseBitwidth": 6,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 31,
+      "Dimensions": [31],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "quantl", "Name": "ril_1" }],
+      "GEPs": [{ "FunctionName": "quantl", "Name": "quant26bt_neg_addr" }]
+    },
+    "qq6_code6_table": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "decode", "Name": "qq6_code6_table_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "qq6_code6_table_addr" }]
+    },
+    "qq4_code4_table": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "decode", "Name": "qq4_code4_table_load" }, { "FunctionName": "encode", "Name": "qq4_code4_table_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "qq4_code4_table_addr" }, { "FunctionName": "encode", "Name": "qq4_code4_table_addr" }]
+    },
+    "ilb_table": {
+      "BaseBitwidth": 12,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "scalel", "Name": "ilb_table_load" }],
+      "GEPs": [{ "FunctionName": "scalel", "Name": "ilb_table_addr" }]
+    },
+    "h": {
+      "BaseBitwidth": 15,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 24,
+      "Dimensions": [24],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "decode", "Name": "h_ptr_2_load" }, { "FunctionName": "decode", "Name": "h_ptr_load" }, { "FunctionName": "encode", "Name": "h_ptr_1_load" }, { "FunctionName": "encode", "Name": "h_ptr_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "h_ptr_2" }, { "FunctionName": "decode", "Name": "h_ptr" }, { "FunctionName": "encode", "Name": "h_ptr_1" }, { "FunctionName": "encode", "Name": "h_ptr" }]
+    },
+    "delay_dltx": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 34 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "delay_dltx_addr" }]
+    },
+    "delay_dhx": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 35 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "delay_dhx_addr" }]
+    },
+    "delay_bpl": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 40 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "delay_bpl_addr" }]
+    },
+    "delay_bph": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 41 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "delay_bph_addr" }]
+    },
+    "decis_levl": {
+      "BaseBitwidth": 15,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 30,
+      "Dimensions": [30],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "quantl", "Name": "decis_levl_load" }],
+      "GEPs": [{ "FunctionName": "quantl", "Name": "decis_levl_addr" }]
+    },
+    "dec_del_dltx": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 36 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "dec_del_dltx_addr" }]
+    },
+    "dec_del_dhx": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 37 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "dec_del_dhx_addr" }]
+    },
+    "dec_del_bpl": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 42 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "dec_del_bpl_addr" }]
+    },
+    "dec_del_bph": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "reset", "Index": 43 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "reset", "Name": "dec_del_bph_addr" }]
+    },
+    "accumd": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 11,
+      "Dimensions": [11],
+      "Stores": [{ "FunctionName": "decode", "Index": 29 }, { "FunctionName": "reset", "Index": 49 }],
+      "Loads": [{ "FunctionName": "decode", "Name": "ad_ptr1_load" }, { "FunctionName": "decode", "Name": "ad_ptr_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "ad_ptr1" }, { "FunctionName": "decode", "Name": "ad_ptr_1" }, { "FunctionName": "decode", "Name": "ad_ptr" }, { "FunctionName": "reset", "Name": "accumd_addr" }]
+    },
+    "accumc": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 11,
+      "Dimensions": [11],
+      "Stores": [{ "FunctionName": "decode", "Index": 28 }, { "FunctionName": "reset", "Index": 48 }],
+      "Loads": [{ "FunctionName": "decode", "Name": "ac_ptr1_load" }, { "FunctionName": "decode", "Name": "ac_ptr_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "ac_ptr_1" }, { "FunctionName": "decode", "Name": "ac_ptr1" }, { "FunctionName": "decode", "Name": "ac_ptr" }, { "FunctionName": "reset", "Name": "accumc_addr" }]
+    }
+  },
+  "Local": {
+    "upzero/dlti": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "upzero", "Index": 10 }, { "FunctionName": "upzero", "Index": 9 }, { "FunctionName": "upzero", "Index": 8 }, { "FunctionName": "upzero", "Index": 6 }, { "FunctionName": "upzero", "Index": 7 }, { "FunctionName": "upzero", "Index": 11 }],
+      "Loads": [{ "FunctionName": "upzero", "Name": "dlti_load_4" }, { "FunctionName": "upzero", "Name": "dlti_load_3" }, { "FunctionName": "upzero", "Name": "dlti_load_2" }, { "FunctionName": "upzero", "Name": "dlti_load_1" }, { "FunctionName": "upzero", "Name": "dlti_load" }, { "FunctionName": "upzero", "Name": "dlti_load_5" }],
+      "GEPs": [{ "FunctionName": "upzero", "Name": "dlti_addr_6" }, { "FunctionName": "upzero", "Name": "dlti_addr_5" }, { "FunctionName": "upzero", "Name": "dlti_addr_4" }, { "FunctionName": "upzero", "Name": "dlti_addr_3" }, { "FunctionName": "upzero", "Name": "dlti_addr_2" }, { "FunctionName": "upzero", "Name": "dlti_addr_1" }, { "FunctionName": "upzero", "Name": "dlti_addr" }]
+    },
+    "upzero/bli": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [{ "FunctionName": "upzero", "Index": 4 }, { "FunctionName": "upzero", "Index": 1 }],
+      "Loads": [{ "FunctionName": "upzero", "Name": "bli_load_1" }, { "FunctionName": "upzero", "Name": "bli_load" }],
+      "GEPs": [{ "FunctionName": "upzero", "Name": "bli_addr_1" }, { "FunctionName": "upzero", "Name": "bli_addr" }]
+    },
+    "filtez/bpl": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "filtez", "Name": "bpl_load_1" }, { "FunctionName": "filtez", "Name": "bpl_load" }],
+      "GEPs": [{ "FunctionName": "filtez", "Name": "bpl_addr_1" }, { "FunctionName": "filtez", "Name": "bpl_addr" }]
+    },
+    "filtez/dlt": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "filtez", "Name": "dlt_load_1" }, { "FunctionName": "filtez", "Name": "dlt_load" }],
+      "GEPs": [{ "FunctionName": "filtez", "Name": "dlt_addr_1" }, { "FunctionName": "filtez", "Name": "dlt_addr" }]
+    },
+    "adpcm_main/in_data": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "adpcm_main", "Name": "in_data_load_1" }, { "FunctionName": "adpcm_main", "Name": "in_data_load" }],
+      "GEPs": [{ "FunctionName": "adpcm_main", "Name": "in_data_addr_1" }, { "FunctionName": "adpcm_main", "Name": "in_data_addr" }]
+    },
+    "adpcm_main/encoded": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 50,
+      "Dimensions": [50],
+      "Stores": [{ "FunctionName": "adpcm_main", "Index": 2 }],
+      "Loads": [{ "FunctionName": "adpcm_main", "Name": "encoded_load" }],
+      "GEPs": [{ "FunctionName": "adpcm_main", "Name": "encoded_addr_1" }, { "FunctionName": "adpcm_main", "Name": "encoded_addr" }]
+    },
+    "adpcm_main/decoded": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [{ "FunctionName": "adpcm_main", "Index": 5 }, { "FunctionName": "adpcm_main", "Index": 4 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "adpcm_main", "Name": "decoded_addr_1" }, { "FunctionName": "adpcm_main", "Name": "decoded_addr" }]
+    }
+  }
+}

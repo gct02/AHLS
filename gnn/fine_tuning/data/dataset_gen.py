@@ -348,7 +348,7 @@ if __name__ == "__main__":
 
     if args.filter_dct:
         import pickle
-        from gnn.fine_tuning.data.directives import filter_directives
+        from gnn.fine_tuning.data.directive_filter import filter_directives
 
         if not args.kernel_info_path:
             print('Kernel info path is required when filtering directives.')

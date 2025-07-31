@@ -1,0 +1,40 @@
+{
+  "Global": {
+
+  },
+  "Local": {
+    "stencil3d/C": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2,
+      "Dimensions": [2],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "stencil3d/orig": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2048,
+      "Dimensions": [2048],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "stencil3d/sol": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2048,
+      "Dimensions": [2048],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

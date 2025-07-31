@@ -26,6 +26,7 @@ llvm/clang_plugins/
 vitis_hls.log
 
 hls_config.tcl
+hls_config_test.tcl
 process_dataset.sh
 test_model.sh
 
@@ -38,3 +39,4 @@ area_model_analysis.py
 shap_values/
 
 gnn/test
+data/hls_determinism_test

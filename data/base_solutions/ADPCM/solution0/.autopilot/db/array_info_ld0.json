@@ -1,0 +1,270 @@
+{
+  "Global": {
+    "h": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 24,
+      "Dimensions": [24],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "qq4_code4_table": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "qq6_code6_table": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 64,
+      "Dimensions": [64],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "wl_code_table": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "ilb_table": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "decis_levl": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 30,
+      "Dimensions": [30],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "quant26bt_pos": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 31,
+      "Dimensions": [31],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "quant26bt_neg": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 31,
+      "Dimensions": [31],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "qq2_code2_table": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4,
+      "Dimensions": [4],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "wh_code_table": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 4,
+      "Dimensions": [4],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "tqmf": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 24,
+      "Dimensions": [24],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "delay_bpl": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "delay_dltx": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "delay_bph": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "delay_dhx": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "dec_del_bpl": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "dec_del_dltx": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "dec_del_bph": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "dec_del_dhx": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 6,
+      "Dimensions": [6],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "accumc": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 11,
+      "Dimensions": [11],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "accumd": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 11,
+      "Dimensions": [11],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  },
+  "Local": {
+    "adpcm_main/in_data": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "adpcm_main/encoded": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 50,
+      "Dimensions": [50],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "adpcm_main/decoded": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

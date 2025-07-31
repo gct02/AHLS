@@ -1,0 +1,40 @@
+{
+  "Global": {
+
+  },
+  "Local": {
+    "bbgemm/m1": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "bbgemm/m2": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "bbgemm/prod": {
+      "BaseBitwidth": 64,
+      "BaseType": 3,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 4096,
+      "Dimensions": [4096],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import os
+import math
 import pickle
 from copy import deepcopy
 from typing import Dict, Optional, List, Tuple
@@ -9,10 +10,11 @@ from sklearn.preprocessing import OneHotEncoder
 
 from torch_geometric.data import HeteroData
 
-from gnn.data.kernel.kernel_info import (
-    VitisKernelInfo,
-    CDFG_NODE_TYPES,
-    CDFG_EDGE_TYPES
+from gnn.data.kernel_graph import (
+    KernelGraph,
+    NODE_TYPES,
+    EDGE_TYPES as CDFG_EDGE_TYPES,
+    MAX_ARRAY_DIM
 )
 from gnn.data.utils.parsers import (
     parse_tcl_directives,
@@ -25,24 +27,24 @@ DIRECTIVES = [
     "dataflow", "inline"
 ]
 
-NODE_TYPES = CDFG_NODE_TYPES
 EDGE_TYPES = CDFG_EDGE_TYPES + [
     # Reverse edges for hierarchical relationships
-    (dst_nt, "hrchy_rev", src_nt) 
+    (dst_nt, "reversed_hier", src_nt) 
     for src_nt, rel, dst_nt in CDFG_EDGE_TYPES 
-    if rel == "hrchy"
+    if rel == "hier"
 ] + [
     # Self-loops
-    (nt, "to", nt) for nt in CDFG_NODE_TYPES
+    (nt, "to", nt) for nt in NODE_TYPES
 ]
 METADATA = (NODE_TYPES, EDGE_TYPES)
 
 # Feature dimensions for each node type
 FEATURE_SIZE_BY_TYPE = {
-    "instr": 90, 
-    "port": 28,
+    "op": 47, 
+    "port": 33,
+    "internal_mem": 33,
     "const": 4,
-    "region": 43,
+    "region": 42,
     "block": 14
 }
 
@@ -51,37 +53,24 @@ def extract_base_kernel_info(
     solution_info_list: List[Tuple[str, str, str]], # (Directory, Benchmark Name, Top Level Name)
     filtered: bool = False,
     encoder_output_path: Optional[str] = None,
-) -> Dict[str, VitisKernelInfo]:
-    from gnn.data.kernel.llvm_utils import extract_llvm_ir_array_info
+) -> Dict[str, KernelGraph]:
+    from gnn.data.utils.llvm_ir import extract_array_and_loop_md
     
     kernel_info_dict = {}
     for sol_dir, bench_name, top_level_name in solution_info_list:
         ir_dir = f"{sol_dir}/IRs" if filtered else f"{sol_dir}/.autopilot/db"
-        array_md_path = f"{ir_dir}/array_md.json"
-        loop_md_path = f"{ir_dir}/loop_md.json"
-        array_access_info_path = f"{ir_dir}/array_access_info.json"
         try:
-            extract_llvm_ir_array_info(
-                hls_ir_dir=ir_dir, 
-                array_md_out_path=array_md_path,
-                loop_md_out_path=loop_md_path,
-                array_access_info_out_path=array_access_info_path
-            )
+            array_md_dict, loop_md_dict = extract_array_and_loop_md(ir_dir)
         except Exception as e:
             print(f"Error extracting array info for {bench_name} in {sol_dir}: {e}")
             continue
 
-        if not os.path.exists(array_md_path) or not os.path.exists(array_access_info_path):
-            print(f"Error extracting array info for {bench_name} in {sol_dir}: "
-                  f"Files were not created.")
-            continue
-
-        kernel_info_dict[bench_name] = VitisKernelInfo(
+        kernel_info_dict[bench_name] = KernelGraph(
             solution_dir=sol_dir, 
             top_level_name=top_level_name, 
-            array_md_path=array_md_path, 
-            loop_md_path=loop_md_path,
-            array_access_info_path=array_access_info_path,
+            global_array_md_dict=array_md_dict['Global'],
+            local_array_md_dict=array_md_dict['Local'],
+            loop_md_dict=loop_md_dict,
             benchmark_name=bench_name,
             filtered=filtered
         )
@@ -97,7 +86,7 @@ def extract_base_kernel_info(
 
 
 def to_hetero_data(
-    kernel_info: VitisKernelInfo, 
+    kernel_info: KernelGraph, 
     add_self_loops: bool = True,
     add_reversed_edges: bool = True,
 ) -> HeteroData:
@@ -113,14 +102,14 @@ def to_hetero_data(
 
         features = []
         for node in nodes:
-            attrs = []
-            for attr in node.attrs.values():
+            feature_dict = []
+            for attr in node.feature_dict.values():
                 if isinstance(attr, list):
-                    attrs.extend(attr)
+                    feature_dict.extend([float(v) for v in attr])
                 else:
-                    attrs.append(attr)
+                    feature_dict.append(float(attr))
             features.append(
-                torch.tensor(attrs, dtype=torch.float32)
+                torch.tensor(feature_dict, dtype=torch.float32)
             )
         data[nt].x = torch.stack(features, dim=0)
             
@@ -137,13 +126,13 @@ def to_hetero_data(
             data[et].edge_index = torch.empty((2, 0), dtype=torch.long)
 
     if add_reversed_edges:
-        hrchy_edges = {k: v for k, v in data.edge_index_dict.items() if k[1] == "hrchy"}
+        hrchy_edges = {k: v for k, v in data.edge_index_dict.items() if k[1] == "hier"}
         for et, edge_index in hrchy_edges.items():
             if edge_index.size(1) == 0:
-                data[et[2], "hrchy_rev", et[0]].edge_index = torch.empty((2, 0), dtype=torch.long)
+                data[et[2], "reversed_hier", et[0]].edge_index = torch.empty((2, 0), dtype=torch.long)
             else:
                 src, dst = edge_index[0], edge_index[1]
-                data[et[2], "hrchy_rev", et[0]].edge_index = torch.stack([dst, src], dim=0)
+                data[et[2], "reversed_hier", et[0]].edge_index = torch.stack([dst, src], dim=0)
 
     if add_self_loops:
         for nt in NODE_TYPES:
@@ -158,12 +147,9 @@ def to_hetero_data(
     return data
 
 
-def find_array_node(
-    kernel_info, array_name, function_name, 
-    ret_node_type=False
-):
+def find_array_node(kernel_info, array_name, function_name, ret_node_type=False):
     if function_name:
-        for nt in ['port', 'instr']:
+        for nt in ['port', 'internal_mem']:
             for node in kernel_info.nodes.get(nt, []):
                 if (node.is_array 
                     and node.name == array_name 
@@ -171,10 +157,9 @@ def find_array_node(
                     return (node, nt) if ret_node_type else node
                 
     # If not found, search for array_name only
-    for nt in ['port', 'instr']:
-        for node in kernel_info.nodes.get(nt, []):
-            if node.is_array and node.name == array_name:
-                return (node, nt) if ret_node_type else node
+    for node in kernel_info.nodes.get('internal_mem', []):
+        if node.is_array and node.is_global_mem and node.name == array_name:
+            return (node, nt) if ret_node_type else node
 
     return (None, None) if ret_node_type else None
 
@@ -189,29 +174,20 @@ def find_region_node(kernel_info, region_name, function_name):
     for node in kernel_info.nodes.get('region', []):
         if node.name == region_name:
             return node
+    
     return None
 
 
 def update_with_directives(
-    base_kernel_info: VitisKernelInfo, 
+    base_kernel_info: KernelGraph, 
     solution_dct_tcl_path: str,
     vitis_log_path: Optional[str] = None
-) -> VitisKernelInfo:
-    def unroll_pipelined_subloops(loop_node):
-        """Completely unroll all subloops of a pipelined loop."""
-        for sub_region in loop_node.sub_regions:
-            node = kernel_info.nodes['region'][sub_region]
-            if node.is_loop and node.attrs["unroll"][1] == 0:
-                trip_count = node.attrs.get("max_trip_count", 0)
-                node.attrs["unroll_factor"] = trip_count
-                node.attrs["unroll"] = [0, 0, 1] # Unroll implied by pipeline
-            unroll_pipelined_subloops(node)
-
+) -> KernelGraph:
     kernel_info = deepcopy(base_kernel_info)
     directives = parse_tcl_directives(solution_dct_tcl_path)
 
     for dct, args in directives:
-        if dct not in DIRECTIVES:
+        if dct not in DIRECTIVES or "off" in args:
             continue
 
         if dct == "array_partition":
@@ -221,32 +197,81 @@ def update_with_directives(
                 print("Warning: No variable specified for array partition.")
                 continue
 
-            array_node = find_array_node(kernel_info, target_name, function_name)
+            array_node, nt = find_array_node(
+                kernel_info, target_name, function_name, ret_node_type=True
+            )
             if array_node is None:
                 print(f"Warning: Variable '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
                 continue
-            
-            array_node.attrs["array_partition"] = 1
-
-            partition_factor = int(args.get("factor", 0))
-            if partition_factor <= 0:
-                partition_factor = array_node.total_size
-            array_node.attrs["partition_factor"] = partition_factor
-
-            partition_dim = int(args.get("dim", 0))
-            array_node.attrs["partition_dim"][partition_dim] = 1
 
             partition_type = args.get("type", "complete")
-            if partition_type == "complete":
-                partition_type = [1, 0, 0]
-            elif partition_type == "block":
-                partition_type = [0, 1, 0]
-            else:
-                partition_type = [0, 0, 1]
-            array_node.attrs["partition_type"] = partition_type
 
-        elif "off" not in args:
+            if partition_type == "cyclic":
+                array_node.feature_dict["array_partition"] = [0, 1, 0, 0]
+            elif partition_type == "block":
+                array_node.feature_dict["array_partition"] = [0, 0, 1, 0]
+            else:
+                array_node.feature_dict["array_partition"] = [0, 0, 0, 1]
+
+            partition_dim = min(int(args.get("dim", 0)), MAX_ARRAY_DIM)
+            if partition_dim > array_node.num_dims:
+                partition_dim = 0
+
+            if partition_type == "complete":
+                if partition_dim == 0:
+                    partition_factor = array_node.array_size
+                else:
+                    partition_factor = array_node.feature_dict['original_dims'][partition_dim - 1]
+
+                partitioned_array_size = array_node.array_size // partition_factor
+                if partitioned_array_size < 1024:
+                    array_node.feature_dict["is_large_array"] = 0
+            else:
+                if partition_dim == 0:
+                    partition_dim = array_node.num_dims
+
+                target_dim_size = array_node.feature_dict['original_dims'][partition_dim - 1]
+                product_of_non_target_dims = 1
+                for i in range(array_node.num_dims):
+                    if i != partition_dim - 1:
+                        product_of_non_target_dims *= array_node.feature_dict['original_dims'][i]
+
+                partition_factor = int(args.get("factor", 0))
+
+                ceiled_partitioned_dim_size = math.ceil(target_dim_size / float(partition_factor))
+                ceiled_partitioned_array_size = ceiled_partitioned_dim_size * product_of_non_target_dims
+
+                last_partitioned_dim_size = target_dim_size % partition_factor
+
+                is_unevenly_partitioned = last_partitioned_dim_size != 0
+                array_node.feature_dict["is_unevenly_partitioned"] = int(is_unevenly_partitioned)
+
+                if ceiled_partitioned_array_size < 1024:
+                    array_node.feature_dict["is_large_array"] = 0
+                elif is_unevenly_partitioned:
+                    last_partitioned_array_size = last_partitioned_dim_size * product_of_non_target_dims
+                    if last_partitioned_array_size < 1024:
+                        if nt == "internal_mem" or (nt == "port" and not array_node.is_top_level):
+                            array_node.feature_dict["has_hybrid_impl"] = 1
+
+            array_node.feature_dict["partition_factor"] = partition_factor
+            array_node.feature_dict["partition_dim"][partition_dim] = 1
+
+            matching_ports = array_node.matching_ports
+            while matching_ports:
+                port_id = matching_ports.pop()
+                port_node = kernel_info.nodes['port'][port_id]
+
+                port_node.feature_dict["array_partition"] = array_node.feature_dict["array_partition"]
+                port_node.feature_dict["partition_dim"] = array_node.feature_dict["partition_dim"]
+                port_node.feature_dict["partition_factor"] = partition_factor
+                port_node.feature_dict["is_large_array"] = array_node.feature_dict["is_large_array"]
+                port_node.feature_dict["is_unevenly_partitioned"] = array_node.feature_dict["is_unevenly_partitioned"]
+                port_node.feature_dict["has_hybrid_impl"] = array_node.feature_dict["has_hybrid_impl"]
+
+                matching_ports.extend(port_node.matching_ports)
+        else:
             location = args["location"]
             if "/" in location:
                 function_name, target_name = location.split("/")
@@ -261,26 +286,21 @@ def update_with_directives(
                 continue
 
             if dct == "pipeline":
-                # Pipeline pragma in a loop implies the complete
-                # unrolling of all its subloops (if any)
                 ii = max(1, int(args.get("ii", 1)))
-                region_node.attrs["target_ii"] = ii
-                region_node.attrs["achieved_ii_base"] = 0
-                region_node.attrs["pipeline"] = [0, 1, 0] # Pipelined by user directive
-                unroll_pipelined_subloops(region_node)
-                continue
-
-            if dct == "unroll":
-                if region_node.attrs["unroll"][-1] == 1:
-                    continue
-                unroll_factor = int(args.get("factor", 0))
-                if unroll_factor <= 0:
-                    unroll_factor = region_node.attrs.get("max_trip_count", 1)
-                region_node.attrs["unroll_factor"] = unroll_factor
-                region_node.attrs["unroll"] = [0, 1, 0] # Unrolled by user directive
-                continue
-
-            region_node.attrs[dct] = 1
+                region_node.feature_dict["target_ii"] = ii
+                region_node.feature_dict["achieved_ii_base"] = 0
+                region_node.feature_dict["pipeline"] = [0, 1, 0] # Pipelined by user directive
+                _unroll_pipelined_subloops(kernel_info, region_node)
+            elif dct == "unroll":
+                if region_node.feature_dict["unroll"][-1] != 1:
+                    trip_count = region_node.feature_dict.get("max_trip_count", 0)
+                    unroll_factor = int(args.get("factor", 0))
+                    if unroll_factor <= 0 or (trip_count > 0 and unroll_factor > trip_count):
+                        unroll_factor = trip_count
+                    region_node.feature_dict["unroll_factor"] = unroll_factor
+                    region_node.feature_dict["unroll"] = [0, 1, 0] # Unrolled by user directive
+            else:
+                region_node.feature_dict[dct] = 1
 
     if not vitis_log_path:
         return kernel_info
@@ -296,52 +316,51 @@ def update_with_directives(
     for function_name in auto_inline:
         for node in kernel_info.nodes.get('region', []):
             if node.name == function_name:
-                node.attrs["inline"] = 1
+                node.feature_dict["inline"] = 1
                 break
 
     for loop_name in auto_pipeline:
         for node in kernel_info.nodes.get('region', []):
-            if node.name == loop_name:
-                if node.attrs["pipeline"][-1] == 1:
-                    continue
-                node.attrs["pipeline"] = [0, 0, 1] # Pipelined automatically by HLS
-                if node.attrs["achieved_ii_base"] == 0:
-                    node.attrs["target_ii"] = 1
-                unroll_pipelined_subloops(node)
+            if node.name == loop_name and node.feature_dict["pipeline"][-1] == 0:
+                node.feature_dict["pipeline"] = [0, 0, 1] # Pipelined automatically by HLS
+                if node.feature_dict["achieved_ii_base"] == 0:
+                    node.feature_dict["target_ii"] = 1
+                if node.is_loop:
+                    _unroll_pipelined_subloops(kernel_info, node)
 
     return kernel_info
 
 
-def fit_one_hot_encoders(hls_data_dict: Dict[str, VitisKernelInfo]):
-    categorical_attrs = {
-        "impl": set(), "opcode": set(), "if_type": set(), 
-        "const_type": set(), "base_type": set()
+def fit_one_hot_encoders(hls_data_dict: Dict[str, KernelGraph]):
+    categorical_feature_dict = {
+        "core_name": set(), "const_type": set(), 
+        "base_type": set(), "original_base_type": set()
     }
     encoders = {
         key: OneHotEncoder(handle_unknown='ignore') 
-        for key in categorical_attrs.keys()
+        for key in categorical_feature_dict.keys()
     }
     for data in hls_data_dict.values():
         for node_groups in data.nodes.values():
             for node in node_groups:
-                for key, value in node.attrs.items():
-                    if key in categorical_attrs:
-                        categorical_attrs[key].add(value)
+                for key, value in node.feature_dict.items():
+                    if key in categorical_feature_dict:
+                        categorical_feature_dict[key].add(value)
 
-    for key, values in categorical_attrs.items():
+    for key, values in categorical_feature_dict.items():
         if values:
             encoders[key].fit([[v] for v in values])
 
     return encoders
 
 
-def one_hot_encode(hls_data: VitisKernelInfo, encoders: Dict[str, OneHotEncoder]):
+def one_hot_encode(hls_data: KernelGraph, encoders: Dict[str, OneHotEncoder]):
     for node_groups in hls_data.nodes.values():
         for node in node_groups:
-            for key, value in node.attrs.items():
+            for key, value in node.feature_dict.items():
                 if key in encoders:
                     encoded = encoders[key].transform([[value]]).toarray()
-                    node.attrs[key] = encoded[0].flatten().tolist()
+                    node.feature_dict[key] = encoded[0].flatten().tolist()
 
 
 def save_encoders(encoders: Dict[str, OneHotEncoder], path: str):
@@ -353,7 +372,18 @@ def load_encoders(path: str) -> Dict[str, OneHotEncoder]:
     with open(path, 'rb') as f:
         encoders = pickle.load(f)
     return encoders 
-                    
+
+
+def _unroll_pipelined_subloops(kernel_info, loop_node):
+    """Completely unroll all subloops of a pipelined loop."""
+    for sub_region in loop_node.sub_regions:
+        node = kernel_info.nodes['region'][sub_region]
+        if node.is_loop:
+            trip_count = node.feature_dict.get("max_trip_count", 0)
+            node.feature_dict["unroll_factor"] = trip_count
+            node.feature_dict["unroll"] = [0, 0, 1] # Unroll implied by pipeline
+        _unroll_pipelined_subloops(kernel_info, node)
+
 
 def plot_data(
     data: HeteroData,
@@ -366,27 +396,31 @@ def plot_data(
     from matplotlib.patches import Patch
 
     node_color_dict = {
-        "instr": "#3791d1",
-        "port": "#17b466",
-        "const": "#e16df0",
-        "block": "#c9913e",
+        "op": "#3791d1",
+        "internal_mem": "#80e2d5",
+        "port": "#a8df83",
+        "const": "#bc6df0",
+        "block": "#d8b61e",
         "region": "#e26363"
     }
     edge_color_dict = {
-        ("const", "data", "instr"): "#4b91b9",
-        ("instr", "data", "instr"): "#4b91b9",
-        ("port", "data", "instr"): "#4b91b9",
-        ("instr", "data", "port"): "#14387a",
-        ("block", "control", "instr"): "#22833F",
+        ("const", "data", "op"): "#4b91b9",
+        ("op", "data", "op"): "#4b91b9",
+        ("port", "data", "op"): "#4b91b9",
+        ("internal_mem", "data", "op"): "#4b91b9",
+        ("internal_mem", "data", "port"): "#14387a",
+        ("port", "data", "port"): "#14387a",
+        ("op", "alloca", "internal_mem"): "#946eee",
+        ("block", "control", "op"): "#22833F",
         ("block", "control", "block"): "#22833F",
-        ("instr", "control", "region"): "#cc53cc",
-        ("region", "hrchy", "region"): "#9C9C9C",
-        ("region", "hrchy", "block"): "#9C9C9C",
-        ("block", "hrchy", "instr"): "#9C9C9C"
+        ("op", "control", "region"): "#cf5ecf",
+        ("region", "hier", "region"): "#9C9C9C",
+        ("region", "hier", "block"): "#9C9C9C",
+        ("block", "hier", "op"): "#9C9C9C"
     }
     if "full" in plt_type:
-        edge_types = edge_color_dict.keys()
-        node_types = node_color_dict.keys()
+        edge_types = list(edge_color_dict.keys())
+        node_types = list(node_color_dict.keys())
     else:
         plt_types = plt_type.split("_")
         edge_types = []
@@ -409,7 +443,6 @@ def plot_data(
     node_indices = {
         nt: list(indices) 
         for nt, indices in node_indices.items()
-        if indices
     }
     for nt, x in data.x_dict.items():
         if nt in node_indices and node_indices[nt]:

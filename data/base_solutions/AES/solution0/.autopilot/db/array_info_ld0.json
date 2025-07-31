@@ -1,0 +1,223 @@
+{
+  "Global": {
+    "Rcon0": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 30,
+      "Dimensions": [30],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "word": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 2,
+      "TotalSize": 480,
+      "Dimensions": [4, 120],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Sbox": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 2,
+      "TotalSize": 256,
+      "Dimensions": [16, 16],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "invSbox": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 2,
+      "TotalSize": 256,
+      "Dimensions": [16, 16],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Sbox": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 2,
+      "TotalSize": 256,
+      "Dimensions": [16, 16],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  },
+  "Local": {
+    "decrypt/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "decrypt/key": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "encrypt/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "encrypt/key": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "aes_main/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "aes_main/key": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "ByteSub_ShiftRow/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "InversShiftRow_ByteSub/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "MixColumn_AddRoundKey/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "MixColumn_AddRoundKey/ret": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "AddRoundKey_InversMixColumn/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "AddRoundKey_InversMixColumn/ret": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "AddRoundKey/statemt": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "KeySchedule/key": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 32,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "KeySchedule/temp": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 4,
+      "Dimensions": [4],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

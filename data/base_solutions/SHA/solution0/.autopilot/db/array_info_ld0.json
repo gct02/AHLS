@@ -1,0 +1,92 @@
+{
+  "Global": {
+    "sha_info_data": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 16,
+      "Dimensions": [16],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "sha_info_digest": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 5,
+      "Dimensions": [5],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "local_indata": {
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 2,
+      "TotalSize": 16384,
+      "Dimensions": [2, 8192],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  },
+  "Local": {
+    "sha_transform/W": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 80,
+      "Dimensions": [80],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "sha_stream/indata": {
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "NumDimensions": 2,
+      "Param": 1,
+      "TotalSize": 16384,
+      "Dimensions": [2, 8192],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "sha_stream/in_i": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 2,
+      "Dimensions": [2],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "sha_stream/outdata": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 5,
+      "Dimensions": [5],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "sha_stream/indata.addr": {
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 8192,
+      "Dimensions": [8192],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    }
+  }
+}

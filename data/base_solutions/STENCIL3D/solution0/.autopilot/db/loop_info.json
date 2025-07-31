@@ -1,0 +1,55 @@
+{
+  "stencil3d/loop_height": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "stencil3d/loop_col": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "stencil3d/loop_row": {
+    "Depth": 3,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "stencil3d/row_bound_height": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "stencil3d/row_bound_col": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "stencil3d/col_bound_height": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "stencil3d/col_bound_row": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "stencil3d/height_bound_col": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "stencil3d/height_bound_row": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  }}

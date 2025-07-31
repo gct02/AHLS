@@ -1,0 +1,134 @@
+{
+  "Global": {
+    "bitoff": {
+      "BaseBitwidth": 4,
+      "BaseType": 11,
+      "Global": 1,
+      "NumDimensions": 1,
+      "TotalSize": 256,
+      "Dimensions": [256],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "gsm_norm", "Name": "bitoff_load_3" }, { "FunctionName": "gsm_norm", "Name": "bitoff_load_2" }, { "FunctionName": "gsm_norm", "Name": "bitoff_load_1" }, { "FunctionName": "gsm_norm", "Name": "bitoff_load" }],
+      "GEPs": [{ "FunctionName": "gsm_norm", "Name": "bitoff_addr_3" }, { "FunctionName": "gsm_norm", "Name": "bitoff_addr_2" }, { "FunctionName": "gsm_norm", "Name": "bitoff_addr_1" }, { "FunctionName": "gsm_norm", "Name": "bitoff_addr" }]
+    }
+  },
+  "Local": {
+    "Reflection_coefficients/L_ACF": {
+      "BaseBitwidth": 64,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "Name": "L_ACF_load_1" }, { "FunctionName": "Reflection_coefficients", "Name": "L_ACF_load" }],
+      "GEPs": [{ "FunctionName": "Reflection_coefficients", "Name": "L_ACF_addr_1" }, { "FunctionName": "Reflection_coefficients", "Name": "L_ACF_addr" }]
+    },
+    "Reflection_coefficients/LARc": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [{ "FunctionName": "Reflection_coefficients", "Index": 19 }, { "FunctionName": "Reflection_coefficients", "Index": 17 }, { "FunctionName": "Reflection_coefficients", "Index": 1 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "Reflection_coefficients", "Name": "LARc_addr_1" }, { "FunctionName": "Reflection_coefficients", "Name": "LARc_addr_2" }, { "FunctionName": "Reflection_coefficients", "Name": "LARc_addr" }]
+    },
+    "Reflection_coefficients/ACF": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [{ "FunctionName": "Reflection_coefficients", "Index": 5 }],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "Name": "ACF_load_1" }, { "FunctionName": "Reflection_coefficients", "Name": "ACF_load" }],
+      "GEPs": [{ "FunctionName": "Reflection_coefficients", "Name": "ACF_addr_2" }, { "FunctionName": "Reflection_coefficients", "Name": "ACF_addr_1" }, { "FunctionName": "Reflection_coefficients", "Name": "ACF_addr" }]
+    },
+    "Reflection_coefficients/P": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [{ "FunctionName": "Reflection_coefficients", "Index": 21 }, { "FunctionName": "Reflection_coefficients", "Index": 20 }, { "FunctionName": "Reflection_coefficients", "Index": 10 }],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "Name": "P_load_1" }, { "FunctionName": "Reflection_coefficients", "Name": "P_load" }, { "FunctionName": "Reflection_coefficients", "Name": "temp_1" }],
+      "GEPs": [{ "FunctionName": "Reflection_coefficients", "Name": "P_addr_4" }, { "FunctionName": "Reflection_coefficients", "Name": "P_addr_3" }, { "FunctionName": "Reflection_coefficients", "Name": "P_addr_1" }, { "FunctionName": "Reflection_coefficients", "Name": "P_addr" }, { "FunctionName": "Reflection_coefficients", "Name": "P_addr_2" }]
+    },
+    "Reflection_coefficients/K": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [{ "FunctionName": "Reflection_coefficients", "Index": 22 }, { "FunctionName": "Reflection_coefficients", "Index": 8 }],
+      "Loads": [{ "FunctionName": "Reflection_coefficients", "Name": "K_load" }],
+      "GEPs": [{ "FunctionName": "Reflection_coefficients", "Name": "K_addr_1" }, { "FunctionName": "Reflection_coefficients", "Name": "K_addr" }]
+    },
+    "Quantization_and_coding/LARc": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [{ "FunctionName": "Quantization_and_coding", "Index": 7 }, { "FunctionName": "Quantization_and_coding", "Index": 6 }, { "FunctionName": "Quantization_and_coding", "Index": 5 }, { "FunctionName": "Quantization_and_coding", "Index": 4 }, { "FunctionName": "Quantization_and_coding", "Index": 3 }, { "FunctionName": "Quantization_and_coding", "Index": 2 }, { "FunctionName": "Quantization_and_coding", "Index": 1 }, { "FunctionName": "Quantization_and_coding", "Index": 0 }],
+      "Loads": [{ "FunctionName": "Quantization_and_coding", "Name": "LARc_load_7" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load_6" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load_5" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load_4" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load_3" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load_2" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load_1" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_load" }],
+      "GEPs": [{ "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_9" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_8" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_7" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_6" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_5" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_4" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr_3" }, { "FunctionName": "Quantization_and_coding", "Name": "LARc_addr" }]
+    },
+    "Gsm_LPC_Analysis/indata": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 160,
+      "Dimensions": [160],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Gsm_LPC_Analysis/LARc": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 8,
+      "Dimensions": [8],
+      "Stores": [{ "FunctionName": "Gsm_LPC_Analysis", "Index": 2 }],
+      "Loads": [{ "FunctionName": "Gsm_LPC_Analysis", "Name": "temp" }],
+      "GEPs": [{ "FunctionName": "Gsm_LPC_Analysis", "Name": "LARc_addr" }]
+    },
+    "Gsm_LPC_Analysis/L_ACF": {
+      "BaseBitwidth": 64,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Autocorrelation/indata": {
+      "BaseBitwidth": 16,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 160,
+      "Dimensions": [160],
+      "Stores": [{ "FunctionName": "Autocorrelation", "Index": 45 }, { "FunctionName": "Autocorrelation", "Index": 5 }],
+      "Loads": [{ "FunctionName": "Autocorrelation", "Name": "indata_load_19" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_18" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_17" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_16" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_15" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_14" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_13" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_12" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_11" }, { "FunctionName": "Autocorrelation", "Name": "sl_8" }, { "FunctionName": "Autocorrelation", "Name": "sl_7" }, { "FunctionName": "Autocorrelation", "Name": "sl_6" }, { "FunctionName": "Autocorrelation", "Name": "sl_5" }, { "FunctionName": "Autocorrelation", "Name": "sl_4" }, { "FunctionName": "Autocorrelation", "Name": "sl_3" }, { "FunctionName": "Autocorrelation", "Name": "sl_2" }, { "FunctionName": "Autocorrelation", "Name": "sl_1" }, { "FunctionName": "Autocorrelation", "Name": "sl" }, { "FunctionName": "Autocorrelation", "Name": "indata_load_1" }, { "FunctionName": "Autocorrelation", "Name": "indata_load" }],
+      "GEPs": [{ "FunctionName": "Autocorrelation", "Name": "indata_addr_19" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_18" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_17" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_16" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_15" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_14" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_13" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_12" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_11" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_10" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_9" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_8" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_7" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_6" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_5" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_4" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_3" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_2" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr_1" }, { "FunctionName": "Autocorrelation", "Name": "indata_addr" }]
+    },
+    "Autocorrelation/L_ACF": {
+      "BaseBitwidth": 64,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 9,
+      "Dimensions": [9],
+      "Stores": [{ "FunctionName": "Autocorrelation", "Index": 42 }, { "FunctionName": "Autocorrelation", "Index": 40 }, { "FunctionName": "Autocorrelation", "Index": 39 }, { "FunctionName": "Autocorrelation", "Index": 38 }, { "FunctionName": "Autocorrelation", "Index": 37 }, { "FunctionName": "Autocorrelation", "Index": 36 }, { "FunctionName": "Autocorrelation", "Index": 35 }, { "FunctionName": "Autocorrelation", "Index": 34 }, { "FunctionName": "Autocorrelation", "Index": 33 }, { "FunctionName": "Autocorrelation", "Index": 8 }, { "FunctionName": "Autocorrelation", "Index": 32 }],
+      "Loads": [{ "FunctionName": "Autocorrelation", "Name": "L_ACF_load_10" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_9" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_8" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_7" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_6" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_5" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_4" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_3" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load_2" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_load" }],
+      "GEPs": [{ "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_11" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_10" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_9" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_8" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_7" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_6" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_5" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_4" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_3" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr_2" }, { "FunctionName": "Autocorrelation", "Name": "L_ACF_addr" }]
+    }
+  }
+}

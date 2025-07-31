@@ -10,7 +10,7 @@ from typing import Dict
 import numpy as np
 
 from gnn.data.graph import find_region_node, find_array_node
-from gnn.data.kernel.kernel_info import VitisKernelInfo
+from gnn.data.kernel_graph import VitisKernelInfo
 from gnn.data.utils.parsers import parse_tcl_directives
 
 DIRECTIVES = {"pipeline", "unroll", "array_partition", "loop_merge"}
@@ -33,12 +33,10 @@ def extract_critical_dct_groups(
                          f"directives: {dct_config_path}")
     
     loop_nodes = [
-        node for node in kernel_info.nodes.get("region", []) 
-        if node.is_loop
+        node for node in kernel_info.nodes.get("region", []) if node.is_loop
     ]
     array_ports = [
-        node for node in kernel_info.nodes.get("port", [])
-        if node.is_array
+        node for node in kernel_info.nodes.get("port", []) if node.is_array
     ]
 
     loop_lats = [node.attrs.get("max_latency", 0) for node in loop_nodes]
@@ -216,7 +214,11 @@ def random_filter(
     benchmark_dir: str,
     benchmark_info: Dict[str, str],
     output_dir: str,
-    num_solutions: int = 15
+    num_solutions: int = 15,
+    base_only: bool = False,
+    non_base_only: bool = False,
+    include_solution0: bool = True,
+    copy_files: bool = True
 ):
     if not os.path.exists(benchmark_dir):
         raise ValueError(f"Benchmark directory not found: {benchmark_dir}")
@@ -224,27 +226,37 @@ def random_filter(
     if not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)
 
-    last_base_index = benchmark_info.get("last_base_index", 0)
-    if last_base_index <= 0:
-        raise ValueError(f"Invalid last base index: {last_base_index}. "
-                         f"Ensure that the benchmark info is correctly set.")
+    if base_only or non_base_only:
+        last_base_index = benchmark_info.get("last_base_index", 0)
+        if last_base_index <= 0:
+            raise ValueError(f"Invalid last base index: {last_base_index}. "
+                             f"Ensure that the benchmark info is correctly set.")
 
     solutions = []
     for sol in os.listdir(benchmark_dir):
         if not sol.startswith("solution") or sol == "solution0":
             continue
-        sol_idx = sol.split("solution")[-1]
-        if sol_idx.isdigit() and int(sol_idx) <= last_base_index:
-            solution_path = os.path.join(benchmark_dir, sol)
-            if os.path.isdir(solution_path):
-                solutions.append(sol)
+
+        solution_path = os.path.join(benchmark_dir, sol)
+        if not os.path.isdir(solution_path):
+            continue
+
+        sol_idx = int(sol.split("solution")[-1])
+        if ((base_only and sol_idx > last_base_index) or
+            (non_base_only and sol_idx <= last_base_index)):
+            continue
+
+        solutions.append(sol)
 
     if len(solutions) < num_solutions:
-        raise ValueError(f"Not enough solutions to filter. Found {len(solutions)}, "
-                         f"but requested {num_solutions}.")
+        print(f"Not enough solutions to filter. Found {len(solutions)}, "
+              f"but requested {num_solutions}. Using all available solutions.")
+        selected_solutions = solutions
+    else:
+        selected_solutions = random.sample(solutions, num_solutions)
 
-    selected_solutions = random.sample(solutions, num_solutions)
-    selected_solutions.append("solution0")
+    if include_solution0 and "solution0" not in selected_solutions:
+        selected_solutions.append("solution0")
 
     for solution in selected_solutions:
         solution_path = os.path.join(benchmark_dir, solution)
@@ -252,11 +264,12 @@ def random_filter(
         shutil.copytree(solution_path, output_solution_path, dirs_exist_ok=True)
         print(f"Copied {solution} to {output_solution_path}")
 
-    for item in os.listdir(benchmark_dir):
-        item_path = os.path.join(benchmark_dir, item)
-        if os.path.isfile(item_path):
-            shutil.copy(item_path, output_dir)
-            print(f"Copied file {item} to {output_dir}")
+    if copy_files:
+        for item in os.listdir(benchmark_dir):
+            item_path = os.path.join(benchmark_dir, item)
+            if os.path.isfile(item_path):
+                shutil.copy(item_path, output_dir)
+                print(f"Copied file {item} to {output_dir}")
 
 
 if __name__ == "__main__":
@@ -282,6 +295,8 @@ if __name__ == "__main__":
                         help="If set, randomly filter solutions instead of using critical directives.")
     parser.add_argument("-bi", "--benchmark_info", type=str, default='data/benchmarks/benchmark_info.json',
                         help="Path to the benchmark info JSON file.")
+    parser.add_argument("-s", "--seed", type=int, default=42,
+                        help="Random seed for reproducibility.")
 
     args = parser.parse_args()
 
@@ -293,8 +308,6 @@ if __name__ == "__main__":
         print("Benchmark info file must be provided.")
         sys.exit(1)
 
-    os.makedirs(args.output_dir, exist_ok=True)
-
     with open(args.benchmark_info, "r") as f:
         benchmark_info = json.load(f)
 
@@ -302,50 +315,74 @@ if __name__ == "__main__":
         print(f"Benchmark {args.benchmark} not found in benchmark info.")
         sys.exit(1)
 
+    os.makedirs(args.output_dir, exist_ok=True)
     benchmark_info = benchmark_info[args.benchmark]
 
-    if args.random_filter:
-        random_filter(
-            args.benchmark_dir,
-            benchmark_info,
-            args.output_dir,
-            args.num_solutions
-        )
-        sys.exit(0)
+    random.seed(args.seed)
 
-    if not args.benchmark_dir:
-        print("Benchmark directory must be provided.")
-        sys.exit(1)
-
-    if not args.dct_config_path:
-        print("Directive configuration file must be provided.")
-        sys.exit(1)
-
-    if not args.kernel_info_path:
-        print("Kernel info file must be provided.")
-        sys.exit(1)
-
-    with open(args.kernel_info_path, "rb") as f:
-        kernel_info = pickle.load(f)
-
-    num_solutions = args.num_solutions
-    # num_solutions_random = max(1, math.ceil(num_solutions * 0.75))
-    # num_solutions_critical = max(1, num_solutions - num_solutions_random)
-    num_solutions_critical = 3
-    num_solutions_random = num_solutions - num_solutions_critical
-
-    filter_processed_instances(
-        args.benchmark_dir,
+    random_filter(
         args.processed_benchmark_dir,
         benchmark_info,
-        args.dct_config_path,
-        kernel_info,
         args.output_dir,
-        num_solutions_critical
+        num_solutions=3,
+        base_only=True,
+        non_base_only=False,
+        include_solution0=True,
+        copy_files=True
     )
     random_filter(
         args.processed_benchmark_dir,
         benchmark_info,
         args.output_dir,
-        num_solutions_random
+        num_solutions=3,
+        base_only=False,
+        non_base_only=True,
+        include_solution0=False,
+        copy_files=False
     )
+
+    # if args.random_filter:
+    #     random_filter(
+    #         args.benchmark_dir,
+    #         benchmark_info,
+    #         args.output_dir,
+    #         args.num_solutions
+    #     )
+    #     sys.exit(0)
+
+    # if not args.benchmark_dir:
+    #     print("Benchmark directory must be provided.")
+    #     sys.exit(1)
+
+    # if not args.dct_config_path:
+    #     print("Directive configuration file must be provided.")
+    #     sys.exit(1)
+
+    # if not args.kernel_info_path:
+    #     print("Kernel info file must be provided.")
+    #     sys.exit(1)
+
+    # with open(args.kernel_info_path, "rb") as f:
+    #     kernel_info = pickle.load(f)
+
+    # num_solutions = args.num_solutions
+    # # num_solutions_random = max(1, math.ceil(num_solutions * 0.75))
+    # # num_solutions_critical = max(1, num_solutions - num_solutions_random)
+    # num_solutions_critical = 3
+    # num_solutions_random = num_solutions - num_solutions_critical
+
+    # filter_processed_instances(
+    #     args.benchmark_dir,
+    #     args.processed_benchmark_dir,
+    #     benchmark_info,
+    #     args.dct_config_path,
+    #     kernel_info,
+    #     args.output_dir,
+    #     num_solutions_critical
+    # )
+    # random_filter(
+    #     args.processed_benchmark_dir,
+    #     benchmark_info,
+    #     args.output_dir,
+    #     num_solutions_random
+    # )

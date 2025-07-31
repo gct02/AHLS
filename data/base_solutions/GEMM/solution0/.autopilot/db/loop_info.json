@@ -1,0 +1,31 @@
+{
+  "bbgemm/loopjj": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "bbgemm/loopkk": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "bbgemm/loopi": {
+    "Depth": 3,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "bbgemm/loopk": {
+    "Depth": 4,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "bbgemm/loopj": {
+    "Depth": 5,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  }}

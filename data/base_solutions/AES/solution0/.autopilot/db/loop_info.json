@@ -1,0 +1,85 @@
+{
+  "decrypt/decrypt_label4": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "encrypt/encrypt_label1": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "MixColumn_AddRoundKey/MixColumn_AddRoundKey_label1": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "MixColumn_AddRoundKey/MixColumn_AddRoundKey_label0": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label3": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label0": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label1": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  },
+  "AddRoundKey_InversMixColumn/AddRoundKey_InversMixColumn_label2": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "AddRoundKey/AddRoundKey_label0": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "KeySchedule/KeySchedule_label6": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "KeySchedule/KeySchedule_label9": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  },
+  "KeySchedule/KeySchedule_label8": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  },
+  "KeySchedule/KeySchedule_label4": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "KeySchedule/KeySchedule_label5": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  }}

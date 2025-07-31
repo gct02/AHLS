@@ -1,0 +1,13 @@
+{
+  "md_kernel/loop_i": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "md_kernel/loop_j": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  }}

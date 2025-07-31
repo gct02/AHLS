@@ -10,7 +10,7 @@ from typing import Union, Optional, List, Dict
 import numpy as np
 from torch_geometric.data import Dataset
 
-from gnn.data.kernel.kernel_info import VitisKernelInfo
+from gnn.data.kernel_graph import KernelGraph
 from gnn.data.graph import to_hetero_data
 
 TARGET_AREA_METRICS = ['lut', 'ff', 'dsp', 'bram']
@@ -27,14 +27,14 @@ METRIC_SIZES_BY_CATEGORY = {
 }
 
 NUMERICAL_FEATS = [
-    'primitive_bitwidth', 'delay', 'dims',
-    'partition_factor', 'unroll_factor',
-    'achieved_ii_base', 'target_ii',
-    'callee_size', 'trip_count', 'latency',
-    'num_instrs_in_block', 'num_loads_in_block',
+    'original_primitive_bitwidth', 'primitive_bitwidth', 
+    'latency', 'delay', 'original_dims', 'array_size', 
+    'trip_count', 'partition_factor', 'unroll_factor', 
+    'achieved_ii_base', 'target_ii', 'callee_size', 
+    'num_ops_in_block', 'num_loads_in_block',
     'num_stores_in_block', 'num_allocas_in_block',
     'num_getelementptrs_in_block', 'num_phis_in_block',
-    'num_calls_in_block', 'num_instrs_in_region',
+    'num_calls_in_block', 'num_ops_in_region',
     'num_loads_in_region', 'num_stores_in_region',
     'num_allocas_in_region', 'num_getelementptrs_in_region',
     'num_phis_in_region', 'num_calls_in_region',
@@ -45,7 +45,7 @@ NUMERICAL_FEATS = [
     f'region_{metric}_sum' for metric in TARGET_AREA_METRICS
 ]
 
-NO_LOG_SCALING_KEYS = ['primitive_bitwidth', 'delay']
+NO_LOG_SCALING_KEYS = ['original_primitive_bitwidth', 'primitive_bitwidth', 'delay']
 
 
 class HLSDataset(Dataset):
@@ -210,7 +210,7 @@ class HLSDataset(Dataset):
         data = torch.load(self.processed_paths[ind])
         return data 
     
-    def _standardize_features(self, kernel_info: VitisKernelInfo):
+    def _standardize_features(self, kernel_info: KernelGraph):
         def log_transform(value):
             if isinstance(value, (list, tuple)):
                 return [math.log1p(float(v)) for v in value]
@@ -223,7 +223,7 @@ class HLSDataset(Dataset):
             
         for nodes in kernel_info.nodes.values():
             for node in nodes:
-                for key, value in node.attrs.items():
+                for key, value in node.feature_dict.items():
                     if key in self.scaling_stats:
                         mean = self.scaling_stats[key]['mean']
                         std = self.scaling_stats[key]['std']
@@ -231,7 +231,7 @@ class HLSDataset(Dataset):
                             std = 1.0
                         if key not in NO_LOG_SCALING_KEYS:
                             value = log_transform(value)
-                        node.attrs[key] = scale(value, mean, std)
+                        node.feature_dict[key] = scale(value, mean, std)
 
 
 def compute_scaling_stats(
@@ -269,11 +269,11 @@ def compute_scaling_stats(
                 continue
 
             with open(kernel_info_path, 'rb') as f:
-                kernel_info: VitisKernelInfo = pickle.load(f)
+                kernel_info: KernelGraph = pickle.load(f)
 
             for nodes in kernel_info.nodes.values():
                 for node in nodes:
-                    for key, value in node.attrs.items():
+                    for key, value in node.feature_dict.items():
                         if 'trip_count' in key:
                             base_key = 'trip_count'
                         elif 'latency' in key:
@@ -282,7 +282,7 @@ def compute_scaling_stats(
                             base_key = key
                         
                         if base_key in numerical_feats:
-                            if base_key == 'dims':
+                            if 'dims' in base_key:
                                 for dim in value:
                                     if dim > 1:
                                         numerical_feats[base_key].append(float(dim))

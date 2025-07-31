@@ -1,0 +1,37 @@
+{
+  "kernel_gramschmidt/loop1": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "kernel_gramschmidt/loop4": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  },
+  "kernel_gramschmidt/loop6": {
+    "Depth": 3,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  },
+  "kernel_gramschmidt/loop5": {
+    "Depth": 3,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  },
+  "kernel_gramschmidt/loop3": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  },
+  "kernel_gramschmidt/loop2": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 0
+  }}

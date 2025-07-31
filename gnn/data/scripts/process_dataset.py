@@ -69,14 +69,15 @@ def main(args: Dict[str, Any]):
         with open(bench_out_dir / "base_vitis_kernel_info.pkl", "wb") as f:
             pickle.dump(kernel_info, f)
 
-        base_metrics = kernel_info.qor_metrics
+        base_metrics = kernel_info.ground_truth_metrics
         with open(bench_out_dir / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 
         instance_count = 0
         for sol in bench_dir.iterdir():
             if (not sol.is_dir() or 
-                not sol.name.startswith("solution")):
+                not sol.name.startswith("solution") or
+                sol.name == "solution0"):
                 continue
 
             hls_data_json_path = sol / f"{sol.stem}_data.json"
@@ -107,6 +108,8 @@ def main(args: Dict[str, Any]):
             )
             with open(sol_out_dir / "vitis_kernel_info.pkl", "wb") as f:
                 pickle.dump(updated_kernel_info, f)
+
+            updated_kernel_info.save_as_json(sol_out_dir / "vitis_kernel_info.json")
 
             instance_count += 1
             if instance_count >= max_instances:
