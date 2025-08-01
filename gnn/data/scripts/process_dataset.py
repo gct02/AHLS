@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, Any
 
 from gnn.data.graph import (
-    extract_base_kernel_info, 
+    extract_pure_graphs, 
     update_with_directives
 )
 from gnn.data.utils.parsers import (
@@ -33,37 +33,12 @@ def main(args: Dict[str, Any]):
     with open(bench_info_path, "r") as f:
         bench_info_dict = json.load(f)
 
-    bench_info_list = []
-    bench_directories = []
-    for bench, bench_info in bench_info_dict.items():
-        base_sol_dir = Path(bench_info['base_solution_dir'])
-        if not base_sol_dir.exists():
-            print(f"Base solution directory not found for {bench}")
-            continue
+    kernel_info_dict = extract_pure_graphs(bench_info_dict)
 
-        top_level_fn = bench_info.get('top_level')
-        if not top_level_fn:
-            print(f"Top-level function not specified for {bench}")
-            continue
-
+    for bench, kernel_info in kernel_info_dict.items():
         bench_dir = dataset_dir / bench
-        if not bench_dir.exists():
-            print(f"Benchmark directory not found for {bench}")
-            continue
-
-        bench_info_list.append((base_sol_dir, bench, top_level_fn))
-        bench_directories.append(bench_dir)
-
-    kernel_info_dict = extract_base_kernel_info(bench_info_list)
-
-    for bench_dir in bench_directories:
-        bench_out_dir = output_dir / bench_dir.name
+        bench_out_dir = output_dir / bench
         bench_out_dir.mkdir(parents=True, exist_ok=True)
-
-        kernel_info = kernel_info_dict.get(bench_dir.name)
-        if not kernel_info:
-            print(f"Could not parse kernel info for {bench_dir.name}")
-            continue
 
         kernel_info.save_as_json(bench_out_dir / "base_vitis_kernel_info.json")
         with open(bench_out_dir / "base_vitis_kernel_info.pkl", "wb") as f:
@@ -97,9 +72,7 @@ def main(args: Dict[str, Any]):
             sol_out_dir = bench_out_dir / sol.stem
             sol_out_dir.mkdir(parents=True, exist_ok=True)
 
-            metrics = extract_metrics(
-                sol, filtered=filtered and sol.name != "solution0"
-            )
+            metrics = extract_metrics(sol, filtered=filtered and sol.name != "solution0")
             with open(sol_out_dir / "metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
 
@@ -109,7 +82,7 @@ def main(args: Dict[str, Any]):
             with open(sol_out_dir / "vitis_kernel_info.pkl", "wb") as f:
                 pickle.dump(updated_kernel_info, f)
 
-            updated_kernel_info.save_as_json(sol_out_dir / "vitis_kernel_info.json")
+            # updated_kernel_info.save_as_json(sol_out_dir / "vitis_kernel_info.json")
 
             instance_count += 1
             if instance_count >= max_instances:

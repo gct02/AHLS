@@ -17,8 +17,8 @@ from torch_geometric.loader import DataLoader
 from torch_geometric.nn import LayerNorm
 
 from gnn.models import HLSQoREstimator
-from gnn.data.dataset import HLSDataset
-from gnn.data.graph import METADATA, FEATURE_SIZE_BY_TYPE
+from gnn.data.dataset import HLSDataset, StatsDict
+from gnn.data.graph import NODE_DIM, EDGE_DIM
 from gnn.analysis.utils import (
     plot_prediction_bars,
     plot_prediction_scatter,
@@ -105,6 +105,8 @@ def evaluate(
     loader: DataLoader,
     epoch: int,
     output_dir: str,
+    mean_target: Tensor,
+    std_target: Tensor,
     available_resources: Optional[Tensor] = None
 ) -> float:
     if not evaluate.checkpoint_manager:
@@ -114,21 +116,22 @@ def evaluate(
     for data in loader:
         data = data.to(DEVICE)
         pred = model(
-            data.x_dict, 
-            data.edge_index_dict, 
-            data.batch_dict,
+            data.x, 
+            data.edge_index,
+            data.edge_attr,
+            data.batch,
             data.y_base
         )
-        targets.append(data.y)
-        preds.append(pred)
+        targets.append(data.original_y)
+        preds.append(torch.expm1(pred * std_target + mean_target))
 
     targets = aggregate_qor_metrics(
-        torch.expm1(torch.cat(targets, dim=0)), 
+        torch.cat(targets, dim=0), 
         loader.dataset.target_metric,
         available_resources=available_resources
     )
     preds = aggregate_qor_metrics(
-        torch.expm1(torch.cat(preds, dim=0)), 
+        torch.cat(preds, dim=0), 
         loader.dataset.target_metric,
         available_resources=available_resources
     )
@@ -158,12 +161,22 @@ def train_model(
     train_loader: DataLoader,
     test_loader: DataLoader,
     epochs: int,
+    target_scaling_stats: StatsDict,
     output_dir: str,
     max_norm: float = 5.0,
     scheduler: Optional[LRScheduler] = None,
     available_resources: Optional[Tensor] = None
 ) -> Tuple[List[float], List[float]]:
     train_mapes, test_mapes = [], []
+
+    mean_target = torch.tensor(
+        [value['mean'] for value in target_scaling_stats.values()],
+        dtype=torch.float32, device=DEVICE
+    )
+    std_target = torch.tensor(
+        [value['std'] for value in target_scaling_stats.values()],
+        dtype=torch.float32, device=DEVICE
+    )
 
     for epoch in range(epochs):
         targets, preds = [], []  
@@ -172,9 +185,10 @@ def train_model(
             optimizer.zero_grad()
             data = data.to(DEVICE)
             pred = model(
-                data.x_dict, 
-                data.edge_index_dict, 
-                data.batch_dict,
+                data.x, 
+                data.edge_index,
+                data.edge_attr,
+                data.batch,
                 data.y_base
             )
             loss = loss_fn(pred, data.y)
@@ -184,16 +198,16 @@ def train_model(
             if scheduler is not None:
                 scheduler.step()
 
-            targets.append(data.y)
-            preds.append(pred)
+            targets.append(data.original_y)
+            preds.append(torch.expm1(pred * std_target + mean_target))
 
         targets = aggregate_qor_metrics(
-            torch.cat(targets, dim=0).expm1(), 
+            torch.cat(targets, dim=0), 
             train_loader.dataset.target_metric,
             available_resources=available_resources
         )
         preds = aggregate_qor_metrics(
-            torch.cat(preds, dim=0).expm1(), 
+            torch.cat(preds, dim=0), 
             train_loader.dataset.target_metric,
             available_resources=available_resources
         )
@@ -207,6 +221,8 @@ def train_model(
                 loader=test_loader, 
                 epoch=epoch,
                 output_dir=output_dir,
+                mean_target=mean_target,
+                std_target=std_target,
                 available_resources=available_resources
             )
             test_mapes.append(test_mape)
@@ -254,13 +270,16 @@ def main(args: Dict[str, Any]):
 
     model_args = {
         'target_metric': target_metric,
-        'in_channels': FEATURE_SIZE_BY_TYPE,
-        'hidden_channels': [128, 128, 128],
+        'in_channels': NODE_DIM,
+        'hidden_channels': 160,
         'num_layers': 3,
-        'metadata': METADATA,
-        'heads': [4, 4, 4],
-        'dropout': 0.1,
-        'jk_mode': 'cat'
+        'edge_dim': EDGE_DIM,
+        'heads': 4,
+        'negative_slope': 0.2,
+        'dropout_gnn': 0.1,
+        'dropout_mlp': 0.1,
+        'gmt_k': 16,
+        'jk_mode': 'lstm'
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -299,7 +318,8 @@ def main(args: Dict[str, Any]):
     with open(f"{info_dir}/model_args.json", 'w') as f:
         json.dump(model_args, f, indent=2)
     
-    train_loader, test_loader, scaling_stats = prepare_data_loaders(
+    train_loader, test_loader, scaling_stats, \
+        base_target_scaling_stats, target_scaling_stats = prepare_data_loaders(
         dataset_dir=dataset_dir, 
         target_metric=target_metric, 
         test_benches=test_bench, 
@@ -308,6 +328,10 @@ def main(args: Dict[str, Any]):
     )
     with open(f"{info_dir}/scaling_stats.json", 'w') as f:
         json.dump(scaling_stats, f, indent=2)
+    with open(f"{info_dir}/base_target_scaling_stats.json", 'w') as f:
+        json.dump(base_target_scaling_stats, f, indent=2)
+    with open(f"{info_dir}/target_scaling_stats.json", 'w') as f:
+        json.dump(target_scaling_stats, f, indent=2)
 
     grouped_params = get_optimizer_param_groups(
         model=model,
@@ -347,6 +371,7 @@ def main(args: Dict[str, Any]):
     train_errors, test_errors = train_model(
         model, loss_fn, optimizer, 
         train_loader, test_loader, epochs, 
+        target_scaling_stats,
         scheduler=scheduler, 
         max_norm=max_norm,
         output_dir=output_dir,
@@ -355,14 +380,16 @@ def main(args: Dict[str, Any]):
 
     indices = [data.solution_index for data in test_loader.dataset]
     preds = evaluate.checkpoint_manager.get_best_predictions().tolist()
-    targets = []
+
+    all_original_targets = []
     for data in test_loader:
-        data = data.to(DEVICE)
-        target = aggregate_qor_metrics(
-            torch.expm1(data.y), target_metric,
-            available_resources=available_resources
-        )
-        targets.extend(target.tolist())
+        all_original_targets.append(data.original_y)
+
+    targets = aggregate_qor_metrics(
+        torch.cat(all_original_targets, dim=0).to(DEVICE),
+        target_metric,
+        available_resources=available_resources
+    ).tolist()
 
     min_mape = evaluate.checkpoint_manager.get_min_mape()
         
@@ -467,11 +494,13 @@ def prepare_data_loaders(
     test_benches: Union[List[str], str],
     train_benches: Union[List[str], str],
     batch_size: int = 32
-) -> Tuple[DataLoader, DataLoader, Dict[str, Dict[str, float]]]:
+) -> Tuple[DataLoader, DataLoader, StatsDict, StatsDict, StatsDict]:
     train_dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
         scaling_stats=None,  # Will be computed
+        base_target_scaling_stats= None,  # Will be computed
+        target_scaling_stats=None,  # Will be computed
         benchmarks=train_benches, 
         mode="train"
     )
@@ -479,6 +508,8 @@ def prepare_data_loaders(
         root=dataset_dir, 
         target_metric=target_metric,
         scaling_stats=train_dataset.scaling_stats,
+        base_target_scaling_stats=train_dataset.base_target_scaling_stats,
+        target_scaling_stats=train_dataset.target_scaling_stats,
         benchmarks=test_benches,
         mode="test"
     )
@@ -496,7 +527,12 @@ def prepare_data_loaders(
         num_workers=4,
         pin_memory=True
     )
-    return train_loader, test_loader, train_dataset.scaling_stats
+    return (
+        train_loader, test_loader, 
+        train_dataset.scaling_stats,
+        train_dataset.base_target_scaling_stats,
+        train_dataset.target_scaling_stats
+    )
 
 
 def parse_arguments():

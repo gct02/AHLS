@@ -5,47 +5,32 @@ import json
 import pickle
 import math
 from collections import defaultdict
-from typing import Union, Optional, List, Dict
+from typing import Union, Optional, List, Dict, Tuple
 
 import numpy as np
-from torch_geometric.data import Dataset
+import networkx as nx
+from torch_geometric.data import Dataset, Data
 
-from gnn.data.kernel_graph import KernelGraph
-from gnn.data.graph import to_hetero_data
+from gnn.data.graph import KernelGraph, compute_scaling_stats, NO_LOG_SCALING_KEYS
 
 TARGET_AREA_METRICS = ['lut', 'ff', 'dsp', 'bram']
 TARGET_TIMING_METRICS = ['achieved_clk', 'cc']
 TARGET_POWER_METRICS = ['dynamic_power', 'static_power']
+
 TARGET_METRICS = {
     'area': TARGET_AREA_METRICS,
     'timing': TARGET_TIMING_METRICS,
     'power': TARGET_POWER_METRICS
 }
+
 METRIC_SIZES_BY_CATEGORY = {
     key: len(value) 
     for key, value in TARGET_METRICS.items()
 }
 
-NUMERICAL_FEATS = [
-    'original_primitive_bitwidth', 'primitive_bitwidth', 
-    'latency', 'delay', 'original_dims', 'array_size', 
-    'trip_count', 'partition_factor', 'unroll_factor', 
-    'achieved_ii_base', 'target_ii', 'callee_size', 
-    'num_ops_in_block', 'num_loads_in_block',
-    'num_stores_in_block', 'num_allocas_in_block',
-    'num_getelementptrs_in_block', 'num_phis_in_block',
-    'num_calls_in_block', 'num_ops_in_region',
-    'num_loads_in_region', 'num_stores_in_region',
-    'num_allocas_in_region', 'num_getelementptrs_in_region',
-    'num_phis_in_region', 'num_calls_in_region',
-    'num_blocks', 'num_sub_regions'
-] + TARGET_AREA_METRICS + [
-    f'block_{metric}_sum' for metric in TARGET_AREA_METRICS
-] + [
-    f'region_{metric}_sum' for metric in TARGET_AREA_METRICS
-]
+NUMERICAL_DCT_FEATURES = ['partition_factor', 'unroll_factor', 'target_ii']
 
-NO_LOG_SCALING_KEYS = ['original_primitive_bitwidth', 'primitive_bitwidth', 'delay']
+StatsDict = Dict[str, Dict[str, float]]
 
 
 class HLSDataset(Dataset):
@@ -54,7 +39,9 @@ class HLSDataset(Dataset):
         root: str = "gnn/dataset", 
         target_metric: str = "area",
         mode: str = "train",
-        scaling_stats: Optional[Dict[str, Dict[str, float]]] = None,
+        scaling_stats: Optional[StatsDict] = None,
+        base_target_scaling_stats: Optional[StatsDict] = None,
+        target_scaling_stats: Optional[StatsDict] = None,
         benchmarks: Optional[Union[str, List[str]]] = None,
         **kwargs
     ):
@@ -73,6 +60,7 @@ class HLSDataset(Dataset):
         elif not isinstance(benchmarks, list):
             benchmarks = [benchmarks]
 
+        base_graphs = {}
         self.base_targets = {}
         self.benchmarks = []
 
@@ -88,6 +76,11 @@ class HLSDataset(Dataset):
                 print(f"Skipping {benchmark} (base metrics file not found)")
                 continue
 
+            kernel_info_path = os.path.join(benchmark_dir, "base_vitis_kernel_info.pkl")
+            if not os.path.exists(kernel_info_path):
+                print(f"Skipping {benchmark} (kernel info file not found)")
+                continue
+
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
@@ -95,19 +88,45 @@ class HLSDataset(Dataset):
                 print(f"Skipping {benchmark} (missing metrics in base solution)")
                 continue
 
-            target = torch.tensor(
-                [float(metrics[key]) for key in self.evaluation_metrics]
-            ).log1p().unsqueeze(0)
+            target = [float(metrics[key]) for key in self.evaluation_metrics]
+
+            with open(kernel_info_path, 'rb') as f:
+                kernel_info = pickle.load(f)
             
+            base_graphs[benchmark] = kernel_info
             self.base_targets[benchmark] = target
             self.benchmarks.append(benchmark)
 
         if not scaling_stats:
-            self.scaling_stats = compute_scaling_stats(
-                self.full_dataset_dir, benchmarks=self.benchmarks,
+            self.scaling_stats = compute_scaling_stats(list(base_graphs.values()))
+            dct_scaling_stats = compute_dct_scaling_stats(
+                self.full_dataset_dir, 
+                benchmarks=self.benchmarks
+            )
+            self.scaling_stats.update(dct_scaling_stats)
+            self.base_target_scaling_stats, self.target_scaling_stats = compute_target_scaling_stats(
+                self.full_dataset_dir, 
+                benchmarks=self.benchmarks
             )
         else:
             self.scaling_stats = scaling_stats
+            self.base_target_scaling_stats = base_target_scaling_stats
+            self.target_scaling_stats = target_scaling_stats
+        
+        for bench, base_target in self.base_targets.items():
+            scaled_target = []
+            for key, value in zip(self.evaluation_metrics, base_target):
+                if key in self.base_target_scaling_stats:
+                    mean = self.base_target_scaling_stats[key]['mean']
+                    std = self.base_target_scaling_stats[key]['std']
+                    if std < 1e-8:
+                        std = 1.0
+                    value = math.log1p(float(value))
+                    value = (value - mean) / std
+                else:
+                    value = float(value)
+                scaled_target.append(value)
+            self.base_targets[bench] = torch.tensor(scaled_target, dtype=torch.float32).unsqueeze(0)
 
         self._raw_file_names = []
         self._processed_file_names = []
@@ -180,20 +199,55 @@ class HLSDataset(Dataset):
                     print(f"Skipping {idx} (missing metrics)")
                     continue
 
-                target = torch.tensor(
-                    [float(metrics[key]) for key in self.evaluation_metrics]
-                ).log1p().unsqueeze(0)
+                target = []
+                for key in self.evaluation_metrics:
+                    if key in self.target_scaling_stats:
+                        mean = self.target_scaling_stats[key]['mean']
+                        std = self.target_scaling_stats[key]['std']
+                        if std < 1e-8:
+                            std = 1.0
+                        value = math.log1p(float(metrics[key]))
+                        value = (value - mean) / std
+                    else:
+                        value = float(metrics[key])
+                    target.append(value)
+
+                target = torch.tensor(target, dtype=torch.float32).unsqueeze(0)
+
+                original_target = [float(metrics[key]) for key in self.evaluation_metrics]
+                original_target = torch.tensor(original_target, dtype=torch.float32).unsqueeze(0)
 
                 with open(kernel_info_path, 'rb') as f:
                     kernel_info = pickle.load(f)
 
                 self._standardize_features(kernel_info)
 
-                data = to_hetero_data(kernel_info)
-                data.y = target
-                data.y_base = self.base_targets[benchmark]
-                data.solution_index = idx
-                data.benchmark = benchmark
+                node_id_map = {node_id: i for i, node_id in enumerate(kernel_info.nodes.keys())}
+
+                xs = [None] * len(node_id_map)
+                for node_id, node in kernel_info.nodes.items():
+                    xs[node_id_map[node_id]] = torch.tensor(node.get_homogeneous_features(), dtype=torch.float32)
+
+                edge_indices = []
+                edge_attrs = []
+                for edge in kernel_info.edges.values():
+                    src_idx = node_id_map.get(edge.src)
+                    dst_idx = node_id_map.get(edge.dst)
+                    if src_idx is not None and dst_idx is not None:
+                        edge_indices.append([src_idx, dst_idx])
+                        edge_attrs.append(torch.tensor(edge.one_hot_etype + [int(edge.is_back_edge)], dtype=torch.float32))
+
+                data = {
+                    'x': torch.stack(xs, dim=0),
+                    'edge_attr': torch.stack(edge_attrs, dim=0),
+                    'edge_index': torch.tensor(edge_indices, dtype=torch.long).t().contiguous(),
+                    'y': target,
+                    'original_y': original_target,
+                    'y_base': self.base_targets[benchmark],
+                    'benchmark': benchmark,
+                    'solution_index': idx
+                }
+                data = Data.from_dict(data)
 
                 output_path = os.path.join(self.processed_dir, f"{benchmark}_{idx}.pt")
                 torch.save(data, output_path)
@@ -221,23 +275,103 @@ class HLSDataset(Dataset):
                 return [(float(v) - mean) / std for v in value]
             return (float(value) - mean) / std
             
-        for nodes in kernel_info.nodes.values():
-            for node in nodes:
-                for key, value in node.feature_dict.items():
-                    if key in self.scaling_stats:
-                        mean = self.scaling_stats[key]['mean']
-                        std = self.scaling_stats[key]['std']
-                        if std < 1e-8:
-                            std = 1.0
-                        if key not in NO_LOG_SCALING_KEYS:
-                            value = log_transform(value)
-                        node.feature_dict[key] = scale(value, mean, std)
+        for node in kernel_info.nodes.values():
+            for key, value in node.feature_dict.items():
+                if key in self.scaling_stats:
+                    mean = self.scaling_stats[key]['mean']
+                    std = self.scaling_stats[key]['std']
+                    if std < 1e-8:
+                        std = 1.0
+                    if key not in NO_LOG_SCALING_KEYS:
+                        value = log_transform(value)
+                    node.feature_dict[key] = scale(value, mean, std)
 
 
-def compute_scaling_stats(
+def compute_target_scaling_stats(
     dataset_dir: str,
     benchmarks: Optional[Union[str, List[str]]] = None
-) -> Dict[str, Dict[str, float]]:
+) -> Tuple[StatsDict, StatsDict]:
+    base_targets = {key: [] for key in TARGET_AREA_METRICS}
+    targets = {key: [] for key in TARGET_AREA_METRICS}
+
+    if benchmarks is None:
+        benchmarks = sorted(os.listdir(dataset_dir))
+    elif isinstance(benchmarks, str):
+        benchmarks = [benchmarks]
+
+    for bench in benchmarks:
+        bench_dir = os.path.join(dataset_dir, bench)
+        if not os.path.isdir(bench_dir):
+            print(f"Skipping {bench} (directory not found)")
+            continue
+
+        base_metrics_path = os.path.join(bench_dir, "base_metrics.json")
+        if not os.path.exists(base_metrics_path):
+            print(f"Skipping {bench} (base metrics file not found)")
+            continue
+
+        with open(base_metrics_path, 'r') as f:
+            base_metrics = json.load(f)
+
+        if not is_valid_report(base_metrics, TARGET_AREA_METRICS):
+            print(f"Skipping {bench} (missing base metrics)")
+            continue
+
+        for key in TARGET_AREA_METRICS:
+            base_targets[key].append(float(base_metrics[key]))
+
+        solutions = [s for s in os.listdir(bench_dir) if "solution" in s]
+        solutions = sorted(solutions, key=lambda s: int(s.split("solution")[1]))
+
+        for sol in solutions:
+            sol_dir = os.path.join(bench_dir, sol)
+            metrics_path = os.path.join(sol_dir, "metrics.json")
+            if not os.path.exists(metrics_path):
+                print(f"Skipping {sol} (metrics file not found)")
+                continue
+
+            with open(metrics_path, 'r') as f:
+                metrics = json.load(f)
+
+            if not is_valid_report(metrics, TARGET_AREA_METRICS):
+                print(f"Skipping {sol} (missing metrics in solution)")
+                continue
+
+            for key in TARGET_AREA_METRICS:
+                targets[key].append(float(metrics[key]))
+
+    base_scaling_stats = {}
+    scaling_stats = {}
+    for key in TARGET_AREA_METRICS:
+        if not base_targets[key]:
+            base_scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
+        else:
+            base_values = np.array(base_targets[key], dtype=np.float64)
+            base_values = np.log1p(base_values)
+            mean = np.mean(base_values)
+            std = np.std(base_values)
+            if std < 1e-8:
+                std = 1.0
+            base_scaling_stats[key] = {'mean': mean, 'std': std}
+
+        if not targets[key]:
+            scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
+        else:
+            values = np.array(targets[key], dtype=np.float64)
+            values = np.log1p(values)
+            mean = np.mean(values)
+            std = np.std(values)
+            if std < 1e-8:
+                std = 1.0
+            scaling_stats[key] = {'mean': mean, 'std': std}
+
+    return base_scaling_stats, scaling_stats
+
+
+def compute_dct_scaling_stats(
+    dataset_dir: str,
+    benchmarks: Optional[Union[str, List[str]]] = None
+) -> StatsDict:
     """Compute statistics (mean and std deviation) for numerical features in the dataset.
     Args:
         dataset_dir (str): Path to the dataset directory.
@@ -245,7 +379,7 @@ def compute_scaling_stats(
     Returns:
         Dict[str, Dict[str, float]]: Scaling statistics for each numerical feature.
     """
-    numerical_feats = {feat: [] for feat in NUMERICAL_FEATS}
+    numerical_feats = {feat: [] for feat in NUMERICAL_DCT_FEATURES}
 
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
@@ -269,25 +403,12 @@ def compute_scaling_stats(
                 continue
 
             with open(kernel_info_path, 'rb') as f:
-                kernel_info: KernelGraph = pickle.load(f)
+                kernel_info = pickle.load(f)
 
-            for nodes in kernel_info.nodes.values():
-                for node in nodes:
-                    for key, value in node.feature_dict.items():
-                        if 'trip_count' in key:
-                            base_key = 'trip_count'
-                        elif 'latency' in key:
-                            base_key = 'latency'
-                        else:
-                            base_key = key
-                        
-                        if base_key in numerical_feats:
-                            if 'dims' in base_key:
-                                for dim in value:
-                                    if dim > 1:
-                                        numerical_feats[base_key].append(float(dim))
-                            elif float(value) > 1e-8:
-                                numerical_feats[base_key].append(float(value))
+            for node in kernel_info.nodes.values():
+                for key, value in node.feature_dict.items():
+                    if key in numerical_feats and value > 0:
+                        numerical_feats[key].append(float(value))
 
     scaling_stats = {}
     for key, values in numerical_feats.items():
@@ -296,22 +417,13 @@ def compute_scaling_stats(
             continue
 
         values_arr = np.array(values, dtype=np.float64)
-        if key not in NO_LOG_SCALING_KEYS:
-            values_arr = np.log1p(values_arr)
-
+        values_arr = np.log1p(values_arr)
         mean = np.mean(values_arr)
         std = np.std(values_arr)
         if std < 1e-8:
             std = 1.0
 
         scaling_stats[key] = {'mean': mean, 'std': std}
-
-    if 'latency' in scaling_stats:
-        scaling_stats['min_latency'] = scaling_stats['latency']
-        scaling_stats['max_latency'] = scaling_stats['latency']
-    if 'trip_count' in scaling_stats:
-        scaling_stats['min_trip_count'] = scaling_stats['trip_count']
-        scaling_stats['max_trip_count'] = scaling_stats['trip_count']
 
     return scaling_stats
 

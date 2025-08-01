@@ -10,7 +10,7 @@ from typing import Dict
 import numpy as np
 
 from gnn.data.graph import find_region_node, find_array_node
-from gnn.data.kernel_graph import VitisKernelInfo
+from gnn.data.graph import VitisKernelInfo
 from gnn.data.utils.parsers import parse_tcl_directives
 
 DIRECTIVES = {"pipeline", "unroll", "array_partition", "loop_merge"}

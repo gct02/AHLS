@@ -428,8 +428,8 @@ def compute_snru(util_resources: Tensor, avail_resources: Tensor) -> Tensor:
         )
     
     avail_resources = avail_resources.to(util_resources.device)
-    snru = torch.sum(util_resources / avail_resources, dim=1)
-    return snru * 100
+    snru = torch.sum((util_resources * 100) / avail_resources, dim=1)
+    return snru
 
 
 def compute_time(timing_metrics: Tensor) -> Tensor:

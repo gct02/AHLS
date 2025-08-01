@@ -9,7 +9,7 @@ from gnn.data.graph import (
     find_array_node,
     find_region_node
 )
-from gnn.data.kernel_graph import (
+from gnn.data.graph import (
     VitisKernelInfo,
     RegionNode
 )
