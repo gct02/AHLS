@@ -19,24 +19,13 @@ llvm/profiler/
 llvm/utils/
 llvm/clang_plugins/
 
-*models*/
-*results*/
-*dataset*/
+test_projects/
+old_area_models/
 
+estimators/*/models
+estimators/*/dataset
+fine_tuning/dataset
+
+hls/*.tcl
+/*.sh
 vitis_hls.log
-
-hls_config.tcl
-hls_config_test.tcl
-process_dataset.sh
-test_model.sh
-
-detect_broken_designs.py
-detect_redundant_designs.py
-detect_outliers.py
-inspect_gramschmidt.py
-area_model_analysis.py
-
-shap_values/
-
-gnn/test
-data/hls_determinism_test
