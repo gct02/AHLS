@@ -176,7 +176,7 @@ def main(args):
         benchmark=benchmark,
         metric="Area",
         output_path=output_png,
-        mean_error=mape
+        mape=mape
     )
 
 

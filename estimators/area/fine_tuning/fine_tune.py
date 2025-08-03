@@ -200,7 +200,7 @@ def main(args: Dict[str, str]):
         benchmark=benchmark,
         metric="Area",
         output_path=os.path.join(output_dir, f"predictions.png"),
-        mean_error=mape
+        mape=mape
     )
     print(f"Evaluation MAPE: {mape:.4f}")
 

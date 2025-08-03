@@ -368,8 +368,7 @@ def find_line_containing(lines: List[str], *search_string) -> int:
 def extract_auto_dcts_from_log(hls_log_path):
     AUTO_INLINE_CODE = '[HLS 214-178]'
     AUTO_PIPE_CODE = '[HLS 214-376]'
-    # AUTO_AP_CODE = '[XFORM 203-102]'
-    # AUTO_LF_CODE = '[XFORM 203-541]'
+    AUTO_LF_CODE = '[XFORM 203-541]'
     FINISHED_OPT_MESSAGE = '[HLS 200-111] Finished Compiling Optimization and Transform'
 
     with open(hls_log_path, "r") as f:
@@ -378,8 +377,7 @@ def extract_auto_dcts_from_log(hls_log_path):
     auto_dcts = {
         "inline": set(),
         "pipeline": set(),
-        # "array_partition": set(),
-        # "loop_flatten": set()
+        "loop_flatten": set()
     }
 
     for line in lines:
@@ -398,18 +396,12 @@ def extract_auto_dcts_from_log(hls_log_path):
             loop = line.split('automatically set the pipeline for Loop<')[1].split('>')[0].strip()
             auto_dcts['pipeline'].add(loop)
 
-        # elif AUTO_AP_CODE in line:
-        #     if 'Automatically partitioning small array \'' not in line:
-        #         continue
-        #     array = line.split('Automatically partitioning small array \'')[1].split('\'')[0].strip()
-        #     auto_dcts['array_partition'].add(array)
-
-        # elif AUTO_LF_CODE in line:
-        #     if 'Flattening a loop nest \'' not in line or 'in function \'' not in line:
-        #         continue
-        #     loop = line.split('Flattening a loop nest \'')[1].split('\'')[0].strip()
-        #     function = line.split('in function \'')[1].split('\'')[0].strip()
-        #     auto_dcts['loop_flatten'].add((loop, function))
+        elif AUTO_LF_CODE in line:
+            if 'Flattening a loop nest \'' not in line or 'in function \'' not in line:
+                continue
+            loop = line.split('Flattening a loop nest \'')[1].split('\'')[0].strip()
+            function = line.split('in function \'')[1].split('\'')[0].strip()
+            auto_dcts['loop_flatten'].add((loop, function))
 
     return auto_dcts 
 
@@ -449,7 +441,6 @@ def parse_directive_options(dct_args: List[str]) -> Dict[str, str]:
     parsed_args = {}
 
     i = 0
-    is_loc_parsed = False
     while i < len(dct_args):
         if not dct_args[i]:
             i += 1
@@ -463,9 +454,8 @@ def parse_directive_options(dct_args: List[str]) -> Dict[str, str]:
             else:
                 parsed_args[dct_args[i][1:]] = dct_args[i+1]
                 i += 1
-        elif not is_loc_parsed:
+        elif 'location' not in parsed_args:
             parsed_args['location'] = dct_args[i]
-            is_loc_parsed = True
         else:
             parsed_args['variable'] = dct_args[i]
         i += 1

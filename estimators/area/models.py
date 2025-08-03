@@ -136,7 +136,6 @@ class HLSQoREstimator(nn.Module):
             nn.PReLU(16),
             Linear(16, 16)
         )
-
         self.mlps = nn.ModuleList(
             [
                 nn.Sequential(
@@ -149,7 +148,6 @@ class HLSQoREstimator(nn.Module):
                 for _ in range(NUM_TARGETS)
             ]
         )
-
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -174,8 +172,8 @@ class HLSQoREstimator(nn.Module):
         y_base: Tensor
     ) -> Tensor:
         x = self.gnn(x, edge_index, edge_attr, batch)
-        y_base = self.y_base_mlp(y_base)
 
+        y_base = self.y_base_mlp(y_base)
         x = torch.cat([x, y_base], dim=1)
 
         outs = []

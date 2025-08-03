@@ -1,11 +1,9 @@
 import os
 import argparse
-import random
 import json
 from typing import List, Dict, Tuple, Optional, Union, Any
 
 import matplotlib
-import numpy as np
 import torch
 import torch.nn as nn
 from torch import Tensor
@@ -67,15 +65,12 @@ def evaluate(
 
     print(f"\nMAPE at epoch {epoch + 1}: {mape:.4f}")
 
-    if checkpoint_manager.is_best_checkpoint(mape, epoch):
+    if checkpoint_manager.check_improvement(mape, epoch, update=True):
         indices = [data.solution_index for data in loader.dataset]
-        checkpoint_manager.save(
-            model=model, 
-            epoch=epoch, 
-            mape=mape, 
-            preds=preds, 
-            targets=targets, 
-            indices=indices
+        checkpoint_manager.save_checkpoint(
+            model=model, epoch=epoch, mape=mape, 
+            preds=preds, targets=targets, indices=indices,
+            check_for_improvement=False
         )
         print(f"Saving model at epoch {epoch + 1} with MAPE = {mape:.4f}")
 
@@ -161,6 +156,7 @@ def main(args: Dict[str, Any]):
     max_norm = float(args['max_norm'])
     loss = args['loss']
     output_dir = args['output_dir']
+    burn_in = int(args.get('burn_in', 15))
     
     if not os.path.exists(dataset_dir):
         raise FileNotFoundError(f"Dataset directory not found: {dataset_dir}")
@@ -184,14 +180,14 @@ def main(args: Dict[str, Any]):
 
     model_args = {
         'in_channels': NODE_DIM,
-        'hidden_channels': 160,
+        'hidden_channels': 200,
         'num_layers': 3,
         'edge_dim': EDGE_DIM,
         'heads': 4,
         'negative_slope': 0.2,
         'dropout_gnn': 0.1,
-        'dropout_mlp': 0.1,
-        'gmt_k': 16,
+        'dropout_mlp': 0.2,
+        'gmt_k': 10,
         'jk_mode': 'lstm'
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
@@ -274,7 +270,7 @@ def main(args: Dict[str, Any]):
         device=DEVICE
     )
 
-    checkpoint_manager = CheckpointManager(output_dir)
+    checkpoint_manager = CheckpointManager(output_dir, burn_in_epochs=burn_in)
 
     train_errors, test_errors = train_model(
         model, loss_fn, optimizer, 
@@ -286,7 +282,7 @@ def main(args: Dict[str, Any]):
     )
 
     indices = [data.solution_index for data in test_loader.dataset]
-    preds = checkpoint_manager.get_best_predictions().tolist()
+    preds = checkpoint_manager.get_best_outputs().tolist()
 
     all_original_targets = []
     for data in test_loader:
@@ -297,7 +293,7 @@ def main(args: Dict[str, Any]):
         available_resources
     ).tolist()
 
-    min_mape = checkpoint_manager.get_min_mape()
+    min_mape = checkpoint_manager.get_minimum_mape()
     
     plot_prediction_bars(
         targets=targets,
@@ -306,7 +302,7 @@ def main(args: Dict[str, Any]):
         benchmark=test_bench, 
         metric='Area', 
         output_path=f"{output_dir}/predictions.png", 
-        mean_error=min_mape
+        mape=min_mape
     )
     save_training_artifacts(
         test_targets=targets,
@@ -335,7 +331,7 @@ def save_training_artifacts(
         targets=test_targets, 
         preds=test_preds, 
         output_path=f"{output_dir}/predictions_scatter.png", 
-        mean_error=min_mape
+        mape=min_mape
     )
     
 
@@ -409,6 +405,8 @@ def parse_arguments():
                         help='Maximum norm for gradient clipping (default: 5.0).')
     parser.add_argument('-hd', '--huber-delta', type=float, default=1.0,
                         help='Delta parameter for Huber loss (default: 1.0). Only used if loss is set to "huber".')
+    parser.add_argument('-bi', '--burn-in', type=int, default=15,
+                        help='Number of burn-in epochs before saving the first checkpoint (default: 15).')
     parser.add_argument('-o', '--output-dir', type=str, default='',
                         help='Directory to save the output files (default: the script directory).')
     return vars(parser.parse_args())

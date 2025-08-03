@@ -1,40 +1,52 @@
+from typing import List, Optional, Union
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score
-from typing import List, Optional, Union
+import torch
 from torch import Tensor
+from sklearn.metrics import r2_score
 
 from estimators.common.losses import mape_loss
 
 
 def plot_prediction_bars(
-    targets: List[float],
-    preds: List[float],
+    targets: Union[Tensor, List[float]],
+    preds: Union[Tensor, List[float]],
     indices: List[int],
     benchmark: str, 
     metric: str, 
     output_path: str,
-    errors: Optional[Union[Tensor, List[float]]] = None,
-    mean_error: Optional[float] = None
+    per_instance_errors: Optional[Union[Tensor, List[float]]] = None,
+    mape: Optional[float] = None
 ):
     """Plot per-benchmark instance-level predictions and errors"""
+    if isinstance(targets, Tensor):
+        targets = targets.tolist()
+    if isinstance(preds, Tensor):
+        preds = preds.tolist()
+
     num_instances = len(targets)
     if num_instances != len(preds) or num_instances != len(indices):
         raise ValueError("Mismatch in number of targets, predictions and indices")
     
-    if errors is None:
-        errors = [mape_loss(p, t).item() for p, t in zip(preds, targets)]
+    if per_instance_errors is None:
+        per_instance_errors = [
+            np.abs(p - t) / (np.abs(t) + 1e-6) 
+            for t, p in zip(targets, preds)
+        ]
+    elif isinstance(per_instance_errors, Tensor):
+        per_instance_errors = per_instance_errors.tolist()
 
-    if mean_error is None:
-        mean_error = np.mean(errors)
+    if mape is None:
+        mape = np.mean(per_instance_errors)
 
     df = pd.DataFrame({
         'index': indices,
         'target': targets,
         'prediction': preds,
-        'error': errors
+        'error': per_instance_errors
     })
     df = df.sort_values(by=['error'], ascending=True, ignore_index=True)
 
@@ -63,9 +75,9 @@ def plot_prediction_bars(
         df['index'], rotation=90, ha='center', va='top', fontsize=4, alpha=0.9
     )
 
-    mean_error = mean_error * 100  # Convert to percentage
+    mape = mape * 100  # Convert to percentage
     ax.text(
-        0.12, 0.95, f"MAPE: {mean_error:.2f}%", 
+        0.12, 0.95, f"MAPE: {mape:.2f}%", 
         transform=ax.transAxes, fontsize=11, ha='center'
     )
     ax.set_title(f"Predictions for {benchmark.upper()} ({metric.upper()})", fontsize=14)
@@ -79,16 +91,19 @@ def plot_prediction_bars(
 
 
 def plot_learning_curves(
-    train_errors: List[float], 
-    test_errors: List[float], 
+    train_errors: Union[Tensor, List[float]], 
+    test_errors: Union[Tensor, List[float]], 
     output_path: str
 ):
+    """Plot training and test errors over epochs"""
+    if isinstance(train_errors, Tensor):
+        train_errors = train_errors.tolist()
+    if isinstance(test_errors, Tensor):
+        test_errors = test_errors.tolist()
+
     num_epochs = len(train_errors)
     if num_epochs != len(test_errors):
         raise ValueError("Mismatch in number of training and test epochs")
-    
-    train_errors = list(map(lambda x: x / 100, train_errors))
-    test_errors = list(map(lambda x: x / 100, test_errors))
 
     plt.figure(figsize=(12, 6), dpi=150)
     sns.set_style("whitegrid")
@@ -120,12 +135,26 @@ def plot_learning_curves(
 
 
 def plot_prediction_scatter(
-    targets: List[float], 
-    preds: List[float], 
+    targets: Union[Tensor, List[float]], 
+    preds: Union[Tensor, List[float]], 
     output_path: str,
-    errors: Optional[Union[Tensor, List[float]]] = None,
-    mean_error: Optional[float] = None
+    mape: Optional[float] = None
 ):
+    """Plot scatter plot of actual vs predicted values with regression line"""
+    if mape is None:
+        targets_as_tensor = torch.tensor(targets) if isinstance(targets, list) else targets
+        preds_as_tensor = torch.tensor(preds) if isinstance(preds, list) else preds
+        mape = mape_loss(preds_as_tensor, targets_as_tensor).item()
+        mape = mape * 100  # Convert to percentage
+
+    if isinstance(targets, Tensor):
+        targets = targets.tolist()
+    if isinstance(preds, Tensor):
+        preds = preds.tolist()
+        
+    if len(targets) != len(preds):
+        raise ValueError("Mismatch in number of targets and predictions")
+    
     max_val = max(max(targets), max(preds)) * 1.1
     min_val = min(min(targets), min(preds)) * 0.9
 
@@ -147,18 +176,11 @@ def plot_prediction_scatter(
         x=targets, y=preds, alpha=0.6, edgecolor='w', 
         label='Predictions'
     )
-
-    if mean_error is None:
-        if errors is None:
-            errors = mape_loss(preds, targets).tolist()
-        else:
-            errors = errors.tolist()
-        mean_error = np.mean(errors)
             
     r2 = r2_score(targets, preds)
     plt.text(
         min_val*1.05, max_val*0.9, 
-        f'MAPE: {mean_error:.4f}\nR²: {r2:.4f}', 
+        f'MAPE: {mape:.2f}\nR²: {r2:.4f}', 
         bbox=dict(facecolor='white', alpha=0.8)
     )
     

@@ -276,14 +276,6 @@ def compute_base_target_scaling_stats(
     base_targets: Dict[str, List[float]],
     log_transform: bool = True
 ) -> StatsDict:
-    """Compute statistics (mean and std deviation) for base target metrics.
-    
-    Args:
-        base_targets (Dict[str, List[float]]): Base target metrics for each benchmark.
-        
-    Returns:
-        StatsDict: Scaling statistics for each target metric.
-    """
     scaling_stats = {}
     for key in AREA_METRICS:
         if not base_targets[key]:
@@ -297,7 +289,6 @@ def compute_base_target_scaling_stats(
         std = np.std(values)
         if std < 1e-8:
             std = 1.0
-
         scaling_stats[key] = {'mean': mean, 'std': std}
 
     return scaling_stats
@@ -362,16 +353,8 @@ def compute_dct_scaling_stats(
     dataset_dir: str,
     benchmarks: Optional[Union[str, List[str]]] = None
 ) -> StatsDict:
-    """Compute statistics (mean and std deviation) for numerical features in the dataset.
-    Args:
-        dataset_dir (str): Path to the dataset directory.
-        benchmarks (Optional[Union[str, List[str]]]): Specific benchmarks to compute stats for.
-    Returns:
-        Dict[str, Dict[str, float]]: Scaling statistics for each numerical feature.
-    """
-    numerical_feats = {
-        feat: [] for feat in ['partition_factor', 'unroll_factor', 'target_ii']
-    }
+    numerical_feats = {feat: [] for feat in ['unroll_factor', 'partition_factor']}
+    
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
     elif isinstance(benchmarks, str):
@@ -397,9 +380,12 @@ def compute_dct_scaling_stats(
                 kernel_info = pickle.load(f)
 
             for node in kernel_info.nodes.values():
-                for key, value in node.feature_dict.items():
-                    if key in numerical_feats and value > 0:
-                        numerical_feats[key].append(float(value))
+                if node.node_type == 'region' and node.is_loop:
+                    unroll_factor = float(node.feature_dict.get('unroll_factor', 0))
+                    numerical_feats['unroll_factor'].append(unroll_factor)
+                elif node.node_type in ['internal_mem', 'port'] and node.is_array:
+                    partition_factor = float(node.feature_dict.get('partition_factor', 0))
+                    numerical_feats['partition_factor'].append(partition_factor)
 
     scaling_stats = {}
     for key, values in numerical_feats.items():
@@ -413,7 +399,6 @@ def compute_dct_scaling_stats(
         std = np.std(values_arr)
         if std < 1e-8:
             std = 1.0
-
         scaling_stats[key] = {'mean': mean, 'std': std}
 
     return scaling_stats
