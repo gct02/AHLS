@@ -194,7 +194,7 @@ NUMERICAL_FEATURES = [
 ]
 NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'op_delay']
 
-GRAPH_FEATURES = [
+GRAPH_ATTRS = [
     'num_nodes', 'num_edges', 'num_ops', 'num_blocks',
     'num_functions', 'num_loops', 'num_arrays', 'num_mem_ops',
     'num_arith_ops', 'mem_intensity', 'num_int_ops', 'num_fp_ops',
@@ -214,7 +214,7 @@ GRAPH_FEATURES = [
     'num_loop_merges', 'num_inlines', 'num_dataflows',
     'lut', 'ff', 'dsp', 'bram'
 ]
-GRAPH_ATTR_DIM = len(GRAPH_FEATURES)
+GRAPH_ATTR_DIM = len(GRAPH_ATTRS)
 
 
 def get_default_feature_value(key: str) -> Any:
@@ -1784,7 +1784,7 @@ def compute_graph_attr_scaling_stats(
     dataset_dir: str,
     benchmarks: Optional[Union[str, List[str]]] = None,
 ) -> Dict[str, Dict[str, float]]:
-    graph_attrs = {feat: [] for feat in GRAPH_FEATURES}
+    graph_attrs = {feat: [] for feat in GRAPH_ATTRS}
 
     if benchmarks is None:
         benchmarks = sorted(os.listdir(dataset_dir))
