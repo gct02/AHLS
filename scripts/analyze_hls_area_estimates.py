@@ -4,18 +4,14 @@ from pathlib import Path
 import torch
 import numpy as np
 
-from gnn.data.utils.parsers import (
-    extract_utilization,
+from estimators.common.parsers import (
+    AREA_METRICS,
+    AVAILABLE_RESOURCES,
+    extract_area_metrics,
     extract_hls_area_estimates
 )
-from gnn.data.utils.parsers import (
-    AVAILABLE_RESOURCES, 
-    AREA_METRICS
-)
-from gnn.analysis.utils import (
-    mape_loss, 
-    compute_snru
-)
+from estimators.area.data_utils import compute_snru
+from estimators.common.losses import mape_loss
 
 
 def compute_baseline_error(
@@ -49,17 +45,17 @@ def compute_baseline_error(
         targets = []
         for solution_dir in Path(benchmark_dir).iterdir():
             if (not solution_dir.is_dir() or 
-                not solution_dir.name.startswith("solution")):
+                not solution_dir.name.startswith("solution") or
+                solution_dir.name == "solution0"):
                 continue
-            filtered = solution_dir.name != "solution0"
 
-            impl_util_rpt = extract_utilization(solution_dir, filtered)
+            impl_util_rpt = extract_area_metrics(solution_dir)
             if not validate_report(impl_util_rpt):
                 if verbose:
                     print(f"Invalid implementation report for {solution_dir.name}")
                 continue
 
-            hls_util_rpt = extract_hls_area_estimates(solution_dir, filtered)
+            hls_util_rpt = extract_hls_area_estimates(solution_dir)
             if not validate_report(hls_util_rpt):
                 if verbose:
                     print(f"Invalid HLS area estimates for {solution_dir.name}")

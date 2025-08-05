@@ -19,7 +19,7 @@ def main(args: Dict[str, Any]):
     dataset_dir = Path(args['dataset_dir'])
     output_dir = Path(args['output_dir'])
     bench_info_path = Path(args['benchmark_info_path'])
-    max_instances = args.get('max_instances', 500)
+    max_instances = args.get('max_instances', 1000)
 
     if not dataset_dir.exists() or not dataset_dir.is_dir():
         raise FileNotFoundError(f"Dataset directory not found: {dataset_dir}")
@@ -103,7 +103,7 @@ def parse_args():
                         help="Path to the output directory")
     parser.add_argument("-b", "--benchmark-info-path", default="data/benchmark_info.json",
                         help="Path to the benchmark info JSON file")
-    parser.add_argument("-mi", "--max-instances", type=int, default=500,
+    parser.add_argument("-mi", "--max-instances", type=int, default=1000,
                         help="Maximum number of instances to process per benchmark")
     return vars(parser.parse_args())
 

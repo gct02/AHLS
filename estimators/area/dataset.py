@@ -4,6 +4,7 @@ import shutil
 import json
 import pickle
 import math
+import copy
 from collections import defaultdict
 from typing import Union, Optional, List, Dict
 
@@ -73,16 +74,15 @@ class HLSDataset(Dataset):
                 continue
 
             with open(graph_path, 'rb') as f:
-                graph = pickle.load(f)
+                base_graphs[benchmark] = pickle.load(f)
 
             self.base_targets[benchmark] = []
-            base_graphs[benchmark] = graph
-            self.benchmarks.append(benchmark)
-
             for key in AREA_METRICS:
                 value = math.log1p(float(metrics[key]))
                 base_target_dict[key].append(value)
                 self.base_targets[benchmark].append(value)
+
+            self.benchmarks.append(benchmark)
 
         if not scaling_stats:
             self.scaling_stats = compute_scaling_stats(list(base_graphs.values()))
@@ -91,21 +91,21 @@ class HLSDataset(Dataset):
             )
             self.scaling_stats.update(dct_scaling_stats)
         else:
-            self.scaling_stats = scaling_stats
+            self.scaling_stats = copy.deepcopy(scaling_stats)
 
         if not target_scaling_stats:
             self.target_scaling_stats = compute_target_scaling_stats(
                 self.full_dataset_dir, benchmarks=self.benchmarks
             )
         else:
-            self.target_scaling_stats = target_scaling_stats
+            self.target_scaling_stats = copy.deepcopy(target_scaling_stats)
 
         if not base_target_scaling_stats:
             self.base_target_scaling_stats = compute_base_target_scaling_stats(
                 base_target_dict, log_transform=False
             )
         else:
-            self.base_target_scaling_stats = base_target_scaling_stats
+            self.base_target_scaling_stats = copy.deepcopy(base_target_scaling_stats)
         
         # Standardize base targets
         for bench, base_target in self.base_targets.items():
@@ -113,8 +113,7 @@ class HLSDataset(Dataset):
             for key, value in zip(AREA_METRICS, base_target):
                 mean = self.base_target_scaling_stats[key]['mean']
                 std = self.base_target_scaling_stats[key]['std']
-                value = (value - mean) / std
-                target.append(value)
+                target.append((value - mean) / std)
 
             self.base_targets[bench] = torch.tensor(target, dtype=torch.float32).unsqueeze(0)
 
@@ -189,18 +188,17 @@ class HLSDataset(Dataset):
                     print(f"Skipping {idx} (missing metrics)")
                     continue
 
-                target = []
                 original_target = []
+                target = []
                 for key in AREA_METRICS:
                     mean = self.target_scaling_stats[key]['mean']
                     std = self.target_scaling_stats[key]['std']
                     value = float(metrics[key])
                     original_target.append(value)
-                    value = (math.log1p(value) - mean) / std
-                    target.append(value)
+                    target.append((math.log1p(value) - mean) / std)
 
-                target = torch.tensor(target, dtype=torch.float32).unsqueeze(0)
                 original_target = torch.tensor(original_target, dtype=torch.float32).unsqueeze(0)
+                target = torch.tensor(target, dtype=torch.float32).unsqueeze(0)
 
                 with open(graph_path, 'rb') as f:
                     graph = pickle.load(f)
@@ -211,8 +209,6 @@ class HLSDataset(Dataset):
 
                 xs = [None] * len(node_id_map)
                 for node_id, node in graph.nodes.items():
-                    if len(node.get_homogeneous_features()) > 200:
-                        print(node_id)
                     xs[node_id_map[node_id]] = torch.tensor(node.get_homogeneous_features(), dtype=torch.float32)
 
                 edge_indices = []
@@ -278,7 +274,7 @@ def compute_base_target_scaling_stats(
 ) -> StatsDict:
     scaling_stats = {}
     for key in AREA_METRICS:
-        if not base_targets[key]:
+        if key not in base_targets or not base_targets[key]:
             scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
             continue
 
@@ -334,7 +330,7 @@ def compute_target_scaling_stats(
 
     scaling_stats = {}
     for key in AREA_METRICS:
-        if not targets[key]:
+        if key not in targets or not targets[key]:
             scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
         else:
             values = np.array(targets[key], dtype=np.float64)
@@ -380,12 +376,14 @@ def compute_dct_scaling_stats(
                 kernel_info = pickle.load(f)
 
             for node in kernel_info.nodes.values():
-                if node.node_type == 'region' and node.is_loop:
-                    unroll_factor = float(node.feature_dict.get('unroll_factor', 0))
-                    numerical_feats['unroll_factor'].append(unroll_factor)
-                elif node.node_type in ['internal_mem', 'port'] and node.is_array:
-                    partition_factor = float(node.feature_dict.get('partition_factor', 0))
-                    numerical_feats['partition_factor'].append(partition_factor)
+                if node.node_type == 'region':
+                    unroll_factor = node.feature_dict.get('unroll_factor', 0)
+                    if unroll_factor > 0:
+                        numerical_feats['unroll_factor'].append(float(unroll_factor))
+                elif node.node_type in ['internal_mem', 'port']:
+                    partition_factor = node.feature_dict.get('partition_factor', 0)
+                    if partition_factor > 0:
+                        numerical_feats['partition_factor'].append(float(partition_factor))
 
     scaling_stats = {}
     for key, values in numerical_feats.items():

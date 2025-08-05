@@ -9,7 +9,7 @@ import sklearn
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 
-from gnn.analysis.utils import (
+from estimators.common.analysis_utils import (
     cluster_by_directive,
     collate_data_for_analysis
 )

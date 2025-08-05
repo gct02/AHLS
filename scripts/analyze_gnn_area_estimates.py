@@ -4,10 +4,8 @@ from typing import Optional, Union, Dict, Any
 
 import torch
 
-from gnn.analysis.utils import (
-    parse_predictions,
-    smape_loss
-)
+from estimators.common.analysis_utils import parse_predictions
+from estimators.common.losses import mape_loss
 
 
 def evaluate_results_on_benchmark(
@@ -35,7 +33,7 @@ def evaluate_results_on_benchmark(
     preds = torch.tensor(preds, dtype=torch.float32)
     targets = torch.tensor(targets, dtype=torch.float32)
     
-    return smape_loss(preds, targets).mean().item()
+    return mape_loss(preds, targets).mean().item()
 
 
 def evaluate_results(
@@ -44,10 +42,10 @@ def evaluate_results(
 ):
     # Compute MAPE for the results in the specified models directory
     # The directory should be structured as following:
-    # <models_dir>/
-    #   - <benchmark>/
-    #     - predictions.csv
-    #     - <other_files>
+    # models_dir/
+    #   benchmark_name/
+    #     predictions.csv
+    #     ... (other files)
     mape_results = {}
 
     for benchmark, info in benchmark_info_dict.items():

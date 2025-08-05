@@ -3,35 +3,41 @@
 
   },
   "Local": {
-    "stencil3d/C": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "stencil3d/sol": {
+      "Name": "sol",
+      "FunctionName": "stencil3d",
       "Param": 1,
-      "TotalSize": 2,
-      "Dimensions": [2],
+      "TotalSize": 2048,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [2048],
       "Stores": [],
       "Loads": [],
       "GEPs": []
     },
     "stencil3d/orig": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "orig",
+      "FunctionName": "stencil3d",
       "Param": 1,
       "TotalSize": 2048,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [2048],
       "Stores": [],
       "Loads": [],
       "GEPs": []
     },
-    "stencil3d/sol": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "stencil3d/C": {
+      "Name": "C",
+      "FunctionName": "stencil3d",
       "Param": 1,
-      "TotalSize": 2048,
-      "Dimensions": [2048],
+      "TotalSize": 2,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [2],
       "Stores": [],
       "Loads": [],
       "GEPs": []

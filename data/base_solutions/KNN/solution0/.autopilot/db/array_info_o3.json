@@ -3,82 +3,96 @@
 
   },
   "Local": {
-    "md_kernel/force_x": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "md_kernel/NL": {
+      "Name": "NL",
+      "FunctionName": "md_kernel",
       "Param": 1,
-      "TotalSize": 256,
-      "Dimensions": [256],
-      "Stores": [{ "FunctionName": "md_kernel", "Index": 1 }],
-      "Loads": [],
-      "GEPs": [{ "FunctionName": "md_kernel", "Name": "force_x_addr" }]
-    },
-    "md_kernel/force_y": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
+      "TotalSize": 4096,
+      "BaseBitwidth": 32,
       "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 256,
-      "Dimensions": [256],
-      "Stores": [{ "FunctionName": "md_kernel", "Index": 2 }],
-      "Loads": [],
-      "GEPs": [{ "FunctionName": "md_kernel", "Name": "force_y_addr" }]
-    },
-    "md_kernel/force_z": {
-      "BaseBitwidth": 64,
       "BaseType": 11,
-      "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 256,
-      "Dimensions": [256],
-      "Stores": [{ "FunctionName": "md_kernel", "Index": 3 }],
-      "Loads": [],
-      "GEPs": [{ "FunctionName": "md_kernel", "Name": "force_z_addr" }]
-    },
-    "md_kernel/position_x": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 256,
-      "Dimensions": [256],
+      "Dimensions": [4096],
       "Stores": [],
-      "Loads": [{ "FunctionName": "md_kernel", "Name": "position_x_load_1" }, { "FunctionName": "md_kernel", "Name": "position_x_load" }],
-      "GEPs": [{ "FunctionName": "md_kernel", "Name": "position_x_addr_1" }, { "FunctionName": "md_kernel", "Name": "position_x_addr" }]
-    },
-    "md_kernel/position_y": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 256,
-      "Dimensions": [256],
-      "Stores": [],
-      "Loads": [{ "FunctionName": "md_kernel", "Name": "position_y_load_1" }, { "FunctionName": "md_kernel", "Name": "position_y_load" }],
-      "GEPs": [{ "FunctionName": "md_kernel", "Name": "position_y_addr_1" }, { "FunctionName": "md_kernel", "Name": "position_y_addr" }]
+      "Loads": [{ "FunctionName": "md_kernel", "Name": "jidx" }],
+      "GEPs": [{ "FunctionName": "md_kernel", "Name": "NL_addr" }]
     },
     "md_kernel/position_z": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "position_z",
+      "FunctionName": "md_kernel",
       "Param": 1,
       "TotalSize": 256,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [256],
       "Stores": [],
       "Loads": [{ "FunctionName": "md_kernel", "Name": "position_z_load_1" }, { "FunctionName": "md_kernel", "Name": "position_z_load" }],
       "GEPs": [{ "FunctionName": "md_kernel", "Name": "position_z_addr_1" }, { "FunctionName": "md_kernel", "Name": "position_z_addr" }]
     },
-    "md_kernel/NL": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "md_kernel/position_y": {
+      "Name": "position_y",
+      "FunctionName": "md_kernel",
       "Param": 1,
-      "TotalSize": 4096,
-      "Dimensions": [4096],
+      "TotalSize": 256,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [256],
       "Stores": [],
-      "Loads": [{ "FunctionName": "md_kernel", "Name": "jidx" }],
-      "GEPs": [{ "FunctionName": "md_kernel", "Name": "NL_addr" }]
+      "Loads": [{ "FunctionName": "md_kernel", "Name": "position_y_load_1" }, { "FunctionName": "md_kernel", "Name": "position_y_load" }],
+      "GEPs": [{ "FunctionName": "md_kernel", "Name": "position_y_addr_1" }, { "FunctionName": "md_kernel", "Name": "position_y_addr" }]
+    },
+    "md_kernel/position_x": {
+      "Name": "position_x",
+      "FunctionName": "md_kernel",
+      "Param": 1,
+      "TotalSize": 256,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [256],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "md_kernel", "Name": "position_x_load_1" }, { "FunctionName": "md_kernel", "Name": "position_x_load" }],
+      "GEPs": [{ "FunctionName": "md_kernel", "Name": "position_x_addr_1" }, { "FunctionName": "md_kernel", "Name": "position_x_addr" }]
+    },
+    "md_kernel/force_z": {
+      "Name": "force_z",
+      "FunctionName": "md_kernel",
+      "Param": 1,
+      "TotalSize": 256,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [256],
+      "Stores": [{ "FunctionName": "md_kernel", "Index": 3 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "md_kernel", "Name": "force_z_addr" }]
+    },
+    "md_kernel/force_y": {
+      "Name": "force_y",
+      "FunctionName": "md_kernel",
+      "Param": 1,
+      "TotalSize": 256,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [256],
+      "Stores": [{ "FunctionName": "md_kernel", "Index": 2 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "md_kernel", "Name": "force_y_addr" }]
+    },
+    "md_kernel/force_x": {
+      "Name": "force_x",
+      "FunctionName": "md_kernel",
+      "Param": 1,
+      "TotalSize": 256,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [256],
+      "Stores": [{ "FunctionName": "md_kernel", "Index": 1 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "md_kernel", "Name": "force_x_addr" }]
     }
   }
 }

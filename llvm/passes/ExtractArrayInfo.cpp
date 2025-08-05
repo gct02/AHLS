@@ -1,6 +1,6 @@
 #include <fstream>
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <utility>
 #include <vector>
@@ -38,7 +38,7 @@ struct ArrayInfo {
     std::string Name;
     std::string FunctionName;
 
-    std::map<std::string, uint32_t> Attributes;
+    std::unordered_map<std::string, uint32_t> Attributes;
     std::vector<uint32_t> Dimensions;
 
     std::vector<std::pair<std::string, std::string>> Loads;
@@ -79,8 +79,8 @@ struct ExtractArrayInfoPass : public ModulePass {
     static char ID;
     ExtractArrayInfoPass() : ModulePass(ID) {}
 
-    std::vector<ArrayInfo*> GlobalArrayInfoList;
-    std::vector<ArrayInfo*> LocalArrayInfoList;
+    std::unordered_map<std::string, ArrayInfo*> GlobalArrayInfoMap;
+    std::unordered_map<std::string, ArrayInfo*> LocalArrayInfoMap;
 
     bool runOnModule(Module& M) override {
         #define DEBUG_TYPE "extract-array-info"
@@ -109,16 +109,18 @@ struct ExtractArrayInfoPass : public ModulePass {
 
         OutputStream << "{\n  \"Global\": {\n";
         bool FirstEntry = true;
-        for (const auto* AI : GlobalArrayInfoList) {
+        for (const auto& Pair : GlobalArrayInfoMap) {
+            const std::string& Key = Pair.first;
+            const ArrayInfo* AI = Pair.second;
+
             if (!FirstEntry) OutputStream << ",\n";
             FirstEntry = false;
-            OutputStream << "    \"" << AI->Name << "\": {\n";
 
-            bool FirstAttr = true;
+            OutputStream << "    \"" << Key << "\": {\n";
+            OutputStream << "      \"Name\": \"" << AI->Name << "\"";
+
             for (const auto& Attr : AI->Attributes) {
-                if (!FirstAttr) OutputStream << ",\n";
-                FirstAttr = false;
-                OutputStream << "      \"" << Attr.first << "\": " << Attr.second;
+                OutputStream << ",\n      \"" << Attr.first << "\": " << Attr.second;
             }
             OutputStream << ",\n";
 
@@ -158,16 +160,19 @@ struct ExtractArrayInfoPass : public ModulePass {
 
         OutputStream << "  \"Local\": {\n";
         FirstEntry = true;
-        for (const auto* AI : LocalArrayInfoList) {
+        for (const auto& Pair : LocalArrayInfoMap) {
+            const std::string& Key = Pair.first;
+            const ArrayInfo* AI = Pair.second;
+
             if (!FirstEntry) OutputStream << ",\n";
             FirstEntry = false;
-            OutputStream << "    \"" << AI->FunctionName << "/" << AI->Name << "\": {\n";
 
-            bool FirstAttr = true;
+            OutputStream << "    \"" << Key << "\": {\n";
+            OutputStream << "      \"Name\": \"" << AI->Name << "\",\n";
+            OutputStream << "      \"FunctionName\": \"" << AI->FunctionName << "\"";
+
             for (const auto& Attr : AI->Attributes) {
-                if (!FirstAttr) OutputStream << ",\n";
-                FirstAttr = false;
-                OutputStream << "      \"" << Attr.first << "\": " << Attr.second;
+                OutputStream << ",\n      \"" << Attr.first << "\": " << Attr.second;
             }
             OutputStream << ",\n";
 
@@ -215,7 +220,7 @@ struct ExtractArrayInfoPass : public ModulePass {
             if (!Ty->isArrayTy()) continue;
 
             std::string Name = G.getName().str();
-            if (Name.rfind("empty", 0) == 0) continue;
+            if (Lowered && Name.rfind("empty", 0) == 0) continue;
 
             if (!Lowered) {
                 size_t DotPos = Name.find('.');
@@ -223,15 +228,15 @@ struct ExtractArrayInfoPass : public ModulePass {
                     Name = Name.substr(DotPos + 1);
                 }
             }
-            ArrayInfo* AI = getArrayInfo(Ty, Name, &G, "__global__");
+            ArrayInfo* AI = getArrayInfo(Ty, Name, &G, "");
             AI->setAttribute("Global", 1);
-            GlobalArrayInfoList.push_back(AI);
+            GlobalArrayInfoMap[Name] = AI;
         }
     }
 
     void extractLocalArrayInfo(Module& M) {
         for (Function& F : M) {
-            std::string FunctionName = F.hasName() ? F.getName().str() : "__unnamed__";
+            std::string FunctionName = F.hasName() ? F.getName().str() : "";
 
             // Array parameters
             for (Argument& A : F.args()) {
@@ -248,7 +253,7 @@ struct ExtractArrayInfoPass : public ModulePass {
                     std::string Name = A.getName().str();
                     ArrayInfo* AI = getArrayInfo(Ty, Name, &A, FunctionName);
                     AI->setAttribute("Param", 1);
-                    LocalArrayInfoList.push_back(AI);
+                    LocalArrayInfoMap[FunctionName + "/" + Name] = AI;
                 }
             }
 
@@ -264,7 +269,8 @@ struct ExtractArrayInfoPass : public ModulePass {
                         if (Ty->isArrayTy()) {
                             std::string Name = I.getName().str();
                             ArrayInfo* AInfo = getArrayInfo(Ty, Name, AI, FunctionName);
-                            LocalArrayInfoList.push_back(AInfo);
+                            AInfo->setAttribute("Alloca", 1);
+                            LocalArrayInfoMap[FunctionName + "/" + Name] = AInfo;
                         }
                     }
                 }

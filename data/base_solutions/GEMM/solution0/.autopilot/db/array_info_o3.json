@@ -3,38 +3,44 @@
 
   },
   "Local": {
-    "bbgemm/m1": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "bbgemm/prod": {
+      "Name": "prod",
+      "FunctionName": "bbgemm",
       "Param": 1,
       "TotalSize": 4096,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [4096],
-      "Stores": [],
-      "Loads": [{ "FunctionName": "bbgemm", "Name": "m1_load" }],
-      "GEPs": [{ "FunctionName": "bbgemm", "Name": "m1_addr" }]
+      "Stores": [{ "FunctionName": "bbgemm", "Index": 1 }],
+      "Loads": [{ "FunctionName": "bbgemm", "Name": "prod_load" }],
+      "GEPs": [{ "FunctionName": "bbgemm", "Name": "prod_addr" }]
     },
     "bbgemm/m2": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "m2",
+      "FunctionName": "bbgemm",
       "Param": 1,
       "TotalSize": 4096,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [4096],
       "Stores": [],
       "Loads": [{ "FunctionName": "bbgemm", "Name": "m2_load" }],
       "GEPs": [{ "FunctionName": "bbgemm", "Name": "m2_addr" }]
     },
-    "bbgemm/prod": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "bbgemm/m1": {
+      "Name": "m1",
+      "FunctionName": "bbgemm",
       "Param": 1,
       "TotalSize": 4096,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [4096],
-      "Stores": [{ "FunctionName": "bbgemm", "Index": 1 }],
-      "Loads": [{ "FunctionName": "bbgemm", "Name": "prod_load" }],
-      "GEPs": [{ "FunctionName": "bbgemm", "Name": "prod_addr" }]
+      "Stores": [],
+      "Loads": [{ "FunctionName": "bbgemm", "Name": "m1_load" }],
+      "GEPs": [{ "FunctionName": "bbgemm", "Name": "m1_addr" }]
     }
   }
 }

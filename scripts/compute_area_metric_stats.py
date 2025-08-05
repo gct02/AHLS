@@ -1,13 +1,14 @@
 import os
 
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from gnn.data.utils.parsers import extract_utilization
+from estimators.common.parsers import (
+    extract_area_metrics,
+    AREA_METRICS,
+)
 
-METRICS = ['lut', 'ff', 'dsp', 'bram']
 BENCHMARKS = [
     'ADPCM', 'AES', 'BACKPROP', 'GEMM', 'GRAMSCHMIDT', 
     'GSM', 'KNN', 'SHA', 'STENCIL3D', 'TRANS_FFT'
@@ -24,7 +25,7 @@ for bench in BENCHMARKS:
         print(f"Benchmark directory not found: {bench_dir}")
         continue
 
-    util_dict = {metric: [] for metric in METRICS}
+    util_dict = {metric: [] for metric in AREA_METRICS}
     for sol in os.listdir(bench_dir):
         sol_dir = os.path.join(bench_dir, sol)
         if (not os.path.isdir(sol_dir) or 
@@ -32,22 +33,22 @@ for bench in BENCHMARKS:
             sol == 'solution0'):
             continue
 
-        util = extract_utilization(sol_dir, filtered=True)
-        if any(util[metric] < 0 for metric in METRICS):
+        util = extract_area_metrics(sol_dir, filtered=True)
+        if any(util[metric] < 0 for metric in AREA_METRICS):
             continue
 
-        for metric in METRICS:
+        for metric in AREA_METRICS:
             util_dict[metric].append(float(util[metric]))
 
     sol0_util = None
     # sol0_dir = os.path.join(bench_dir, 'solution0')
     sol0_dir = os.path.join(base_sols_dir, bench, 'solution0')
     if os.path.exists(sol0_dir):
-        sol0_util = extract_utilization(sol0_dir)
-        if any(sol0_util[metric] < 0 for metric in METRICS):
+        sol0_util = extract_area_metrics(sol0_dir)
+        if any(sol0_util[metric] < 0 for metric in AREA_METRICS):
             sol0_util = None
 
-    for metric in METRICS:
+    for metric in AREA_METRICS:
         metric_util = util_dict.get(metric, [])
         if not metric_util:
             print(f"No data for {metric} in benchmark {bench}.")

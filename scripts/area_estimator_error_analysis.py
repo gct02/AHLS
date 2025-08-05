@@ -13,13 +13,15 @@ from interpret.glassbox import ExplainableBoostingRegressor
 from interpret import set_visualize_provider
 from interpret.provider import DashProvider
 
-from gnn.analysis.utils import encode_directives, mape_loss, compute_snru
-from gnn.data.utils.parsers import (
-    extract_utilization,
-    extract_hls_area_estimates,
+from estimators.common.parsers import (
     AREA_METRICS,
-    AVAILABLE_RESOURCES
+    AVAILABLE_RESOURCES,
+    extract_area_metrics,
+    extract_hls_area_estimates
 )
+from estimators.common.analysis_utils import encode_directives
+from estimators.common.losses import mape_loss
+from estimators.area.data_utils import compute_snru
 
 set_visualize_provider(DashProvider.from_address(('127.0.0.1', 7001)))
 
@@ -48,12 +50,13 @@ def extract_errors_hls(dataset_dir, filtered=False):
 
     for solution in os.listdir(dataset_dir):
         solution_dir = os.path.join(dataset_dir, solution)
-        if not os.path.isdir(solution_dir) or not solution.startswith('solution'):
+        if (not os.path.isdir(solution_dir) or 
+            not solution.startswith('solution') or
+            solution == 'solution0'):
             continue
 
-        filtered_solution = filtered and solution != 'solution0'
-        ground_truth_area = extract_utilization(solution_dir, filtered=filtered_solution)
-        hls_area_estimates = extract_hls_area_estimates(solution_dir, filtered=filtered_solution)
+        ground_truth_area = extract_area_metrics(solution_dir)
+        hls_area_estimates = extract_hls_area_estimates(solution_dir)
 
         if any(metric < 0 for metric in hls_area_estimates.values()):
             print(f"Warning: HLS area estimates contain negative values for {solution}. Skipping this solution.")

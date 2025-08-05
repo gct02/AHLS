@@ -3,38 +3,44 @@
 
   },
   "Local": {
-    "kernel_gramschmidt/A": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 262144,
-      "Dimensions": [262144],
-      "Stores": [{ "FunctionName": "kernel_gramschmidt", "Index": 5 }],
-      "Loads": [{ "FunctionName": "kernel_gramschmidt", "Name": "A_load_3" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_load_2" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_load_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_load" }],
-      "GEPs": [{ "FunctionName": "kernel_gramschmidt", "Name": "A_addr_3" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_addr_2" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_addr_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_addr" }]
-    },
     "kernel_gramschmidt/R": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "R",
+      "FunctionName": "kernel_gramschmidt",
       "Param": 1,
       "TotalSize": 262144,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [262144],
       "Stores": [{ "FunctionName": "kernel_gramschmidt", "Index": 4 }, { "FunctionName": "kernel_gramschmidt", "Index": 2 }],
       "Loads": [],
       "GEPs": [{ "FunctionName": "kernel_gramschmidt", "Name": "R_addr_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "R_addr" }]
     },
     "kernel_gramschmidt/Q": {
-      "BaseBitwidth": 64,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "Q",
+      "FunctionName": "kernel_gramschmidt",
       "Param": 1,
       "TotalSize": 262144,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [262144],
       "Stores": [{ "FunctionName": "kernel_gramschmidt", "Index": 3 }],
       "Loads": [{ "FunctionName": "kernel_gramschmidt", "Name": "Q_load_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "Q_load" }],
       "GEPs": [{ "FunctionName": "kernel_gramschmidt", "Name": "Q_addr_2" }, { "FunctionName": "kernel_gramschmidt", "Name": "Q_addr_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "Q_addr" }]
+    },
+    "kernel_gramschmidt/A": {
+      "Name": "A",
+      "FunctionName": "kernel_gramschmidt",
+      "Param": 1,
+      "TotalSize": 262144,
+      "BaseBitwidth": 64,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [262144],
+      "Stores": [{ "FunctionName": "kernel_gramschmidt", "Index": 5 }],
+      "Loads": [{ "FunctionName": "kernel_gramschmidt", "Name": "A_load_3" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_load_2" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_load_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_load" }],
+      "GEPs": [{ "FunctionName": "kernel_gramschmidt", "Name": "A_addr_3" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_addr_2" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_addr_1" }, { "FunctionName": "kernel_gramschmidt", "Name": "A_addr" }]
     }
   }
 }

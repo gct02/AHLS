@@ -21,6 +21,7 @@ llvm/clang_plugins/
 
 test_projects/
 old_area_models/
+data/kernel_graphs/
 
 estimators/*/models
 estimators/*/dataset

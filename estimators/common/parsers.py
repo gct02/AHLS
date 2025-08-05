@@ -243,14 +243,23 @@ def extract_per_module_area(solution_dir):
 
     module_area_map = {}
     for module in root.findall('RtlModules/RtlModule'):
-        if module.get('TYPE', '') != 'resource':
-            continue
-
         resources = module.find('Resources')
         if resources is None:
             continue
 
-        module_name = module.get('DISPNAME')
+        module_type = module.get('TYPE', '')
+
+        if module_type == 'function':
+            module_name = module.get('MODULENAME')
+        elif module_type == 'resource':
+            module_name = module.get('DISPNAME')
+        else:
+            depth = int(module.get('DEPTH', 0))
+            if depth > 1:
+                module_name = module.get('DISPNAME')
+            else:
+                module_name = module.get('MODULENAME')
+
         if not module_name:
             continue
 

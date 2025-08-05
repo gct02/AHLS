@@ -1,126 +1,145 @@
 {
   "Global": {
-    "sha_stream_label1_VITIS_LOOP_207_1_str": {
+    "local_indata": {
+      "Name": "local_indata",
+      "Global": 1,
+      "TotalSize": 16384,
       "BaseBitwidth": 8,
-      "BaseType": 11,
-      "Global": 1,
       "NumDimensions": 1,
-      "TotalSize": 35,
-      "Dimensions": [35],
-      "Stores": [],
+      "BaseType": 11,
+      "Dimensions": [16384],
+      "Stores": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Index": 3 }],
       "Loads": [],
-      "GEPs": []
-    },
-    "sha_info_digest": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "Global": 1,
-      "NumDimensions": 1,
-      "TotalSize": 5,
-      "Dimensions": [5],
-      "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream", "Name": "sha_info_digest_load" }],
-      "GEPs": [{ "FunctionName": "sha_stream", "Name": "sha_info_digest_addr" }]
+      "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "local_indata_addr" }]
     },
     "sha_info_data": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
+      "Name": "sha_info_data",
       "Global": 1,
-      "NumDimensions": 1,
       "TotalSize": 16,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [16],
       "Stores": [{ "FunctionName": "local_memcpy", "Index": 2 }, { "FunctionName": "local_memset", "Index": 1 }, { "FunctionName": "sha_final", "Index": 0 }],
       "Loads": [{ "FunctionName": "sha_transform", "Name": "sha_info_data_load" }],
       "GEPs": [{ "FunctionName": "local_memcpy", "Name": "p1" }, { "FunctionName": "local_memset", "Name": "p" }, { "FunctionName": "sha_final", "Name": "sha_info_data_addr" }, { "FunctionName": "sha_transform", "Name": "sha_info_data_addr" }]
     },
-    "local_indata": {
-      "BaseBitwidth": 8,
-      "BaseType": 11,
+    "sha_info_digest": {
+      "Name": "sha_info_digest",
       "Global": 1,
+      "TotalSize": 5,
+      "BaseBitwidth": 32,
       "NumDimensions": 1,
-      "TotalSize": 16384,
-      "Dimensions": [16384],
-      "Stores": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Index": 3 }],
-      "Loads": [],
-      "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "local_indata_addr" }]
-    }
-  },
-  "Local": {
-    "sha_update/buffer": {
-      "BaseBitwidth": 8,
       "BaseType": 11,
+      "Dimensions": [5],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "sha_stream", "Name": "sha_info_digest_load" }],
+      "GEPs": [{ "FunctionName": "sha_stream", "Name": "sha_info_digest_addr" }]
+    },
+    "sha_stream_label1_VITIS_LOOP_207_1_str": {
+      "Name": "sha_stream_label1_VITIS_LOOP_207_1_str",
+      "Global": 1,
+      "TotalSize": 35,
+      "BaseBitwidth": 8,
       "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 16384,
-      "Dimensions": [16384],
+      "BaseType": 11,
+      "Dimensions": [35],
       "Stores": [],
       "Loads": [],
       "GEPs": []
-    },
-    "sha_transform/W": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
-      "TotalSize": 80,
-      "Dimensions": [80],
-      "Stores": [{ "FunctionName": "sha_transform", "Index": 4 }, { "FunctionName": "sha_transform", "Index": 2 }],
-      "Loads": [{ "FunctionName": "sha_transform", "Name": "W_load_7" }, { "FunctionName": "sha_transform", "Name": "W_load_6" }, { "FunctionName": "sha_transform", "Name": "W_load_5" }, { "FunctionName": "sha_transform", "Name": "W_load_4" }, { "FunctionName": "sha_transform", "Name": "W_load_3" }, { "FunctionName": "sha_transform", "Name": "W_load_2" }, { "FunctionName": "sha_transform", "Name": "W_load_1" }, { "FunctionName": "sha_transform", "Name": "W_load" }],
-      "GEPs": [{ "FunctionName": "sha_transform", "Name": "W_addr_9" }, { "FunctionName": "sha_transform", "Name": "W_addr_8" }, { "FunctionName": "sha_transform", "Name": "W_addr_7" }, { "FunctionName": "sha_transform", "Name": "W_addr_6" }, { "FunctionName": "sha_transform", "Name": "W_addr_5" }, { "FunctionName": "sha_transform", "Name": "W_addr_4" }, { "FunctionName": "sha_transform", "Name": "W_addr_3" }, { "FunctionName": "sha_transform", "Name": "W_addr_2" }, { "FunctionName": "sha_transform", "Name": "W_addr_1" }, { "FunctionName": "sha_transform", "Name": "W_addr" }]
-    },
-    "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1/indata": {
-      "BaseBitwidth": 8,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    }
+  },
+  "Local": {
+    "local_memcpy/s2": {
+      "Name": "s2",
+      "FunctionName": "local_memcpy",
       "Param": 1,
       "TotalSize": 16384,
+      "BaseBitwidth": 8,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [16384],
       "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "indata_load" }],
-      "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "indata_addr" }]
+      "Loads": [{ "FunctionName": "local_memcpy", "Name": "p2_3_load" }, { "FunctionName": "local_memcpy", "Name": "p2_2_load" }, { "FunctionName": "local_memcpy", "Name": "p2_1_load" }, { "FunctionName": "local_memcpy", "Name": "p2_load" }],
+      "GEPs": [{ "FunctionName": "local_memcpy", "Name": "p2_3" }, { "FunctionName": "local_memcpy", "Name": "p2_2" }, { "FunctionName": "local_memcpy", "Name": "p2_1" }, { "FunctionName": "local_memcpy", "Name": "p2" }]
+    },
+    "sha_stream/outdata": {
+      "Name": "outdata",
+      "FunctionName": "sha_stream",
+      "Param": 1,
+      "TotalSize": 5,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [5],
+      "Stores": [{ "FunctionName": "sha_stream", "Index": 3 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "sha_stream", "Name": "outdata_addr" }]
     },
     "sha_stream/indata": {
-      "BaseBitwidth": 8,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "indata",
+      "FunctionName": "sha_stream",
       "Param": 1,
       "TotalSize": 16384,
+      "BaseBitwidth": 8,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [16384],
       "Stores": [],
       "Loads": [],
       "GEPs": []
     },
     "sha_stream/in_i": {
-      "BaseBitwidth": 32,
-      "BaseType": 11,
-      "NumDimensions": 1,
+      "Name": "in_i",
+      "FunctionName": "sha_stream",
       "Param": 1,
       "TotalSize": 2,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [2],
       "Stores": [],
       "Loads": [{ "FunctionName": "sha_stream", "Name": "i" }],
       "GEPs": [{ "FunctionName": "sha_stream", "Name": "in_i_addr" }]
     },
-    "sha_stream/outdata": {
+    "sha_transform/W": {
+      "Name": "W",
+      "FunctionName": "sha_transform",
+      "Alloca": 1,
+      "TotalSize": 80,
       "BaseBitwidth": 32,
-      "BaseType": 11,
       "NumDimensions": 1,
-      "Param": 1,
-      "TotalSize": 5,
-      "Dimensions": [5],
-      "Stores": [{ "FunctionName": "sha_stream", "Index": 3 }],
-      "Loads": [],
-      "GEPs": [{ "FunctionName": "sha_stream", "Name": "outdata_addr" }]
+      "BaseType": 11,
+      "Dimensions": [80],
+      "Stores": [{ "FunctionName": "sha_transform", "Index": 4 }, { "FunctionName": "sha_transform", "Index": 2 }],
+      "Loads": [{ "FunctionName": "sha_transform", "Name": "W_load_7" }, { "FunctionName": "sha_transform", "Name": "W_load_6" }, { "FunctionName": "sha_transform", "Name": "W_load_5" }, { "FunctionName": "sha_transform", "Name": "W_load_4" }, { "FunctionName": "sha_transform", "Name": "W_load_3" }, { "FunctionName": "sha_transform", "Name": "W_load_2" }, { "FunctionName": "sha_transform", "Name": "W_load_1" }, { "FunctionName": "sha_transform", "Name": "W_load" }],
+      "GEPs": [{ "FunctionName": "sha_transform", "Name": "W_addr_9" }, { "FunctionName": "sha_transform", "Name": "W_addr_8" }, { "FunctionName": "sha_transform", "Name": "W_addr_7" }, { "FunctionName": "sha_transform", "Name": "W_addr_6" }, { "FunctionName": "sha_transform", "Name": "W_addr_5" }, { "FunctionName": "sha_transform", "Name": "W_addr_4" }, { "FunctionName": "sha_transform", "Name": "W_addr_3" }, { "FunctionName": "sha_transform", "Name": "W_addr_2" }, { "FunctionName": "sha_transform", "Name": "W_addr_1" }, { "FunctionName": "sha_transform", "Name": "W_addr" }]
     },
-    "local_memcpy/s2": {
-      "BaseBitwidth": 8,
-      "BaseType": 11,
-      "NumDimensions": 1,
+    "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1/indata": {
+      "Name": "indata",
+      "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1",
       "Param": 1,
       "TotalSize": 16384,
+      "BaseBitwidth": 8,
+      "NumDimensions": 1,
+      "BaseType": 11,
       "Dimensions": [16384],
       "Stores": [],
-      "Loads": [{ "FunctionName": "local_memcpy", "Name": "p2_3_load" }, { "FunctionName": "local_memcpy", "Name": "p2_2_load" }, { "FunctionName": "local_memcpy", "Name": "p2_1_load" }, { "FunctionName": "local_memcpy", "Name": "p2_load" }],
-      "GEPs": [{ "FunctionName": "local_memcpy", "Name": "p2_3" }, { "FunctionName": "local_memcpy", "Name": "p2_2" }, { "FunctionName": "local_memcpy", "Name": "p2_1" }, { "FunctionName": "local_memcpy", "Name": "p2" }]
+      "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "indata_load" }],
+      "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "indata_addr" }]
+    },
+    "sha_update/buffer": {
+      "Name": "buffer",
+      "FunctionName": "sha_update",
+      "Param": 1,
+      "TotalSize": 16384,
+      "BaseBitwidth": 8,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [16384],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
     }
   }
 }

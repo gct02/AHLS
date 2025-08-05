@@ -17,6 +17,21 @@ from estimators.common.parsers import (
 )
 
 
+def parse_predictions(filepath: str) -> Tuple[List[int], List[float], List[float]]:
+    indices = []
+    targets = []
+    preds = []
+
+    with open(filepath, 'r') as f:
+        for line in f:
+            index, target, pred = line.strip().split(',')
+            indices.append(int(index))
+            targets.append(float(target))
+            preds.append(float(pred))
+
+    return indices, targets, preds
+
+
 def cluster_by_directive(
     directives: NDArray[np.int_],
     n_clusters: int = 8,

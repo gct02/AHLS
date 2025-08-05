@@ -3,6 +3,7 @@ import json
 import copy
 import math
 import random
+import re
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 from typing import Optional, Dict, List, Any
@@ -72,7 +73,7 @@ EDGE_TYPES = [
 EDGE_TYPE_MAP = {etype: i for i, etype in enumerate(EDGE_TYPES)}
 NUM_EDGE_TYPES = len(EDGE_TYPES)
 
-NODE_TYPES = ['port', 'internal_mem', 'op', 'const', 'block', 'region']
+NODE_TYPES = ['port', 'internal_mem', 'op', 'const', 'block', 'region', 'function']
 NODE_TYPE_MAP = {ntype: i for i, ntype in enumerate(NODE_TYPES)}
 NUM_NODE_TYPES = len(NODE_TYPES)
 
@@ -82,19 +83,24 @@ INLINE_THRESHOLD = 30
 
 DEFAULT_NODE_FEATURES = {
     'latency': 0, 'trip_count': 0, 'loop_depth': [0] * (MAX_LOOP_DEPTH + 1),
-    'is_top_level_loop': 0, 'has_perfectly_nested_child': 0, 'is_part_of_perfect_nest': 0,
+    'is_loop': 0, 'is_top_level_loop': 0, 'has_perfectly_nested_child': 0, 
+    'is_part_of_perfect_nest': 0,
 
     'region_lut_sum': 0, 'region_ff_sum': 0, 'region_dsp_sum': 0, 'region_bram_sum': 0,
-    'region_num_ops': 0, 'num_sub_regions': 0, 'num_blocks': 0, 'is_small_function': 0,
+    'region_num_ops': 0, 'region_num_sub_regions': 0, 'region_num_blocks': 0,
+    
+    'module_lut': 0, 'module_ff': 0, 'module_dsp': 0, 'module_bram': 0,
+    'function_num_sub_regions': 0, 'function_num_blocks': 0, 'function_num_ops': 0,
+    'is_small_function': 0,
 
     'achieved_ii_base': 0, 'auto_pipeline': 0, 'pipeline': 0,
-    'unroll': 0, 'unroll_factor': 0, 'loop_flatten': 0, 'loop_merge': 0, 
-    'dataflow': 0, 'inline': 0,
+    'unroll': 0, 'unroll_factor': 0, 'loop_flatten': 0, 
+    'loop_merge': 0, 'dataflow': 0, 'inline': 0,
 
+    'bitwidth': 0, 'original_bitwidth': 0, 
     'is_array': 0, 'direction': [0] * 3, 'is_top_level_port': 0,
     'is_large_array': 0, 'array_size': 0, 'original_array_dims': [0] * MAX_ARRAY_DIM,
     'original_base_type': [0] * NUM_BASE_TYPES, 'base_type': [0] * NUM_BASE_TYPES, 
-    'bitwidth': 0, 'original_bitwidth': 0, 
     'is_global_mem': 0,
 
     'array_partition': 0, 'partition_type': [0] * 3, 
@@ -118,13 +124,16 @@ EDGE_DIM = 12
 
 NUMERICAL_FEATURES = [
     'bitwidth', 'latency', 'op_delay', 'original_array_dims', 
-    'array_size', 'trip_count', 'achieved_ii_base', 
-    'callee_size', 'num_blocks', 'num_sub_regions',
-    'block_num_ops', 'region_num_ops'
+    'array_size', 'trip_count', 'achieved_ii_base', 'callee_size', 
+    'region_num_blocks', 'region_num_sub_regions', 'region_num_ops',
+    'function_num_blocks', 'function_num_sub_regions', 'function_num_ops',
+    'block_num_ops'
 ] + AREA_METRICS + [
     f'block_{metric}_sum' for metric in AREA_METRICS
 ] + [
     f'region_{metric}_sum' for metric in AREA_METRICS
+] + [
+    f'module_{metric}' for metric in AREA_METRICS
 ]
 NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'op_delay']
 
@@ -197,6 +206,7 @@ class CDFGNode(Node):
 
     def as_dict(self):
         node_as_dict = {
+            'node_type': self.node_type,
             'id': self.id,
             'label': self.label, 
             'rtl_name': self.rtl_name,
@@ -207,96 +217,6 @@ class CDFGNode(Node):
     def __str__(self):
         return json.dumps(self.as_dict(), indent=2)
     
-    def __repr__(self):
-        return self.__str__()
-
-
-class RegionNode(Node):
-    def __init__(
-        self, 
-        element: ET.Element, 
-        function_name: str,
-        is_function: bool = False,
-        loop_md: Optional[Dict[str, Any]] = None
-    ):
-        self.id = findint(element, 'mId')
-        if self.id is None:
-            raise ValueError("Element does not contain 'mId' tag")
-        
-        self.node_type = 'region'
-        self.function_name = function_name
-        self.is_function = is_function
-
-        if is_function:
-            self.name = function_name
-            self.label = function_name
-        else:
-            self.name = element.findtext('mNormTag', '')
-            if not self.name:
-                self.name = element.findtext('mTag', '').replace('.', '_')
-            norm_name = self.name.replace(' ', '_')
-            self.label = f'{function_name}/{norm_name}'
-
-        latency = max(0, findint(element, 'mMaxLatency', 0))
-        trip_count = max(0, findint(element, 'mMaxTripCount', 0))
-        ii = max(0, findint(element, 'mII', 0))
-        auto_pipeline = ii > 0
-
-        if loop_md is not None:
-            self.is_loop = True
-            is_top_level_loop = loop_md.get('IsTopLevel', 0)
-            has_perfectly_nested_child = loop_md.get('HasPerfectlyNestedChild', 0)
-            is_part_of_perfect_nest = loop_md.get('IsPartOfPerfectNest', 0)
-            loop_depth = max(1, loop_md.get('Depth', 0))
-            if loop_depth > MAX_LOOP_DEPTH:
-                loop_depth = MAX_LOOP_DEPTH
-        else:
-            self.is_loop = findint(element, 'mType', 0) == 1
-            is_top_level_loop = 0
-            has_perfectly_nested_child = 0
-            is_part_of_perfect_nest = 0
-            loop_depth = 1 if self.is_loop else 0
-
-        ohe_loop_depth = [0] * (MAX_LOOP_DEPTH + 1)
-        ohe_loop_depth[loop_depth] = 1
-
-        self.feature_dict = {
-            'is_loop': int(self.is_loop),
-            'is_function': int(is_function),
-            'latency': latency,
-            'trip_count': trip_count,
-            'is_top_level_loop': is_top_level_loop,
-            'has_perfectly_nested_child': has_perfectly_nested_child,
-            'is_part_of_perfect_nest': is_part_of_perfect_nest,
-            'loop_depth': ohe_loop_depth, 
-            'achieved_ii_base': ii,
-            'auto_pipeline': int(auto_pipeline),
-            'pipeline': 0, 'unroll': 0, 'unroll_factor': 0,
-            'loop_flatten': 0, 'loop_merge': 0, 
-            'inline': 0, 'dataflow': 0
-        }
-        self.sub_regions = self._extract_items(element, 'sub_regions')
-        self.blocks = self._extract_items(element, 'basic_blocks')
-    
-    def _extract_items(self, element, tag):
-        parent_tag = element.find(tag)
-        if parent_tag is None:
-            return []
-        return [int(item.text) for item in parent_tag.findall('item')]
-
-    def as_dict(self):
-        node_as_dict = {
-            'id': self.id,
-            'label': self.label,
-            'feature_dict': self.feature_dict,
-            'sub_regions': self.sub_regions,
-            'blocks': self.blocks
-        }
-        return node_as_dict
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-
     def __repr__(self):
         return self.__str__()
     
@@ -389,6 +309,7 @@ class PortNode(CDFGNode):
     
     def as_dict(self):
         node_as_dict = {
+            'node_type': self.node_type,
             'id': self.id,
             'label': self.label,
             'feature_dict': self.feature_dict,
@@ -511,6 +432,7 @@ class InternalMemNode(Node):
 
     def as_dict(self):
         node_as_dict = {
+            'node_type': self.node_type,
             'id': self.id,
             'label': self.label,
             'rtl_name': self.rtl_name,
@@ -573,6 +495,7 @@ class OperationNode(CDFGNode):
     
     def as_dict(self):
         node_as_dict = {
+            'node_type': self.node_type,
             'id': self.id,
             'label': self.label,
             'rtl_name': self.rtl_name,
@@ -622,12 +545,171 @@ class BlockNode(CDFGNode):
     
     def as_dict(self):
         node_as_dict = {
+            'node_type': self.node_type,
             'id': self.id,
             'label': self.label,
             'feature_dict': self.feature_dict,
             'ops': self.ops,
         }
         return node_as_dict
+
+
+class RegionNode(Node):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        function_name: str,
+        loop_md: Optional[Dict[str, Any]] = None
+    ):
+        self.id = findint(element, 'mId')
+        if self.id is None:
+            raise ValueError("Element does not contain 'mId' tag")
+        
+        self.node_type = 'region'
+        self.function_name = function_name
+
+        self.name = element.findtext('mNormTag', '')
+        if not self.name:
+            self.name = element.findtext('mTag', '').replace('.', '_')
+        norm_name = self.name.replace(' ', '_')
+        self.label = f'{function_name}/{norm_name}'
+
+        latency = max(0, findint(element, 'mMaxLatency', 0))
+        trip_count = max(0, findint(element, 'mMaxTripCount', 0))
+        ii = max(0, findint(element, 'mII', 0))
+        auto_pipeline = ii > 0
+
+        if loop_md is not None:
+            self.is_loop = True
+            is_top_level_loop = loop_md.get('IsTopLevel', 0)
+            has_perfectly_nested_child = loop_md.get('HasPerfectlyNestedChild', 0)
+            is_part_of_perfect_nest = loop_md.get('IsPartOfPerfectNest', 0)
+            loop_depth = max(1, loop_md.get('Depth', 0))
+            if loop_depth > MAX_LOOP_DEPTH:
+                loop_depth = MAX_LOOP_DEPTH
+        else:
+            self.is_loop = findint(element, 'mType', 0) == 1
+            is_top_level_loop = 0
+            has_perfectly_nested_child = 0
+            is_part_of_perfect_nest = 0
+            loop_depth = 1 if self.is_loop else 0
+
+        ohe_loop_depth = [0] * (MAX_LOOP_DEPTH + 1)
+        ohe_loop_depth[loop_depth] = 1
+
+        self.feature_dict = {
+            'is_loop': int(self.is_loop),
+            'latency': latency,
+            'trip_count': trip_count,
+            'is_top_level_loop': is_top_level_loop,
+            'has_perfectly_nested_child': has_perfectly_nested_child,
+            'is_part_of_perfect_nest': is_part_of_perfect_nest,
+            'loop_depth': ohe_loop_depth, 
+            'auto_pipeline': int(auto_pipeline),
+            'achieved_ii_base': ii,
+            'pipeline': 0, 'unroll': 0, 'unroll_factor': 0,
+            'loop_flatten': 0, 'loop_merge': 0
+        }
+        self.sub_regions = self._extract_items(element, 'sub_regions')
+        self.blocks = self._extract_items(element, 'basic_blocks')
+    
+    def _extract_items(self, element, tag):
+        parent_tag = element.find(tag)
+        if parent_tag is None:
+            return []
+        return [int(item.text) for item in parent_tag.findall('item')]
+
+    def as_dict(self):
+        node_as_dict = {
+            'node_type': self.node_type,
+            'id': self.id,
+            'label': self.label,
+            'feature_dict': self.feature_dict,
+            'sub_regions': self.sub_regions,
+            'blocks': self.blocks
+        }
+        return node_as_dict
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+
+    def __repr__(self):
+        return self.__str__()
+    
+
+class FunctionNode(Node):
+    def __init__(
+        self, 
+        element: ET.Element, 
+        name: str,
+        sub_regions: List[str],
+        blocks: List[str],
+        op_nodes: List[OperationNode],
+        original_name: Optional[str] = None,
+        utilization: Optional[Dict[str, int]] = None,
+    ):
+        self.node_type = 'function'
+        self.name = name
+        self.original_name = original_name or name
+        self.function_name = name
+        self.label = name
+        self.id = 1
+        self.norm_id = f'{name}.region.0'
+
+        self.latency = max(0, findint(element, 'mMaxLatency', 0))
+        self.num_sub_regions = len(sub_regions)
+        self.num_blocks = len(blocks)
+        self.num_ops = len(op_nodes)
+
+        self.feature_dict = {
+            'latency': self.latency,
+            'function_num_sub_regions': self.num_sub_regions,
+            'function_num_blocks': self.num_blocks,
+            'function_num_ops': self.num_ops,
+            'is_small_function': 1 if self.num_ops < INLINE_THRESHOLD else 0,
+            'loop_merge': 0, 'inline': 0, 'dataflow': 0
+        }
+        if utilization is not None:
+            for res in AREA_METRICS:
+                self.feature_dict[f'module_{res}'] = utilization.get(res, 0)
+        else:
+            res_dict = {f'module_{res}': 0 for res in AREA_METRICS}
+            for op in op_nodes:
+                for res in AREA_METRICS:
+                    res_dict[f'module_{res}'] += op.feature_dict.get(res, 0)
+            self.feature_dict.update(res_dict)
+
+        self.sub_regions = [
+            f'{self.name}.region.{i - 1}' 
+            for i in self._extract_items(element, 'sub_regions')
+        ]
+        self.blocks = [
+            f'{self.name}.{i}' 
+            for i in self._extract_items(element, 'basic_blocks')
+        ]
+
+    def _extract_items(self, element, tag):
+        parent_tag = element.find(tag)
+        if parent_tag is None:
+            return []
+        return [int(item.text) for item in parent_tag.findall('item')]
+    
+    def as_dict(self):
+        node_as_dict = {
+            'node_type': self.node_type,
+            'id': self.id,
+            'label': self.label,
+            'feature_dict': self.feature_dict,
+            'sub_regions': self.sub_regions,
+            'blocks': self.blocks
+        }
+        return node_as_dict
+    
+    def __str__(self):
+        return json.dumps(self.as_dict(), indent=2)
+
+    def __repr__(self):
+        return self.__str__()
 
 
 class Edge:
@@ -677,9 +759,9 @@ class CDFG:
         
         self.name = cdfg.findtext('name')
         
-        if self.name.endswith('_1'):
-            self.original_name = self.name[:-2]
-            self.unnormalized_name = self.original_name + '.1'
+        if re.search(r"_[1-9]\d*$", self.name) and 'Pipeline' not in self.name:
+            self.original_name = self.name[:self.name.rfind('_')]
+            self.unnormalized_name = self.original_name + f'.{self.name[self.name.rfind("_") + 1:]}'
         else:
             self.original_name = self.name
             self.unnormalized_name = self.name
@@ -716,7 +798,7 @@ class CDFG:
         self._process_ports(ports, global_names, array_md_dict)
         self._process_consts(consts)
         self._process_blocks(blocks)
-        self._process_regions(cdfg_regions, loop_md_dict)
+        self._process_regions(cdfg_regions, loop_md_dict, utilization_dict)
 
     def _process_ops_and_internal_mem(self, ops_and_mem, array_md_dict, utilization_dict):
         self._allocas = []
@@ -755,7 +837,7 @@ class CDFG:
                     array_md = array_md_dict[f'{self.original_name}/{name}']
 
                 internal_mem_node = InternalMemNode(
-                    elem, self.original_name, 
+                    element=elem, function_name=self.original_name, 
                     array_md=array_md, utilization=utilization
                 )
                 internal_mem_id = op_id + '.internal_mem'
@@ -828,32 +910,41 @@ class CDFG:
             node.feature_dict['block_num_ops'] = len(updated_ops)
             self.nodes[block_id] = node
 
-    def _process_regions(self, regions, loop_md_dict):
+    def _process_regions(self, regions, loop_md_dict, utilization_dict):
         elems = regions.findall('item')
 
         function_node = None
         if elems:
             first_elem = elems[0]
             if findint(first_elem, 'mType', 0) != 1: # Not a loop
-                function_node = RegionNode(
-                    first_elem, self.original_name, is_function=True
+                sub_regions = []
+                for elem in elems[1:]:
+                    region_id = findint(elem, 'mId')
+                    if region_id is not None:
+                        sub_regions.append(f'{self.name}.region.{region_id - 1}')
+                blocks = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
+                op_nodes = [node for node in self.nodes.values() if node.node_type == 'op']
+
+                utilization = None
+                if self.name in utilization_dict:
+                    utilization = utilization_dict[self.name]
+                elif self.original_name in utilization_dict:
+                    utilization = utilization_dict[self.original_name]
+                elif self.unnormalized_name in utilization_dict:
+                    utilization = utilization_dict[self.unnormalized_name]
+
+                function_node = FunctionNode(
+                    first_elem, self.name, 
+                    sub_regions, blocks, op_nodes,
+                    original_name=self.original_name,
+                    utilization=utilization
                 )
 
         if function_node is None:
             raise ValueError("CDFG does not contain a function region")
-        
+
+        self.nodes[function_node.norm_id] = function_node
         region_nodes = {}
-        function_id = f'{self.name}.region.{function_node.id - 1}'
-
-        for i in range(len(function_node.sub_regions)):
-            sub_region = function_node.sub_regions[i]
-            function_node.sub_regions[i] = f'{self.name}.region.{int(sub_region) - 1}'
-            
-        for i in range(len(function_node.blocks)):
-            block = function_node.blocks[i]
-            function_node.blocks[i] = f'{self.name}.{int(block)}'
-
-        region_nodes[function_id] = function_node
 
         for elem in elems[1:]:
             name = elem.findtext('mTag', '')
@@ -889,7 +980,7 @@ class CDFG:
             region_node.feature_dict.update(
                 {f"region_{res}_sum": 0 for res in AREA_METRICS}
             )
-            num_ops = 0
+            region_num_ops = 0
 
             for block_id in all_blocks:
                 if block_id not in self.nodes:
@@ -902,17 +993,11 @@ class CDFG:
                     res_value = block_node.feature_dict.get(f'block_{res}_sum', 0)
                     region_node.feature_dict[f'region_{res}_sum'] += res_value
                 
-                num_ops += block_node.feature_dict.get('block_num_ops', 0)
+                region_num_ops += block_node.feature_dict.get('block_num_ops', 0)
             
-            region_node.feature_dict['num_sub_regions'] = len(all_sub_regions)
-            region_node.feature_dict['num_blocks'] = len(all_blocks)
-            region_node.feature_dict['region_num_ops'] = num_ops
-
-            if region_node.is_function and num_ops < INLINE_THRESHOLD:
-                region_node.feature_dict['is_small_function'] = 1
-            else:
-                region_node.feature_dict['is_small_function'] = 0
-
+            region_node.feature_dict['region_num_sub_regions'] = len(all_sub_regions)
+            region_node.feature_dict['region_num_blocks'] = len(all_blocks)
+            region_node.feature_dict['region_num_ops'] = region_num_ops
             self.nodes[region_id] = region_node
 
     def _get_all_sub_regions(self, region_nodes, region_node):
@@ -993,34 +1078,36 @@ class CDFG:
                 num_edges += 1
 
     def _build_hierarchy_edges(self):
-        num_edges = len(self.edges)
+        n_edges = len(self.edges)
 
         for node_id, node in self.nodes.items():
-            if node.node_type != 'region':
+            if node.node_type != 'block':
                 continue
+            
+            for op_id in node.ops:
+                if op_id in self.nodes:
+                    self.edges[f'{self.name}.{n_edges}'] = Edge(node_id, op_id, 'hier')
+                    n_edges += 1
 
+        for node_id, node in self.nodes.items():
+            if node.node_type not in ['region', 'function']:
+                continue
+            
             for sub_region_id in node.sub_regions:
-                if sub_region_id not in self.nodes:
-                    continue
-                
-                self.edges[f'{self.name}.{num_edges}'] = Edge(node_id, sub_region_id, 'hier')
-                num_edges += 1
+                if sub_region_id in self.nodes:
+                    self.edges[f'{self.name}.{n_edges}'] = Edge(node_id, sub_region_id, 'hier')
+                    n_edges += 1
 
             for block_id in node.blocks:
-                if block_id not in self.nodes:
-                    continue
-
-                self.edges[f'{self.name}.{num_edges}'] = Edge(node_id, block_id, 'hier')
-                num_edges += 1
-
-                block_node = self.nodes[block_id]
-                for op_id in block_node.ops:
-                    if op_id not in self.nodes:
-                        continue
-
-                    self.edges[f'{self.name}.{num_edges}'] = Edge(block_id, op_id, 'hier')
-                    self.edges[f'{self.name}.{num_edges + 1}'] = Edge(node_id, op_id, 'hier')
-                    num_edges += 2
+                if block_id in self.nodes:
+                    self.edges[f'{self.name}.{n_edges}'] = Edge(node_id, block_id, 'hier')
+                    n_edges += 1
+                    
+                    for op_id in self.nodes[block_id].ops:
+                        if op_id in self.nodes:
+                            self.edges[f'{self.name}.{n_edges}'] = Edge(block_id, op_id, 'hier')
+                            self.edges[f'{self.name}.{n_edges + 1}'] = Edge(node_id, op_id, 'hier')
+                            n_edges += 2
         
         rev_hier_edges = {}
         for edge_id, edge in self.edges.items():
@@ -1129,35 +1216,27 @@ class KernelGraph:
                 if callee not in self._cdfgs:
                     print(f"Warning: Callee {callee} not found in CDFGs, skipping call flow.")
                     continue
-                print(f"Processing function call: {(call_op_id, callee)}")
 
                 callee_cdfg = self._cdfgs[callee]
                 callee_id = f'{callee_cdfg.name}.region.0'
                 callee_node = callee_cdfg.nodes[callee_id]
-
                 num_edges = len(self.edges)
 
                 for src_id in operand_dict.get(call_op_id, []):
                     src_node = self.nodes[src_id]
 
                     # Find matching port in callee CDFG
-                    for callee_node_id, callee_node in callee_cdfg.nodes.items():
-                        if callee_node.node_type == 'port' and callee_node.name == src_node.name:
-                            self.nodes[src_id].matching_ports.append(callee_node_id)
-                            edge_id = f'callflow.{num_edges}'
-                            self.edges[edge_id] = Edge(src_id, callee_node_id, 'arg')
+                    for callee_port_id, callee_port in callee_cdfg.nodes.items():
+                        if callee_port.node_type == 'port' and callee_port.name == src_node.name:
+                            self.nodes[src_id].matching_ports.append(callee_port_id)
+                            self.edges[f'callflow.{num_edges}'] = Edge(src_id, callee_port_id, 'arg')
                             num_edges += 1
                             break
-            
-                call_edge_id = f'{callee_cdfg.name}.{num_edges}'
-                ret_edge_id = f'{callee_cdfg.name}.{num_edges + 1}'
+                
+                self.nodes[call_op_id].feature_dict['callee_size'] = callee_node.num_ops
+                self.edges[f'callflow.{num_edges}'] = Edge(call_op_id, callee_id, 'call')
+                self.edges[f'callflow.{num_edges + 1}'] = Edge(callee_id, call_op_id, 'ret')
                 num_edges += 2
-
-                self.edges[call_edge_id] = Edge(call_op_id, callee_id, 'call')
-                self.edges[ret_edge_id] = Edge(callee_id, call_op_id, 'ret')
-
-                callee_size = callee_node.feature_dict.get('region_num_ops', 0)
-                self.nodes[call_op_id].feature_dict['callee_size'] = callee_size
 
     def _update_array_info(self):
         num_nodes = len(self.nodes)
@@ -1186,6 +1265,12 @@ class KernelGraph:
 
             for store_info in array_md.get('Stores', []):
                 function_name = store_info.get('FunctionName', '')
+
+                if function_name.endswith('<double>'):
+                    function_name = function_name[:-8] + '_double_s'
+                elif re.search(r"\.[1-9]\d*$", function_name) is not None:
+                    function_name = function_name[:function_name.rfind('.')] + f'_{function_name[function_name.rfind(".") + 1:]}'
+
                 idx = store_info.get('Index', -1)
                 if not function_name or idx < 0 or function_name not in self._cdfgs:
                     print(f"Warning: Invalid store info for {array_name} in {function_name}, skipping.")
@@ -1203,10 +1288,16 @@ class KernelGraph:
 
             for key in ['Loads', 'GEPs']:
                 for op_info in array_md.get(key, []):
-                    function_name = op_info.get('FunctionName', '')
                     inst_name = op_info.get('Name', '')
+                    function_name = op_info.get('FunctionName', '')
+
+                    if function_name.endswith('<double>'):
+                        function_name = function_name[:-8] + '_double_s'
+                    elif re.search(r"\.[1-9]\d*$", function_name) is not None:
+                        function_name = function_name[:function_name.rfind('.')] + f'_{function_name[function_name.rfind(".") + 1:]}'
+
                     if not function_name or not inst_name or function_name not in self._cdfgs:
-                        print(f"Warning: Invalid {key.lower()} info for {array_name} in {function_name}, skipping.")
+                        print(f"Warning: Invalid load info for {array_name} in {function_name}, skipping.")
                         continue
 
                     cdfg = self._cdfgs[function_name]
@@ -1232,7 +1323,6 @@ class KernelGraph:
                     break
 
             if array_id is None:
-                print(f"Warning: Array {array_name} not found in function {function_name}, skipping.")
                 continue
 
             for store_info in array_md.get('Stores', []):
@@ -1365,7 +1455,7 @@ def compute_scaling_stats(kernel_graphs: List[KernelGraph],) -> Dict[str, Dict[s
                         for dim in value:
                             if dim > 1:
                                 numerical_feats[base_key].append(float(dim))
-                    elif value > 0 or _is_valid_zero(node.node_type, base_key):
+                    elif value > 0:
                         numerical_feats[base_key].append(float(value))
 
     scaling_stats = {}
@@ -1522,11 +1612,23 @@ def update_with_directives(
                 function_name = location
                 target_name = location
 
-            node = find_region_node(kernel_graph, target_name, function_name)
-            if node is None:
-                print(f"Warning: Region '{target_name}' "
-                      f"(function '{function_name}') not found in nodes.")
-                continue
+            if dct not in ["inline", "dataflow"]:
+                node = find_region_node(kernel_graph, target_name, function_name)
+                if node is None:
+                    if dct == "loop_merge":
+                        node = find_function_node(kernel_graph, function_name)
+                        if node is None:
+                            print(f"Warning: Function '{function_name}' not found in nodes.")
+                            continue
+                    else:
+                        print(f"Warning: Region '{target_name}' "
+                              f"(function '{function_name}') not found in nodes.")
+                        continue
+            else:
+                node = find_function_node(kernel_graph, function_name)
+                if node is None:
+                    print(f"Warning: Function '{function_name}' not found in nodes.")
+                    continue
 
             if dct == "pipeline":
                 node.feature_dict["pipeline"] = 1
@@ -1542,6 +1644,11 @@ def update_with_directives(
             else:
                 node.feature_dict[dct] = 1
 
+    # Note: The subsequent logic is needed only because our dataset were not
+    # generated entirely with all needed directives disabled. For future datasets
+    # and for inference during the DSE heuristic, this logic should be skipped
+    # since it relies on the Vitis log file, which will not be available.
+    
     if not vitis_log_path:
         return kernel_graph
     
@@ -1555,17 +1662,16 @@ def update_with_directives(
     auto_loop_flatten = auto_dcts.get("loop_flatten", set())
 
     for function_name in auto_inline:
-        for node in kernel_graph.nodes.values():
-            if node.node_type == 'region' and node.name == function_name:
-                node.feature_dict["inline"] = 1
-                break
+        node = find_function_node(kernel_graph, function_name)
+        if node is not None:
+            node.feature_dict["inline"] = 1
+            continue
 
     for loop_name in auto_pipeline:
         for node in kernel_graph.nodes.values():
             if node.node_type == 'region' and node.name == loop_name:
                 node.feature_dict["auto_pipeline"] = 1
-                if node.is_loop:
-                    _unroll_pipelined_subloops(kernel_graph, node)
+                _unroll_pipelined_subloops(kernel_graph, node)
                 break
 
     for loop_name, function_name in auto_loop_flatten:
@@ -1574,6 +1680,78 @@ def update_with_directives(
             node.feature_dict["loop_flatten"] = 1
             
     return kernel_graph
+
+
+def plot_kernel_graph(kernel_graph: KernelGraph, output_path: str):
+    import networkx as nx
+    import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
+    
+    ncolor_dict = {
+        "op": "#6f85ff",
+        "internal_mem": "#46e6c3",
+        "port": "#ac64ff",
+        "const": "#ff93db",
+        "block": "#fff16e",
+        "region": "#ff9f50",
+        "function": "#ff5151",
+    }
+    ecolor_dict = {
+        "1": "#4854c0",
+        "2": "#12a59e",
+        "3": "#ac7d27",
+        "4": "#a03a33",
+        "hier": "#858585",
+        "hier_rev": "#858585",
+        "call": "#c2509c",
+        "ret": "#c2509c",
+        "arg": "#8439af"
+    }
+
+    G = nx.DiGraph()
+
+    for edge in kernel_graph.edges.values():
+        ecolor = ecolor_dict.get(edge.etype, "#ffffff")
+        G.add_edge(edge.src, edge.dst, color=ecolor)
+    
+    for node_id, node in kernel_graph.nodes.items():
+        ncolor = ncolor_dict.get(node.node_type, "#ffffff")
+        G.add_node(node_id, label=node.label, color=ncolor)
+        
+    nlabels = {node: G.nodes[node]['label'] for node in list(G)}
+
+    ecolors = [G.edges[edge]['color'] for edge in list(G.edges())]
+    ncolors = [G.nodes[node]['color'] for node in list(G)]
+
+    node_legend = [
+        Patch(color=color, label=ntype) 
+        for ntype, color in ncolor_dict.items() 
+    ]
+    edge_legend = [
+        Patch(color=color, label=etype)
+        for etype, color in ecolor_dict.items() 
+    ]
+
+    pos = nx.kamada_kawai_layout(G, scale=2)
+
+    plt.figure(figsize=(16, 12))
+    nx.draw_networkx(
+        G, pos, labels=nlabels, node_color=ncolors, 
+        edge_color=ecolors, style="dashed", node_size=150, 
+        font_size=8, arrowsize=9, width=.9, alpha=.7
+    )
+    plt.legend(
+        handles=node_legend + edge_legend, loc='lower center', 
+        bbox_to_anchor=(0.5, -0.13), ncol=3, fontsize=8, frameon=False
+    )
+    plt.axis('off')
+    
+    if output_path:
+        plt.savefig(output_path, format='png', bbox_inches='tight', dpi=300)
+        print(f"Kernel graph saved to {output_path}")
+    else:
+        plt.show()
 
 
 def find_array_node(kernel_info, array_name, function_name):
@@ -1607,13 +1785,12 @@ def find_region_node(kernel_info, region_name, function_name):
     return None
 
 
-def _is_valid_zero(node_type, key) -> bool:
-    if key in AREA_METRICS + ['op_delay', 'latency']:
-        return True
-    if node_type in ['region', 'block']:
-        if '_sum' in key or '_num_ops' in key:
-            return True
-    return False
+def find_function_node(kernel_info, function_name):
+    for node in kernel_info.nodes.values():
+        if (node.node_type == 'function' 
+            and (node.original_name == function_name or node.name == function_name)):
+            return node
+        
 
 def _unroll_pipelined_subloops(graph, loop_node):
     """Completely unroll all subloops of a pipelined loop."""
@@ -1630,18 +1807,14 @@ if __name__ == "__main__":
     from pathlib import Path
     from estimators.common.llvm_md_collector import extract_array_and_loop_md
 
-    with open('data/benchmarks/benchmark_info.json', 'r') as f:
+    with open('data/benchmark_info.json', 'r') as f:
         bench_info_dict = json.load(f)
 
     base_sols_dir = Path('data/base_solutions')
-
-    etypes = set()
-    const_types = set()
-    base_types = set()
-    core_names = set()
+    output_dir = Path('data/kernel_graphs')
 
     for bench_name, bench_info in bench_info_dict.items():
-        solution_dir = bench_info['base_solution_dir']
+        solution_dir = Path(bench_info['base_solution_dir'])
         ir_dir = solution_dir / '.autopilot/db'
 
         array_md, loop_md = extract_array_and_loop_md(ir_dir)
@@ -1649,24 +1822,14 @@ if __name__ == "__main__":
         graph = KernelGraph(
             solution_dir=str(solution_dir),
             top_level_name=bench_info['top_level'],
-            global_array_md_dict=array_md['Global'],
-            local_array_md_dict=array_md['Local'],
+            array_md_dict=array_md,
             loop_md_dict=loop_md,
             benchmark_name=bench_name
         )
-        for edge in graph.edges.values():
-            etypes.add(edge.etype)
+        output_path = output_dir / f"{bench_name}_graph.json"
+        graph.save_as_json(output_path)
+        print(f"Saved graph for {bench_name} to {output_path}")
 
-        for node in graph.nodes.values():
-            if node.node_type == 'const':
-                const_types.add(node.const_type)
-            elif node.node_type in ['internal_mem', 'port']:
-                base_types.add(node.base_type)
-                base_types.add(node.original_base_type)
-            elif node.node_type == 'op':
-                core_names.add(node.core_name)
+        plot_kernel_graph(graph, output_path=None)
 
-    print(f"Edge types: {etypes}")
-    print(f"Constant types: {const_types}")
-    print(f"Base types: {base_types}")
-    print(f"Core names: {core_names}")
+    print("All kernel graphs have been generated and saved.")

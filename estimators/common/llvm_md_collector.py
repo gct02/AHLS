@@ -2,6 +2,7 @@ import os
 import json
 import subprocess
 import copy
+import re
 from typing import Optional
 
 
@@ -71,40 +72,35 @@ def merge_array_info(base_array_md_path: str, lowered_array_md_path: str):
         raise ValueError(f"Lowered array metadata must contain keys: {required_keys}")
     
     keys_to_merge = ["Dimensions", "BaseType", "BaseBitwidth", "NumDimensions", "TotalSize"]
-    merged_array_md_dict = {}
+    merged_array_md_dict = {"Global": {}, "Local": {}}
 
     for scope in ["Global", "Local"]:
-        base_scope_md = base_array_md_dict.get(scope, {})
-        merged_scope_md = {}
-
         for array_label, lowered_array_md in lowered_array_md_dict[scope].items():
             merged_array_md = copy.deepcopy(lowered_array_md)
 
-            if array_label in base_scope_md:
-                base_array_md = base_scope_md[array_label]
+            if scope == "Local":
+                function_name, array_name = array_label.split('/')
+                if re.search(r"\.[1-9]\d*$", function_name) is not None:
+                    function_name = function_name[:function_name.rfind('.')]
+                original_array_label = f"{function_name}/{array_name}"
+            else:
+                original_array_label = array_label
+
+            if original_array_label in base_array_md_dict[scope]:
+                base_array_md = base_array_md_dict[scope][original_array_label]
                 for key in keys_to_merge:
                     if key in base_array_md:
                         merged_array_md[f"Original{key}"] = base_array_md[key]
                     else:
                         print(f"Warning: Key '{key}' not found in base metadata for array "
-                              f"'{array_label}' in scope '{scope}'")
+                              f"'{original_array_label}' in scope '{scope}'")
                         merged_array_md[f"Original{key}"] = lowered_array_md[key]
             else:
-                print(f"Warning: Array '{array_label}' not found in base metadata for scope '{scope}'")
                 for key in keys_to_merge:
                     merged_array_md[f"Original{key}"] = lowered_array_md[key]
             
-            merged_scope_md[array_label] = merged_array_md
-
-        for array_label, base_array_md in base_array_md_dict[scope].items():
-            if array_label not in lowered_array_md_dict[scope]:
-                merged_array_md = copy.deepcopy(base_array_md)
-                for key in keys_to_merge:
-                    merged_array_md[f"Original{key}"] = base_array_md[key]
-
-                merged_scope_md[array_label] = merged_array_md
-
-        merged_array_md_dict[scope] = merged_scope_md
+            norm_array_label = array_label.replace('.', '_')
+            merged_array_md_dict[scope][norm_array_label] = merged_array_md
 
     return merged_array_md_dict
 

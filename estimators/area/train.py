@@ -180,13 +180,13 @@ def main(args: Dict[str, Any]):
 
     model_args = {
         'in_channels': NODE_DIM,
-        'hidden_channels': 200,
+        'hidden_channels': 160,
         'num_layers': 3,
         'edge_dim': EDGE_DIM,
         'heads': 4,
         'negative_slope': 0.2,
         'dropout_gnn': 0.1,
-        'dropout_mlp': 0.2,
+        'dropout_mlp': 0.1,
         'gmt_k': 10,
         'jk_mode': 'lstm'
     }
