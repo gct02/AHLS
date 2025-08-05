@@ -15,7 +15,7 @@ from torch_geometric.loader import DataLoader
 
 from estimators.area.models import HLSQoREstimator
 from estimators.area.dataset import HLSDataset, StatsDict
-from estimators.area.graph import NODE_DIM, EDGE_DIM
+from estimators.area.graph import NODE_DIM, EDGE_DIM, GRAPH_ATTR_DIM
 from estimators.area.data_utils import compute_snru
 
 from estimators.common.perf_visualization import (
@@ -54,7 +54,7 @@ def evaluate(
             data.edge_index,
             data.edge_attr,
             data.batch,
-            data.y_base
+            data.graph_attr
         )
         targets.append(data.original_y)
         preds.append(torch.expm1(pred * std_target + mean_target))
@@ -110,7 +110,7 @@ def train_model(
                 data.edge_index,
                 data.edge_attr,
                 data.batch,
-                data.y_base
+                data.graph_attr
             )
             loss = loss_fn(pred, data.y)
             loss.backward()
@@ -183,6 +183,7 @@ def main(args: Dict[str, Any]):
         'hidden_channels': 160,
         'num_layers': 3,
         'edge_dim': EDGE_DIM,
+        'graph_attr_dim': GRAPH_ATTR_DIM,
         'heads': 4,
         'negative_slope': 0.2,
         'dropout_gnn': 0.1,
@@ -228,7 +229,7 @@ def main(args: Dict[str, Any]):
         json.dump(model_args, f, indent=2)
     
     train_loader, test_loader, scaling_stats, \
-        target_scaling_stats, base_target_scaling_stats = prepare_data_loaders(
+        graph_attr_scaling_stats, target_scaling_stats = prepare_data_loaders(
         dataset_dir=dataset_dir, 
         test_benches=test_bench, 
         train_benches=train_benches, 
@@ -236,8 +237,8 @@ def main(args: Dict[str, Any]):
     )
     with open(f"{output_dir}/scaling_stats.json", 'w') as f:
         json.dump(scaling_stats, f, indent=2)
-    with open(f"{output_dir}/base_target_scaling_stats.json", 'w') as f:
-        json.dump(base_target_scaling_stats, f, indent=2)
+    with open(f"{output_dir}/graph_attr_scaling_stats.json", 'w') as f:
+        json.dump(graph_attr_scaling_stats, f, indent=2)
     with open(f"{output_dir}/target_scaling_stats.json", 'w') as f:
         json.dump(target_scaling_stats, f, indent=2)
 
@@ -269,7 +270,6 @@ def main(args: Dict[str, Any]):
         dtype=torch.float32,
         device=DEVICE
     )
-
     checkpoint_manager = CheckpointManager(output_dir, burn_in_epochs=burn_in)
 
     train_errors, test_errors = train_model(
@@ -280,7 +280,6 @@ def main(args: Dict[str, Any]):
         max_norm=max_norm,
         available_resources=available_resources
     )
-
     indices = [data.solution_index for data in test_loader.dataset]
     preds = checkpoint_manager.get_best_outputs().tolist()
 
@@ -348,16 +347,16 @@ def prepare_data_loaders(
 
         # Will be computed
         scaling_stats=None,
-        target_scaling_stats=None,
-        base_target_scaling_stats= None
+        graph_attr_scaling_stats=None,
+        target_scaling_stats=None
     )
     test_dataset = HLSDataset(
         root=dataset_dir, 
         mode="test",
         benchmarks=test_benches,
         scaling_stats=train_dataset.scaling_stats,
-        target_scaling_stats=train_dataset.target_scaling_stats,
-        base_target_scaling_stats=train_dataset.base_target_scaling_stats
+        graph_attr_scaling_stats=train_dataset.graph_attr_scaling_stats,
+        target_scaling_stats=train_dataset.target_scaling_stats
     )
     train_loader = DataLoader(
         train_dataset, 
@@ -376,8 +375,8 @@ def prepare_data_loaders(
     return (
         train_loader, test_loader, 
         train_dataset.scaling_stats,
-        train_dataset.target_scaling_stats,
-        train_dataset.base_target_scaling_stats
+        train_dataset.graph_attr_scaling_stats,
+        train_dataset.target_scaling_stats
     )
 
 

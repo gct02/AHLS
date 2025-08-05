@@ -45,7 +45,7 @@ def main(args: Dict[str, Any]):
         with open(bench_out_dir / "base_graph.pkl", "wb") as f:
             pickle.dump(base_graph, f)
 
-        base_metrics = base_graph.ground_truth_metrics
+        base_metrics = base_graph.base_ground_truth
         with open(bench_out_dir / "base_metrics.json", "w") as f:
             json.dump(base_metrics, f, indent=2)
 

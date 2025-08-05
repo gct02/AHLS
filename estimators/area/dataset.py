@@ -15,7 +15,8 @@ from torch_geometric.data import Dataset, Data
 from estimators.area.graph import (
     NO_LOG_SCALING_KEYS,
     KernelGraph,
-    compute_scaling_stats
+    compute_scaling_stats,
+    compute_graph_attr_scaling_stats
 )
 from estimators.common.parsers import AREA_METRICS
 
@@ -31,8 +32,8 @@ class HLSDataset(Dataset):
         mode: str = "train",
         benchmarks: Optional[Union[str, List[str]]] = None,
         scaling_stats: Optional[StatsDict] = None,
+        graph_attr_scaling_stats: Optional[StatsDict] = None,
         target_scaling_stats: Optional[StatsDict] = None,
-        base_target_scaling_stats: Optional[StatsDict] = None,
         **kwargs
     ):
         self.full_dataset_dir = os.path.join(root, "full")
@@ -43,11 +44,8 @@ class HLSDataset(Dataset):
         elif not isinstance(benchmarks, list):
             benchmarks = [benchmarks]
 
-        base_graphs = {}
-        self.base_targets = {}
         self.benchmarks = []
-
-        base_target_dict = {key: [] for key in AREA_METRICS}
+        base_graphs = {}
 
         # Filter out unavailable benchmarks
         for benchmark in benchmarks:
@@ -76,22 +74,21 @@ class HLSDataset(Dataset):
             with open(graph_path, 'rb') as f:
                 base_graphs[benchmark] = pickle.load(f)
 
-            self.base_targets[benchmark] = []
-            for key in AREA_METRICS:
-                value = math.log1p(float(metrics[key]))
-                base_target_dict[key].append(value)
-                self.base_targets[benchmark].append(value)
-
             self.benchmarks.append(benchmark)
 
         if not scaling_stats:
-            self.scaling_stats = compute_scaling_stats(list(base_graphs.values()))
-            dct_scaling_stats = compute_dct_scaling_stats(
+            self.scaling_stats = compute_scaling_stats(
                 self.full_dataset_dir, benchmarks=self.benchmarks
             )
-            self.scaling_stats.update(dct_scaling_stats)
         else:
             self.scaling_stats = copy.deepcopy(scaling_stats)
+
+        if not graph_attr_scaling_stats:
+            self.graph_attr_scaling_stats = compute_graph_attr_scaling_stats(
+                self.full_dataset_dir, benchmarks=self.benchmarks
+            )
+        else:
+            self.graph_attr_scaling_stats = copy.deepcopy(graph_attr_scaling_stats)
 
         if not target_scaling_stats:
             self.target_scaling_stats = compute_target_scaling_stats(
@@ -99,23 +96,6 @@ class HLSDataset(Dataset):
             )
         else:
             self.target_scaling_stats = copy.deepcopy(target_scaling_stats)
-
-        if not base_target_scaling_stats:
-            self.base_target_scaling_stats = compute_base_target_scaling_stats(
-                base_target_dict, log_transform=False
-            )
-        else:
-            self.base_target_scaling_stats = copy.deepcopy(base_target_scaling_stats)
-        
-        # Standardize base targets
-        for bench, base_target in self.base_targets.items():
-            target = []
-            for key, value in zip(AREA_METRICS, base_target):
-                mean = self.base_target_scaling_stats[key]['mean']
-                std = self.base_target_scaling_stats[key]['std']
-                target.append((value - mean) / std)
-
-            self.base_targets[bench] = torch.tensor(target, dtype=torch.float32).unsqueeze(0)
 
         self._raw_file_names = []
         self._processed_file_names = []
@@ -205,8 +185,21 @@ class HLSDataset(Dataset):
 
                 self._standardize_features(graph)
 
-                node_id_map = {node_id: i for i, node_id in enumerate(graph.nodes.keys())}
+                graph_attr_dict = graph.graph_attr
+                graph_attr = []
+                for key, value in graph_attr_dict.items():
+                    if key in self.graph_attr_scaling_stats:
+                        mean = self.graph_attr_scaling_stats[key]['mean']
+                        std = self.graph_attr_scaling_stats[key]['std']
+                        if 'ratio' not in key and 'intensity' not in key and 'bitwidth' not in key:
+                            value = math.log1p(float(value))
+                        graph_attr.append((float(value) - mean) / std)
+                    else:
+                        graph_attr.append(float(value))
 
+                graph_attr = torch.tensor(graph_attr, dtype=torch.float32).unsqueeze(0)
+
+                node_id_map = {node_id: i for i, node_id in enumerate(graph.nodes.keys())}
                 xs = [None] * len(node_id_map)
                 for node_id, node in graph.nodes.items():
                     xs[node_id_map[node_id]] = torch.tensor(node.get_homogeneous_features(), dtype=torch.float32)
@@ -226,7 +219,7 @@ class HLSDataset(Dataset):
                     'edge_index': torch.tensor(edge_indices, dtype=torch.long).t().contiguous(),
                     'y': target,
                     'original_y': original_target,
-                    'y_base': self.base_targets[benchmark],
+                    'graph_attr': graph_attr,
                     'benchmark': benchmark,
                     'solution_index': idx
                 }
@@ -266,28 +259,6 @@ class HLSDataset(Dataset):
                     if key not in NO_LOG_SCALING_KEYS:
                         value = log_transform(value)
                     node.feature_dict[key] = scale(value, mean, std)
-
-
-def compute_base_target_scaling_stats(
-    base_targets: Dict[str, List[float]],
-    log_transform: bool = True
-) -> StatsDict:
-    scaling_stats = {}
-    for key in AREA_METRICS:
-        if key not in base_targets or not base_targets[key]:
-            scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
-            continue
-
-        values = np.array(base_targets[key], dtype=np.float64)
-        if log_transform:
-            values = np.log1p(values)
-        mean = np.mean(values)
-        std = np.std(values)
-        if std < 1e-8:
-            std = 1.0
-        scaling_stats[key] = {'mean': mean, 'std': std}
-
-    return scaling_stats
 
 
 def compute_target_scaling_stats(
@@ -341,62 +312,5 @@ def compute_target_scaling_stats(
             if std < 1e-8:
                 std = 1.0
             scaling_stats[key] = {'mean': mean, 'std': std}
-
-    return scaling_stats
-
-
-def compute_dct_scaling_stats(
-    dataset_dir: str,
-    benchmarks: Optional[Union[str, List[str]]] = None
-) -> StatsDict:
-    numerical_feats = {feat: [] for feat in ['unroll_factor', 'partition_factor']}
-    
-    if benchmarks is None:
-        benchmarks = sorted(os.listdir(dataset_dir))
-    elif isinstance(benchmarks, str):
-        benchmarks = [benchmarks]
-
-    for bench in benchmarks:
-        bench_dir = os.path.join(dataset_dir, bench)
-        if not os.path.isdir(bench_dir):
-            print(f"Skipping {bench} (directory not found)")
-            continue
-
-        for sol in os.listdir(bench_dir):
-            sol_dir = os.path.join(bench_dir, sol)
-            if not os.path.isdir(sol_dir) or not sol.startswith("solution"):
-                continue
-
-            graph_path = os.path.join(sol_dir, "graph.pkl")
-            if not os.path.exists(graph_path):
-                print(f"Skipping {sol} (kernel info file not found)")
-                continue
-
-            with open(graph_path, 'rb') as f:
-                kernel_info = pickle.load(f)
-
-            for node in kernel_info.nodes.values():
-                if node.node_type == 'region':
-                    unroll_factor = node.feature_dict.get('unroll_factor', 0)
-                    if unroll_factor > 0:
-                        numerical_feats['unroll_factor'].append(float(unroll_factor))
-                elif node.node_type in ['internal_mem', 'port']:
-                    partition_factor = node.feature_dict.get('partition_factor', 0)
-                    if partition_factor > 0:
-                        numerical_feats['partition_factor'].append(float(partition_factor))
-
-    scaling_stats = {}
-    for key, values in numerical_feats.items():
-        if not values:
-            scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
-            continue
-
-        values_arr = np.array(values, dtype=np.float64)
-        values_arr = np.log1p(values_arr)
-        mean = np.mean(values_arr)
-        std = np.std(values_arr)
-        if std < 1e-8:
-            std = 1.0
-        scaling_stats[key] = {'mean': mean, 'std': std}
 
     return scaling_stats

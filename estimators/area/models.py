@@ -24,7 +24,7 @@ class GATv2JK(nn.Module):
         heads: int = 1,
         negative_slope: float = 0.2,
         dropout: float = 0.0,
-        gmt_k: int = 16,
+        gmt_k: int = 10,
         jk_mode: str = 'cat'
     ):
         super().__init__()
@@ -108,11 +108,12 @@ class HLSQoREstimator(nn.Module):
         hidden_channels,
         num_layers: int,
         edge_dim: int,
+        graph_attr_dim: int,
         heads: int = 1,
         negative_slope: float = 0.2,
         dropout_gnn: float = 0.0,
         dropout_mlp: float = 0.0,
-        gmt_k: int = 16,
+        gmt_k: int = 10,
         jk_mode: str = 'cat'
     ):
         super().__init__()
@@ -131,19 +132,19 @@ class HLSQoREstimator(nn.Module):
         )
 
         # Small MLP to process y_base
-        self.y_base_mlp = nn.Sequential(
-            Linear(NUM_TARGETS, 16), 
-            nn.PReLU(16),
-            Linear(16, 16)
+        self.graph_attr_mlp = nn.Sequential(
+            Linear(graph_attr_dim, 64), 
+            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout_mlp),
+            Linear(64, 64)
         )
         self.mlps = nn.ModuleList(
             [
                 nn.Sequential(
-                    Linear(hidden_channels + 16, hidden_channels // 2), 
+                    Linear(hidden_channels + 64, hidden_channels), 
+                    nn.LayerNorm(hidden_channels), nn.GELU(), nn.Dropout(dropout_mlp),
+                    Linear(hidden_channels, hidden_channels // 2),
                     nn.LayerNorm(hidden_channels // 2), nn.GELU(), nn.Dropout(dropout_mlp),
-                    Linear(hidden_channels // 2, hidden_channels // 4),
-                    nn.LayerNorm(hidden_channels // 4), nn.GELU(), nn.Dropout(dropout_mlp),
-                    Linear(hidden_channels // 4, 1)
+                    Linear(hidden_channels // 2, 1)
                 )
                 for _ in range(NUM_TARGETS)
             ]
@@ -154,7 +155,7 @@ class HLSQoREstimator(nn.Module):
         """Reinitializes model parameters."""
         self.gnn.reset_parameters()
 
-        for m in self.y_base_mlp.modules():
+        for m in self.graph_attr_mlp.modules():
             if hasattr(m, 'reset_parameters'):
                 m.reset_parameters()
 
@@ -169,12 +170,12 @@ class HLSQoREstimator(nn.Module):
         edge_index: Tensor,
         edge_attr: Tensor,
         batch: Tensor,
-        y_base: Tensor
+        graph_attr: Tensor
     ) -> Tensor:
         x = self.gnn(x, edge_index, edge_attr, batch)
 
-        y_base = self.y_base_mlp(y_base)
-        x = torch.cat([x, y_base], dim=1)
+        graph_attr = self.graph_attr_mlp(graph_attr)
+        x = torch.cat([x, graph_attr], dim=1)
 
         outs = []
         for mlp in self.mlps:

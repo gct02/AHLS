@@ -4,9 +4,10 @@ import copy
 import math
 import random
 import re
+import pickle
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Union
 
 import numpy as np
 
@@ -25,6 +26,33 @@ DIRECTIVES = [
     "dataflow", "inline"
 ]
 
+OP_CATEGS = [
+    'mem', 'control', 'arith_int', 'arith_fp',
+    'logical', 'data_manipulation', 'conversion',
+    'rel_spec', 'io'
+]
+OP_CATEG_MAP = {
+    'alloca': 'mem', 'load': 'mem', 
+    'store': 'mem', 'getelementptr': 'mem',
+    'br': 'control', 'ret': 'control', 
+    'call': 'control', 'switch': 'control',
+    'add': 'arith_int', 'sub': 'arith_int', 'mul': 'arith_int',
+    'dadd': 'arith_fp', 'dsub': 'arith_fp', 'dmul': 'arith_fp',
+    'ddiv': 'arith_fp', 'dsqrt': 'arith_fp', 'dexp': 'arith_fp',
+    'sitodp': 'arith_fp',
+    'and': 'logical', 'or': 'logical', 'xor': 'logical',
+    'shl': 'logical', 'lshr': 'logical', 'ashr': 'logical',
+    'phi': 'data_manipulation', 'select': 'data_manipulation',
+    'mux': 'data_manipulation', 'sparsemux': 'data_manipulation',
+    'bitconcatenate': 'data_manipulation', 'bitselect': 'data_manipulation',
+    'partselect': 'data_manipulation', 'insertvalue': 'data_manipulation',
+    'extractvalue': 'data_manipulation',
+    'zext': 'conversion', 'sext': 'conversion',
+    'trunc': 'conversion', 'bitcast': 'conversion',
+    'icmp': 'rel_spec', 'cttz': 'rel_spec',
+    'read': 'io', 'write': 'io'
+}
+
 OPCODES = [
     'alloca', 'load', 'store', 'getelementptr',
     'br', 'ret', 'call', 'switch',
@@ -38,7 +66,7 @@ OPCODES = [
     'read', 'write'
 ]
 OPCODE_MAP = {op: i for i, op in enumerate(OPCODES)}
-NUM_OPCODES = len(OPCODES)
+NUM_OPCODES = len(OPCODES) 
 
 BASE_TYPE_MAP = {
     '11': 0, # Integer
@@ -88,10 +116,20 @@ DEFAULT_NODE_FEATURES = {
 
     'region_lut_sum': 0, 'region_ff_sum': 0, 'region_dsp_sum': 0, 'region_bram_sum': 0,
     'region_num_ops': 0, 'region_num_sub_regions': 0, 'region_num_blocks': 0,
+    'region_num_mem_ops': 0, 'region_num_control_ops': 0, 
+    'region_num_arith_int_ops': 0, 'region_num_arith_fp_ops': 0,
+    'region_num_logical_ops': 0, 'region_num_data_manipulation_ops': 0,
+    'region_num_conversion_ops': 0, 'region_num_rel_spec_ops': 0, 
+    'region_num_io_ops': 0,
     
+    'is_small_function': 0,
     'module_lut': 0, 'module_ff': 0, 'module_dsp': 0, 'module_bram': 0,
     'function_num_sub_regions': 0, 'function_num_blocks': 0, 'function_num_ops': 0,
-    'is_small_function': 0,
+    'function_num_mem_ops': 0, 'function_num_control_ops': 0,
+    'function_num_arith_int_ops': 0, 'function_num_arith_fp_ops': 0,
+    'function_num_logical_ops': 0, 'function_num_data_manipulation_ops': 0,
+    'function_num_conversion_ops': 0, 'function_num_rel_spec_ops': 0,
+    'function_num_io_ops': 0,
 
     'achieved_ii_base': 0, 'auto_pipeline': 0, 'pipeline': 0,
     'unroll': 0, 'unroll_factor': 0, 'loop_flatten': 0, 
@@ -115,7 +153,11 @@ DEFAULT_NODE_FEATURES = {
     'const_type': [0] * NUM_CONST_TYPES,
 
     'block_lut_sum': 0, 'block_ff_sum': 0, 'block_dsp_sum': 0, 'block_bram_sum': 0,
-    'block_num_ops': 0
+    'block_num_ops': 0, 'block_num_mem_ops': 0, 'block_num_control_ops': 0,
+    'block_num_arith_int_ops': 0, 'block_num_arith_fp_ops': 0,
+    'block_num_logical_ops': 0, 'block_num_data_manipulation_ops': 0,
+    'block_num_conversion_ops': 0, 'block_num_rel_spec_ops': 0,
+    'block_num_io_ops': 0
 }
 NODE_FEATURES = list(DEFAULT_NODE_FEATURES.keys())
 
@@ -126,8 +168,23 @@ NUMERICAL_FEATURES = [
     'bitwidth', 'latency', 'op_delay', 'original_array_dims', 
     'array_size', 'trip_count', 'achieved_ii_base', 'callee_size', 
     'region_num_blocks', 'region_num_sub_regions', 'region_num_ops',
+    'region_num_mem_ops', 'region_num_control_ops',
+    'region_num_arith_int_ops', 'region_num_arith_fp_ops',
+    'region_num_logical_ops', 'region_num_data_manipulation_ops',
+    'region_num_conversion_ops', 'region_num_rel_spec_ops',
+    'region_num_io_ops',
     'function_num_blocks', 'function_num_sub_regions', 'function_num_ops',
-    'block_num_ops'
+    'function_num_mem_ops', 'function_num_control_ops',
+    'function_num_arith_int_ops', 'function_num_arith_fp_ops',
+    'function_num_logical_ops', 'function_num_data_manipulation_ops',
+    'function_num_conversion_ops', 'function_num_rel_spec_ops',
+    'function_num_io_ops',
+    'block_num_ops', 'block_num_mem_ops', 'block_num_control_ops',
+    'block_num_arith_int_ops', 'block_num_arith_fp_ops',
+    'block_num_logical_ops', 'block_num_data_manipulation_ops',
+    'block_num_conversion_ops', 'block_num_rel_spec_ops',
+    'block_num_io_ops',
+    'unroll_factor', 'partition_factor'
 ] + AREA_METRICS + [
     f'block_{metric}_sum' for metric in AREA_METRICS
 ] + [
@@ -136,6 +193,28 @@ NUMERICAL_FEATURES = [
     f'module_{metric}' for metric in AREA_METRICS
 ]
 NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'op_delay']
+
+GRAPH_FEATURES = [
+    'num_nodes', 'num_edges', 'num_ops', 'num_blocks',
+    'num_functions', 'num_loops', 'num_arrays', 'num_mem_ops',
+    'num_arith_ops', 'mem_intensity', 'num_int_ops', 'num_fp_ops',
+    'num_branch_ops', 'avg_op_bitwidth', 'avg_loop_depth', 'max_loop_depth',
+    'avg_loop_trip_count', 'max_loop_trip_count', 'avg_loop_latency',
+    'max_loop_latency', 'avg_pipelined_loop_latency',
+    'max_pipelined_loop_latency', 'num_pipelined_loops',
+    'avg_unrolled_loop_latency', 'max_unrolled_loop_latency',
+    'num_unrolled_loops', 'avg_flattened_loop_depth',
+    'max_flattened_loop_depth', 'num_flattened_loops',
+    'avg_unroll_factor', 'max_unroll_factor', 'ratio_pipelined_loops',
+    'ratio_unrolled_loops', 'avg_function_latency',
+    'max_function_latency', 'num_partitioned_arrays',
+    'avg_array_size', 'max_array_size', 'avg_partitioned_array_size',
+    'max_partitioned_array_size', 'avg_partition_factor',
+    'max_partition_factor', 'ratio_partitioned_arrays',
+    'num_loop_merges', 'num_inlines', 'num_dataflows',
+    'lut', 'ff', 'dsp', 'bram'
+]
+GRAPH_ATTR_DIM = len(GRAPH_FEATURES)
 
 
 def get_default_feature_value(key: str) -> Any:
@@ -463,18 +542,23 @@ class OperationNode(CDFGNode):
         if not self.core_name:
             self.core_name = 'none'
 
+        if self.opcode in OP_CATEG_MAP:
+            self.op_category = OP_CATEG_MAP[self.opcode]
+        else:
+            self.op_category = 'unknown'
+
         ohe_core = [0] * NUM_CORE_TYPES
         ohe_core_index = CORE_TYPE_MAP.get(self.core_name, -1)
         if ohe_core_index >= 0:
             ohe_core[ohe_core_index] = 1
 
-        ohe_op = [0] * NUM_OPCODES
-        op_index = OPCODE_MAP.get(self.opcode, -1)
-        if op_index >= 0:
-            ohe_op[op_index] = 1
+        ohe_opcode = [0] * NUM_OPCODES
+        opcode_index = OPCODE_MAP.get(self.opcode, -1)
+        if opcode_index >= 0:
+            ohe_opcode[opcode_index] = 1
 
         self.feature_dict.update({
-            'opcode': ohe_op,
+            'opcode': ohe_opcode,
             'core_name': ohe_core,
             'bitwidth': max(0, findint(element, 'Value/bitwidth', 0)),
             'op_delay': findfloat(element, 'm_delay', 0.0),
@@ -679,10 +763,14 @@ class FunctionNode(Node):
                     res_dict[f'module_{res}'] += op.feature_dict.get(res, 0)
             self.feature_dict.update(res_dict)
 
-        self.sub_regions = [
-            f'{self.name}.region.{i - 1}' 
-            for i in self._extract_items(element, 'sub_regions')
-        ]
+        self.feature_dict.update({f'function_num_{categ}_ops': 0 for categ in OP_CATEGS})
+
+        for op in op_nodes:
+            if op.opcode in OP_CATEG_MAP:
+                categ = OP_CATEG_MAP[op.opcode]
+                self.feature_dict[f'function_num_{categ}_ops'] += 1
+
+        self.sub_regions = sub_regions
         self.blocks = [
             f'{self.name}.{i}' 
             for i in self._extract_items(element, 'basic_blocks')
@@ -892,22 +980,28 @@ class CDFG:
         for elem in blocks.findall('item'):
             node = BlockNode(elem, self.original_name)
             block_id = f'{self.name}.{node.id}'
-            node.feature_dict.update(
-                {f"block_{res}_sum": 0 for res in AREA_METRICS}
-            )
+
+            node.feature_dict.update({f"block_{res}_sum": 0 for res in AREA_METRICS})
+            node.feature_dict.update({f'block_num_{categ}_ops': 0 for categ in OP_CATEGS})
+
             updated_ops = []
             for op in node.ops:
                 op_id = f'{self.name}.{op}'
                 if op_id not in self.nodes:
                     continue
+
                 updated_ops.append(op_id)
                 op_node = self.nodes[op_id]
+
                 for res in AREA_METRICS:
                     res_value = op_node.feature_dict.get(res, 0)
                     node.feature_dict[f"block_{res}_sum"] += res_value
 
-            node.ops = updated_ops
+                if op_node.op_category != 'unknown':
+                    node.feature_dict[f'block_num_{op_node.op_category}_ops'] += 1
+
             node.feature_dict['block_num_ops'] = len(updated_ops)
+            node.ops = updated_ops
             self.nodes[block_id] = node
 
     def _process_regions(self, regions, loop_md_dict, utilization_dict):
@@ -977,14 +1071,14 @@ class CDFG:
                     sub_region = region_nodes[sub_region_id]
                     all_blocks.update(sub_region.blocks)
 
-            region_node.feature_dict.update(
-                {f"region_{res}_sum": 0 for res in AREA_METRICS}
-            )
+            region_node.feature_dict.update({f"region_{res}_sum": 0 for res in AREA_METRICS})
+            region_node.feature_dict.update({f'region_num_{categ}_ops': 0 for categ in OP_CATEGS})
             region_num_ops = 0
 
             for block_id in all_blocks:
                 if block_id not in self.nodes:
                     continue
+
                 block_node = self.nodes[block_id]
                 if block_node.node_type != 'block':
                     continue
@@ -992,6 +1086,10 @@ class CDFG:
                 for res in AREA_METRICS:
                     res_value = block_node.feature_dict.get(f'block_{res}_sum', 0)
                     region_node.feature_dict[f'region_{res}_sum'] += res_value
+
+                for categ in OP_CATEGS:
+                    num_ops = block_node.feature_dict.get(f'block_num_{categ}_ops', 0)
+                    region_node.feature_dict[f'region_num_{categ}_ops'] += num_ops
                 
                 region_num_ops += block_node.feature_dict.get('block_num_ops', 0)
             
@@ -1155,8 +1253,8 @@ class KernelGraph:
         self._loop_md_dict = loop_md_dict
         self._global_array_names = list(self._global_array_md_dict.keys())
 
-        self.ground_truth_metrics = extract_area_metrics(solution_dir)
-        if any(self.ground_truth_metrics.get(res, 0) < 0 for res in AREA_METRICS):
+        self.base_ground_truth = extract_area_metrics(solution_dir)
+        if any(self.base_ground_truth.get(res, 0) < 0 for res in AREA_METRICS):
             raise ValueError("Invalid area metrics found in the solution directory.")
         
         self.module_area_dict = extract_per_module_area(solution_dir)
@@ -1168,6 +1266,188 @@ class KernelGraph:
         self._process_adb_files(solution_dir)
         self._update_array_info()
         self._include_call_flow()
+
+        self.graph_attr = self.compute_graph_attrs()
+
+    def compute_graph_attrs(self):
+        num_nodes = len(self.nodes)
+        num_edges = len(self.edges)
+
+        num_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op')
+        num_blocks = sum(1 for node in self.nodes.values() if node.node_type == 'block')
+        num_functions = sum(1 for node in self.nodes.values() if node.node_type == 'function')
+        num_loops = sum(1 for node in self.nodes.values() if node.node_type == 'region' and node.is_loop)
+        num_arrays = sum(1 for node in self.nodes.values() if node.node_type in ['internal_mem', 'port'] and node.is_array)
+
+        num_mem_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.opcode in ['load', 'store'])
+        num_arith_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.op_category in ['arith_int', 'arith_fp'])
+        mem_intensity = num_mem_ops / (num_arith_ops + 1e-6)
+
+        num_int_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.op_category == 'arith_int')
+        num_fp_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.op_category == 'arith_fp')
+
+        num_branch_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.opcode in ['br', 'switch'])
+
+        avg_op_bitwidth = sum(
+            node.feature_dict.get('bitwidth', 0) 
+            for node in self.nodes.values() if node.node_type == 'op'
+        ) / num_ops if num_ops > 0 else 0
+
+        loop_depths = []
+        loop_trip_counts = []
+        loop_latencies = []
+        pipelined_loop_latencies = []
+        unrolled_loop_latencies = []
+        flattened_loop_depths = []
+        unroll_factors = []
+
+        for node in self.nodes.values():
+            if node.node_type == 'region' and node.is_loop:
+                ohe_loop_depth = node.feature_dict.get('loop_depth', [0] * (MAX_LOOP_DEPTH + 1))
+                loop_depth = ohe_loop_depth.index(1) if 1 in ohe_loop_depth else 0
+                loop_depths.append(loop_depth)
+
+                loop_trip_count = node.feature_dict.get('trip_count', 0)
+                loop_trip_counts.append(loop_trip_count)
+
+                loop_latency = node.feature_dict.get('latency', 0)
+                loop_latencies.append(loop_latency)
+
+                if node.feature_dict.get('auto_pipeline', 0) == 1 or node.feature_dict.get('pipeline', 0) == 1:
+                    pipelined_loop_latencies.append(loop_latency)
+
+                if node.feature_dict.get('loop_flatten', 0) == 1:
+                    flattened_loop_depths.append(loop_depth)
+
+                unroll_factor = node.feature_dict.get('unroll_factor', 0)
+                if unroll_factor > 0:
+                    unroll_factors.append(unroll_factor)
+                    unrolled_loop_latencies.append(loop_latency)
+
+        num_pipelined_loops = len(pipelined_loop_latencies)
+        num_flattened_loops = len(flattened_loop_depths)
+        num_unrolled_loops = len(unroll_factors)
+
+        avg_loop_depth = sum(loop_depths) / len(loop_depths) if loop_depths else 0
+        max_loop_depth = max(loop_depths) if loop_depths else 0
+
+        avg_loop_trip_count = sum(loop_trip_counts) / len(loop_trip_counts) if loop_trip_counts else 0
+        max_loop_trip_count = max(loop_trip_counts) if loop_trip_counts else 0
+
+        avg_loop_latency = sum(loop_latencies) / len(loop_latencies) if loop_latencies else 0
+        max_loop_latency = max(loop_latencies) if loop_latencies else 0
+
+        avg_pipelined_loop_latency = sum(pipelined_loop_latencies) / num_pipelined_loops if num_pipelined_loops > 0 else 0
+        max_pipelined_loop_latency = max(pipelined_loop_latencies) if pipelined_loop_latencies else 0
+
+        avg_unrolled_loop_latency = sum(unrolled_loop_latencies) / num_unrolled_loops if num_unrolled_loops > 0 else 0
+        max_unrolled_loop_latency = max(unrolled_loop_latencies) if unrolled_loop_latencies else 0
+
+        avg_flattened_loop_depth = sum(flattened_loop_depths) / num_flattened_loops if num_flattened_loops > 0 else 0
+        max_flattened_loop_depth = max(flattened_loop_depths) if flattened_loop_depths else 0
+
+        avg_unroll_factor = sum(unroll_factors) / num_unrolled_loops if num_unrolled_loops > 0 else 0
+        max_unroll_factor = max(unroll_factors) if unroll_factors else 0
+
+        ratio_pipelined_loops = num_pipelined_loops / num_loops if num_loops > 0 else 0
+        ratio_unrolled_loops = num_unrolled_loops / num_loops if num_loops > 0 else 0
+
+        function_latencies = [
+            node.feature_dict.get('latency', 0) 
+            for node in self.nodes.values() if node.node_type == 'function'
+        ]
+        avg_function_latency = sum(function_latencies) / len(function_latencies) if function_latencies else 0
+        max_function_latency = max(function_latencies) if function_latencies else 0
+
+        array_sizes = []
+        partitioned_array_sizes = []
+        partition_factors = []
+
+        for node in self.nodes.values():
+            if node.node_type in ['internal_mem', 'port'] and node.is_array:
+                array_size = node.feature_dict.get('array_size', 0)
+                array_sizes.append(array_size)
+                partition_factor = node.feature_dict.get('partition_factor', 0)
+                if partition_factor > 0:
+                    partition_factors.append(partition_factor)
+                    partitioned_array_sizes.append(array_size)
+
+        num_arrays = len(array_sizes)
+        num_partitioned_arrays = len(partitioned_array_sizes)
+        
+        avg_array_size = sum(array_sizes) / num_arrays if num_arrays > 0 else 0
+        max_array_size = max(array_sizes) if array_sizes else 0
+
+        avg_partitioned_array_size = sum(partitioned_array_sizes) / num_partitioned_arrays if num_partitioned_arrays > 0 else 0
+        max_partitioned_array_size = max(partitioned_array_sizes) if partitioned_array_sizes else 0
+
+        avg_partition_factor = sum(partition_factors) / len(partition_factors) if partition_factors else 0
+        max_partition_factor = max(partition_factors) if partition_factors else 0
+
+        ratio_partitioned_arrays = num_partitioned_arrays / num_arrays if num_arrays > 0 else 0
+
+        num_loop_merges = sum(
+            1 for node in self.nodes.values() if node.node_type in ['region', 'function']
+            and node.feature_dict.get('loop_merge', 0) == 1
+        )
+        num_inlines = sum(
+            1 for node in self.nodes.values() if node.node_type == 'function'
+            and node.feature_dict.get('inline', 0) == 1
+        )
+        num_dataflows = sum(
+            1 for node in self.nodes.values() if node.node_type == 'function'
+            and node.feature_dict.get('dataflow', 0) == 1
+        )
+        graph_attrs = {
+            'num_nodes': num_nodes, 
+            'num_edges': num_edges,
+            'num_ops': num_ops, 
+            'num_blocks': num_blocks, 
+            'num_functions': num_functions, 
+            'num_loops': num_loops, 
+            'num_arrays': num_arrays,
+            'num_mem_ops': num_mem_ops, 
+            'num_arith_ops': num_arith_ops,
+            'mem_intensity': mem_intensity, 
+            'num_int_ops': num_int_ops,
+            'num_fp_ops': num_fp_ops, 
+            'num_branch_ops': num_branch_ops,
+            'avg_op_bitwidth': avg_op_bitwidth,
+            'avg_loop_depth': avg_loop_depth, 
+            'max_loop_depth': max_loop_depth,
+            'avg_loop_trip_count': avg_loop_trip_count,
+            'max_loop_trip_count': max_loop_trip_count,
+            'avg_loop_latency': avg_loop_latency,
+            'max_loop_latency': max_loop_latency,
+            'avg_pipelined_loop_latency': avg_pipelined_loop_latency,
+            'max_pipelined_loop_latency': max_pipelined_loop_latency,
+            'num_pipelined_loops': num_pipelined_loops,
+            'avg_unrolled_loop_latency': avg_unrolled_loop_latency,
+            'max_unrolled_loop_latency': max_unrolled_loop_latency,
+            'num_unrolled_loops': num_unrolled_loops,
+            'avg_flattened_loop_depth': avg_flattened_loop_depth,
+            'max_flattened_loop_depth': max_flattened_loop_depth,
+            'num_flattened_loops': num_flattened_loops,
+            'avg_unroll_factor': avg_unroll_factor,
+            'max_unroll_factor': max_unroll_factor,
+            'ratio_pipelined_loops': ratio_pipelined_loops,
+            'ratio_unrolled_loops': ratio_unrolled_loops,
+            'avg_function_latency': avg_function_latency,
+            'max_function_latency': max_function_latency,
+            'num_partitioned_arrays': num_partitioned_arrays,
+            'avg_array_size': avg_array_size,
+            'max_array_size': max_array_size,
+            'avg_partitioned_array_size': avg_partitioned_array_size,
+            'max_partitioned_array_size': max_partitioned_array_size,
+            'avg_partition_factor': avg_partition_factor,
+            'max_partition_factor': max_partition_factor,
+            'ratio_partitioned_arrays': ratio_partitioned_arrays,
+            'num_loop_merges': num_loop_merges,
+            'num_inlines': num_inlines,
+            'num_dataflows': num_dataflows
+        }
+        graph_attrs.update(self.base_ground_truth)
+        return graph_attrs
 
     def _process_adb_files(self, solution_dir):
         try:
@@ -1398,7 +1678,7 @@ class KernelGraph:
         return {
             'benchmark_name': self.benchmark_name,
             'top_level_function': self.top_level_name,
-            'ground_truth_metrics': self.ground_truth_metrics,
+            'ground_truth_metrics': self.base_ground_truth,
             'cdfgs': [cdfg.name for cdfg in self._cdfgs.values()],
             'nodes': node_dict,
             'edges': edge_dict
@@ -1432,31 +1712,50 @@ def collect_adb_files(solution_dir):
     return file_paths
 
 
-def compute_scaling_stats(kernel_graphs: List[KernelGraph],) -> Dict[str, Dict[str, float]]:
-    """Compute statistics (mean and std deviation) for numerical features in the dataset.
-    Args:
-        dataset_dir (str): Path to the dataset directory.
-        benchmarks (Optional[Union[str, List[str]]]): Specific benchmarks to compute stats for.
-    Returns:
-        Dict[str, Dict[str, float]]: Scaling statistics for each numerical feature.
-    """
+def compute_scaling_stats(
+    dataset_dir: str,
+    benchmarks: Optional[Union[str, List[str]]] = None,
+) -> Dict[str, Dict[str, float]]:
     numerical_feats = {feat: [] for feat in NUMERICAL_FEATURES}
 
-    for kernel_graph in kernel_graphs:
-        for node in kernel_graph.nodes.values():
-            for key, value in node.feature_dict.items():
-                if 'bitwidth' in key:
-                    base_key = 'bitwidth'
-                else:
-                    base_key = key
-                
-                if base_key in numerical_feats:
-                    if 'dims' in base_key:
-                        for dim in value:
-                            if dim > 1:
-                                numerical_feats[base_key].append(float(dim))
-                    elif value > 0:
-                        numerical_feats[base_key].append(float(value))
+    if benchmarks is None:
+        benchmarks = sorted(os.listdir(dataset_dir))
+    elif isinstance(benchmarks, str):
+        benchmarks = [benchmarks]
+
+    for bench in benchmarks:
+        bench_dir = os.path.join(dataset_dir, bench)
+        if not os.path.isdir(bench_dir):
+            print(f"Skipping {bench} (directory not found)")
+            continue
+
+        for sol in os.listdir(bench_dir):
+            sol_dir = os.path.join(bench_dir, sol)
+            if not os.path.isdir(sol_dir) or not sol.startswith("solution"):
+                continue
+
+            graph_path = os.path.join(sol_dir, "graph.pkl")
+            if not os.path.exists(graph_path):
+                print(f"Skipping {sol} (kernel info file not found)")
+                continue
+
+            with open(graph_path, 'rb') as f:
+                kernel_graph = pickle.load(f)
+
+            for node in kernel_graph.nodes.values():
+                for key, value in node.feature_dict.items():
+                    if 'bitwidth' in key:
+                        base_key = 'bitwidth'
+                    else:
+                        base_key = key
+                    
+                    if base_key in numerical_feats:
+                        if 'dims' in base_key:
+                            for dim in value:
+                                if dim > 1:
+                                    numerical_feats[base_key].append(float(dim))
+                        elif value > 0:
+                            numerical_feats[base_key].append(float(value))
 
     scaling_stats = {}
     for key, values in numerical_feats.items():
@@ -1477,6 +1776,60 @@ def compute_scaling_stats(kernel_graphs: List[KernelGraph],) -> Dict[str, Dict[s
 
     if 'bitwidth' in scaling_stats:
         scaling_stats['original_bitwidth'] = scaling_stats['bitwidth']
+
+    return scaling_stats
+
+
+def compute_graph_attr_scaling_stats(
+    dataset_dir: str,
+    benchmarks: Optional[Union[str, List[str]]] = None,
+) -> Dict[str, Dict[str, float]]:
+    graph_attrs = {feat: [] for feat in GRAPH_FEATURES}
+
+    if benchmarks is None:
+        benchmarks = sorted(os.listdir(dataset_dir))
+    elif isinstance(benchmarks, str):
+        benchmarks = [benchmarks]
+
+    for bench in benchmarks:
+        bench_dir = os.path.join(dataset_dir, bench)
+        if not os.path.isdir(bench_dir):
+            print(f"Skipping {bench} (directory not found)")
+            continue
+
+        for sol in os.listdir(bench_dir):
+            sol_dir = os.path.join(bench_dir, sol)
+            if not os.path.isdir(sol_dir) or not sol.startswith("solution"):
+                continue
+
+            graph_path = os.path.join(sol_dir, "graph.pkl")
+            if not os.path.exists(graph_path):
+                print(f"Skipping {sol} (kernel info file not found)")
+                continue
+
+            with open(graph_path, 'rb') as f:
+                kernel_graph = pickle.load(f)
+
+            for key, value in kernel_graph.graph_attr.items():
+                if key in graph_attrs:
+                    graph_attrs[key].append(float(value))
+
+    scaling_stats = {}
+    for key, values in graph_attrs.items():
+        if not values:
+            scaling_stats[key] = {'mean': 0.0, 'std': 1.0}
+            continue
+
+        values_arr = np.array(values, dtype=np.float64)
+        if 'ratio' not in key and 'intensity' not in key and 'bitwidth' not in key:
+            values_arr = np.log1p(values_arr)
+
+        mean = np.mean(values_arr)
+        std = np.std(values_arr)
+        if std < 1e-8:
+            std = 1.0
+
+        scaling_stats[key] = {'mean': mean, 'std': std}
 
     return scaling_stats
 
@@ -1650,10 +2003,12 @@ def update_with_directives(
     # since it relies on the Vitis log file, which will not be available.
     
     if not vitis_log_path:
+        kernel_graph.graph_attr = kernel_graph.compute_graph_attrs()
         return kernel_graph
     
     if not os.path.exists(vitis_log_path):
         print(f"Warning: Vitis log file '{vitis_log_path}' does not exist.")
+        kernel_graph.graph_attr = kernel_graph.compute_graph_attrs()
         return kernel_graph
     
     auto_dcts = extract_auto_dcts_from_log(vitis_log_path)
@@ -1678,7 +2033,8 @@ def update_with_directives(
         node = find_region_node(kernel_graph, loop_name, function_name)
         if node is not None:
             node.feature_dict["loop_flatten"] = 1
-            
+
+    kernel_graph.graph_attr = kernel_graph.compute_graph_attrs()
     return kernel_graph
 
 
