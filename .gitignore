@@ -37,6 +37,6 @@ inspect_gramschmidt.py
 area_model_analysis.py
 
 shap_values/
-
+tests/
 gnn/test
 data/hls_determinism_test
