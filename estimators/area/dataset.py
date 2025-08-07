@@ -13,10 +13,11 @@ import numpy as np
 from torch_geometric.data import Dataset, Data
 
 from estimators.area.graph import (
+    NODE_TYPES,
+    NODE_DIM_DICT,
     NO_LOG_SCALING_KEYS,
     NO_LOG_SCALING_GRAPH_KEYS,
     KernelGraph,
-    get_homogeneous_features,
     compute_scaling_stats,
     compute_graph_attr_scaling_stats
 )
@@ -201,22 +202,32 @@ class HLSDataset(Dataset):
 
                 graph_attr = torch.tensor(graph_attr, dtype=torch.float32).unsqueeze(0)
 
-                node_id_map = {node_id: i for i, node_id in enumerate(graph.nodes.keys())}
-                xs = [None] * len(node_id_map)
+                node_id_map = {ntype: {} for ntype in NODE_TYPES}
+                for i, (node_id, node) in enumerate(graph.nodes.items()):
+                    node_id_map[node.node_type][node_id] = i
+
+                xs_dict = {ntype: [None] * len(node_id_map[ntype]) for ntype in NODE_TYPES}
+
                 for node_id, node in graph.nodes.items():
-                    xs[node_id_map[node_id]] = torch.tensor(get_homogeneous_features(node), dtype=torch.float32)
+                    xs_dict[node.node_type][node_id_map[node_id]] = node.get_feature_tensor()
 
                 edge_indices = []
                 edge_attrs = []
                 for edge in graph.edges.values():
-                    src_idx = node_id_map.get(edge.src)
-                    dst_idx = node_id_map.get(edge.dst)
+                    src_idx = node_id_map.get(edge.src_type, {}).get(edge.src)
+                    dst_idx = node_id_map.get(edge.dst_type, {}).get(edge.dst)
                     if src_idx is not None and dst_idx is not None:
                         edge_indices.append([src_idx, dst_idx])
                         edge_attrs.append(torch.tensor(edge.one_hot_etype + [int(edge.is_back_edge)], dtype=torch.float32))
 
+                num_nodes = len(graph.nodes)
+
                 data = {
-                    'x': torch.stack(xs, dim=0),
+                    'x': torch.empty((num_nodes, 0), dtype=torch.float32), # Placeholder
+                    'x_map': {
+                        ntype: torch.stack(xs, dim=0) if len(xs) > 0 else torch.empty((0, NODE_DIM_DICT[ntype]))
+                        for ntype, xs in xs_dict.items()
+                    },
                     'edge_attr': torch.stack(edge_attrs, dim=0),
                     'edge_index': torch.tensor(edge_indices, dtype=torch.long).t().contiguous(),
                     'graph_attr': graph_attr,

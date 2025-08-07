@@ -2,13 +2,12 @@ import os
 import json
 import copy
 import math
-import random
 import re
 import pickle
 import xml.etree.ElementTree as ET
-from abc import ABC, abstractmethod
 from typing import Optional, Dict, List, Any, Union
 
+import torch
 import numpy as np
 
 from estimators.common.xml_utils import findint, findfloat
@@ -109,45 +108,105 @@ NUM_NODE_TYPES = len(NODE_TYPES)
 
 MAX_ARRAY_DIM = 4
 MAX_LOOP_DEPTH = 5
-INLINE_THRESHOLD = 30
 
-DEFAULT_NODE_FEATURES = {
-    'bitwidth': 0, 'opcode': [0] * NUM_OPCODES, 
-    'core_name': [0] * NUM_CORE_TYPES, 'delay': 0.0, 
-    'is_on_critical_path': 0, 'callee_size': 0,
-
-    'is_loop': 0, 'ii': 0, 'il': 0,
-    'latency': 0, 'trip_count': 0, 
-    'loop_depth': [0] * (MAX_LOOP_DEPTH + 1),
-    'has_perfectly_nested_child': 0, 'is_part_of_perfect_nest': 0,
-
-    'is_array': 0, 'is_large_array': 0, 'array_size': 0,
-    'original_bitwidth': 0, 'original_array_dims': [0] * MAX_ARRAY_DIM,
-    'original_base_type': [0] * NUM_BASE_TYPES,
-    'base_type': [0] * NUM_BASE_TYPES,
-
-    'direction': [0] * 3, 'is_top_level_port': 0,
-    'is_global_mem': 0,
-
-    'array_partition': 0, 'partition_type': [0] * 3, 
-    'partition_dim': [0] * (MAX_ARRAY_DIM + 1), 'partition_factor': 0,
-    'is_unevenly_partitioned': 0, 'has_hybrid_impl': 0, 
-
-    'pipeline': 0, 'unroll': 0, 'unroll_factor': 0, 
-    'loop_flatten': 0, 'loop_merge': 0, 
-    'dataflow': 0, 'inline': 0,
-
-    'const_type': [0] * NUM_CONST_TYPES,
-
-    'num_sub_regions': 0, 'num_blocks': 0, 'num_ops': 0,
-    
-    **{metric: 0 for metric in AREA_METRICS},
-    **{f'module_{metric}': 0 for metric in AREA_METRICS},
-    **{f'num_{categ}_ops': 0 for categ in OP_CATEGS}
+DEFAULT_NODE_FEATURES_DICT = {
+    'port': {
+        'bitwidth': 0,
+        'direction': [0] * 3,
+        'is_top_level_port': 0,
+        'is_array': 0,
+        'array_size': 0,
+        'is_large_array': 0,
+        'base_type': [0] * NUM_BASE_TYPES,
+        'original_array_dims': [0] * MAX_ARRAY_DIM,
+        'array_partition': 0,
+        'partition_type': [0] * 3,
+        'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
+        'partition_factor': 0,
+        'is_unevenly_partitioned': 0,
+        'has_hybrid_impl': 0
+    },
+    'internal_mem': {
+        'bitwidth': 0,
+        'is_global_mem': 0,
+        'is_array': 0,
+        'array_size': 0,
+        'is_large_array': 0,
+        'base_type': [0] * NUM_BASE_TYPES,
+        'original_array_dims': [0] * MAX_ARRAY_DIM,
+        'array_partition': 0,
+        'partition_type': [0] * 3,
+        'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
+        'partition_factor': 0,
+        'is_unevenly_partitioned': 0,
+        'has_hybrid_impl': 0,
+        **{f'internal_mem_{metric}': 0 for metric in AREA_METRICS}
+    },
+    'op': {
+        'bitwidth': 0,
+        'opcode': [0] * NUM_OPCODES,
+        'core_type': [0] * NUM_CORE_TYPES,
+        'delay': 0.0,
+        'is_on_critical_path': 0,
+        'callee_size': 0,
+        **{f'op_{metric}': 0 for metric in AREA_METRICS}
+    },
+    'const': {
+        'bitwidth': 0,
+        'const_type': [0] * NUM_CONST_TYPES
+    },
+    'block': {
+        'block_num_ops': 0,
+        **{f'block_num_{categ}_ops': 0 for categ in OP_CATEGS},
+        **{f'block_{metric}_sum': 0 for metric in AREA_METRICS}
+    },
+    'region': {
+        'is_loop': 0,
+        'latency': 0,
+        'trip_count': 0,
+        'ii': 0, 'il': 0,
+        'loop_depth': [0] * (MAX_LOOP_DEPTH + 1),
+        'has_perfectly_nested_child': 0,
+        'is_part_of_perfect_nest': 0,
+        'pipeline': 0,
+        'unroll': 0,
+        'unroll_factor': 0,
+        'loop_flatten': 0,
+        'loop_merge': 0,
+        'region_num_ops': 0,
+        'region_num_blocks': 0,
+        'region_num_sub_regions': 0,
+        **{f'region_num_{categ}_ops': 0 for categ in OP_CATEGS},
+        **{f'region_{metric}_sum': 0 for metric in AREA_METRICS}
+    },
+    'function': {
+        'is_top_level_function': 0,
+        'bitwidth': 0,
+        'latency': 0,
+        'loop_merge': 0,
+        'inline': 0,
+        'dataflow': 0,
+        'num_array_ports': 0,
+        'num_internal_arrays': 0,
+        'function_num_ops': 0,
+        'function_num_blocks': 0,
+        'function_num_sub_regions': 0,
+        **{f'function_num_{categ}_ops': 0 for categ in OP_CATEGS},
+        **{f'module_{metric}': 0 for metric in AREA_METRICS}
+    }
 }
-NODE_FEATURES = list(DEFAULT_NODE_FEATURES.keys())
 
-NODE_DIM = sum([len(v) if isinstance(v, list) else 1 for v in DEFAULT_NODE_FEATURES.values()]) + NUM_NODE_TYPES
+NODE_FEATURES_DICT = {
+    ntype: list(DEFAULT_NODE_FEATURES_DICT[ntype].keys())
+    for ntype in NODE_TYPES
+}
+
+NODE_DIM_DICT = {
+    ntype: len(NODE_FEATURES_DICT[ntype])
+    for ntype in NODE_TYPES
+}
+
+NODE_DIM = sum([len(v) if isinstance(v, list) else 1 for v in DEFAULT_NODE_FEATURES_DICT.values()]) + NUM_NODE_TYPES
 EDGE_DIM = 12
 
 NUMERICAL_FEATURES = [
@@ -155,14 +214,24 @@ NUMERICAL_FEATURES = [
     'ii', 'il', 'latency', 'trip_count',
     'array_size', 'original_array_dims',
     'partition_factor', 'unroll_factor',
-    'num_sub_regions', 'num_blocks', 'num_ops'
-] + AREA_METRICS + [
+    'block_num_ops', 'region_num_ops', 'function_num_ops',
+    'region_num_sub_regions', 'region_num_blocks',
+    'function_num_sub_regions', 'function_num_blocks'
+] + [
+    f'block_num_{categ}_ops' for categ in OP_CATEGS
+] + [
+    f'region_num_{categ}_ops' for categ in OP_CATEGS
+] + [
+    f'function_num_{categ}_ops' for categ in OP_CATEGS
+] + [
     f'module_{metric}' for metric in AREA_METRICS
 ] + [
-    f'num_{categ}_ops' for categ in OP_CATEGS
-]
+    f'block_{metric}_sum' for metric in AREA_METRICS
+] + [
+    f'region_{metric}_sum' for metric in AREA_METRICS
+] + AREA_METRICS
 
-NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'delay']
+NO_LOG_SCALING_KEYS = ['bitwidth', 'delay']
 
 GRAPH_ATTRS = [
     'num_nodes', 'num_edges', 'num_ops',
@@ -194,71 +263,88 @@ NO_LOG_SCALING_GRAPH_KEYS = [
     'max_loop_depth', 'avg_loop_depth', 'mem_intensity'
 ]
 
-def get_homogeneous_features(node):
-    if node.node_type not in NODE_TYPE_MAP:
-        raise ValueError(f"Unknown node type: {node.node_type}")
+
+def get_default_feature_value(ntype, key):
+    if key not in DEFAULT_NODE_FEATURES_DICT[ntype]:
+        raise ValueError(f"Invalid feature key for {ntype} node: {key}")
     
-    feat_vector = [0] * NUM_NODE_TYPES
-    feat_vector[NODE_TYPE_MAP[node.node_type]] = 1
-
-    for key in NODE_FEATURES:
-        if key not in node.feature_dict:
-            value = DEFAULT_NODE_FEATURES[key]
-        else:
-            value = node.feature_dict[key]
-
-        if isinstance(value, (list, tuple, np.ndarray)):
-            feat_vector.extend(value)
-        else:
-            feat_vector.append(value)
-
-    if len(feat_vector) != NODE_DIM:
-        raise ValueError(
-            f"Feature vector length mismatch: expected {NODE_DIM}, got {len(feat_vector)}"
-        )
-
-    return feat_vector
+    value = DEFAULT_NODE_FEATURES_DICT[ntype][key]
+    if isinstance(value, list):
+        return value.copy()
+    return value
 
 
-class Node(ABC):
-    @abstractmethod
-    def as_dict(self):
-        pass
+class Node:
+    def __init__(
+        self, 
+        node_type: str, 
+        element: Optional[ET.Element] = None,
+        node_id: Optional[int] = None,
+        node_name: Optional[str] = None,
+        rtl_name: Optional[str] = None,
+        function_name: str = ''
+    ):
+        if element is not None:
+            if node_type in ['region', 'function']:
+                if node_id is None:
+                    node_id = findint(element, 'mId')
+                    if node_id is None:
+                        raise ValueError("Element does not contain 'mId' tag")
+                
+                if node_name is None:
+                    node_name = element.findtext('mNormTag', '')
+                    if not node_name:
+                        node_name = element.findtext('mTag', '')
+                    chars_to_replace = ['.', '-', ' ', '(', ')', '[', ']', '<', '>', ':']
+                    for char in chars_to_replace:
+                        node_name = node_name.replace(char, '_')
+            else:
+                value = element.find('Value')
+                obj = element.find('Obj') if value is None else value.find('Obj')
+                if obj is None:
+                    raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
+                
+                if node_id is None:
+                    node_id = findint(obj, 'id')
+                    if node_id is None:
+                        raise ValueError("Element does not contain 'id' tag")
+            
+                if node_name is None:
+                    node_name = obj.findtext('name', '')
 
-    @abstractmethod
-    def __str__(self):
-        pass
+                rtl_name = obj.findtext('rtlName', '')
 
-    @abstractmethod
-    def __repr__(self):
-        pass
-
-
-class CDFGNode(Node):
-    def __init__(self, element: ET.Element, node_type: str, function_name: str = ''):
-        value = element.find('Value')
-        obj = element.find('Obj') if value is None else value.find('Obj')
-        if obj is None:
-            raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
-        
-        self.id = findint(obj, 'id')
-        if self.id is None:
-            raise ValueError("Element does not contain 'id' tag")
-        
         self.node_type = node_type
-        self.name = obj.findtext('name', '')
-        self.rtl_name = obj.findtext('rtlName', '')
-        self.function_name = function_name
-        self.label = f"{self.function_name}/{self.name}"
-        self.feature_dict = {}
+        self.id = node_id if node_id is not None else 0
+        self.name = node_name if node_name is not None else ''
+        self.rtl_name = rtl_name if rtl_name is not None else ''
+        self.function_name = function_name if node_type != 'function' else self.name
+        self.label = f'{self.function_name}/{self.name}' if node_type != 'function' else self.name
+        
+        self.feature_dict = copy.deepcopy(DEFAULT_NODE_FEATURES_DICT[node_type])
+
+    def get_feature_tensor(self) -> torch.Tensor:
+        feature_vector = []
+        for key in NODE_FEATURES_DICT[self.node_type]:
+            if key not in self.feature_dict:
+                value = get_default_feature_value(self.node_type, key)
+            else:
+                value = self.feature_dict[key]
+            if isinstance(value, (list, tuple, np.ndarray)):
+                feature_vector.extend([float(v) for v in value])
+            else:
+                feature_vector.append(float(value))
+
+        return torch.tensor(feature_vector, dtype=torch.float32)
 
     def as_dict(self):
         node_as_dict = {
             'node_type': self.node_type,
-            'label': self.label, 
-            'rtl_name': self.rtl_name,
+            'label': self.label,
             'feature_dict': self.feature_dict
         }
+        if self.rtl_name:
+            node_as_dict['rtl_name'] = self.rtl_name
         return node_as_dict
 
     def __str__(self):
@@ -268,7 +354,7 @@ class CDFGNode(Node):
         return self.__str__()
     
 
-class PortNode(CDFGNode):
+class PortNode(Node):
     def __init__(
         self,
         element: ET.Element,
@@ -276,11 +362,7 @@ class PortNode(CDFGNode):
         is_top_level: bool = False,
         array_md: Optional[Dict[str, Any]] = None
     ):
-        super().__init__(element, 'port', function_name)
-
-        self.is_top_level_port = is_top_level
-
-        bitwidth = max(0, findint(element, 'Value/bitwidth', 0))
+        super().__init__('port', element=element, function_name=function_name)
 
         if array_md is not None and 'OriginalDimensions' in array_md:
             self.is_array = True
@@ -288,70 +370,48 @@ class PortNode(CDFGNode):
             self.num_dims = array_md['OriginalNumDimensions']
 
             base_type = str(array_md['BaseType'])
-            original_bitwidth = array_md['OriginalBaseBitwidth']
-            original_base_type = str(array_md['OriginalBaseType'])
-            dims = array_md['OriginalDimensions']
+            array_dims = array_md['OriginalDimensions']
 
             if self.num_dims > MAX_ARRAY_DIM:
                 # Truncate to MAX_ARRAY_DIM
                 for i in range(self.num_dims - 1, MAX_ARRAY_DIM - 1, -1):
-                    dims[i - 1] *= dims[i]
-                    dims.pop()
+                    array_dims[i - 1] *= array_dims[i]
+                    array_dims.pop()
             elif self.num_dims < MAX_ARRAY_DIM:
                 # Pad with 1s
-                dims.extend([1] * (MAX_ARRAY_DIM - self.num_dims))
+                array_dims.extend([1] * (MAX_ARRAY_DIM - self.num_dims))
         else:
             self.array_size = findint(element, 'array_size', 0)
             self.is_array = self.array_size > 0
 
             if self.is_array:
                 self.num_dims = 1
-                dims = [self.array_size] + [1] * (MAX_ARRAY_DIM - 1)
+                base_type = 'unknown'
+                array_dims = [self.array_size] + [1] * (MAX_ARRAY_DIM - 1)
             else:
                 self.num_dims = 0
-                dims = [0] * MAX_ARRAY_DIM
-
-            base_type = 'unknown' if self.is_array else 'none'
-            original_bitwidth = bitwidth
-            original_base_type = base_type
+                base_type = 'none'
+                array_dims = [0] * MAX_ARRAY_DIM
         
+        self.is_top_level_port = is_top_level
         self.base_type = base_type
-        self.original_base_type = original_base_type
-
-        ohe_base_type = [0] * NUM_BASE_TYPES
+        
         base_type_index = BASE_TYPE_MAP.get(base_type, -1)
         if base_type_index >= 0:
-            ohe_base_type[base_type_index] = 1
-
-        ohe_orig_base_type = [0] * NUM_BASE_TYPES
-        original_base_type_index = BASE_TYPE_MAP.get(original_base_type, -1)
-        if original_base_type_index >= 0:
-            ohe_orig_base_type[original_base_type_index] = 1
+            self.feature_dict['base_type'][base_type_index] = 1
 
         direction_index = findint(element, 'direction', 2)
         if direction_index not in [0, 1, 2]:
             direction_index = 2  # Default to 'BI'
-
-        ohe_direction = [0, 0, 0] # IN, OUT, BI
-        ohe_direction[direction_index] = 1
+        self.feature_dict['direction'][direction_index] = 1
 
         self.feature_dict.update({
+            'bitwidth': max(0, findint(element, 'Value/bitwidth', 0)),
             'is_top_level_port': int(is_top_level),
-            'direction': ohe_direction,
             'is_array': int(self.is_array),
-            'is_large_array': int(self.array_size >= 1024),
             'array_size': self.array_size,
-            'bitwidth': bitwidth,
-            'base_type': ohe_base_type,
-            'original_array_dims': dims,
-            'original_bitwidth': original_bitwidth,
-            'original_base_type': ohe_orig_base_type,
-            'array_partition': 0,
-            'partition_type': [0] * 3,
-            'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
-            'partition_factor': 0,
-            'is_unevenly_partitioned': 0,
-            'has_hybrid_impl': 0
+            'is_large_array': int(self.array_size >= 1024),
+            'original_array_dims': array_dims
         })
         self.matching_ports = []
     
@@ -375,36 +435,22 @@ class InternalMemNode(Node):
         self,
         element: Optional[ET.Element] = None,
         node_id: Optional[int] = None,
-        function_name: str = '',
-        name: str = '',
+        node_name: str = '',
         rtl_name: str = '',
+        function_name: str = '',
         is_global_mem: bool = False,
         array_md: Optional[Dict[str, Any]] = None,
         utilization: Optional[Dict[str, int]] = None
     ):
-        self.node_type = 'internal_mem'
+        super().__init__(
+            'internal_mem', 
+            element=element,
+            node_id=node_id,
+            node_name=node_name,
+            rtl_name=rtl_name,
+            function_name=function_name
+        )
 
-        if element is not None:
-            value = element.find('Value')
-            obj = element.find('Obj') if value is None else value.find('Obj')
-            if obj is None:
-                raise ValueError("Element does not contain 'Obj' or 'Value/Obj' tag")
-            
-            self.id = findint(obj, 'id')
-            if self.id is None:
-                raise ValueError("Element does not contain 'id' tag")
-            
-            self.name = obj.findtext('name', '')
-            self.rtl_name = obj.findtext('rtlName', '')
-        else:
-            self.id = node_id if node_id is not None else 0
-            self.name = name
-            self.rtl_name = rtl_name
-
-        self.function_name = function_name
-        self.label = f"{self.function_name}/{self.name}"
-        self.is_global_mem = is_global_mem
-    
         if array_md is not None:
             self.is_array = True
             self.array_size = array_md['TotalSize']
@@ -412,74 +458,53 @@ class InternalMemNode(Node):
 
             bitwidth = array_md['BaseBitwidth']
             base_type = str(array_md['BaseType'])
-            original_bitwidth = array_md['OriginalBaseBitwidth']
-            original_base_type = str(array_md['OriginalBaseType'])
-            dims = array_md['OriginalDimensions']
+            array_dims = array_md['OriginalDimensions']
 
             if self.num_dims > MAX_ARRAY_DIM:
                 # Truncate to MAX_ARRAY_DIM
                 for i in range(self.num_dims - 1, MAX_ARRAY_DIM - 1, -1):
-                    dims[i - 1] *= dims[i]
-                    dims.pop()
+                    array_dims[i - 1] *= array_dims[i]
+                    array_dims.pop()
             elif self.num_dims < MAX_ARRAY_DIM:
                 # Pad with 1s
-                dims.extend([1] * (MAX_ARRAY_DIM - self.num_dims))
+                array_dims.extend([1] * (MAX_ARRAY_DIM - self.num_dims))
         else:
             if element is not None:
                 bitwidth = max(0, findint(element, 'Value/bitwidth', 0))
-                self.array_size = findint(element, 'Value/Obj/storageDepth', 0)
+                self.array_size = max(0, findint(element, 'Value/Obj/storageDepth', 0))
             else:
                 bitwidth = 0
                 self.array_size = 0
 
             self.is_array = self.array_size > 0
+
             if self.is_array:
                 self.num_dims = 1
-                dims = [self.array_size] + [1] * (MAX_ARRAY_DIM - 1)
+                array_dims = [self.array_size] + [1] * (MAX_ARRAY_DIM - 1)
                 base_type = 'unknown'
             else:
                 self.num_dims = 0
-                dims = [0] * MAX_ARRAY_DIM
+                array_dims = [0] * MAX_ARRAY_DIM
                 base_type = 'none'
 
-            original_bitwidth = bitwidth
-            original_base_type = base_type
-
+        self.is_global_mem = is_global_mem
         self.base_type = base_type
-        self.original_base_type = original_base_type
 
-        ohe_base_type = [0] * NUM_BASE_TYPES
         base_type_index = BASE_TYPE_MAP.get(base_type, -1)
         if base_type_index >= 0:
-            ohe_base_type[base_type_index] = 1
+            self.feature_dict['base_type'][base_type_index] = 1
 
-        ohe_orig_base_type = [0] * NUM_BASE_TYPES
-        original_base_type_index = BASE_TYPE_MAP.get(original_base_type, -1)
-        if original_base_type_index >= 0:
-            ohe_orig_base_type[original_base_type_index] = 1
-
-        self.feature_dict = {
-            'is_array': int(self.is_array),
+        self.feature_dict.update({
+            'bitwidth': bitwidth,
             'is_global_mem': int(is_global_mem),
+            'is_array': int(self.is_array),
             'is_large_array': int(self.array_size >= 1024),
             'array_size': self.array_size,
-            'bitwidth': bitwidth,
-            'base_type': ohe_base_type,
-            'original_array_dims': dims,
-            'original_bitwidth': original_bitwidth,
-            'original_base_type': ohe_orig_base_type,
-            'array_partition': 0,
-            'partition_type': [0] * 3,
-            'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
-            'partition_factor': 0,
-            'is_unevenly_partitioned': 0,
-            'has_hybrid_impl': 0
-        }
+            'original_array_dims': array_dims
+        })
         if utilization is not None:
             for res in AREA_METRICS:
                 self.feature_dict[res] = utilization.get(res, 0)
-        else:
-            self.feature_dict.update({res: 0 for res in AREA_METRICS})
 
         self.matching_ports = []
 
@@ -498,55 +523,41 @@ class InternalMemNode(Node):
         }
         return node_as_dict
     
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
 
-    def __repr__(self):
-        return self.__str__()
-    
-
-class OperationNode(CDFGNode):
+class OperationNode(Node):
     def __init__(
         self, 
         element: ET.Element, 
         function_name: str,
         utilization: Optional[Dict[str, int]] = None
     ):
-        super().__init__(element, 'op', function_name)
+        super().__init__('op', element=element, function_name=function_name)
 
         self.opcode = element.findtext('opcode', 'unknown')
-        self.core_name = element.findtext('Value/Obj/coreName', 'none')
-        if not self.core_name:
-            self.core_name = 'none'
+        self.op_category = OP_CATEG_MAP.get(self.opcode, 'unknown')
 
-        if self.opcode in OP_CATEG_MAP:
-            self.op_category = OP_CATEG_MAP[self.opcode]
-        else:
-            self.op_category = 'unknown'
+        self.core_type = element.findtext('Value/Obj/coreName', 'none')
+        if not self.core_type:
+            self.core_type = 'none'
 
-        ohe_core = [0] * NUM_CORE_TYPES
-        ohe_core_index = CORE_TYPE_MAP.get(self.core_name, -1)
-        if ohe_core_index >= 0:
-            ohe_core[ohe_core_index] = 1
+        self.feature_dict['core_type']
 
-        ohe_opcode = [0] * NUM_OPCODES
+        core_type_index = CORE_TYPE_MAP.get(self.core_type, -1)
+        if core_type_index >= 0:
+            self.feature_dict['core_type'][core_type_index] = 1
+
         opcode_index = OPCODE_MAP.get(self.opcode, -1)
         if opcode_index >= 0:
-            ohe_opcode[opcode_index] = 1
+            self.feature_dict['opcode'][opcode_index] = 1
 
         self.feature_dict.update({
-            'opcode': ohe_opcode,
-            'core_name': ohe_core,
             'bitwidth': max(0, findint(element, 'Value/bitwidth', 0)),
             'delay': findfloat(element, 'm_delay', 0.0),
-            'is_on_critical_path': findint(element, 'm_isOnCriticalPath', 0),
-            'callee_size': 0
+            'is_on_critical_path': findint(element, 'm_isOnCriticalPath', 0)
         })
         if utilization is not None:
             for res in AREA_METRICS:
                 self.feature_dict[res] = utilization.get(res, 0)
-        else:
-            self.feature_dict.update({res: 0 for res in AREA_METRICS})
 
         op_edges = element.find('oprand_edges') # ** This is not a typo **
         if op_edges is None:
@@ -559,41 +570,40 @@ class OperationNode(CDFGNode):
             'node_type': self.node_type,
             'label': self.label,
             'rtl_name': self.rtl_name,
-            'core_name': self.core_name,
+            'core_type': self.core_type,
             'opcode': self.opcode,
             'feature_dict': {
                 key: value for key, value in self.feature_dict.items() 
-                if key not in ['opcode', 'core_name']
+                if key not in ['opcode', 'core_type']
             },
             'operand_edges': self.operand_edges
         }
         return node_as_dict
 
 
-class ConstantNode(CDFGNode):
+class ConstantNode(Node):
     def __init__(self, element: ET.Element, function_name: str):
-        super().__init__(element, 'const', function_name)
+        super().__init__('const', element=element, function_name=function_name)
 
         self.content = element.findtext('content', '')
         self.label += f" ({self.content})"
 
         self.const_type = str(element.findtext('const_type', 'unknown'))
+        if not self.const_type:
+            self.const_type = 'unknown'
 
-        ohe_const_type = [0] * NUM_CONST_TYPES
         const_type_index = CONST_TYPE_MAP.get(self.const_type, -1)
         if const_type_index >= 0:
-            ohe_const_type[const_type_index] = 1
+            self.feature_dict['const_type'][const_type_index] = 1
 
         self.feature_dict.update({
-            'bitwidth': max(0, findint(element, 'Value/bitwidth', 0)),
-            'const_type': ohe_const_type
+            'bitwidth': max(0, findint(element, 'Value/bitwidth', 0))
         })
 
     def as_dict(self):
         node_as_dict = {
             'node_type': self.node_type,
             'label': self.label,
-            'content': self.content,
             'const_type': self.const_type,
             'feature_dict': {
                 key: value for key, value in self.feature_dict.items()
@@ -603,9 +613,9 @@ class ConstantNode(CDFGNode):
         return node_as_dict
 
 
-class BlockNode(CDFGNode):
+class BlockNode(Node):
     def __init__(self, element: ET.Element, function_name: str):
-        super().__init__(element, 'block', function_name)
+        super().__init__('block', element=element, function_name=function_name)
 
         self.ops = self._extract_items(element, 'node_objs')
 
@@ -632,18 +642,7 @@ class RegionNode(Node):
         function_name: str,
         loop_md: Optional[Dict[str, Any]] = None
     ):
-        self.id = findint(element, 'mId')
-        if self.id is None:
-            raise ValueError("Element does not contain 'mId' tag")
-        
-        self.node_type = 'region'
-        self.function_name = function_name
-
-        self.name = element.findtext('mNormTag', '')
-        if not self.name:
-            self.name = element.findtext('mTag', '').replace('.', '_')
-        norm_name = self.name.replace(' ', '_')
-        self.label = f'{function_name}/{norm_name}'
+        super().__init__('region', element=element, function_name=function_name)
 
         latency = max(0, findint(element, 'mMaxLatency', 0))
         trip_count = max(0, findint(element, 'mMaxTripCount', 0))
@@ -663,19 +662,16 @@ class RegionNode(Node):
             is_part_of_perfect_nest = 0
             loop_depth = 1 if self.is_loop else 0
 
-        ohe_loop_depth = [0] * (MAX_LOOP_DEPTH + 1)
-        ohe_loop_depth[loop_depth] = 1
+        self.loop_depth = loop_depth
+        self.feature_dict['loop_depth'][loop_depth] = 1
 
-        self.feature_dict = {
+        self.feature_dict.update({
             'is_loop': int(self.is_loop),
             'latency': latency, 'trip_count': trip_count,
             'ii': ii, 'il': il,
-            'loop_depth': ohe_loop_depth, 
             'has_perfectly_nested_child': has_perfectly_nested_child,
             'is_part_of_perfect_nest': is_part_of_perfect_nest,
-            'pipeline': 0, 'unroll': 0, 'unroll_factor': 0,
-            'loop_flatten': 0, 'loop_merge': 0
-        }
+        })
         self.sub_regions = self._extract_items(element, 'sub_regions')
         self.blocks = self._extract_items(element, 'basic_blocks')
     
@@ -687,73 +683,77 @@ class RegionNode(Node):
 
     def as_dict(self):
         feat_dict = copy.deepcopy(self.feature_dict)
-        feat_dict['loop_depth'] = feat_dict['loop_depth'].index(1) if 1 in feat_dict['loop_depth'] else -1
+        feat_dict['loop_depth'] = self.loop_depth
         node_as_dict = {
             'node_type': self.node_type,
             'label': self.label,
-            'feature_dict': feat_dict,
+            'feature_dict': {
+                key: value if key != 'loop_depth' else self.loop_depth 
+                for key, value in self.feature_dict.items()
+            },
             'sub_regions': self.sub_regions,
             'blocks': self.blocks
         }
         return node_as_dict
-    
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
 
-    def __repr__(self):
-        return self.__str__()
-    
 
 class FunctionNode(Node):
     def __init__(
         self, 
         element: ET.Element, 
-        name: str,
+        node_name: str,
+        is_top_level: str,
+        ret_bitwidth: int,
+        num_array_ports: int,
+        num_internal_arrays: int,
         sub_regions: List[str],
         blocks: List[str],
         op_nodes: List[OperationNode],
         original_name: Optional[str] = None,
         utilization: Optional[Dict[str, int]] = None,
     ):
-        self.id = findint(element, 'mId')
-        if self.id is None:
-            raise ValueError("Element does not contain 'mId' tag")
-    
-        self.node_type = 'function'
+        super().__init__(
+            'function', 
+            node_id=0,
+            element=element, 
+            node_name=node_name,
+            function_name=node_name
+        )
+        self.norm_id = f'{node_name}.region.0'
+        self.original_name = original_name if original_name is not None else node_name
 
-        self.norm_id = f'{name}.region.{self.id - 1}'
-        self.name = name
-        self.original_name = original_name or name
-        self.function_name = name
-        self.label = name
-
+        self.is_top_level_function = is_top_level
+        self.bitwidth = ret_bitwidth
         self.latency = max(0, findint(element, 'mMaxLatency', 0))
         self.num_sub_regions = len(sub_regions)
         self.num_blocks = len(blocks)
         self.num_ops = len(op_nodes)
 
-        self.feature_dict = {
+        self.feature_dict.update({
+            'is_top_level': is_top_level,
+            'bitwidth': ret_bitwidth,
             'latency': self.latency,
-            'num_sub_regions': self.num_sub_regions,
-            'num_blocks': self.num_blocks,
-            'num_ops': self.num_ops,
-            'loop_merge': 0, 'inline': 0, 'dataflow': 0
-        }
+            'function_num_sub_regions': self.num_sub_regions,
+            'function_num_blocks': self.num_blocks,
+            'function_num_ops': self.num_ops,
+            'num_array_ports': num_array_ports,
+            'num_internal_arrays': num_internal_arrays
+        })
         if utilization is not None:
             for res in AREA_METRICS:
                 self.feature_dict[f'module_{res}'] = utilization.get(res, 0)
-        else:
-            self.feature_dict.update({f'module_{res}': 0 for res in AREA_METRICS})
 
-        self.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
         for op in op_nodes:
             if op.opcode in OP_CATEG_MAP:
-                self.feature_dict[f'num_{OP_CATEG_MAP[op.opcode]}_ops'] += 1
+                self.feature_dict[f'function_num_{OP_CATEG_MAP[op.opcode]}_ops'] += 1
 
         self.sub_regions = sub_regions
+
+        block_set = set(blocks)
         self.blocks = [
             f'{self.name}.{i}' 
             for i in self._extract_items(element, 'basic_blocks')
+            if f'{self.name}.{i}' in block_set
         ]
 
     def _extract_items(self, element, tag):
@@ -773,18 +773,18 @@ class FunctionNode(Node):
         }
         return node_as_dict
     
-    def __str__(self):
-        return json.dumps(self.as_dict(), indent=2)
-
-    def __repr__(self):
-        return self.__str__()
-
 
 class Edge:
-    def __init__(self, src: str, dst: str, etype: str, is_back_edge: bool = False):
+    def __init__(
+        self, src: str, dst: str, etype: str, 
+        src_type: str = '', dst_type: str = '',
+        is_back_edge: bool = False):
         self.src = src
         self.dst = dst
         self.etype = etype
+        self.src_type = src_type
+        self.dst_type = dst_type
+
         self.is_back_edge = is_back_edge
         self.label = f"{src} -> {dst} ({etype})"
 
@@ -905,7 +905,7 @@ class CDFG:
 
                 internal_mem_node = InternalMemNode(
                     element=elem, node_id=op_node.id, function_name=self.original_name, 
-                    name=name, rtl_name=rtl_name, is_global_mem=False,
+                    node_name=name, rtl_name=rtl_name, is_global_mem=False,
                     array_md=array_md, utilization=utilization
                 )
                 self.nodes[f'{op_id}.internal_mem'] = internal_mem_node
@@ -963,13 +963,15 @@ class CDFG:
                 f'{self.name}.{op_id}' for op_id in node.ops 
                 if f'{self.name}.{op_id}' in self.nodes
             ]
-            node.feature_dict['num_ops'] = len(node.ops)
+            node.feature_dict['block_num_ops'] = len(node.ops)
 
-            node.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
             for op_id in node.ops:
-                op_categ = self.nodes[op_id].op_category
+                op_node = self.nodes[op_id]
+                op_categ = op_node.op_category
                 if op_categ != 'unknown':
-                    node.feature_dict[f'num_{op_categ}_ops'] += 1
+                    node.feature_dict[f'block_num_{op_categ}_ops'] += 1
+                for metric in AREA_METRICS:
+                    node.feature_dict[f'block_{metric}_sum'] += op_node.feature_dict.get(metric, 0)
 
             self.nodes[block_id] = node
 
@@ -985,9 +987,16 @@ class CDFG:
                     region_id = findint(elem, 'mId')
                     if region_id is not None:
                         sub_regions.append(f'{self.name}.region.{region_id - 1}')
-                block_nodes = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
+
+                blocks = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
                 op_nodes = [node for node in self.nodes.values() if node.node_type == 'op']
 
+                num_array_ports = sum(
+                    1 for node in self.nodes.values() if node.node_type == 'port' and node.is_array
+                )
+                num_internal_arrays = sum(
+                    1 for node in self.nodes.values() if node.node_type == 'internal_mem' and node.is_array
+                )
                 utilization = None
                 if self.name in utilization_dict:
                     utilization = utilization_dict[self.name]
@@ -998,7 +1007,9 @@ class CDFG:
 
                 function_node = FunctionNode(
                     first_elem, self.name, 
-                    sub_regions, block_nodes, op_nodes,
+                    self.is_top_level, self.ret_bitwidth,
+                    num_array_ports, num_internal_arrays,
+                    sub_regions, blocks, op_nodes,
                     original_name=self.original_name,
                     utilization=utilization
                 )
@@ -1045,19 +1056,20 @@ class CDFG:
                 all_blocks.update(region_nodes[sub_region_id].blocks)
 
             node.feature_dict.update({
-                'num_sub_regions': len(all_sub_regions),
-                'num_blocks': len(all_blocks),
-                'num_ops': 0
+                'region_num_sub_regions': len(all_sub_regions),
+                'region_num_blocks': len(all_blocks),
             })
-            node.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
-
             for block_id in all_blocks:
                 block_node = self.nodes[block_id]
                 for categ in OP_CATEGS:
-                    num_ops = block_node.feature_dict.get(f'num_{categ}_ops', 0)
-                    node.feature_dict[f'num_{categ}_ops'] += num_ops
+                    num_ops = block_node.feature_dict.get(f'block_num_{categ}_ops', 0)
+                    node.feature_dict[f'region_num_{categ}_ops'] += num_ops
+
+                for metric in AREA_METRICS:
+                    metric_sum = block_node.feature_dict.get(f'block_{metric}_sum', 0)
+                    node.feature_dict[f'region_{metric}_sum'] += metric_sum
                 
-                node.feature_dict['num_ops'] += block_node.feature_dict.get('num_ops', 0)
+                node.feature_dict['region_num_ops'] += block_node.feature_dict.get('block_num_ops', 0)
 
             self.nodes[region_id] = node
 
@@ -1215,6 +1227,7 @@ class KernelGraph:
         self._process_adb_files(solution_dir)
         self._update_array_info()
         self._include_call_flow()
+        self._update_edge_types()
 
         self.graph_attr = self.compute_graph_attrs()
 
@@ -1473,7 +1486,7 @@ class KernelGraph:
             array_node = InternalMemNode(
                 node_id=num_nodes,
                 function_name=self.top_level_name, # Use top-level name for global arrays
-                name=array_name,
+                node_name=array_name,
                 rtl_name=rtl_name,
                 is_global_mem=True,
                 array_md=array_md,
@@ -1593,7 +1606,14 @@ class KernelGraph:
                         num_edges += 1
 
         self.edges.update(new_edges)
-    
+
+    def _update_edge_types(self):
+        for edge_id, edge in self.edges.items():
+            src_type = self.nodes[edge.src].node_type
+            dst_type = self.nodes[edge.dst].node_type
+            self.edges[edge_id].src_type = src_type
+            self.edges[edge_id].dst_type = dst_type
+
     def as_dict(self):
         node_dict = {
             node_id: node.as_dict() 
