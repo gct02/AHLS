@@ -8,7 +8,6 @@ from collections import defaultdict
 from typing import Union, Optional, List, Dict, Tuple
 
 import numpy as np
-import networkx as nx
 from torch_geometric.data import Dataset, Data
 
 from gnn.data.graph import KernelGraph, compute_scaling_stats, NO_LOG_SCALING_KEYS

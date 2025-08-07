@@ -4,24 +4,25 @@ import shutil
 import json
 import pickle
 import math
-from typing import Dict
 
-from torch_geometric.data import Dataset
+from torch_geometric.data import Dataset, Data
 
 from gnn.data.dataset import (
+    StatsDict,
+    KernelGraph,
     TARGET_METRICS, 
     NO_LOG_SCALING_KEYS,
     is_valid_report
 )
-from gnn.data.graph import VitisKernelInfo
-from gnn.data.graph import to_hetero_data
 
 
 class HLSFineTuningDataset(Dataset):
     def __init__(
         self, 
         root,
-        scaling_stats: Dict[str, Dict[str, float]],
+        scaling_stats: StatsDict,
+        base_target_scaling_stats: StatsDict,
+        target_scaling_stats: StatsDict,
         target_metric: str = "area",
         benchmark: str = "",
         **kwargs
@@ -35,6 +36,8 @@ class HLSFineTuningDataset(Dataset):
         self.evaluation_metrics = TARGET_METRICS[target_metric]
         self.root = root
         self.scaling_stats = scaling_stats
+        self.base_target_scaling_stats = base_target_scaling_stats
+        self.target_scaling_stats = target_scaling_stats
         self.benchmark = benchmark
 
         base_solution_dir = os.path.join(self.raw_dir, "solution0")
@@ -59,9 +62,20 @@ class HLSFineTuningDataset(Dataset):
                 f"Missing or invalid base metrics in {base_metrics_path}."
             )
 
-        self.base_target = torch.tensor(
-            [float(base_metrics[key]) for key in self.evaluation_metrics]
-        ).log1p().unsqueeze(0)
+        self.base_targets = []
+        for key, value in zip(self.evaluation_metrics, base_metrics):
+            if key in self.base_target_scaling_stats:
+                mean = self.base_target_scaling_stats[key]['mean']
+                std = self.base_target_scaling_stats[key]['std']
+                if std < 1e-8:
+                    std = 1.0
+                value = math.log1p(float(value))
+                value = (value - mean) / std
+            else:
+                value = float(value)
+            self.base_targets.append(value)
+
+        self.base_targets = torch.tensor(self.base_targets, dtype=torch.float32).unsqueeze(0)
 
         self.solution_dirs = []
         self._raw_file_names = []
@@ -125,20 +139,55 @@ class HLSFineTuningDataset(Dataset):
             with open(metrics_path, 'r') as f:
                 metrics = json.load(f)
 
-            target = torch.tensor(
-                [float(metrics[key]) for key in self.evaluation_metrics]
-            ).log1p().unsqueeze(0)
+            target = []
+            for key in self.evaluation_metrics:
+                if key in self.target_scaling_stats:
+                    mean = self.target_scaling_stats[key]['mean']
+                    std = self.target_scaling_stats[key]['std']
+                    if std < 1e-8:
+                        std = 1.0
+                    value = math.log1p(float(metrics[key]))
+                    value = (value - mean) / std
+                else:
+                    value = float(metrics[key])
+                target.append(value)
+
+            target = torch.tensor(target, dtype=torch.float32).unsqueeze(0)
+
+            original_target = [float(metrics[key]) for key in self.evaluation_metrics]
+            original_target = torch.tensor(original_target, dtype=torch.float32).unsqueeze(0)
 
             with open(kernel_info_path, 'rb') as f:
                 kernel_info = pickle.load(f)
             
             self._standardize_features(kernel_info)
 
-            data = to_hetero_data(kernel_info)
-            data.y = target
-            data.y_base = self.base_target
-            data.solution_index = idx
-            data.benchmark = self.benchmark
+            node_id_map = {node_id: i for i, node_id in enumerate(kernel_info.nodes.keys())}
+
+            xs = [None] * len(node_id_map)
+            for node_id, node in kernel_info.nodes.items():
+                xs[node_id_map[node_id]] = torch.tensor(node.get_homogeneous_features(), dtype=torch.float32)
+
+            edge_indices = []
+            edge_attrs = []
+            for edge in kernel_info.edges.values():
+                src_idx = node_id_map.get(edge.src)
+                dst_idx = node_id_map.get(edge.dst)
+                if src_idx is not None and dst_idx is not None:
+                    edge_indices.append([src_idx, dst_idx])
+                    edge_attrs.append(torch.tensor(edge.one_hot_etype + [int(edge.is_back_edge)], dtype=torch.float32))
+
+            data = {
+                'x': torch.stack(xs, dim=0),
+                'edge_attr': torch.stack(edge_attrs, dim=0),
+                'edge_index': torch.tensor(edge_indices, dtype=torch.long).t().contiguous(),
+                'y': target,
+                'original_y': original_target,
+                'y_base': self.base_targets,
+                'benchmark': self.benchmark,
+                'solution_index': idx
+            }
+            data = Data.from_dict(data)
 
             output_path = os.path.join(self.processed_dir, f"{self.benchmark}_{idx}.pt")
             torch.save(data, output_path)
@@ -152,7 +201,7 @@ class HLSFineTuningDataset(Dataset):
         data = torch.load(self.processed_paths[ind])
         return data 
     
-    def _standardize_features(self, kernel_info: VitisKernelInfo):
+    def _standardize_features(self, kernel_info: KernelGraph):
         def log_transform(value):
             if isinstance(value, (list, tuple)):
                 return [math.log1p(float(v)) for v in value]
@@ -163,16 +212,14 @@ class HLSFineTuningDataset(Dataset):
                 return [(float(v) - mean) / std for v in value]
             return (float(value) - mean) / std
             
-        for nodes in kernel_info.nodes.values():
-            for node in nodes:
-                for key, value in node.attrs.items():
-                    if key not in self.scaling_stats:
-                        continue
+        for node in kernel_info.nodes.values():
+            for key, value in node.feature_dict.items():
+                if key in self.scaling_stats:
                     mean = self.scaling_stats[key]['mean']
                     std = self.scaling_stats[key]['std']
                     if std < 1e-8:
-                        std = 1
+                        std = 1.0
                     if key not in NO_LOG_SCALING_KEYS:
                         value = log_transform(value)
-                    node.attrs[key] = scale(value, mean, std)
+                    node.feature_dict[key] = scale(value, mean, std)
 

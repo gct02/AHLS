@@ -1,7 +1,7 @@
 import os
 import json
 import random
-from typing import Dict, Optional, Union, List, Any
+from typing import Dict, Optional
 
 import numpy as np
 import torch
@@ -16,11 +16,11 @@ from gnn.models import HLSQoREstimator
 from gnn.fine_tuning.data.dataset import HLSFineTuningDataset
 from gnn.fine_tuning.utils import get_no_decay_param_names
 from gnn.fine_tuning.heuristic.domain import PARAM_GROUPS
-from gnn.data.dataset import HLSDataset, TARGET_METRICS
+from gnn.data.dataset import HLSDataset, StatsDict, TARGET_METRICS
 from gnn.data.utils.parsers import AVAILABLE_RESOURCES
 from gnn.analysis.utils import (
     plot_prediction_bars,
-    smape_loss,
+    mape_loss,
     aggregate_qor_metrics
 )
 
@@ -30,6 +30,8 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 def evaluate(
     model: nn.Module,
     loader: DataLoader,
+    mean_target: Tensor,
+    std_target: Tensor,
     available_resources: Optional[Tensor] = None
 ):
     preds, targets = [], []
@@ -38,25 +40,26 @@ def evaluate(
         for data in loader:
             data = data.to(DEVICE)
             pred = model(
-                data.x_dict,
-                data.edge_index_dict,
-                data.batch_dict,
+                data.x, 
+                data.edge_index,
+                data.edge_attr,
+                data.batch,
                 data.y_base
             )
-            preds.append(pred)
-            targets.append(data.y)
+            targets.append(data.original_y)
+            preds.append(torch.expm1(pred * std_target + mean_target))
 
     preds = aggregate_qor_metrics(
-        torch.cat(preds).expm1(), 
+        torch.cat(preds, dim=0), 
         loader.dataset.target_metric,
         available_resources=available_resources
     )
     targets = aggregate_qor_metrics(
-        torch.cat(targets).expm1(), 
+        torch.cat(targets, dim=0), 
         loader.dataset.target_metric,
         available_resources=available_resources
     )
-    mape = smape_loss(preds, targets).mean().item()
+    mape = mape_loss(preds, targets).item()
 
     return preds.tolist(), targets.tolist(), mape
 
@@ -64,13 +67,19 @@ def evaluate(
 def prepare_data_loader_ft(
     dataset_dir: str, 
     target_metric: str,
-    scaling_stats: Dict[str, Dict[str, float]],
-    batch_size: int = 16,
+    scaling_stats: StatsDict,
+    base_target_scaling_stats: StatsDict, 
+    target_scaling_stats: StatsDict,
+    benchmark: str = "",
+    batch_size: int = 8,
 ) -> DataLoader:
     dataset = HLSFineTuningDataset(
         root=dataset_dir,
         scaling_stats=scaling_stats,
-        target_metric=target_metric
+        base_target_scaling_stats=base_target_scaling_stats,
+        target_scaling_stats=target_scaling_stats,
+        target_metric=target_metric,
+        benchmark=benchmark
     )
     loader = DataLoader(
         dataset, 
@@ -86,13 +95,17 @@ def prepare_data_loader_eval(
     dataset_dir: str,
     target_metric: str,
     benchmark: str,
-    scaling_stats: Dict[str, Any],
+    scaling_stats: StatsDict,
+    base_target_scaling_stats: StatsDict, 
+    target_scaling_stats: StatsDict,
     batch_size: int = 16
 ) -> DataLoader:
     dataset = HLSDataset(
         root=dataset_dir, 
         target_metric=target_metric, 
         scaling_stats=scaling_stats,
+        base_target_scaling_stats=base_target_scaling_stats,
+        target_scaling_stats=target_scaling_stats,
         benchmarks=[benchmark], 
         mode=f"evaluate_{benchmark}"
     )
@@ -106,21 +119,9 @@ def prepare_data_loader_eval(
     return loader
 
 
-def load_model_args(model_args_path: str) -> Dict[str, Any]:
+def load_model(model_path: str, model_args_path: str) -> nn.Module:
     with open(model_args_path, 'r') as f:
         model_args = json.load(f)
-
-    metadata = model_args["metadata"]
-    model_args["metadata"] = (
-        metadata[0], 
-        [(et[0], et[1], et[2]) for et in metadata[1]]
-    )
-    model_args["dropout"] = 0.0
-    return model_args
-
-
-def load_model(model_path: str, model_args_path: str) -> nn.Module:
-    model_args = load_model_args(model_args_path)
     model = HLSQoREstimator(**model_args)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     return model, model_args
@@ -178,54 +179,65 @@ def load_lr_config(model: nn.Module, weight_decay_val: float):
 
 def main(args: Dict[str, str]):
     dataset_dir = args.get("dataset_dir")
-    model_path = args.get("model")
-    model_args_path = args.get("model_args")
-    pretraining_args_path = args.get("pretraining_args")
-    scaling_stats_path = args.get("scaling_stats")
-    batch_size = int(args.get("batch_size", 16))
+    model_dir = args.get("model_dir")
+    batch_size = int(args.get("batch_size", 8))
     epochs = int(args.get("epochs", 15))
     output_dir = args.get("output_dir", "")
     lr = float(args.get("learning_rate", 1e-5))
 
-    if not dataset_dir or not model_path or not model_args_path:
+    if not dataset_dir or not model_dir:
         raise ValueError("Dataset directory, model path and model args path are required.")
     
-    if not pretraining_args_path or not os.path.exists(pretraining_args_path):
-        raise ValueError("Pretraining arguments file does not exist.")
-    
-    if not scaling_stats_path or not os.path.exists(scaling_stats_path):
-        raise ValueError("Scaling statistics file does not exist.")
-    
-    with open(scaling_stats_path, 'r') as f:
-        scaling_stats = json.load(f)
+    model_path = os.path.join(model_dir, 'model.pt')
+    model_args_path = os.path.join(model_dir, 'model_args.json')
+    pretraining_args_path = os.path.join(model_dir, 'pretraining_args.json')
+    scaling_stats_path = os.path.join(model_dir, 'scaling_stats.json')
+    target_scaling_stats_path = os.path.join(model_dir, 'target_scaling_stats.json')
+    base_target_scaling_stats_path = os.path.join(model_dir, 'base_target_scaling_stats.json')
 
-    if not output_dir:
-        output_dir = os.path.dirname(model_path)
-        output_dir = os.path.join(output_dir, 'fine_tuning')
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir, exist_ok=True)
+    required_paths = [
+        dataset_dir, model_path, model_args_path, 
+        pretraining_args_path, scaling_stats_path,
+        target_scaling_stats_path, base_target_scaling_stats_path
+    ]
+    if not all(os.path.exists(path) for path in required_paths):
+        raise FileNotFoundError("One or more required paths do not exist.")
+    
+    output_dir = output_dir or os.path.join(model_dir, 'fine_tuning')
+    os.makedirs(output_dir, exist_ok=True)
     
     with open(pretraining_args_path, 'r') as f:
         pretraining_args = json.load(f)
+
+    with open(scaling_stats_path, 'r') as f:
+        scaling_stats = json.load(f)
+
+    with open(target_scaling_stats_path, 'r') as f:
+        target_scaling_stats = json.load(f)
+
+    with open(base_target_scaling_stats_path, 'r') as f:
+        base_target_scaling_stats = json.load(f)
 
     target_metric = pretraining_args.get('target')
     if not target_metric:
         raise ValueError("Target metric must be specified in pretraining arguments.")
 
+    benchmark = pretraining_args.get("test_bench")
     betas = pretraining_args.get('betas', (0.9, 0.999))
     weight_decay = pretraining_args.get('weight_decay', 1e-4)
-    max_norm = pretraining_args.get('max_norm', 5.0)
+    max_norm = pretraining_args.get('max_norm', None)
     seed = pretraining_args.get('seed', 42)
-    loss = pretraining_args.get('loss', 'l1')
+    loss = pretraining_args.get('loss', 'mse')
     huber_delta = pretraining_args.get('huber_delta', 1.0)
 
     set_random_seeds(seed)
 
     # Load the dataset
     ft_loader = prepare_data_loader_ft(
-        dataset_dir, target_metric,
+        dataset_dir, target_metric, scaling_stats,
+        base_target_scaling_stats, target_scaling_stats,
+        benchmark=benchmark,
         batch_size=batch_size,
-        scaling_stats=scaling_stats
     )
     
     # Load the model
@@ -233,13 +245,13 @@ def main(args: Dict[str, str]):
     model = model.to(DEVICE)
 
     # Prepare the optimizer
-    # grouped_params = get_layerwise_decay_params(
-    #     model,
-    #     initial_lr=lr,
-    #     weight_decay=weight_decay,
-    #     decay_rate=0.9
-    # )
-    grouped_params = load_lr_config(model, weight_decay)
+    grouped_params = get_layerwise_decay_params(
+        model,
+        initial_lr=lr,
+        weight_decay=weight_decay,
+        decay_rate=0.9
+    )
+    # grouped_params = load_lr_config(model, weight_decay)
     optimizer = torch.optim.AdamW(
         grouped_params, 
         betas=betas
@@ -257,10 +269,9 @@ def main(args: Dict[str, str]):
     benchmark = pretraining_args.get('test_bench').upper()
 
     loader = prepare_data_loader_eval(
-        "gnn/dataset", 
-        target_metric,
-        benchmark, 
-        scaling_stats=scaling_stats,
+        "gnn/dataset", target_metric, benchmark, 
+        scaling_stats, base_target_scaling_stats,
+        target_scaling_stats,
         batch_size=8
     )
 
@@ -287,17 +298,15 @@ def main(args: Dict[str, str]):
     with open(os.path.join(output_dir, 'model_args.json'), 'w') as f:
         json.dump(model_args, f, indent=4)
 
-    fine_tuning_args = {
+    with open(os.path.join(output_dir, 'grouped_params.json'), 'w') as f:
+        json.dump(grouped_params, f, indent=2)
+
+    fine_tuning_args = pretraining_args.copy()
+    fine_tuning_args.update({
         "batch_size": batch_size,
         "epochs": epochs,
-        "learning_rate": lr,
-        "betas": betas,
-        "weight_decay": weight_decay,
-        "max_norm": max_norm,
-        "loss": loss,
-        "huber_delta": huber_delta,
-        "seed": seed
-    }
+        "learning_rate": lr
+    })
     with open(os.path.join(output_dir, 'fine_tuning_args.json'), 'w') as f:
         json.dump(fine_tuning_args, f, indent=4)
 
@@ -321,7 +330,9 @@ def main(args: Dict[str, str]):
             clip_grad_norm_(model.parameters(), max_norm=max_norm)
             optimizer.step()
         
-    preds, targets, _ = evaluate(model, loader, available_resources=available_resources)
+    preds, targets, mape = evaluate(model, loader, available_resources=available_resources)
+    print(f"Fine-tuning completed. MAPE: {mape:.4f}")
+
     indices = [data.solution_index for data in loader.dataset]
 
     with open(os.path.join(output_dir, f"predictions.csv"), 'w') as f:
@@ -347,7 +358,7 @@ def get_layerwise_decay_params(model, initial_lr, weight_decay, decay_rate=0.9):
     params = []
 
     # Add the head MLPs with the highest learning rate
-    head_prefixes = ['node_type_mlp.', 'graph_mlp.', 'y_base_mlp.']
+    head_prefixes = ['mlps.', 'y_base_mlp.']
     params.append({
         'params': [p for n, p in model.named_parameters() if any(n.startswith(prefix) for prefix in head_prefixes)],
         'lr': initial_lr,
@@ -358,7 +369,7 @@ def get_layerwise_decay_params(model, initial_lr, weight_decay, decay_rate=0.9):
     num_gnn_layers = model.gnn.num_layers
     for i in range(num_gnn_layers):
         layer_lr = initial_lr * (decay_rate ** (num_gnn_layers - i))
-        layer_prefixes = [f'gnn.convs.{i}.', f'gnn.norm_dicts.{i}.']
+        layer_prefixes = [f'gnn.convs.{i}.', f'gnn.norms.{i}.']
         params.append({
             'params': [p for n, p in model.named_parameters() if any(n.startswith(prefix) for prefix in layer_prefixes)],
             'lr': layer_lr,
@@ -369,7 +380,7 @@ def get_layerwise_decay_params(model, initial_lr, weight_decay, decay_rate=0.9):
     remaining_params = [
         p for n, p in model.named_parameters() 
         if not any(n.startswith(pfx) for pfx in head_prefixes) and 
-           not any(n.startswith(f'gnn.convs.{i}.') or n.startswith(f'gnn.norm_dicts.{i}.') for i in range(num_gnn_layers))
+           not any(n.startswith(f'gnn.convs.{i}.') or n.startswith(f'gnn.norms.{i}.') for i in range(num_gnn_layers))
     ]
     params.append({
         'params': remaining_params,
@@ -395,8 +406,7 @@ def get_optimizer_param_groups(model, weight_decay_val):
     for module_name, module in model.named_modules():
         if isinstance(module, (nn.PReLU, nn.LayerNorm, LayerNorm)):
             for param_name, _ in module.named_parameters():
-                # Add the full parameter name like 
-                # "gnn.convs.0.norm_dict.instr.weight"
+                # Add the full parameter name
                 no_decay_param_names.add(f"{module_name}.{param_name}")
 
     # Also add all bias terms to the exclusion set
@@ -441,14 +451,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Fine-tune GNN model.")
     parser.add_argument("-d", "--dataset_dir", type=str, required=True, 
                         help="Path to dataset directory.")
-    parser.add_argument("-m", "--model", type=str, required=True, 
-                        help="Path to the pre-trained model.")
-    parser.add_argument("-ma", "--model_args", type=str, required=True, 
-                        help="Path to the serialized model arguments.")
-    parser.add_argument("-pa", "--pretraining_args", type=str, required=True,
-                        help="Path to the arguments used for pre-training the model.")
-    parser.add_argument("-s", "--scaling_stats", type=str, required=True,
-                        help="Path to the statistics for standardization.")
+    parser.add_argument("-m", "--model_dir", type=str, required=True, 
+                        help="Path to the pre-trained model directory with training metadata.")
     parser.add_argument("-e", "--epochs", type=int, default=15, 
                         help="Number of epochs for fine-tuning.")
     parser.add_argument("-b", "--batch_size", type=int, default=8,

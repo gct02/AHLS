@@ -457,7 +457,6 @@ def get_optimizer_param_groups(model, weight_decay_val):
         if isinstance(module, (nn.PReLU, nn.LayerNorm, LayerNorm)):
             for param_name, _ in module.named_parameters():
                 # Add the full parameter name like 
-                # "gnn.convs.0.norm_dict.instr.weight"
                 no_decay_param_names.add(f"{module_name}.{param_name}")
 
     # Also add all bias terms to the exclusion set

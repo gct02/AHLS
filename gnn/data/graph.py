@@ -1641,7 +1641,7 @@ def update_with_directives(
                 print("Warning: No variable specified for array partition.")
                 continue
 
-            array_node = _find_array_node(kernel_graph, target_name, function_name)
+            array_node = find_array_node(kernel_graph, target_name, function_name)
             if array_node is None:
                 print(f"Warning: Variable '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
@@ -1727,7 +1727,7 @@ def update_with_directives(
                 function_name = location
                 target_name = location
 
-            region_node = _find_region_node(kernel_graph, target_name, function_name)
+            region_node = find_region_node(kernel_graph, target_name, function_name)
             if region_node is None:
                 print(f"Warning: Region '{target_name}' "
                       f"(function '{function_name}') not found in nodes.")
@@ -1780,7 +1780,7 @@ def update_with_directives(
     return kernel_graph
 
 
-def _find_array_node(kernel_info, array_name, function_name):
+def find_array_node(kernel_info, array_name, function_name):
     if function_name:
         for node in kernel_info.nodes.values():
             if (node.node_type in ['internal_mem', 'port']
@@ -1796,7 +1796,7 @@ def _find_array_node(kernel_info, array_name, function_name):
     return None
 
 
-def _find_region_node(kernel_info, region_name, function_name):
+def find_region_node(kernel_info, region_name, function_name):
     for node in kernel_info.nodes.values():
         if (node.node_type == 'region'
             and node.name == region_name
