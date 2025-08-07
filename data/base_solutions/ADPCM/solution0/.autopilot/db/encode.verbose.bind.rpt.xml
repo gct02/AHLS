@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'encode'" level="0">
-<item name = "Date">Wed Jul  9 03:19:59 2025
+<item name = "Date">Wed Aug  6 20:17:50 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -24,26 +24,17 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">168, 170, 1.344 us, 1.360 us, 168, 170, no</column>
+<column name="">165, 167, 1.320 us, 1.336 us, 165, 167, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_filtez_fu_318">filtez, 13, 13, 0.104 us, 0.104 us, 13, 13, no</column>
-<column name="grp_filtep_fu_328">filtep, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_quantl_fu_336">quantl, 62, 64, 0.496 us, 0.512 us, 62, 64, no</column>
-<column name="tmp_9_abs_r_fu_348">abs_r, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_logscl_fu_353">logscl, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_upzero_fu_361">upzero, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
-<column name="grp_upzero_fu_370">upzero, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
-<column name="grp_uppol2_fu_379">uppol2, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_uppol2_fu_388">uppol2, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="tmp_s_logsch_fu_397">logsch, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_scalel_fu_403">scalel, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_uppol1_fu_414">uppol1, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_uppol1_fu_422">uppol1, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
+<column name="grp_filtez_fu_430">filtez, 13, 13, 0.104 us, 0.104 us, 13, 13, no</column>
+<column name="grp_quantl_fu_440">quantl, 62, 64, 0.496 us, 0.512 us, 62, 64, no</column>
+<column name="grp_upzero_fu_452">upzero, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
+<column name="grp_upzero_fu_461">upzero, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

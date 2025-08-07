@@ -1,12 +1,12 @@
 {
   "0": {
     "basicblocks": 23,
-    "calls": "2 1 2 1",
+    "calls": "1 1",
     "file": "transposed_fft.c",
     "fileloc": 114,
-    "instructions": 1064,
+    "instructions": 1090,
     "loads": {
-      "L": 144,
+      "L": 128,
       "T": 16
     },
     "name": "fft1D_512",
@@ -14,29 +14,14 @@
       "L": 144,
       "T": 16
     },
-    "total_instructions": 2392
+    "total_instructions": 2318
   },
   "1": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "transposed_fft.c",
-    "fileloc": 103,
-    "instructions": 48,
-    "loads": {
-      "L": 8
-    },
-    "name": "loady8",
-    "stores": {
-      "L": 8
-    },
-    "total_instructions": 48
-  },
-  "2": {
     "basicblocks": 3,
-    "calls": "4 4",
+    "calls": "3 3",
     "file": "transposed_fft.c",
     "fileloc": 23,
-    "instructions": 30,
+    "instructions": 28,
     "loads": {
       "G": 1,
       "L": 2
@@ -45,9 +30,9 @@
     "stores": {
       "L": 2
     },
-    "total_instructions": 616
+    "total_instructions": 614
   },
-  "3": {
+  "2": {
     "basicblocks": 12,
     "calls": "",
     "file": "x_hls_float_utils.h",
@@ -62,9 +47,9 @@
     },
     "total_instructions": 94
   },
-  "4": {
+  "3": {
     "basicblocks": 9,
-    "calls": "3",
+    "calls": "2",
     "file": "hls_hotbm.h",
     "fileloc": 209,
     "instructions": 199,

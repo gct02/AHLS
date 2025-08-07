@@ -23,7 +23,7 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl</string>
+      <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl</string>
       <key>line</key>
       <integer>9</integer>
       <key>column</key>

@@ -1,7 +1,7 @@
 {
   "0": {
     "basicblocks": 1,
-    "calls": "6 7",
+    "calls": "2 6",
     "file": "aes.c",
     "fileloc": 66,
     "instructions": 3,
@@ -9,22 +9,32 @@
     "total_instructions": 1271
   },
   "1": {
-    "basicblocks": 25,
+    "basicblocks": 12,
     "calls": "",
     "file": "aes_key.c",
-    "fileloc": 319,
-    "instructions": 159,
+    "fileloc": 480,
+    "instructions": 93,
     "loads": {
-      "G": 4,
-      "L": 16
+      "G": 10,
+      "L": 2
     },
-    "name": "MixColumn_AddRoundKey",
+    "name": "KeySchedule",
     "stores": {
-      "L": 24
+      "G": 2,
+      "L": 8
     },
-    "total_instructions": 159
+    "total_instructions": 93
   },
   "2": {
+    "basicblocks": 3,
+    "calls": "1 8 3 5 3 8",
+    "file": "aes_enc.c",
+    "fileloc": 66,
+    "instructions": 12,
+    "name": "encrypt",
+    "total_instructions": 628
+  },
+  "3": {
     "basicblocks": 1,
     "calls": "",
     "file": "aes_key.c",
@@ -39,22 +49,6 @@
       "L": 16
     },
     "total_instructions": 145
-  },
-  "3": {
-    "basicblocks": 9,
-    "calls": "",
-    "file": "aes_key.c",
-    "fileloc": 375,
-    "instructions": 171,
-    "loads": {
-      "G": 4,
-      "L": 12
-    },
-    "name": "AddRoundKey_InversMixColumn",
-    "stores": {
-      "L": 9
-    },
-    "total_instructions": 171
   },
   "4": {
     "basicblocks": 1,
@@ -73,39 +67,45 @@
     "total_instructions": 145
   },
   "5": {
-    "basicblocks": 12,
+    "basicblocks": 25,
     "calls": "",
     "file": "aes_key.c",
-    "fileloc": 480,
-    "instructions": 93,
+    "fileloc": 319,
+    "instructions": 159,
     "loads": {
-      "G": 10,
-      "L": 2
+      "G": 4,
+      "L": 16
     },
-    "name": "KeySchedule",
+    "name": "MixColumn_AddRoundKey",
     "stores": {
-      "G": 2,
-      "L": 8
+      "L": 24
     },
-    "total_instructions": 93
+    "total_instructions": 159
   },
   "6": {
     "basicblocks": 3,
-    "calls": "5 8 2 1 2 8",
-    "file": "aes_enc.c",
-    "fileloc": 66,
-    "instructions": 12,
-    "name": "encrypt",
-    "total_instructions": 628
-  },
-  "7": {
-    "basicblocks": 3,
-    "calls": "5 8 4 3 4 8",
+    "calls": "1 8 4 7 4 8",
     "file": "aes_dec.c",
     "fileloc": 66,
     "instructions": 12,
     "name": "decrypt",
     "total_instructions": 640
+  },
+  "7": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "aes_key.c",
+    "fileloc": 375,
+    "instructions": 171,
+    "loads": {
+      "G": 4,
+      "L": 12
+    },
+    "name": "AddRoundKey_InversMixColumn",
+    "stores": {
+      "L": 9
+    },
+    "total_instructions": 171
   },
   "8": {
     "basicblocks": 3,

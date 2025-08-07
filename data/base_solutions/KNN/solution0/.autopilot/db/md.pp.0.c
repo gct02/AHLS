@@ -177,7 +177,7 @@ __attribute__((sdx_kernel("md_kernel", 0))) void md_kernel(
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 19 "data/benchmarks/knn/md.c"
 
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl"
 #pragma HLSDIRECTIVE TOP name=md_kernel
 # 19 "data/benchmarks/knn/md.c"
 

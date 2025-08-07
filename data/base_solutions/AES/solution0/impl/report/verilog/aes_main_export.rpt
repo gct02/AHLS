@@ -4,7 +4,7 @@ Implementation tool: Xilinx Vivado v.2023.2
 Project:             AES
 Solution:            solution0
 Device target:       xcu50-fsvh2104-2-e
-Report date:         Wed Jul 09 03:32:40 -03 2025
+Report date:         Wed Aug 06 19:49:58 -03 2025
 
 #=== Post-Implementation Resource usage ===
 SLICE:            0

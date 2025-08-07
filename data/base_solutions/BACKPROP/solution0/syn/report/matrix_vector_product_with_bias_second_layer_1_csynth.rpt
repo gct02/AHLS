@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'matrix_vector_product_with_bias_second_layer_1'
 ================================================================
-* Date:           Wed Jul  9 03:32:57 2025
+* Date:           Wed Aug  6 20:24:17 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -29,17 +29,17 @@
     |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
     |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
     +---------+---------+----------+----------+-------+-------+---------+
-    |    41411|    41411|  0.331 ms|  0.331 ms|  41411|  41411|       no|
+    |    41159|    41159|  0.329 ms|  0.329 ms|  41159|  41159|       no|
     +---------+---------+----------+----------+-------+-------+---------+
 
     + Detail: 
         * Instance: 
-        +--------------------------------------------+---------------------------------+---------+---------+----------+----------+-----+-----+---------+
-        |                                            |                                 |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
-        |                  Instance                  |              Module             |   min   |   max   |    min   |    max   | min | max |   Type  |
-        +--------------------------------------------+---------------------------------+---------+---------+----------+----------+-----+-----+---------+
-        |grp_add_bias_to_activations_clone_1_fu_115  |add_bias_to_activations_clone_1  |      321|      321|  2.568 us|  2.568 us|  321|  321|       no|
-        +--------------------------------------------+---------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                                                              |                                                                                   |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                                           Instance                                           |                                       Module                                      |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115  |matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s  |       69|       69|  0.552 us|  0.552 us|   69|   69|       no|
+        +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
 
         * Loop: 
         +---------------------------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
@@ -62,31 +62,31 @@
 |DSP                  |        -|     -|        -|       -|    -|
 |Expression           |        -|     -|        0|      77|    -|
 |FIFO                 |        -|     -|        -|       -|    -|
-|Instance             |        -|     3|      449|     797|    -|
+|Instance             |        -|     -|       86|      99|    -|
 |Memory               |        -|     -|        -|       -|    -|
-|Multiplexer          |        -|     -|        -|     148|    -|
+|Multiplexer          |        -|     -|        -|     208|    -|
 |Register             |        -|     -|      246|       -|    -|
 +---------------------+---------+------+---------+--------+-----+
-|Total                |        0|     3|      695|    1022|    0|
+|Total                |        0|     0|      332|     384|    0|
 +---------------------+---------+------+---------+--------+-----+
 |Available SLR        |     1344|  2976|   871680|  435840|  320|
 +---------------------+---------+------+---------+--------+-----+
-|Utilization SLR (%)  |        0|    ~0|       ~0|      ~0|    0|
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
 +---------------------+---------+------+---------+--------+-----+
 |Available            |     2688|  5952|  1743360|  871680|  640|
 +---------------------+---------+------+---------+--------+-----+
-|Utilization (%)      |        0|    ~0|       ~0|      ~0|    0|
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
 +---------------------+---------+------+---------+--------+-----+
 
 + Detail: 
     * Instance: 
-    +--------------------------------------------+---------------------------------+---------+----+-----+-----+-----+
-    |                  Instance                  |              Module             | BRAM_18K| DSP|  FF | LUT | URAM|
-    +--------------------------------------------+---------------------------------+---------+----+-----+-----+-----+
-    |grp_add_bias_to_activations_clone_1_fu_115  |add_bias_to_activations_clone_1  |        0|   3|  449|  797|    0|
-    +--------------------------------------------+---------------------------------+---------+----+-----+-----+-----+
-    |Total                                       |                                 |        0|   3|  449|  797|    0|
-    +--------------------------------------------+---------------------------------+---------+----+-----+-----+-----+
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+----+----+-----+
+    |                                           Instance                                           |                                       Module                                      | BRAM_18K| DSP| FF | LUT| URAM|
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+----+----+-----+
+    |grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115  |matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s  |        0|   0|  86|  99|    0|
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+----+----+-----+
+    |Total                                                                                         |                                                                                   |        0|   0|  86|  99|    0|
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+----+----+-----+
 
     * DSP: 
     N/A
@@ -116,34 +116,39 @@
     +----------------------+----+-----------+-----+-----------+
     |activations_address0  |  14|          3|    6|         18|
     |activations_ce0       |  14|          3|    1|          3|
+    |activations_ce1       |   9|          2|    1|          2|
     |activations_d0        |  14|          3|   64|        192|
     |activations_we0       |  14|          3|    1|          3|
     |add113_reg_102        |   9|          2|   64|        128|
     |ap_NS_fsm             |  65|         14|    1|         14|
+    |grp_fu_123_ce         |   9|          2|    1|          2|
+    |grp_fu_123_opcode     |  14|          3|    2|          6|
+    |grp_fu_123_p0         |  14|          3|   64|        192|
+    |grp_fu_123_p1         |  14|          3|   64|        192|
     |i_fu_48               |   9|          2|    7|         14|
     |j_reg_90              |   9|          2|    7|         14|
     +----------------------+----+-----------+-----+-----------+
-    |Total                 | 148|         32|  151|        386|
+    |Total                 | 208|         45|  283|        780|
     +----------------------+----+-----------+-----+-----------+
 
     * Register: 
-    +---------------------------------------------------------+----+----+-----+-----------+
-    |                           Name                          | FF | LUT| Bits| Const Bits|
-    +---------------------------------------------------------+----+----+-----+-----------+
-    |activations_addr_reg_224                                 |   6|   0|    6|          0|
-    |add113_reg_102                                           |  64|   0|   64|          0|
-    |add_ln78_reg_219                                         |   7|   0|    7|          0|
-    |add_ln82_reg_237                                         |   7|   0|    7|          0|
-    |ap_CS_fsm                                                |  13|   0|   13|          0|
-    |grp_add_bias_to_activations_clone_1_fu_115_ap_start_reg  |   1|   0|    1|          0|
-    |i_fu_48                                                  |   7|   0|    7|          0|
-    |j_reg_90                                                 |   7|   0|    7|          0|
-    |mul8_reg_267                                             |  64|   0|   64|          0|
-    |tmp_9_reg_229                                            |   6|   0|   12|          6|
-    |weights2_load_reg_247                                    |  64|   0|   64|          0|
-    +---------------------------------------------------------+----+----+-----+-----------+
-    |Total                                                    | 246|   0|  252|          6|
-    +---------------------------------------------------------+----+----+-----+-----------+
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                                    Name                                                   | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |activations_addr_reg_224                                                                                   |   6|   0|    6|          0|
+    |add113_reg_102                                                                                             |  64|   0|   64|          0|
+    |add_ln78_reg_219                                                                                           |   7|   0|    7|          0|
+    |add_ln82_reg_237                                                                                           |   7|   0|    7|          0|
+    |ap_CS_fsm                                                                                                  |  13|   0|   13|          0|
+    |grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_ap_start_reg  |   1|   0|    1|          0|
+    |i_fu_48                                                                                                    |   7|   0|    7|          0|
+    |j_reg_90                                                                                                   |   7|   0|    7|          0|
+    |mul8_reg_267                                                                                               |  64|   0|   64|          0|
+    |tmp_9_reg_229                                                                                              |   6|   0|   12|          6|
+    |weights2_load_reg_247                                                                                      |  64|   0|   64|          0|
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                                      | 246|   0|  252|          6|
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
 
 
 
@@ -160,15 +165,15 @@
 |ap_done                     |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
 |ap_idle                     |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
 |ap_ready                    |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_990_p_din0           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_990_p_din1           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_990_p_opcode         |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_990_p_dout0          |   in|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_990_p_ce             |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_994_p_din0           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_994_p_din1           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_994_p_dout0          |   in|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
-|grp_fu_994_p_ce             |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_988_p_din0           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_988_p_din1           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_988_p_opcode         |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_988_p_dout0          |   in|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_988_p_ce             |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_992_p_din0           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_992_p_din1           |  out|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_992_p_dout0          |   in|   64|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
+|grp_fu_992_p_ce             |  out|    1|  ap_ctrl_hs|  matrix_vector_product_with_bias_second_layer.1|  return value|
 |biases2_address0            |  out|    6|   ap_memory|                                         biases2|         array|
 |biases2_ce0                 |  out|    1|   ap_memory|                                         biases2|         array|
 |biases2_q0                  |   in|   64|   ap_memory|                                         biases2|         array|
@@ -179,7 +184,9 @@
 |activations_ce0             |  out|    1|   ap_memory|                                     activations|         array|
 |activations_we0             |  out|    1|   ap_memory|                                     activations|         array|
 |activations_d0              |  out|   64|   ap_memory|                                     activations|         array|
-|activations_q0              |   in|   64|   ap_memory|                                     activations|         array|
+|activations_address1        |  out|    6|   ap_memory|                                     activations|         array|
+|activations_ce1             |  out|    1|   ap_memory|                                     activations|         array|
+|activations_q1              |   in|   64|   ap_memory|                                     activations|         array|
 |input_activations_address0  |  out|    6|   ap_memory|                               input_activations|         array|
 |input_activations_ce0       |  out|    1|   ap_memory|                               input_activations|         array|
 |input_activations_q0        |   in|   64|   ap_memory|                               input_activations|         array|

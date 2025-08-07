@@ -182,10 +182,10 @@ entry:4 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %we
 
 <Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:5 %specpipeline_ln46 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
+entry:5 %specpipeline_ln37 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln46"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln37"/></StgValue>
 </operation>
 
 <operation id="20" st_id="1" stage="1" lat="1">
@@ -335,7 +335,7 @@ matrix_vector_product_with_bias_input_layer_loop1_1:4 %add_ln60 = add i7 %j_7, i
 
 <Node id="22" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
 <![CDATA[
-matrix_vector_product_with_bias_input_layer_loop1_1:5 %br_ln60 = br i1 %icmp_ln60, void %matrix_vector_product_with_bias_input_layer_loop1_1.split, void %for.end14
+matrix_vector_product_with_bias_input_layer_loop1_1:5 %br_ln60 = br i1 %icmp_ln60, void %matrix_vector_product_with_bias_input_layer_loop1_1.split, void %for.inc.i.preheader
 
 ]]></Node>
 <StgValue><ssdm name="br_ln60"/></StgValue>
@@ -383,7 +383,7 @@ matrix_vector_product_with_bias_input_layer_loop1_1.split:1 %speclooptripcount_l
 
 <Node id="26" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-matrix_vector_product_with_bias_input_layer_loop1_1.split:2 %specloopname_ln68 = specloopname void @_ssdm_op_SpecLoopName, void @empty
+matrix_vector_product_with_bias_input_layer_loop1_1.split:2 %specloopname_ln68 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln68"/></StgValue>
@@ -431,10 +431,10 @@ matrix_vector_product_with_bias_input_layer_loop1_1.split:4 %br_ln64 = br void %
 
 <Node id="59" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-for.end14:0 %call_ln69 = call void @add_bias_to_activations.clone.1, i64 %biases1, i64 %activations
+for.inc.i.preheader:0 %call_ln0 = call void @matrix_vector_product_with_bias_input_layer.1_Pipeline_add_bias_to_activations_l, i64 %activations, i64 %biases1
 
 ]]></Node>
-<StgValue><ssdm name="call_ln69"/></StgValue>
+<StgValue><ssdm name="call_ln0"/></StgValue>
 </operation>
 </state>
 
@@ -449,10 +449,10 @@ for.end14:0 %call_ln69 = call void @add_bias_to_activations.clone.1, i64 %biases
 
 <Node id="30" bw="4" op_0_bw="4" op_1_bw="0" op_2_bw="4" op_3_bw="0">
 <![CDATA[
-for.inc:0 %i = phi i4 %add_ln64, void %for.inc.split, i4 0, void %matrix_vector_product_with_bias_input_layer_loop1_1.split
+for.inc:0 %i_14 = phi i4 %add_ln64, void %for.inc.split, i4 0, void %matrix_vector_product_with_bias_input_layer_loop1_1.split
 
 ]]></Node>
-<StgValue><ssdm name="i"/></StgValue>
+<StgValue><ssdm name="i_14"/></StgValue>
 </operation>
 
 <operation id="37" st_id="3" stage="1" lat="1">
@@ -479,7 +479,7 @@ for.inc:1 %add113 = phi i64 %add, void %for.inc.split, i64 0, void %matrix_vecto
 
 <Node id="32" bw="1" op_0_bw="4" op_1_bw="4">
 <![CDATA[
-for.inc:2 %icmp_ln64 = icmp_eq  i4 %i, i4 13
+for.inc:2 %icmp_ln64 = icmp_eq  i4 %i_14, i4 13
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln64"/></StgValue>
@@ -494,7 +494,7 @@ for.inc:2 %icmp_ln64 = icmp_eq  i4 %i, i4 13
 
 <Node id="33" bw="4" op_0_bw="4" op_1_bw="4">
 <![CDATA[
-for.inc:3 %add_ln64 = add i4 %i, i4 1
+for.inc:3 %add_ln64 = add i4 %i_14, i4 1
 
 ]]></Node>
 <StgValue><ssdm name="add_ln64"/></StgValue>
@@ -525,7 +525,7 @@ for.inc:4 %br_ln64 = br i1 %icmp_ln64, void %for.inc.split, void %for.inc12
 
 <Node id="36" bw="12" op_0_bw="4">
 <![CDATA[
-for.inc.split:0 %zext_ln64 = zext i4 %i
+for.inc.split:0 %zext_ln64 = zext i4 %i_14
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln64"/></StgValue>
@@ -541,7 +541,7 @@ for.inc.split:0 %zext_ln64 = zext i4 %i
 
 <Node id="37" bw="10" op_0_bw="4">
 <![CDATA[
-for.inc.split:1 %zext_ln64_1 = zext i4 %i
+for.inc.split:1 %zext_ln64_1 = zext i4 %i_14
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln64_1"/></StgValue>
@@ -952,7 +952,7 @@ for.inc.split:2 %speclooptripcount_ln65 = speclooptripcount void @_ssdm_op_SpecL
 
 <Node id="39" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.inc.split:3 %specloopname_ln67 = specloopname void @_ssdm_op_SpecLoopName, void @empty_20
+for.inc.split:3 %specloopname_ln67 = specloopname void @_ssdm_op_SpecLoopName, void @empty_11
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln67"/></StgValue>
@@ -1000,10 +1000,10 @@ for.inc.split:16 %br_ln64 = br void %for.inc
 
 <Node id="59" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-for.end14:0 %call_ln69 = call void @add_bias_to_activations.clone.1, i64 %biases1, i64 %activations
+for.inc.i.preheader:0 %call_ln0 = call void @matrix_vector_product_with_bias_input_layer.1_Pipeline_add_bias_to_activations_l, i64 %activations, i64 %biases1
 
 ]]></Node>
-<StgValue><ssdm name="call_ln69"/></StgValue>
+<StgValue><ssdm name="call_ln0"/></StgValue>
 </operation>
 
 <operation id="71" st_id="13" stage="1" lat="1">
@@ -1015,7 +1015,7 @@ for.end14:0 %call_ln69 = call void @add_bias_to_activations.clone.1, i64 %biases
 
 <Node id="60" bw="0">
 <![CDATA[
-for.end14:1 %ret_ln70 = ret
+for.inc.i.preheader:1 %ret_ln70 = ret
 
 ]]></Node>
 <StgValue><ssdm name="ret_ln70"/></StgValue>

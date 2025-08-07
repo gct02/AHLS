@@ -1,13 +1,13 @@
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:21:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:20:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:35:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:32:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl:15:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-data/benchmarks/aes/aes_dec.c:117:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=min=9 max=13 avg=12_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLS LOOP_TRIPCOUNT min=9 max=13 avg=12
+data/benchmarks/aes/aes_dec.c:117:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=decrypt_XLX_SEP_ PragmaOptions=min=9 max=9 avg=9_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
         ^
 4 warnings generated.

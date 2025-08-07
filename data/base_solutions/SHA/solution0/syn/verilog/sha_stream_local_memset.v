@@ -40,40 +40,55 @@ output  [31:0] sha_info_data_d0;
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
-reg sha_info_data_ce0;
-reg sha_info_data_we0;
 
 (* fsm_encoding = "none" *) reg   [1:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
-wire   [30:0] m_fu_132_p3;
-reg   [30:0] m_reg_194;
-wire   [63:0] zext_ln57_fu_172_p1;
+wire   [30:0] m_fu_109_p3;
+reg   [30:0] m_reg_123;
+wire    grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start;
+wire    grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_done;
+wire    grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_idle;
+wire    grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_ready;
+wire   [3:0] grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_address0;
+wire    grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_ce0;
+wire    grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_we0;
+wire   [31:0] grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_d0;
+reg    grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start_reg;
 wire    ap_CS_fsm_state2;
-wire   [0:0] icmp_ln65_fu_152_p2;
-reg   [29:0] idx_fu_46;
-wire   [29:0] add_ln65_fu_157_p2;
-wire   [6:0] sub_ln58_fu_84_p2;
-wire   [4:0] trunc_ln58_1_fu_90_p4;
-wire  signed [29:0] sext_ln58_fu_100_p1;
-wire   [30:0] zext_ln58_fu_104_p1;
-wire   [4:0] trunc_ln58_2_fu_114_p4;
-wire  signed [29:0] sext_ln58_1_fu_124_p1;
-wire   [0:0] tmp_fu_76_p3;
-wire   [30:0] sub_ln58_1_fu_108_p2;
-wire   [30:0] zext_ln58_1_fu_128_p1;
-wire   [30:0] zext_ln65_fu_148_p1;
-wire   [3:0] trunc_ln65_fu_163_p1;
-wire   [3:0] add_ln57_fu_167_p2;
+wire   [6:0] sub_ln58_fu_61_p2;
+wire   [4:0] trunc_ln58_1_fu_67_p4;
+wire  signed [29:0] sext_ln58_fu_77_p1;
+wire   [30:0] zext_ln58_fu_81_p1;
+wire   [4:0] trunc_ln58_2_fu_91_p4;
+wire  signed [29:0] sext_ln58_1_fu_101_p1;
+wire   [0:0] tmp_fu_53_p3;
+wire   [30:0] sub_ln58_1_fu_85_p2;
+wire   [30:0] zext_ln58_1_fu_105_p1;
 reg   [1:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
-wire    ap_ST_fsm_state2_blk;
+reg    ap_ST_fsm_state2_blk;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 2'd1;
-#0 idx_fu_46 = 30'd0;
+#0 grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start_reg = 1'b0;
 end
+
+sha_stream_local_memset_Pipeline_local_memset_label1 grp_local_memset_Pipeline_local_memset_label1_fu_44(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start),
+    .ap_done(grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_done),
+    .ap_idle(grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_idle),
+    .ap_ready(grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_ready),
+    .m(m_reg_123),
+    .empty(e),
+    .sha_info_data_address0(grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_address0),
+    .sha_info_data_ce0(grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_ce0),
+    .sha_info_data_we0(grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_we0),
+    .sha_info_data_d0(grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_d0)
+);
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
@@ -84,16 +99,20 @@ always @ (posedge ap_clk) begin
 end
 
 always @ (posedge ap_clk) begin
-    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        idx_fu_46 <= 30'd0;
-    end else if (((icmp_ln65_fu_152_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
-        idx_fu_46 <= add_ln65_fu_157_p2;
+    if (ap_rst == 1'b1) begin
+        grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start_reg <= 1'b0;
+    end else begin
+        if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+            grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start_reg <= 1'b1;
+        end else if ((grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_ready == 1'b1)) begin
+            grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start_reg <= 1'b0;
+        end
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state1)) begin
-        m_reg_194 <= m_fu_132_p3;
+        m_reg_123 <= m_fu_109_p3;
     end
 end
 
@@ -105,10 +124,16 @@ always @ (*) begin
     end
 end
 
-assign ap_ST_fsm_state2_blk = 1'b0;
+always @ (*) begin
+    if ((grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_done == 1'b0)) begin
+        ap_ST_fsm_state2_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state2_blk = 1'b0;
+    end
+end
 
 always @ (*) begin
-    if ((((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1)) | ((icmp_ln65_fu_152_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+    if ((((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1)) | ((grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state2)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -124,26 +149,10 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln65_fu_152_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
+    if (((grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_data_ce0 = 1'b1;
-    end else begin
-        sha_info_data_ce0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln65_fu_152_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
-        sha_info_data_we0 = 1'b1;
-    end else begin
-        sha_info_data_we0 = 1'b0;
     end
 end
 
@@ -157,7 +166,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((icmp_ln65_fu_152_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
+            if (((grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state2))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state2;
@@ -169,44 +178,38 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln57_fu_167_p2 = (trunc_ln65_fu_163_p1 + e);
-
-assign add_ln65_fu_157_p2 = (idx_fu_46 + 30'd1);
-
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
 assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
 
-assign icmp_ln65_fu_152_p2 = (($signed(zext_ln65_fu_148_p1) < $signed(m_reg_194)) ? 1'b1 : 1'b0);
+assign grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start = grp_local_memset_Pipeline_local_memset_label1_fu_44_ap_start_reg;
 
-assign m_fu_132_p3 = ((tmp_fu_76_p3[0:0] == 1'b1) ? sub_ln58_1_fu_108_p2 : zext_ln58_1_fu_128_p1);
+assign m_fu_109_p3 = ((tmp_fu_53_p3[0:0] == 1'b1) ? sub_ln58_1_fu_85_p2 : zext_ln58_1_fu_105_p1);
 
-assign sext_ln58_1_fu_124_p1 = $signed(trunc_ln58_2_fu_114_p4);
+assign sext_ln58_1_fu_101_p1 = $signed(trunc_ln58_2_fu_91_p4);
 
-assign sext_ln58_fu_100_p1 = $signed(trunc_ln58_1_fu_90_p4);
+assign sext_ln58_fu_77_p1 = $signed(trunc_ln58_1_fu_67_p4);
 
-assign sha_info_data_address0 = zext_ln57_fu_172_p1;
+assign sha_info_data_address0 = grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_address0;
 
-assign sha_info_data_d0 = 32'd0;
+assign sha_info_data_ce0 = grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_ce0;
 
-assign sub_ln58_1_fu_108_p2 = (31'd0 - zext_ln58_fu_104_p1);
+assign sha_info_data_d0 = grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_d0;
 
-assign sub_ln58_fu_84_p2 = (7'd0 - n);
+assign sha_info_data_we0 = grp_local_memset_Pipeline_local_memset_label1_fu_44_sha_info_data_we0;
 
-assign tmp_fu_76_p3 = n[32'd6];
+assign sub_ln58_1_fu_85_p2 = (31'd0 - zext_ln58_fu_81_p1);
 
-assign trunc_ln58_1_fu_90_p4 = {{sub_ln58_fu_84_p2[6:2]}};
+assign sub_ln58_fu_61_p2 = (7'd0 - n);
 
-assign trunc_ln58_2_fu_114_p4 = {{n[6:2]}};
+assign tmp_fu_53_p3 = n[32'd6];
 
-assign trunc_ln65_fu_163_p1 = idx_fu_46[3:0];
+assign trunc_ln58_1_fu_67_p4 = {{sub_ln58_fu_61_p2[6:2]}};
 
-assign zext_ln57_fu_172_p1 = add_ln57_fu_167_p2;
+assign trunc_ln58_2_fu_91_p4 = {{n[6:2]}};
 
-assign zext_ln58_1_fu_128_p1 = $unsigned(sext_ln58_1_fu_124_p1);
+assign zext_ln58_1_fu_105_p1 = $unsigned(sext_ln58_1_fu_101_p1);
 
-assign zext_ln58_fu_104_p1 = $unsigned(sext_ln58_fu_100_p1);
-
-assign zext_ln65_fu_148_p1 = idx_fu_46;
+assign zext_ln58_fu_81_p1 = $unsigned(sext_ln58_fu_77_p1);
 
 endmodule //sha_stream_local_memset

@@ -14,7 +14,9 @@ from torch_geometric.data import Dataset, Data
 
 from estimators.area.graph import (
     NO_LOG_SCALING_KEYS,
+    NO_LOG_SCALING_GRAPH_KEYS,
     KernelGraph,
+    get_homogeneous_features,
     compute_scaling_stats,
     compute_graph_attr_scaling_stats
 )
@@ -191,7 +193,7 @@ class HLSDataset(Dataset):
                     if key in self.graph_attr_scaling_stats:
                         mean = self.graph_attr_scaling_stats[key]['mean']
                         std = self.graph_attr_scaling_stats[key]['std']
-                        if 'ratio' not in key and 'intensity' not in key and 'bitwidth' not in key:
+                        if key not in NO_LOG_SCALING_GRAPH_KEYS:
                             value = math.log1p(float(value))
                         graph_attr.append((float(value) - mean) / std)
                     else:
@@ -202,7 +204,7 @@ class HLSDataset(Dataset):
                 node_id_map = {node_id: i for i, node_id in enumerate(graph.nodes.keys())}
                 xs = [None] * len(node_id_map)
                 for node_id, node in graph.nodes.items():
-                    xs[node_id_map[node_id]] = torch.tensor(node.get_homogeneous_features(), dtype=torch.float32)
+                    xs[node_id_map[node_id]] = torch.tensor(get_homogeneous_features(node), dtype=torch.float32)
 
                 edge_indices = []
                 edge_attrs = []
@@ -217,9 +219,9 @@ class HLSDataset(Dataset):
                     'x': torch.stack(xs, dim=0),
                     'edge_attr': torch.stack(edge_attrs, dim=0),
                     'edge_index': torch.tensor(edge_indices, dtype=torch.long).t().contiguous(),
+                    'graph_attr': graph_attr,
                     'y': target,
                     'original_y': original_target,
-                    'graph_attr': graph_attr,
                     'benchmark': benchmark,
                     'solution_index': idx
                 }

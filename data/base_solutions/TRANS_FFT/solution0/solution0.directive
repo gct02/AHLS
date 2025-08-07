@@ -55,11 +55,6 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="twiddles8" label="twiddles" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
         <directive functionName="fft1D_512" label="" functionLabel="">
             <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
@@ -70,47 +65,9 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="loadx8" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="loady8" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
         <directive functionName="twiddles8" label="" functionLabel="">
             <pragma name="INLINE">
                 <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="loadx8" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="loady8" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="fft1D_512" label="" functionLabel="">
-            <pragma name="ARRAY_PARTITION">
-                <option name="off" value="true" positionalBoolean="1"/>
-                <option name="variable" positionalBoolean="4" value="reversed"/>
-            </pragma>
-        </directive>
-        <directive functionName="fft1D_512" label="" functionLabel="">
-            <pragma name="ARRAY_PARTITION">
-                <option name="off" value="true" positionalBoolean="1"/>
-                <option name="variable" positionalBoolean="4" value="data_x"/>
-            </pragma>
-        </directive>
-        <directive functionName="fft1D_512" label="" functionLabel="">
-            <pragma name="ARRAY_PARTITION">
-                <option name="off" value="true" positionalBoolean="1"/>
-                <option name="variable" positionalBoolean="4" value="data_y"/>
             </pragma>
         </directive>
         <directive functionName="fft1D_512" label="" functionLabel="">

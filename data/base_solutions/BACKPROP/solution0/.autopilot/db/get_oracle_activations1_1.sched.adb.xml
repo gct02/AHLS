@@ -154,10 +154,10 @@ entry:1 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %we
 
 <Node id="7" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:2 %specpipeline_ln53 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
+entry:2 %specpipeline_ln43 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln53"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln43"/></StgValue>
 </operation>
 
 <operation id="20" st_id="1" stage="1" lat="1">
@@ -202,10 +202,10 @@ entry:4 %br_ln174 = br void %get_oracle_activations1_loop1_1
 
 <Node id="11" bw="7" op_0_bw="7" op_1_bw="0">
 <![CDATA[
-get_oracle_activations1_loop1_1:0 %i_29 = load i7 %i
+get_oracle_activations1_loop1_1:0 %i_28 = load i7 %i
 
 ]]></Node>
-<StgValue><ssdm name="i_29"/></StgValue>
+<StgValue><ssdm name="i_28"/></StgValue>
 </operation>
 
 <operation id="23" st_id="2" stage="1" lat="1">
@@ -217,7 +217,7 @@ get_oracle_activations1_loop1_1:0 %i_29 = load i7 %i
 
 <Node id="12" bw="1" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-get_oracle_activations1_loop1_1:1 %icmp_ln174 = icmp_eq  i7 %i_29, i7 64
+get_oracle_activations1_loop1_1:1 %icmp_ln174 = icmp_eq  i7 %i_28, i7 64
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln174"/></StgValue>
@@ -232,7 +232,7 @@ get_oracle_activations1_loop1_1:1 %icmp_ln174 = icmp_eq  i7 %i_29, i7 64
 
 <Node id="13" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-get_oracle_activations1_loop1_1:2 %add_ln174 = add i7 %i_29, i7 1
+get_oracle_activations1_loop1_1:2 %add_ln174 = add i7 %i_28, i7 1
 
 ]]></Node>
 <StgValue><ssdm name="add_ln174"/></StgValue>
@@ -263,7 +263,7 @@ get_oracle_activations1_loop1_1:3 %br_ln174 = br i1 %icmp_ln174, void %get_oracl
 
 <Node id="16" bw="64" op_0_bw="7">
 <![CDATA[
-get_oracle_activations1_loop1_1.split:0 %zext_ln174 = zext i7 %i_29
+get_oracle_activations1_loop1_1.split:0 %zext_ln174 = zext i7 %i_28
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln174"/></StgValue>
@@ -295,7 +295,7 @@ get_oracle_activations1_loop1_1.split:1 %speclooptripcount_ln175 = speclooptripc
 
 <Node id="18" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-get_oracle_activations1_loop1_1.split:2 %specloopname_ln183 = specloopname void @_ssdm_op_SpecLoopName, void @empty_9
+get_oracle_activations1_loop1_1.split:2 %specloopname_ln183 = specloopname void @_ssdm_op_SpecLoopName, void @empty_32
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln183"/></StgValue>
@@ -327,7 +327,7 @@ get_oracle_activations1_loop1_1.split:3 %oracle_activations_addr = getelementptr
 
 <Node id="20" bw="6" op_0_bw="7">
 <![CDATA[
-get_oracle_activations1_loop1_1.split:4 %empty = trunc i7 %i_29
+get_oracle_activations1_loop1_1.split:4 %empty = trunc i7 %i_28
 
 ]]></Node>
 <StgValue><ssdm name="empty"/></StgValue>
@@ -833,7 +833,7 @@ for.inc.split:2 %speclooptripcount_ln179 = speclooptripcount void @_ssdm_op_Spec
 
 <Node id="33" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.inc.split:3 %specloopname_ln181 = specloopname void @_ssdm_op_SpecLoopName, void @empty_7
+for.inc.split:3 %specloopname_ln181 = specloopname void @_ssdm_op_SpecLoopName, void @empty_9
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln181"/></StgValue>

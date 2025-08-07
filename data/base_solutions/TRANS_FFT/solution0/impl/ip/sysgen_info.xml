@@ -108,7 +108,7 @@
   <Machine>64</Machine>
   <modelParameters>
     <combinational>0</combinational>
-    <latency>73675</latency>
-    <II>73676 ~ 77260</II>
+    <latency>15694</latency>
+    <II>15695</II>
   </modelParameters>
 </AdditionalInfo>

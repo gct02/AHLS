@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'reset'
 ================================================================
-* Date:           Wed Jul  9 03:19:58 2025
+* Date:           Wed Aug  6 20:17:49 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        ADPCM
@@ -88,7 +88,7 @@ IsGatedGlobalClock: 0
 
 State 1 <SV = 0> <Delay = 0.38>
 ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/adpcm/adpcm.c:417]   --->   Operation 6 'alloca' 'i' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%specpipeline_ln24 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_4" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:24]   --->   Operation 7 'specpipeline' 'specpipeline_ln24' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%specpipeline_ln18 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_4" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:18]   --->   Operation 7 'specpipeline' 'specpipeline_ln18' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%store_ln419 = store i15 32, i15 %dec_detl" [data/benchmarks/adpcm/adpcm.c:419]   --->   Operation 8 'store' 'store_ln419' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%store_ln419 = store i15 32, i15 %detl" [data/benchmarks/adpcm/adpcm.c:419]   --->   Operation 9 'store' 'store_ln419' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%store_ln420 = store i15 8, i15 %dec_deth" [data/benchmarks/adpcm/adpcm.c:420]   --->   Operation 10 'store' 'store_ln420' <Predicate = true> <Delay = 0.00>
@@ -262,7 +262,7 @@ Port [ accumd]:  wired=1; compound=1; hidden=0; nouse=0; global=1; static=1; ext
 <LifeTime>
 <method=bitvector/>
 i                       (alloca           ) [ 011000]
-specpipeline_ln24       (specpipeline     ) [ 000000]
+specpipeline_ln18       (specpipeline     ) [ 000000]
 store_ln419             (store            ) [ 000000]
 store_ln419             (store            ) [ 000000]
 store_ln420             (store            ) [ 000000]

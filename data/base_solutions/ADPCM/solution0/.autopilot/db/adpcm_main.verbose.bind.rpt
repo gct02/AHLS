@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'adpcm_main'
 ================================================================
-* Date:           Wed Jul  9 03:19:59 2025
+* Date:           Wed Aug  6 20:17:50 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        ADPCM
@@ -29,7 +29,7 @@
     |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
     |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
     +---------+---------+----------+----------+-------+-------+---------+
-    |    13704|    13804|  0.110 ms|  0.110 ms|  13705|  13805|       no|
+    |    13404|    13504|  0.107 ms|  0.108 ms|  13405|  13505|       no|
     +---------+---------+----------+----------+-------+-------+---------+
 
     + Detail: 
@@ -39,8 +39,8 @@
         |      Instance     | Module |   min   |   max   |    min   |    max   | min | max |   Type  |
         +-------------------+--------+---------+---------+----------+----------+-----+-----+---------+
         |grp_reset_fu_243   |reset   |       51|       51|  0.408 us|  0.408 us|   51|   51|       no|
-        |grp_encode_fu_333  |encode  |      168|      170|  1.344 us|  1.360 us|  168|  170|       no|
-        |grp_decode_fu_399  |decode  |       98|       98|  0.784 us|  0.784 us|   98|   98|       no|
+        |grp_encode_fu_333  |encode  |      165|      167|  1.320 us|  1.336 us|  165|  167|       no|
+        |grp_decode_fu_399  |decode  |       95|       95|  0.760 us|  0.760 us|   95|   95|       no|
         +-------------------+--------+---------+---------+----------+----------+-----+-----+---------+
 
         * Loop: 
@@ -48,8 +48,8 @@
         |                      |  Latency (cycles) | Iteration |  Initiation Interval  | Trip |          |
         |       Loop Name      |   min   |   max   |  Latency  |  achieved |   target  | Count| Pipelined|
         +----------------------+---------+---------+-----------+-----------+-----------+------+----------+
-        |- adpcm_main_label12  |     8550|     8650|  171 ~ 173|          -|          -|    50|        no|
-        |- adpcm_main_label13  |     5100|     5100|        102|          -|          -|    50|        no|
+        |- adpcm_main_label12  |     8400|     8500|  168 ~ 170|          -|          -|    50|        no|
+        |- adpcm_main_label13  |     4950|     4950|         99|          -|          -|    50|        no|
         +----------------------+---------+---------+-----------+-----------+-----------+------+----------+
 
 ============================================================
@@ -156,10 +156,10 @@ ST_6 : Operation 56 [2/2] (0.69ns)   --->   "%encoded_load = load i6 %encoded_ad
 ST_6 : Operation 57 [1/1] (0.38ns)   --->   "%store_ln212 = store i6 %add_ln223, i6 %i_11" [data/benchmarks/adpcm/adpcm.c:212]   --->   Operation 57 'store' 'store_ln212' <Predicate = (!icmp_ln223)> <Delay = 0.38>
 ST_6 : Operation 58 [1/1] (0.00ns)   --->   "%ret_ln229 = ret" [data/benchmarks/adpcm/adpcm.c:229]   --->   Operation 58 'ret' 'ret_ln229' <Predicate = (icmp_ln223)> <Delay = 0.00>
 
-State 7 <SV = 4> <Delay = 3.95>
+State 7 <SV = 4> <Delay = 1.38>
 ST_7 : Operation 59 [1/2] (0.69ns)   --->   "%encoded_load = load i6 %encoded_addr_1" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 59 'load' 'encoded_load' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 50> <RAM>
 ST_7 : Operation 60 [1/1] (0.00ns)   --->   "%trunc_ln225 = trunc i32 %encoded_load" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 60 'trunc' 'trunc_ln225' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 61 [2/2] (3.25ns)   --->   "%call_ln225 = call void @decode, i8 %trunc_ln225, i32 %dec_del_bpl, i16 %dec_del_dltx, i31 %dec_rlt1, i16 %dec_al1, i31 %dec_rlt2, i15 %dec_al2, i15 %dec_detl, i16 %qq4_code4_table, i6 %il, i16 %qq6_code6_table, i15 %dec_nbl, i13 %wl_code_table, i12 %ilb_table, i32 %dec_plt1, i32 %dec_plt2, i32 %dec_del_bph, i16 %dec_del_dhx, i31 %dec_rh1, i16 %dec_ah1, i31 %dec_rh2, i15 %dec_ah2, i15 %dec_deth, i15 %dec_nbh, i32 %dec_ph1, i32 %dec_ph2, i32 %accumc, i15 %h, i32 %accumd, i32 %xout1, i32 %xout2" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 61 'call' 'call_ln225' <Predicate = true> <Delay = 3.25> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 61 [2/2] (0.68ns)   --->   "%call_ln225 = call void @decode, i8 %trunc_ln225, i32 %dec_del_bpl, i16 %dec_del_dltx, i31 %dec_rlt1, i16 %dec_al1, i31 %dec_rlt2, i15 %dec_al2, i15 %dec_detl, i16 %qq4_code4_table, i6 %il, i16 %qq6_code6_table, i15 %dec_nbl, i13 %wl_code_table, i12 %ilb_table, i32 %dec_plt1, i32 %dec_plt2, i32 %dec_del_bph, i16 %dec_del_dhx, i31 %dec_rh1, i16 %dec_ah1, i31 %dec_rh2, i15 %dec_ah2, i15 %dec_deth, i15 %dec_nbh, i32 %dec_ph1, i32 %dec_ph2, i32 %accumc, i15 %h, i32 %accumd, i32 %xout1, i32 %xout2" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 61 'call' 'call_ln225' <Predicate = true> <Delay = 0.68> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 8 <SV = 5> <Delay = 0.00>
 ST_8 : Operation 62 [1/2] (0.00ns)   --->   "%call_ln225 = call void @decode, i8 %trunc_ln225, i32 %dec_del_bpl, i16 %dec_del_dltx, i31 %dec_rlt1, i16 %dec_al1, i31 %dec_rlt2, i15 %dec_al2, i15 %dec_detl, i16 %qq4_code4_table, i6 %il, i16 %qq6_code6_table, i15 %dec_nbl, i13 %wl_code_table, i12 %ilb_table, i32 %dec_plt1, i32 %dec_plt2, i32 %dec_del_bph, i16 %dec_del_dhx, i31 %dec_rh1, i16 %dec_ah1, i31 %dec_rh2, i15 %dec_ah2, i15 %dec_deth, i15 %dec_nbh, i32 %dec_ph1, i32 %dec_ph2, i32 %accumc, i15 %h, i32 %accumd, i32 %xout1, i32 %xout2" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 62 'call' 'call_ln225' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
@@ -168,12 +168,12 @@ State 9 <SV = 6> <Delay = 0.60>
 ST_9 : Operation 63 [1/1] (0.00ns)   --->   "%speclooptripcount_ln224 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 50, i64 50, i64 50" [data/benchmarks/adpcm/adpcm.c:224]   --->   Operation 63 'speclooptripcount' 'speclooptripcount_ln224' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 64 [1/1] (0.00ns)   --->   "%specloopname_ln228 = specloopname void @_ssdm_op_SpecLoopName, void @empty_13" [data/benchmarks/adpcm/adpcm.c:228]   --->   Operation 64 'specloopname' 'specloopname_ln228' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 65 [1/1] (0.00ns)   --->   "%xout1_load = load i32 %xout1" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 65 'load' 'xout1_load' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 66 [1/1] (0.00ns)   --->   "%shl_ln4 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %i_19, i1 0" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 66 'bitconcatenate' 'shl_ln4' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln226 = zext i7 %shl_ln4" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 67 'zext' 'zext_ln226' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 66 [1/1] (0.00ns)   --->   "%shl_ln5 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %i_19, i1 0" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 66 'bitconcatenate' 'shl_ln5' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln226 = zext i7 %shl_ln5" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 67 'zext' 'zext_ln226' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 68 [1/1] (0.00ns)   --->   "%decoded_addr = getelementptr i32 %decoded, i64 0, i64 %zext_ln226" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 68 'getelementptr' 'decoded_addr' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 69 [1/1] (0.60ns)   --->   "%store_ln226 = store i32 %xout1_load, i7 %decoded_addr" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 69 'store' 'store_ln226' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 100> <RAM>
 ST_9 : Operation 70 [1/1] (0.00ns)   --->   "%xout2_load = load i32 %xout2" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 70 'load' 'xout2_load' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 71 [1/1] (0.00ns)   --->   "%or_ln227 = or i7 %shl_ln4, i7 1" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 71 'or' 'or_ln227' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 71 [1/1] (0.00ns)   --->   "%or_ln227 = or i7 %shl_ln5, i7 1" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 71 'or' 'or_ln227' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 72 [1/1] (0.00ns)   --->   "%zext_ln227 = zext i7 %or_ln227" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 72 'zext' 'zext_ln227' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 73 [1/1] (0.00ns)   --->   "%decoded_addr_1 = getelementptr i32 %decoded, i64 0, i64 %zext_ln227" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 73 'getelementptr' 'decoded_addr_1' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 74 [1/1] (0.60ns)   --->   "%store_ln227 = store i32 %xout2_load, i7 %decoded_addr_1" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 74 'store' 'store_ln227' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 100> <RAM>
@@ -243,8 +243,8 @@ Port [ quant26bt_pos]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static
 Port [ quant26bt_neg]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[1]; IO mode=ap_memory:ce=0
 Port [ il]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; IO mode=ap_ovld:ce=0
 Port [ qq4_code4_table]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
-Port [ wl_code_table]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
-Port [ ilb_table]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
+Port [ wl_code_table]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
+Port [ ilb_table]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[11]; IO mode=ap_memory:ce=0
 Port [ qq6_code6_table]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[1]; IO mode=ap_memory:ce=0
 Port [ xout1]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; IO mode=ap_ovld:ce=0
 Port [ xout2]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; IO mode=ap_ovld:ce=0
@@ -304,7 +304,7 @@ call_ln225              (call             ) [ 0000000000]
 speclooptripcount_ln224 (speclooptripcount) [ 0000000000]
 specloopname_ln228      (specloopname     ) [ 0000000000]
 xout1_load              (load             ) [ 0000000000]
-shl_ln4                 (bitconcatenate   ) [ 0000000000]
+shl_ln5                 (bitconcatenate   ) [ 0000000000]
 zext_ln226              (zext             ) [ 0000000000]
 decoded_addr            (getelementptr    ) [ 0000000000]
 store_ln226             (store            ) [ 0000000000]
@@ -821,7 +821,7 @@ br_ln223                (br               ) [ 0000000000]
 <pin id="107" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="ilb_table"/><MemPortTyVec>1 </MemPortTyVec>
+<StgValue><ssdm name="ilb_table"/><MemPortTyVec>1 1 </MemPortTyVec>
 </StgValue>
 </bind>
 </comp>
@@ -1584,7 +1584,7 @@ br_ln223                (br               ) [ 0000000000]
 </bind>
 </comp>
 
-<comp id="562" class="1004" name="shl_ln4_fu_562">
+<comp id="562" class="1004" name="shl_ln5_fu_562">
 <pin_list>
 <pin id="563" dir="0" index="0" bw="7" slack="0"/>
 <pin id="564" dir="0" index="1" bw="6" slack="3"/>
@@ -1593,7 +1593,7 @@ br_ln223                (br               ) [ 0000000000]
 </pin_list>
 <bind>
 <opcode="bitconcatenate(1004) " fcode="bitconcatenate"/>
-<opset="shl_ln4/9 "/>
+<opset="shl_ln5/9 "/>
 </bind>
 </comp>
 
@@ -2294,8 +2294,8 @@ br_ln223                (br               ) [ 0000000000]
 | Operation|   Functional Unit   |   DSP   |  Delay  |    FF   |   LUT   |
 |----------|---------------------|---------|---------|---------|---------|
 |          |   grp_reset_fu_243  |    0    |    0    |    15   |    88   |
-|   call   |  grp_encode_fu_333  |    42   | 18.3423 |   1431  |   3484  |
-|          |  grp_decode_fu_399  |    28   | 15.0491 |   901   |   2424  |
+|   call   |  grp_encode_fu_333  |    32   | 16.0531 |   1226  |   3407  |
+|          |  grp_decode_fu_399  |    22   | 14.5636 |   695   |   2763  |
 |----------|---------------------|---------|---------|---------|---------|
 |   icmp   |  icmp_ln217_fu_472  |    0    |    0    |    0    |    13   |
 |          |  icmp_ln223_fu_530  |    0    |    0    |    0    |    13   |
@@ -2304,7 +2304,7 @@ br_ln223                (br               ) [ 0000000000]
 |          |   add_ln223_fu_536  |    0    |    0    |    0    |    13   |
 |----------|---------------------|---------|---------|---------|---------|
 |bitconcatenate|    shl_ln_fu_484    |    0    |    0    |    0    |    0    |
-|          |    shl_ln4_fu_562   |    0    |    0    |    0    |    0    |
+|          |    shl_ln5_fu_562   |    0    |    0    |    0    |    0    |
 |----------|---------------------|---------|---------|---------|---------|
 |          |  zext_ln219_fu_492  |    0    |    0    |    0    |    0    |
 |          | zext_ln219_1_fu_503 |    0    |    0    |    0    |    0    |
@@ -2319,7 +2319,7 @@ br_ln223                (br               ) [ 0000000000]
 |----------|---------------------|---------|---------|---------|---------|
 |   trunc  |  trunc_ln225_fu_552 |    0    |    0    |    0    |    0    |
 |----------|---------------------|---------|---------|---------|---------|
-|   Total  |                     |    70   | 33.3914 |   2347  |   6048  |
+|   Total  |                     |    54   | 30.6167 |   1936  |   6310  |
 |----------|---------------------|---------|---------|---------|---------|
 
 Memories:
@@ -2387,10 +2387,10 @@ Memories:
 +-----------+--------+--------+--------+--------+--------+--------+
 |           |  BRAM  |   DSP  |  Delay |   FF   |   LUT  |  URAM  |
 +-----------+--------+--------+--------+--------+--------+--------+
-|  Function |    -   |   70   |   33   |  2347  |  6048  |    -   |
+|  Function |    -   |   54   |   30   |  1936  |  6310  |    -   |
 |   Memory  |    0   |    -   |    -   |   400  |   419  |    0   |
 |Multiplexer|    -   |    -   |    2   |    -   |   59   |    -   |
 |  Register |    -   |    -   |    -   |   116  |    -   |    -   |
 +-----------+--------+--------+--------+--------+--------+--------+
-|   Total   |    0   |   70   |   35   |  2863  |  6526  |    0   |
+|   Total   |    0   |   54   |   32   |  2452  |  6788  |    0   |
 +-----------+--------+--------+--------+--------+--------+--------+

@@ -27,10 +27,10 @@ port (
     training_data_ce0 : OUT STD_LOGIC;
     training_data_q0 : IN STD_LOGIC_VECTOR (63 downto 0);
     idx : IN STD_LOGIC_VECTOR (11 downto 0);
-    grp_fu_994_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_ce : OUT STD_LOGIC );
+    grp_fu_992_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_ce : OUT STD_LOGIC );
 end;
 
 
@@ -290,7 +290,7 @@ begin
         end if; 
     end process;
 
-    delta_weights1_d0 <= grp_fu_994_p_dout0;
+    delta_weights1_d0 <= grp_fu_992_p_dout0;
 
     delta_weights1_we0_assign_proc : process(ap_CS_fsm_state8)
     begin
@@ -302,9 +302,9 @@ begin
     end process;
 
     empty_fu_154_p1 <= training_data_q0;
-    grp_fu_994_p_ce <= ap_const_logic_1;
-    grp_fu_994_p_din0 <= empty_reg_227;
-    grp_fu_994_p_din1 <= output_difference_q0;
+    grp_fu_992_p_ce <= ap_const_logic_1;
+    grp_fu_992_p_din0 <= empty_reg_227;
+    grp_fu_992_p_din1 <= output_difference_q0;
     icmp_ln191_fu_128_p2 <= "1" when (i_fu_54 = ap_const_lv4_D) else "0";
     icmp_ln194_fu_165_p2 <= "1" when (j_reg_103 = ap_const_lv7_40) else "0";
     output_difference_address0 <= zext_ln194_fu_177_p1(6 - 1 downto 0);

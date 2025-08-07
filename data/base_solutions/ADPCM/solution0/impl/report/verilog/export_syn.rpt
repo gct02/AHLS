@@ -2,7 +2,7 @@
 == Vivado RTL Synthesis Results
 ================================================================
 + General Information:
-    * Date:            Wed Jul 09 03:26:41 -03 2025
+    * Date:            Wed Aug 06 20:23:38 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         ADPCM
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -30,8 +30,8 @@
 ================================================================
 == RTL Synthesis Resource Summary
 ================================================================
-LUT:              4461
-FF:               2989
+LUT:              4550
+FF:               2633
 DSP:              50
 BRAM:             6
 URAM:             0
@@ -46,7 +46,7 @@ SRL:              0
 | Timing         | Period (ns) |
 +----------------+-------------+
 | Target         | 8.000       |
-| Post-Synthesis | 4.505       |
+| Post-Synthesis | 5.231       |
 +----------------+-------------+
 
 
@@ -56,81 +56,66 @@ SRL:              0
 +--------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 | Name                           | LUT  | FF   | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
 +--------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
-| inst                           | 4461 | 2989 | 50  | 6    |      |     |        |      |         |          |        |
-|   (inst)                       | 20   | 891  |     |      |      |     |        |      |         |          |        |
+| inst                           | 4550 | 2633 | 50  | 6    |      |     |        |      |         |          |        |
+|   (inst)                       | 20   | 913  |     |      |      |     |        |      |         |          |        |
 |   accumc_U                     | 32   | 32   |     |      |      |     |        |      |         |          |        |
 |   accumd_U                     | 100  | 32   |     |      |      |     |        |      |         |          |        |
-|   dec_del_bph_U                | 105  | 32   |     |      |      |     |        |      |         |          |        |
-|   dec_del_bpl_U                | 78   | 32   |     |      |      |     |        |      |         |          |        |
-|   dec_del_dhx_U                |      |      |     | 1    |      |     |        |      |         |          |        |
-|   dec_del_dltx_U               | 40   |      |     | 1    |      |     |        |      |         |          |        |
+|   dec_del_bph_U                | 78   | 32   |     |      |      |     |        |      |         |          |        |
+|   dec_del_bpl_U                | 105  | 32   |     |      |      |     |        |      |         |          |        |
+|   dec_del_dhx_U                | 40   |      |     | 1    |      |     |        |      |         |          |        |
+|   dec_del_dltx_U               |      |      |     | 1    |      |     |        |      |         |          |        |
 |   delay_bph_U                  | 121  | 32   |     |      |      |     |        |      |         |          |        |
 |   delay_bpl_U                  | 105  | 32   |     |      |      |     |        |      |         |          |        |
 |   delay_dhx_U                  | 16   |      |     | 1    |      |     |        |      |         |          |        |
 |   delay_dltx_U                 | 8    |      |     | 1    |      |     |        |      |         |          |        |
-|   grp_decode_fu_399            | 1582 | 718  | 10  |      |      |     |        |      |         |          |        |
-|     (grp_decode_fu_399)        | 969  | 599  |     |      |      |     |        |      |         |          |        |
+|   grp_decode_fu_399            | 1668 | 496  | 20  |      |      |     |        |      |         |          |        |
+|     (grp_decode_fu_399)        | 705  | 377  |     |      |      |     |        |      |         |          |        |
 |       mul_16s_32s_48_1_1_U44   | 46   |      | 2   |      |      |     |        |      |         |          |        |
-|     grp_upzero_fu_352          | 117  | 63   | 1   |      |      |     |        |      |         |          |        |
-|       (grp_upzero_fu_352)      | 93   | 63   |     |      |      |     |        |      |         |          |        |
-|       mul_16s_16s_32_1_1_U70   | 24   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_14s_15ns_29_1_1_U134   | 1    |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_15s_32s_47_1_1_U130    | 59   |      | 2   |      |      |     |        |      |         |          |        |
-|     mul_15s_32s_47_1_1_U131    | 63   |      | 2   |      |      |     |        |      |         |          |        |
-|     mul_16s_15ns_31_1_1_U135   | 93   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_16s_15ns_31_1_1_U136   | 19   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_32s_7s_39_1_1_U132     | 151  |      |     |      |      |     |        |      |         |          |        |
-|     mux_4_2_14_1_1_U133        | 1    |      |     |      |      |     |        |      |         |          |        |
-|   grp_encode_fu_333            | 1789 | 1056 | 24  |      |      |     |        |      |         |          |        |
-|     (grp_encode_fu_333)        | 407  | 749  |     |      |      |     |        |      |         |          |        |
-|     grp_filtez_fu_318          | 263  | 56   | 2   |      |      |     |        |      |         |          |        |
-|       (grp_filtez_fu_318)      | 217  | 56   |     |      |      |     |        |      |         |          |        |
+|     grp_upzero_fu_443          | 132  | 63   | 1   |      |      |     |        |      |         |          |        |
+|       (grp_upzero_fu_443)      | 108  | 63   |     |      |      |     |        |      |         |          |        |
+|       mul_16s_16s_32_1_1_U55   | 24   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_14s_15ns_29_1_1_U120   | 94   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_15s_32s_47_1_1_U110    | 169  |      | 2   |      |      |     |        |      |         |          |        |
+|     mul_15s_32s_47_1_1_U111    | 62   |      | 2   |      |      |     |        |      |         |          |        |
+|     mul_16s_15ns_31_1_1_U116   | 78   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_15ns_31_1_1_U117   | 16   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_32s_47_1_1_U112    | 25   |      | 2   |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_1_1_U113    | 143  |      | 4   |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_1_1_U114    | 65   |      | 4   |      |      |     |        |      |         |          |        |
+|     mul_32s_7s_39_1_1_U115     | 151  |      |     |      |      |     |        |      |         |          |        |
+|     mux_4_2_14_1_1_U119        | 2    |      |     |      |      |     |        |      |         |          |        |
+|   grp_encode_fu_333            | 1988 | 967  | 30  |      |      |     |        |      |         |          |        |
+|     (grp_encode_fu_333)        | 638  | 715  |     |      |      |     |        |      |         |          |        |
+|     grp_filtez_fu_430          | 229  | 56   | 2   |      |      |     |        |      |         |          |        |
+|       (grp_filtez_fu_430)      | 183  | 56   |     |      |      |     |        |      |         |          |        |
 |       mul_16s_32s_48_1_1_U44   | 46   |      | 2   |      |      |     |        |      |         |          |        |
-|     grp_quantl_fu_336          | 97   | 70   | 1   |      |      |     |        |      |         |          |        |
-|       (grp_quantl_fu_336)      | 8    | 59   |     |      |      |     |        |      |         |          |        |
-|       mul_15ns_15ns_30_1_1_U57 | 27   |      | 1   |      |      |     |        |      |         |          |        |
-|       quant26bt_neg_U          | 5    | 5    |     |      |      |     |        |      |         |          |        |
+|     grp_quantl_fu_440          | 107  | 70   | 1   |      |      |     |        |      |         |          |        |
+|       (grp_quantl_fu_440)      | 40   | 59   |     |      |      |     |        |      |         |          |        |
+|       mul_15ns_15ns_30_1_1_U48 | 27   |      | 1   |      |      |     |        |      |         |          |        |
+|       quant26bt_neg_U          | 31   | 5    |     |      |      |     |        |      |         |          |        |
 |       quant26bt_pos_U          | 9    | 6    |     |      |      |     |        |      |         |          |        |
-|       wd_abs_r_fu_116          | 48   |      |     |      |      |     |        |      |         |          |        |
-|     grp_uppol1_fu_422          | 214  | 36   | 4   |      |      |     |        |      |         |          |        |
-|       (grp_uppol1_fu_422)      | 150  | 36   |     |      |      |     |        |      |         |          |        |
-|       mul_32s_32s_64_1_1_U83   | 65   |      | 4   |      |      |     |        |      |         |          |        |
-|     grp_uppol2_fu_388          | 272  | 19   | 8   |      |      |     |        |      |         |          |        |
-|       (grp_uppol2_fu_388)      | 129  | 19   |     |      |      |     |        |      |         |          |        |
-|       mul_32s_32s_64_1_1_U75   | 80   |      | 4   |      |      |     |        |      |         |          |        |
-|       mul_32s_32s_64_1_1_U76   | 63   |      | 4   |      |      |     |        |      |         |          |        |
-|     grp_upzero_fu_361          | 75   | 63   | 1   |      |      |     |        |      |         |          |        |
-|       (grp_upzero_fu_361)      | 51   | 63   |     |      |      |     |        |      |         |          |        |
-|       mul_16s_16s_32_1_1_U70   | 24   |      | 1   |      |      |     |        |      |         |          |        |
-|     grp_upzero_fu_370          | 75   | 63   | 1   |      |      |     |        |      |         |          |        |
-|       (grp_upzero_fu_370)      | 51   | 63   |     |      |      |     |        |      |         |          |        |
-|       mul_16s_16s_32_1_1_U70   | 24   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_14s_15ns_29_1_1_U98    | 31   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_15ns_11ns_25_1_1_U95   |      |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_15s_32s_47_1_1_U92     | 47   |      | 2   |      |      |     |        |      |         |          |        |
-|     mul_15s_32s_47_1_1_U93     | 48   |      | 2   |      |      |     |        |      |         |          |        |
-|     mul_16s_15ns_31_1_1_U96    | 32   |      | 1   |      |      |     |        |      |         |          |        |
-|     mul_32s_7s_39_1_1_U94      | 229  |      |     |      |      |     |        |      |         |          |        |
-|     mux_4_2_14_1_1_U97         | 1    |      |     |      |      |     |        |      |         |          |        |
-|   grp_filtep_fu_650            | 48   |      | 4   |      |      |     |        |      |         |          |        |
-|     (grp_filtep_fu_650)        | 47   |      |     |      |      |     |        |      |         |          |        |
-|     mul_15s_32s_47_1_1_U48     | 1    |      | 2   |      |      |     |        |      |         |          |        |
-|     mul_16s_32s_47_1_1_U49     |      |      | 2   |      |      |     |        |      |         |          |        |
-|   grp_logscl_fu_657            | 57   | 28   |     |      |      |     |        |      |         |          |        |
-|     (grp_logscl_fu_657)        | 28   | 17   |     |      |      |     |        |      |         |          |        |
-|     wl_code_table_U            | 30   | 11   |     |      |      |     |        |      |         |          |        |
-|   grp_reset_fu_243             | 27   | 20   |     |      |      |     |        |      |         |          |        |
-|   grp_scalel_fu_663            | 78   | 29   |     |      |      |     |        |      |         |          |        |
-|     (grp_scalel_fu_663)        | 10   | 18   |     |      |      |     |        |      |         |          |        |
-|     ilb_table_U                | 68   | 11   |     |      |      |     |        |      |         |          |        |
-|   grp_uppol1_fu_669            | 129  | 36   | 4   |      |      |     |        |      |         |          |        |
-|     (grp_uppol1_fu_669)        | 81   | 36   |     |      |      |     |        |      |         |          |        |
-|     mul_32s_32s_64_1_1_U83     | 48   |      | 4   |      |      |     |        |      |         |          |        |
-|   grp_uppol2_fu_676            | 96   | 19   | 8   |      |      |     |        |      |         |          |        |
-|     (grp_uppol2_fu_676)        | 2    | 19   |     |      |      |     |        |      |         |          |        |
-|     mul_32s_32s_64_1_1_U75     | 47   |      | 4   |      |      |     |        |      |         |          |        |
-|     mul_32s_32s_64_1_1_U76     | 47   |      | 4   |      |      |     |        |      |         |          |        |
+|     grp_upzero_fu_452          | 79   | 63   | 1   |      |      |     |        |      |         |          |        |
+|       (grp_upzero_fu_452)      | 55   | 63   |     |      |      |     |        |      |         |          |        |
+|       mul_16s_16s_32_1_1_U55   | 24   |      | 1   |      |      |     |        |      |         |          |        |
+|     grp_upzero_fu_461          | 75   | 63   | 1   |      |      |     |        |      |         |          |        |
+|       (grp_upzero_fu_461)      | 51   | 63   |     |      |      |     |        |      |         |          |        |
+|       mul_16s_16s_32_1_1_U55   | 24   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_14s_15ns_29_1_1_U71    | 47   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_15ns_11ns_25_1_1_U68   |      |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_15s_32s_47_1_1_U60     | 139  |      | 2   |      |      |     |        |      |         |          |        |
+|     mul_15s_32s_47_1_1_U61     | 48   |      | 2   |      |      |     |        |      |         |          |        |
+|     mul_16s_15ns_31_1_1_U69    | 48   |      | 1   |      |      |     |        |      |         |          |        |
+|     mul_16s_32s_47_1_1_U62     | 25   |      | 2   |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_1_1_U63     | 100  |      | 4   |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_1_1_U64     | 63   |      | 4   |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_1_1_U65     | 102  |      | 4   |      |      |     |        |      |         |          |        |
+|     mul_32s_32s_64_1_1_U66     | 63   |      | 4   |      |      |     |        |      |         |          |        |
+|     mul_32s_7s_39_1_1_U67      | 228  |      |     |      |      |     |        |      |         |          |        |
+|   grp_reset_fu_243             | 37   | 20   |     |      |      |     |        |      |         |          |        |
+|   h_U                          |      | 12   |     |      |      |     |        |      |         |          |        |
+|   ilb_table_U                  | 122  | 22   |     |      |      |     |        |      |         |          |        |
 |   tqmf_U                       | 66   |      |     | 2    |      |     |        |      |         |          |        |
+|   wl_code_table_U              | 76   | 11   |     |      |      |     |        |      |         |          |        |
 +--------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 
 
@@ -140,11 +125,11 @@ SRL:              0
 +-----------------------------------------------------------+-----------+--------+--------+
 | Criteria                                                  | Guideline | Actual | Status |
 +-----------------------------------------------------------+-----------+--------+--------+
-| LUT                                                       | 70%       | 0.51%  | OK     |
-| FD                                                        | 50%       | 0.17%  | OK     |
+| LUT                                                       | 70%       | 0.52%  | OK     |
+| FD                                                        | 50%       | 0.15%  | OK     |
 | LUTRAM+SRL                                                | 25%       | 0.05%  | OK     |
-| CARRY8                                                    | 25%       | 0.27%  | OK     |
-| MUXF7                                                     | 15%       | 0.00%  | OK     |
+| CARRY8                                                    | 25%       | 0.31%  | OK     |
+| MUXF7                                                     | 15%       | 0.01%  | OK     |
 | DSP                                                       | 80%       | 0.84%  | OK     |
 | RAMB/FIFO                                                 | 80%       | 0.22%  | OK     |
 | URAM                                                      | 80%       | 0.00%  | OK     |
@@ -152,8 +137,8 @@ SRL:              0
 | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
 | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
 | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
-| Control Sets                                              | 16344     | 91     | OK     |
-| Average Fanout for modules > 100k cells                   | 4         | 1.14   | OK     |
+| Control Sets                                              | 16344     | 83     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 1.16   | OK     |
 | Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
 | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
 +-----------------------------------------------------------+-----------+--------+--------+
@@ -172,136 +157,163 @@ SRL:              0
 == RTL Synthesis Timing Paths
 ================================================================
 * Timing was met
-+-------+-------+---------------------------+-------------------+--------------+------------+----------------+----------------+--------------+
-| Path  | SLACK | STARTPOINT PIN            | ENDPOINT PIN      | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
-|       |       |                           |                   |              |            |                |          DELAY |        DELAY |
-+-------+-------+---------------------------+-------------------+--------------+------------+----------------+----------------+--------------+
-| Path1 | 3.495 | ap_CS_fsm_reg[7]_rep__4/C | dec_rh1_reg[28]/D |           17 |         94 |          4.486 |          3.124 |        1.362 |
-| Path2 | 3.512 | ap_CS_fsm_reg[7]_rep__4/C | dec_rh1_reg[26]/D |           17 |         94 |          4.469 |          3.105 |        1.364 |
-| Path3 | 3.523 | ap_CS_fsm_reg[7]_rep__4/C | dec_rh1_reg[24]/D |           17 |         94 |          4.458 |          3.094 |        1.364 |
-| Path4 | 3.523 | ap_CS_fsm_reg[7]_rep__4/C | dec_rh1_reg[30]/D |           17 |         94 |          4.458 |          3.141 |        1.317 |
-| Path5 | 3.537 | ap_CS_fsm_reg[7]_rep__4/C | dec_rh1_reg[25]/D |           17 |         94 |          4.444 |          3.082 |        1.362 |
-+-------+-------+---------------------------+-------------------+--------------+------------+----------------+----------------+--------------+
++-------+-------+----------------------------------------------------------------------------+---------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                                                             | ENDPOINT PIN                                | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                                                            |                                             |              |            |                |          DELAY |        DELAY |
++-------+-------+----------------------------------------------------------------------------+---------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 2.769 | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK | grp_decode_fu_399/apl2_8_reg_2188_reg[16]/D |           23 |         36 |          5.182 |          3.650 |        1.532 |
+| Path2 | 2.769 | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK | grp_decode_fu_399/apl2_reg_2157_reg[16]/D   |           23 |         36 |          5.182 |          3.650 |        1.532 |
+| Path3 | 2.795 | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK | grp_decode_fu_399/apl2_8_reg_2188_reg[15]/D |           22 |         36 |          5.156 |          3.628 |        1.528 |
+| Path4 | 2.795 | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK | grp_decode_fu_399/apl2_reg_2157_reg[15]/D   |           22 |         36 |          5.156 |          3.628 |        1.528 |
+| Path5 | 2.798 | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST/CLK | grp_decode_fu_399/apl2_8_reg_2188_reg[13]/D |           22 |         36 |          5.153 |          3.626 |        1.527 |
++-------+-------+----------------------------------------------------------------------------+---------------------------------------------+--------------+------------+----------------+----------------+--------------+
 
-    +---------------------------------------------------------------------------+------------------------+
-    | Path1 Cells                                                               | Primitive Type         |
-    +---------------------------------------------------------------------------+------------------------+
-    | ap_CS_fsm_reg[7]_rep__4                                                   | REGISTER.SDR.FDRE      |
-    | grp_encode_fu_333/tmp_product_i_33__2                                     | CLB.LUT.LUT4           |
-    | grp_decode_fu_399/tmp_product_i_1__8                                      | CLB.LUT.LUT5           |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_ALU_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_OUTPUT_INST   | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/reg_449[16]_i_9                                         | CLB.LUT.LUT2           |
-    | grp_filtep_fu_650/reg_449_reg[16]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_filtep_fu_650/reg_449_reg[24]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260[23]_i_4                              | CLB.LUT.LUT2           |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[23]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[31]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/dec_rh1[28]_i_1                                         | CLB.LUT.LUT3           |
-    | dec_rh1_reg[28]                                                           | REGISTER.SDR.FDRE      |
-    +---------------------------------------------------------------------------+------------------------+
+    +-------------------------------------------------------------------------------+------------------------+
+    | Path1 Cells                                                                   | Primitive Type         |
+    +-------------------------------------------------------------------------------+------------------------+
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST        | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71                   | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6                | CLB.LUT.LUT3           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4         | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2              | CLB.LUT.LUT4           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25            | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13            | CLB.LUT.LUT6           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1         | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[16]_i_1         | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/apl2_8_reg_2188_reg[16]                                     | REGISTER.SDR.FDRE      |
+    +-------------------------------------------------------------------------------+------------------------+
 
-    +---------------------------------------------------------------------------+------------------------+
-    | Path2 Cells                                                               | Primitive Type         |
-    +---------------------------------------------------------------------------+------------------------+
-    | ap_CS_fsm_reg[7]_rep__4                                                   | REGISTER.SDR.FDRE      |
-    | grp_encode_fu_333/tmp_product_i_33__2                                     | CLB.LUT.LUT4           |
-    | grp_decode_fu_399/tmp_product_i_1__8                                      | CLB.LUT.LUT5           |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_ALU_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_OUTPUT_INST   | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/reg_449[16]_i_9                                         | CLB.LUT.LUT2           |
-    | grp_filtep_fu_650/reg_449_reg[16]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_filtep_fu_650/reg_449_reg[24]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260[23]_i_4                              | CLB.LUT.LUT2           |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[23]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[31]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/dec_rh1[26]_i_1                                         | CLB.LUT.LUT3           |
-    | dec_rh1_reg[26]                                                           | REGISTER.SDR.FDRE      |
-    +---------------------------------------------------------------------------+------------------------+
+    +-------------------------------------------------------------------------------+------------------------+
+    | Path2 Cells                                                                   | Primitive Type         |
+    +-------------------------------------------------------------------------------+------------------------+
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST        | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71                   | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6                | CLB.LUT.LUT3           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4         | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2                | CLB.LUT.LUT4           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25              | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13              | CLB.LUT.LUT6           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1           | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[16]_i_1           | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/apl2_reg_2157_reg[16]                                       | REGISTER.SDR.FDRE      |
+    +-------------------------------------------------------------------------------+------------------------+
 
-    +---------------------------------------------------------------------------+------------------------+
-    | Path3 Cells                                                               | Primitive Type         |
-    +---------------------------------------------------------------------------+------------------------+
-    | ap_CS_fsm_reg[7]_rep__4                                                   | REGISTER.SDR.FDRE      |
-    | grp_encode_fu_333/tmp_product_i_33__2                                     | CLB.LUT.LUT4           |
-    | grp_decode_fu_399/tmp_product_i_1__8                                      | CLB.LUT.LUT5           |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_ALU_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_OUTPUT_INST   | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/reg_449[16]_i_9                                         | CLB.LUT.LUT2           |
-    | grp_filtep_fu_650/reg_449_reg[16]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_filtep_fu_650/reg_449_reg[24]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260[23]_i_4                              | CLB.LUT.LUT2           |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[23]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[31]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/dec_rh1[24]_i_1                                         | CLB.LUT.LUT3           |
-    | dec_rh1_reg[24]                                                           | REGISTER.SDR.FDRE      |
-    +---------------------------------------------------------------------------+------------------------+
+    +-------------------------------------------------------------------------------+------------------------+
+    | Path3 Cells                                                                   | Primitive Type         |
+    +-------------------------------------------------------------------------------+------------------------+
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST        | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71                   | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6                | CLB.LUT.LUT3           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4         | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2              | CLB.LUT.LUT4           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25            | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13            | CLB.LUT.LUT6           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1         | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/apl2_8_reg_2188_reg[15]                                     | REGISTER.SDR.FDRE      |
+    +-------------------------------------------------------------------------------+------------------------+
 
-    +---------------------------------------------------------------------------+------------------------+
-    | Path4 Cells                                                               | Primitive Type         |
-    +---------------------------------------------------------------------------+------------------------+
-    | ap_CS_fsm_reg[7]_rep__4                                                   | REGISTER.SDR.FDRE      |
-    | grp_encode_fu_333/tmp_product_i_33__2                                     | CLB.LUT.LUT4           |
-    | grp_decode_fu_399/tmp_product_i_1__8                                      | CLB.LUT.LUT5           |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_ALU_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_OUTPUT_INST   | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/reg_449[16]_i_9                                         | CLB.LUT.LUT2           |
-    | grp_filtep_fu_650/reg_449_reg[16]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_filtep_fu_650/reg_449_reg[24]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260[23]_i_4                              | CLB.LUT.LUT2           |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[23]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[31]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/dec_rh1[30]_i_1                                         | CLB.LUT.LUT3           |
-    | dec_rh1_reg[30]                                                           | REGISTER.SDR.FDRE      |
-    +---------------------------------------------------------------------------+------------------------+
+    +-------------------------------------------------------------------------------+------------------------+
+    | Path4 Cells                                                                   | Primitive Type         |
+    +-------------------------------------------------------------------------------+------------------------+
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST        | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71                   | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6                | CLB.LUT.LUT3           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4         | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[7]_i_2                | CLB.LUT.LUT4           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_25              | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157[15]_i_13              | CLB.LUT.LUT6           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_reg_2157_reg[15]_i_1           | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/apl2_reg_2157_reg[15]                                       | REGISTER.SDR.FDRE      |
+    +-------------------------------------------------------------------------------+------------------------+
 
-    +---------------------------------------------------------------------------+------------------------+
-    | Path5 Cells                                                               | Primitive Type         |
-    +---------------------------------------------------------------------------+------------------------+
-    | ap_CS_fsm_reg[7]_rep__4                                                   | REGISTER.SDR.FDRE      |
-    | grp_encode_fu_333/tmp_product_i_33__2                                     | CLB.LUT.LUT4           |
-    | grp_decode_fu_399/tmp_product_i_1__8                                      | CLB.LUT.LUT5           |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_ALU_INST      | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/mul_16s_32s_47_1_1_U49/tmp_product__0/DSP_OUTPUT_INST   | ARITHMETIC.DSP.DSP48E2 |
-    | grp_filtep_fu_650/reg_449[16]_i_9                                         | CLB.LUT.LUT2           |
-    | grp_filtep_fu_650/reg_449_reg[16]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_filtep_fu_650/reg_449_reg[24]_i_1                                     | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260[23]_i_4                              | CLB.LUT.LUT2           |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[23]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/add_ln371_reg_1260_reg[31]_i_1                          | CLB.CARRY.CARRY8       |
-    | grp_decode_fu_399/dec_rh1[25]_i_1                                         | CLB.LUT.LUT3           |
-    | dec_rh1_reg[25]                                                           | REGISTER.SDR.FDRE      |
-    +---------------------------------------------------------------------------+------------------------+
+    +-------------------------------------------------------------------------------+------------------------+
+    | Path5 Cells                                                                   | Primitive Type         |
+    +-------------------------------------------------------------------------------+------------------------+
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product/DSP_OUTPUT_INST        | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_71                   | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_36__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_16s_15ns_31_1_1_U116/tmp_product_i_34__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_14s_15ns_29_1_1_U120/tmp_product_i_16__6                | CLB.LUT.LUT3           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_A_B_DATA_INST    | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_PREADD_DATA_INST | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_MULTIPLIER_INST  | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_M_DATA_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__1/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_ALU_INST         | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product__2/DSP_OUTPUT_INST      | ARITHMETIC.DSP.DSP48E2 |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0_i_8__4         | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__0                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__1                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__2                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__3                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/tmp_product_carry__4                | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[7]_i_2              | CLB.LUT.LUT4           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_25            | CLB.LUT.LUT2           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188[15]_i_13            | CLB.LUT.LUT6           |
+    | grp_decode_fu_399/mul_32s_32s_64_1_1_U113/apl2_8_reg_2188_reg[15]_i_1         | CLB.CARRY.CARRY8       |
+    | grp_decode_fu_399/apl2_8_reg_2188_reg[13]                                     | REGISTER.SDR.FDRE      |
+    +-------------------------------------------------------------------------------+------------------------+
 
 
 ================================================================

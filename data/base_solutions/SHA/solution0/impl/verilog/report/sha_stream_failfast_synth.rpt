@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------------
-# Created on Wed Jul 09 04:12:01 -03 2025 with report_failfast (2023.09.14)
+# Created on Thu Aug 07 00:41:21 -03 2025 with report_failfast (2023.09.14)
 # ---------------------------------------------------------------------------------
 
 #  +-----------------------------------------------------------------------------------------+
@@ -12,8 +12,8 @@
 #  | LUT                                                       | 70%       | 0.34%  | OK     |
 #  | FD                                                        | 50%       | 0.15%  | OK     |
 #  | LUTRAM+SRL                                                | 25%       | 0.00%  | OK     |
-#  | CARRY8                                                    | 25%       | 0.13%  | OK     |
-#  | MUXF7                                                     | 15%       | 0.01%  | OK     |
+#  | CARRY8                                                    | 25%       | 0.14%  | OK     |
+#  | MUXF7                                                     | 15%       | 0.00%  | OK     |
 #  | DSP                                                       | 80%       | 0.00%  | OK     |
 #  | RAMB/FIFO                                                 | 80%       | 0.60%  | OK     |
 #  | URAM                                                      | 80%       | 0.00%  | OK     |
@@ -21,8 +21,8 @@
 #  | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
 #  | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
 #  | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
-#  | Control Sets                                              | 16344     | 72     | OK     |
-#  | Average Fanout for modules > 100k cells                   | 4         | 2.74   | OK     |
+#  | Control Sets                                              | 16344     | 71     | OK     |
+#  | Average Fanout for modules > 100k cells                   | 4         | 2.75   | OK     |
 #  | Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
 #  | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
 #  +-----------------------------------------------------------+-----------+--------+--------+

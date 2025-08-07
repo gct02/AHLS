@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Wed Jul  9 03:59:57 2025
+| Date              : Wed Aug  6 20:44:23 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing -max_paths 10 -file ./report/Gsm_LPC_Analysis_timing_paths_synth.rpt
 | Design            : bd_0_wrapper
@@ -13,16 +13,16 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanc
 
 Timing Report
 
-Slack (MET) :             3.812ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.482ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[63]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.053ns  (logic 1.472ns (36.319%)  route 2.581ns (63.681%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=2 LUT5=1 LUT6=3)
+  Data Path Delay:        3.469ns  (logic 2.876ns (82.906%)  route 0.593ns (17.094%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -37,74 +37,76 @@ Slack (MET) :             3.812ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
                          CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT4 (Prop_LUT4_I0_O)        0.038     3.493 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3_n_12
-                         LUT6 (Prop_LUT6_I5_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_7/O
-                         net (fo=6, unplaced)         0.207     3.923    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.961 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2/O
-                         net (fo=4, unplaced)         0.152     4.113    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]/CE
+                                                      0.116     3.503 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[7]
+                         net (fo=1, unplaced)         0.026     3.529    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_20
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[63]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[63]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[63]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.113    
+                         required time                          8.011    
+                         arrival time                          -3.529    
   -------------------------------------------------------------------
-                         slack                                  3.812    
+                         slack                                  4.482    
 
-Slack (MET) :             3.812ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.483ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[61]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.053ns  (logic 1.472ns (36.319%)  route 2.581ns (63.681%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=2 LUT5=1 LUT6=3)
+  Data Path Delay:        3.468ns  (logic 2.876ns (82.930%)  route 0.592ns (17.070%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -119,74 +121,76 @@ Slack (MET) :             3.812ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT4 (Prop_LUT4_I0_O)        0.038     3.493 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3_n_12
-                         LUT6 (Prop_LUT6_I5_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_7/O
-                         net (fo=6, unplaced)         0.207     3.923    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.961 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2/O
-                         net (fo=4, unplaced)         0.152     4.113    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]/CE
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[5])
+                                                      0.116     3.503 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[5]
+                         net (fo=1, unplaced)         0.025     3.528    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_22
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[61]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[61]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[61]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.113    
+                         required time                          8.011    
+                         arrival time                          -3.528    
   -------------------------------------------------------------------
-                         slack                                  3.812    
+                         slack                                  4.483    
 
-Slack (MET) :             3.812ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.495ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[62]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.053ns  (logic 1.472ns (36.319%)  route 2.581ns (63.681%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=2 LUT5=1 LUT6=3)
+  Data Path Delay:        3.456ns  (logic 2.863ns (82.841%)  route 0.593ns (17.159%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -201,74 +205,76 @@ Slack (MET) :             3.812ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT4 (Prop_LUT4_I0_O)        0.038     3.493 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3_n_12
-                         LUT6 (Prop_LUT6_I5_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_7/O
-                         net (fo=6, unplaced)         0.207     3.923    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.961 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2/O
-                         net (fo=4, unplaced)         0.152     4.113    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]/CE
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[6])
+                                                      0.103     3.490 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[6]
+                         net (fo=1, unplaced)         0.026     3.516    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_21
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[62]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[62]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[62]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.113    
+                         required time                          8.011    
+                         arrival time                          -3.516    
   -------------------------------------------------------------------
-                         slack                                  3.812    
+                         slack                                  4.495    
 
-Slack (MET) :             3.812ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[3]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.509ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[55]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.053ns  (logic 1.472ns (36.319%)  route 2.581ns (63.681%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=2 LUT5=1 LUT6=3)
+  Data Path Delay:        3.442ns  (logic 2.854ns (82.917%)  route 0.588ns (17.083%))
+  Logic Levels:           12  (CARRY8=3 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -283,74 +289,73 @@ Slack (MET) :             3.812ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
                          CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT4 (Prop_LUT4_I0_O)        0.038     3.493 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln291_1_reg_753[5]_i_3_n_12
-                         LUT6 (Prop_LUT6_I5_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_7/O
-                         net (fo=6, unplaced)         0.207     3.923    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.961 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2/O
-                         net (fo=4, unplaced)         0.152     4.113    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773[3]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[3]/CE
+                                                      0.116     3.476 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/O[7]
+                         net (fo=1, unplaced)         0.026     3.502    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_20
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[55]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[3]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[55]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[3]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[55]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.113    
+                         required time                          8.011    
+                         arrival time                          -3.502    
   -------------------------------------------------------------------
-                         slack                                  3.812    
+                         slack                                  4.509    
 
-Slack (MET) :             3.822ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.510ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[53]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.043ns  (logic 1.472ns (36.409%)  route 2.571ns (63.591%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=1 LUT5=1 LUT6=4)
+  Data Path Delay:        3.441ns  (logic 2.854ns (82.941%)  route 0.587ns (17.059%))
+  Logic Levels:           12  (CARRY8=3 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -365,74 +370,73 @@ Slack (MET) :             3.822ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT6 (Prop_LUT6_I2_O)        0.038     3.493 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_4/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_4_n_12
-                         LUT6 (Prop_LUT6_I2_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_5/O
-                         net (fo=5, unplaced)         0.203     3.919    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.957 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783[2]_i_2/O
-                         net (fo=3, unplaced)         0.146     4.103    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783[2]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]/CE
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[5])
+                                                      0.116     3.476 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/O[5]
+                         net (fo=1, unplaced)         0.025     3.501    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_22
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[53]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[53]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[53]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.103    
+                         required time                          8.011    
+                         arrival time                          -3.501    
   -------------------------------------------------------------------
-                         slack                                  3.822    
+                         slack                                  4.510    
 
-Slack (MET) :             3.822ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[1]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.513ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[60]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.043ns  (logic 1.472ns (36.409%)  route 2.571ns (63.591%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=1 LUT5=1 LUT6=4)
+  Data Path Delay:        3.438ns  (logic 2.846ns (82.781%)  route 0.592ns (17.219%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -447,74 +451,76 @@ Slack (MET) :             3.822ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT6 (Prop_LUT6_I2_O)        0.038     3.493 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_4/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_4_n_12
-                         LUT6 (Prop_LUT6_I2_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_5/O
-                         net (fo=5, unplaced)         0.203     3.919    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.957 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783[2]_i_2/O
-                         net (fo=3, unplaced)         0.146     4.103    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783[2]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[1]/CE
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[4])
+                                                      0.086     3.473 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[4]
+                         net (fo=1, unplaced)         0.025     3.498    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_23
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[60]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[1]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[60]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[1]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[60]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.103    
+                         required time                          8.011    
+                         arrival time                          -3.498    
   -------------------------------------------------------------------
-                         slack                                  3.822    
+                         slack                                  4.513    
 
-Slack (MET) :             3.822ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[2]/CE
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.516ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[59]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.043ns  (logic 1.472ns (36.409%)  route 2.571ns (63.591%))
-  Logic Levels:           15  (CARRY8=6 LUT1=2 LUT2=1 LUT4=1 LUT5=1 LUT6=4)
+  Data Path Delay:        3.435ns  (logic 2.842ns (82.737%)  route 0.593ns (17.263%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -529,74 +535,76 @@ Slack (MET) :             3.822ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT6 (Prop_LUT6_I2_O)        0.038     3.493 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_4/O
-                         net (fo=2, unplaced)         0.185     3.678    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_4_n_12
-                         LUT6 (Prop_LUT6_I2_O)        0.038     3.716 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln296_1_reg_783[2]_i_5/O
-                         net (fo=5, unplaced)         0.203     3.919    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[0]_2
-                         LUT2 (Prop_LUT2_I1_O)        0.038     3.957 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783[2]_i_2/O
-                         net (fo=3, unplaced)         0.146     4.103    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783[2]_i_2_n_12
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[2]/CE
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[3])
+                                                      0.082     3.469 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[3]
+                         net (fo=1, unplaced)         0.026     3.495    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_24
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[59]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[2]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[59]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_CE)      -0.061     7.925    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln296_1_reg_783_reg[2]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[59]
   -------------------------------------------------------------------
-                         required time                          7.925    
-                         arrival time                          -4.103    
+                         required time                          8.011    
+                         arrival time                          -3.495    
   -------------------------------------------------------------------
-                         slack                                  3.822    
+                         slack                                  4.516    
 
-Slack (MET) :             3.959ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]/S
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.522ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[54]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        3.893ns  (logic 1.518ns (38.993%)  route 2.375ns (61.007%))
-  Logic Levels:           14  (CARRY8=6 LUT1=2 LUT4=1 LUT5=2 LUT6=3)
+  Data Path Delay:        3.429ns  (logic 2.841ns (82.852%)  route 0.588ns (17.148%))
+  Logic Levels:           12  (CARRY8=3 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -611,72 +619,73 @@ Slack (MET) :             3.959ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT5 (Prop_LUT5_I4_O)        0.070     3.525 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_4/O
-                         net (fo=1, unplaced)         0.140     3.665    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_4_n_12
-                         LUT6 (Prop_LUT6_I0_O)        0.090     3.755 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_1/O
-                         net (fo=4, unplaced)         0.198     3.953    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_0
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]/S
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[6])
+                                                      0.103     3.463 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/O[6]
+                         net (fo=1, unplaced)         0.026     3.489    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_21
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[54]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[54]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_S)       -0.074     7.912    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[54]
   -------------------------------------------------------------------
-                         required time                          7.912    
-                         arrival time                          -3.953    
+                         required time                          8.011    
+                         arrival time                          -3.489    
   -------------------------------------------------------------------
-                         slack                                  3.959    
+                         slack                                  4.522    
 
-Slack (MET) :             3.959ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]/S
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.523ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[57]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        3.893ns  (logic 1.518ns (38.993%)  route 2.375ns (61.007%))
-  Logic Levels:           14  (CARRY8=6 LUT1=2 LUT4=1 LUT5=2 LUT6=3)
+  Data Path Delay:        3.428ns  (logic 2.836ns (82.730%)  route 0.592ns (17.270%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -691,72 +700,76 @@ Slack (MET) :             3.959ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT5 (Prop_LUT5_I4_O)        0.070     3.525 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_4/O
-                         net (fo=1, unplaced)         0.140     3.665    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_4_n_12
-                         LUT6 (Prop_LUT6_I0_O)        0.090     3.755 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_1/O
-                         net (fo=4, unplaced)         0.198     3.953    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_0
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]/S
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     3.463 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[1]
+                         net (fo=1, unplaced)         0.025     3.488    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_26
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[57]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[57]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_S)       -0.074     7.912    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[1]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[57]
   -------------------------------------------------------------------
-                         required time                          7.912    
-                         arrival time                          -3.953    
+                         required time                          8.011    
+                         arrival time                          -3.488    
   -------------------------------------------------------------------
-                         slack                                  3.959    
+                         slack                                  4.523    
 
-Slack (MET) :             3.959ns  (required time - arrival time)
-  Source:                 bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
-                            (rising edge-triggered cell DSP_OUTPUT clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]/S
-                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+Slack (MET) :             4.531ns  (required time - arrival time)
+  Source:                 bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[58]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (ap_clk rise@8.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        3.893ns  (logic 1.518ns (38.993%)  route 2.375ns (61.007%))
-  Logic Levels:           14  (CARRY8=6 LUT1=2 LUT4=1 LUT5=2 LUT6=3)
+  Data Path Delay:        3.420ns  (logic 2.827ns (82.661%)  route 0.593ns (17.339%))
+  Logic Levels:           13  (CARRY8=4 DSP_ALU=2 DSP_C_DATA=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=2 DSP_PREADD_DATA=1 LUT4=1)
   Clock Path Skew:        -0.039ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.021ns = ( 8.021 - 8.000 ) 
     Source Clock Delay      (SCD):    0.060ns
@@ -771,61 +784,65 @@ Slack (MET) :             3.959ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/CLK
-                         DSP_OUTPUT                                   r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/CLK
+                         net (fo=1923, unset)         0.060     0.060    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/CLK
+                         DSP_A_B_DATA                                 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/CLK
   -------------------------------------------------------------------    -------------------
-                         DSP_OUTPUT (Prop_DSP_OUTPUT_CLK_P[17])
-                                                      0.218     0.278 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg/DSP_OUTPUT_INST/P[17]
-                         net (fo=1, unplaced)         0.217     0.495    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/p_reg_reg_n_100
-                         LUT5 (Prop_LUT5_I0_O)        0.125     0.620 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/indata_d0[2]_INST_0/O
-                         net (fo=2, unplaced)         0.185     0.805    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/indata_d0[0]
-                         LUT4 (Prop_LUT4_I3_O)        0.038     0.843 r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/sum_fu_54_p2_carry_i_6/O
-                         net (fo=4, unplaced)         0.197     1.040    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry[2]
-                         LUT6 (Prop_LUT6_I0_O)        0.037     1.077 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/sum_fu_54_p2_carry_i_14/O
-                         net (fo=1, unplaced)         0.028     1.105    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/ram_reg_bram_0[2]
-                         CARRY8 (Prop_CARRY8_S[2]_CO[7])
-                                                      0.168     1.273 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     1.278    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     1.394 f  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=19, unplaced)        0.186     1.580    bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     1.650 r  bd_0_i/hls_inst/inst/grp_gsm_mult_r_fu_300/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__1/O
-                         net (fo=1, unplaced)         0.242     1.892    bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/DI[0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     1.975 r  bd_0_i/hls_inst/inst/grp_gsm_add_fu_310/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     2.227    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/add_ln39_fu_48_p2_carry__0_2[0]
-                         LUT6 (Prop_LUT6_I5_O)        0.037     2.264 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/sum_fu_54_p2_carry_i_15__0/O
-                         net (fo=1, unplaced)         0.023     2.287    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/ram_reg_0_15_0_0_i_1[1]
+                         DSP_A_B_DATA (Prop_DSP_A_B_DATA_CLK_B2_DATA[17])
+                                                      0.212     0.272 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA_INST/B2_DATA[17]
+                         net (fo=1, unplaced)         0.000     0.272    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_A_B_DATA.B2_DATA<17>
+                         DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_B2_DATA[17]_B2B1[17])
+                                                      0.073     0.345 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA_INST/B2B1[17]
+                         net (fo=1, unplaced)         0.000     0.345    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_PREADD_DATA.B2B1<17>
+                         DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_B2B1[17]_V[31])
+                                                      0.609     0.954 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER_INST/V[31]
+                         net (fo=1, unplaced)         0.000     0.954    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_MULTIPLIER.V<31>
+                         DSP_M_DATA (Prop_DSP_M_DATA_V[31]_V_DATA[31])
+                                                      0.046     1.000 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA_INST/V_DATA[31]
+                         net (fo=1, unplaced)         0.000     1.000    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_M_DATA.V_DATA<31>
+                         DSP_ALU (Prop_DSP_ALU_V_DATA[31]_ALU_OUT[31])
+                                                      0.571     1.571 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU_INST/ALU_OUT[31]
+                         net (fo=1, unplaced)         0.000     1.571    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_ALU.ALU_OUT<31>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[31]_P[31])
+                                                      0.109     1.680 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_16s_16s_32_1_1_U18/tmp_product/DSP_OUTPUT_INST/P[31]
+                         net (fo=31, unplaced)        0.294     1.974    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/C[32]
+                         DSP_C_DATA (Prop_DSP_C_DATA_C[32]_C_DATA[32])
+                                                      0.105     2.079 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA_INST/C_DATA[32]
+                         net (fo=2, unplaced)         0.000     2.079    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_C_DATA.C_DATA<32>
+                         DSP_ALU (Prop_DSP_ALU_C_DATA[32]_ALU_OUT[32])
+                                                      0.585     2.664 f  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU_INST/ALU_OUT[32]
+                         net (fo=1, unplaced)         0.000     2.664    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_ALU.ALU_OUT<32>
+                         DSP_OUTPUT (Prop_DSP_OUTPUT_ALU_OUT[32]_P[32])
+                                                      0.109     2.773 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg/DSP_OUTPUT_INST/P[32]
+                         net (fo=63, unplaced)        0.235     3.008    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/mul_ln126_reg_2525_reg_n_85
+                         LUT4 (Prop_LUT4_I0_O)        0.100     3.108 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8/O
+                         net (fo=1, unplaced)         0.023     3.131    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214[32]_i_8_n_12
                          CARRY8 (Prop_CARRY8_S[1]_CO[7])
-                                                      0.197     2.484 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry/CO[7]
-                         net (fo=1, unplaced)         0.005     2.489    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry_n_12
-                         CARRY8 (Prop_CARRY8_CI_O[7])
-                                                      0.116     2.605 r  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/sum_fu_54_p2_carry__0/O[7]
-                         net (fo=41, unplaced)        0.203     2.808    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/O[1]
-                         LUT1 (Prop_LUT1_I0_O)        0.070     2.878 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/icmp_ln40_fu_60_p2_carry_i_1__2/O
-                         net (fo=1, unplaced)         0.242     3.120    bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/select_ln291_1_reg_753_reg[4][0]
-                         CARRY8 (Prop_CARRY8_DI[0]_CO[1])
-                                                      0.083     3.203 f  bd_0_i/hls_inst/inst/tmp_6_gsm_add_fu_315/icmp_ln40_fu_60_p2_carry/CO[1]
-                         net (fo=48, unplaced)        0.252     3.455    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/CO[0]
-                         LUT5 (Prop_LUT5_I4_O)        0.070     3.525 f  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_4/O
-                         net (fo=1, unplaced)         0.140     3.665    bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_4_n_12
-                         LUT6 (Prop_LUT6_I0_O)        0.090     3.755 r  bd_0_i/hls_inst/inst/grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/mac_muladd_16s_16s_15ns_31_4_1_U4/Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U/select_ln294_1_reg_773[3]_i_1/O
-                         net (fo=4, unplaced)         0.198     3.953    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[0]_0
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]/S
+                                                      0.197     3.328 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.333    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[32]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.355 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.360    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[40]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     3.382 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1/CO[7]
+                         net (fo=1, unplaced)         0.005     3.387    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[48]_i_1_n_12
+                         CARRY8 (Prop_CARRY8_CI_O[2])
+                                                      0.067     3.454 r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1/O[2]
+                         net (fo=1, unplaced)         0.026     3.480    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[56]_i_1_n_25
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[58]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     8.000     8.000 r  
                                                       0.000     8.000 r  ap_clk (IN)
-                         net (fo=2021, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/ap_clk
-                         FDSE                                         r  bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]/C
+                         net (fo=1923, unset)         0.021     8.021    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/ap_clk
+                         FDRE                                         r  bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[58]/C
                          clock pessimism              0.000     8.021    
                          clock uncertainty           -0.035     7.986    
-                         FDSE (Setup_FDSE_C_S)       -0.074     7.912    bd_0_i/hls_inst/inst/grp_Quantization_and_coding_fu_126/select_ln294_1_reg_773_reg[2]
+                         FDRE (Setup_FDRE_C_D)        0.025     8.011    bd_0_i/hls_inst/inst/grp_Autocorrelation_fu_103/empty_88_fu_214_reg[58]
   -------------------------------------------------------------------
-                         required time                          7.912    
-                         arrival time                          -3.953    
+                         required time                          8.011    
+                         arrival time                          -3.480    
   -------------------------------------------------------------------
-                         slack                                  3.959    
+                         slack                                  4.531    
 
 
 

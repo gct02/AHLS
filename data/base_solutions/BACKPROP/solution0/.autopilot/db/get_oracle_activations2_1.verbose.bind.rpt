@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_oracle_activations2_1'
 ================================================================
-* Date:           Wed Jul  9 03:32:56 2025
+* Date:           Wed Aug  6 20:24:16 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -97,24 +97,24 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 0.38>
 ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/backprop/backprop.c:139]   --->   Operation 16 'alloca' 'i' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights3, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%specpipeline_ln54 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:54]   --->   Operation 18 'specpipeline' 'specpipeline_ln54' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%p_read28 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read2" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 19 'read' 'p_read28' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%p_read17 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read1" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 20 'read' 'p_read17' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%p_read_13 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 21 'read' 'p_read_13' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%specpipeline_ln44 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:44]   --->   Operation 18 'specpipeline' 'specpipeline_ln44' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%p_read_6 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read2" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 19 'read' 'p_read_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%p_read_7 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read1" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 20 'read' 'p_read_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%p_read_8 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 21 'read' 'p_read_8' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 22 [1/1] (0.38ns)   --->   "%store_ln139 = store i7 0, i7 %i" [data/benchmarks/backprop/backprop.c:139]   --->   Operation 22 'store' 'store_ln139' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln141 = br void %get_oracle_activations2_loop1_1" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 23 'br' 'br_ln141' <Predicate = true> <Delay = 0.00>
 
 State 2 <SV = 1> <Delay = 0.70>
-ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%i_28 = load i7 %i"   --->   Operation 24 'load' 'i_28' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 25 [1/1] (0.70ns)   --->   "%icmp_ln141 = icmp_eq  i7 %i_28, i7 64" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 25 'icmp' 'icmp_ln141' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 26 [1/1] (0.70ns)   --->   "%add_ln141 = add i7 %i_28, i7 1" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 26 'add' 'add_ln141' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%i_27 = load i7 %i"   --->   Operation 24 'load' 'i_27' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.70ns)   --->   "%icmp_ln141 = icmp_eq  i7 %i_27, i7 64" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 25 'icmp' 'icmp_ln141' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.70ns)   --->   "%add_ln141 = add i7 %i_27, i7 1" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 26 'add' 'add_ln141' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%br_ln141 = br i1 %icmp_ln141, void %get_oracle_activations2_loop1_1.split, void %for.end21" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 27 'br' 'br_ln141' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%zext_ln141 = zext i7 %i_28" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 28 'zext' 'zext_ln141' <Predicate = (!icmp_ln141)> <Delay = 0.00>
-ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%zext_ln141_1 = zext i7 %i_28" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 29 'zext' 'zext_ln141_1' <Predicate = (!icmp_ln141)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%zext_ln141 = zext i7 %i_27" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 28 'zext' 'zext_ln141' <Predicate = (!icmp_ln141)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%zext_ln141_1 = zext i7 %i_27" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 29 'zext' 'zext_ln141_1' <Predicate = (!icmp_ln141)> <Delay = 0.00>
 ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%speclooptripcount_ln142 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/backprop/backprop.c:142]   --->   Operation 30 'speclooptripcount' 'speclooptripcount_ln142' <Predicate = (!icmp_ln141)> <Delay = 0.00>
-ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%specloopname_ln150 = specloopname void @_ssdm_op_SpecLoopName, void @empty_17" [data/benchmarks/backprop/backprop.c:150]   --->   Operation 31 'specloopname' 'specloopname_ln150' <Predicate = (!icmp_ln141)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%specloopname_ln150 = specloopname void @_ssdm_op_SpecLoopName, void @empty_7" [data/benchmarks/backprop/backprop.c:150]   --->   Operation 31 'specloopname' 'specloopname_ln150' <Predicate = (!icmp_ln141)> <Delay = 0.00>
 ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%oracle_activations_addr = getelementptr i64 %oracle_activations, i64 0, i64 %zext_ln141" [data/benchmarks/backprop/backprop.c:143]   --->   Operation 32 'getelementptr' 'oracle_activations_addr' <Predicate = (!icmp_ln141)> <Delay = 0.00>
-ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%empty = trunc i7 %i_28"   --->   Operation 33 'trunc' 'empty' <Predicate = (!icmp_ln141)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%empty = trunc i7 %i_27"   --->   Operation 33 'trunc' 'empty' <Predicate = (!icmp_ln141)> <Delay = 0.00>
 ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%p_shl = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i6.i2, i6 %empty, i2 0"   --->   Operation 34 'bitconcatenate' 'p_shl' <Predicate = (!icmp_ln141)> <Delay = 0.00>
 ST_2 : Operation 35 [1/1] (0.70ns)   --->   "%empty_51 = sub i8 %p_shl, i8 %zext_ln141_1" [data/benchmarks/backprop/backprop.c:141]   --->   Operation 35 'sub' 'empty_51' <Predicate = (!icmp_ln141)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 36 [1/1] (0.38ns)   --->   "%br_ln145 = br void %for.inc" [data/benchmarks/backprop/backprop.c:145]   --->   Operation 36 'br' 'br_ln145' <Predicate = (!icmp_ln141)> <Delay = 0.38>
@@ -127,7 +127,7 @@ ST_3 : Operation 40 [1/1] (0.43ns)   --->   "%icmp_ln145 = icmp_eq  i2 %j, i2 3"
 ST_3 : Operation 41 [1/1] (0.43ns)   --->   "%add_ln145 = add i2 %j, i2 1" [data/benchmarks/backprop/backprop.c:145]   --->   Operation 41 'add' 'add_ln145' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.43> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%br_ln145 = br i1 %icmp_ln145, void %for.inc.split, void %for.inc19" [data/benchmarks/backprop/backprop.c:145]   --->   Operation 42 'br' 'br_ln145' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%zext_ln145 = zext i2 %j" [data/benchmarks/backprop/backprop.c:145]   --->   Operation 43 'zext' 'zext_ln145' <Predicate = (!icmp_ln145)> <Delay = 0.00>
-ST_3 : Operation 44 [1/1] (0.41ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %p_read_13, i64 %p_read17, i64 %p_read28, i2 %j" [data/benchmarks/backprop/backprop.c:147]   --->   Operation 44 'mux' 'tmp' <Predicate = (!icmp_ln145)> <Delay = 0.41> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.41ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %p_read_8, i64 %p_read_7, i64 %p_read_6, i2 %j" [data/benchmarks/backprop/backprop.c:147]   --->   Operation 44 'mux' 'tmp' <Predicate = (!icmp_ln145)> <Delay = 0.41> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
 ST_3 : Operation 45 [1/1] (0.70ns)   --->   "%add_ln147 = add i8 %zext_ln145, i8 %empty_51" [data/benchmarks/backprop/backprop.c:147]   --->   Operation 45 'add' 'add_ln147' <Predicate = (!icmp_ln145)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln147 = zext i8 %add_ln147" [data/benchmarks/backprop/backprop.c:147]   --->   Operation 46 'zext' 'zext_ln147' <Predicate = (!icmp_ln145)> <Delay = 0.00>
 ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%weights3_addr = getelementptr i64 %weights3, i64 0, i64 %zext_ln147" [data/benchmarks/backprop/backprop.c:147]   --->   Operation 47 'getelementptr' 'weights3_addr' <Predicate = (!icmp_ln145)> <Delay = 0.00>
@@ -161,7 +161,7 @@ ST_10 : Operation 60 [2/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8
 
 State 11 <SV = 10> <Delay = 4.33>
 ST_11 : Operation 61 [1/1] (0.00ns)   --->   "%speclooptripcount_ln146 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 3, i64 3, i64 3" [data/benchmarks/backprop/backprop.c:146]   --->   Operation 61 'speclooptripcount' 'speclooptripcount_ln146' <Predicate = true> <Delay = 0.00>
-ST_11 : Operation 62 [1/1] (0.00ns)   --->   "%specloopname_ln148 = specloopname void @_ssdm_op_SpecLoopName, void @empty_16" [data/benchmarks/backprop/backprop.c:148]   --->   Operation 62 'specloopname' 'specloopname_ln148' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 62 [1/1] (0.00ns)   --->   "%specloopname_ln148 = specloopname void @_ssdm_op_SpecLoopName, void @empty_17" [data/benchmarks/backprop/backprop.c:148]   --->   Operation 62 'specloopname' 'specloopname_ln148' <Predicate = true> <Delay = 0.00>
 ST_11 : Operation 63 [1/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8" [data/benchmarks/backprop/backprop.c:147]   --->   Operation 63 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 ST_11 : Operation 64 [1/1] (0.00ns)   --->   "%br_ln145 = br void %for.inc" [data/benchmarks/backprop/backprop.c:145]   --->   Operation 64 'br' 'br_ln145' <Predicate = true> <Delay = 0.00>
 
@@ -206,13 +206,13 @@ Port [ dactivations]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=
 <method=bitvector/>
 i                       (alloca           ) [ 0111111111111111]
 specinterface_ln0       (specinterface    ) [ 0000000000000000]
-specpipeline_ln54       (specpipeline     ) [ 0000000000000000]
-p_read28                (read             ) [ 0011111111111111]
-p_read17                (read             ) [ 0011111111111111]
-p_read_13               (read             ) [ 0011111111111111]
+specpipeline_ln44       (specpipeline     ) [ 0000000000000000]
+p_read_6                (read             ) [ 0011111111111111]
+p_read_7                (read             ) [ 0011111111111111]
+p_read_8                (read             ) [ 0011111111111111]
 store_ln139             (store            ) [ 0000000000000000]
 br_ln141                (br               ) [ 0000000000000000]
-i_28                    (load             ) [ 0000000000000000]
+i_27                    (load             ) [ 0000000000000000]
 icmp_ln141              (icmp             ) [ 0011111111111111]
 add_ln141               (add              ) [ 0001111111110000]
 br_ln141                (br               ) [ 0000000000000000]
@@ -442,7 +442,7 @@ br_ln141                (br               ) [ 0000000000000000]
 <pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_17"/></StgValue>
+<StgValue><ssdm name="empty_7"/></StgValue>
 </bind>
 </comp>
 
@@ -523,7 +523,7 @@ br_ln141                (br               ) [ 0000000000000000]
 <pin id="59" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_16"/></StgValue>
+<StgValue><ssdm name="empty_17"/></StgValue>
 </bind>
 </comp>
 
@@ -538,7 +538,7 @@ br_ln141                (br               ) [ 0000000000000000]
 </bind>
 </comp>
 
-<comp id="64" class="1004" name="p_read28_read_fu_64">
+<comp id="64" class="1004" name="p_read_6_read_fu_64">
 <pin_list>
 <pin id="65" dir="0" index="0" bw="64" slack="0"/>
 <pin id="66" dir="0" index="1" bw="64" slack="0"/>
@@ -546,11 +546,11 @@ br_ln141                (br               ) [ 0000000000000000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="p_read28/1 "/>
+<opset="p_read_6/1 "/>
 </bind>
 </comp>
 
-<comp id="70" class="1004" name="p_read17_read_fu_70">
+<comp id="70" class="1004" name="p_read_7_read_fu_70">
 <pin_list>
 <pin id="71" dir="0" index="0" bw="64" slack="0"/>
 <pin id="72" dir="0" index="1" bw="64" slack="0"/>
@@ -558,11 +558,11 @@ br_ln141                (br               ) [ 0000000000000000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="p_read17/1 "/>
+<opset="p_read_7/1 "/>
 </bind>
 </comp>
 
-<comp id="76" class="1004" name="p_read_13_read_fu_76">
+<comp id="76" class="1004" name="p_read_8_read_fu_76">
 <pin_list>
 <pin id="77" dir="0" index="0" bw="64" slack="0"/>
 <pin id="78" dir="0" index="1" bw="64" slack="0"/>
@@ -570,7 +570,7 @@ br_ln141                (br               ) [ 0000000000000000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="p_read_13/1 "/>
+<opset="p_read_8/1 "/>
 </bind>
 </comp>
 
@@ -736,14 +736,14 @@ br_ln141                (br               ) [ 0000000000000000]
 </bind>
 </comp>
 
-<comp id="160" class="1004" name="i_28_load_fu_160">
+<comp id="160" class="1004" name="i_27_load_fu_160">
 <pin_list>
 <pin id="161" dir="0" index="0" bw="7" slack="1"/>
 <pin id="162" dir="1" index="1" bw="7" slack="0"/>
 </pin_list>
 <bind>
 <opcode="load(27) " fcode="load"/>
-<opset="i_28/2 "/>
+<opset="i_27/2 "/>
 </bind>
 </comp>
 
@@ -935,33 +935,33 @@ br_ln141                (br               ) [ 0000000000000000]
 </bind>
 </comp>
 
-<comp id="253" class="1005" name="p_read28_reg_253">
+<comp id="253" class="1005" name="p_read_6_reg_253">
 <pin_list>
 <pin id="254" dir="0" index="0" bw="64" slack="2"/>
 <pin id="255" dir="1" index="1" bw="64" slack="2"/>
 </pin_list>
 <bind>
-<opset="p_read28 "/>
+<opset="p_read_6 "/>
 </bind>
 </comp>
 
-<comp id="258" class="1005" name="p_read17_reg_258">
+<comp id="258" class="1005" name="p_read_7_reg_258">
 <pin_list>
 <pin id="259" dir="0" index="0" bw="64" slack="2"/>
 <pin id="260" dir="1" index="1" bw="64" slack="2"/>
 </pin_list>
 <bind>
-<opset="p_read17 "/>
+<opset="p_read_7 "/>
 </bind>
 </comp>
 
-<comp id="263" class="1005" name="p_read_13_reg_263">
+<comp id="263" class="1005" name="p_read_8_reg_263">
 <pin_list>
 <pin id="264" dir="0" index="0" bw="64" slack="2"/>
 <pin id="265" dir="1" index="1" bw="64" slack="2"/>
 </pin_list>
 <bind>
-<opset="p_read_13 "/>
+<opset="p_read_8 "/>
 </bind>
 </comp>
 
@@ -1317,39 +1317,39 @@ br_ln141                (br               ) [ 0000000000000000]
 ============================================================
 
 * Functional unit list:
-|----------|----------------------|---------|---------|---------|
-| Operation|    Functional Unit   |   DSP   |    FF   |   LUT   |
-|----------|----------------------|---------|---------|---------|
-|   dadd   |      grp_fu_143      |    3    |   430   |   708   |
-|----------|----------------------|---------|---------|---------|
-|   dmul   |      grp_fu_148      |    8    |   275   |   108   |
-|----------|----------------------|---------|---------|---------|
-|          |   add_ln141_fu_169   |    0    |    0    |    14   |
-|    add   |   add_ln145_fu_208   |    0    |    0    |    9    |
-|          |   add_ln147_fu_227   |    0    |    0    |    15   |
-|----------|----------------------|---------|---------|---------|
-|   icmp   |   icmp_ln141_fu_163  |    0    |    0    |    14   |
-|          |   icmp_ln145_fu_202  |    0    |    0    |    9    |
-|----------|----------------------|---------|---------|---------|
-|    sub   |    empty_51_fu_196   |    0    |    0    |    15   |
-|----------|----------------------|---------|---------|---------|
-|    mux   |      tmp_fu_218      |    0    |    0    |    14   |
-|----------|----------------------|---------|---------|---------|
-|          |  p_read28_read_fu_64 |    0    |    0    |    0    |
-|   read   |  p_read17_read_fu_70 |    0    |    0    |    0    |
-|          | p_read_13_read_fu_76 |    0    |    0    |    0    |
-|----------|----------------------|---------|---------|---------|
-|          |   zext_ln141_fu_175  |    0    |    0    |    0    |
-|   zext   |  zext_ln141_1_fu_180 |    0    |    0    |    0    |
-|          |   zext_ln145_fu_214  |    0    |    0    |    0    |
-|          |   zext_ln147_fu_232  |    0    |    0    |    0    |
-|----------|----------------------|---------|---------|---------|
-|   trunc  |     empty_fu_184     |    0    |    0    |    0    |
-|----------|----------------------|---------|---------|---------|
-|bitconcatenate|     p_shl_fu_188     |    0    |    0    |    0    |
-|----------|----------------------|---------|---------|---------|
-|   Total  |                      |    11   |   705   |   906   |
-|----------|----------------------|---------|---------|---------|
+|----------|---------------------|---------|---------|---------|
+| Operation|   Functional Unit   |   DSP   |    FF   |   LUT   |
+|----------|---------------------|---------|---------|---------|
+|   dadd   |      grp_fu_143     |    3    |   430   |   708   |
+|----------|---------------------|---------|---------|---------|
+|   dmul   |      grp_fu_148     |    8    |   275   |   108   |
+|----------|---------------------|---------|---------|---------|
+|          |   add_ln141_fu_169  |    0    |    0    |    14   |
+|    add   |   add_ln145_fu_208  |    0    |    0    |    9    |
+|          |   add_ln147_fu_227  |    0    |    0    |    15   |
+|----------|---------------------|---------|---------|---------|
+|   icmp   |  icmp_ln141_fu_163  |    0    |    0    |    14   |
+|          |  icmp_ln145_fu_202  |    0    |    0    |    9    |
+|----------|---------------------|---------|---------|---------|
+|    sub   |   empty_51_fu_196   |    0    |    0    |    15   |
+|----------|---------------------|---------|---------|---------|
+|    mux   |      tmp_fu_218     |    0    |    0    |    14   |
+|----------|---------------------|---------|---------|---------|
+|          | p_read_6_read_fu_64 |    0    |    0    |    0    |
+|   read   | p_read_7_read_fu_70 |    0    |    0    |    0    |
+|          | p_read_8_read_fu_76 |    0    |    0    |    0    |
+|----------|---------------------|---------|---------|---------|
+|          |  zext_ln141_fu_175  |    0    |    0    |    0    |
+|   zext   | zext_ln141_1_fu_180 |    0    |    0    |    0    |
+|          |  zext_ln145_fu_214  |    0    |    0    |    0    |
+|          |  zext_ln147_fu_232  |    0    |    0    |    0    |
+|----------|---------------------|---------|---------|---------|
+|   trunc  |     empty_fu_184    |    0    |    0    |    0    |
+|----------|---------------------|---------|---------|---------|
+|bitconcatenate|     p_shl_fu_188    |    0    |    0    |    0    |
+|----------|---------------------|---------|---------|---------|
+|   Total  |                     |    11   |   705   |   906   |
+|----------|---------------------|---------|---------|---------|
 
 Memories:
 N/A
@@ -1370,9 +1370,9 @@ N/A
 |           j_reg_120           |    2   |
 |          mul8_reg_319         |   64   |
 |oracle_activations_addr_reg_281|    6   |
-|        p_read17_reg_258       |   64   |
-|        p_read28_reg_253       |   64   |
-|       p_read_13_reg_263       |   64   |
+|        p_read_6_reg_253       |   64   |
+|        p_read_7_reg_258       |   64   |
+|        p_read_8_reg_263       |   64   |
 |          tmp_reg_299          |   64   |
 |     weights3_addr_reg_304     |    8   |
 |       zext_ln141_reg_276      |   64   |

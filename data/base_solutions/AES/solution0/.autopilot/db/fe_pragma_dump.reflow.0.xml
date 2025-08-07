@@ -1,52 +1,48 @@
 <pragmas>
 <pragma file="data/benchmarks/aes/aes.c" line="16" pragmaType="pipeline" parentfunction="aes_main" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="37" pragmaType="inline" parentfunction="ByteSub_ShiftRow" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="23" pragmaType="pipeline" parentfunction="ByteSub_ShiftRow" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="inline" parentfunction="AddRoundKey_InversMixColumn" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="4" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="437" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="8" avg="6"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="1" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="390" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="8" avg="6"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="2" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="25" pragmaType="loop_flatten" parentfunction="AddRoundKey_InversMixColumn" off="1"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="393" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="4" avg="4"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="3" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="381" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="8" avg="6"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="inline" parentfunction="AddRoundKey" off="1" region="0" recursive="0"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="pipeline" parentfunction="AddRoundKey" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="7" pragmaType="pipeline" parentfunction="AddRoundKey" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="470" pragmaType="loop_tripcount" parentfunction="AddRoundKey" min="4" max="8" avg="6"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="470" pragmaType="loop_tripcount" parentfunction="AddRoundKey" min="4" max="4" avg="4"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="inline" parentfunction="AddRoundKey_InversMixColumn" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="4" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="437" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="4" avg="4"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="1" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="390" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="4" avg="4"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="2" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="23" pragmaType="loop_flatten" parentfunction="AddRoundKey_InversMixColumn" off="1"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="393" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="4" avg="4"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="3" pragmaType="pipeline" parentfunction="AddRoundKey_InversMixColumn" off="1" ii="0" rewind="0" style=""/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="381" pragmaType="loop_tripcount" parentfunction="AddRoundKey_InversMixColumn" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_enc.c" line="0" pragmaType="inline" parentfunction="encrypt" off="1" region="0" recursive="0"/>
 <pragma file="data/benchmarks/aes/aes_enc.c" line="0" pragmaType="pipeline" parentfunction="encrypt" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/aes/aes_enc.c" line="14" pragmaType="pipeline" parentfunction="encrypt" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_enc.c" line="111" pragmaType="loop_tripcount" parentfunction="encrypt" min="9" max="13" avg="11"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="33" pragmaType="inline" parentfunction="InversShiftRow_ByteSub" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="19" pragmaType="pipeline" parentfunction="InversShiftRow_ByteSub" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/aes/aes_enc.c" line="111" pragmaType="loop_tripcount" parentfunction="encrypt" min="9" max="9" avg="9"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="inline" parentfunction="KeySchedule" off="1" region="0" recursive="0"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="pipeline" parentfunction="KeySchedule" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="11" pragmaType="pipeline" parentfunction="KeySchedule" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="28" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="566" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="32" max="116" avg="74"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="26" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="566" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="40" max="40" avg="40"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="12" pragmaType="pipeline" parentfunction="KeySchedule" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="29" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="27" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="586" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="13" pragmaType="pipeline" parentfunction="KeySchedule" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="30" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="28" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="593" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="8" pragmaType="pipeline" parentfunction="KeySchedule" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="555" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="4" max="8" avg="6"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="555" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="9" pragmaType="pipeline" parentfunction="KeySchedule" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="26" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="24" pragmaType="loop_flatten" parentfunction="KeySchedule" off="1"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="558" pragmaType="loop_tripcount" parentfunction="KeySchedule" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="inline" parentfunction="MixColumn_AddRoundKey" off="1" region="0" recursive="0"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="0" pragmaType="pipeline" parentfunction="MixColumn_AddRoundKey" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="6" pragmaType="pipeline" parentfunction="MixColumn_AddRoundKey" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="365" pragmaType="loop_tripcount" parentfunction="MixColumn_AddRoundKey" min="4" max="8" avg="6"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="365" pragmaType="loop_tripcount" parentfunction="MixColumn_AddRoundKey" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_key.c" line="5" pragmaType="pipeline" parentfunction="MixColumn_AddRoundKey" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_key.c" line="325" pragmaType="loop_tripcount" parentfunction="MixColumn_AddRoundKey" min="4" max="8" avg="6"/>
+<pragma file="data/benchmarks/aes/aes_key.c" line="325" pragmaType="loop_tripcount" parentfunction="MixColumn_AddRoundKey" min="4" max="4" avg="4"/>
 <pragma file="data/benchmarks/aes/aes_dec.c" line="0" pragmaType="inline" parentfunction="decrypt" off="1" region="0" recursive="0"/>
 <pragma file="data/benchmarks/aes/aes_dec.c" line="0" pragmaType="pipeline" parentfunction="decrypt" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/aes/aes_dec.c" line="15" pragmaType="pipeline" parentfunction="decrypt" off="1" ii="0" rewind="0" style=""/>
-<pragma file="data/benchmarks/aes/aes_dec.c" line="117" pragmaType="loop_tripcount" parentfunction="decrypt" min="9" max="13" avg="12"/>
+<pragma file="data/benchmarks/aes/aes_dec.c" line="117" pragmaType="loop_tripcount" parentfunction="decrypt" min="9" max="9" avg="9"/>
 </pragmas>

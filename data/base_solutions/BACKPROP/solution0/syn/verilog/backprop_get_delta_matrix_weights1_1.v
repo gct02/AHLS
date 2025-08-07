@@ -24,10 +24,10 @@ module backprop_get_delta_matrix_weights1_1 (
         training_data_ce0,
         training_data_q0,
         idx,
-        grp_fu_994_p_din0,
-        grp_fu_994_p_din1,
-        grp_fu_994_p_dout0,
-        grp_fu_994_p_ce
+        grp_fu_992_p_din0,
+        grp_fu_992_p_din1,
+        grp_fu_992_p_dout0,
+        grp_fu_992_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 8'd1;
@@ -56,10 +56,10 @@ output  [11:0] training_data_address0;
 output   training_data_ce0;
 input  [63:0] training_data_q0;
 input  [11:0] idx;
-output  [63:0] grp_fu_994_p_din0;
-output  [63:0] grp_fu_994_p_din1;
-input  [63:0] grp_fu_994_p_dout0;
-output   grp_fu_994_p_ce;
+output  [63:0] grp_fu_992_p_din0;
+output  [63:0] grp_fu_992_p_din1;
+input  [63:0] grp_fu_992_p_dout0;
+output   grp_fu_992_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -296,15 +296,15 @@ assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 
 assign delta_weights1_address0 = zext_ln196_fu_195_p1;
 
-assign delta_weights1_d0 = grp_fu_994_p_dout0;
+assign delta_weights1_d0 = grp_fu_992_p_dout0;
 
 assign empty_fu_154_p1 = training_data_q0;
 
-assign grp_fu_994_p_ce = 1'b1;
+assign grp_fu_992_p_ce = 1'b1;
 
-assign grp_fu_994_p_din0 = empty_reg_227;
+assign grp_fu_992_p_din0 = empty_reg_227;
 
-assign grp_fu_994_p_din1 = output_difference_q0;
+assign grp_fu_992_p_din1 = output_difference_q0;
 
 assign icmp_ln191_fu_128_p2 = ((i_fu_54 == 4'd13) ? 1'b1 : 1'b0);
 

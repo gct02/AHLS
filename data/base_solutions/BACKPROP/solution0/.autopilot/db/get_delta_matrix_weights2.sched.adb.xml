@@ -97,10 +97,10 @@ entry:0 %i = alloca i32 1
 
 <Node id="5" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:1 %specpipeline_ln51 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
+entry:1 %specpipeline_ln41 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln51"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln41"/></StgValue>
 </operation>
 
 <operation id="12" st_id="1" stage="1" lat="1">
@@ -145,10 +145,10 @@ entry:3 %br_ln158 = br void %get_delta_matrix_weights2_loop1_1
 
 <Node id="9" bw="7" op_0_bw="7" op_1_bw="0">
 <![CDATA[
-get_delta_matrix_weights2_loop1_1:0 %i_31 = load i7 %i
+get_delta_matrix_weights2_loop1_1:0 %i_30 = load i7 %i
 
 ]]></Node>
-<StgValue><ssdm name="i_31"/></StgValue>
+<StgValue><ssdm name="i_30"/></StgValue>
 </operation>
 
 <operation id="15" st_id="2" stage="1" lat="1">
@@ -160,7 +160,7 @@ get_delta_matrix_weights2_loop1_1:0 %i_31 = load i7 %i
 
 <Node id="10" bw="1" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-get_delta_matrix_weights2_loop1_1:1 %icmp_ln158 = icmp_eq  i7 %i_31, i7 64
+get_delta_matrix_weights2_loop1_1:1 %icmp_ln158 = icmp_eq  i7 %i_30, i7 64
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln158"/></StgValue>
@@ -175,7 +175,7 @@ get_delta_matrix_weights2_loop1_1:1 %icmp_ln158 = icmp_eq  i7 %i_31, i7 64
 
 <Node id="11" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-get_delta_matrix_weights2_loop1_1:2 %add_ln158 = add i7 %i_31, i7 1
+get_delta_matrix_weights2_loop1_1:2 %add_ln158 = add i7 %i_30, i7 1
 
 ]]></Node>
 <StgValue><ssdm name="add_ln158"/></StgValue>
@@ -206,7 +206,7 @@ get_delta_matrix_weights2_loop1_1:3 %br_ln158 = br i1 %icmp_ln158, void %get_del
 
 <Node id="14" bw="64" op_0_bw="7">
 <![CDATA[
-get_delta_matrix_weights2_loop1_1.split:0 %zext_ln158 = zext i7 %i_31
+get_delta_matrix_weights2_loop1_1.split:0 %zext_ln158 = zext i7 %i_30
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln158"/></StgValue>
@@ -254,7 +254,7 @@ get_delta_matrix_weights2_loop1_1.split:4 %last_activations_load = load i6 %last
 
 <Node id="19" bw="6" op_0_bw="7">
 <![CDATA[
-get_delta_matrix_weights2_loop1_1.split:5 %empty = trunc i7 %i_31
+get_delta_matrix_weights2_loop1_1.split:5 %empty = trunc i7 %i_30
 
 ]]></Node>
 <StgValue><ssdm name="empty"/></StgValue>
@@ -303,7 +303,7 @@ get_delta_matrix_weights2_loop1_1.split:1 %speclooptripcount_ln159 = speclooptri
 
 <Node id="16" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-get_delta_matrix_weights2_loop1_1.split:2 %specloopname_ln165 = specloopname void @_ssdm_op_SpecLoopName, void @empty_19
+get_delta_matrix_weights2_loop1_1.split:2 %specloopname_ln165 = specloopname void @_ssdm_op_SpecLoopName, void @empty_20
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln165"/></StgValue>
@@ -643,7 +643,7 @@ for.inc.split:2 %speclooptripcount_ln162 = speclooptripcount void @_ssdm_op_Spec
 
 <Node id="31" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.inc.split:3 %specloopname_ln164 = specloopname void @_ssdm_op_SpecLoopName, void @empty_30
+for.inc.split:3 %specloopname_ln164 = specloopname void @_ssdm_op_SpecLoopName, void @empty_19
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln164"/></StgValue>

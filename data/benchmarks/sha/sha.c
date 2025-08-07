@@ -63,7 +63,7 @@ void local_memset(unsigned int *s, int c, int n, int e) {
     }
     local_memset_label1:
     while (m-- > 0) {
-        #pragma HLS LOOP_TRIPCOUNT max=14
+        #pragma HLS LOOP_TRIPCOUNT max=16
         *p++ = uc;
     }
 }
@@ -160,7 +160,7 @@ void sha_update(const unsigned char *buffer, int count) {
 
     sha_update_label4:
     while (count >= SHA_BUFFER_SIZE) {
-        #pragma HLS LOOP_TRIPCOUNT min=127 max=128
+        #pragma HLS LOOP_TRIPCOUNT min=0 max=128
         local_memcpy(sha_info_data, buffer, SHA_BUFFER_SIZE);
         sha_transform();
         buffer += SHA_BUFFER_SIZE;

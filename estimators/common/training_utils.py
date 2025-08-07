@@ -22,12 +22,10 @@ class CheckpointManager:
         self.burn_in_epochs = burn_in_epochs
         self.milestone_epochs = milestone_epochs or [50, 100, 200]
 
-        if not all(isinstance(e, int) and e >= 0 for e in self.milestone_epochs):
+        if not all(isinstance(e, int) and e >= burn_in_epochs for e in self.milestone_epochs):
             raise ValueError("Milestone epochs must be non-negative integers.")
     
         self.milestone_epochs = sorted(self.milestone_epochs)
-        if not self.milestone_epochs or self.milestone_epochs[0] <= burn_in_epochs:
-            raise ValueError("Milestone epochs must be greater than burn-in epochs.")
 
         self.output_dir = output_dir
         if not os.path.exists(output_dir):
@@ -87,7 +85,7 @@ class CheckpointManager:
                 f.write(f"{index},{target},{pred}\n")
         
         with open(mape_path, "w") as f:
-            f.write(f"Epoch {epoch + 1}: MAPE = {mape:.4f}%\n")
+            f.write(f"Epoch {epoch + 1}: MAPE = {mape:.4f}\n")
         
     def get_checkpoint_index(self, epoch: int) -> int:
         if epoch <= self.burn_in_epochs:

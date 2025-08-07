@@ -4,21 +4,21 @@ Implementation tool: Xilinx Vivado v.2023.2
 Project:             TRANS_FFT
 Solution:            solution0
 Device target:       xcu50-fsvh2104-2-e
-Report date:         Wed Jul 09 04:33:04 -03 2025
+Report date:         Thu Aug 07 02:09:23 -03 2025
 
 #=== Post-Implementation Resource usage ===
 SLICE:            0
-LUT:          26602
-FF:           13183
-DSP:            274
+LUT:          27038
+FF:           12711
+DSP:            308
 BRAM:            20
 URAM:             0
 LATCH:            0
-SRL:             56
-CLB:           5008
+SRL:            167
+CLB:           5305
 
 #=== Final timing ===
 CP required:                     8.000
-CP achieved post-synthesis:      6.525
-CP achieved post-implementation: 7.929
+CP achieved post-synthesis:      6.518
+CP achieved post-implementation: 7.863
 Timing met

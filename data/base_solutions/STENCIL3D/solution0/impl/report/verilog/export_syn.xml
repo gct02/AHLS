@@ -176,7 +176,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/stencil3d_utilization_hierarchical_synth.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Wed Jul 09 04:19:39 -03 2025"/>
+    <item NAME="Date" VALUE="Thu Aug 07 00:52:29 -03 2025"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="STENCIL3D"/>
     <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>

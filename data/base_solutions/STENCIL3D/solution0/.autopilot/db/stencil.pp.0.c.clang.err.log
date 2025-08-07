@@ -1,7 +1,7 @@
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=stencil3d_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=stencil3d_XLX_SEP_ PragmaOptions=name=stencil3d_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=stencil3d_XLX_SEP_ PragmaOptions=name=stencil3d_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE TOP name=stencil3d
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/stencil3d.tcl:1:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=stencil3d_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]

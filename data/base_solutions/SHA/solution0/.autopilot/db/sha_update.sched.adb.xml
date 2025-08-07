@@ -87,10 +87,10 @@ entry:1 %count_addr_02 = alloca i32 1
 
 <Node id="10" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:2 %specpipeline_ln18 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
+entry:2 %specpipeline_ln14 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln18"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln14"/></StgValue>
 </operation>
 
 <operation id="10" st_id="1" stage="1" lat="1">
@@ -717,7 +717,7 @@ while.body.split:5 %call_ln165 = call void @sha_transform, i32 %sha_info_data, i
 
 <Node id="38" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-while.body.split:2 %speclooptripcount_ln163 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 127, i64 128, i64 127
+while.body.split:2 %speclooptripcount_ln163 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 128, i64 64
 
 ]]></Node>
 <StgValue><ssdm name="speclooptripcount_ln163"/></StgValue>

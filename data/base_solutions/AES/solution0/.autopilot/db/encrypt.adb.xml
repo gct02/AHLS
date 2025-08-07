@@ -397,10 +397,10 @@ for.inc.split:3 %call_ln113 = call void @MixColumn_AddRoundKey, i32 %statemt, i4
 
 <Node id="20" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.inc.split:0 %speclooptripcount_ln67 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9
+for.inc.split:0 %speclooptripcount_ln111 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln67"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln111"/></StgValue>
 </operation>
 
 <operation id="32" st_id="8" stage="1" lat="1">
@@ -721,13 +721,13 @@ for.end:2 %ret_ln0 = ret
 </dataflow>
 <dataflow id="157" from="word" to="call_ln113" fromId="54" toId="30">
 </dataflow>
-<dataflow id="159" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln67" fromId="158" toId="31">
+<dataflow id="159" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln111" fromId="158" toId="31">
 </dataflow>
-<dataflow id="161" from="StgValue_160" to="speclooptripcount_ln67" fromId="160" toId="31">
+<dataflow id="161" from="StgValue_160" to="speclooptripcount_ln111" fromId="160" toId="31">
 </dataflow>
-<dataflow id="162" from="StgValue_160" to="speclooptripcount_ln67" fromId="160" toId="31">
+<dataflow id="162" from="StgValue_160" to="speclooptripcount_ln111" fromId="160" toId="31">
 </dataflow>
-<dataflow id="163" from="StgValue_160" to="speclooptripcount_ln67" fromId="160" toId="31">
+<dataflow id="163" from="StgValue_160" to="speclooptripcount_ln111" fromId="160" toId="31">
 </dataflow>
 <dataflow id="165" from="_ssdm_op_SpecLoopName" to="specloopname_ln114" fromId="164" toId="32">
 </dataflow>

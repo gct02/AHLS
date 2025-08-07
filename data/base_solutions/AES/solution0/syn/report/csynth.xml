@@ -1354,55 +1354,51 @@
     </ReportSWInterface>
     <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
     <PragmaReport>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_dec.c:117" status="valid" parentFunction="decrypt" variable="" isDirective="0" options="min=9 max=13 avg=12"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_enc.c:111" status="valid" parentFunction="encrypt" variable="" isDirective="0" options="min=9 max=13 avg=11"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:325" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:365" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:381" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:390" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_dec.c:117" status="valid" parentFunction="decrypt" variable="" isDirective="0" options="min=9 max=9 avg=9"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_enc.c:111" status="valid" parentFunction="encrypt" variable="" isDirective="0" options="min=9 max=9 avg=9"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:325" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:365" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:381" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:390" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:393" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:437" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:470" status="valid" parentFunction="addroundkey" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:555" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=8 avg=6"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:437" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:470" status="valid" parentFunction="addroundkey" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:555" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:558" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
-        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:566" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=32 max=116 avg=74"/>
+        <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:566" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=40 max=40 avg=40"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:586" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/aes/aes_key.c:593" status="valid" parentFunction="keyschedule" variable="" isDirective="0" options="min=4 max=4 avg=4"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:38" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:34" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:7" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:24" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:32" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:25" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:22" status="valid" parentFunction="addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:30" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:23" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:1" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:2" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:3" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:4" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:18" status="valid" parentFunction="addroundkey_inversmixcolumn" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:16" status="valid" parentFunction="aes_main" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:37" status="valid" parentFunction="bytesub_shiftrow" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:23" status="valid" parentFunction="bytesub_shiftrow" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:35" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:32" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:15" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:21" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:34" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:20" status="valid" parentFunction="decrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:31" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:14" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:20" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:33" status="valid" parentFunction="inversshiftrow_bytesub" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:19" status="valid" parentFunction="inversshiftrow_bytesub" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:36" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:19" status="valid" parentFunction="encrypt" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:33" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:24" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:25" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="loop_flatten" location="../base_directives/aes.tcl:26" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="loop_flatten" location="../base_directives/aes.tcl:27" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="loop_flatten" location="../base_directives/aes.tcl:28" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:29" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/aes.tcl:30" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:8" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:9" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:10" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:11" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:12" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:13" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/aes.tcl:22" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/aes.tcl:31" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/aes.tcl:21" status="valid" parentFunction="keyschedule" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/aes.tcl:29" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:5" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:6" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/aes.tcl:17" status="valid" parentFunction="mixcolumn_addroundkey" variable="" isDirective="1" options="off=true"/>

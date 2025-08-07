@@ -314,7 +314,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/kernel_gramschmidt_utilization_hierarchical_routed.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Wed Jul 09 03:57:05 -03 2025"/>
+    <item NAME="Date" VALUE="Thu Aug 07 00:18:08 -03 2025"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="GRAMSCHMIDT"/>
     <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>

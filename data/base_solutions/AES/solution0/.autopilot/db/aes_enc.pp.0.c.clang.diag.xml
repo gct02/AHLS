@@ -9,7 +9,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl</string>
       <key>line</key>
-      <integer>20</integer>
+      <integer>19</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -25,7 +25,7 @@
       <key>filename</key>
       <string>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl</string>
       <key>line</key>
-      <integer>34</integer>
+      <integer>31</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -61,7 +61,7 @@
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=encrypt_XLX_SEP_ PragmaOptions=min=9 max=13 avg=11_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=encrypt_XLX_SEP_ PragmaOptions=min=9 max=9 avg=9_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>

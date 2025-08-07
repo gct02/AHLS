@@ -2,7 +2,7 @@
 == Vivado Place & Route Results
 ================================================================
 + General Information:
-    * Date:            Wed Jul 09 04:14:46 -03 2025
+    * Date:            Thu Aug 07 00:44:12 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         SHA
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -34,8 +34,8 @@
 ================================================================
 == Place & Route Resource Summary
 ================================================================
-LUT:              2858
-FF:               2660
+LUT:              2897
+FF:               2683
 DSP:              0
 BRAM:             16
 URAM:             0
@@ -50,8 +50,8 @@ SRL:              0
 | Timing         | Period (ns) |
 +----------------+-------------+
 | Target         | 8.000       |
-| Post-Synthesis | 2.617       |
-| Post-Route     | 3.665       |
+| Post-Synthesis | 2.519       |
+| Post-Route     | 3.794       |
 +----------------+-------------+
 
 
@@ -61,27 +61,31 @@ SRL:              0
 +-------------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 | Name                                                                    | LUT  | FF   | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
 +-------------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
-| inst                                                                    | 2858 | 2660 |     | 16   |      |     |        |      |         |          |        |
-|   (inst)                                                                | 8    | 116  |     |      |      |     |        |      |         |          |        |
-|   grp_sha_final_fu_136                                                  | 1247 | 1194 |     | 2    |      |     |        |      |         |          |        |
-|     (grp_sha_final_fu_136)                                              | 12   | 32   |     |      |      |     |        |      |         |          |        |
-|     grp_local_memset_fu_64                                              | 48   | 39   |     |      |      |     |        |      |         |          |        |
-|     grp_sha_transform_fu_74                                             | 1187 | 1123 |     | 2    |      |     |        |      |         |          |        |
-|       (grp_sha_transform_fu_74)                                         | 896  | 1123 |     |      |      |     |        |      |         |          |        |
-|       W_U                                                               | 291  |      |     | 2    |      |     |        |      |         |          |        |
-|   grp_sha_init_fu_126                                                   | 8    | 3    |     |      |      |     |        |      |         |          |        |
-|   grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118     | 55   | 47   |     |      |      |     |        |      |         |          |        |
-|     (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118) | 6    | 45   |     |      |      |     |        |      |         |          |        |
+| inst                                                                    | 2897 | 2683 |     | 16   |      |     |        |      |         |          |        |
+|   (inst)                                                                | 13   | 162  |     |      |      |     |        |      |         |          |        |
+|   grp_local_memset_fu_185                                               | 87   | 42   |     |      |      |     |        |      |         |          |        |
+|     (grp_local_memset_fu_185)                                           | 13   | 10   |     |      |      |     |        |      |         |          |        |
+|     grp_local_memset_Pipeline_local_memset_label1_fu_44                 | 74   | 32   |     |      |      |     |        |      |         |          |        |
+|       (grp_local_memset_Pipeline_local_memset_label1_fu_44)             |      | 30   |     |      |      |     |        |      |         |          |        |
+|       flow_control_loop_pipe_sequential_init_U                          | 74   | 2    |     |      |      |     |        |      |         |          |        |
+|   grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160     | 56   | 47   |     |      |      |     |        |      |         |          |        |
+|     (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160) | 7    | 45   |     |      |      |     |        |      |         |          |        |
 |     flow_control_loop_pipe_sequential_init_U                            | 49   | 2    |     |      |      |     |        |      |         |          |        |
-|   grp_sha_update_fu_148                                                 | 1526 | 1300 |     | 2    |      |     |        |      |         |          |        |
-|     (grp_sha_update_fu_148)                                             | 150  | 92   |     |      |      |     |        |      |         |          |        |
-|     grp_local_memcpy_fu_88                                              | 172  | 85   |     |      |      |     |        |      |         |          |        |
-|     grp_sha_transform_fu_100                                            | 1204 | 1123 |     | 2    |      |     |        |      |         |          |        |
-|       (grp_sha_transform_fu_100)                                        | 913  | 1123 |     |      |      |     |        |      |         |          |        |
+|   grp_sha_stream_Pipeline_sha_stream_label2_fu_203                      | 12   | 9    |     |      |      |     |        |      |         |          |        |
+|     (grp_sha_stream_Pipeline_sha_stream_label2_fu_203)                  |      | 7    |     |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U                            | 12   | 2    |     |      |      |     |        |      |         |          |        |
+|   grp_sha_transform_fu_195                                              | 1192 | 1123 |     | 2    |      |     |        |      |         |          |        |
+|     (grp_sha_transform_fu_195)                                          | 901  | 1123 |     |      |      |     |        |      |         |          |        |
+|     W_U                                                                 | 291  |      |     | 2    |      |     |        |      |         |          |        |
+|   grp_sha_update_fu_168                                                 | 1514 | 1300 |     | 2    |      |     |        |      |         |          |        |
+|     (grp_sha_update_fu_168)                                             | 135  | 92   |     |      |      |     |        |      |         |          |        |
+|     grp_local_memcpy_fu_90                                              | 167  | 85   |     |      |      |     |        |      |         |          |        |
+|     grp_sha_transform_fu_102                                            | 1212 | 1123 |     | 2    |      |     |        |      |         |          |        |
+|       (grp_sha_transform_fu_102)                                        | 921  | 1123 |     |      |      |     |        |      |         |          |        |
 |       W_U                                                               | 291  |      |     | 2    |      |     |        |      |         |          |        |
 |   local_indata_U                                                        | 16   |      |     | 8    |      |     |        |      |         |          |        |
-|   sha_info_data_U                                                       |      |      |     | 2    |      |     |        |      |         |          |        |
-|   sha_info_digest_U                                                     | 1    |      |     | 2    |      |     |        |      |         |          |        |
+|   sha_info_data_U                                                       | 5    |      |     | 2    |      |     |        |      |         |          |        |
+|   sha_info_digest_U                                                     | 4    |      |     | 2    |      |     |        |      |         |          |        |
 +-------------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 
 
@@ -94,8 +98,8 @@ SRL:              0
 | LUT                                                       | 70%       | 0.33%  | OK     |
 | FD                                                        | 50%       | 0.15%  | OK     |
 | LUTRAM+SRL                                                | 25%       | 0.00%  | OK     |
-| CARRY8                                                    | 25%       | 0.13%  | OK     |
-| MUXF7                                                     | 15%       | 0.01%  | OK     |
+| CARRY8                                                    | 25%       | 0.14%  | OK     |
+| MUXF7                                                     | 15%       | 0.00%  | OK     |
 | DSP                                                       | 80%       | 0.00%  | OK     |
 | RAMB/FIFO                                                 | 80%       | 0.60%  | OK     |
 | URAM                                                      | 80%       | 0.00%  | OK     |
@@ -103,8 +107,8 @@ SRL:              0
 | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
 | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
 | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
-| Control Sets                                              | 16344     | 72     | OK     |
-| Average Fanout for modules > 100k cells                   | 4         | 2.74   | OK     |
+| Control Sets                                              | 16344     | 71     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 2.75   | OK     |
 | Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
 | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
 +-----------------------------------------------------------+-----------+--------+--------+
@@ -123,74 +127,75 @@ SRL:              0
 == Place & Route Timing Paths
 ================================================================
 * Timing was met
-+-------+-------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
-| Path  | SLACK | STARTPOINT PIN                                                              | ENDPOINT PIN                                                          | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
-|       |       |                                                                             |                                                                       |              |            |                |          DELAY |        DELAY |
-+-------+-------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
-| Path1 | 4.335 | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKBWRCLK   | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[22]/D   |            4 |          6 |          3.599 |          1.431 |        2.168 |
-| Path2 | 4.452 | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKBWRCLK   | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[29]/D   |            5 |          6 |          3.483 |          1.503 |        1.980 |
-| Path3 | 4.455 | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/ram_reg_bram_0/CLKARDCLK | grp_sha_update_fu_148/grp_sha_transform_fu_100/B_11_reg_317_reg[31]/D |            6 |          6 |          3.479 |          1.582 |        1.897 |
-| Path4 | 4.462 | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKBWRCLK   | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[23]/D   |            4 |          6 |          3.473 |          1.492 |        1.981 |
-| Path5 | 4.476 | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0/CLKBWRCLK   | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[31]/D   |            5 |          6 |          3.459 |          1.574 |        1.885 |
-+-------+-------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
++-------+-------+-----------------------------------------------------------------------------+---------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                                                              | ENDPOINT PIN                                                        | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                                                             |                                                                     |              |            |                |          DELAY |        DELAY |
++-------+-------+-----------------------------------------------------------------------------+---------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 4.206 | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0/CLKARDCLK | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[26]/D |            5 |          6 |          3.728 |          1.455 |        2.273 |
+| Path2 | 4.255 | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0/CLKARDCLK | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[25]/D |            5 |          6 |          3.679 |          1.366 |        2.313 |
+| Path3 | 4.277 | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0/CLKARDCLK | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[29]/D |            5 |          6 |          3.657 |          1.406 |        2.251 |
+| Path4 | 4.278 | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0/CLKARDCLK | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[24]/D |            5 |          6 |          3.656 |          1.394 |        2.262 |
+| Path5 | 4.296 | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0/CLKARDCLK | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[31]/D |            5 |          6 |          3.638 |          1.452 |        2.186 |
++-------+-------+-----------------------------------------------------------------------------+---------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
 
     +---------------------------------------------------------------------------+------------------------+
     | Path1 Cells                                                               | Primitive Type         |
     +---------------------------------------------------------------------------+------------------------+
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_9     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_17    | CLB.LUT.LUT4           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[23]_i_2 | CLB.CARRY.CARRY8       |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[22]_i_1     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[22]         | REGISTER.SDR.FDRE      |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_5     | CLB.LUT.LUT3           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_13    | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[23]_i_2 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[31]_i_3 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[26]_i_1     | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[26]         | REGISTER.SDR.FDRE      |
     +---------------------------------------------------------------------------+------------------------+
 
     +---------------------------------------------------------------------------+------------------------+
     | Path2 Cells                                                               | Primitive Type         |
     +---------------------------------------------------------------------------+------------------------+
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_9     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_17    | CLB.LUT.LUT4           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[23]_i_2 | CLB.CARRY.CARRY8       |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[31]_i_2 | CLB.CARRY.CARRY8       |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[29]_i_1     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[29]         | REGISTER.SDR.FDRE      |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_5     | CLB.LUT.LUT3           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_13    | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[23]_i_2 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[31]_i_3 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[25]_i_1     | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[25]         | REGISTER.SDR.FDRE      |
     +---------------------------------------------------------------------------+------------------------+
 
-    +--------------------------------------------------------------------------------+------------------------+
-    | Path3 Cells                                                                    | Primitive Type         |
-    +--------------------------------------------------------------------------------+------------------------+
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/ram_reg_bram_0              | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/B_11_reg_317[15]_i_9__0     | CLB.LUT.LUT3           |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/B_11_reg_317[15]_i_17__0    | CLB.LUT.LUT4           |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/B_11_reg_317_reg[15]_i_2__0 | CLB.CARRY.CARRY8       |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/B_11_reg_317_reg[23]_i_2__0 | CLB.CARRY.CARRY8       |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/B_11_reg_317_reg[31]_i_3__0 | CLB.CARRY.CARRY8       |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/W_U/B_11_reg_317[31]_i_2__0     | CLB.LUT.LUT3           |
-    | grp_sha_update_fu_148/grp_sha_transform_fu_100/B_11_reg_317_reg[31]            | REGISTER.SDR.FDRE      |
-    +--------------------------------------------------------------------------------+------------------------+
+    +---------------------------------------------------------------------------+------------------------+
+    | Path3 Cells                                                               | Primitive Type         |
+    +---------------------------------------------------------------------------+------------------------+
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_5     | CLB.LUT.LUT3           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_13    | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[23]_i_2 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[31]_i_3 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[29]_i_1     | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[29]         | REGISTER.SDR.FDRE      |
+    +---------------------------------------------------------------------------+------------------------+
 
     +---------------------------------------------------------------------------+------------------------+
     | Path4 Cells                                                               | Primitive Type         |
     +---------------------------------------------------------------------------+------------------------+
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_9     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_17    | CLB.LUT.LUT4           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[23]_i_2 | CLB.CARRY.CARRY8       |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_1     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[23]         | REGISTER.SDR.FDRE      |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_5     | CLB.LUT.LUT3           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_13    | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[23]_i_2 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[31]_i_3 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[24]_i_1     | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[24]         | REGISTER.SDR.FDRE      |
     +---------------------------------------------------------------------------+------------------------+
 
     +---------------------------------------------------------------------------+------------------------+
     | Path5 Cells                                                               | Primitive Type         |
     +---------------------------------------------------------------------------+------------------------+
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/ram_reg_bram_0           | BLOCKRAM.BRAM.RAMB36E2 |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_9     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[23]_i_17    | CLB.LUT.LUT4           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[23]_i_2 | CLB.CARRY.CARRY8       |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296_reg[31]_i_2 | CLB.CARRY.CARRY8       |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/W_U/B_10_reg_296[31]_i_1     | CLB.LUT.LUT3           |
-    | grp_sha_final_fu_136/grp_sha_transform_fu_74/B_10_reg_296_reg[31]         | REGISTER.SDR.FDRE      |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_5     | CLB.LUT.LUT3           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[23]_i_13    | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[23]_i_2 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184_reg[31]_i_3 | CLB.CARRY.CARRY8       |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/W_U/B_7_fu_184[31]_i_2     | CLB.LUT.LUT4           |
+    | grp_sha_update_fu_168/grp_sha_transform_fu_102/B_7_fu_184_reg[31]         | REGISTER.SDR.FDRE      |
     +---------------------------------------------------------------------------+------------------------+
 
 

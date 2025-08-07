@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'gsm_div'
 ================================================================
-* Date:           Wed Jul  9 03:57:17 2025
+* Date:           Wed Aug  6 20:41:48 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        GSM
@@ -191,7 +191,7 @@ IsGatedGlobalClock: 0
 * FSM state operations: 
 
 State 1 <SV = 0> <Delay = 1.17>
-ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%specpipeline_ln17 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:17]   --->   Operation 3 'specpipeline' 'specpipeline_ln17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%specpipeline_ln16 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl:16]   --->   Operation 3 'specpipeline' 'specpipeline_ln16' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%denum_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %denum" [data/benchmarks/gsm/gsm_add.c:120]   --->   Operation 4 'read' 'denum_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%num_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %num" [data/benchmarks/gsm/gsm_add.c:120]   --->   Operation 5 'read' 'num_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%sext_ln120 = sext i16 %num_read" [data/benchmarks/gsm/gsm_add.c:120]   --->   Operation 6 'sext' 'sext_ln120' <Predicate = true> <Delay = 0.00>
@@ -253,7 +253,7 @@ Port [ denum]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; exte
 
 <LifeTime>
 <method=bitvector/>
-specpipeline_ln17       (specpipeline     ) [ 000]
+specpipeline_ln16       (specpipeline     ) [ 000]
 denum_read              (read             ) [ 000]
 num_read                (read             ) [ 000]
 sext_ln120              (sext             ) [ 000]

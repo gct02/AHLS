@@ -19,7 +19,7 @@ llvm/profiler/
 llvm/utils/
 llvm/clang_plugins/
 
-test_projects/
+/tests/
 old_area_models/
 data/kernel_graphs/
 
@@ -27,6 +27,6 @@ estimators/*/models
 estimators/*/dataset
 fine_tuning/dataset
 
-hls/*.tcl
+hls_utils/*.tcl
 /*.sh
 vitis_hls.log

@@ -740,7 +740,7 @@
     "id": 35,
     "ifcond": "",
     "insert_position": "",
-    "label": "backprop_loop1_1",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -757,11 +757,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "soft_max",
+    "functionName": "matrix_vector_product_with_bias_input_layer",
     "id": 36,
     "ifcond": "",
     "insert_position": "",
-    "label": "soft_max_loop1",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -778,11 +778,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "soft_max",
+    "functionName": "matrix_vector_product_with_bias_second_layer",
     "id": 37,
     "ifcond": "",
     "insert_position": "",
-    "label": "soft_max_loop2",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -799,11 +799,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "RELU",
+    "functionName": "matrix_vector_product_with_bias_output_layer",
     "id": 38,
     "ifcond": "",
     "insert_position": "",
-    "label": "RELU_loop1",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -820,11 +820,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "add_bias_to_activations",
+    "functionName": "get_delta_matrix_weights1",
     "id": 39,
     "ifcond": "",
     "insert_position": "",
-    "label": "add_bias_to_activations_loop1",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -841,11 +841,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "take_difference",
+    "functionName": "get_delta_matrix_weights2",
     "id": 40,
     "ifcond": "",
     "insert_position": "",
-    "label": "take_difference_loop1",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -862,7 +862,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "backprop",
+    "functionName": "get_delta_matrix_weights3",
     "id": 41,
     "ifcond": "",
     "insert_position": "",
@@ -883,7 +883,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "soft_max",
+    "functionName": "get_oracle_activations1",
     "id": 42,
     "ifcond": "",
     "insert_position": "",
@@ -904,7 +904,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "RELU",
+    "functionName": "get_oracle_activations2",
     "id": 43,
     "ifcond": "",
     "insert_position": "",
@@ -925,7 +925,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "add_bias_to_activations",
+    "functionName": "update_weights",
     "id": 44,
     "ifcond": "",
     "insert_position": "",
@@ -946,13 +946,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_input_layer",
+    "functionName": "update_weights",
     "id": 45,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -967,13 +967,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_second_layer",
+    "functionName": "matrix_vector_product_with_bias_input_layer",
     "id": 46,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -988,13 +988,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_output_layer",
+    "functionName": "matrix_vector_product_with_bias_second_layer",
     "id": 47,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1009,13 +1009,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "take_difference",
+    "functionName": "matrix_vector_product_with_bias_output_layer",
     "id": 48,
     "ifcond": "",
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1036,7 +1036,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1057,7 +1057,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1078,7 +1078,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1099,7 +1099,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1120,7 +1120,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -1135,323 +1135,8 @@
   },
   {
     "functionLabel": "",
-    "functionName": "update_weights",
+    "functionName": "matrix_vector_product_with_bias_input_layer",
     "id": 54,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "PIPELINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 55,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "backprop",
-    "id": 55,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 56,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "soft_max",
-    "id": 56,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 57,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "RELU",
-    "id": 57,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 58,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "add_bias_to_activations",
-    "id": 58,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 59,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "take_difference",
-    "id": 59,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 60,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "update_weights",
-    "id": 60,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 61,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_input_layer",
-    "id": 61,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 62,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_second_layer",
-    "id": 62,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 63,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_output_layer",
-    "id": 63,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 64,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "get_delta_matrix_weights1",
-    "id": 64,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 65,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "get_delta_matrix_weights2",
-    "id": 65,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 66,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "get_delta_matrix_weights3",
-    "id": 66,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 67,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "get_oracle_activations1",
-    "id": 67,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 68,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "get_oracle_activations2",
-    "id": 68,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 69,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "matrix_vector_product_with_bias_input_layer",
-    "id": 69,
     "ifcond": "",
     "insert_position": "",
     "label": "matrix_vector_product_with_bias_input_layer_loop1_1",
@@ -1466,13 +1151,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 70,
+    "sourceLine": 55,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "matrix_vector_product_with_bias_second_layer",
-    "id": 70,
+    "id": 55,
     "ifcond": "",
     "insert_position": "",
     "label": "matrix_vector_product_with_bias_second_layer_loop1_1",
@@ -1487,13 +1172,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 71,
+    "sourceLine": 56,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "matrix_vector_product_with_bias_output_layer",
-    "id": 71,
+    "id": 56,
     "ifcond": "",
     "insert_position": "",
     "label": "matrix_vector_product_with_bias_output_layer_loop1_1",
@@ -1508,13 +1193,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 72,
+    "sourceLine": 57,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "get_oracle_activations1",
-    "id": 72,
+    "id": 57,
     "ifcond": "",
     "insert_position": "",
     "label": "get_oracle_activations1_loop1_1",
@@ -1529,13 +1214,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 73,
+    "sourceLine": 58,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "get_oracle_activations2",
-    "id": 73,
+    "id": 58,
     "ifcond": "",
     "insert_position": "",
     "label": "get_oracle_activations2_loop1_1",
@@ -1550,13 +1235,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 74,
+    "sourceLine": 59,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "get_delta_matrix_weights1",
-    "id": 74,
+    "id": 59,
     "ifcond": "",
     "insert_position": "",
     "label": "get_delta_matrix_weights1_loop1_1",
@@ -1571,13 +1256,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 75,
+    "sourceLine": 60,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "get_delta_matrix_weights2",
-    "id": 75,
+    "id": 60,
     "ifcond": "",
     "insert_position": "",
     "label": "get_delta_matrix_weights2_loop1_1",
@@ -1592,13 +1277,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 76,
+    "sourceLine": 61,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "get_delta_matrix_weights3",
-    "id": 76,
+    "id": 61,
     "ifcond": "",
     "insert_position": "",
     "label": "get_delta_matrix_weights3_loop1_1",
@@ -1613,13 +1298,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 77,
+    "sourceLine": 62,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "update_weights",
-    "id": 77,
+    "id": 62,
     "ifcond": "",
     "insert_position": "",
     "label": "update_weights_loop1_1",
@@ -1634,13 +1319,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 78,
+    "sourceLine": 63,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "update_weights",
-    "id": 78,
+    "id": 63,
     "ifcond": "",
     "insert_position": "",
     "label": "update_weights_loop3_1",
@@ -1655,13 +1340,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 79,
+    "sourceLine": 64,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "update_weights",
-    "id": 79,
+    "id": 64,
     "ifcond": "",
     "insert_position": "",
     "label": "update_weights_loop5_1",
@@ -1676,13 +1361,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 80,
+    "sourceLine": 65,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "update_weights",
-    "id": 80,
+    "id": 65,
     "ifcond": "",
     "insert_position": "",
     "label": "update_weights_loop7_1",
@@ -1697,13 +1382,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 81,
+    "sourceLine": 66,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "update_weights",
-    "id": 81,
+    "id": 66,
     "ifcond": "",
     "insert_position": "",
     "label": "update_weights_loop9_1",
@@ -1718,13 +1403,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 82,
+    "sourceLine": 67,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "update_weights",
-    "id": 82,
+    "id": 67,
     "ifcond": "",
     "insert_position": "",
     "label": "update_weights_loop11_1",
@@ -1739,13 +1424,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 83,
+    "sourceLine": 68,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "backprop",
-    "id": 83,
+    "id": 68,
     "ifcond": "",
     "insert_position": "",
     "label": "backprop_loop1_1",
@@ -1760,13 +1445,13 @@
     },
     "slx": false,
     "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl",
-    "sourceLine": 84,
+    "sourceLine": 69,
     "success": true
   },
   {
     "functionLabel": "",
     "functionName": "backprop",
-    "id": 84,
+    "id": 69,
     "ifcond": "",
     "insert_position": "",
     "label": "",
@@ -1780,7 +1465,7 @@
       ]
     },
     "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl",
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl",
     "sourceLine": 9,
     "success": true
   }

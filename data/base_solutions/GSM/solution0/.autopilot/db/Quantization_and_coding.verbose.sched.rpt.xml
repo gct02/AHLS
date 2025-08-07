@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Quantization_and_coding'" level="0">
-<item name = "Date">Wed Jul  9 03:57:16 2025
+<item name = "Date">Wed Aug  6 20:41:47 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 4.696 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 5.672 ns, 2.16 ns</column>
 </table>
 </item>
 </section>

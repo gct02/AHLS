@@ -57,6 +57,15 @@ def extract_array_and_loop_md(
     
 
 def merge_array_info(base_array_md_path: str, lowered_array_md_path: str):
+    def normalize_function_name(name: str) -> str:
+        original_name = name
+        chars_to_replace = ['.', '-', ' ', '(', ')', '[', ']', '<', '>', ':']
+        for char in chars_to_replace:
+            name = name.replace(char, '_')
+        if ("Pipeline" in name or original_name.endswith(">")) and name.endswith("_"):
+            name += "s"
+        return name
+
     required_keys = ["Global", "Local"]
 
     with open(base_array_md_path, 'r') as f:
@@ -80,8 +89,7 @@ def merge_array_info(base_array_md_path: str, lowered_array_md_path: str):
 
             if scope == "Local":
                 function_name, array_name = array_label.split('/')
-                if re.search(r"\.[1-9]\d*$", function_name) is not None:
-                    function_name = function_name[:function_name.rfind('.')]
+                function_name = normalize_function_name(function_name)
                 original_array_label = f"{function_name}/{array_name}"
             else:
                 original_array_label = array_label
@@ -98,9 +106,13 @@ def merge_array_info(base_array_md_path: str, lowered_array_md_path: str):
             else:
                 for key in keys_to_merge:
                     merged_array_md[f"Original{key}"] = lowered_array_md[key]
+
+            for key in ["Stores", "Loads", "GEPs"]:
+                for item in merged_array_md.get(key, []):
+                    if "FunctionName" in item:
+                        item["FunctionName"] = normalize_function_name(item["FunctionName"])
             
-            norm_array_label = array_label.replace('.', '_')
-            merged_array_md_dict[scope][norm_array_label] = merged_array_md
+            merged_array_md_dict[scope][original_array_label] = merged_array_md
 
     return merged_array_md_dict
 

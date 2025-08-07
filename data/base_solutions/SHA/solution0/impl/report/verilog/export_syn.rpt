@@ -2,7 +2,7 @@
 == Vivado RTL Synthesis Results
 ================================================================
 + General Information:
-    * Date:            Wed Jul 09 04:14:47 -03 2025
+    * Date:            Thu Aug 07 00:44:12 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         SHA
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -30,8 +30,8 @@
 ================================================================
 == RTL Synthesis Resource Summary
 ================================================================
-LUT:              2932
-FF:               2660
+LUT:              2967
+FF:               2683
 DSP:              0
 BRAM:             16
 URAM:             0
@@ -46,7 +46,7 @@ SRL:              0
 | Timing         | Period (ns) |
 +----------------+-------------+
 | Target         | 8.000       |
-| Post-Synthesis | 2.617       |
+| Post-Synthesis | 2.519       |
 +----------------+-------------+
 
 
@@ -56,27 +56,31 @@ SRL:              0
 +-------------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 | Name                                                                    | LUT  | FF   | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
 +-------------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
-| inst                                                                    | 2932 | 2660 |     | 16   |      |     |        |      |         |          |        |
-|   (inst)                                                                | 9    | 116  |     |      |      |     |        |      |         |          |        |
-|   grp_sha_final_fu_136                                                  | 1281 | 1194 |     | 2    |      |     |        |      |         |          |        |
-|     (grp_sha_final_fu_136)                                              | 13   | 32   |     |      |      |     |        |      |         |          |        |
-|     grp_local_memset_fu_64                                              | 48   | 39   |     |      |      |     |        |      |         |          |        |
-|     grp_sha_transform_fu_74                                             | 1220 | 1123 |     | 2    |      |     |        |      |         |          |        |
-|       (grp_sha_transform_fu_74)                                         | 929  | 1123 |     |      |      |     |        |      |         |          |        |
-|       W_U                                                               | 291  |      |     | 2    |      |     |        |      |         |          |        |
-|   grp_sha_init_fu_126                                                   | 8    | 3    |     |      |      |     |        |      |         |          |        |
-|   grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118     | 56   | 47   |     |      |      |     |        |      |         |          |        |
-|     (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118) | 6    | 45   |     |      |      |     |        |      |         |          |        |
+| inst                                                                    | 2967 | 2683 |     | 16   |      |     |        |      |         |          |        |
+|   (inst)                                                                | 13   | 162  |     |      |      |     |        |      |         |          |        |
+|   grp_local_memset_fu_185                                               | 87   | 42   |     |      |      |     |        |      |         |          |        |
+|     (grp_local_memset_fu_185)                                           | 13   | 10   |     |      |      |     |        |      |         |          |        |
+|     grp_local_memset_Pipeline_local_memset_label1_fu_44                 | 74   | 32   |     |      |      |     |        |      |         |          |        |
+|       (grp_local_memset_Pipeline_local_memset_label1_fu_44)             |      | 30   |     |      |      |     |        |      |         |          |        |
+|       flow_control_loop_pipe_sequential_init_U                          | 74   | 2    |     |      |      |     |        |      |         |          |        |
+|   grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160     | 57   | 47   |     |      |      |     |        |      |         |          |        |
+|     (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160) | 7    | 45   |     |      |      |     |        |      |         |          |        |
 |     flow_control_loop_pipe_sequential_init_U                            | 50   | 2    |     |      |      |     |        |      |         |          |        |
-|   grp_sha_update_fu_148                                                 | 1561 | 1300 |     | 2    |      |     |        |      |         |          |        |
-|     (grp_sha_update_fu_148)                                             | 152  | 92   |     |      |      |     |        |      |         |          |        |
-|     grp_local_memcpy_fu_88                                              | 173  | 85   |     |      |      |     |        |      |         |          |        |
-|     grp_sha_transform_fu_100                                            | 1236 | 1123 |     | 2    |      |     |        |      |         |          |        |
-|       (grp_sha_transform_fu_100)                                        | 945  | 1123 |     |      |      |     |        |      |         |          |        |
+|   grp_sha_stream_Pipeline_sha_stream_label2_fu_203                      | 12   | 9    |     |      |      |     |        |      |         |          |        |
+|     (grp_sha_stream_Pipeline_sha_stream_label2_fu_203)                  |      | 7    |     |      |      |     |        |      |         |          |        |
+|     flow_control_loop_pipe_sequential_init_U                            | 12   | 2    |     |      |      |     |        |      |         |          |        |
+|   grp_sha_transform_fu_195                                              | 1224 | 1123 |     | 2    |      |     |        |      |         |          |        |
+|     (grp_sha_transform_fu_195)                                          | 933  | 1123 |     |      |      |     |        |      |         |          |        |
+|     W_U                                                                 | 291  |      |     | 2    |      |     |        |      |         |          |        |
+|   grp_sha_update_fu_168                                                 | 1549 | 1300 |     | 2    |      |     |        |      |         |          |        |
+|     (grp_sha_update_fu_168)                                             | 137  | 92   |     |      |      |     |        |      |         |          |        |
+|     grp_local_memcpy_fu_90                                              | 167  | 85   |     |      |      |     |        |      |         |          |        |
+|     grp_sha_transform_fu_102                                            | 1245 | 1123 |     | 2    |      |     |        |      |         |          |        |
+|       (grp_sha_transform_fu_102)                                        | 954  | 1123 |     |      |      |     |        |      |         |          |        |
 |       W_U                                                               | 291  |      |     | 2    |      |     |        |      |         |          |        |
 |   local_indata_U                                                        | 16   |      |     | 8    |      |     |        |      |         |          |        |
-|   sha_info_data_U                                                       |      |      |     | 2    |      |     |        |      |         |          |        |
-|   sha_info_digest_U                                                     | 1    |      |     | 2    |      |     |        |      |         |          |        |
+|   sha_info_data_U                                                       | 5    |      |     | 2    |      |     |        |      |         |          |        |
+|   sha_info_digest_U                                                     | 4    |      |     | 2    |      |     |        |      |         |          |        |
 +-------------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+----------+--------+
 
 
@@ -89,8 +93,8 @@ SRL:              0
 | LUT                                                       | 70%       | 0.34%  | OK     |
 | FD                                                        | 50%       | 0.15%  | OK     |
 | LUTRAM+SRL                                                | 25%       | 0.00%  | OK     |
-| CARRY8                                                    | 25%       | 0.13%  | OK     |
-| MUXF7                                                     | 15%       | 0.01%  | OK     |
+| CARRY8                                                    | 25%       | 0.14%  | OK     |
+| MUXF7                                                     | 15%       | 0.00%  | OK     |
 | DSP                                                       | 80%       | 0.00%  | OK     |
 | RAMB/FIFO                                                 | 80%       | 0.60%  | OK     |
 | URAM                                                      | 80%       | 0.00%  | OK     |
@@ -98,8 +102,8 @@ SRL:              0
 | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
 | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
 | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
-| Control Sets                                              | 16344     | 72     | OK     |
-| Average Fanout for modules > 100k cells                   | 4         | 2.74   | OK     |
+| Control Sets                                              | 16344     | 71     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 2.75   | OK     |
 | Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
 | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
 +-----------------------------------------------------------+-----------+--------+--------+
@@ -122,15 +126,37 @@ SRL:              0
 | Path  | SLACK | STARTPOINT PIN                          | ENDPOINT PIN                               | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
 |       |       |                                         |                                            |              |            |                |          DELAY |        DELAY |
 +-------+-------+-----------------------------------------+--------------------------------------------+--------------+------------+----------------+----------------+--------------+
-| Path1 | 5.383 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[25] |            4 |          2 |          2.285 |          1.780 |        0.505 |
-| Path2 | 5.489 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[30] |            4 |          2 |          2.126 |          1.728 |        0.398 |
-| Path3 | 5.497 | local_indata_U/ram_reg_bram_0/CLKBWRCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[16] |            4 |          2 |          2.170 |          1.782 |        0.388 |
-| Path4 | 5.513 | local_indata_U/ram_reg_bram_0/CLKBWRCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[17] |            4 |          2 |          2.146 |          1.767 |        0.379 |
-| Path5 | 5.527 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[24] |            4 |          2 |          2.136 |          1.793 |        0.343 |
+| Path1 | 5.481 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[25] |            4 |          2 |          2.187 |          1.733 |        0.454 |
+| Path2 | 5.496 | local_indata_U/ram_reg_bram_0/CLKBWRCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[16] |            4 |          2 |          2.171 |          1.735 |        0.436 |
+| Path3 | 5.526 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[24] |            4 |          2 |          2.137 |          1.746 |        0.391 |
+| Path4 | 5.541 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[30] |            4 |          2 |          2.074 |          1.681 |        0.393 |
+| Path5 | 5.553 | local_indata_U/ram_reg_bram_0/CLKARDCLK | sha_info_data_U/ram_reg_bram_0/DINADIN[27] |            4 |          2 |          2.114 |          1.713 |        0.401 |
 +-------+-------+-----------------------------------------+--------------------------------------------+--------------+------------+----------------+----------------+--------------+
 
     +---------------------------------------+------------------------+
     | Path1 Cells                           | Primitive Type         |
+    +---------------------------------------+------------------------+
+    | local_indata_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_1         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_2         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_3         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_0_i_12__3 | CLB.LUT.LUT4           |
+    | sha_info_data_U/ram_reg_bram_0        | BLOCKRAM.BRAM.RAMB36E2 |
+    +---------------------------------------+------------------------+
+
+    +---------------------------------------+------------------------+
+    | Path2 Cells                           | Primitive Type         |
+    +---------------------------------------+------------------------+
+    | local_indata_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_1         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_2         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_3         | BLOCKRAM.BRAM.RAMB36E2 |
+    | local_indata_U/ram_reg_bram_0_i_21__2 | CLB.LUT.LUT4           |
+    | sha_info_data_U/ram_reg_bram_0        | BLOCKRAM.BRAM.RAMB36E2 |
+    +---------------------------------------+------------------------+
+
+    +---------------------------------------+------------------------+
+    | Path3 Cells                           | Primitive Type         |
     +---------------------------------------+------------------------+
     | local_indata_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
     | local_indata_U/ram_reg_bram_1         | BLOCKRAM.BRAM.RAMB36E2 |
@@ -141,37 +167,15 @@ SRL:              0
     +---------------------------------------+------------------------+
 
     +--------------------------------------+------------------------+
-    | Path2 Cells                          | Primitive Type         |
+    | Path4 Cells                          | Primitive Type         |
     +--------------------------------------+------------------------+
     | local_indata_U/ram_reg_bram_0        | BLOCKRAM.BRAM.RAMB36E2 |
     | local_indata_U/ram_reg_bram_1        | BLOCKRAM.BRAM.RAMB36E2 |
     | local_indata_U/ram_reg_bram_2        | BLOCKRAM.BRAM.RAMB36E2 |
     | local_indata_U/ram_reg_bram_3        | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_0_i_8__3 | CLB.LUT.LUT4           |
+    | local_indata_U/ram_reg_bram_0_i_7__3 | CLB.LUT.LUT4           |
     | sha_info_data_U/ram_reg_bram_0       | BLOCKRAM.BRAM.RAMB36E2 |
     +--------------------------------------+------------------------+
-
-    +---------------------------------------+------------------------+
-    | Path3 Cells                           | Primitive Type         |
-    +---------------------------------------+------------------------+
-    | local_indata_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_1         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_2         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_3         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_0_i_22__3 | CLB.LUT.LUT4           |
-    | sha_info_data_U/ram_reg_bram_0        | BLOCKRAM.BRAM.RAMB36E2 |
-    +---------------------------------------+------------------------+
-
-    +---------------------------------------+------------------------+
-    | Path4 Cells                           | Primitive Type         |
-    +---------------------------------------+------------------------+
-    | local_indata_U/ram_reg_bram_0         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_1         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_2         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_3         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_0_i_21__3 | CLB.LUT.LUT4           |
-    | sha_info_data_U/ram_reg_bram_0        | BLOCKRAM.BRAM.RAMB36E2 |
-    +---------------------------------------+------------------------+
 
     +---------------------------------------+------------------------+
     | Path5 Cells                           | Primitive Type         |
@@ -180,7 +184,7 @@ SRL:              0
     | local_indata_U/ram_reg_bram_1         | BLOCKRAM.BRAM.RAMB36E2 |
     | local_indata_U/ram_reg_bram_2         | BLOCKRAM.BRAM.RAMB36E2 |
     | local_indata_U/ram_reg_bram_3         | BLOCKRAM.BRAM.RAMB36E2 |
-    | local_indata_U/ram_reg_bram_0_i_14__3 | CLB.LUT.LUT4           |
+    | local_indata_U/ram_reg_bram_0_i_10__1 | CLB.LUT.LUT4           |
     | sha_info_data_U/ram_reg_bram_0        | BLOCKRAM.BRAM.RAMB36E2 |
     +---------------------------------------+------------------------+
 

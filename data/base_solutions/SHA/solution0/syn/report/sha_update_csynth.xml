@@ -22,13 +22,13 @@
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>50803</Best-caseLatency>
-<Average-caseLatency>53875</Average-caseLatency>
+<Best-caseLatency>3</Best-caseLatency>
+<Average-caseLatency>27163</Average-caseLatency>
 <Worst-caseLatency>57395</Worst-caseLatency>
-<Best-caseRealTimeLatency>0.406 ms</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>0.431 ms</Average-caseRealTimeLatency>
+<Best-caseRealTimeLatency>24.000 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0.217 ms</Average-caseRealTimeLatency>
 <Worst-caseRealTimeLatency>0.459 ms</Worst-caseRealTimeLatency>
-<Interval-min>50803</Interval-min>
+<Interval-min>3</Interval-min>
 <Interval-max>57395</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
@@ -36,19 +36,19 @@
 <Slack>5.84</Slack>
 <TripCount>
 <range>
-<min>127</min>
+<min>0</min>
 <max>128</max>
 </range>
 </TripCount>
 <Latency>
 <range>
-<min>50800</min>
+<min>0</min>
 <max>57344</max>
 </range>
 </Latency>
 <AbsoluteTimeLatency>
 <range>
-<min>406400</min>
+<min>0</min>
 <max>458752</max>
 </range>
 </AbsoluteTimeLatency>
@@ -65,7 +65,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:18</SourceLocation>
+<SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:14</SourceLocation>
 <SummaryOfLoopViolations>
 <sha_update_label4>
 <Name>sha_update_label4</Name>

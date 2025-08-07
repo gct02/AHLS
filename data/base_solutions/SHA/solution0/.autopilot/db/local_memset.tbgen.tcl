@@ -56,13 +56,13 @@ set NewPortList {[
  	{ "name": "sha_info_data_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "sha_info_data", "role": "d0" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "",
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1"],
 		"CDFG" : "local_memset",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "1", "EstimateLatencyMax" : "15",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "3", "EstimateLatencyMax" : "19",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -73,23 +73,48 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "n", "Type" : "None", "Direction" : "I"},
 			{"Name" : "e", "Type" : "None", "Direction" : "I"},
+			{"Name" : "sha_info_data", "Type" : "Memory", "Direction" : "O",
+				"SubConnect" : [
+					{"ID" : "1", "SubInstance" : "grp_local_memset_Pipeline_local_memset_label1_fu_44", "Port" : "sha_info_data", "Inst_start_state" : "1", "Inst_end_state" : "2"}]}]},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_local_memset_Pipeline_local_memset_label1_fu_44", "Parent" : "0", "Child" : ["2"],
+		"CDFG" : "local_memset_Pipeline_local_memset_label1",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "2", "EstimateLatencyMax" : "18",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "m", "Type" : "None", "Direction" : "I"},
+			{"Name" : "empty", "Type" : "None", "Direction" : "I"},
 			{"Name" : "sha_info_data", "Type" : "Memory", "Direction" : "O"}],
 		"Loop" : [
-			{"Name" : "local_memset_label1", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state2"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state2_blk"}}]}]}
+			{"Name" : "local_memset_label1", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_state1", "FirstStateIter" : "", "FirstStateBlock" : "ap_ST_fsm_state1_blk", "LastState" : "ap_ST_fsm_state1", "LastStateIter" : "", "LastStateBlock" : "ap_ST_fsm_state1_blk", "QuitState" : "ap_ST_fsm_state1", "QuitStateIter" : "", "QuitStateBlock" : "ap_ST_fsm_state1_blk", "OneDepthLoop" : "1", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_local_memset_Pipeline_local_memset_label1_fu_44.flow_control_loop_pipe_sequential_init_U", "Parent" : "1"}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	local_memset {
 		n {Type I LastRead 0 FirstWrite -1}
 		e {Type I LastRead 0 FirstWrite -1}
-		sha_info_data {Type O LastRead -1 FirstWrite 1}}}
+		sha_info_data {Type O LastRead -1 FirstWrite 0}}
+	local_memset_Pipeline_local_memset_label1 {
+		m {Type I LastRead 0 FirstWrite -1}
+		empty {Type I LastRead 0 FirstWrite -1}
+		sha_info_data {Type O LastRead -1 FirstWrite 0}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "1", "Max" : "15"}
-	, {"Name" : "Interval", "Min" : "1", "Max" : "15"}
+	{"Name" : "Latency", "Min" : "3", "Max" : "19"}
+	, {"Name" : "Interval", "Min" : "3", "Max" : "19"}
 ]}
 
 set PipelineEnableSignalInfo {[

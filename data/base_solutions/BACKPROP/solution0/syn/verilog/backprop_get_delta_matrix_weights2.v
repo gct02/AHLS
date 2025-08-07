@@ -23,10 +23,10 @@ module backprop_get_delta_matrix_weights2 (
         last_activations_address0,
         last_activations_ce0,
         last_activations_q0,
-        grp_fu_994_p_din0,
-        grp_fu_994_p_din1,
-        grp_fu_994_p_dout0,
-        grp_fu_994_p_ce
+        grp_fu_992_p_din0,
+        grp_fu_992_p_din1,
+        grp_fu_992_p_dout0,
+        grp_fu_992_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 9'd1;
@@ -55,10 +55,10 @@ input  [63:0] output_difference_q0;
 output  [5:0] last_activations_address0;
 output   last_activations_ce0;
 input  [63:0] last_activations_q0;
-output  [63:0] grp_fu_994_p_din0;
-output  [63:0] grp_fu_994_p_din1;
-input  [63:0] grp_fu_994_p_dout0;
-output   grp_fu_994_p_ce;
+output  [63:0] grp_fu_992_p_din0;
+output  [63:0] grp_fu_992_p_din1;
+input  [63:0] grp_fu_992_p_dout0;
+output   grp_fu_992_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -160,7 +160,7 @@ end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        mul_reg_223 <= grp_fu_994_p_dout0;
+        mul_reg_223 <= grp_fu_992_p_dout0;
     end
 end
 
@@ -315,11 +315,11 @@ assign delta_weights2_d0 = mul_reg_223;
 
 assign empty_fu_120_p1 = i_fu_36[5:0];
 
-assign grp_fu_994_p_ce = 1'b1;
+assign grp_fu_992_p_ce = 1'b1;
 
-assign grp_fu_994_p_din0 = last_activations_load_reg_190;
+assign grp_fu_992_p_din0 = last_activations_load_reg_190;
 
-assign grp_fu_994_p_din1 = output_difference_q0;
+assign grp_fu_992_p_din1 = output_difference_q0;
 
 assign icmp_ln158_fu_103_p2 = ((i_fu_36 == 7'd64) ? 1'b1 : 1'b0);
 

@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="sha_stream_sha_stream,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=3.507000,HLS_SYN_LAT=124768,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=2877,HLS_SYN_LUT=6043,HLS_VERSION=2023_2}" *)
+(* CORE_GENERATION_INFO="sha_stream_sha_stream,hls_ip_2023_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xcu50-fsvh2104-2-e,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.810437,HLS_SYN_LAT=71347,HLS_SYN_TPT=none,HLS_SYN_MEM=8,HLS_SYN_DSP=0,HLS_SYN_FF=2910,HLS_SYN_LUT=5924,HLS_VERSION=2023_2}" *)
 
 module sha_stream (
         ap_clk,
@@ -27,14 +27,24 @@ module sha_stream (
         outdata_d0
 );
 
-parameter    ap_ST_fsm_state1 = 8'd1;
-parameter    ap_ST_fsm_state2 = 8'd2;
-parameter    ap_ST_fsm_state3 = 8'd4;
-parameter    ap_ST_fsm_state4 = 8'd8;
-parameter    ap_ST_fsm_state5 = 8'd16;
-parameter    ap_ST_fsm_state6 = 8'd32;
-parameter    ap_ST_fsm_state7 = 8'd64;
-parameter    ap_ST_fsm_state8 = 8'd128;
+parameter    ap_ST_fsm_state1 = 18'd1;
+parameter    ap_ST_fsm_state2 = 18'd2;
+parameter    ap_ST_fsm_state3 = 18'd4;
+parameter    ap_ST_fsm_state4 = 18'd8;
+parameter    ap_ST_fsm_state5 = 18'd16;
+parameter    ap_ST_fsm_state6 = 18'd32;
+parameter    ap_ST_fsm_state7 = 18'd64;
+parameter    ap_ST_fsm_state8 = 18'd128;
+parameter    ap_ST_fsm_state9 = 18'd256;
+parameter    ap_ST_fsm_state10 = 18'd512;
+parameter    ap_ST_fsm_state11 = 18'd1024;
+parameter    ap_ST_fsm_state12 = 18'd2048;
+parameter    ap_ST_fsm_state13 = 18'd4096;
+parameter    ap_ST_fsm_state14 = 18'd8192;
+parameter    ap_ST_fsm_state15 = 18'd16384;
+parameter    ap_ST_fsm_state16 = 18'd32768;
+parameter    ap_ST_fsm_state17 = 18'd65536;
+parameter    ap_ST_fsm_state18 = 18'd131072;
 
 input   ap_clk;
 input   ap_rst;
@@ -57,10 +67,8 @@ reg ap_done;
 reg ap_idle;
 reg ap_ready;
 reg in_i_ce0;
-reg outdata_ce0;
-reg outdata_we0;
 
-(* fsm_encoding = "none" *) reg   [7:0] ap_CS_fsm;
+(* fsm_encoding = "none" *) reg   [17:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
 reg   [13:0] local_indata_address0;
 reg    local_indata_ce0;
@@ -70,6 +78,13 @@ reg    local_indata_ce1;
 wire   [7:0] local_indata_q1;
 reg   [31:0] sha_info_count_lo;
 reg   [31:0] sha_info_count_hi;
+reg   [3:0] sha_info_data_address0;
+reg    sha_info_data_ce0;
+reg    sha_info_data_we0;
+reg   [31:0] sha_info_data_d0;
+wire   [31:0] sha_info_data_q0;
+reg    sha_info_data_ce1;
+reg    sha_info_data_we1;
 reg   [2:0] sha_info_digest_address0;
 reg    sha_info_digest_ce0;
 reg    sha_info_digest_we0;
@@ -80,129 +95,151 @@ reg    sha_info_digest_ce1;
 reg    sha_info_digest_we1;
 reg   [31:0] sha_info_digest_d1;
 wire   [31:0] sha_info_digest_q1;
-reg   [3:0] sha_info_data_address0;
-reg    sha_info_data_ce0;
-reg    sha_info_data_we0;
-reg   [31:0] sha_info_data_d0;
-wire   [31:0] sha_info_data_q0;
-reg    sha_info_data_ce1;
-reg    sha_info_data_we1;
-wire   [0:0] trunc_ln216_fu_190_p1;
-reg   [0:0] trunc_ln216_reg_239;
-wire    ap_CS_fsm_state3;
-reg   [31:0] i_reg_256;
+wire   [0:0] trunc_ln216_fu_248_p1;
+reg   [0:0] trunc_ln216_reg_327;
 wire    ap_CS_fsm_state4;
-wire   [63:0] zext_ln225_fu_219_p1;
-reg   [63:0] zext_ln225_reg_264;
-wire    ap_CS_fsm_state7;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_done;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_idle;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_ready;
-wire   [13:0] grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_indata_address0;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_indata_ce0;
-wire   [13:0] grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_address0;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_ce0;
-wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_we0;
-wire   [7:0] grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_d0;
-wire    grp_sha_init_fu_126_ap_start;
-wire    grp_sha_init_fu_126_ap_done;
-wire    grp_sha_init_fu_126_ap_idle;
-wire    grp_sha_init_fu_126_ap_ready;
-wire   [31:0] grp_sha_init_fu_126_sha_info_count_lo;
-wire    grp_sha_init_fu_126_sha_info_count_lo_ap_vld;
-wire   [31:0] grp_sha_init_fu_126_sha_info_count_hi;
-wire    grp_sha_init_fu_126_sha_info_count_hi_ap_vld;
-wire   [2:0] grp_sha_init_fu_126_sha_info_digest_address0;
-wire    grp_sha_init_fu_126_sha_info_digest_ce0;
-wire    grp_sha_init_fu_126_sha_info_digest_we0;
-wire   [31:0] grp_sha_init_fu_126_sha_info_digest_d0;
-wire   [2:0] grp_sha_init_fu_126_sha_info_digest_address1;
-wire    grp_sha_init_fu_126_sha_info_digest_ce1;
-wire    grp_sha_init_fu_126_sha_info_digest_we1;
-wire   [31:0] grp_sha_init_fu_126_sha_info_digest_d1;
-wire    grp_sha_final_fu_136_ap_start;
-wire    grp_sha_final_fu_136_ap_done;
-wire    grp_sha_final_fu_136_ap_idle;
-wire    grp_sha_final_fu_136_ap_ready;
-wire   [3:0] grp_sha_final_fu_136_sha_info_data_address0;
-wire    grp_sha_final_fu_136_sha_info_data_ce0;
-wire    grp_sha_final_fu_136_sha_info_data_we0;
-wire   [31:0] grp_sha_final_fu_136_sha_info_data_d0;
-wire   [3:0] grp_sha_final_fu_136_sha_info_data_address1;
-wire    grp_sha_final_fu_136_sha_info_data_ce1;
-wire    grp_sha_final_fu_136_sha_info_data_we1;
-wire   [31:0] grp_sha_final_fu_136_sha_info_data_d1;
-wire   [2:0] grp_sha_final_fu_136_sha_info_digest_address0;
-wire    grp_sha_final_fu_136_sha_info_digest_ce0;
-wire    grp_sha_final_fu_136_sha_info_digest_we0;
-wire   [31:0] grp_sha_final_fu_136_sha_info_digest_d0;
-wire   [2:0] grp_sha_final_fu_136_sha_info_digest_address1;
-wire    grp_sha_final_fu_136_sha_info_digest_ce1;
-wire    grp_sha_final_fu_136_sha_info_digest_we1;
-wire   [31:0] grp_sha_final_fu_136_sha_info_digest_d1;
-wire    grp_sha_update_fu_148_ap_start;
-wire    grp_sha_update_fu_148_ap_done;
-wire    grp_sha_update_fu_148_ap_idle;
-wire    grp_sha_update_fu_148_ap_ready;
-wire   [13:0] grp_sha_update_fu_148_buffer_r_address0;
-wire    grp_sha_update_fu_148_buffer_r_ce0;
-wire   [13:0] grp_sha_update_fu_148_buffer_r_address1;
-wire    grp_sha_update_fu_148_buffer_r_ce1;
-wire   [31:0] grp_sha_update_fu_148_sha_info_count_lo_o;
-wire    grp_sha_update_fu_148_sha_info_count_lo_o_ap_vld;
-wire   [31:0] grp_sha_update_fu_148_sha_info_count_hi_o;
-wire    grp_sha_update_fu_148_sha_info_count_hi_o_ap_vld;
-wire   [3:0] grp_sha_update_fu_148_sha_info_data_address0;
-wire    grp_sha_update_fu_148_sha_info_data_ce0;
-wire    grp_sha_update_fu_148_sha_info_data_we0;
-wire   [31:0] grp_sha_update_fu_148_sha_info_data_d0;
-wire   [2:0] grp_sha_update_fu_148_sha_info_digest_address0;
-wire    grp_sha_update_fu_148_sha_info_digest_ce0;
-wire    grp_sha_update_fu_148_sha_info_digest_we0;
-wire   [31:0] grp_sha_update_fu_148_sha_info_digest_d0;
-wire   [2:0] grp_sha_update_fu_148_sha_info_digest_address1;
-wire    grp_sha_update_fu_148_sha_info_digest_ce1;
-wire    grp_sha_update_fu_148_sha_info_digest_we1;
-wire   [31:0] grp_sha_update_fu_148_sha_info_digest_d1;
-reg    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start_reg;
-wire    ap_CS_fsm_state2;
-reg    grp_sha_init_fu_126_ap_start_reg;
-reg    grp_sha_final_fu_136_ap_start_reg;
-wire   [0:0] icmp_ln216_fu_173_p2;
-wire    ap_CS_fsm_state6;
-reg    grp_sha_update_fu_148_ap_start_reg;
+reg   [31:0] lo_bit_count_reg_337;
+wire   [5:0] count_fu_261_p4;
+reg   [5:0] count_reg_342;
+reg   [31:0] i_reg_348;
 wire    ap_CS_fsm_state5;
-wire   [63:0] zext_ln216_fu_185_p1;
-wire   [0:0] icmp_ln225_fu_207_p2;
+wire   [3:0] trunc_ln174_fu_289_p1;
+reg   [3:0] trunc_ln174_reg_356;
+wire    ap_CS_fsm_state7;
+wire   [0:0] icmp_ln181_fu_294_p2;
+reg   [0:0] icmp_ln181_reg_361;
+wire   [6:0] sub_ln186_fu_300_p2;
+reg   [6:0] sub_ln186_reg_365;
+wire   [6:0] zext_ln182_fu_312_p1;
+reg   [6:0] zext_ln182_reg_370;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_idle;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_ready;
+wire   [13:0] grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_indata_address0;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_indata_ce0;
+wire   [13:0] grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_address0;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_ce0;
+wire    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_we0;
+wire   [7:0] grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_d0;
+wire    grp_sha_update_fu_168_ap_start;
+wire    grp_sha_update_fu_168_ap_done;
+wire    grp_sha_update_fu_168_ap_idle;
+wire    grp_sha_update_fu_168_ap_ready;
+wire   [13:0] grp_sha_update_fu_168_buffer_r_address0;
+wire    grp_sha_update_fu_168_buffer_r_ce0;
+wire   [13:0] grp_sha_update_fu_168_buffer_r_address1;
+wire    grp_sha_update_fu_168_buffer_r_ce1;
+wire   [31:0] grp_sha_update_fu_168_sha_info_count_lo_o;
+wire    grp_sha_update_fu_168_sha_info_count_lo_o_ap_vld;
+wire   [31:0] grp_sha_update_fu_168_sha_info_count_hi_o;
+wire    grp_sha_update_fu_168_sha_info_count_hi_o_ap_vld;
+wire   [3:0] grp_sha_update_fu_168_sha_info_data_address0;
+wire    grp_sha_update_fu_168_sha_info_data_ce0;
+wire    grp_sha_update_fu_168_sha_info_data_we0;
+wire   [31:0] grp_sha_update_fu_168_sha_info_data_d0;
+wire   [2:0] grp_sha_update_fu_168_sha_info_digest_address0;
+wire    grp_sha_update_fu_168_sha_info_digest_ce0;
+wire    grp_sha_update_fu_168_sha_info_digest_we0;
+wire   [31:0] grp_sha_update_fu_168_sha_info_digest_d0;
+wire   [2:0] grp_sha_update_fu_168_sha_info_digest_address1;
+wire    grp_sha_update_fu_168_sha_info_digest_ce1;
+wire    grp_sha_update_fu_168_sha_info_digest_we1;
+wire   [31:0] grp_sha_update_fu_168_sha_info_digest_d1;
+wire    grp_local_memset_fu_185_ap_start;
+wire    grp_local_memset_fu_185_ap_done;
+wire    grp_local_memset_fu_185_ap_idle;
+wire    grp_local_memset_fu_185_ap_ready;
+reg   [6:0] grp_local_memset_fu_185_n;
+reg   [3:0] grp_local_memset_fu_185_e;
+wire   [3:0] grp_local_memset_fu_185_sha_info_data_address0;
+wire    grp_local_memset_fu_185_sha_info_data_ce0;
+wire    grp_local_memset_fu_185_sha_info_data_we0;
+wire   [31:0] grp_local_memset_fu_185_sha_info_data_d0;
+wire    grp_sha_transform_fu_195_ap_start;
+wire    grp_sha_transform_fu_195_ap_done;
+wire    grp_sha_transform_fu_195_ap_idle;
+wire    grp_sha_transform_fu_195_ap_ready;
+wire   [3:0] grp_sha_transform_fu_195_sha_info_data_address0;
+wire    grp_sha_transform_fu_195_sha_info_data_ce0;
+wire   [2:0] grp_sha_transform_fu_195_sha_info_digest_address0;
+wire    grp_sha_transform_fu_195_sha_info_digest_ce0;
+wire    grp_sha_transform_fu_195_sha_info_digest_we0;
+wire   [31:0] grp_sha_transform_fu_195_sha_info_digest_d0;
+wire   [2:0] grp_sha_transform_fu_195_sha_info_digest_address1;
+wire    grp_sha_transform_fu_195_sha_info_digest_ce1;
+wire    grp_sha_transform_fu_195_sha_info_digest_we1;
+wire   [31:0] grp_sha_transform_fu_195_sha_info_digest_d1;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_done;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_idle;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_ready;
+wire   [2:0] grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_address0;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_ce0;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_we0;
+wire   [31:0] grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_d0;
+wire   [2:0] grp_sha_stream_Pipeline_sha_stream_label2_fu_203_sha_info_digest_address0;
+wire    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_sha_info_digest_ce0;
+reg    grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start_reg;
+wire    ap_CS_fsm_state2;
+reg    grp_sha_update_fu_168_ap_start_reg;
+wire    ap_CS_fsm_state6;
+reg    grp_local_memset_fu_185_ap_start_reg;
+wire    ap_CS_fsm_state12;
 wire    ap_CS_fsm_state8;
-reg   [1:0] j_fu_70;
-wire   [1:0] add_ln216_fu_179_p2;
-reg   [2:0] i_7_fu_74;
-wire   [2:0] add_ln225_fu_213_p2;
-reg   [7:0] ap_NS_fsm;
+wire    ap_CS_fsm_state9;
+wire    ap_CS_fsm_state13;
+reg    grp_sha_transform_fu_195_ap_start_reg;
+wire    ap_CS_fsm_state10;
+wire    ap_CS_fsm_state15;
+wire    ap_CS_fsm_state11;
+wire    ap_CS_fsm_state16;
+reg    grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start_reg;
+wire    ap_CS_fsm_state17;
+wire    ap_CS_fsm_state18;
+wire   [63:0] zext_ln216_fu_243_p1;
+wire   [0:0] icmp_ln216_fu_231_p2;
+wire   [63:0] zext_ln179_fu_271_p1;
+reg   [1:0] j_fu_104;
+wire   [1:0] add_ln216_fu_237_p2;
+wire    ap_CS_fsm_state3;
+wire    ap_CS_fsm_state14;
+wire   [6:0] zext_ln174_fu_280_p1;
+wire   [6:0] count_1_fu_283_p2;
+wire   [5:0] xor_ln182_fu_307_p2;
+reg   [17:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
-reg    ap_block_state2_on_subcall_done;
 reg    ap_ST_fsm_state2_blk;
 wire    ap_ST_fsm_state3_blk;
 wire    ap_ST_fsm_state4_blk;
-reg    ap_ST_fsm_state5_blk;
+wire    ap_ST_fsm_state5_blk;
 reg    ap_ST_fsm_state6_blk;
 wire    ap_ST_fsm_state7_blk;
-wire    ap_ST_fsm_state8_blk;
+reg    ap_ST_fsm_state8_blk;
+reg    ap_ST_fsm_state9_blk;
+wire    ap_ST_fsm_state10_blk;
+reg    ap_ST_fsm_state11_blk;
+wire    ap_ST_fsm_state12_blk;
+reg    ap_block_state13_on_subcall_done;
+reg    ap_ST_fsm_state13_blk;
+wire    ap_ST_fsm_state14_blk;
+wire    ap_ST_fsm_state15_blk;
+reg    ap_ST_fsm_state16_blk;
+wire    ap_ST_fsm_state17_blk;
+reg    ap_ST_fsm_state18_blk;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 8'd1;
+#0 ap_CS_fsm = 18'd1;
 #0 sha_info_count_lo = 32'd0;
 #0 sha_info_count_hi = 32'd0;
-#0 grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start_reg = 1'b0;
-#0 grp_sha_init_fu_126_ap_start_reg = 1'b0;
-#0 grp_sha_final_fu_136_ap_start_reg = 1'b0;
-#0 grp_sha_update_fu_148_ap_start_reg = 1'b0;
-#0 j_fu_70 = 2'd0;
-#0 i_7_fu_74 = 3'd0;
+#0 grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start_reg = 1'b0;
+#0 grp_sha_update_fu_168_ap_start_reg = 1'b0;
+#0 grp_local_memset_fu_185_ap_start_reg = 1'b0;
+#0 grp_sha_transform_fu_195_ap_start_reg = 1'b0;
+#0 grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start_reg = 1'b0;
+#0 j_fu_104 = 2'd0;
 end
 
 sha_stream_local_indata_RAM_AUTO_1R1W #(
@@ -215,11 +252,29 @@ local_indata_U(
     .address0(local_indata_address0),
     .ce0(local_indata_ce0),
     .we0(local_indata_we0),
-    .d0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_d0),
+    .d0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_d0),
     .q0(local_indata_q0),
-    .address1(grp_sha_update_fu_148_buffer_r_address1),
+    .address1(grp_sha_update_fu_168_buffer_r_address1),
     .ce1(local_indata_ce1),
     .q1(local_indata_q1)
+);
+
+sha_stream_sha_info_data_RAM_AUTO_1R1W #(
+    .DataWidth( 32 ),
+    .AddressRange( 16 ),
+    .AddressWidth( 4 ))
+sha_info_data_U(
+    .clk(ap_clk),
+    .reset(ap_rst),
+    .address0(sha_info_data_address0),
+    .ce0(sha_info_data_ce0),
+    .we0(sha_info_data_we0),
+    .d0(sha_info_data_d0),
+    .q0(sha_info_data_q0),
+    .address1(4'd14),
+    .ce1(sha_info_data_ce1),
+    .we1(sha_info_data_we1),
+    .d1(sha_info_count_hi)
 );
 
 sha_stream_sha_info_digest_RAM_AUTO_1R1W #(
@@ -241,127 +296,111 @@ sha_info_digest_U(
     .q1(sha_info_digest_q1)
 );
 
-sha_stream_sha_info_data_RAM_AUTO_1R1W #(
-    .DataWidth( 32 ),
-    .AddressRange( 16 ),
-    .AddressWidth( 4 ))
-sha_info_data_U(
-    .clk(ap_clk),
-    .reset(ap_rst),
-    .address0(sha_info_data_address0),
-    .ce0(sha_info_data_ce0),
-    .we0(sha_info_data_we0),
-    .d0(sha_info_data_d0),
-    .q0(sha_info_data_q0),
-    .address1(grp_sha_final_fu_136_sha_info_data_address1),
-    .ce1(sha_info_data_ce1),
-    .we1(sha_info_data_we1),
-    .d1(grp_sha_final_fu_136_sha_info_data_d1)
-);
-
-sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1 grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118(
+sha_stream_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1 grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start),
-    .ap_done(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_done),
-    .ap_idle(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_idle),
-    .ap_ready(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_ready),
-    .indata_address0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_indata_address0),
-    .indata_ce0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_indata_ce0),
+    .ap_start(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start),
+    .ap_done(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done),
+    .ap_idle(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_idle),
+    .ap_ready(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_ready),
+    .indata_address0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_indata_address0),
+    .indata_ce0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_indata_ce0),
     .indata_q0(indata_q0),
-    .local_indata_address0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_address0),
-    .local_indata_ce0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_ce0),
-    .local_indata_we0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_we0),
-    .local_indata_d0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_d0)
+    .local_indata_address0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_address0),
+    .local_indata_ce0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_ce0),
+    .local_indata_we0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_we0),
+    .local_indata_d0(grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_d0)
 );
 
-sha_stream_sha_init grp_sha_init_fu_126(
+sha_stream_sha_update grp_sha_update_fu_168(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_sha_init_fu_126_ap_start),
-    .ap_done(grp_sha_init_fu_126_ap_done),
-    .ap_idle(grp_sha_init_fu_126_ap_idle),
-    .ap_ready(grp_sha_init_fu_126_ap_ready),
-    .sha_info_count_lo(grp_sha_init_fu_126_sha_info_count_lo),
-    .sha_info_count_lo_ap_vld(grp_sha_init_fu_126_sha_info_count_lo_ap_vld),
-    .sha_info_count_hi(grp_sha_init_fu_126_sha_info_count_hi),
-    .sha_info_count_hi_ap_vld(grp_sha_init_fu_126_sha_info_count_hi_ap_vld),
-    .sha_info_digest_address0(grp_sha_init_fu_126_sha_info_digest_address0),
-    .sha_info_digest_ce0(grp_sha_init_fu_126_sha_info_digest_ce0),
-    .sha_info_digest_we0(grp_sha_init_fu_126_sha_info_digest_we0),
-    .sha_info_digest_d0(grp_sha_init_fu_126_sha_info_digest_d0),
-    .sha_info_digest_address1(grp_sha_init_fu_126_sha_info_digest_address1),
-    .sha_info_digest_ce1(grp_sha_init_fu_126_sha_info_digest_ce1),
-    .sha_info_digest_we1(grp_sha_init_fu_126_sha_info_digest_we1),
-    .sha_info_digest_d1(grp_sha_init_fu_126_sha_info_digest_d1)
-);
-
-sha_stream_sha_final grp_sha_final_fu_136(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_sha_final_fu_136_ap_start),
-    .ap_done(grp_sha_final_fu_136_ap_done),
-    .ap_idle(grp_sha_final_fu_136_ap_idle),
-    .ap_ready(grp_sha_final_fu_136_ap_ready),
-    .sha_info_count_lo(sha_info_count_lo),
-    .sha_info_count_hi(sha_info_count_hi),
-    .sha_info_data_address0(grp_sha_final_fu_136_sha_info_data_address0),
-    .sha_info_data_ce0(grp_sha_final_fu_136_sha_info_data_ce0),
-    .sha_info_data_we0(grp_sha_final_fu_136_sha_info_data_we0),
-    .sha_info_data_d0(grp_sha_final_fu_136_sha_info_data_d0),
-    .sha_info_data_q0(sha_info_data_q0),
-    .sha_info_data_address1(grp_sha_final_fu_136_sha_info_data_address1),
-    .sha_info_data_ce1(grp_sha_final_fu_136_sha_info_data_ce1),
-    .sha_info_data_we1(grp_sha_final_fu_136_sha_info_data_we1),
-    .sha_info_data_d1(grp_sha_final_fu_136_sha_info_data_d1),
-    .sha_info_digest_address0(grp_sha_final_fu_136_sha_info_digest_address0),
-    .sha_info_digest_ce0(grp_sha_final_fu_136_sha_info_digest_ce0),
-    .sha_info_digest_we0(grp_sha_final_fu_136_sha_info_digest_we0),
-    .sha_info_digest_d0(grp_sha_final_fu_136_sha_info_digest_d0),
-    .sha_info_digest_q0(sha_info_digest_q0),
-    .sha_info_digest_address1(grp_sha_final_fu_136_sha_info_digest_address1),
-    .sha_info_digest_ce1(grp_sha_final_fu_136_sha_info_digest_ce1),
-    .sha_info_digest_we1(grp_sha_final_fu_136_sha_info_digest_we1),
-    .sha_info_digest_d1(grp_sha_final_fu_136_sha_info_digest_d1),
-    .sha_info_digest_q1(sha_info_digest_q1)
-);
-
-sha_stream_sha_update grp_sha_update_fu_148(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_sha_update_fu_148_ap_start),
-    .ap_done(grp_sha_update_fu_148_ap_done),
-    .ap_idle(grp_sha_update_fu_148_ap_idle),
-    .ap_ready(grp_sha_update_fu_148_ap_ready),
-    .buffer_r_address0(grp_sha_update_fu_148_buffer_r_address0),
-    .buffer_r_ce0(grp_sha_update_fu_148_buffer_r_ce0),
+    .ap_start(grp_sha_update_fu_168_ap_start),
+    .ap_done(grp_sha_update_fu_168_ap_done),
+    .ap_idle(grp_sha_update_fu_168_ap_idle),
+    .ap_ready(grp_sha_update_fu_168_ap_ready),
+    .buffer_r_address0(grp_sha_update_fu_168_buffer_r_address0),
+    .buffer_r_ce0(grp_sha_update_fu_168_buffer_r_ce0),
     .buffer_r_q0(local_indata_q0),
-    .buffer_r_address1(grp_sha_update_fu_148_buffer_r_address1),
-    .buffer_r_ce1(grp_sha_update_fu_148_buffer_r_ce1),
+    .buffer_r_address1(grp_sha_update_fu_168_buffer_r_address1),
+    .buffer_r_ce1(grp_sha_update_fu_168_buffer_r_ce1),
     .buffer_r_q1(local_indata_q1),
-    .buffer_offset(trunc_ln216_reg_239),
-    .count(i_reg_256),
+    .buffer_offset(trunc_ln216_reg_327),
+    .count(i_reg_348),
     .sha_info_count_lo_i(sha_info_count_lo),
-    .sha_info_count_lo_o(grp_sha_update_fu_148_sha_info_count_lo_o),
-    .sha_info_count_lo_o_ap_vld(grp_sha_update_fu_148_sha_info_count_lo_o_ap_vld),
+    .sha_info_count_lo_o(grp_sha_update_fu_168_sha_info_count_lo_o),
+    .sha_info_count_lo_o_ap_vld(grp_sha_update_fu_168_sha_info_count_lo_o_ap_vld),
     .sha_info_count_hi_i(sha_info_count_hi),
-    .sha_info_count_hi_o(grp_sha_update_fu_148_sha_info_count_hi_o),
-    .sha_info_count_hi_o_ap_vld(grp_sha_update_fu_148_sha_info_count_hi_o_ap_vld),
-    .sha_info_data_address0(grp_sha_update_fu_148_sha_info_data_address0),
-    .sha_info_data_ce0(grp_sha_update_fu_148_sha_info_data_ce0),
-    .sha_info_data_we0(grp_sha_update_fu_148_sha_info_data_we0),
-    .sha_info_data_d0(grp_sha_update_fu_148_sha_info_data_d0),
+    .sha_info_count_hi_o(grp_sha_update_fu_168_sha_info_count_hi_o),
+    .sha_info_count_hi_o_ap_vld(grp_sha_update_fu_168_sha_info_count_hi_o_ap_vld),
+    .sha_info_data_address0(grp_sha_update_fu_168_sha_info_data_address0),
+    .sha_info_data_ce0(grp_sha_update_fu_168_sha_info_data_ce0),
+    .sha_info_data_we0(grp_sha_update_fu_168_sha_info_data_we0),
+    .sha_info_data_d0(grp_sha_update_fu_168_sha_info_data_d0),
     .sha_info_data_q0(sha_info_data_q0),
-    .sha_info_digest_address0(grp_sha_update_fu_148_sha_info_digest_address0),
-    .sha_info_digest_ce0(grp_sha_update_fu_148_sha_info_digest_ce0),
-    .sha_info_digest_we0(grp_sha_update_fu_148_sha_info_digest_we0),
-    .sha_info_digest_d0(grp_sha_update_fu_148_sha_info_digest_d0),
+    .sha_info_digest_address0(grp_sha_update_fu_168_sha_info_digest_address0),
+    .sha_info_digest_ce0(grp_sha_update_fu_168_sha_info_digest_ce0),
+    .sha_info_digest_we0(grp_sha_update_fu_168_sha_info_digest_we0),
+    .sha_info_digest_d0(grp_sha_update_fu_168_sha_info_digest_d0),
     .sha_info_digest_q0(sha_info_digest_q0),
-    .sha_info_digest_address1(grp_sha_update_fu_148_sha_info_digest_address1),
-    .sha_info_digest_ce1(grp_sha_update_fu_148_sha_info_digest_ce1),
-    .sha_info_digest_we1(grp_sha_update_fu_148_sha_info_digest_we1),
-    .sha_info_digest_d1(grp_sha_update_fu_148_sha_info_digest_d1),
+    .sha_info_digest_address1(grp_sha_update_fu_168_sha_info_digest_address1),
+    .sha_info_digest_ce1(grp_sha_update_fu_168_sha_info_digest_ce1),
+    .sha_info_digest_we1(grp_sha_update_fu_168_sha_info_digest_we1),
+    .sha_info_digest_d1(grp_sha_update_fu_168_sha_info_digest_d1),
     .sha_info_digest_q1(sha_info_digest_q1)
+);
+
+sha_stream_local_memset grp_local_memset_fu_185(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_local_memset_fu_185_ap_start),
+    .ap_done(grp_local_memset_fu_185_ap_done),
+    .ap_idle(grp_local_memset_fu_185_ap_idle),
+    .ap_ready(grp_local_memset_fu_185_ap_ready),
+    .n(grp_local_memset_fu_185_n),
+    .e(grp_local_memset_fu_185_e),
+    .sha_info_data_address0(grp_local_memset_fu_185_sha_info_data_address0),
+    .sha_info_data_ce0(grp_local_memset_fu_185_sha_info_data_ce0),
+    .sha_info_data_we0(grp_local_memset_fu_185_sha_info_data_we0),
+    .sha_info_data_d0(grp_local_memset_fu_185_sha_info_data_d0)
+);
+
+sha_stream_sha_transform grp_sha_transform_fu_195(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_sha_transform_fu_195_ap_start),
+    .ap_done(grp_sha_transform_fu_195_ap_done),
+    .ap_idle(grp_sha_transform_fu_195_ap_idle),
+    .ap_ready(grp_sha_transform_fu_195_ap_ready),
+    .sha_info_data_address0(grp_sha_transform_fu_195_sha_info_data_address0),
+    .sha_info_data_ce0(grp_sha_transform_fu_195_sha_info_data_ce0),
+    .sha_info_data_q0(sha_info_data_q0),
+    .sha_info_digest_address0(grp_sha_transform_fu_195_sha_info_digest_address0),
+    .sha_info_digest_ce0(grp_sha_transform_fu_195_sha_info_digest_ce0),
+    .sha_info_digest_we0(grp_sha_transform_fu_195_sha_info_digest_we0),
+    .sha_info_digest_d0(grp_sha_transform_fu_195_sha_info_digest_d0),
+    .sha_info_digest_q0(sha_info_digest_q0),
+    .sha_info_digest_address1(grp_sha_transform_fu_195_sha_info_digest_address1),
+    .sha_info_digest_ce1(grp_sha_transform_fu_195_sha_info_digest_ce1),
+    .sha_info_digest_we1(grp_sha_transform_fu_195_sha_info_digest_we1),
+    .sha_info_digest_d1(grp_sha_transform_fu_195_sha_info_digest_d1),
+    .sha_info_digest_q1(sha_info_digest_q1)
+);
+
+sha_stream_sha_stream_Pipeline_sha_stream_label2 grp_sha_stream_Pipeline_sha_stream_label2_fu_203(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start),
+    .ap_done(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_done),
+    .ap_idle(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_idle),
+    .ap_ready(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_ready),
+    .outdata_address0(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_address0),
+    .outdata_ce0(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_ce0),
+    .outdata_we0(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_we0),
+    .outdata_d0(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_d0),
+    .sha_info_digest_address0(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_sha_info_digest_address0),
+    .sha_info_digest_ce0(grp_sha_stream_Pipeline_sha_stream_label2_fu_203_sha_info_digest_ce0),
+    .sha_info_digest_q0(sha_info_digest_q0)
 );
 
 always @ (posedge ap_clk) begin
@@ -374,99 +413,150 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_sha_final_fu_136_ap_start_reg <= 1'b0;
+        grp_local_memset_fu_185_ap_start_reg <= 1'b0;
     end else begin
-        if (((icmp_ln216_fu_173_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
-            grp_sha_final_fu_136_ap_start_reg <= 1'b1;
-        end else if ((grp_sha_final_fu_136_ap_ready == 1'b1)) begin
-            grp_sha_final_fu_136_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state12) | ((1'b1 == ap_CS_fsm_state7) & (icmp_ln181_fu_294_p2 == 1'd1)) | ((1'b1 == ap_CS_fsm_state7) & (icmp_ln181_fu_294_p2 == 1'd0)))) begin
+            grp_local_memset_fu_185_ap_start_reg <= 1'b1;
+        end else if ((grp_local_memset_fu_185_ap_ready == 1'b1)) begin
+            grp_local_memset_fu_185_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_sha_init_fu_126_ap_start_reg <= 1'b0;
+        grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start_reg <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_sha_init_fu_126_ap_start_reg <= 1'b1;
-        end else if ((grp_sha_init_fu_126_ap_ready == 1'b1)) begin
-            grp_sha_init_fu_126_ap_start_reg <= 1'b0;
+        if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+            grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start_reg <= 1'b1;
+        end else if ((grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_ready == 1'b1)) begin
+            grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start_reg <= 1'b0;
+        grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start_reg <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start_reg <= 1'b1;
-        end else if ((grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_ready == 1'b1)) begin
-            grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state17)) begin
+            grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start_reg <= 1'b1;
+        end else if ((grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_ready == 1'b1)) begin
+            grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_sha_update_fu_148_ap_start_reg <= 1'b0;
+        grp_sha_transform_fu_195_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state4)) begin
-            grp_sha_update_fu_148_ap_start_reg <= 1'b1;
-        end else if ((grp_sha_update_fu_148_ap_ready == 1'b1)) begin
-            grp_sha_update_fu_148_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state15) | (1'b1 == ap_CS_fsm_state10))) begin
+            grp_sha_transform_fu_195_ap_start_reg <= 1'b1;
+        end else if ((grp_sha_transform_fu_195_ap_ready == 1'b1)) begin
+            grp_sha_transform_fu_195_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln216_fu_173_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
-        i_7_fu_74 <= 3'd0;
-    end else if (((icmp_ln225_fu_207_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state7))) begin
-        i_7_fu_74 <= add_ln225_fu_213_p2;
+    if (ap_rst == 1'b1) begin
+        grp_sha_update_fu_168_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state5)) begin
+            grp_sha_update_fu_168_ap_start_reg <= 1'b1;
+        end else if ((grp_sha_update_fu_168_ap_ready == 1'b1)) begin
+            grp_sha_update_fu_168_ap_start_reg <= 1'b0;
+        end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-        j_fu_70 <= 2'd0;
-    end else if (((icmp_ln216_fu_173_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
-        j_fu_70 <= add_ln216_fu_179_p2;
+    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+        j_fu_104 <= 2'd0;
+    end else if (((icmp_ln216_fu_231_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state4))) begin
+        j_fu_104 <= add_ln216_fu_237_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state5) & (grp_sha_update_fu_148_sha_info_count_hi_o_ap_vld == 1'b1))) begin
-        sha_info_count_hi <= grp_sha_update_fu_148_sha_info_count_hi_o;
-    end else if (((1'b1 == ap_CS_fsm_state2) & (grp_sha_init_fu_126_sha_info_count_hi_ap_vld == 1'b1))) begin
-        sha_info_count_hi <= grp_sha_init_fu_126_sha_info_count_hi;
+    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+        sha_info_count_hi <= 32'd0;
+    end else if (((1'b1 == ap_CS_fsm_state6) & (grp_sha_update_fu_168_sha_info_count_hi_o_ap_vld == 1'b1))) begin
+        sha_info_count_hi <= grp_sha_update_fu_168_sha_info_count_hi_o;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state5) & (grp_sha_update_fu_148_sha_info_count_lo_o_ap_vld == 1'b1))) begin
-        sha_info_count_lo <= grp_sha_update_fu_148_sha_info_count_lo_o;
-    end else if (((1'b1 == ap_CS_fsm_state2) & (grp_sha_init_fu_126_sha_info_count_lo_ap_vld == 1'b1))) begin
-        sha_info_count_lo <= grp_sha_init_fu_126_sha_info_count_lo;
+    if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
+        sha_info_count_lo <= 32'd0;
+    end else if (((1'b1 == ap_CS_fsm_state6) & (grp_sha_update_fu_168_sha_info_count_lo_o_ap_vld == 1'b1))) begin
+        sha_info_count_lo <= grp_sha_update_fu_168_sha_info_count_lo_o;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        i_reg_256 <= in_i_q0;
+        count_reg_342 <= {{sha_info_count_lo[8:3]}};
+        lo_bit_count_reg_337 <= sha_info_count_lo;
+        trunc_ln216_reg_327 <= trunc_ln216_fu_248_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state3)) begin
-        trunc_ln216_reg_239 <= trunc_ln216_fu_190_p1;
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        i_reg_348 <= in_i_q0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state7)) begin
-        zext_ln225_reg_264[2 : 0] <= zext_ln225_fu_219_p1[2 : 0];
+        icmp_ln181_reg_361 <= icmp_ln181_fu_294_p2;
+        sub_ln186_reg_365 <= sub_ln186_fu_300_p2;
+        trunc_ln174_reg_356 <= trunc_ln174_fu_289_p1;
+        zext_ln182_reg_370[5 : 0] <= zext_ln182_fu_312_p1[5 : 0];
+    end
+end
+
+assign ap_ST_fsm_state10_blk = 1'b0;
+
+always @ (*) begin
+    if ((grp_sha_transform_fu_195_ap_done == 1'b0)) begin
+        ap_ST_fsm_state11_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state11_blk = 1'b0;
+    end
+end
+
+assign ap_ST_fsm_state12_blk = 1'b0;
+
+always @ (*) begin
+    if ((1'b1 == ap_block_state13_on_subcall_done)) begin
+        ap_ST_fsm_state13_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state13_blk = 1'b0;
+    end
+end
+
+assign ap_ST_fsm_state14_blk = 1'b0;
+
+assign ap_ST_fsm_state15_blk = 1'b0;
+
+always @ (*) begin
+    if ((grp_sha_transform_fu_195_ap_done == 1'b0)) begin
+        ap_ST_fsm_state16_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state16_blk = 1'b0;
+    end
+end
+
+assign ap_ST_fsm_state17_blk = 1'b0;
+
+always @ (*) begin
+    if ((grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_done == 1'b0)) begin
+        ap_ST_fsm_state18_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state18_blk = 1'b0;
     end
 end
 
@@ -479,7 +569,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_block_state2_on_subcall_done)) begin
+    if ((grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done == 1'b0)) begin
         ap_ST_fsm_state2_blk = 1'b1;
     end else begin
         ap_ST_fsm_state2_blk = 1'b0;
@@ -490,16 +580,10 @@ assign ap_ST_fsm_state3_blk = 1'b0;
 
 assign ap_ST_fsm_state4_blk = 1'b0;
 
-always @ (*) begin
-    if ((grp_sha_update_fu_148_ap_done == 1'b0)) begin
-        ap_ST_fsm_state5_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state5_blk = 1'b0;
-    end
-end
+assign ap_ST_fsm_state5_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_sha_final_fu_136_ap_done == 1'b0)) begin
+    if ((grp_sha_update_fu_168_ap_done == 1'b0)) begin
         ap_ST_fsm_state6_blk = 1'b1;
     end else begin
         ap_ST_fsm_state6_blk = 1'b0;
@@ -508,10 +592,24 @@ end
 
 assign ap_ST_fsm_state7_blk = 1'b0;
 
-assign ap_ST_fsm_state8_blk = 1'b0;
+always @ (*) begin
+    if ((grp_local_memset_fu_185_ap_done == 1'b0)) begin
+        ap_ST_fsm_state8_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state8_blk = 1'b0;
+    end
+end
 
 always @ (*) begin
-    if (((icmp_ln225_fu_207_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state7))) begin
+    if ((grp_local_memset_fu_185_ap_done == 1'b0)) begin
+        ap_ST_fsm_state9_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state9_blk = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state18))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -519,7 +617,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0))) begin
+    if (((ap_start == 1'b0) & (1'b1 == ap_CS_fsm_state1))) begin
         ap_idle = 1'b1;
     end else begin
         ap_idle = 1'b0;
@@ -527,7 +625,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln225_fu_207_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state7))) begin
+    if (((grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state18))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -535,7 +633,29 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state3)) begin
+    if (((1'b1 == ap_CS_fsm_state13) & (icmp_ln181_reg_361 == 1'd1))) begin
+        grp_local_memset_fu_185_e = 4'd0;
+    end else if (((1'b1 == ap_CS_fsm_state9) | (1'b1 == ap_CS_fsm_state8))) begin
+        grp_local_memset_fu_185_e = trunc_ln174_reg_356;
+    end else begin
+        grp_local_memset_fu_185_e = 'bx;
+    end
+end
+
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state13) & (icmp_ln181_reg_361 == 1'd1))) begin
+        grp_local_memset_fu_185_n = 7'd56;
+    end else if ((1'b1 == ap_CS_fsm_state9)) begin
+        grp_local_memset_fu_185_n = zext_ln182_reg_370;
+    end else if ((1'b1 == ap_CS_fsm_state8)) begin
+        grp_local_memset_fu_185_n = sub_ln186_reg_365;
+    end else begin
+        grp_local_memset_fu_185_n = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
         in_i_ce0 = 1'b1;
     end else begin
         in_i_ce0 = 1'b0;
@@ -543,28 +663,28 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        local_indata_address0 = grp_sha_update_fu_148_buffer_r_address0;
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        local_indata_address0 = grp_sha_update_fu_168_buffer_r_address0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        local_indata_address0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_address0;
+        local_indata_address0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_address0;
     end else begin
         local_indata_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        local_indata_ce0 = grp_sha_update_fu_148_buffer_r_ce0;
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        local_indata_ce0 = grp_sha_update_fu_168_buffer_r_ce0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        local_indata_ce0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_ce0;
+        local_indata_ce0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_ce0;
     end else begin
         local_indata_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        local_indata_ce1 = grp_sha_update_fu_148_buffer_r_ce1;
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        local_indata_ce1 = grp_sha_update_fu_168_buffer_r_ce1;
     end else begin
         local_indata_ce1 = 1'b0;
     end
@@ -572,179 +692,191 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        local_indata_we0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_local_indata_we0;
+        local_indata_we0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_local_indata_we0;
     end else begin
         local_indata_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state8)) begin
-        outdata_ce0 = 1'b1;
-    end else begin
-        outdata_ce0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state8)) begin
-        outdata_we0 = 1'b1;
-    end else begin
-        outdata_we0 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_data_address0 = grp_sha_update_fu_148_sha_info_data_address0;
+    if ((1'b1 == ap_CS_fsm_state14)) begin
+        sha_info_data_address0 = 4'd15;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        sha_info_data_address0 = zext_ln179_fu_271_p1;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_data_address0 = grp_sha_transform_fu_195_sha_info_data_address0;
+    end else if (((1'b1 == ap_CS_fsm_state9) | (1'b1 == ap_CS_fsm_state8) | ((1'b1 == ap_CS_fsm_state13) & (icmp_ln181_reg_361 == 1'd1)))) begin
+        sha_info_data_address0 = grp_local_memset_fu_185_sha_info_data_address0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_data_address0 = grp_sha_final_fu_136_sha_info_data_address0;
+        sha_info_data_address0 = grp_sha_update_fu_168_sha_info_data_address0;
     end else begin
         sha_info_data_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_data_ce0 = grp_sha_update_fu_148_sha_info_data_ce0;
+    if (((1'b1 == ap_CS_fsm_state14) | (1'b1 == ap_CS_fsm_state4))) begin
+        sha_info_data_ce0 = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_data_ce0 = grp_sha_transform_fu_195_sha_info_data_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state9) | (1'b1 == ap_CS_fsm_state8) | ((1'b1 == ap_CS_fsm_state13) & (icmp_ln181_reg_361 == 1'd1)))) begin
+        sha_info_data_ce0 = grp_local_memset_fu_185_sha_info_data_ce0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_data_ce0 = grp_sha_final_fu_136_sha_info_data_ce0;
+        sha_info_data_ce0 = grp_sha_update_fu_168_sha_info_data_ce0;
     end else begin
         sha_info_data_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_data_ce1 = grp_sha_final_fu_136_sha_info_data_ce1;
+    if ((1'b1 == ap_CS_fsm_state14)) begin
+        sha_info_data_ce1 = 1'b1;
     end else begin
         sha_info_data_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_data_d0 = grp_sha_update_fu_148_sha_info_data_d0;
+    if ((1'b1 == ap_CS_fsm_state14)) begin
+        sha_info_data_d0 = lo_bit_count_reg_337;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        sha_info_data_d0 = 32'd128;
+    end else if (((1'b1 == ap_CS_fsm_state9) | (1'b1 == ap_CS_fsm_state8) | ((1'b1 == ap_CS_fsm_state13) & (icmp_ln181_reg_361 == 1'd1)))) begin
+        sha_info_data_d0 = grp_local_memset_fu_185_sha_info_data_d0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_data_d0 = grp_sha_final_fu_136_sha_info_data_d0;
+        sha_info_data_d0 = grp_sha_update_fu_168_sha_info_data_d0;
     end else begin
         sha_info_data_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_data_we0 = grp_sha_update_fu_148_sha_info_data_we0;
+    if (((1'b1 == ap_CS_fsm_state14) | ((icmp_ln216_fu_231_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4)))) begin
+        sha_info_data_we0 = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state9) | (1'b1 == ap_CS_fsm_state8) | ((1'b1 == ap_CS_fsm_state13) & (icmp_ln181_reg_361 == 1'd1)))) begin
+        sha_info_data_we0 = grp_local_memset_fu_185_sha_info_data_we0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_data_we0 = grp_sha_final_fu_136_sha_info_data_we0;
+        sha_info_data_we0 = grp_sha_update_fu_168_sha_info_data_we0;
     end else begin
         sha_info_data_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_data_we1 = grp_sha_final_fu_136_sha_info_data_we1;
+    if ((1'b1 == ap_CS_fsm_state14)) begin
+        sha_info_data_we1 = 1'b1;
     end else begin
         sha_info_data_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
-        sha_info_digest_address0 = zext_ln225_fu_219_p1;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_address0 = grp_sha_update_fu_148_sha_info_digest_address0;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_address0 = grp_sha_final_fu_136_sha_info_digest_address0;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        sha_info_digest_address0 = 3'd3;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_address0 = grp_sha_init_fu_126_sha_info_digest_address0;
+        sha_info_digest_address0 = 3'd2;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        sha_info_digest_address0 = 3'd0;
+    end else if ((1'b1 == ap_CS_fsm_state18)) begin
+        sha_info_digest_address0 = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_sha_info_digest_address0;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_address0 = grp_sha_transform_fu_195_sha_info_digest_address0;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        sha_info_digest_address0 = grp_sha_update_fu_168_sha_info_digest_address0;
     end else begin
         sha_info_digest_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_address1 = grp_sha_update_fu_148_sha_info_digest_address1;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_address1 = grp_sha_final_fu_136_sha_info_digest_address1;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        sha_info_digest_address1 = 3'd4;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_address1 = grp_sha_init_fu_126_sha_info_digest_address1;
+        sha_info_digest_address1 = 3'd1;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_address1 = grp_sha_transform_fu_195_sha_info_digest_address1;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        sha_info_digest_address1 = grp_sha_update_fu_168_sha_info_digest_address1;
     end else begin
         sha_info_digest_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state7)) begin
+    if (((1'b1 == ap_CS_fsm_state3) | ((1'b1 == ap_CS_fsm_state2) & (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done == 1'b1)) | ((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1)))) begin
         sha_info_digest_ce0 = 1'b1;
-    end else if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_ce0 = grp_sha_update_fu_148_sha_info_digest_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state18)) begin
+        sha_info_digest_ce0 = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_sha_info_digest_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_ce0 = grp_sha_transform_fu_195_sha_info_digest_ce0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_ce0 = grp_sha_final_fu_136_sha_info_digest_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_ce0 = grp_sha_init_fu_126_sha_info_digest_ce0;
+        sha_info_digest_ce0 = grp_sha_update_fu_168_sha_info_digest_ce0;
     end else begin
         sha_info_digest_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_ce1 = grp_sha_update_fu_148_sha_info_digest_ce1;
+    if (((1'b1 == ap_CS_fsm_state3) | ((1'b1 == ap_CS_fsm_state2) & (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done == 1'b1)))) begin
+        sha_info_digest_ce1 = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_ce1 = grp_sha_transform_fu_195_sha_info_digest_ce1;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_ce1 = grp_sha_final_fu_136_sha_info_digest_ce1;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_ce1 = grp_sha_init_fu_126_sha_info_digest_ce1;
+        sha_info_digest_ce1 = grp_sha_update_fu_168_sha_info_digest_ce1;
     end else begin
         sha_info_digest_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_d0 = grp_sha_update_fu_148_sha_info_digest_d0;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_d0 = grp_sha_final_fu_136_sha_info_digest_d0;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        sha_info_digest_d0 = 32'd271733878;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_d0 = grp_sha_init_fu_126_sha_info_digest_d0;
+        sha_info_digest_d0 = 32'd2562383102;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        sha_info_digest_d0 = 32'd1732584193;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_d0 = grp_sha_transform_fu_195_sha_info_digest_d0;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        sha_info_digest_d0 = grp_sha_update_fu_168_sha_info_digest_d0;
     end else begin
         sha_info_digest_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_d1 = grp_sha_update_fu_148_sha_info_digest_d1;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_d1 = grp_sha_final_fu_136_sha_info_digest_d1;
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        sha_info_digest_d1 = 32'd3285377520;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_d1 = grp_sha_init_fu_126_sha_info_digest_d1;
+        sha_info_digest_d1 = 32'd4023233417;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_d1 = grp_sha_transform_fu_195_sha_info_digest_d1;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        sha_info_digest_d1 = grp_sha_update_fu_168_sha_info_digest_d1;
     end else begin
         sha_info_digest_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_we0 = grp_sha_update_fu_148_sha_info_digest_we0;
+    if (((1'b1 == ap_CS_fsm_state3) | ((1'b1 == ap_CS_fsm_state2) & (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done == 1'b1)) | ((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1)))) begin
+        sha_info_digest_we0 = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_we0 = grp_sha_transform_fu_195_sha_info_digest_we0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_we0 = grp_sha_final_fu_136_sha_info_digest_we0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_we0 = grp_sha_init_fu_126_sha_info_digest_we0;
+        sha_info_digest_we0 = grp_sha_update_fu_168_sha_info_digest_we0;
     end else begin
         sha_info_digest_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state5)) begin
-        sha_info_digest_we1 = grp_sha_update_fu_148_sha_info_digest_we1;
+    if (((1'b1 == ap_CS_fsm_state3) | ((1'b1 == ap_CS_fsm_state2) & (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done == 1'b1)))) begin
+        sha_info_digest_we1 = 1'b1;
+    end else if (((1'b1 == ap_CS_fsm_state16) | (1'b1 == ap_CS_fsm_state11))) begin
+        sha_info_digest_we1 = grp_sha_transform_fu_195_sha_info_digest_we1;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        sha_info_digest_we1 = grp_sha_final_fu_136_sha_info_digest_we1;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        sha_info_digest_we1 = grp_sha_init_fu_126_sha_info_digest_we1;
+        sha_info_digest_we1 = grp_sha_update_fu_168_sha_info_digest_we1;
     end else begin
         sha_info_digest_we1 = 1'b0;
     end
@@ -753,52 +885,102 @@ end
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_fsm_state1 : begin
-            if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end
         end
         ap_ST_fsm_state2 : begin
-            if (((1'b0 == ap_block_state2_on_subcall_done) & (1'b1 == ap_CS_fsm_state2))) begin
+            if (((1'b1 == ap_CS_fsm_state2) & (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state3;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end
         end
         ap_ST_fsm_state3 : begin
-            if (((icmp_ln216_fu_173_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state3))) begin
-                ap_NS_fsm = ap_ST_fsm_state6;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state4;
-            end
+            ap_NS_fsm = ap_ST_fsm_state4;
         end
         ap_ST_fsm_state4 : begin
-            ap_NS_fsm = ap_ST_fsm_state5;
-        end
-        ap_ST_fsm_state5 : begin
-            if (((1'b1 == ap_CS_fsm_state5) & (grp_sha_update_fu_148_ap_done == 1'b1))) begin
-                ap_NS_fsm = ap_ST_fsm_state3;
+            if (((icmp_ln216_fu_231_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
+                ap_NS_fsm = ap_ST_fsm_state7;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state5;
             end
         end
+        ap_ST_fsm_state5 : begin
+            ap_NS_fsm = ap_ST_fsm_state6;
+        end
         ap_ST_fsm_state6 : begin
-            if (((1'b1 == ap_CS_fsm_state6) & (grp_sha_final_fu_136_ap_done == 1'b1))) begin
-                ap_NS_fsm = ap_ST_fsm_state7;
+            if (((1'b1 == ap_CS_fsm_state6) & (grp_sha_update_fu_168_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state4;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state6;
             end
         end
         ap_ST_fsm_state7 : begin
-            if (((icmp_ln225_fu_207_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state7))) begin
-                ap_NS_fsm = ap_ST_fsm_state1;
+            if (((1'b1 == ap_CS_fsm_state7) & (icmp_ln181_fu_294_p2 == 1'd1))) begin
+                ap_NS_fsm = ap_ST_fsm_state9;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state8;
             end
         end
         ap_ST_fsm_state8 : begin
-            ap_NS_fsm = ap_ST_fsm_state7;
+            if (((1'b1 == ap_CS_fsm_state8) & (grp_local_memset_fu_185_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state13;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state8;
+            end
+        end
+        ap_ST_fsm_state9 : begin
+            if (((1'b1 == ap_CS_fsm_state9) & (grp_local_memset_fu_185_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state10;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state9;
+            end
+        end
+        ap_ST_fsm_state10 : begin
+            ap_NS_fsm = ap_ST_fsm_state11;
+        end
+        ap_ST_fsm_state11 : begin
+            if (((1'b1 == ap_CS_fsm_state11) & (grp_sha_transform_fu_195_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state12;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state11;
+            end
+        end
+        ap_ST_fsm_state12 : begin
+            ap_NS_fsm = ap_ST_fsm_state13;
+        end
+        ap_ST_fsm_state13 : begin
+            if (((1'b0 == ap_block_state13_on_subcall_done) & (1'b1 == ap_CS_fsm_state13))) begin
+                ap_NS_fsm = ap_ST_fsm_state14;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state13;
+            end
+        end
+        ap_ST_fsm_state14 : begin
+            ap_NS_fsm = ap_ST_fsm_state15;
+        end
+        ap_ST_fsm_state15 : begin
+            ap_NS_fsm = ap_ST_fsm_state16;
+        end
+        ap_ST_fsm_state16 : begin
+            if (((1'b1 == ap_CS_fsm_state16) & (grp_sha_transform_fu_195_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state17;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state16;
+            end
+        end
+        ap_ST_fsm_state17 : begin
+            ap_NS_fsm = ap_ST_fsm_state18;
+        end
+        ap_ST_fsm_state18 : begin
+            if (((grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state18))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state18;
+            end
         end
         default : begin
             ap_NS_fsm = 'bx;
@@ -806,11 +988,27 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln216_fu_179_p2 = (j_fu_70 + 2'd1);
-
-assign add_ln225_fu_213_p2 = (i_7_fu_74 + 3'd1);
+assign add_ln216_fu_237_p2 = (j_fu_104 + 2'd1);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
+
+assign ap_CS_fsm_state10 = ap_CS_fsm[32'd9];
+
+assign ap_CS_fsm_state11 = ap_CS_fsm[32'd10];
+
+assign ap_CS_fsm_state12 = ap_CS_fsm[32'd11];
+
+assign ap_CS_fsm_state13 = ap_CS_fsm[32'd12];
+
+assign ap_CS_fsm_state14 = ap_CS_fsm[32'd13];
+
+assign ap_CS_fsm_state15 = ap_CS_fsm[32'd14];
+
+assign ap_CS_fsm_state16 = ap_CS_fsm[32'd15];
+
+assign ap_CS_fsm_state17 = ap_CS_fsm[32'd16];
+
+assign ap_CS_fsm_state18 = ap_CS_fsm[32'd17];
 
 assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
 
@@ -826,40 +1024,62 @@ assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
 
 assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 
+assign ap_CS_fsm_state9 = ap_CS_fsm[32'd8];
+
 always @ (*) begin
-    ap_block_state2_on_subcall_done = ((grp_sha_init_fu_126_ap_done == 1'b0) | (grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_done == 1'b0));
+    ap_block_state13_on_subcall_done = ((grp_local_memset_fu_185_ap_done == 1'b0) & (icmp_ln181_reg_361 == 1'd1));
 end
 
-assign grp_sha_final_fu_136_ap_start = grp_sha_final_fu_136_ap_start_reg;
+assign count_1_fu_283_p2 = (zext_ln174_fu_280_p1 + 7'd1);
 
-assign grp_sha_init_fu_126_ap_start = grp_sha_init_fu_126_ap_start_reg;
+assign count_fu_261_p4 = {{sha_info_count_lo[8:3]}};
 
-assign grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_ap_start_reg;
+assign grp_local_memset_fu_185_ap_start = grp_local_memset_fu_185_ap_start_reg;
 
-assign grp_sha_update_fu_148_ap_start = grp_sha_update_fu_148_ap_start_reg;
+assign grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_ap_start_reg;
 
-assign icmp_ln216_fu_173_p2 = ((j_fu_70 == 2'd2) ? 1'b1 : 1'b0);
+assign grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_ap_start_reg;
 
-assign icmp_ln225_fu_207_p2 = ((i_7_fu_74 == 3'd5) ? 1'b1 : 1'b0);
+assign grp_sha_transform_fu_195_ap_start = grp_sha_transform_fu_195_ap_start_reg;
 
-assign in_i_address0 = zext_ln216_fu_185_p1;
+assign grp_sha_update_fu_168_ap_start = grp_sha_update_fu_168_ap_start_reg;
 
-assign indata_address0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_indata_address0;
+assign icmp_ln181_fu_294_p2 = ((count_1_fu_283_p2 > 7'd56) ? 1'b1 : 1'b0);
 
-assign indata_ce0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118_indata_ce0;
+assign icmp_ln216_fu_231_p2 = ((j_fu_104 == 2'd2) ? 1'b1 : 1'b0);
 
-assign outdata_address0 = zext_ln225_reg_264;
+assign in_i_address0 = zext_ln216_fu_243_p1;
 
-assign outdata_d0 = sha_info_digest_q0;
+assign indata_address0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_indata_address0;
 
-assign trunc_ln216_fu_190_p1 = j_fu_70[0:0];
+assign indata_ce0 = grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160_indata_ce0;
 
-assign zext_ln216_fu_185_p1 = j_fu_70;
+assign outdata_address0 = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_address0;
 
-assign zext_ln225_fu_219_p1 = i_7_fu_74;
+assign outdata_ce0 = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_ce0;
+
+assign outdata_d0 = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_d0;
+
+assign outdata_we0 = grp_sha_stream_Pipeline_sha_stream_label2_fu_203_outdata_we0;
+
+assign sub_ln186_fu_300_p2 = (7'd55 - zext_ln174_fu_280_p1);
+
+assign trunc_ln174_fu_289_p1 = count_1_fu_283_p2[3:0];
+
+assign trunc_ln216_fu_248_p1 = j_fu_104[0:0];
+
+assign xor_ln182_fu_307_p2 = (count_reg_342 ^ 6'd63);
+
+assign zext_ln174_fu_280_p1 = count_reg_342;
+
+assign zext_ln179_fu_271_p1 = count_fu_261_p4;
+
+assign zext_ln182_fu_312_p1 = xor_ln182_fu_307_p2;
+
+assign zext_ln216_fu_243_p1 = j_fu_104;
 
 always @ (posedge ap_clk) begin
-    zext_ln225_reg_264[63:3] <= 61'b0000000000000000000000000000000000000000000000000000000000000;
+    zext_ln182_reg_370[6] <= 1'b0;
 end
 
 endmodule //sha_stream

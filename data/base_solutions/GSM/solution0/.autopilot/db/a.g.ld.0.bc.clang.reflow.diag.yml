@@ -1,6 +1,153 @@
 --- !Passed
 Pass:            reflow-inliner
 Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
+Function:        Autocorrelation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_abs
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 66, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Autocorrelation
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
+Function:        Autocorrelation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_norm
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 71, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Autocorrelation
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
+Function:        Autocorrelation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_mult_r
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 52, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Autocorrelation
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 38, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
+Function:        Reflection_coefficients
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_norm
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 71, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Reflection_coefficients
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
+Function:        Reflection_coefficients
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_abs
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 66, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Reflection_coefficients
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
+Function:        Reflection_coefficients
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_mult_r
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 52, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Reflection_coefficients
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, Column: 0 }
+Function:        Reflection_coefficients
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_add
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 37, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Reflection_coefficients
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 164, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 242, Column: 0 }
+Function:        Transformation_to_Log_Area_Ratios
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_abs
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 66, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Transformation_to_Log_Area_Ratios
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 242, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 268, Column: 0 }
+Function:        Quantization_and_coding
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_mult
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 44, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Quantization_and_coding
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 268, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 268, Column: 0 }
+Function:        Quantization_and_coding
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          gsm_add
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_add.c, Line: 37, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          Quantization_and_coding
+    DebugLoc:        { File: data/benchmarks/gsm/gsm_lpc.c, Line: 268, 
+                       Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
 DebugLoc:        { File: data/benchmarks/gsm/gsm.c, Line: 8, Column: 0 }
 Function:        Gsm_LPC_Analysis
 Args:            

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'sha_update'" level="0">
-<item name = "Date">Wed Jul  9 04:09:34 2025
+<item name = "Date">Thu Aug  7 00:38:44 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">SHA</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">50803, 57395, 0.406 ms, 0.459 ms, 50803, 57395, no</column>
+<column name="">3, 57395, 24.000 ns, 0.459 ms, 3, 57395, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- sha_update_label4">50800, 57344, 400 ~ 448, -, -, 127 ~ 128, no</column>
+<column name="- sha_update_label4">0, 57344, 400 ~ 448, -, -, 0 ~ 128, no</column>
 </table>
 </item>
 </section>

@@ -116,7 +116,7 @@ set RtlHierarchyInfo {[
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "50803", "EstimateLatencyMax" : "57395",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "3", "EstimateLatencyMax" : "57395",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -127,22 +127,22 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "buffer_r", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "1", "SubInstance" : "grp_local_memcpy_fu_88", "Port" : "s2", "Inst_start_state" : "2", "Inst_end_state" : "6"}]},
+					{"ID" : "1", "SubInstance" : "grp_local_memcpy_fu_90", "Port" : "s2", "Inst_start_state" : "2", "Inst_end_state" : "6"}]},
 			{"Name" : "buffer_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "count", "Type" : "None", "Direction" : "I"},
 			{"Name" : "sha_info_count_lo", "Type" : "OVld", "Direction" : "IO"},
 			{"Name" : "sha_info_count_hi", "Type" : "OVld", "Direction" : "IO"},
 			{"Name" : "sha_info_data", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "1", "SubInstance" : "grp_local_memcpy_fu_88", "Port" : "sha_info_data", "Inst_start_state" : "2", "Inst_end_state" : "6"},
-					{"ID" : "2", "SubInstance" : "grp_sha_transform_fu_100", "Port" : "sha_info_data", "Inst_start_state" : "4", "Inst_end_state" : "5"}]},
+					{"ID" : "1", "SubInstance" : "grp_local_memcpy_fu_90", "Port" : "sha_info_data", "Inst_start_state" : "2", "Inst_end_state" : "6"},
+					{"ID" : "2", "SubInstance" : "grp_sha_transform_fu_102", "Port" : "sha_info_data", "Inst_start_state" : "4", "Inst_end_state" : "5"}]},
 			{"Name" : "sha_info_digest", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "2", "SubInstance" : "grp_sha_transform_fu_100", "Port" : "sha_info_digest", "Inst_start_state" : "4", "Inst_end_state" : "5"}]}],
+					{"ID" : "2", "SubInstance" : "grp_sha_transform_fu_102", "Port" : "sha_info_digest", "Inst_start_state" : "4", "Inst_end_state" : "5"}]}],
 		"Loop" : [
 			{"Name" : "sha_update_label4", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "6", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state6"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_local_memcpy_fu_88", "Parent" : "0",
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_local_memcpy_fu_90", "Parent" : "0",
 		"CDFG" : "local_memcpy",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -165,7 +165,7 @@ set RtlHierarchyInfo {[
 		"Loop" : [
 			{"Name" : "local_memcpy_label3", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "4", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state4"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_sha_transform_fu_100", "Parent" : "0", "Child" : ["3"],
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_sha_transform_fu_102", "Parent" : "0", "Child" : ["3"],
 		"CDFG" : "sha_transform",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -195,7 +195,7 @@ set RtlHierarchyInfo {[
 				"LoopDec" : {"FSMBitwidth" : "19", "FirstState" : "ap_ST_fsm_state14", "LastState" : ["ap_ST_fsm_state15"], "QuitState" : ["ap_ST_fsm_state14"], "PreState" : ["ap_ST_fsm_state12"], "PostState" : ["ap_ST_fsm_state16"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "sha_transform_label6", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "19", "FirstState" : "ap_ST_fsm_state16", "LastState" : ["ap_ST_fsm_state17"], "QuitState" : ["ap_ST_fsm_state16"], "PreState" : ["ap_ST_fsm_state14"], "PostState" : ["ap_ST_fsm_state18"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
-	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_sha_transform_fu_100.W_U", "Parent" : "2"}]}
+	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_sha_transform_fu_102.W_U", "Parent" : "2"}]}
 
 
 set ArgLastReadFirstWriteLatency {
@@ -220,8 +220,8 @@ set ArgLastReadFirstWriteLatency {
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "50803", "Max" : "57395"}
-	, {"Name" : "Interval", "Min" : "50803", "Max" : "57395"}
+	{"Name" : "Latency", "Min" : "3", "Max" : "57395"}
+	, {"Name" : "Interval", "Min" : "3", "Max" : "57395"}
 ]}
 
 set PipelineEnableSignalInfo {[

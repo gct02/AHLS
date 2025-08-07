@@ -114,7 +114,7 @@ int decrypt(int statemt[IN_SIZE], int key[IN_SIZE], int type) {
     // Main decryption loop
     decrypt_label4:
     for (i = round_val - 1; i >= 1; --i) {
-        #pragma HLS LOOP_TRIPCOUNT min=9 max=13 avg=12
+        #pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
         AddRoundKey_InversMixColumn(statemt, nb, i);
         InversShiftRow_ByteSub(statemt, nb);
     }

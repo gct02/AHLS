@@ -22,31 +22,31 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu50'
 INFO: [Device 21-403] Loading part xcu50-fsvh2104-2-e
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 199026
+INFO: [Synth 8-7075] Helper process launched with PID 917909
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3007.328 ; gain = 396.715 ; free physical = 5395 ; free virtual = 13669
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3007.461 ; gain = 397.715 ; free physical = 277 ; free virtual = 11556
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
 INFO: [Synth 8-6157] synthesizing module 'LUT1' [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
 INFO: [Synth 8-6155] done synthesizing module 'LUT1' (0#1) [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:81293]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
-INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/ip/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e8bf/hdl/verilog/kernel_gramschmidt.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_dmul_64ns_64ns_64_4_max_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_ddiv_64ns_64ns_64_14_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/ip/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1_ip.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt_dsqrt_64ns_64ns_64_12_no_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'kernel_gramschmidt' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ipshared/e1c2/hdl/verilog/kernel_gramschmidt.v:9]
 INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/synth/bd_0_hls_inst_0.v:53]
 WARNING: [Synth 8-7129] Port CLK in module xbip_pipe_v3_0_7_viv__parameterized5 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_7_viv__parameterized5 is either unconnected or has no load
@@ -150,18 +150,18 @@ WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_7_viv__parameterized2
 WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_7_viv__parameterized293 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3237.266 ; gain = 626.652 ; free physical = 5125 ; free virtual = 13404
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3237.398 ; gain = 627.652 ; free physical = 236 ; free virtual = 11342
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3237.266 ; gain = 626.652 ; free physical = 5125 ; free virtual = 13404
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3237.398 ; gain = 627.652 ; free physical = 241 ; free virtual = 11347
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3237.266 ; gain = 626.652 ; free physical = 5125 ; free virtual = 13404
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 3237.398 ; gain = 627.652 ; free physical = 241 ; free virtual = 11347
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.34 ; elapsed = 00:00:00.34 . Memory (MB): peak = 3245.266 ; gain = 0.000 ; free physical = 5119 ; free virtual = 13398
+Netlist sorting complete. Time (s): cpu = 00:00:00.35 ; elapsed = 00:00:00.36 . Memory (MB): peak = 3245.398 ; gain = 0.000 ; free physical = 264 ; free virtual = 11370
 INFO: [Netlist 29-17] Analyzing 9826 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -174,17 +174,17 @@ Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_soluti
 Finished Parsing XDC File [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3369.695 ; gain = 0.000 ; free physical = 5096 ; free virtual = 13375
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3366.859 ; gain = 0.000 ; free physical = 240 ; free virtual = 11321
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 16 instances were transformed.
   DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 4 instances
   DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 7 instances
   FDE => FDRE: 5 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.1 . Memory (MB): peak = 3369.730 ; gain = 0.000 ; free physical = 5096 ; free virtual = 13375
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.3 ; elapsed = 00:00:00.12 . Memory (MB): peak = 3366.895 ; gain = 0.000 ; free physical = 342 ; free virtual = 11332
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 3369.730 ; gain = 759.117 ; free physical = 5077 ; free virtual = 13356
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 3366.895 ; gain = 757.148 ; free physical = 323 ; free virtual = 11306
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -192,18 +192,18 @@ Start Loading Part and Timing Information
 Loading part: xcu50-fsvh2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 3369.730 ; gain = 759.117 ; free physical = 5077 ; free virtual = 13356
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 3366.895 ; gain = 757.148 ; free physical = 323 ; free virtual = 11306
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 3369.730 ; gain = 759.117 ; free physical = 5077 ; free virtual = 13356
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 3366.895 ; gain = 757.148 ; free physical = 323 ; free virtual = 11306
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 3369.730 ; gain = 759.117 ; free physical = 5072 ; free virtual = 13355
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 3366.895 ; gain = 757.148 ; free physical = 302 ; free virtual = 11287
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U1/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/ALIGN_BLK/SUB_DELAY' (delay__parameterized1) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U1/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/ALIGN_BLK/SUBTRACT_PREADD_DEL'
 INFO: [Synth 8-223] decloning instance 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U1/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXTRA_LSB_BIT_DEL' (delay__parameterized1) to 'inst/dadddsub_64ns_64ns_64_4_full_dsp_1_U1/kernel_gramschmidt_dadddsub_64ns_64ns_64_4_full_dsp_1_ip_u/inst/i_synth/ADDSUB_OP.ADDSUB/LOGIC_SPEED.OP/NORM/ROUND/EXTRA_LSB_RND1_DEL'
@@ -249,25 +249,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 3369.730 ; gain = 759.117 ; free physical = 5098 ; free virtual = 13387
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 3366.895 ; gain = 757.148 ; free physical = 305 ; free virtual = 11292
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 3585.961 ; gain = 975.348 ; free physical = 4837 ; free virtual = 13151
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 3586.125 ; gain = 976.379 ; free physical = 224 ; free virtual = 11052
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 3610.977 ; gain = 1000.363 ; free physical = 4805 ; free virtual = 13120
+Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 3611.141 ; gain = 1001.395 ; free physical = 268 ; free virtual = 11029
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 3640.031 ; gain = 1029.418 ; free physical = 4799 ; free virtual = 13114
+Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 3639.188 ; gain = 1029.441 ; free physical = 233 ; free virtual = 10995
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -285,37 +285,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4799 ; free virtual = 13114
+Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 225 ; free virtual = 10995
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4799 ; free virtual = 13114
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 225 ; free virtual = 10995
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4792 ; free virtual = 13106
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 223 ; free virtual = 10993
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4792 ; free virtual = 13106
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 223 ; free virtual = 10993
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4792 ; free virtual = 13106
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 223 ; free virtual = 10993
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4792 ; free virtual = 13106
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 220 ; free virtual = 10995
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -375,18 +375,18 @@ Report Cell Usage:
 |36    |FDSE            |     2|
 +------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.969 ; gain = 1035.355 ; free physical = 4792 ; free virtual = 13106
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 3645.125 ; gain = 1035.379 ; free physical = 220 ; free virtual = 10995
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 595 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 3645.969 ; gain = 902.891 ; free physical = 4792 ; free virtual = 13106
-Synthesis Optimization Complete : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 3645.977 ; gain = 1035.355 ; free physical = 4792 ; free virtual = 13106
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 3645.125 ; gain = 905.883 ; free physical = 220 ; free virtual = 10995
+Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 3645.133 ; gain = 1035.379 ; free physical = 221 ; free virtual = 10996
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.21 ; elapsed = 00:00:00.21 . Memory (MB): peak = 3645.977 ; gain = 0.000 ; free physical = 5074 ; free virtual = 13389
+Netlist sorting complete. Time (s): cpu = 00:00:00.21 ; elapsed = 00:00:00.21 . Memory (MB): peak = 3645.133 ; gain = 0.000 ; free physical = 508 ; free virtual = 11285
 INFO: [Netlist 29-17] Analyzing 9788 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3767.992 ; gain = 0.000 ; free physical = 4982 ; free virtual = 13297
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3768.148 ; gain = 0.000 ; free physical = 412 ; free virtual = 11205
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 689 instances were transformed.
   (CARRY4) => CARRY8: 673 instances
@@ -398,14 +398,14 @@ Synth Design complete | Checksum: 4e2a65aa
 INFO: [Common 17-83] Releasing license: Synthesis
 70 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:58 ; elapsed = 00:00:57 . Memory (MB): peak = 3768.027 ; gain = 2413.023 ; free physical = 4982 ; free virtual = 13297
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3235.326; main = 3023.816; forked = 377.703
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4582.473; main = 3767.996; forked = 981.508
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3792.004 ; gain = 0.000 ; free physical = 4981 ; free virtual = 13297
+synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:00:57 . Memory (MB): peak = 3768.184 ; gain = 2413.219 ; free physical = 411 ; free virtual = 11204
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3217.527; main = 3021.833; forked = 377.589
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4567.641; main = 3768.152; forked = 981.512
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3792.160 ; gain = 0.000 ; free physical = 409 ; free virtual = 11204
 INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_0_hls_inst_0, cache-ID = 39e4b2d36045e437
 INFO: [Coretcl 2-1174] Renamed 502 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3792.004 ; gain = 0.000 ; free physical = 4914 ; free virtual = 13250
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3792.160 ; gain = 0.000 ; free physical = 396 ; free virtual = 11201
 INFO: [Common 17-1381] The checkpoint '/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GRAMSCHMIDT/solution0/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/bd_0_hls_inst_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file bd_0_hls_inst_0_utilization_synth.rpt -pb bd_0_hls_inst_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 03:52:47 2025...
+INFO: [Common 17-206] Exiting Vivado at Thu Aug  7 00:13:38 2025...

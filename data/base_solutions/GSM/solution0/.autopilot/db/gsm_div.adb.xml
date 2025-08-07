@@ -33,10 +33,10 @@
 
 <Node id="3" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:0 %specpipeline_ln17 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty
+entry:0 %specpipeline_ln16 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln17"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln16"/></StgValue>
 </operation>
 
 <operation id="4" st_id="1" stage="1" lat="1">
@@ -660,17 +660,17 @@ cleanup:1 %ret_ln152 = ret i16 %retval_0
 
 
 <dataflows>
-<dataflow id="48" from="_ssdm_op_SpecPipeline" to="specpipeline_ln17" fromId="47" toId="3">
+<dataflow id="48" from="_ssdm_op_SpecPipeline" to="specpipeline_ln16" fromId="47" toId="3">
 </dataflow>
-<dataflow id="50" from="StgValue_49" to="specpipeline_ln17" fromId="49" toId="3">
+<dataflow id="50" from="StgValue_49" to="specpipeline_ln16" fromId="49" toId="3">
 </dataflow>
-<dataflow id="51" from="StgValue_49" to="specpipeline_ln17" fromId="49" toId="3">
+<dataflow id="51" from="StgValue_49" to="specpipeline_ln16" fromId="49" toId="3">
 </dataflow>
-<dataflow id="53" from="StgValue_52" to="specpipeline_ln17" fromId="52" toId="3">
+<dataflow id="53" from="StgValue_52" to="specpipeline_ln16" fromId="52" toId="3">
 </dataflow>
-<dataflow id="54" from="StgValue_49" to="specpipeline_ln17" fromId="49" toId="3">
+<dataflow id="54" from="StgValue_49" to="specpipeline_ln16" fromId="49" toId="3">
 </dataflow>
-<dataflow id="56" from="empty" to="specpipeline_ln17" fromId="55" toId="3">
+<dataflow id="56" from="empty" to="specpipeline_ln16" fromId="55" toId="3">
 </dataflow>
 <dataflow id="58" from="_ssdm_op_Read.ap_auto.i16" to="denum_read" fromId="57" toId="4">
 </dataflow>

@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'backprop'
 ================================================================
 + General Information: 
-    * Date:           Wed Jul  9 03:32:58 2025
+    * Date:           Wed Aug  6 20:24:18 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        BACKPROP
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -15,72 +15,76 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+-------------+------------+---------+
-    |                           Modules                          |  Issue |       | Latency  |  Latency  | Iteration|          | Trip |          |         |          |             |            |         |
-    |                           & Loops                          |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval | Count| Pipelined|  BRAM   |    DSP   |      FF     |     LUT    |   URAM  |
-    +------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+-------------+------------+---------+
-    |+ backprop                                                  |  Timing|  -0.13|  50857142|  4.069e+08|         -|  50857143|     -|        no|  6 (~0%)|   88 (1%)|  12531 (~0%)|  15307 (1%)|  1 (~0%)|
-    | o backprop_loop1                                           |       -|   5.84|  50857141|  4.069e+08|    312007|         -|   163|        no|        -|         -|            -|           -|        -|
-    |  + matrix_vector_product_with_bias_input_layer_1           |       -|   0.14|      8771|  7.017e+04|         -|      8771|     -|        no|        -|   3 (~0%)|    713 (~0%)|  1060 (~0%)|        -|
-    |   + add_bias_to_activations_clone_1                        |       -|   0.79|       321|  2.568e+03|         -|       321|     -|        no|        -|   3 (~0%)|    449 (~0%)|   797 (~0%)|        -|
-    |    o add_bias_to_activations_loop1                         |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o matrix_vector_product_with_bias_input_layer_loop1      |       -|   5.84|      8448|  6.758e+04|       132|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o matrix_vector_product_with_bias_input_layer_loop1_1   |       -|   5.84|       130|  1.040e+03|        10|         -|    13|        no|        -|         -|            -|           -|        -|
-    |  + RELU                                                    |       -|   0.31|      1985|  1.588e+04|         -|      1985|     -|        no|        -|  37 (~0%)|   1851 (~0%)|  2971 (~0%)|        -|
-    |   o RELU_loop1                                             |       -|   5.84|      1984|  1.587e+04|        31|         -|    64|        no|        -|         -|            -|           -|        -|
-    |  + matrix_vector_product_with_bias_second_layer_1          |       -|   0.62|     41411|  3.313e+05|         -|     41411|     -|        no|        -|   3 (~0%)|    695 (~0%)|  1022 (~0%)|        -|
-    |   + add_bias_to_activations_clone_1                        |       -|   0.79|       321|  2.568e+03|         -|       321|     -|        no|        -|   3 (~0%)|    449 (~0%)|   797 (~0%)|        -|
-    |    o add_bias_to_activations_loop1                         |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o matrix_vector_product_with_bias_second_layer_loop1     |       -|   5.84|     41088|  3.287e+05|       642|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o matrix_vector_product_with_bias_second_layer_loop1_1  |       -|   5.84|       640|  5.120e+03|        10|         -|    64|        no|        -|         -|            -|           -|        -|
-    |  + matrix_vector_product_with_bias_output_layer_1          |       -|   0.14|      1752|  1.402e+04|         -|      1752|     -|        no|        -|         -|    751 (~0%)|   364 (~0%)|        -|
-    |   + add_bias_to_activations_1                              |       -|   0.79|        16|    128.000|         -|        16|     -|        no|        -|         -|    204 (~0%)|   105 (~0%)|        -|
-    |    o add_bias_to_activations_loop1                         |       -|   5.84|        15|    120.000|         5|         -|     3|        no|        -|         -|            -|           -|        -|
-    |   o matrix_vector_product_with_bias_output_layer_loop1     |       -|   5.84|      1734|  1.387e+04|       578|         -|     3|        no|        -|         -|            -|           -|        -|
-    |    o matrix_vector_product_with_bias_output_layer_loop1_1  |       -|   5.84|       576|  4.608e+03|         9|         -|    64|        no|        -|         -|            -|           -|        -|
-    |  + RELU_clone                                              |       -|   0.23|       106|    848.000|         -|       106|     -|        no|        -|         -|    621 (~0%)|   530 (~0%)|        -|
-    |   o RELU_loop1                                             |       -|   5.84|       105|    840.000|        35|         -|     3|        no|        -|         -|            -|           -|        -|
-    |  + soft_max                                                |       -|   0.31|       122|    976.000|         -|       122|     -|        no|        -|         -|    500 (~0%)|   609 (~0%)|        -|
-    |   o soft_max_loop1                                         |       -|   5.84|        45|    360.000|        15|         -|     3|        no|        -|         -|            -|           -|        -|
-    |   o soft_max_loop2                                         |       -|   5.84|        75|    600.000|        25|         -|     3|        no|        -|         -|            -|           -|        -|
-    |  + take_difference_1                                       |       -|   0.31|        28|    224.000|         -|        28|     -|        no|        -|         -|    403 (~0%)|   384 (~0%)|        -|
-    |   o take_difference_loop1                                  |       -|   5.84|        27|    216.000|         9|         -|     3|        no|        -|         -|            -|           -|        -|
-    |  + get_delta_matrix_weights3                               |       -|   0.14|       961|  7.688e+03|         -|       961|     -|        no|        -|         -|    105 (~0%)|   152 (~0%)|        -|
-    |   o get_delta_matrix_weights3_loop1                        |       -|   5.84|       960|  7.680e+03|        15|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o get_delta_matrix_weights3_loop1_1                     |       -|   5.84|        12|     96.000|         4|         -|     3|        no|        -|         -|            -|           -|        -|
-    |  + get_oracle_activations2_1                               |       -|   0.14|      2113|  1.690e+04|         -|      2113|     -|        no|        -|   8 (~0%)|    521 (~0%)|   319 (~0%)|        -|
-    |   o get_oracle_activations2_loop1                          |       -|   5.84|      2112|  1.690e+04|        33|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o get_oracle_activations2_loop1_1                       |       -|   5.84|        27|    216.000|         9|         -|     3|        no|        -|         -|            -|           -|        -|
-    |  + get_delta_matrix_weights2                               |       -|   0.62|     24769|  1.982e+05|         -|     24769|     -|        no|        -|         -|    189 (~0%)|   149 (~0%)|        -|
-    |   o get_delta_matrix_weights2_loop1                        |       -|   5.84|     24768|  1.981e+05|       387|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o get_delta_matrix_weights2_loop1_1                     |       -|   5.84|       384|  3.072e+03|         6|         -|    64|        no|        -|         -|            -|           -|        -|
-    |  + get_oracle_activations1_1                               |       -|   0.62|     41345|  3.308e+05|         -|     41345|     -|        no|        -|         -|    255 (~0%)|   213 (~0%)|        -|
-    |   o get_oracle_activations1_loop1                          |       -|   5.84|     41344|  3.308e+05|       646|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o get_oracle_activations1_loop1_1                       |       -|   5.84|       640|  5.120e+03|        10|         -|    64|        no|        -|         -|            -|           -|        -|
-    |  + get_delta_matrix_weights1_1                             |       -|   0.14|      4200|  3.360e+04|         -|      4200|     -|        no|        -|         -|    108 (~0%)|   156 (~0%)|        -|
-    |   o get_delta_matrix_weights1_loop1                        |       -|   5.84|      4199|  3.359e+04|       323|         -|    13|        no|        -|         -|            -|           -|        -|
-    |    o get_delta_matrix_weights1_loop1_1                     |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|            -|           -|        -|
-    |  + update_weights_1                                        |  Timing|  -0.13|    183269|  1.466e+06|         -|    183269|     -|        no|        -|         -|   1659 (~0%)|  2726 (~0%)|        -|
-    |   o update_weights_loop1                                   |       -|   5.84|     14170|  1.134e+05|      1090|         -|    13|        no|        -|         -|            -|           -|        -|
-    |    o update_weights_loop1_1                                |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop2                                   |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop3                                   |       -|   5.84|     14170|  1.134e+05|      1090|         -|    13|        no|        -|         -|            -|           -|        -|
-    |    o update_weights_loop3_1                                |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop4                                   |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop5                                   |       -|   5.84|     73856|  5.908e+05|      1154|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o update_weights_loop5_1                                |       -|   5.84|      1152|  9.216e+03|        18|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop6                                   |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop7                                   |       -|   5.84|     69760|  5.581e+05|      1090|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o update_weights_loop7_1                                |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop8                                   |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop9                                   |       -|   5.84|      3392|  2.714e+04|        53|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o update_weights_loop9_1                                |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop10                                  |       -|   5.84|        48|    384.000|        16|         -|     3|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop11                                  |       -|   5.84|      3392|  2.714e+04|        53|         -|    64|        no|        -|         -|            -|           -|        -|
-    |    o update_weights_loop11_1                               |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|            -|           -|        -|
-    |   o update_weights_loop12                                  |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|            -|           -|        -|
-    |  o backprop_loop1_1                                        |       -|   5.84|       128|  1.024e+03|         2|         -|    64|        no|        -|         -|            -|           -|        -|
-    +------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+-------------+------------+---------+
+    +----------------------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+-------------+------------+---------+
+    |                                         Modules                                        |  Issue |       | Latency  |  Latency  | Iteration|          | Trip |          |         |          |             |            |         |
+    |                                         & Loops                                        |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval | Count| Pipelined|  BRAM   |    DSP   |      FF     |     LUT    |   URAM  |
+    +----------------------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+-------------+------------+---------+
+    |+ backprop                                                                              |  Timing|  -0.13|  50132118|  4.011e+08|         -|  50132119|     -|        no|  6 (~0%)|  48 (~0%)|  10800 (~0%)|  12085 (1%)|  1 (~0%)|
+    | o backprop_loop1                                                                       |       -|   5.84|  50132117|  4.011e+08|    307559|         -|   163|        no|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_backprop_loop1_1                                                  |       -|   4.03|        66|    528.000|         -|        66|     -|        no|        -|         -|    201 (~0%)|   103 (~0%)|        -|
+    |   o backprop_loop1_1                                                                   |       -|   5.84|        64|    512.000|         1|         1|    64|       yes|        -|         -|            -|           -|        -|
+    |  + matrix_vector_product_with_bias_input_layer_1                                       |       -|   0.14|      8519|  6.815e+04|         -|      8519|     -|        no|        -|         -|    350 (~0%)|   422 (~0%)|        -|
+    |   + matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l   |       -|   0.79|        69|    552.000|         -|        69|     -|        no|        -|         -|     86 (~0%)|    99 (~0%)|        -|
+    |    o add_bias_to_activations_loop1                                                     |       -|   5.84|        67|    536.000|         5|         1|    64|       yes|        -|         -|            -|           -|        -|
+    |   o matrix_vector_product_with_bias_input_layer_loop1                                  |       -|   5.84|      8448|  6.758e+04|       132|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o matrix_vector_product_with_bias_input_layer_loop1_1                               |       -|   5.84|       130|  1.040e+03|        10|         -|    13|        no|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_RELU_loop1                                                        |       -|   0.31|        95|    760.000|         -|        95|     -|        no|        -|         -|    593 (~0%)|   228 (~0%)|        -|
+    |   o RELU_loop1                                                                         |       -|   5.84|        93|    744.000|        31|         1|    64|       yes|        -|         -|            -|           -|        -|
+    |  + matrix_vector_product_with_bias_second_layer_1                                      |       -|   0.62|     41159|  3.293e+05|         -|     41159|     -|        no|        -|         -|    332 (~0%)|   384 (~0%)|        -|
+    |   + matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s  |       -|   0.79|        69|    552.000|         -|        69|     -|        no|        -|         -|     86 (~0%)|    99 (~0%)|        -|
+    |    o add_bias_to_activations_loop1                                                     |       -|   5.84|        67|    536.000|         5|         1|    64|       yes|        -|         -|            -|           -|        -|
+    |   o matrix_vector_product_with_bias_second_layer_loop1                                 |       -|   5.84|     41088|  3.287e+05|       642|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o matrix_vector_product_with_bias_second_layer_loop1_1                              |       -|   5.84|       640|  5.120e+03|        10|         -|    64|        no|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_RELU_loop11                                                       |       -|   0.31|        95|    760.000|         -|        95|     -|        no|        -|         -|    593 (~0%)|   228 (~0%)|        -|
+    |   o RELU_loop1                                                                         |       -|   5.84|        93|    744.000|        31|         1|    64|       yes|        -|         -|            -|           -|        -|
+    |  + matrix_vector_product_with_bias_output_layer_1                                      |       -|   0.14|      1749|  1.399e+04|         -|      1749|     -|        no|        -|         -|    561 (~0%)|   380 (~0%)|        -|
+    |   + matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s  |       -|   0.79|        12|     96.000|         -|        12|     -|        no|        -|         -|    205 (~0%)|   162 (~0%)|        -|
+    |    o add_bias_to_activations_loop1                                                     |      II|   5.84|        10|     80.000|         5|         3|     3|       yes|        -|         -|            -|           -|        -|
+    |   o matrix_vector_product_with_bias_output_layer_loop1                                 |       -|   5.84|      1734|  1.387e+04|       578|         -|     3|        no|        -|         -|            -|           -|        -|
+    |    o matrix_vector_product_with_bias_output_layer_loop1_1                              |       -|   5.84|       576|  4.608e+03|         9|         -|    64|        no|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_RELU_loop12                                                       |       -|   0.23|        89|    712.000|         -|        89|     -|        no|        -|         -|    742 (~0%)|   389 (~0%)|        -|
+    |   o RELU_loop1                                                                         |      II|   5.84|        87|    696.000|        29|        29|     3|       yes|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_soft_max_loop1                                                    |       -|   0.31|        22|    176.000|         -|        22|     -|        no|        -|         -|    271 (~0%)|   214 (~0%)|        -|
+    |   o soft_max_loop1                                                                     |      II|   5.84|        20|    160.000|        15|         3|     3|       yes|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_soft_max_loop2                                                    |       -|   0.23|        28|    224.000|         -|        28|     -|        no|        -|         -|    502 (~0%)|   228 (~0%)|        -|
+    |   o soft_max_loop2                                                                     |       -|   5.84|        26|    208.000|        25|         1|     3|       yes|        -|         -|            -|           -|        -|
+    |  + backprop_Pipeline_take_difference_loop1                                             |       -|   0.31|        12|     96.000|         -|        12|     -|        no|        -|         -|    406 (~0%)|   258 (~0%)|        -|
+    |   o take_difference_loop1                                                              |       -|   5.84|        10|     80.000|         9|         1|     3|       yes|        -|         -|            -|           -|        -|
+    |  + get_delta_matrix_weights3                                                           |       -|   0.14|       961|  7.688e+03|         -|       961|     -|        no|        -|         -|    105 (~0%)|   152 (~0%)|        -|
+    |   o get_delta_matrix_weights3_loop1                                                    |       -|   5.84|       960|  7.680e+03|        15|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o get_delta_matrix_weights3_loop1_1                                                 |       -|   5.84|        12|     96.000|         4|         -|     3|        no|        -|         -|            -|           -|        -|
+    |  + get_oracle_activations2_1                                                           |       -|   0.14|      2113|  1.690e+04|         -|      2113|     -|        no|        -|         -|    246 (~0%)|   211 (~0%)|        -|
+    |   o get_oracle_activations2_loop1                                                      |       -|   5.84|      2112|  1.690e+04|        33|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o get_oracle_activations2_loop1_1                                                   |       -|   5.84|        27|    216.000|         9|         -|     3|        no|        -|         -|            -|           -|        -|
+    |  + get_delta_matrix_weights2                                                           |       -|   0.62|     24769|  1.982e+05|         -|     24769|     -|        no|        -|         -|    189 (~0%)|   149 (~0%)|        -|
+    |   o get_delta_matrix_weights2_loop1                                                    |       -|   5.84|     24768|  1.981e+05|       387|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o get_delta_matrix_weights2_loop1_1                                                 |       -|   5.84|       384|  3.072e+03|         6|         -|    64|        no|        -|         -|            -|           -|        -|
+    |  + get_oracle_activations1_1                                                           |       -|   0.62|     41345|  3.308e+05|         -|     41345|     -|        no|        -|         -|    255 (~0%)|   213 (~0%)|        -|
+    |   o get_oracle_activations1_loop1                                                      |       -|   5.84|     41344|  3.308e+05|       646|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o get_oracle_activations1_loop1_1                                                   |       -|   5.84|       640|  5.120e+03|        10|         -|    64|        no|        -|         -|            -|           -|        -|
+    |  + get_delta_matrix_weights1_1                                                         |       -|   0.14|      4200|  3.360e+04|         -|      4200|     -|        no|        -|         -|    108 (~0%)|   156 (~0%)|        -|
+    |   o get_delta_matrix_weights1_loop1                                                    |       -|   5.84|      4199|  3.359e+04|       323|         -|    13|        no|        -|         -|            -|           -|        -|
+    |    o get_delta_matrix_weights1_loop1_1                                                 |       -|   5.84|       320|  2.560e+03|         5|         -|    64|        no|        -|         -|            -|           -|        -|
+    |  + update_weights_1                                                                    |  Timing|  -0.13|    183269|  1.466e+06|         -|    183269|     -|        no|        -|         -|   1659 (~0%)|  2726 (~0%)|        -|
+    |   o update_weights_loop1                                                               |       -|   5.84|     14170|  1.134e+05|      1090|         -|    13|        no|        -|         -|            -|           -|        -|
+    |    o update_weights_loop1_1                                                            |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop2                                                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop3                                                               |       -|   5.84|     14170|  1.134e+05|      1090|         -|    13|        no|        -|         -|            -|           -|        -|
+    |    o update_weights_loop3_1                                                            |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop4                                                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop5                                                               |       -|   5.84|     73856|  5.908e+05|      1154|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o update_weights_loop5_1                                                            |       -|   5.84|      1152|  9.216e+03|        18|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop6                                                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop7                                                               |       -|   5.84|     69760|  5.581e+05|      1090|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o update_weights_loop7_1                                                            |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop8                                                               |       -|   5.84|      1088|  8.704e+03|        17|         -|    64|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop9                                                               |       -|   5.84|      3392|  2.714e+04|        53|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o update_weights_loop9_1                                                            |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop10                                                              |       -|   5.84|        48|    384.000|        16|         -|     3|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop11                                                              |       -|   5.84|      3392|  2.714e+04|        53|         -|    64|        no|        -|         -|            -|           -|        -|
+    |    o update_weights_loop11_1                                                           |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|            -|           -|        -|
+    |   o update_weights_loop12                                                              |       -|   5.84|        51|    408.000|        17|         -|     3|        no|        -|         -|            -|           -|        -|
+    +----------------------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+-------------+------------+---------+
 
 
 ================================================================
@@ -187,130 +191,125 @@
 ================================================================
 == Bind Op Report
 ================================================================
-+----------------------------------------------------------------------------------+-----+--------+-------------+-------+---------+---------+
-| Name                                                                             | DSP | Pragma | Variable    | Op    | Impl    | Latency |
-+----------------------------------------------------------------------------------+-----+--------+-------------+-------+---------+---------+
-| + backprop                                                                       | 88  |        |             |       |         |         |
-|   add_ln356_1_fu_496_p2                                                          |     |        | add_ln356_1 | add   | fabric  | 0       |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U130                                             |     |        | add_ln356   | add   | fabric  | 0       |
-|   add_ln359_fu_524_p2                                                            |     |        | add_ln359   | add   | fabric  | 0       |
-|   sub_ln374_fu_557_p2                                                            |     |        | sub_ln374   | sub   | fabric  | 0       |
-|  + matrix_vector_product_with_bias_input_layer_1                                 | 3   |        |             |       |         |         |
-|    add_ln60_1_fu_169_p2                                                          |     |        | add_ln60_1  | add   | fabric  | 0       |
-|    add_ln60_fu_181_p2                                                            |     |        | add_ln60    | add   | fabric  | 0       |
-|    add_ln64_fu_198_p2                                                            |     |        | add_ln64    | add   | fabric  | 0       |
-|    add_ln66_fu_212_p2                                                            |     |        | add_ln66    | add   | fabric  | 0       |
-|    add_ln66_1_fu_217_p2                                                          |     |        | add_ln66_1  | add   | fabric  | 0       |
-|   + add_bias_to_activations_clone_1 (grp_add_bias_to_activations_clone_1_fu_136) | 3   |        |             |       |         |         |
-|     add_ln48_fu_84_p2                                                            |     |        | add_ln48    | add   | fabric  | 0       |
-|     dadd_64ns_64ns_64_4_full_dsp_1_U1                                            | 3   |        | add         | dadd  | fulldsp | 3       |
-|  + RELU                                                                          | 37  |        |             |       |         |         |
-|    add_ln36_fu_106_p2                                                            |     |        | add_ln36    | add   | fabric  | 0       |
-|    dadddsub_64ns_64ns_64_4_full_dsp_1_U12                                        | 3   |        | sub         | dsub  | fulldsp | 3       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U13                                             | 8   |        | mul         | dmul  | maxdsp  | 3       |
-|    dexp_64ns_64ns_64_10_full_dsp_1_U15                                           | 26  |        | tmp         | dexp  | fulldsp | 9       |
-|    dadddsub_64ns_64ns_64_4_full_dsp_1_U12                                        | 3   |        | add         | dsub  | fulldsp | 3       |
-|    ddiv_64ns_64ns_64_14_no_dsp_1_U14                                             |     |        | div         | ddiv  | fabric  | 13      |
-|  + matrix_vector_product_with_bias_second_layer_1                                | 3   |        |             |       |         |         |
-|    add_ln78_fu_147_p2                                                            |     |        | add_ln78    | add   | fabric  | 0       |
-|    add_ln82_fu_176_p2                                                            |     |        | add_ln82    | add   | fabric  | 0       |
-|    add_ln84_fu_186_p2                                                            |     |        | add_ln84    | add   | fabric  | 0       |
-|   + add_bias_to_activations_clone_1 (grp_add_bias_to_activations_clone_1_fu_115) | 3   |        |             |       |         |         |
-|     add_ln48_fu_84_p2                                                            |     |        | add_ln48    | add   | fabric  | 0       |
-|     dadd_64ns_64ns_64_4_full_dsp_1_U1                                            | 3   |        | add         | dadd  | fulldsp | 3       |
-|  + matrix_vector_product_with_bias_output_layer_1                                | 0   |        |             |       |         |         |
-|    add_ln96_fu_193_p2                                                            |     |        | add_ln96    | add   | fabric  | 0       |
-|    add_ln100_fu_225_p2                                                           |     |        | add_ln100   | add   | fabric  | 0       |
-|    add_ln102_fu_240_p2                                                           |     |        | add_ln102   | add   | fabric  | 0       |
-|   + add_bias_to_activations_1                                                    | 0   |        |             |       |         |         |
-|     add_ln48_fu_133_p2                                                           |     |        | add_ln48    | add   | fabric  | 0       |
-|  + RELU_clone                                                                    | 0   |        |             |       |         |         |
-|    add_ln36_fu_205_p2                                                            |     |        | add_ln36    | add   | fabric  | 0       |
-|  + soft_max                                                                      | 0   |        |             |       |         |         |
-|    add_ln22_fu_173_p2                                                            |     |        | add_ln22    | add   | fabric  | 0       |
-|    add_ln27_fu_241_p2                                                            |     |        | add_ln27    | add   | fabric  | 0       |
-|  + take_difference_1                                                             | 0   |        |             |       |         |         |
-|    add_ln114_fu_204_p2                                                           |     |        | add_ln114   | add   | fabric  | 0       |
-|    add_ln116_fu_223_p2                                                           |     |        | add_ln116   | add   | fabric  | 0       |
-|  + get_delta_matrix_weights3                                                     | 0   |        |             |       |         |         |
-|    add_ln125_fu_128_p2                                                           |     |        | add_ln125   | add   | fabric  | 0       |
-|    empty_52_fu_153_p2                                                            |     |        | empty_52    | sub   | fabric  | 0       |
-|    add_ln128_fu_165_p2                                                           |     |        | add_ln128   | add   | fabric  | 0       |
-|    add_ln130_fu_185_p2                                                           |     |        | add_ln130   | add   | fabric  | 0       |
-|  + get_oracle_activations2_1                                                     | 8   |        |             |       |         |         |
-|    add_ln141_fu_169_p2                                                           |     |        | add_ln141   | add   | fabric  | 0       |
-|    empty_51_fu_196_p2                                                            |     |        | empty_51    | sub   | fabric  | 0       |
-|    add_ln145_fu_208_p2                                                           |     |        | add_ln145   | add   | fabric  | 0       |
-|    add_ln147_fu_227_p2                                                           |     |        | add_ln147   | add   | fabric  | 0       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U86                                             | 8   |        | mul8        | dmul  | maxdsp  | 3       |
-|    dmul_64ns_64ns_64_4_max_dsp_1_U86                                             | 8   |        | mul         | dmul  | maxdsp  | 3       |
-|  + get_delta_matrix_weights2                                                     | 0   |        |             |       |         |         |
-|    add_ln158_fu_109_p2                                                           |     |        | add_ln158   | add   | fabric  | 0       |
-|    add_ln161_fu_137_p2                                                           |     |        | add_ln161   | add   | fabric  | 0       |
-|    add_ln163_fu_152_p2                                                           |     |        | add_ln163   | add   | fabric  | 0       |
-|  + get_oracle_activations1_1                                                     | 0   |        |             |       |         |         |
-|    add_ln174_fu_152_p2                                                           |     |        | add_ln174   | add   | fabric  | 0       |
-|    add_ln178_fu_181_p2                                                           |     |        | add_ln178   | add   | fabric  | 0       |
-|    add_ln180_fu_191_p2                                                           |     |        | add_ln180   | add   | fabric  | 0       |
-|  + get_delta_matrix_weights1_1                                                   | 0   |        |             |       |         |         |
-|    add_ln191_fu_134_p2                                                           |     |        | add_ln191   | add   | fabric  | 0       |
-|    p_sum_fu_144_p2                                                               |     |        | p_sum       | add   | fabric  | 0       |
-|    add_ln194_fu_171_p2                                                           |     |        | add_ln194   | add   | fabric  | 0       |
-|    add_ln196_fu_186_p2                                                           |     |        | add_ln196   | add   | fabric  | 0       |
-|  + update_weights_1                                                              | 0   |        |             |       |         |         |
-|    add_ln219_fu_599_p2                                                           |     |        | add_ln219   | add   | fabric  | 0       |
-|    add_ln222_fu_629_p2                                                           |     |        | add_ln222   | add   | fabric  | 0       |
-|    add_ln224_fu_639_p2                                                           |     |        | add_ln224   | add   | fabric  | 0       |
-|    add_ln229_fu_678_p2                                                           |     |        | add_ln229   | add   | fabric  | 0       |
-|    dsqrt_64ns_64ns_64_12_no_dsp_1_U112                                           |     |        | norm_1      | dsqrt | fabric  | 11      |
-|    add_ln239_fu_724_p2                                                           |     |        | add_ln239   | add   | fabric  | 0       |
-|    add_ln242_fu_749_p2                                                           |     |        | add_ln242   | add   | fabric  | 0       |
-|    add_ln244_fu_759_p2                                                           |     |        | add_ln244   | add   | fabric  | 0       |
-|    dsqrt_64ns_64ns_64_12_no_dsp_1_U112                                           |     |        | bias_norm   | dsqrt | fabric  | 11      |
-|    add_ln248_fu_791_p2                                                           |     |        | add_ln248   | add   | fabric  | 0       |
-|    add_ln257_fu_835_p2                                                           |     |        | add_ln257   | add   | fabric  | 0       |
-|    add_ln260_fu_869_p2                                                           |     |        | add_ln260   | add   | fabric  | 0       |
-|    add_ln262_fu_879_p2                                                           |     |        | add_ln262   | add   | fabric  | 0       |
-|    add_ln267_fu_918_p2                                                           |     |        | add_ln267   | add   | fabric  | 0       |
-|    dsqrt_64ns_64ns_64_12_no_dsp_1_U112                                           |     |        | norm_4      | dsqrt | fabric  | 11      |
-|    add_ln277_fu_964_p2                                                           |     |        | add_ln277   | add   | fabric  | 0       |
-|    add_ln280_fu_993_p2                                                           |     |        | add_ln280   | add   | fabric  | 0       |
-|    add_ln282_fu_1003_p2                                                          |     |        | add_ln282   | add   | fabric  | 0       |
-|    dsqrt_64ns_64ns_64_12_no_dsp_1_U112                                           |     |        | bias_norm_3 | dsqrt | fabric  | 11      |
-|    add_ln286_fu_1036_p2                                                          |     |        | add_ln286   | add   | fabric  | 0       |
-|    add_ln295_fu_1080_p2                                                          |     |        | add_ln295   | add   | fabric  | 0       |
-|    empty_48_fu_1102_p2                                                           |     |        | empty_48    | sub   | fabric  | 0       |
-|    add_ln298_fu_1124_p2                                                          |     |        | add_ln298   | add   | fabric  | 0       |
-|    add_ln300_fu_1134_p2                                                          |     |        | add_ln300   | add   | fabric  | 0       |
-|    add_ln305_fu_1173_p2                                                          |     |        | add_ln305   | add   | fabric  | 0       |
-|    dsqrt_64ns_64ns_64_12_no_dsp_1_U112                                           |     |        | norm_7      | dsqrt | fabric  | 11      |
-|    add_ln315_fu_1227_p2                                                          |     |        | add_ln315   | add   | fabric  | 0       |
-|    empty_50_fu_1249_p2                                                           |     |        | empty_50    | sub   | fabric  | 0       |
-|    add_ln318_fu_1266_p2                                                          |     |        | add_ln318   | add   | fabric  | 0       |
-|    add_ln320_fu_1276_p2                                                          |     |        | add_ln320   | add   | fabric  | 0       |
-|    dsqrt_64ns_64ns_64_12_no_dsp_1_U112                                           |     |        | bias_norm_6 | dsqrt | fabric  | 11      |
-|    add_ln324_fu_1308_p2                                                          |     |        | add_ln324   | add   | fabric  | 0       |
-+----------------------------------------------------------------------------------+-----+--------+-------------+-------+---------+---------+
++---------------------------------------------------------------------------------------+-----+--------+-------------+-------+--------+---------+
+| Name                                                                                  | DSP | Pragma | Variable    | Op    | Impl   | Latency |
++---------------------------------------------------------------------------------------+-----+--------+-------------+-------+--------+---------+
+| + backprop                                                                            | 48  |        |             |       |        |         |
+|   add_ln356_1_fu_448_p2                                                               |     |        | add_ln356_1 | add   | fabric | 0       |
+|   add_ln356_fu_460_p2                                                                 |     |        | add_ln356   | add   | fabric | 0       |
+|   sub_ln374_fu_620_p2                                                                 |     |        | sub_ln374   | sub   | fabric | 0       |
+|  + backprop_Pipeline_backprop_loop1_1                                                 | 0   |        |             |       |        |         |
+|    add_ln359_fu_166_p2                                                                |     |        | add_ln359   | add   | fabric | 0       |
+|  + matrix_vector_product_with_bias_input_layer_1                                      | 0   |        |             |       |        |         |
+|    add_ln60_1_fu_169_p2                                                               |     |        | add_ln60_1  | add   | fabric | 0       |
+|    add_ln60_fu_181_p2                                                                 |     |        | add_ln60    | add   | fabric | 0       |
+|    add_ln64_fu_198_p2                                                                 |     |        | add_ln64    | add   | fabric | 0       |
+|    add_ln66_fu_212_p2                                                                 |     |        | add_ln66    | add   | fabric | 0       |
+|    add_ln66_1_fu_217_p2                                                               |     |        | add_ln66_1  | add   | fabric | 0       |
+|   + matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l  | 0   |        |             |       |        |         |
+|     add_ln48_fu_88_p2                                                                 |     |        | add_ln48    | add   | fabric | 0       |
+|  + backprop_Pipeline_RELU_loop1                                                       | 0   |        |             |       |        |         |
+|    add_ln36_fu_110_p2                                                                 |     |        | add_ln36    | add   | fabric | 0       |
+|  + matrix_vector_product_with_bias_second_layer_1                                     | 0   |        |             |       |        |         |
+|    add_ln78_fu_147_p2                                                                 |     |        | add_ln78    | add   | fabric | 0       |
+|    add_ln82_fu_176_p2                                                                 |     |        | add_ln82    | add   | fabric | 0       |
+|    add_ln84_fu_186_p2                                                                 |     |        | add_ln84    | add   | fabric | 0       |
+|   + matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s | 0   |        |             |       |        |         |
+|     add_ln48_fu_88_p2                                                                 |     |        | add_ln48    | add   | fabric | 0       |
+|  + backprop_Pipeline_RELU_loop11                                                      | 0   |        |             |       |        |         |
+|    add_ln36_fu_110_p2                                                                 |     |        | add_ln36    | add   | fabric | 0       |
+|  + matrix_vector_product_with_bias_output_layer_1                                     | 0   |        |             |       |        |         |
+|    add_ln96_fu_212_p2                                                                 |     |        | add_ln96    | add   | fabric | 0       |
+|    add_ln100_fu_244_p2                                                                |     |        | add_ln100   | add   | fabric | 0       |
+|    add_ln102_fu_259_p2                                                                |     |        | add_ln102   | add   | fabric | 0       |
+|   + matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s | 0   |        |             |       |        |         |
+|     add_ln48_fu_151_p2                                                                |     |        | add_ln48    | add   | fabric | 0       |
+|  + backprop_Pipeline_RELU_loop12                                                      | 0   |        |             |       |        |         |
+|    add_ln36_fu_236_p2                                                                 |     |        | add_ln36    | add   | fabric | 0       |
+|  + backprop_Pipeline_soft_max_loop1                                                   | 0   |        |             |       |        |         |
+|    add_ln22_fu_105_p2                                                                 |     |        | add_ln22    | add   | fabric | 0       |
+|  + backprop_Pipeline_soft_max_loop2                                                   | 0   |        |             |       |        |         |
+|    add_ln27_fu_171_p2                                                                 |     |        | add_ln27    | add   | fabric | 0       |
+|  + backprop_Pipeline_take_difference_loop1                                            | 0   |        |             |       |        |         |
+|    add_ln114_fu_215_p2                                                                |     |        | add_ln114   | add   | fabric | 0       |
+|    add_ln116_fu_225_p2                                                                |     |        | add_ln116   | add   | fabric | 0       |
+|  + get_delta_matrix_weights3                                                          | 0   |        |             |       |        |         |
+|    add_ln125_fu_128_p2                                                                |     |        | add_ln125   | add   | fabric | 0       |
+|    empty_52_fu_153_p2                                                                 |     |        | empty_52    | sub   | fabric | 0       |
+|    add_ln128_fu_165_p2                                                                |     |        | add_ln128   | add   | fabric | 0       |
+|    add_ln130_fu_185_p2                                                                |     |        | add_ln130   | add   | fabric | 0       |
+|  + get_oracle_activations2_1                                                          | 0   |        |             |       |        |         |
+|    add_ln141_fu_169_p2                                                                |     |        | add_ln141   | add   | fabric | 0       |
+|    empty_51_fu_196_p2                                                                 |     |        | empty_51    | sub   | fabric | 0       |
+|    add_ln145_fu_208_p2                                                                |     |        | add_ln145   | add   | fabric | 0       |
+|    add_ln147_fu_227_p2                                                                |     |        | add_ln147   | add   | fabric | 0       |
+|  + get_delta_matrix_weights2                                                          | 0   |        |             |       |        |         |
+|    add_ln158_fu_109_p2                                                                |     |        | add_ln158   | add   | fabric | 0       |
+|    add_ln161_fu_137_p2                                                                |     |        | add_ln161   | add   | fabric | 0       |
+|    add_ln163_fu_152_p2                                                                |     |        | add_ln163   | add   | fabric | 0       |
+|  + get_oracle_activations1_1                                                          | 0   |        |             |       |        |         |
+|    add_ln174_fu_152_p2                                                                |     |        | add_ln174   | add   | fabric | 0       |
+|    add_ln178_fu_181_p2                                                                |     |        | add_ln178   | add   | fabric | 0       |
+|    add_ln180_fu_191_p2                                                                |     |        | add_ln180   | add   | fabric | 0       |
+|  + get_delta_matrix_weights1_1                                                        | 0   |        |             |       |        |         |
+|    add_ln191_fu_134_p2                                                                |     |        | add_ln191   | add   | fabric | 0       |
+|    p_sum_fu_144_p2                                                                    |     |        | p_sum       | add   | fabric | 0       |
+|    add_ln194_fu_171_p2                                                                |     |        | add_ln194   | add   | fabric | 0       |
+|    add_ln196_fu_186_p2                                                                |     |        | add_ln196   | add   | fabric | 0       |
+|  + update_weights_1                                                                   | 0   |        |             |       |        |         |
+|    add_ln219_fu_599_p2                                                                |     |        | add_ln219   | add   | fabric | 0       |
+|    add_ln222_fu_629_p2                                                                |     |        | add_ln222   | add   | fabric | 0       |
+|    add_ln224_fu_639_p2                                                                |     |        | add_ln224   | add   | fabric | 0       |
+|    add_ln229_fu_678_p2                                                                |     |        | add_ln229   | add   | fabric | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U149                                                |     |        | norm_1      | dsqrt | fabric | 11      |
+|    add_ln239_fu_724_p2                                                                |     |        | add_ln239   | add   | fabric | 0       |
+|    add_ln242_fu_749_p2                                                                |     |        | add_ln242   | add   | fabric | 0       |
+|    add_ln244_fu_759_p2                                                                |     |        | add_ln244   | add   | fabric | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U149                                                |     |        | bias_norm   | dsqrt | fabric | 11      |
+|    add_ln248_fu_791_p2                                                                |     |        | add_ln248   | add   | fabric | 0       |
+|    add_ln257_fu_835_p2                                                                |     |        | add_ln257   | add   | fabric | 0       |
+|    add_ln260_fu_869_p2                                                                |     |        | add_ln260   | add   | fabric | 0       |
+|    add_ln262_fu_879_p2                                                                |     |        | add_ln262   | add   | fabric | 0       |
+|    add_ln267_fu_918_p2                                                                |     |        | add_ln267   | add   | fabric | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U149                                                |     |        | norm_4      | dsqrt | fabric | 11      |
+|    add_ln277_fu_964_p2                                                                |     |        | add_ln277   | add   | fabric | 0       |
+|    add_ln280_fu_993_p2                                                                |     |        | add_ln280   | add   | fabric | 0       |
+|    add_ln282_fu_1003_p2                                                               |     |        | add_ln282   | add   | fabric | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U149                                                |     |        | bias_norm_3 | dsqrt | fabric | 11      |
+|    add_ln286_fu_1036_p2                                                               |     |        | add_ln286   | add   | fabric | 0       |
+|    add_ln295_fu_1080_p2                                                               |     |        | add_ln295   | add   | fabric | 0       |
+|    empty_48_fu_1102_p2                                                                |     |        | empty_48    | sub   | fabric | 0       |
+|    add_ln298_fu_1124_p2                                                               |     |        | add_ln298   | add   | fabric | 0       |
+|    add_ln300_fu_1134_p2                                                               |     |        | add_ln300   | add   | fabric | 0       |
+|    add_ln305_fu_1173_p2                                                               |     |        | add_ln305   | add   | fabric | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U149                                                |     |        | norm_7      | dsqrt | fabric | 11      |
+|    add_ln315_fu_1227_p2                                                               |     |        | add_ln315   | add   | fabric | 0       |
+|    empty_50_fu_1249_p2                                                                |     |        | empty_50    | sub   | fabric | 0       |
+|    add_ln318_fu_1266_p2                                                               |     |        | add_ln318   | add   | fabric | 0       |
+|    add_ln320_fu_1276_p2                                                               |     |        | add_ln320   | add   | fabric | 0       |
+|    dsqrt_64ns_64ns_64_12_no_dsp_1_U149                                                |     |        | bias_norm_6 | dsqrt | fabric | 11      |
+|    add_ln324_fu_1308_p2                                                               |     |        | add_ln324   | add   | fabric | 0       |
++---------------------------------------------------------------------------------------+-----+--------+-------------+-------+--------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-+-------------------------------------------+--------------+------+------+------+--------+---------------------+------+---------+------------------+
-| Name                                      | Usage        | Type | BRAM | URAM | Pragma | Variable            | Impl | Latency | Bitwidth, Depth, |
-|                                           |              |      |      |      |        |                     |      |         | Banks            |
-+-------------------------------------------+--------------+------+------+------+--------+---------------------+------+---------+------------------+
-| + backprop                                |              |      | 6    | 1    |        |                     |      |         |                  |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U130      | ram_1p array |      |      |      |        | activations1        | auto | 1       | 64, 64, 1        |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U130      | ram_1p array |      |      |      |        | activations2        | auto | 1       | 64, 64, 1        |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U129 | ram_1p array |      |      |      |        | dactivations1       | auto | 1       | 64, 64, 1        |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U129 | ram_1p array |      |      |      |        | dactivations2       | auto | 1       | 64, 64, 1        |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U130      | ram_1p array |      | 4    |      |        | delta_weights1      | auto | 1       | 64, 832, 1       |
-|   delta_weights2_U                        | ram_1p array |      |      | 1    |        | delta_weights2      | auto | 1       | 64, 4096, 1      |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U130      | ram_1p array |      | 2    |      |        | delta_weights3      | auto | 1       | 64, 192, 1       |
-|   oracle_activations1_U                   | ram_1p array |      |      |      |        | oracle_activations1 | auto | 1       | 64, 64, 1        |
-|   oracle_activations2_U                   | ram_1p array |      |      |      |        | oracle_activations2 | auto | 1       | 64, 64, 1        |
-+-------------------------------------------+--------------+------+------+------+--------+---------------------+------+---------+------------------+
++-------------------------------------------+---------------+------+------+------+--------+---------------------+------+---------+------------------+
+| Name                                      | Usage         | Type | BRAM | URAM | Pragma | Variable            | Impl | Latency | Bitwidth, Depth, |
+|                                           |               |      |      |      |        |                     |      |         | Banks            |
++-------------------------------------------+---------------+------+------+------+--------+---------------------+------+---------+------------------+
+| + backprop                                |               |      | 6    | 1    |        |                     |      |         |                  |
+|   activations1_U                          | ram_s2p array |      |      |      |        | activations1        | auto | 1       | 64, 64, 1        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U166 | ram_s2p array |      |      |      |        | activations2        | auto | 1       | 64, 64, 1        |
+|   dactivations1_U                         | ram_1p array  |      |      |      |        | dactivations1       | auto | 1       | 64, 64, 1        |
+|   dactivations2_U                         | ram_1p array  |      |      |      |        | dactivations2       | auto | 1       | 64, 64, 1        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U167      | ram_1p array  |      | 4    |      |        | delta_weights1      | auto | 1       | 64, 832, 1       |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U166 | ram_1p array  |      |      | 1    |        | delta_weights2      | auto | 1       | 64, 4096, 1      |
+|   delta_weights3_U                        | ram_1p array  |      | 2    |      |        | delta_weights3      | auto | 1       | 64, 192, 1       |
+|   oracle_activations1_U                   | ram_1p array  |      |      |      |        | oracle_activations1 | auto | 1       | 64, 64, 1        |
+|   oracle_activations2_U                   | ram_1p array  |      |      |      |        | oracle_activations2 | auto | 1       | 64, 64, 1        |
++-------------------------------------------+---------------+------+------+------+--------+---------------------+------+---------+------------------+
 
 
 ================================================================
@@ -361,71 +360,56 @@
 | loop_tripcount | min=3 max=3 avg=3       | data/benchmarks/backprop/backprop.c:325 in update_weights                               |
 | loop_tripcount | min=163 max=163 avg=163 | data/benchmarks/backprop/backprop.c:357 in backprop                                     |
 | loop_tripcount | min=64 max=64 avg=64    | data/benchmarks/backprop/backprop.c:360 in backprop                                     |
-| inline         | off=true                | ../base_directives/backprop.tcl:59 in add_bias_to_activations                           |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:40 in add_bias_to_activations                           |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:45 in add_bias_to_activations                           |
-| inline         | off=true                | ../base_directives/backprop.tcl:56 in backprop                                          |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:84 in backprop                                          |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:69 in backprop                                          |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:35 in backprop                                          |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:36 in backprop                                          |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:42 in backprop                                          |
-| inline         | off=true                | ../base_directives/backprop.tcl:65 in get_delta_matrix_weights1                         |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:75 in get_delta_matrix_weights1                         |
+| inline         | off=true                | ../base_directives/backprop.tcl:50 in get_delta_matrix_weights1                         |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:60 in get_delta_matrix_weights1                         |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:11 in get_delta_matrix_weights1                         |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:12 in get_delta_matrix_weights1                         |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:50 in get_delta_matrix_weights1                         |
-| inline         | off=true                | ../base_directives/backprop.tcl:66 in get_delta_matrix_weights2                         |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:76 in get_delta_matrix_weights2                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:40 in get_delta_matrix_weights1                         |
+| inline         | off=true                | ../base_directives/backprop.tcl:51 in get_delta_matrix_weights2                         |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:61 in get_delta_matrix_weights2                         |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:13 in get_delta_matrix_weights2                         |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:14 in get_delta_matrix_weights2                         |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:51 in get_delta_matrix_weights2                         |
-| inline         | off=true                | ../base_directives/backprop.tcl:67 in get_delta_matrix_weights3                         |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:77 in get_delta_matrix_weights3                         |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:41 in get_delta_matrix_weights2                         |
+| inline         | off=true                | ../base_directives/backprop.tcl:52 in get_delta_matrix_weights3                         |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:62 in get_delta_matrix_weights3                         |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:15 in get_delta_matrix_weights3                         |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:16 in get_delta_matrix_weights3                         |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:52 in get_delta_matrix_weights3                         |
-| inline         | off=true                | ../base_directives/backprop.tcl:68 in get_oracle_activations1                           |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:73 in get_oracle_activations1                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:42 in get_delta_matrix_weights3                         |
+| inline         | off=true                | ../base_directives/backprop.tcl:53 in get_oracle_activations1                           |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:58 in get_oracle_activations1                           |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:7 in get_oracle_activations1                            |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:8 in get_oracle_activations1                            |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:53 in get_oracle_activations1                           |
-| inline         | off=true                | ../base_directives/backprop.tcl:69 in get_oracle_activations2                           |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:74 in get_oracle_activations2                           |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:43 in get_oracle_activations1                           |
+| inline         | off=true                | ../base_directives/backprop.tcl:54 in get_oracle_activations2                           |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:59 in get_oracle_activations2                           |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:9 in get_oracle_activations2                            |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:10 in get_oracle_activations2                           |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:54 in get_oracle_activations2                           |
-| inline         | off=true                | ../base_directives/backprop.tcl:62 in matrix_vector_product_with_bias_input_layer       |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:70 in matrix_vector_product_with_bias_input_layer       |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:44 in get_oracle_activations2                           |
+| inline         | off=true                | ../base_directives/backprop.tcl:47 in matrix_vector_product_with_bias_input_layer       |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:55 in matrix_vector_product_with_bias_input_layer       |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:1 in matrix_vector_product_with_bias_input_layer        |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:2 in matrix_vector_product_with_bias_input_layer        |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:46 in matrix_vector_product_with_bias_input_layer       |
-| inline         | off=true                | ../base_directives/backprop.tcl:64 in matrix_vector_product_with_bias_output_layer      |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:72 in matrix_vector_product_with_bias_output_layer      |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:37 in matrix_vector_product_with_bias_input_layer       |
+| inline         | off=true                | ../base_directives/backprop.tcl:49 in matrix_vector_product_with_bias_output_layer      |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:57 in matrix_vector_product_with_bias_output_layer      |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:5 in matrix_vector_product_with_bias_output_layer       |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:6 in matrix_vector_product_with_bias_output_layer       |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:48 in matrix_vector_product_with_bias_output_layer      |
-| inline         | off=true                | ../base_directives/backprop.tcl:63 in matrix_vector_product_with_bias_second_layer      |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:71 in matrix_vector_product_with_bias_second_layer      |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:39 in matrix_vector_product_with_bias_output_layer      |
+| inline         | off=true                | ../base_directives/backprop.tcl:48 in matrix_vector_product_with_bias_second_layer      |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:56 in matrix_vector_product_with_bias_second_layer      |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:3 in matrix_vector_product_with_bias_second_layer       |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:4 in matrix_vector_product_with_bias_second_layer       |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:47 in matrix_vector_product_with_bias_second_layer      |
-| inline         | off=true                | ../base_directives/backprop.tcl:58 in relu                                              |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:39 in relu                                              |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:44 in relu                                              |
-| inline         | off=true                | ../base_directives/backprop.tcl:57 in soft_max                                          |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:37 in soft_max                                          |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:38 in soft_max                                          |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:43 in soft_max                                          |
-| inline         | off=true                | ../base_directives/backprop.tcl:60 in take_difference                                   |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:41 in take_difference                                   |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:49 in take_difference                                   |
-| inline         | off=true                | ../base_directives/backprop.tcl:61 in update_weights                                    |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:78 in update_weights                                    |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:79 in update_weights                                    |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:80 in update_weights                                    |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:81 in update_weights                                    |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:82 in update_weights                                    |
-| loop_flatten   | off=true                | ../base_directives/backprop.tcl:83 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:38 in matrix_vector_product_with_bias_second_layer      |
+| inline         | off=true                | ../base_directives/backprop.tcl:46 in update_weights                                    |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:63 in update_weights                                    |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:64 in update_weights                                    |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:65 in update_weights                                    |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:66 in update_weights                                    |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:67 in update_weights                                    |
+| loop_flatten   | off=true                | ../base_directives/backprop.tcl:68 in update_weights                                    |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:17 in update_weights                                    |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:18 in update_weights                                    |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:19 in update_weights                                    |
@@ -444,7 +428,7 @@
 | pipeline       | off=true                | ../base_directives/backprop.tcl:32 in update_weights                                    |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:33 in update_weights                                    |
 | pipeline       | off=true                | ../base_directives/backprop.tcl:34 in update_weights                                    |
-| pipeline       | off=true                | ../base_directives/backprop.tcl:55 in update_weights                                    |
+| pipeline       | off=true                | ../base_directives/backprop.tcl:45 in update_weights                                    |
 +----------------+-------------------------+-----------------------------------------------------------------------------------------+
 
 

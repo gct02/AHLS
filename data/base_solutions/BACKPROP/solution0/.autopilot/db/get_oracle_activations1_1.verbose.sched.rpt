@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_oracle_activations1_1'
 ================================================================
-* Date:           Wed Jul  9 03:32:56 2025
+* Date:           Wed Aug  6 20:24:16 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -98,20 +98,20 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 0.38>
 ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/backprop/backprop.c:172]   --->   Operation 17 'alloca' 'i' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights2, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specpipeline_ln53 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:53]   --->   Operation 19 'specpipeline' 'specpipeline_ln53' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specpipeline_ln43 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:43]   --->   Operation 19 'specpipeline' 'specpipeline_ln43' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 20 [1/1] (0.38ns)   --->   "%store_ln172 = store i7 0, i7 %i" [data/benchmarks/backprop/backprop.c:172]   --->   Operation 20 'store' 'store_ln172' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%br_ln174 = br void %get_oracle_activations1_loop1_1" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 21 'br' 'br_ln174' <Predicate = true> <Delay = 0.00>
 
 State 2 <SV = 1> <Delay = 0.70>
-ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%i_29 = load i7 %i"   --->   Operation 22 'load' 'i_29' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 23 [1/1] (0.70ns)   --->   "%icmp_ln174 = icmp_eq  i7 %i_29, i7 64" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 23 'icmp' 'icmp_ln174' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 24 [1/1] (0.70ns)   --->   "%add_ln174 = add i7 %i_29, i7 1" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 24 'add' 'add_ln174' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%i_28 = load i7 %i"   --->   Operation 22 'load' 'i_28' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.70ns)   --->   "%icmp_ln174 = icmp_eq  i7 %i_28, i7 64" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 23 'icmp' 'icmp_ln174' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.70ns)   --->   "%add_ln174 = add i7 %i_28, i7 1" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 24 'add' 'add_ln174' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%br_ln174 = br i1 %icmp_ln174, void %get_oracle_activations1_loop1_1.split, void %for.end21" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 25 'br' 'br_ln174' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln174 = zext i7 %i_29" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 26 'zext' 'zext_ln174' <Predicate = (!icmp_ln174)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln174 = zext i7 %i_28" [data/benchmarks/backprop/backprop.c:174]   --->   Operation 26 'zext' 'zext_ln174' <Predicate = (!icmp_ln174)> <Delay = 0.00>
 ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%speclooptripcount_ln175 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/backprop/backprop.c:175]   --->   Operation 27 'speclooptripcount' 'speclooptripcount_ln175' <Predicate = (!icmp_ln174)> <Delay = 0.00>
-ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%specloopname_ln183 = specloopname void @_ssdm_op_SpecLoopName, void @empty_9" [data/benchmarks/backprop/backprop.c:183]   --->   Operation 28 'specloopname' 'specloopname_ln183' <Predicate = (!icmp_ln174)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%specloopname_ln183 = specloopname void @_ssdm_op_SpecLoopName, void @empty_32" [data/benchmarks/backprop/backprop.c:183]   --->   Operation 28 'specloopname' 'specloopname_ln183' <Predicate = (!icmp_ln174)> <Delay = 0.00>
 ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%oracle_activations_addr = getelementptr i64 %oracle_activations, i64 0, i64 %zext_ln174" [data/benchmarks/backprop/backprop.c:176]   --->   Operation 29 'getelementptr' 'oracle_activations_addr' <Predicate = (!icmp_ln174)> <Delay = 0.00>
-ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%empty = trunc i7 %i_29"   --->   Operation 30 'trunc' 'empty' <Predicate = (!icmp_ln174)> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%empty = trunc i7 %i_28"   --->   Operation 30 'trunc' 'empty' <Predicate = (!icmp_ln174)> <Delay = 0.00>
 ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_s = bitconcatenate i12 @_ssdm_op_BitConcatenate.i12.i6.i6, i6 %empty, i6 0"   --->   Operation 31 'bitconcatenate' 'tmp_s' <Predicate = (!icmp_ln174)> <Delay = 0.00>
 ST_2 : Operation 32 [1/1] (0.38ns)   --->   "%br_ln178 = br void %for.inc" [data/benchmarks/backprop/backprop.c:178]   --->   Operation 32 'br' 'br_ln178' <Predicate = (!icmp_ln174)> <Delay = 0.38>
 ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%ret_ln184 = ret" [data/benchmarks/backprop/backprop.c:184]   --->   Operation 33 'ret' 'ret_ln184' <Predicate = (icmp_ln174)> <Delay = 0.00>
@@ -162,7 +162,7 @@ ST_11 : Operation 59 [2/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8
 
 State 12 <SV = 11> <Delay = 4.33>
 ST_12 : Operation 60 [1/1] (0.00ns)   --->   "%speclooptripcount_ln179 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/backprop/backprop.c:179]   --->   Operation 60 'speclooptripcount' 'speclooptripcount_ln179' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 61 [1/1] (0.00ns)   --->   "%specloopname_ln181 = specloopname void @_ssdm_op_SpecLoopName, void @empty_7" [data/benchmarks/backprop/backprop.c:181]   --->   Operation 61 'specloopname' 'specloopname_ln181' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 61 [1/1] (0.00ns)   --->   "%specloopname_ln181 = specloopname void @_ssdm_op_SpecLoopName, void @empty_9" [data/benchmarks/backprop/backprop.c:181]   --->   Operation 61 'specloopname' 'specloopname_ln181' <Predicate = true> <Delay = 0.00>
 ST_12 : Operation 62 [1/4] (4.33ns)   --->   "%add = dadd i64 %add113, i64 %mul8" [data/benchmarks/backprop/backprop.c:180]   --->   Operation 62 'dadd' 'add' <Predicate = true> <Delay = 4.33> <CoreInst = "DAddSub_fulldsp">   --->   Core 37 'DAddSub_fulldsp' <Latency = 3> <II = 1> <Delay = 4.33> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
 ST_12 : Operation 63 [1/1] (0.00ns)   --->   "%br_ln178 = br void %for.inc" [data/benchmarks/backprop/backprop.c:178]   --->   Operation 63 'br' 'br_ln178' <Predicate = true> <Delay = 0.00>
 

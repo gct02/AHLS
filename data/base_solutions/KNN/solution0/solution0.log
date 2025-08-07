@@ -16,9 +16,9 @@ INFO: [HLS 200-1510] Running: set_directive_pipeline -off md_kernel/loop_j
 INFO: [HLS 200-1510] Running: set_directive_pipeline -off md_kernel 
 INFO: [HLS 200-1510] Running: set_directive_loop_flatten -off md_kernel/loop_j 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 226.613 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 226.586 MB.
 INFO: [HLS 200-10] Analyzing design file 'data/benchmarks/knn/md.c' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.14 seconds. CPU system time: 0.2 seconds. Elapsed time: 0.34 seconds; current allocated memory: 228.250 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.16 seconds. CPU system time: 0.19 seconds. Elapsed time: 0.38 seconds; current allocated memory: 228.270 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
 INFO: [HLS 200-1995] There were 73 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/syn/report/csynth_design_size.rpt
 INFO: [HLS 200-1995] There were 71 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/syn/report/csynth_design_size.rpt
@@ -35,14 +35,14 @@ INFO: [HLS 200-1995] There were 58 instructions in the design after the 'Perform
 INFO: [HLS 200-1995] There were 58 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/syn/report/csynth_design_size.rpt
 INFO: [HLS 200-1995] There were 81 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/syn/report/csynth_design_size.rpt
 INFO: [HLS 200-1995] There were 90 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.53 seconds. CPU system time: 0.24 seconds. Elapsed time: 6.64 seconds; current allocated memory: 229.547 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 229.547 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.7 seconds. CPU system time: 0.24 seconds. Elapsed time: 6.78 seconds; current allocated memory: 229.574 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 229.574 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 229.859 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 229.859 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 229.918 MB.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 251.609 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 251.609 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 229.918 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 251.594 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 251.594 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'md_kernel' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -50,13 +50,13 @@ INFO: [HLS 200-42] -- Implementing module 'md_kernel'
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.1 seconds; current allocated memory: 251.609 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.11 seconds; current allocated memory: 251.594 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 251.609 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 251.594 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'md_kernel' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -72,17 +72,17 @@ INFO: [RTGEN 206-100] Generating core module 'dadddsub_64ns_64ns_64_4_full_dsp_1
 INFO: [RTGEN 206-100] Generating core module 'ddiv_64ns_64ns_64_14_no_dsp_1': 1 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'dmul_64ns_64ns_64_4_max_dsp_1': 3 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'md_kernel'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 251.609 MB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.11 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.13 seconds; current allocated memory: 251.609 MB.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.21 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.22 seconds; current allocated memory: 252.555 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 251.594 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.12 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.13 seconds; current allocated memory: 251.594 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.22 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.24 seconds; current allocated memory: 252.574 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for md_kernel.
 INFO: [VLOG 209-307] Generating Verilog RTL for md_kernel.
 INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
 INFO: [HLS 200-789] **** Estimated Fmax: 171.66 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.25 seconds. CPU system time: 0.5 seconds. Elapsed time: 7.61 seconds; current allocated memory: 25.973 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.45 seconds. CPU system time: 0.49 seconds. Elapsed time: 7.85 seconds; current allocated memory: 26.035 MB.
 INFO: [HLS 200-1510] Running: export_design -flow impl -format syn_dcp -rtl verilog 
 INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 INFO: [IMPL 213-8] Starting RTL evaluation using Vivado ...
 INFO: [HLS 200-802] Generated output file data/base_solutions/KNN/solution0/impl/export.dcp
 INFO: [HLS 200-802] Generated output file data/base_solutions/KNN/solution0/impl/export.veo
-INFO: [HLS 200-111] Finished Command export_design CPU user time: 211.61 seconds. CPU system time: 11.14 seconds. Elapsed time: 372.83 seconds; current allocated memory: 6.332 MB.
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 218.87 seconds. CPU system time: 10.06 seconds. Elapsed time: 391.07 seconds; current allocated memory: 6.344 MB.

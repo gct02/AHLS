@@ -4,36 +4,22 @@
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="224" pragmaType="loop_tripcount" parentfunction="adpcm_main" min="50" max="50" avg="50"/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="13" pragmaType="pipeline" parentfunction="adpcm_main" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="218" pragmaType="loop_tripcount" parentfunction="adpcm_main" min="50" max="50" avg="50"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="34" pragmaType="inline" parentfunction="logsch" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="21" pragmaType="pipeline" parentfunction="logsch" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="40" pragmaType="inline" parentfunction="quantl" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="27" pragmaType="pipeline" parentfunction="quantl" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="26" pragmaType="inline" parentfunction="quantl" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="20" pragmaType="pipeline" parentfunction="quantl" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="10" pragmaType="pipeline" parentfunction="quantl" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="494" pragmaType="loop_tripcount" parentfunction="quantl" min="30" max="30" avg="30"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="29" pragmaType="inline" parentfunction="abs" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="16" pragmaType="pipeline" parentfunction="abs" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="41" pragmaType="inline" parentfunction="upzero" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="28" pragmaType="pipeline" parentfunction="upzero" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="27" pragmaType="inline" parentfunction="upzero" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="21" pragmaType="pipeline" parentfunction="upzero" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="11" pragmaType="pipeline" parentfunction="upzero" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="538" pragmaType="loop_tripcount" parentfunction="upzero" min="6" max="6" avg="6"/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="12" pragmaType="pipeline" parentfunction="upzero" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="544" pragmaType="loop_tripcount" parentfunction="upzero" min="6" max="6" avg="6"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="32" pragmaType="inline" parentfunction="uppol2" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="19" pragmaType="pipeline" parentfunction="uppol2" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="33" pragmaType="inline" parentfunction="uppol1" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="20" pragmaType="pipeline" parentfunction="uppol1" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="38" pragmaType="inline" parentfunction="filtez" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="25" pragmaType="pipeline" parentfunction="filtez" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="25" pragmaType="inline" parentfunction="filtez" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="19" pragmaType="pipeline" parentfunction="filtez" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="9" pragmaType="pipeline" parentfunction="filtez" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="465" pragmaType="loop_tripcount" parentfunction="filtez" min="5" max="5" avg="5"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="39" pragmaType="inline" parentfunction="filtep" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="26" pragmaType="pipeline" parentfunction="filtep" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="30" pragmaType="inline" parentfunction="logscl" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="17" pragmaType="pipeline" parentfunction="logscl" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="31" pragmaType="inline" parentfunction="scalel" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="18" pragmaType="pipeline" parentfunction="scalel" off="1" ii="0" style=""/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="37" pragmaType="inline" parentfunction="reset" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="24" pragmaType="pipeline" parentfunction="reset" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="24" pragmaType="inline" parentfunction="reset" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="18" pragmaType="pipeline" parentfunction="reset" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="8" pragmaType="pipeline" parentfunction="reset" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="452" pragmaType="loop_tripcount" parentfunction="reset" min="11" max="11" avg="11"/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="7" pragmaType="pipeline" parentfunction="reset" off="1" ii="0" rewind="0" style=""/>
@@ -42,14 +28,14 @@
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="437" pragmaType="loop_tripcount" parentfunction="reset" min="6" max="6" avg="6"/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="5" pragmaType="pipeline" parentfunction="reset" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="428" pragmaType="loop_tripcount" parentfunction="reset" min="6" max="6" avg="6"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="35" pragmaType="inline" parentfunction="encode" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="22" pragmaType="pipeline" parentfunction="encode" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="22" pragmaType="inline" parentfunction="encode" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="16" pragmaType="pipeline" parentfunction="encode" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="2" pragmaType="pipeline" parentfunction="encode" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="270" pragmaType="loop_tripcount" parentfunction="encode" min="22" max="22" avg="22"/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="1" pragmaType="pipeline" parentfunction="encode" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="256" pragmaType="loop_tripcount" parentfunction="encode" min="10" max="10" avg="10"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="36" pragmaType="inline" parentfunction="decode" off="1" region="0" recursive="0"/>
-<pragma file="data/benchmarks/adpcm/adpcm.c" line="23" pragmaType="pipeline" parentfunction="decode" off="1" ii="0" style=""/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="23" pragmaType="inline" parentfunction="decode" off="1" region="0" recursive="0"/>
+<pragma file="data/benchmarks/adpcm/adpcm.c" line="17" pragmaType="pipeline" parentfunction="decode" off="1" ii="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="4" pragmaType="pipeline" parentfunction="decode" off="1" ii="0" rewind="0" style=""/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="406" pragmaType="loop_tripcount" parentfunction="decode" min="10" max="10" avg="10"/>
 <pragma file="data/benchmarks/adpcm/adpcm.c" line="3" pragmaType="pipeline" parentfunction="decode" off="1" ii="0" rewind="0" style=""/>

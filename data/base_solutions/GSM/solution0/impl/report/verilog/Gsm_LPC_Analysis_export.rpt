@@ -4,21 +4,21 @@ Implementation tool: Xilinx Vivado v.2023.2
 Project:             GSM
 Solution:            solution0
 Device target:       xcu50-fsvh2104-2-e
-Report date:         Wed Jul 09 04:02:57 -03 2025
+Report date:         Wed Aug 06 20:47:40 -03 2025
 
 #=== Post-Implementation Resource usage ===
 SLICE:            0
-LUT:           2487
-FF:            1762
-DSP:             37
-BRAM:             5
+LUT:           2594
+FF:            1650
+DSP:             40
+BRAM:             4
 URAM:             0
 LATCH:            0
 SRL:              0
-CLB:            459
+CLB:            471
 
 #=== Final timing ===
 CP required:                     8.000
-CP achieved post-synthesis:      4.188
-CP achieved post-implementation: 4.529
+CP achieved post-synthesis:      3.518
+CP achieved post-implementation: 4.572
 Timing met

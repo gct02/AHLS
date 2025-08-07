@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_delta_matrix_weights1_1'
 ================================================================
-* Date:           Wed Jul  9 03:32:57 2025
+* Date:           Wed Aug  6 20:24:18 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -142,10 +142,10 @@
 |ap_done                     |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
 |ap_idle                     |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
 |ap_ready                    |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
-|grp_fu_994_p_din0           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
-|grp_fu_994_p_din1           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
-|grp_fu_994_p_dout0          |   in|   64|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
-|grp_fu_994_p_ce             |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
+|grp_fu_992_p_din0           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
+|grp_fu_992_p_din1           |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
+|grp_fu_992_p_dout0          |   in|   64|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
+|grp_fu_992_p_ce             |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights1.1|  return value|
 |delta_weights1_address0     |  out|   10|   ap_memory|               delta_weights1|         array|
 |delta_weights1_ce0          |  out|    1|   ap_memory|               delta_weights1|         array|
 |delta_weights1_we0          |  out|    1|   ap_memory|               delta_weights1|         array|

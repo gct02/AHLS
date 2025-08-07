@@ -5,44 +5,20 @@
     <msg msg_groups="" msg_id="207-71" msg_severity="INFO" msg_loc="/usr/include/math.h:1158:10" msg_body="previous definition is here">
         <args/>
     </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:14:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:17:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:12:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="data/benchmarks/transposed_fft/transposed_fft.c:29:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="twiddles8" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=7 max=7 avg=7" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:15:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="loadx8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:18:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="loadx8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:16:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="loady8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:19:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="loady8" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:13:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:12:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl:9:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=fft1D_512" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:20:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true variable=reversed" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:21:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true variable=data_x" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:22:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true variable=data_y" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl:1:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="fft1D_512" ARG_PragmaIsValid="1" ARG_PragmaOptions="off=true" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
@@ -161,6 +137,9 @@
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/transposed_fft/transposed_fft.c:23:0" msg_body="Inlining function 'sin' into 'twiddles8'">
         <args Callee="sin" Callee-DebugLoc="File /wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/c/sincosdouble.cpp Line 7 Column 0" Caller="twiddles8" Caller-DebugLoc="File data/benchmarks/transposed_fft/transposed_fft.c Line 23 Column 0"/>
     </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="data/benchmarks/transposed_fft/transposed_fft.c:114:0" msg_body="Inlining function 'loady8' into 'fft1D_512'">
+        <args Callee="loady8" Callee-DebugLoc="File data/benchmarks/transposed_fft/transposed_fft.c Line 103 Column 0" Caller="fft1D_512" Caller-DebugLoc="File data/benchmarks/transposed_fft/transposed_fft.c Line 114 Column 0"/>
+    </msg>
     <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/common/hls_hotbm_double.cpp:14:0" msg_body="Applying array_partition to '_ZZN6hotbm_10value_listIdE24sin_or_cos_approximationILi63ELi63EEE9ap_ufixedIXT_ELi1EL9ap_q_mode5EL9ap_o_mode3ELi0EEbR7ap_uintILi3EERS3_IXT_ELi0ELS4_5ELS5_3ELi0EERS3_IXT0_ELi0ELS4_5ELS5_3ELi0EER6ap_intILi11EEE10swap_table': Complete partitioning on dimension 1.">
         <args Dim="1" Mode="Complete" UOName="_ZZN6hotbm_10value_listIdE24sin_or_cos_approximationILi63ELi63EEE9ap_ufixedIXT_ELi1EL9ap_q_mode5EL9ap_o_mode3ELi0EEbR7ap_uintILi3EERS3_IXT_ELi0ELS4_5ELS5_3ELi0EERS3_IXT0_ELi0ELS4_5ELS5_3ELi0EER6ap_intILi11EEE10swap_table"/>
     </msg>
@@ -174,5 +153,29 @@
         <args Dim="1" Mode="Complete" UOName="_ZZN6hotbm_10sin_or_cosIdEET_S1_bbE10swap_table"/>
     </msg>
     <msg msg_groups="PRAGMA_MISC" msg_id="214-358" msg_severity="WARNING" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/hlsmath/src/common/hls_hotbm_double.cpp:29:67" msg_body="Array transformation on index using bit extension logic may lead to poor performance. Please use int or long for array index computation to benefit from optimizations."/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5" msg_body="Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:414:5" msg_body="Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:401:5" msg_body="Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:400:41" msg_body="Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:390:0" msg_body="Unrolling loop 'anonymous' (/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5) in function 'scaled_fixed2ieee&lt;63, 1&gt;' completely with a factor of 4">
+        <args Factor="4" LoopLoc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:421:5" LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:390:0" msg_body="Unrolling loop 'anonymous' (/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:414:5) in function 'scaled_fixed2ieee&lt;63, 1&gt;' completely with a factor of 4">
+        <args Factor="4" LoopLoc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:414:5" LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:390:0" msg_body="Unrolling loop 'anonymous' (/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:401:5) in function 'scaled_fixed2ieee&lt;63, 1&gt;' completely with a factor of 3">
+        <args Factor="3" LoopLoc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:401:5" LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:390:0" msg_body="Unrolling loop 'anonymous' (/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:400:41) in function 'scaled_fixed2ieee&lt;63, 1&gt;' completely with a factor of 4">
+        <args Factor="4" LoopLoc="/wrk/ci/prod/2023.2/hls_product/continuous/689/2023.2/src/shared/hls/clib/src/hls/utils/x_hls_float_utils.h:400:41" LoopName="anonymous"/>
+    </msg>
 </xilinx:hls_fe_msgs>
 

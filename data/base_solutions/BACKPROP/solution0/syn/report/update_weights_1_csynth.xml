@@ -397,7 +397,7 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_din0</name>
+<name>grp_fu_988_p_din0</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -408,7 +408,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_din1</name>
+<name>grp_fu_988_p_din1</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -419,7 +419,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_opcode</name>
+<name>grp_fu_988_p_opcode</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -430,7 +430,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_dout0</name>
+<name>grp_fu_988_p_dout0</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -441,7 +441,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_ce</name>
+<name>grp_fu_988_p_ce</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -452,7 +452,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_din0</name>
+<name>grp_fu_992_p_din0</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -463,7 +463,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_din1</name>
+<name>grp_fu_992_p_din1</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -474,7 +474,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_dout0</name>
+<name>grp_fu_992_p_dout0</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -485,7 +485,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_ce</name>
+<name>grp_fu_992_p_ce</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -496,7 +496,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_998_p_din0</name>
+<name>grp_fu_1000_p_din0</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -507,7 +507,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_998_p_din1</name>
+<name>grp_fu_1000_p_din1</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -518,7 +518,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_998_p_dout0</name>
+<name>grp_fu_1000_p_dout0</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -529,7 +529,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_998_p_ce</name>
+<name>grp_fu_1000_p_ce</name>
 <Object>update_weights.1</Object>
 <Type>return value</Type>
 <Scope></Scope>

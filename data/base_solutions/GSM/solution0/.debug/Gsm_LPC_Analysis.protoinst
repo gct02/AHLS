@@ -13,7 +13,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_Autocorrelation_fu_101/grp_Autocorrelation_fu_101_activity": {
+				"grp_Autocorrelation_fu_103/grp_Autocorrelation_fu_103_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -23,7 +23,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_Quantization_and_coding_fu_126/grp_Quantization_and_coding_fu_126_activity": {
+				"grp_Quantization_and_coding_fu_122/grp_Quantization_and_coding_fu_122_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -33,7 +33,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_Reflection_coefficients_fu_111/grp_Reflection_coefficients_fu_111_activity": {
+				"grp_Reflection_coefficients_fu_113/grp_Reflection_coefficients_fu_113_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -43,37 +43,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_Reflection_coefficients_fu_111/grp_gsm_div_fu_290/grp_gsm_div_fu_290_activity": {
-					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
-					"ports": {
-						"AP_CLK": { "actual": "ap_clk"},
-						"AP_DONE": { "actual": "ap_done"},
-						"AP_READY": { "actual": "ap_ready"},
-						"AP_RESET": { "actual": "ap_rst"},
-						"AP_START": { "actual": "ap_start"}
-					}
-				},
-				"grp_Reflection_coefficients_fu_111/grp_gsm_mult_r_fu_305/grp_gsm_mult_r_fu_305_activity": {
-					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
-					"ports": {
-						"AP_CLK": { "actual": "ap_clk"},
-						"AP_DONE": { "actual": "ap_done"},
-						"AP_READY": { "actual": "ap_ready"},
-						"AP_RESET": { "actual": "ap_rst"},
-						"AP_START": { "actual": "ap_start"}
-					}
-				},
-				"grp_gsm_mult_r_fu_300/grp_gsm_mult_r_fu_300_activity": {
-					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
-					"ports": {
-						"AP_CLK": { "actual": "ap_clk"},
-						"AP_DONE": { "actual": "ap_done"},
-						"AP_READY": { "actual": "ap_ready"},
-						"AP_RESET": { "actual": "ap_rst"},
-						"AP_START": { "actual": "ap_start"}
-					}
-				},
-				"grp_gsm_norm_fu_305/grp_gsm_norm_fu_305_activity": {
+				"grp_Reflection_coefficients_fu_113/grp_gsm_div_fu_389/grp_gsm_div_fu_389_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},

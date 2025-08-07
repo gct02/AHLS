@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'adpcm_main'
 ================================================================
-* Date:           Wed Jul  9 03:20:00 2025
+* Date:           Wed Aug  6 20:17:51 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        ADPCM
@@ -29,7 +29,7 @@
     |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
     |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
     +---------+---------+----------+----------+-------+-------+---------+
-    |    13704|    13804|  0.110 ms|  0.110 ms|  13705|  13805|       no|
+    |    13404|    13504|  0.107 ms|  0.108 ms|  13405|  13505|       no|
     +---------+---------+----------+----------+-------+-------+---------+
 
     + Detail: 
@@ -39,8 +39,8 @@
         |      Instance     | Module |   min   |   max   |    min   |    max   | min | max |   Type  |
         +-------------------+--------+---------+---------+----------+----------+-----+-----+---------+
         |grp_reset_fu_243   |reset   |       51|       51|  0.408 us|  0.408 us|   51|   51|       no|
-        |grp_encode_fu_333  |encode  |      168|      170|  1.344 us|  1.360 us|  168|  170|       no|
-        |grp_decode_fu_399  |decode  |       98|       98|  0.784 us|  0.784 us|   98|   98|       no|
+        |grp_encode_fu_333  |encode  |      165|      167|  1.320 us|  1.336 us|  165|  167|       no|
+        |grp_decode_fu_399  |decode  |       95|       95|  0.760 us|  0.760 us|   95|   95|       no|
         +-------------------+--------+---------+---------+----------+----------+-----+-----+---------+
 
         * Loop: 
@@ -48,8 +48,8 @@
         |                      |  Latency (cycles) | Iteration |  Initiation Interval  | Trip |          |
         |       Loop Name      |   min   |   max   |  Latency  |  achieved |   target  | Count| Pipelined|
         +----------------------+---------+---------+-----------+-----------+-----------+------+----------+
-        |- adpcm_main_label12  |     8550|     8650|  171 ~ 173|          -|          -|    50|        no|
-        |- adpcm_main_label13  |     5100|     5100|        102|          -|          -|    50|        no|
+        |- adpcm_main_label12  |     8400|     8500|  168 ~ 170|          -|          -|    50|        no|
+        |- adpcm_main_label13  |     4950|     4950|         99|          -|          -|    50|        no|
         +----------------------+---------+---------+-----------+-----------+-----------+------+----------+
 
 
@@ -64,39 +64,33 @@
 |DSP                  |        -|     -|        -|       -|    -|
 |Expression           |        -|     -|        0|      66|    -|
 |FIFO                 |        -|     -|        -|       -|    -|
-|Instance             |        0|    54|     2259|    6768|    -|
-|Memory               |        0|     -|      320|     333|    0|
-|Multiplexer          |        -|     -|        -|    1486|    -|
+|Instance             |        0|    54|     1747|    7658|    -|
+|Memory               |        0|     -|      352|     367|    0|
+|Multiplexer          |        -|     -|        -|    1248|    -|
 |Register             |        -|     -|      926|       -|    -|
 +---------------------+---------+------+---------+--------+-----+
-|Total                |        0|    54|     3505|    8653|    0|
+|Total                |        0|    54|     3025|    9339|    0|
 +---------------------+---------+------+---------+--------+-----+
 |Available SLR        |     1344|  2976|   871680|  435840|  320|
 +---------------------+---------+------+---------+--------+-----+
-|Utilization SLR (%)  |        0|     1|       ~0|       1|    0|
+|Utilization SLR (%)  |        0|     1|       ~0|       2|    0|
 +---------------------+---------+------+---------+--------+-----+
 |Available            |     2688|  5952|  1743360|  871680|  640|
 +---------------------+---------+------+---------+--------+-----+
-|Utilization (%)      |        0|    ~0|       ~0|      ~0|    0|
+|Utilization (%)      |        0|    ~0|       ~0|       1|    0|
 +---------------------+---------+------+---------+--------+-----+
 
 + Detail: 
     * Instance: 
-    +---------------------+--------+---------+----+------+------+-----+
-    |       Instance      | Module | BRAM_18K| DSP|  FF  |  LUT | URAM|
-    +---------------------+--------+---------+----+------+------+-----+
-    |grp_decode_fu_399    |decode  |        0|  12|   833|  2272|    0|
-    |grp_encode_fu_333    |encode  |        0|  26|  1284|  3385|    0|
-    |grp_filtep_fu_650    |filtep  |        0|   4|     0|    94|    0|
-    |tmp_s_logsch_fu_684  |logsch  |        0|   0|     0|   130|    0|
-    |grp_logscl_fu_657    |logscl  |        0|   0|    33|   150|    0|
-    |grp_reset_fu_243     |reset   |        0|   0|    20|   155|    0|
-    |grp_scalel_fu_663    |scalel  |        0|   0|    34|    89|    0|
-    |grp_uppol1_fu_669    |uppol1  |        0|   4|    36|   239|    0|
-    |grp_uppol2_fu_676    |uppol2  |        0|   8|    19|   254|    0|
-    +---------------------+--------+---------+----+------+------+-----+
-    |Total                |        |        0|  54|  2259|  6768|    0|
-    +---------------------+--------+---------+----+------+------+-----+
+    +-------------------+--------+---------+----+------+------+-----+
+    |      Instance     | Module | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-------------------+--------+---------+----+------+------+-----+
+    |grp_decode_fu_399  |decode  |        0|  22|   640|  3389|    0|
+    |grp_encode_fu_333  |encode  |        0|  32|  1087|  4114|    0|
+    |grp_reset_fu_243   |reset   |        0|   0|    20|   155|    0|
+    +-------------------+--------+---------+----+------+------+-----+
+    |Total              |        |        0|  54|  1747|  7658|    0|
+    +-------------------+--------+---------+----+------+------+-----+
 
     * DSP: 
     N/A
@@ -116,10 +110,12 @@
     |dec_del_dltx_U     |delay_dltx_RAM_AUTO_1R1W     |        0|  16|  17|    0|     6|   16|     1|           96|
     |dec_del_dhx_U      |delay_dltx_RAM_AUTO_1R1W     |        0|  16|  17|    0|     6|   16|     1|           96|
     |h_U                |h_ROM_AUTO_1R                |        0|  16|  17|    0|    24|   15|     1|          360|
+    |ilb_table_U        |ilb_table_ROM_AUTO_1R        |        0|  16|  17|    0|    32|   12|     1|          384|
     |qq4_code4_table_U  |qq4_code4_table_ROM_AUTO_1R  |        0|  16|  17|    0|    16|   16|     1|          256|
     |tqmf_U             |tqmf_RAM_AUTO_1R1W           |        0|  32|  33|    0|    24|   32|     1|          768|
+    |wl_code_table_U    |wl_code_table_ROM_AUTO_1R    |        0|  16|  17|    0|    16|   13|     1|          208|
     +-------------------+-----------------------------+---------+----+----+-----+------+-----+------+-------------+
-    |Total              |                             |        0| 320| 333|    0|   134|  319|    13|         3240|
+    |Total              |                             |        0| 352| 367|    0|   182|  344|    15|         3832|
     +-------------------+-----------------------------+---------+----+----+-----+------+-----+------+-------------+
 
     * FIFO: 
@@ -140,131 +136,114 @@
     +----------------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
-    +----------------------------------+----+-----------+-----+-----------+
-    |               Name               | LUT| Input Size| Bits| Total Bits|
-    +----------------------------------+----+-----------+-----+-----------+
-    |accumc_address0                   |  14|          3|    4|         12|
-    |accumc_ce0                        |  14|          3|    1|          3|
-    |accumc_d0                         |  14|          3|   32|         96|
-    |accumc_we0                        |  14|          3|    1|          3|
-    |accumd_address0                   |  14|          3|    4|         12|
-    |accumd_ce0                        |  14|          3|    1|          3|
-    |accumd_d0                         |  14|          3|   32|         96|
-    |accumd_we0                        |  14|          3|    1|          3|
-    |ah1                               |   9|          2|   16|         32|
-    |ah2                               |   9|          2|   15|         30|
-    |al1                               |   9|          2|   16|         32|
-    |al2                               |   9|          2|   15|         30|
-    |ap_NS_fsm                         |  54|         10|    1|         10|
-    |dec_ah1                           |   9|          2|   16|         32|
-    |dec_ah2                           |   9|          2|   15|         30|
-    |dec_al1                           |   9|          2|   16|         32|
-    |dec_al2                           |   9|          2|   15|         30|
-    |dec_del_bph_address0              |  14|          3|    3|          9|
-    |dec_del_bph_ce0                   |  14|          3|    1|          3|
-    |dec_del_bph_d0                    |  14|          3|   32|         96|
-    |dec_del_bph_we0                   |  14|          3|    1|          3|
-    |dec_del_bpl_address0              |  14|          3|    3|          9|
-    |dec_del_bpl_ce0                   |  14|          3|    1|          3|
-    |dec_del_bpl_d0                    |  14|          3|   32|         96|
-    |dec_del_bpl_we0                   |  14|          3|    1|          3|
-    |dec_del_dhx_address0              |  14|          3|    3|          9|
-    |dec_del_dhx_ce0                   |  14|          3|    1|          3|
-    |dec_del_dhx_ce1                   |   9|          2|    1|          2|
-    |dec_del_dhx_d0                    |  14|          3|   16|         48|
-    |dec_del_dhx_we0                   |  14|          3|    1|          3|
-    |dec_del_dhx_we1                   |   9|          2|    1|          2|
-    |dec_del_dltx_address0             |  14|          3|    3|          9|
-    |dec_del_dltx_ce0                  |  14|          3|    1|          3|
-    |dec_del_dltx_ce1                  |   9|          2|    1|          2|
-    |dec_del_dltx_d0                   |  14|          3|   16|         48|
-    |dec_del_dltx_we0                  |  14|          3|    1|          3|
-    |dec_del_dltx_we1                  |   9|          2|    1|          2|
-    |dec_deth                          |   9|          2|   15|         30|
-    |dec_detl                          |   9|          2|   15|         30|
-    |dec_nbh                           |   9|          2|   15|         30|
-    |dec_nbl                           |   9|          2|   15|         30|
-    |dec_ph1                           |   9|          2|   32|         64|
-    |dec_ph2                           |   9|          2|   32|         64|
-    |dec_plt1                          |   9|          2|   32|         64|
-    |dec_plt2                          |   9|          2|   32|         64|
-    |dec_rh1                           |   9|          2|   31|         62|
-    |dec_rh2                           |   9|          2|   31|         62|
-    |dec_rlt1                          |   9|          2|   31|         62|
-    |dec_rlt2                          |   9|          2|   31|         62|
-    |delay_bph_address0                |  14|          3|    3|          9|
-    |delay_bph_ce0                     |  14|          3|    1|          3|
-    |delay_bph_d0                      |  14|          3|   32|         96|
-    |delay_bph_we0                     |  14|          3|    1|          3|
-    |delay_bpl_address0                |  14|          3|    3|          9|
-    |delay_bpl_ce0                     |  14|          3|    1|          3|
-    |delay_bpl_d0                      |  14|          3|   32|         96|
-    |delay_bpl_we0                     |  14|          3|    1|          3|
-    |delay_dhx_address0                |  14|          3|    3|          9|
-    |delay_dhx_ce0                     |  14|          3|    1|          3|
-    |delay_dhx_ce1                     |   9|          2|    1|          2|
-    |delay_dhx_d0                      |  14|          3|   16|         48|
-    |delay_dhx_we0                     |  14|          3|    1|          3|
-    |delay_dhx_we1                     |   9|          2|    1|          2|
-    |delay_dltx_address0               |  14|          3|    3|          9|
-    |delay_dltx_ce0                    |  14|          3|    1|          3|
-    |delay_dltx_ce1                    |   9|          2|    1|          2|
-    |delay_dltx_d0                     |  14|          3|   16|         48|
-    |delay_dltx_we0                    |  14|          3|    1|          3|
-    |delay_dltx_we1                    |   9|          2|    1|          2|
-    |deth                              |   9|          2|   15|         30|
-    |detl                              |   9|          2|   15|         30|
-    |encoded_address0                  |  14|          3|    6|         18|
-    |grp_filtep_fu_650_al1             |  14|          3|   16|         48|
-    |grp_filtep_fu_650_al2             |  14|          3|   15|         45|
-    |grp_filtep_fu_650_rlt1            |  14|          3|   31|         93|
-    |grp_filtep_fu_650_rlt2            |  14|          3|   31|         93|
-    |grp_logscl_fu_657_ap_start        |  14|          3|    1|          3|
-    |grp_logscl_fu_657_il              |  14|          3|    6|         18|
-    |grp_logscl_fu_657_nbl             |  14|          3|   15|         45|
-    |grp_scalel_fu_663_ap_start        |  14|          3|    1|          3|
-    |grp_scalel_fu_663_nbl             |  14|          3|   15|         45|
-    |grp_scalel_fu_663_shift_constant  |  14|          3|    4|         12|
-    |grp_uppol1_fu_669_al1             |  14|          3|   16|         48|
-    |grp_uppol1_fu_669_ap_start        |  14|          3|    1|          3|
-    |grp_uppol1_fu_669_apl2            |  14|          3|   15|         45|
-    |grp_uppol1_fu_669_plt             |  14|          3|   32|         96|
-    |grp_uppol1_fu_669_plt1            |  14|          3|   32|         96|
-    |grp_uppol2_fu_676_al1             |  14|          3|   16|         48|
-    |grp_uppol2_fu_676_al2             |  14|          3|   15|         45|
-    |grp_uppol2_fu_676_ap_start        |  14|          3|    1|          3|
-    |grp_uppol2_fu_676_plt             |  14|          3|   32|         96|
-    |grp_uppol2_fu_676_plt1            |  14|          3|   32|         96|
-    |grp_uppol2_fu_676_plt2            |  14|          3|   32|         96|
-    |h_address0                        |  14|          3|    5|         15|
-    |h_address1                        |  14|          3|    5|         15|
-    |h_ce0                             |  14|          3|    1|          3|
-    |h_ce1                             |  14|          3|    1|          3|
-    |i_11_fu_168                       |   9|          2|    6|         12|
-    |i_fu_164                          |   9|          2|    6|         12|
-    |nbh                               |   9|          2|   15|         30|
-    |nbl                               |   9|          2|   15|         30|
-    |ph1                               |   9|          2|   32|         64|
-    |ph2                               |   9|          2|   32|         64|
-    |plt1                              |   9|          2|   32|         64|
-    |plt2                              |   9|          2|   32|         64|
-    |qq4_code4_table_address0          |  14|          3|    4|         12|
-    |qq4_code4_table_ce0               |  14|          3|    1|          3|
-    |rh1                               |   9|          2|   31|         62|
-    |rh2                               |   9|          2|   31|         62|
-    |rlt1                              |   9|          2|   31|         62|
-    |rlt2                              |   9|          2|   31|         62|
-    |tmp_s_logsch_fu_684_ih            |  14|          3|    2|          6|
-    |tmp_s_logsch_fu_684_nbh           |  14|          3|   15|         45|
-    |tqmf_address0                     |  14|          3|    5|         15|
-    |tqmf_ce0                          |  14|          3|    1|          3|
-    |tqmf_ce1                          |   9|          2|    1|          2|
-    |tqmf_d0                           |  14|          3|   32|         96|
-    |tqmf_we0                          |  14|          3|    1|          3|
-    |tqmf_we1                          |   9|          2|    1|          2|
-    +----------------------------------+----+-----------+-----+-----------+
-    |Total                             |1486|        320| 1517|       3788|
-    +----------------------------------+----+-----------+-----+-----------+
+    +--------------------------+----+-----------+-----+-----------+
+    |           Name           | LUT| Input Size| Bits| Total Bits|
+    +--------------------------+----+-----------+-----+-----------+
+    |accumc_address0           |  14|          3|    4|         12|
+    |accumc_ce0                |  14|          3|    1|          3|
+    |accumc_d0                 |  14|          3|   32|         96|
+    |accumc_we0                |  14|          3|    1|          3|
+    |accumd_address0           |  14|          3|    4|         12|
+    |accumd_ce0                |  14|          3|    1|          3|
+    |accumd_d0                 |  14|          3|   32|         96|
+    |accumd_we0                |  14|          3|    1|          3|
+    |ah1                       |   9|          2|   16|         32|
+    |ah2                       |   9|          2|   15|         30|
+    |al1                       |   9|          2|   16|         32|
+    |al2                       |   9|          2|   15|         30|
+    |ap_NS_fsm                 |  54|         10|    1|         10|
+    |dec_ah1                   |   9|          2|   16|         32|
+    |dec_ah2                   |   9|          2|   15|         30|
+    |dec_al1                   |   9|          2|   16|         32|
+    |dec_al2                   |   9|          2|   15|         30|
+    |dec_del_bph_address0      |  14|          3|    3|          9|
+    |dec_del_bph_ce0           |  14|          3|    1|          3|
+    |dec_del_bph_d0            |  14|          3|   32|         96|
+    |dec_del_bph_we0           |  14|          3|    1|          3|
+    |dec_del_bpl_address0      |  14|          3|    3|          9|
+    |dec_del_bpl_ce0           |  14|          3|    1|          3|
+    |dec_del_bpl_d0            |  14|          3|   32|         96|
+    |dec_del_bpl_we0           |  14|          3|    1|          3|
+    |dec_del_dhx_address0      |  14|          3|    3|          9|
+    |dec_del_dhx_ce0           |  14|          3|    1|          3|
+    |dec_del_dhx_ce1           |   9|          2|    1|          2|
+    |dec_del_dhx_d0            |  14|          3|   16|         48|
+    |dec_del_dhx_we0           |  14|          3|    1|          3|
+    |dec_del_dhx_we1           |   9|          2|    1|          2|
+    |dec_del_dltx_address0     |  14|          3|    3|          9|
+    |dec_del_dltx_ce0          |  14|          3|    1|          3|
+    |dec_del_dltx_ce1          |   9|          2|    1|          2|
+    |dec_del_dltx_d0           |  14|          3|   16|         48|
+    |dec_del_dltx_we0          |  14|          3|    1|          3|
+    |dec_del_dltx_we1          |   9|          2|    1|          2|
+    |dec_deth                  |   9|          2|   15|         30|
+    |dec_detl                  |   9|          2|   15|         30|
+    |dec_nbh                   |   9|          2|   15|         30|
+    |dec_nbl                   |   9|          2|   15|         30|
+    |dec_ph1                   |   9|          2|   32|         64|
+    |dec_ph2                   |   9|          2|   32|         64|
+    |dec_plt1                  |   9|          2|   32|         64|
+    |dec_plt2                  |   9|          2|   32|         64|
+    |dec_rh1                   |   9|          2|   31|         62|
+    |dec_rh2                   |   9|          2|   31|         62|
+    |dec_rlt1                  |   9|          2|   31|         62|
+    |dec_rlt2                  |   9|          2|   31|         62|
+    |delay_bph_address0        |  14|          3|    3|          9|
+    |delay_bph_ce0             |  14|          3|    1|          3|
+    |delay_bph_d0              |  14|          3|   32|         96|
+    |delay_bph_we0             |  14|          3|    1|          3|
+    |delay_bpl_address0        |  14|          3|    3|          9|
+    |delay_bpl_ce0             |  14|          3|    1|          3|
+    |delay_bpl_d0              |  14|          3|   32|         96|
+    |delay_bpl_we0             |  14|          3|    1|          3|
+    |delay_dhx_address0        |  14|          3|    3|          9|
+    |delay_dhx_ce0             |  14|          3|    1|          3|
+    |delay_dhx_ce1             |   9|          2|    1|          2|
+    |delay_dhx_d0              |  14|          3|   16|         48|
+    |delay_dhx_we0             |  14|          3|    1|          3|
+    |delay_dhx_we1             |   9|          2|    1|          2|
+    |delay_dltx_address0       |  14|          3|    3|          9|
+    |delay_dltx_ce0            |  14|          3|    1|          3|
+    |delay_dltx_ce1            |   9|          2|    1|          2|
+    |delay_dltx_d0             |  14|          3|   16|         48|
+    |delay_dltx_we0            |  14|          3|    1|          3|
+    |delay_dltx_we1            |   9|          2|    1|          2|
+    |deth                      |   9|          2|   15|         30|
+    |detl                      |   9|          2|   15|         30|
+    |encoded_address0          |  14|          3|    6|         18|
+    |h_address0                |  14|          3|    5|         15|
+    |h_address1                |  14|          3|    5|         15|
+    |h_ce0                     |  14|          3|    1|          3|
+    |h_ce1                     |  14|          3|    1|          3|
+    |i_11_fu_168               |   9|          2|    6|         12|
+    |i_fu_164                  |   9|          2|    6|         12|
+    |ilb_table_address0        |  14|          3|    5|         15|
+    |ilb_table_address1        |  14|          3|    5|         15|
+    |ilb_table_ce0             |  14|          3|    1|          3|
+    |ilb_table_ce1             |  14|          3|    1|          3|
+    |nbh                       |   9|          2|   15|         30|
+    |nbl                       |   9|          2|   15|         30|
+    |ph1                       |   9|          2|   32|         64|
+    |ph2                       |   9|          2|   32|         64|
+    |plt1                      |   9|          2|   32|         64|
+    |plt2                      |   9|          2|   32|         64|
+    |qq4_code4_table_address0  |  14|          3|    4|         12|
+    |qq4_code4_table_ce0       |  14|          3|    1|          3|
+    |rh1                       |   9|          2|   31|         62|
+    |rh2                       |   9|          2|   31|         62|
+    |rlt1                      |   9|          2|   31|         62|
+    |rlt2                      |   9|          2|   31|         62|
+    |tqmf_address0             |  14|          3|    5|         15|
+    |tqmf_ce0                  |  14|          3|    1|          3|
+    |tqmf_ce1                  |   9|          2|    1|          2|
+    |tqmf_d0                   |  14|          3|   32|         96|
+    |tqmf_we0                  |  14|          3|    1|          3|
+    |tqmf_we1                  |   9|          2|    1|          2|
+    |wl_code_table_address0    |  14|          3|    4|         12|
+    |wl_code_table_ce0         |  14|          3|    1|          3|
+    +--------------------------+----+-----------+-----+-----------+
+    |Total                     |1248|        269| 1158|       2711|
+    +--------------------------+----+-----------+-----+-----------+
 
     * Register: 
     +--------------------------------+----+----+-----+-----------+
@@ -460,10 +439,10 @@ ST_6 : Operation 56 [2/2] (0.69ns)   --->   "%encoded_load = load i6 %encoded_ad
 ST_6 : Operation 57 [1/1] (0.38ns)   --->   "%store_ln212 = store i6 %add_ln223, i6 %i_11" [data/benchmarks/adpcm/adpcm.c:212]   --->   Operation 57 'store' 'store_ln212' <Predicate = (!icmp_ln223)> <Delay = 0.38>
 ST_6 : Operation 58 [1/1] (0.00ns)   --->   "%ret_ln229 = ret" [data/benchmarks/adpcm/adpcm.c:229]   --->   Operation 58 'ret' 'ret_ln229' <Predicate = (icmp_ln223)> <Delay = 0.00>
 
-State 7 <SV = 4> <Delay = 3.95>
+State 7 <SV = 4> <Delay = 1.38>
 ST_7 : Operation 59 [1/2] (0.69ns)   --->   "%encoded_load = load i6 %encoded_addr_1" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 59 'load' 'encoded_load' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 50> <RAM>
 ST_7 : Operation 60 [1/1] (0.00ns)   --->   "%trunc_ln225 = trunc i32 %encoded_load" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 60 'trunc' 'trunc_ln225' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 61 [2/2] (3.25ns)   --->   "%call_ln225 = call void @decode, i8 %trunc_ln225, i32 %dec_del_bpl, i16 %dec_del_dltx, i31 %dec_rlt1, i16 %dec_al1, i31 %dec_rlt2, i15 %dec_al2, i15 %dec_detl, i16 %qq4_code4_table, i6 %il, i16 %qq6_code6_table, i15 %dec_nbl, i13 %wl_code_table, i12 %ilb_table, i32 %dec_plt1, i32 %dec_plt2, i32 %dec_del_bph, i16 %dec_del_dhx, i31 %dec_rh1, i16 %dec_ah1, i31 %dec_rh2, i15 %dec_ah2, i15 %dec_deth, i15 %dec_nbh, i32 %dec_ph1, i32 %dec_ph2, i32 %accumc, i15 %h, i32 %accumd, i32 %xout1, i32 %xout2" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 61 'call' 'call_ln225' <Predicate = true> <Delay = 3.25> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 61 [2/2] (0.68ns)   --->   "%call_ln225 = call void @decode, i8 %trunc_ln225, i32 %dec_del_bpl, i16 %dec_del_dltx, i31 %dec_rlt1, i16 %dec_al1, i31 %dec_rlt2, i15 %dec_al2, i15 %dec_detl, i16 %qq4_code4_table, i6 %il, i16 %qq6_code6_table, i15 %dec_nbl, i13 %wl_code_table, i12 %ilb_table, i32 %dec_plt1, i32 %dec_plt2, i32 %dec_del_bph, i16 %dec_del_dhx, i31 %dec_rh1, i16 %dec_ah1, i31 %dec_rh2, i15 %dec_ah2, i15 %dec_deth, i15 %dec_nbh, i32 %dec_ph1, i32 %dec_ph2, i32 %accumc, i15 %h, i32 %accumd, i32 %xout1, i32 %xout2" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 61 'call' 'call_ln225' <Predicate = true> <Delay = 0.68> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 8 <SV = 5> <Delay = 0.00>
 ST_8 : Operation 62 [1/2] (0.00ns)   --->   "%call_ln225 = call void @decode, i8 %trunc_ln225, i32 %dec_del_bpl, i16 %dec_del_dltx, i31 %dec_rlt1, i16 %dec_al1, i31 %dec_rlt2, i15 %dec_al2, i15 %dec_detl, i16 %qq4_code4_table, i6 %il, i16 %qq6_code6_table, i15 %dec_nbl, i13 %wl_code_table, i12 %ilb_table, i32 %dec_plt1, i32 %dec_plt2, i32 %dec_del_bph, i16 %dec_del_dhx, i31 %dec_rh1, i16 %dec_ah1, i31 %dec_rh2, i15 %dec_ah2, i15 %dec_deth, i15 %dec_nbh, i32 %dec_ph1, i32 %dec_ph2, i32 %accumc, i15 %h, i32 %accumd, i32 %xout1, i32 %xout2" [data/benchmarks/adpcm/adpcm.c:225]   --->   Operation 62 'call' 'call_ln225' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
@@ -472,12 +451,12 @@ State 9 <SV = 6> <Delay = 0.60>
 ST_9 : Operation 63 [1/1] (0.00ns)   --->   "%speclooptripcount_ln224 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 50, i64 50, i64 50" [data/benchmarks/adpcm/adpcm.c:224]   --->   Operation 63 'speclooptripcount' 'speclooptripcount_ln224' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 64 [1/1] (0.00ns)   --->   "%specloopname_ln228 = specloopname void @_ssdm_op_SpecLoopName, void @empty_13" [data/benchmarks/adpcm/adpcm.c:228]   --->   Operation 64 'specloopname' 'specloopname_ln228' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 65 [1/1] (0.00ns)   --->   "%xout1_load = load i32 %xout1" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 65 'load' 'xout1_load' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 66 [1/1] (0.00ns)   --->   "%shl_ln4 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %i_19, i1 0" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 66 'bitconcatenate' 'shl_ln4' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln226 = zext i7 %shl_ln4" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 67 'zext' 'zext_ln226' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 66 [1/1] (0.00ns)   --->   "%shl_ln5 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %i_19, i1 0" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 66 'bitconcatenate' 'shl_ln5' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln226 = zext i7 %shl_ln5" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 67 'zext' 'zext_ln226' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 68 [1/1] (0.00ns)   --->   "%decoded_addr = getelementptr i32 %decoded, i64 0, i64 %zext_ln226" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 68 'getelementptr' 'decoded_addr' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 69 [1/1] (0.60ns)   --->   "%store_ln226 = store i32 %xout1_load, i7 %decoded_addr" [data/benchmarks/adpcm/adpcm.c:226]   --->   Operation 69 'store' 'store_ln226' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 100> <RAM>
 ST_9 : Operation 70 [1/1] (0.00ns)   --->   "%xout2_load = load i32 %xout2" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 70 'load' 'xout2_load' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 71 [1/1] (0.00ns)   --->   "%or_ln227 = or i7 %shl_ln4, i7 1" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 71 'or' 'or_ln227' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 71 [1/1] (0.00ns)   --->   "%or_ln227 = or i7 %shl_ln5, i7 1" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 71 'or' 'or_ln227' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 72 [1/1] (0.00ns)   --->   "%zext_ln227 = zext i7 %or_ln227" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 72 'zext' 'zext_ln227' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 73 [1/1] (0.00ns)   --->   "%decoded_addr_1 = getelementptr i32 %decoded, i64 0, i64 %zext_ln227" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 73 'getelementptr' 'decoded_addr_1' <Predicate = true> <Delay = 0.00>
 ST_9 : Operation 74 [1/1] (0.60ns)   --->   "%store_ln227 = store i32 %xout2_load, i7 %decoded_addr_1" [data/benchmarks/adpcm/adpcm.c:227]   --->   Operation 74 'store' 'store_ln227' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 100> <RAM>
@@ -547,8 +526,8 @@ Port [ quant26bt_pos]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static
 Port [ quant26bt_neg]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[1]; IO mode=ap_memory:ce=0
 Port [ il]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; IO mode=ap_ovld:ce=0
 Port [ qq4_code4_table]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
-Port [ wl_code_table]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
-Port [ ilb_table]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
+Port [ wl_code_table]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[1]; IO mode=ap_memory:ce=0
+Port [ ilb_table]:  wired=0; compound=1; hidden=1; nouse=0; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=1; MemPort=[11]; IO mode=ap_memory:ce=0
 Port [ qq6_code6_table]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[1]; IO mode=ap_memory:ce=0
 Port [ xout1]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; IO mode=ap_ovld:ce=0
 Port [ xout2]:  wired=0; compound=0; hidden=1; nouse=0; global=1; static=1; extern=0; dir=2; type=0; pingpong=0; private_global=1; IO mode=ap_ovld:ce=0
@@ -608,7 +587,7 @@ call_ln225              (call             ) [ 0000000000]
 speclooptripcount_ln224 (speclooptripcount) [ 0000000000]
 specloopname_ln228      (specloopname     ) [ 0000000000]
 xout1_load              (load             ) [ 0000000000]
-shl_ln4                 (bitconcatenate   ) [ 0000000000]
+shl_ln5                 (bitconcatenate   ) [ 0000000000]
 zext_ln226              (zext             ) [ 0000000000]
 decoded_addr            (getelementptr    ) [ 0000000000]
 store_ln226             (store            ) [ 0000000000]
@@ -1125,7 +1104,7 @@ br_ln223                (br               ) [ 0000000000]
 <pin id="107" dir="1" index="0" bw="1" slack="0"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="ilb_table"/><MemPortTyVec>1 </MemPortTyVec>
+<StgValue><ssdm name="ilb_table"/><MemPortTyVec>1 1 </MemPortTyVec>
 </StgValue>
 </bind>
 </comp>
@@ -1888,7 +1867,7 @@ br_ln223                (br               ) [ 0000000000]
 </bind>
 </comp>
 
-<comp id="562" class="1004" name="shl_ln4_fu_562">
+<comp id="562" class="1004" name="shl_ln5_fu_562">
 <pin_list>
 <pin id="563" dir="0" index="0" bw="7" slack="0"/>
 <pin id="564" dir="0" index="1" bw="6" slack="3"/>
@@ -1897,7 +1876,7 @@ br_ln223                (br               ) [ 0000000000]
 </pin_list>
 <bind>
 <opcode="bitconcatenate(1004) " fcode="bitconcatenate"/>
-<opset="shl_ln4/9 "/>
+<opset="shl_ln5/9 "/>
 </bind>
 </comp>
 
@@ -2043,93 +2022,6 @@ br_ln223                (br               ) [ 0000000000]
 </pin_list>
 <bind>
 <opset="trunc_ln225 "/>
-</bind>
-</comp>
-
-<comp id="650" class="1004" name="grp_filtep_fu_650">
-<pin_list>
-<pin id="651" dir="0" index="0" bw="32" slack="2147483647"/>
-<pin id="652" dir="0" index="1" bw="31" slack="2147483647"/>
-<pin id="653" dir="0" index="2" bw="16" slack="2147483647"/>
-<pin id="654" dir="0" index="3" bw="31" slack="2147483647"/>
-<pin id="655" dir="0" index="4" bw="15" slack="2147483647"/>
-<pin id="656" dir="1" index="5" bw="32" slack="2147483647"/>
-</pin_list>
-<bind>
-<opcode="call(48) " fcode="call"/>
-<opset="tmp_1/6 tmp_8/8 "/>
-</bind>
-</comp>
-
-<comp id="657" class="1004" name="grp_logscl_fu_657">
-<pin_list>
-<pin id="658" dir="0" index="0" bw="15" slack="2147483647"/>
-<pin id="659" dir="0" index="1" bw="6" slack="2147483647"/>
-<pin id="660" dir="0" index="2" bw="15" slack="2147483647"/>
-<pin id="661" dir="0" index="3" bw="13" slack="2147483647"/>
-<pin id="662" dir="1" index="4" bw="15" slack="2147483647"/>
-</pin_list>
-<bind>
-<opcode="call(48) " fcode="call"/>
-<opset="tmp_3/11 "/>
-</bind>
-</comp>
-
-<comp id="663" class="1004" name="grp_scalel_fu_663">
-<pin_list>
-<pin id="664" dir="0" index="0" bw="15" slack="2147483647"/>
-<pin id="665" dir="0" index="1" bw="15" slack="2147483647"/>
-<pin id="666" dir="0" index="2" bw="4" slack="2147483647"/>
-<pin id="667" dir="0" index="3" bw="12" slack="2147483647"/>
-<pin id="668" dir="1" index="4" bw="15" slack="2147483647"/>
-</pin_list>
-<bind>
-<opcode="call(48) " fcode="call"/>
-<opset="tmp_10/11 tmp_4/13 "/>
-</bind>
-</comp>
-
-<comp id="669" class="1004" name="grp_uppol1_fu_669">
-<pin_list>
-<pin id="670" dir="0" index="0" bw="16" slack="2147483647"/>
-<pin id="671" dir="0" index="1" bw="16" slack="2147483647"/>
-<pin id="672" dir="0" index="2" bw="15" slack="2147483647"/>
-<pin id="673" dir="0" index="3" bw="32" slack="2147483647"/>
-<pin id="674" dir="0" index="4" bw="32" slack="2147483647"/>
-<pin id="675" dir="1" index="5" bw="16" slack="2147483647"/>
-</pin_list>
-<bind>
-<opcode="call(48) " fcode="call"/>
-<opset="tmp_6/13 "/>
-</bind>
-</comp>
-
-<comp id="676" class="1004" name="grp_uppol2_fu_676">
-<pin_list>
-<pin id="677" dir="0" index="0" bw="15" slack="2147483647"/>
-<pin id="678" dir="0" index="1" bw="16" slack="2147483647"/>
-<pin id="679" dir="0" index="2" bw="15" slack="2147483647"/>
-<pin id="680" dir="0" index="3" bw="32" slack="2147483647"/>
-<pin id="681" dir="0" index="4" bw="32" slack="2147483647"/>
-<pin id="682" dir="0" index="5" bw="32" slack="2147483647"/>
-<pin id="683" dir="1" index="6" bw="15" slack="2147483647"/>
-</pin_list>
-<bind>
-<opcode="call(48) " fcode="call"/>
-<opset="tmp_5/11 "/>
-</bind>
-</comp>
-
-<comp id="684" class="1004" name="tmp_s_logsch_fu_684">
-<pin_list>
-<pin id="685" dir="0" index="0" bw="15" slack="2147483647"/>
-<pin id="686" dir="0" index="1" bw="2" slack="2147483647"/>
-<pin id="687" dir="0" index="2" bw="15" slack="2147483647"/>
-<pin id="688" dir="1" index="3" bw="15" slack="2147483647"/>
-</pin_list>
-<bind>
-<opcode="call(48) " fcode="call"/>
-<opset="tmp_s/11 "/>
 </bind>
 </comp>
 
@@ -2685,14 +2577,8 @@ br_ln223                (br               ) [ 0000000000]
 | Operation|   Functional Unit   |   DSP   |  Delay  |    FF   |   LUT   |
 |----------|---------------------|---------|---------|---------|---------|
 |          |   grp_reset_fu_243  |    0    |    0    |    15   |    88   |
-|          |  grp_encode_fu_333  |    42   | 18.3423 |   1431  |   3564  |
-|          |  grp_decode_fu_399  |    28   | 15.0491 |   901   |   2464  |
-|          |  grp_filtep_fu_650  |    4    |    0    |    0    |    94   |
-|   call   |  grp_logscl_fu_657  |    0    |  0.387  |    4    |   117   |
-|          |  grp_scalel_fu_663  |    0    |  0.387  |    9    |    58   |
-|          |  grp_uppol1_fu_669  |    4    |    0    |    18   |   222   |
-|          |  grp_uppol2_fu_676  |    8    |    0    |    2    |   236   |
-|          | tmp_s_logsch_fu_684 |    0    |    0    |    0    |   128   |
+|   call   |  grp_encode_fu_333  |    32   | 16.0531 |   1226  |   3487  |
+|          |  grp_decode_fu_399  |    22   | 14.5636 |   695   |   2812  |
 |----------|---------------------|---------|---------|---------|---------|
 |   icmp   |  icmp_ln217_fu_472  |    0    |    0    |    0    |    13   |
 |          |  icmp_ln223_fu_530  |    0    |    0    |    0    |    13   |
@@ -2701,7 +2587,7 @@ br_ln223                (br               ) [ 0000000000]
 |          |   add_ln223_fu_536  |    0    |    0    |    0    |    13   |
 |----------|---------------------|---------|---------|---------|---------|
 |bitconcatenate|    shl_ln_fu_484    |    0    |    0    |    0    |    0    |
-|          |    shl_ln4_fu_562   |    0    |    0    |    0    |    0    |
+|          |    shl_ln5_fu_562   |    0    |    0    |    0    |    0    |
 |----------|---------------------|---------|---------|---------|---------|
 |          |  zext_ln219_fu_492  |    0    |    0    |    0    |    0    |
 |          | zext_ln219_1_fu_503 |    0    |    0    |    0    |    0    |
@@ -2716,7 +2602,7 @@ br_ln223                (br               ) [ 0000000000]
 |----------|---------------------|---------|---------|---------|---------|
 |   trunc  |  trunc_ln225_fu_552 |    0    |    0    |    0    |    0    |
 |----------|---------------------|---------|---------|---------|---------|
-|   Total  |                     |    86   | 34.1654 |   2380  |   7023  |
+|   Total  |                     |    54   | 30.6167 |   1936  |   6439  |
 |----------|---------------------|---------|---------|---------|---------|
 
 Memories:
@@ -2784,10 +2670,10 @@ Memories:
 +-----------+--------+--------+--------+--------+--------+--------+
 |           |  BRAM  |   DSP  |  Delay |   FF   |   LUT  |  URAM  |
 +-----------+--------+--------+--------+--------+--------+--------+
-|  Function |    -   |   86   |   34   |  2380  |  7023  |    -   |
+|  Function |    -   |   54   |   30   |  1936  |  6439  |    -   |
 |   Memory  |    0   |    -   |    -   |   400  |   419  |    0   |
 |Multiplexer|    -   |    -   |    2   |    -   |   59   |    -   |
 |  Register |    -   |    -   |    -   |   116  |    -   |    -   |
 +-----------+--------+--------+--------+--------+--------+--------+
-|   Total   |    0   |   86   |   36   |  2896  |  7501  |    0   |
+|   Total   |    0   |   54   |   32   |  2452  |  6917  |    0   |
 +-----------+--------+--------+--------+--------+--------+--------+

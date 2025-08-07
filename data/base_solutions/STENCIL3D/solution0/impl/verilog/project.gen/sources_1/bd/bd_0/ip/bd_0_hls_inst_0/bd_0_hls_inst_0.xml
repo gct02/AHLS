@@ -498,11 +498,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 09 07:16:03 UTC 2025</spirit:value>
+            <spirit:value>Thu Aug 07 03:48:55 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b35e4708</spirit:value>
+            <spirit:value>9:2004b8c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -513,7 +513,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b35e4708</spirit:value>
+            <spirit:value>9:2004b8c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -529,11 +529,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 09 07:15:21 UTC 2025</spirit:value>
+            <spirit:value>Thu Aug 07 03:48:13 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:18a3f7e4</spirit:value>
+            <spirit:value>9:8bf9082f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -549,11 +549,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 09 07:15:21 UTC 2025</spirit:value>
+            <spirit:value>Thu Aug 07 03:48:13 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:18a3f7e4</spirit:value>
+            <spirit:value>9:8bf9082f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -569,11 +569,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 09 07:15:21 UTC 2025</spirit:value>
+            <spirit:value>Thu Aug 07 03:48:13 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b35e4708</spirit:value>
+            <spirit:value>9:2004b8c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -589,11 +589,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 09 07:15:21 UTC 2025</spirit:value>
+            <spirit:value>Thu Aug 07 03:48:13 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b35e4708</spirit:value>
+            <spirit:value>9:2004b8c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1027,12 +1027,12 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/6d71/hdl/verilog/stencil3d_mul_32s_32s_32_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/5ad9/hdl/verilog/stencil3d_mul_32s_32s_32_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6d71/hdl/verilog/stencil3d.v</spirit:name>
+        <spirit:name>../../ipshared/5ad9/hdl/verilog/stencil3d.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1053,11 +1053,11 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6d71/hdl/verilog/stencil3d_mul_32s_32s_32_1_1.v</spirit:name>
+        <spirit:name>../../ipshared/5ad9/hdl/verilog/stencil3d_mul_32s_32s_32_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6d71/hdl/verilog/stencil3d.v</spirit:name>
+        <spirit:name>../../ipshared/5ad9/hdl/verilog/stencil3d.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1136,7 +1136,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>Stencil3d</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114163014</xilinx:coreRevision>
+      <xilinx:coreRevision>2114204567</xilinx:coreRevision>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

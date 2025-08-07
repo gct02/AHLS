@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Jul  9 04:03:26 2025
-# Process ID: 220882
+# Start of session at: Thu Aug  7 00:29:35 2025
+# Process ID: 937223
 # Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog
 # Command line: vivado -mode batch -source run_vivado.tcl
 # Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/vivado.log
 # Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/KNN/solution0/impl/verilog/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3637.099 MHz, CPU Physical cores: 4, Host memory: 16492 MB
 #-----------------------------------------------------------
 source run_vivado.tcl

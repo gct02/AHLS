@@ -232,11 +232,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "twiddles8",
+    "functionName": "fft1D_512",
     "id": 11,
     "ifcond": "",
     "insert_position": "",
-    "label": "twiddles",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -253,7 +253,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "fft1D_512",
+    "functionName": "twiddles8",
     "id": 12,
     "ifcond": "",
     "insert_position": "",
@@ -280,7 +280,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -295,188 +295,8 @@
   },
   {
     "functionLabel": "",
-    "functionName": "loadx8",
+    "functionName": "fft1D_512",
     "id": 14,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "PIPELINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 15,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "loady8",
-    "id": 15,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "PIPELINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 16,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "twiddles8",
-    "id": 16,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 17,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "loadx8",
-    "id": 17,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 18,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "loady8",
-    "id": 18,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 19,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "fft1D_512",
-    "id": 19,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "ARRAY_PARTITION",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        },
-        {
-          "name": "variable",
-          "value": "reversed"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 20,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "fft1D_512",
-    "id": 20,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "ARRAY_PARTITION",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        },
-        {
-          "name": "variable",
-          "value": "data_x"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 21,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "fft1D_512",
-    "id": 21,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "ARRAY_PARTITION",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        },
-        {
-          "name": "variable",
-          "value": "data_y"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl",
-    "sourceLine": 22,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "fft1D_512",
-    "id": 22,
     "ifcond": "",
     "insert_position": "",
     "label": "",
@@ -490,7 +310,7 @@
       ]
     },
     "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl",
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl",
     "sourceLine": 9,
     "success": true
   }

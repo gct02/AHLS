@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'quantl'" level="0">
-<item name = "Date">Wed Jul  9 03:19:59 2025
+<item name = "Date">Wed Aug  6 20:17:50 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -31,7 +31,6 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="wd_abs_r_fu_116">abs_r, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -49,9 +48,9 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 69, -</column>
+<column name="Expression">-, -, 0, 140, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, 1, 0, 73, -</column>
+<column name="Instance">-, 1, 0, 2, -</column>
 <column name="Memory">0, -, 32, 35, -</column>
 <column name="Multiplexer">-, -, -, 62, -</column>
 <column name="Register">-, -, 74, -, -</column>
@@ -65,8 +64,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="wd_abs_r_fu_116">abs_r, 0, 0, 0, 71, 0</column>
-<column name="mul_15ns_15ns_30_1_1_U57">mul_15ns_15ns_30_1_1, 0, 1, 0, 2, 0</column>
+<column name="mul_15ns_15ns_30_1_1_U48">mul_15ns_15ns_30_1_1, 0, 1, 0, 2, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -86,32 +84,34 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln493_fu_140_p2">+, 0, 0, 12, 5, 1</column>
-<column name="icmp_ln493_fu_134_p2">icmp, 0, 0, 12, 5, 3</column>
-<column name="icmp_ln496_fu_174_p2">icmp, 0, 0, 39, 32, 32</column>
-<column name="ril_2_fu_196_p3">select, 0, 0, 6, 1, 6</column>
+<column name="add_ln493_fu_154_p2">+, 0, 0, 12, 5, 1</column>
+<column name="m_fu_122_p2">-, 0, 0, 39, 1, 32</column>
+<column name="icmp_ln493_fu_148_p2">icmp, 0, 0, 12, 5, 3</column>
+<column name="icmp_ln496_fu_188_p2">icmp, 0, 0, 39, 32, 32</column>
+<column name="m_2_fu_128_p3">select, 0, 0, 32, 1, 32</column>
+<column name="ril_2_fu_203_p3">select, 0, 0, 6, 1, 6</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">26, 5, 1, 5</column>
-<column name="ap_phi_mux_mil_02_phi_fu_109_p4">9, 2, 5, 10</column>
+<column name="ap_phi_mux_mil_02_phi_fu_107_p4">9, 2, 5, 10</column>
 <column name="ap_return">9, 2, 6, 12</column>
-<column name="mil_02_reg_105">9, 2, 5, 10</column>
-<column name="mil_fu_50">9, 2, 5, 10</column>
+<column name="mil_02_reg_103">9, 2, 5, 10</column>
+<column name="mil_fu_48">9, 2, 5, 10</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln493_reg_232">5, 0, 5, 0</column>
+<column name="add_ln493_reg_239">5, 0, 5, 0</column>
 <column name="ap_CS_fsm">4, 0, 4, 0</column>
 <column name="ap_return_preg">6, 0, 6, 0</column>
-<column name="icmp_ln493_reg_228">1, 0, 1, 0</column>
-<column name="mil_02_reg_105">5, 0, 5, 0</column>
-<column name="mil_fu_50">5, 0, 5, 0</column>
-<column name="tmp_reg_245">1, 0, 1, 0</column>
-<column name="wd_reg_215">32, 0, 32, 0</column>
-<column name="zext_ln493_reg_220">15, 0, 30, 15</column>
+<column name="icmp_ln493_reg_235">1, 0, 1, 0</column>
+<column name="m_2_reg_222">32, 0, 32, 0</column>
+<column name="mil_02_reg_103">5, 0, 5, 0</column>
+<column name="mil_fu_48">5, 0, 5, 0</column>
+<column name="tmp_reg_217">1, 0, 1, 0</column>
+<column name="zext_ln493_reg_227">15, 0, 30, 15</column>
 </table>
 </item>
 </section>

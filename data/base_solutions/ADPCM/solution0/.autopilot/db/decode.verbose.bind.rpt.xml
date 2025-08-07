@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'decode'" level="0">
-<item name = "Date">Wed Jul  9 03:19:59 2025
+<item name = "Date">Wed Aug  6 20:17:50 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -24,21 +24,15 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">98, 98, 0.784 us, 0.784 us, 98, 98, no</column>
+<column name="">95, 95, 0.760 us, 0.760 us, 95, 95, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_filtez_fu_317">filtez, 13, 13, 0.104 us, 0.104 us, 13, 13, no</column>
-<column name="grp_logscl_fu_327">logscl, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="tmp_19_logsch_fu_335">logsch, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_scalel_fu_341">scalel, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_upzero_fu_352">upzero, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
-<column name="grp_uppol2_fu_363">uppol2, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
-<column name="grp_filtep_fu_372">filtep, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_uppol1_fu_380">uppol1, 1, 1, 8.000 ns, 8.000 ns, 1, 1, no</column>
+<column name="grp_filtez_fu_433">filtez, 13, 13, 0.104 us, 0.104 us, 13, 13, no</column>
+<column name="grp_upzero_fu_443">upzero, 17, 17, 0.136 us, 0.136 us, 17, 17, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

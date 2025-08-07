@@ -379,7 +379,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "InversShiftRow_ByteSub",
+    "functionName": "encrypt",
     "id": 18,
     "ifcond": "",
     "insert_position": "",
@@ -400,7 +400,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "encrypt",
+    "functionName": "decrypt",
     "id": 19,
     "ifcond": "",
     "insert_position": "",
@@ -421,7 +421,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "decrypt",
+    "functionName": "KeySchedule",
     "id": 20,
     "ifcond": "",
     "insert_position": "",
@@ -442,7 +442,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "KeySchedule",
+    "functionName": "AddRoundKey",
     "id": 21,
     "ifcond": "",
     "insert_position": "",
@@ -463,13 +463,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "ByteSub_ShiftRow",
+    "functionName": "AddRoundKey_InversMixColumn",
     "id": 22,
     "ifcond": "",
     "insert_position": "",
-    "label": "",
+    "label": "AddRoundKey_InversMixColumn_label1",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "LOOP_FLATTEN",
       "option": [
         {
           "name": "off",
@@ -484,13 +484,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "AddRoundKey",
+    "functionName": "KeySchedule",
     "id": 23,
     "ifcond": "",
     "insert_position": "",
-    "label": "",
+    "label": "KeySchedule_label5",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "LOOP_FLATTEN",
       "option": [
         {
           "name": "off",
@@ -505,11 +505,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "AddRoundKey_InversMixColumn",
+    "functionName": "KeySchedule",
     "id": 24,
     "ifcond": "",
     "insert_position": "",
-    "label": "AddRoundKey_InversMixColumn_label1",
+    "label": "KeySchedule_label6",
     "pragma": {
       "name": "LOOP_FLATTEN",
       "option": [
@@ -530,7 +530,7 @@
     "id": 25,
     "ifcond": "",
     "insert_position": "",
-    "label": "KeySchedule_label5",
+    "label": "KeySchedule_label7",
     "pragma": {
       "name": "LOOP_FLATTEN",
       "option": [
@@ -551,7 +551,7 @@
     "id": 26,
     "ifcond": "",
     "insert_position": "",
-    "label": "KeySchedule_label6",
+    "label": "KeySchedule_label8",
     "pragma": {
       "name": "LOOP_FLATTEN",
       "option": [
@@ -572,7 +572,7 @@
     "id": 27,
     "ifcond": "",
     "insert_position": "",
-    "label": "KeySchedule_label7",
+    "label": "KeySchedule_label9",
     "pragma": {
       "name": "LOOP_FLATTEN",
       "option": [
@@ -589,13 +589,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "KeySchedule",
+    "functionName": "MixColumn_AddRoundKey",
     "id": 28,
     "ifcond": "",
     "insert_position": "",
-    "label": "KeySchedule_label8",
+    "label": "",
     "pragma": {
-      "name": "LOOP_FLATTEN",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -610,13 +610,13 @@
   },
   {
     "functionLabel": "",
-    "functionName": "KeySchedule",
+    "functionName": "AddRoundKey_InversMixColumn",
     "id": 29,
     "ifcond": "",
     "insert_position": "",
-    "label": "KeySchedule_label9",
+    "label": "",
     "pragma": {
-      "name": "LOOP_FLATTEN",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -631,7 +631,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "MixColumn_AddRoundKey",
+    "functionName": "encrypt",
     "id": 30,
     "ifcond": "",
     "insert_position": "",
@@ -652,7 +652,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "AddRoundKey_InversMixColumn",
+    "functionName": "decrypt",
     "id": 31,
     "ifcond": "",
     "insert_position": "",
@@ -673,7 +673,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "InversShiftRow_ByteSub",
+    "functionName": "KeySchedule",
     "id": 32,
     "ifcond": "",
     "insert_position": "",
@@ -694,7 +694,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "encrypt",
+    "functionName": "AddRoundKey",
     "id": 33,
     "ifcond": "",
     "insert_position": "",
@@ -715,92 +715,8 @@
   },
   {
     "functionLabel": "",
-    "functionName": "decrypt",
-    "id": 34,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
-    "sourceLine": 35,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "KeySchedule",
-    "id": 35,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
-    "sourceLine": 36,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "ByteSub_ShiftRow",
-    "id": 36,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
-    "sourceLine": 37,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "AddRoundKey",
-    "id": 37,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl",
-    "sourceLine": 38,
-    "success": true
-  },
-  {
-    "functionLabel": "",
     "functionName": "aes_main",
-    "id": 38,
+    "id": 34,
     "ifcond": "",
     "insert_position": "",
     "label": "",
@@ -814,7 +730,7 @@
       ]
     },
     "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl",
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl",
     "sourceLine": 9,
     "success": true
   }

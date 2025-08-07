@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'matrix_vector_product_with_bias_input_layer_1'" level="0">
-<item name = "Date">Wed Jul  9 03:32:57 2025
+<item name = "Date">Wed Aug  6 20:24:17 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -24,14 +24,14 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">8771, 8771, 70.168 us, 70.168 us, 8771, 8771, no</column>
+<column name="">8519, 8519, 68.152 us, 68.152 us, 8519, 8519, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_add_bias_to_activations_clone_1_fu_136">add_bias_to_activations_clone_1, 321, 321, 2.568 us, 2.568 us, 321, 321, no</column>
+<column name="grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136">matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l, 69, 69, 0.552 us, 0.552 us, 69, 69, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -52,21 +52,21 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 106, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, 3, 449, 797, -</column>
+<column name="Instance">-, -, 86, 99, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, -, 157, -</column>
+<column name="Multiplexer">-, -, -, 217, -</column>
 <column name="Register">-, -, 264, -, -</column>
 <specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
-<specialColumn name="Utilization SLR (%)">0, ~0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
 <specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
-<specialColumn name="Utilization (%)">0, ~0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_add_bias_to_activations_clone_1_fu_136">add_bias_to_activations_clone_1, 0, 3, 449, 797, 0</column>
+<column name="grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136">matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l, 0, 0, 86, 99, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -96,11 +96,16 @@
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="activations_address0">14, 3, 6, 18</column>
 <column name="activations_ce0">14, 3, 1, 3</column>
+<column name="activations_ce1">9, 2, 1, 2</column>
 <column name="activations_d0">14, 3, 64, 192</column>
 <column name="activations_we0">14, 3, 1, 3</column>
 <column name="add113_reg_123">9, 2, 64, 128</column>
 <column name="ap_NS_fsm">65, 14, 1, 14</column>
-<column name="i_reg_112">9, 2, 4, 8</column>
+<column name="grp_fu_144_ce">9, 2, 1, 2</column>
+<column name="grp_fu_144_opcode">14, 3, 2, 6</column>
+<column name="grp_fu_144_p0">14, 3, 64, 192</column>
+<column name="grp_fu_144_p1">14, 3, 64, 192</column>
+<column name="i_14_reg_112">9, 2, 4, 8</column>
 <column name="j_fu_64">9, 2, 7, 14</column>
 <column name="phi_mul_fu_60">9, 2, 10, 20</column>
 </table>
@@ -114,8 +119,8 @@
 <column name="add_ln64_reg_291">4, 0, 4, 0</column>
 <column name="add_ln66_reg_296">10, 0, 10, 0</column>
 <column name="ap_CS_fsm">13, 0, 13, 0</column>
-<column name="grp_add_bias_to_activations_clone_1_fu_136_ap_start_reg">1, 0, 1, 0</column>
-<column name="i_reg_112">4, 0, 4, 0</column>
+<column name="grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_14_reg_112">4, 0, 4, 0</column>
 <column name="j_fu_64">7, 0, 7, 0</column>
 <column name="mul8_reg_326">64, 0, 64, 0</column>
 <column name="phi_mul_fu_60">10, 0, 10, 0</column>
@@ -135,15 +140,15 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_990_p_din0">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_990_p_din1">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_990_p_opcode">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_990_p_dout0">in, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_990_p_ce">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_994_p_din0">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_994_p_din1">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_994_p_dout0">in, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
-<column name="grp_fu_994_p_ce">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_988_p_din0">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_988_p_din1">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_988_p_opcode">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_988_p_dout0">in, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_988_p_ce">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_992_p_din0">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_992_p_din1">out, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_992_p_dout0">in, 64, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
+<column name="grp_fu_992_p_ce">out, 1, ap_ctrl_hs, matrix_vector_product_with_bias_input_layer.1, return value</column>
 <column name="biases1_address0">out, 6, ap_memory, biases1, array</column>
 <column name="biases1_ce0">out, 1, ap_memory, biases1, array</column>
 <column name="biases1_q0">in, 64, ap_memory, biases1, array</column>
@@ -154,7 +159,9 @@
 <column name="activations_ce0">out, 1, ap_memory, activations, array</column>
 <column name="activations_we0">out, 1, ap_memory, activations, array</column>
 <column name="activations_d0">out, 64, ap_memory, activations, array</column>
-<column name="activations_q0">in, 64, ap_memory, activations, array</column>
+<column name="activations_address1">out, 6, ap_memory, activations, array</column>
+<column name="activations_ce1">out, 1, ap_memory, activations, array</column>
+<column name="activations_q1">in, 64, ap_memory, activations, array</column>
 <column name="training_data_address0">out, 12, ap_memory, training_data, array</column>
 <column name="training_data_ce0">out, 1, ap_memory, training_data, array</column>
 <column name="training_data_q0">in, 64, ap_memory, training_data, array</column>

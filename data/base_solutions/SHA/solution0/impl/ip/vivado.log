@@ -3,16 +3,16 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Jul  9 04:09:36 2025
-# Process ID: 232995
+# Start of session at: Thu Aug  7 00:38:46 2025
+# Process ID: 953734
 # Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/ip/vivado.log
 # Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/SHA/solution0/impl/ip/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 586.967 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 4321.312 MHz, CPU Physical cores: 4, Host memory: 16492 MB
 #-----------------------------------------------------------
 source run_ippack.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 04:09:44 2025...
+INFO: [Common 17-206] Exiting Vivado at Thu Aug  7 00:38:54 2025...

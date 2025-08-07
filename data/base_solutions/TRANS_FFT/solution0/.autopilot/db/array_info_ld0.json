@@ -91,6 +91,19 @@
       "Loads": [],
       "GEPs": []
     },
+    "fft1D_512/reversed": {
+      "Name": "reversed",
+      "FunctionName": "fft1D_512",
+      "Alloca": 1,
+      "TotalSize": 8,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [8],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
     "fft1D_512/work_y": {
       "Name": "work_y",
       "FunctionName": "fft1D_512",

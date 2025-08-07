@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'update_weights_1'
 ================================================================
-* Date:           Wed Jul  9 03:32:57 2025
+* Date:           Wed Aug  6 20:24:18 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -94,8 +94,8 @@
     +-------------------------------------+--------------------------------+---------+----+---+----+-----+
     |               Instance              |             Module             | BRAM_18K| DSP| FF| LUT| URAM|
     +-------------------------------------+--------------------------------+---------+----+---+----+-----+
-    |dsqrt_64ns_64ns_64_12_no_dsp_1_U112  |dsqrt_64ns_64ns_64_12_no_dsp_1  |        0|   0|  0|   0|    0|
-    |mux_3_2_64_1_1_U113                  |mux_3_2_64_1_1                  |        0|   0|  0|  14|    0|
+    |dsqrt_64ns_64ns_64_12_no_dsp_1_U149  |dsqrt_64ns_64ns_64_12_no_dsp_1  |        0|   0|  0|   0|    0|
+    |mux_3_2_64_1_1_U150                  |mux_3_2_64_1_1                  |        0|   0|  0|  14|    0|
     +-------------------------------------+--------------------------------+---------+----+---+----+-----+
     |Total                                |                                |        0|   0|  0|  14|    0|
     +-------------------------------------+--------------------------------+---------+----+---+----+-----+
@@ -302,19 +302,19 @@
 |ap_done              |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
 |ap_idle              |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
 |ap_ready             |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_990_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_990_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_990_p_opcode  |  out|    2|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_990_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_990_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_994_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_994_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_994_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_994_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_998_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_998_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_998_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
-|grp_fu_998_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_988_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_988_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_988_p_opcode  |  out|    2|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_988_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_988_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_992_p_din0    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_992_p_din1    |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_992_p_dout0   |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_992_p_ce      |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_1000_p_din0   |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_1000_p_din1   |  out|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_1000_p_dout0  |   in|   64|  ap_ctrl_hs|  update_weights.1|  return value|
+|grp_fu_1000_p_ce     |  out|    1|  ap_ctrl_hs|  update_weights.1|  return value|
 |weights1_address0    |  out|   10|   ap_memory|          weights1|         array|
 |weights1_ce0         |  out|    1|   ap_memory|          weights1|         array|
 |weights1_we0         |  out|    1|   ap_memory|          weights1|         array|

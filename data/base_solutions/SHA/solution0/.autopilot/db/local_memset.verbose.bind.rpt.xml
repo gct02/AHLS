@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'local_memset'" level="0">
-<item name = "Date">Wed Jul  9 04:09:34 2025
+<item name = "Date">Thu Aug  7 00:38:44 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">SHA</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 1.825 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 3.398 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,18 +24,18 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1, 15, 8.000 ns, 0.120 us, 1, 15, no</column>
+<column name="">3, 19, 24.000 ns, 0.152 us, 3, 19, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_local_memset_Pipeline_local_memset_label1_fu_44">local_memset_Pipeline_local_memset_label1, 2, 18, 16.000 ns, 0.144 us, 2, 18, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- local_memset_label1">0, 14, 1, -, -, 0 ~ 14, no</column>
 </table>
 </item>
 </section>

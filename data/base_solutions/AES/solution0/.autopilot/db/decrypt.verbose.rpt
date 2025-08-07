@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'decrypt'
 ================================================================
-* Date:           Wed Jul  9 03:26:55 2025
+* Date:           Wed Aug  6 19:44:45 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -274,7 +274,7 @@ State 9 <SV = 8> <Delay = 0.00>
 ST_9 : Operation 32 [2/2] (0.00ns)   --->   "%call_ln119 = call void @InversShiftRow_ByteSub, i32 %statemt, i8 %invSbox" [data/benchmarks/aes/aes_dec.c:119]   --->   Operation 32 'call' 'call_ln119' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 10 <SV = 9> <Delay = 0.00>
-ST_10 : Operation 33 [1/1] (0.00ns)   --->   "%speclooptripcount_ln67 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9" [data/benchmarks/aes/aes_dec.c:67]   --->   Operation 33 'speclooptripcount' 'speclooptripcount_ln67' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 33 [1/1] (0.00ns)   --->   "%speclooptripcount_ln117 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9" [data/benchmarks/aes/aes_dec.c:117]   --->   Operation 33 'speclooptripcount' 'speclooptripcount_ln117' <Predicate = true> <Delay = 0.00>
 ST_10 : Operation 34 [1/1] (0.00ns)   --->   "%specloopname_ln120 = specloopname void @_ssdm_op_SpecLoopName, void @empty_8" [data/benchmarks/aes/aes_dec.c:120]   --->   Operation 34 'specloopname' 'specloopname_ln120' <Predicate = true> <Delay = 0.00>
 ST_10 : Operation 35 [1/2] (0.00ns)   --->   "%call_ln119 = call void @InversShiftRow_ByteSub, i32 %statemt, i8 %invSbox" [data/benchmarks/aes/aes_dec.c:119]   --->   Operation 35 'call' 'call_ln119' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_10 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln116 = br void %for.inc" [data/benchmarks/aes/aes_dec.c:116]   --->   Operation 36 'br' 'br_ln116' <Predicate = true> <Delay = 0.00>
@@ -307,27 +307,27 @@ Port [ invSbox]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=1; ex
 
 <LifeTime>
 <method=bitvector/>
-i_01                   (alloca           ) [ 011111111110]
-store_ln67             (store            ) [ 000000000000]
-call_ln72              (call             ) [ 000000000000]
-call_ln109             (call             ) [ 000000000000]
-specinterface_ln0      (specinterface    ) [ 000000000000]
-specinterface_ln0      (specinterface    ) [ 000000000000]
-specpipeline_ln72      (specpipeline     ) [ 000000000000]
-call_ln112             (call             ) [ 000000000000]
-br_ln116               (br               ) [ 000000000000]
-i_4                    (load             ) [ 000000001000]
-icmp_ln116             (icmp             ) [ 000000011110]
-br_ln116               (br               ) [ 000000000000]
-i                      (add              ) [ 000000000000]
-store_ln67             (store            ) [ 000000000000]
-call_ln118             (call             ) [ 000000000000]
-speclooptripcount_ln67 (speclooptripcount) [ 000000000000]
-specloopname_ln120     (specloopname     ) [ 000000000000]
-call_ln119             (call             ) [ 000000000000]
-br_ln116               (br               ) [ 000000000000]
-call_ln123             (call             ) [ 000000000000]
-ret_ln0                (ret              ) [ 000000000000]
+i_01                    (alloca           ) [ 011111111110]
+store_ln67              (store            ) [ 000000000000]
+call_ln72               (call             ) [ 000000000000]
+call_ln109              (call             ) [ 000000000000]
+specinterface_ln0       (specinterface    ) [ 000000000000]
+specinterface_ln0       (specinterface    ) [ 000000000000]
+specpipeline_ln72       (specpipeline     ) [ 000000000000]
+call_ln112              (call             ) [ 000000000000]
+br_ln116                (br               ) [ 000000000000]
+i_4                     (load             ) [ 000000001000]
+icmp_ln116              (icmp             ) [ 000000011110]
+br_ln116                (br               ) [ 000000000000]
+i                       (add              ) [ 000000000000]
+store_ln67              (store            ) [ 000000000000]
+call_ln118              (call             ) [ 000000000000]
+speclooptripcount_ln117 (speclooptripcount) [ 000000000000]
+specloopname_ln120      (specloopname     ) [ 000000000000]
+call_ln119              (call             ) [ 000000000000]
+br_ln116                (br               ) [ 000000000000]
+call_ln123              (call             ) [ 000000000000]
+ret_ln0                 (ret              ) [ 000000000000]
 </LifeTime>
 
 <model>

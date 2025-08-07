@@ -1,49 +1,19 @@
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:43:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:57:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE INLINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:37:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
 data/benchmarks/backprop/backprop.c:23:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:38:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
         ^
 data/benchmarks/backprop/backprop.c:28:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=soft_max_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:44:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=RELU_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:58:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=RELU_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE INLINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:39:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=RELU_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
 data/benchmarks/backprop/backprop.c:37:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=RELU_XLX_SEP_ PragmaOptions=min=3 max=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=64
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:45:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=add_bias_to_activations_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:59:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=add_bias_to_activations_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE INLINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:40:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=add_bias_to_activations_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
         ^
 data/benchmarks/backprop/backprop.c:49:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=add_bias_to_activations_XLX_SEP_ PragmaOptions=min=3 max=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:46:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:37:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:62:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:47:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:1:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -55,16 +25,16 @@ data/benchmarks/backprop/backprop.c:61:9: warning: HLS pragma dump _XLX_SEP_ Pra
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:2:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:70:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:55:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:65:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_input_layer_XLX_SEP_ PragmaOptions=min=13 max=13 avg=13_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=13 max=13 avg=13
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:47:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:38:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:63:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:48:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:3:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -76,16 +46,16 @@ data/benchmarks/backprop/backprop.c:79:9: warning: HLS pragma dump _XLX_SEP_ Pra
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:4:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:71:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:56:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:83:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_second_layer_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:48:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:39:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:64:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:49:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:5:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -94,31 +64,22 @@ data/benchmarks/backprop/backprop.c:83:9: warning: HLS pragma dump _XLX_SEP_ Pra
 data/benchmarks/backprop/backprop.c:97:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
         ^
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:57:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
+        ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:6:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:72:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:101:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=matrix_vector_product_with_bias_output_layer_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:49:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=take_difference_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:60:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=take_difference_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE INLINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:41:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=take_difference_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
 data/benchmarks/backprop/backprop.c:115:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=take_difference_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:52:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:42:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:67:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:52:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:15:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -130,16 +91,16 @@ data/benchmarks/backprop/backprop.c:126:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:16:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:77:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:62:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:129:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=get_delta_matrix_weights3_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:54:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:44:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:69:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:54:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -151,16 +112,16 @@ data/benchmarks/backprop/backprop.c:142:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:10:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:74:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:59:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:146:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=get_oracle_activations2_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:51:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:41:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:66:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:51:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:13:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -172,16 +133,16 @@ data/benchmarks/backprop/backprop.c:159:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:14:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:76:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:61:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:162:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=get_delta_matrix_weights2_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:53:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:43:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:68:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:53:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:7:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -190,7 +151,7 @@ data/benchmarks/backprop/backprop.c:162:9: warning: HLS pragma dump _XLX_SEP_ Pr
 data/benchmarks/backprop/backprop.c:175:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:73:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:58:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:8:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -199,10 +160,10 @@ data/benchmarks/backprop/backprop.c:175:9: warning: HLS pragma dump _XLX_SEP_ Pr
 data/benchmarks/backprop/backprop.c:179:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=get_oracle_activations1_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:50:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:40:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:65:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:50:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:11:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -214,16 +175,16 @@ data/benchmarks/backprop/backprop.c:192:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:12:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:75:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:60:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:195:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=get_delta_matrix_weights1_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:55:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:45:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:61:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:46:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE INLINE off=true
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:17:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -235,7 +196,7 @@ data/benchmarks/backprop/backprop.c:220:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:18:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:78:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:63:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:223:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -256,7 +217,7 @@ data/benchmarks/backprop/backprop.c:240:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:21:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:79:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:64:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:243:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -277,7 +238,7 @@ data/benchmarks/backprop/backprop.c:258:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:24:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:80:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:65:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:261:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -298,7 +259,7 @@ data/benchmarks/backprop/backprop.c:278:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:27:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:81:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:66:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:281:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -319,7 +280,7 @@ data/benchmarks/backprop/backprop.c:296:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:30:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:82:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:67:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:299:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -340,7 +301,7 @@ data/benchmarks/backprop/backprop.c:316:9: warning: HLS pragma dump _XLX_SEP_ Pr
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:33:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:83:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:68:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:319:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -352,13 +313,10 @@ data/benchmarks/backprop/backprop.c:319:9: warning: HLS pragma dump _XLX_SEP_ Pr
 data/benchmarks/backprop/backprop.c:325:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=update_weights_XLX_SEP_ PragmaOptions=min=3 max=3 avg=3_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=3 max=3 avg=3
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:42:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:36:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE PIPELINE off=true
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:56:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=inline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE INLINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=name=backprop_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl:9:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=name=backprop_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE TOP name=backprop
         ^
 /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:35:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
@@ -367,13 +325,10 @@ data/benchmarks/backprop/backprop.c:325:9: warning: HLS pragma dump _XLX_SEP_ Pr
 data/benchmarks/backprop/backprop.c:357:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=min=163 max=163 avg=163_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=163 max=163 avg=163
         ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:36:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE PIPELINE off=true
-        ^
-/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:84:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
+/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:69:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_flatten_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=off=true_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
         ^
 data/benchmarks/backprop/backprop.c:360:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=backprop_XLX_SEP_ PragmaOptions=min=64 max=64 avg=64_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=64 max=64 avg=64
         ^
-126 warnings generated.
+111 warnings generated.

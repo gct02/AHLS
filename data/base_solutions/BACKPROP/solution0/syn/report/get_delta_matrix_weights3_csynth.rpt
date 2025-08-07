@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_delta_matrix_weights3'
 ================================================================
-* Date:           Wed Jul  9 03:32:57 2025
+* Date:           Wed Aug  6 20:24:18 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -75,13 +75,13 @@
 
 + Detail: 
     * Instance: 
-    +--------------------+----------------+---------+----+---+----+-----+
-    |      Instance      |     Module     | BRAM_18K| DSP| FF| LUT| URAM|
-    +--------------------+----------------+---------+----+---+----+-----+
-    |mux_3_2_64_1_1_U79  |mux_3_2_64_1_1  |        0|   0|  0|  14|    0|
-    +--------------------+----------------+---------+----+---+----+-----+
-    |Total               |                |        0|   0|  0|  14|    0|
-    +--------------------+----------------+---------+----+---+----+-----+
+    +---------------------+----------------+---------+----+---+----+-----+
+    |       Instance      |     Module     | BRAM_18K| DSP| FF| LUT| URAM|
+    +---------------------+----------------+---------+----+---+----+-----+
+    |mux_3_2_64_1_1_U116  |mux_3_2_64_1_1  |        0|   0|  0|  14|    0|
+    +---------------------+----------------+---------+----+---+----+-----+
+    |Total                |                |        0|   0|  0|  14|    0|
+    +---------------------+----------------+---------+----+---+----+-----+
 
     * DSP: 
     N/A
@@ -148,10 +148,10 @@
 |ap_done                    |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
 |ap_idle                    |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
 |ap_ready                   |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
-|grp_fu_994_p_din0          |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
-|grp_fu_994_p_din1          |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
-|grp_fu_994_p_dout0         |   in|   64|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
-|grp_fu_994_p_ce            |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
+|grp_fu_992_p_din0          |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
+|grp_fu_992_p_din1          |  out|   64|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
+|grp_fu_992_p_dout0         |   in|   64|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
+|grp_fu_992_p_ce            |  out|    1|  ap_ctrl_hs|  get_delta_matrix_weights3|  return value|
 |delta_weights3_address0    |  out|    8|   ap_memory|             delta_weights3|         array|
 |delta_weights3_ce0         |  out|    1|   ap_memory|             delta_weights3|         array|
 |delta_weights3_we0         |  out|    1|   ap_memory|             delta_weights3|         array|

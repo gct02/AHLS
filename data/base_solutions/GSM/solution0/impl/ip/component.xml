@@ -296,7 +296,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>bf121e64</spirit:value>
+            <spirit:value>a50a2424</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -312,7 +312,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>35ff77bd</spirit:value>
+            <spirit:value>86e62b05</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -328,7 +328,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a2ccb4d2</spirit:value>
+            <spirit:value>eaa9d48e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -344,7 +344,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>521a81fe</spirit:value>
+            <spirit:value>fcb64fef</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -813,11 +813,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_abs.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_add.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -825,27 +825,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult_r.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -878,10 +862,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -912,12 +892,11 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_abs.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.dat</spirit:name>
+        <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_add.v</spirit:name>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -927,31 +906,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_mult_r.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.dat</spirit:name>
-        <spirit:userFileType>mif</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -992,11 +952,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1030,11 +985,7 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_abs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_add.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1042,23 +993,11 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult_r.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_norm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1094,13 +1033,9 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_16787056</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_533f16b6</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1126,12 +1061,7 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_abs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_add.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_bitoff_ROM_AUTO_1R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1141,27 +1071,12 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_mult_r.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_norm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_gsm_norm_bitoff_ROM_AUTO_1R.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_L_ACF_RAM_AUTO_1R1W.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1202,11 +1117,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Reflection_coefficients_ACF_RAM_AUTO_1R1W.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/Gsm_LPC_Analysis_Reflection_coefficients_P_RAM_AUTO_1R1W.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1285,8 +1195,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Gsm_lpc_analysis</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114162997</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-07-09T06:57:27Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114204321</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-08-06T23:41:57Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1295,7 +1205,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="61093367"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b2de0814"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f6dbf7aa"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="d0363a2b"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="1357c4b7"/>
     </xilinx:packagingInfo>

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'quantl'" level="0">
-<item name = "Date">Wed Jul  9 03:19:59 2025
+<item name = "Date">Wed Aug  6 20:17:49 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -31,7 +31,6 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="wd_abs_r_fu_116">abs_r, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

@@ -253,7 +253,7 @@
     "components": {
       "hls_inst": {
         "vlnv": "xilinx.com:hls:fft1D_512:1.0",
-        "ip_revision": "2114163019",
+        "ip_revision": "2114204636",
         "xci_name": "bd_0_hls_inst_0",
         "xci_path": "ip/bd_0_hls_inst_0/bd_0_hls_inst_0.xci",
         "inst_hier_path": "hls_inst"

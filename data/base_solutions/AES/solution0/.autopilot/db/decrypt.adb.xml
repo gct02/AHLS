@@ -433,10 +433,10 @@ for.inc.split:3 %call_ln119 = call void @InversShiftRow_ByteSub, i32 %statemt, i
 
 <Node id="21" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.inc.split:0 %speclooptripcount_ln67 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9
+for.inc.split:0 %speclooptripcount_ln117 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln67"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln117"/></StgValue>
 </operation>
 
 <operation id="34" st_id="10" stage="1" lat="1">
@@ -737,13 +737,13 @@ for.end:1 %ret_ln0 = ret
 </dataflow>
 <dataflow id="166" from="invSbox" to="call_ln119" fromId="57" toId="32">
 </dataflow>
-<dataflow id="168" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln67" fromId="167" toId="33">
+<dataflow id="168" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln117" fromId="167" toId="33">
 </dataflow>
-<dataflow id="170" from="StgValue_169" to="speclooptripcount_ln67" fromId="169" toId="33">
+<dataflow id="170" from="StgValue_169" to="speclooptripcount_ln117" fromId="169" toId="33">
 </dataflow>
-<dataflow id="171" from="StgValue_169" to="speclooptripcount_ln67" fromId="169" toId="33">
+<dataflow id="171" from="StgValue_169" to="speclooptripcount_ln117" fromId="169" toId="33">
 </dataflow>
-<dataflow id="172" from="StgValue_169" to="speclooptripcount_ln67" fromId="169" toId="33">
+<dataflow id="172" from="StgValue_169" to="speclooptripcount_ln117" fromId="169" toId="33">
 </dataflow>
 <dataflow id="174" from="_ssdm_op_SpecLoopName" to="specloopname_ln120" fromId="173" toId="34">
 </dataflow>

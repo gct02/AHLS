@@ -50,22 +50,9 @@
     }
   },
   "Local": {
-    "KeySchedule/temp": {
-      "Name": "temp",
-      "FunctionName": "KeySchedule",
-      "Alloca": 1,
-      "TotalSize": 4,
-      "BaseBitwidth": 32,
-      "NumDimensions": 1,
-      "BaseType": 11,
-      "Dimensions": [4],
-      "Stores": [],
-      "Loads": [],
-      "GEPs": []
-    },
-    "KeySchedule/key": {
+    "aes_main/key": {
       "Name": "key",
-      "FunctionName": "KeySchedule",
+      "FunctionName": "aes_main",
       "Param": 1,
       "TotalSize": 32,
       "BaseBitwidth": 32,
@@ -131,19 +118,6 @@
     "encrypt/statemt": {
       "Name": "statemt",
       "FunctionName": "encrypt",
-      "Param": 1,
-      "TotalSize": 32,
-      "BaseBitwidth": 32,
-      "NumDimensions": 1,
-      "BaseType": 11,
-      "Dimensions": [32],
-      "Stores": [],
-      "Loads": [],
-      "GEPs": []
-    },
-    "aes_main/key": {
-      "Name": "key",
-      "FunctionName": "aes_main",
       "Param": 1,
       "TotalSize": 32,
       "BaseBitwidth": 32,
@@ -241,6 +215,32 @@
       "NumDimensions": 1,
       "BaseType": 11,
       "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "KeySchedule/key": {
+      "Name": "key",
+      "FunctionName": "KeySchedule",
+      "Param": 1,
+      "TotalSize": 32,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [32],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "KeySchedule/temp": {
+      "Name": "temp",
+      "FunctionName": "KeySchedule",
+      "Alloca": 1,
+      "TotalSize": 4,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [4],
       "Stores": [],
       "Loads": [],
       "GEPs": []

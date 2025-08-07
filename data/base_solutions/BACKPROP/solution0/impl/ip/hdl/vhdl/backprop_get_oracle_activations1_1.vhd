@@ -29,15 +29,15 @@ port (
     dactivations_address0 : OUT STD_LOGIC_VECTOR (5 downto 0);
     dactivations_ce0 : OUT STD_LOGIC;
     dactivations_q0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_opcode : OUT STD_LOGIC_VECTOR (0 downto 0);
-    grp_fu_990_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_ce : OUT STD_LOGIC;
-    grp_fu_994_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_ce : OUT STD_LOGIC );
+    grp_fu_988_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_988_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_988_p_opcode : OUT STD_LOGIC_VECTOR (0 downto 0);
+    grp_fu_988_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_988_p_ce : OUT STD_LOGIC;
+    grp_fu_992_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_ce : OUT STD_LOGIC );
 end;
 
 
@@ -203,7 +203,7 @@ begin
             if (((ap_const_logic_1 = ap_CS_fsm_state2) and (icmp_ln174_fu_146_p2 = ap_const_lv1_0))) then 
                 add113_reg_113 <= ap_const_lv64_0;
             elsif ((ap_const_logic_1 = ap_CS_fsm_state12)) then 
-                add113_reg_113 <= grp_fu_990_p_dout0;
+                add113_reg_113 <= grp_fu_988_p_dout0;
             end if; 
         end if;
     end process;
@@ -252,7 +252,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_CS_fsm_state8)) then
-                mul8_reg_282 <= grp_fu_994_p_dout0;
+                mul8_reg_282 <= grp_fu_992_p_dout0;
             end if;
         end if;
     end process;
@@ -422,13 +422,13 @@ begin
         end if; 
     end process;
 
-    grp_fu_990_p_ce <= ap_const_logic_1;
-    grp_fu_990_p_din0 <= add113_reg_113;
-    grp_fu_990_p_din1 <= mul8_reg_282;
-    grp_fu_990_p_opcode <= ap_const_lv2_0(1 - 1 downto 0);
-    grp_fu_994_p_ce <= ap_const_logic_1;
-    grp_fu_994_p_din0 <= grp_fu_130_p0;
-    grp_fu_994_p_din1 <= grp_fu_130_p1;
+    grp_fu_988_p_ce <= ap_const_logic_1;
+    grp_fu_988_p_din0 <= add113_reg_113;
+    grp_fu_988_p_din1 <= mul8_reg_282;
+    grp_fu_988_p_opcode <= ap_const_lv2_0(1 - 1 downto 0);
+    grp_fu_992_p_ce <= ap_const_logic_1;
+    grp_fu_992_p_din0 <= grp_fu_130_p0;
+    grp_fu_992_p_din1 <= grp_fu_130_p1;
     icmp_ln174_fu_146_p2 <= "1" when (i_fu_46 = ap_const_lv7_40) else "0";
     icmp_ln178_fu_175_p2 <= "1" when (j_reg_101 = ap_const_lv7_40) else "0";
     oracle_activations_address0 <= oracle_activations_addr_reg_234;
@@ -442,7 +442,7 @@ begin
         end if; 
     end process;
 
-    oracle_activations_d0 <= grp_fu_994_p_dout0;
+    oracle_activations_d0 <= grp_fu_992_p_dout0;
 
     oracle_activations_we0_assign_proc : process(ap_CS_fsm_state16)
     begin

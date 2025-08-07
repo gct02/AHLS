@@ -26,10 +26,10 @@ port (
     last_activations_address0 : OUT STD_LOGIC_VECTOR (5 downto 0);
     last_activations_ce0 : OUT STD_LOGIC;
     last_activations_q0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_ce : OUT STD_LOGIC );
+    grp_fu_992_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_ce : OUT STD_LOGIC );
 end;
 
 
@@ -193,7 +193,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_CS_fsm_state8)) then
-                mul_reg_223 <= grp_fu_994_p_dout0;
+                mul_reg_223 <= grp_fu_992_p_dout0;
             end if;
         end if;
     end process;
@@ -316,9 +316,9 @@ begin
     end process;
 
     empty_fu_120_p1 <= i_fu_36(6 - 1 downto 0);
-    grp_fu_994_p_ce <= ap_const_logic_1;
-    grp_fu_994_p_din0 <= last_activations_load_reg_190;
-    grp_fu_994_p_din1 <= output_difference_q0;
+    grp_fu_992_p_ce <= ap_const_logic_1;
+    grp_fu_992_p_din0 <= last_activations_load_reg_190;
+    grp_fu_992_p_din1 <= output_difference_q0;
     icmp_ln158_fu_103_p2 <= "1" when (i_fu_36 = ap_const_lv7_40) else "0";
     icmp_ln161_fu_131_p2 <= "1" when (j_reg_79 = ap_const_lv7_40) else "0";
     last_activations_address0 <= zext_ln158_fu_115_p1(6 - 1 downto 0);

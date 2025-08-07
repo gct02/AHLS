@@ -100,7 +100,7 @@
       ]
     },
     "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl",
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl",
     "sourceLine": 9,
     "success": true
   }

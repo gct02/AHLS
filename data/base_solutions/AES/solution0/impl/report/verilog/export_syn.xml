@@ -174,7 +174,7 @@
     <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/aes_main_utilization_hierarchical_synth.rpt"/>
   </VivadoReportFiles>
   <GeneralInfo NAME="General Information">
-    <item NAME="Date" VALUE="Wed Jul 09 03:32:44 -03 2025"/>
+    <item NAME="Date" VALUE="Wed Aug 06 19:50:02 -03 2025"/>
     <item NAME="Version" VALUE="2023.2 (Build 4023990 on Oct 11 2023)"/>
     <item NAME="Project" VALUE="AES"/>
     <item NAME="Solution" VALUE="solution0 (Vivado IP Flow Target)"/>

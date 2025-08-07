@@ -87,10 +87,10 @@ entry:1 %count_addr_02 = alloca i32 1
 
 <Node id="10" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:2 %specpipeline_ln18 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
+entry:2 %specpipeline_ln14 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln18"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln14"/></StgValue>
 </operation>
 
 <operation id="10" st_id="1" stage="1" lat="1">
@@ -717,7 +717,7 @@ while.body.split:5 %call_ln165 = call void @sha_transform, i32 %sha_info_data, i
 
 <Node id="38" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-while.body.split:2 %speclooptripcount_ln163 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 127, i64 128, i64 127
+while.body.split:2 %speclooptripcount_ln163 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 128, i64 64
 
 ]]></Node>
 <StgValue><ssdm name="speclooptripcount_ln163"/></StgValue>
@@ -837,17 +837,17 @@ while.end.loopexit:7 %ret_ln170 = ret
 </dataflow>
 <dataflow id="72" from="StgValue_70" to="count_addr_02" fromId="70" toId="8">
 </dataflow>
-<dataflow id="74" from="_ssdm_op_SpecPipeline" to="specpipeline_ln18" fromId="73" toId="9">
+<dataflow id="74" from="_ssdm_op_SpecPipeline" to="specpipeline_ln14" fromId="73" toId="9">
 </dataflow>
-<dataflow id="76" from="StgValue_75" to="specpipeline_ln18" fromId="75" toId="9">
+<dataflow id="76" from="StgValue_75" to="specpipeline_ln14" fromId="75" toId="9">
 </dataflow>
-<dataflow id="77" from="StgValue_75" to="specpipeline_ln18" fromId="75" toId="9">
+<dataflow id="77" from="StgValue_75" to="specpipeline_ln14" fromId="75" toId="9">
 </dataflow>
-<dataflow id="78" from="StgValue_70" to="specpipeline_ln18" fromId="70" toId="9">
+<dataflow id="78" from="StgValue_70" to="specpipeline_ln14" fromId="70" toId="9">
 </dataflow>
-<dataflow id="79" from="StgValue_75" to="specpipeline_ln18" fromId="75" toId="9">
+<dataflow id="79" from="StgValue_75" to="specpipeline_ln14" fromId="75" toId="9">
 </dataflow>
-<dataflow id="81" from="empty_7" to="specpipeline_ln18" fromId="80" toId="9">
+<dataflow id="81" from="empty_7" to="specpipeline_ln14" fromId="80" toId="9">
 </dataflow>
 <dataflow id="83" from="_ssdm_op_Read.ap_auto.i32" to="count_read" fromId="82" toId="10">
 </dataflow>
@@ -1039,33 +1039,33 @@ while.end.loopexit:7 %ret_ln170 = ret
 </dataflow>
 <dataflow id="197" from="StgValue_196" to="speclooptripcount_ln163" fromId="196" toId="49">
 </dataflow>
-<dataflow id="198" from="StgValue_194" to="speclooptripcount_ln163" fromId="194" toId="49">
+<dataflow id="199" from="StgValue_198" to="speclooptripcount_ln163" fromId="198" toId="49">
 </dataflow>
-<dataflow id="200" from="_ssdm_op_SpecLoopName" to="specloopname_ln168" fromId="199" toId="50">
+<dataflow id="201" from="_ssdm_op_SpecLoopName" to="specloopname_ln168" fromId="200" toId="50">
 </dataflow>
-<dataflow id="202" from="empty_11" to="specloopname_ln168" fromId="201" toId="50">
+<dataflow id="203" from="empty_11" to="specloopname_ln168" fromId="202" toId="50">
 </dataflow>
-<dataflow id="203" from="sha_transform" to="call_ln165" fromId="188" toId="51">
+<dataflow id="204" from="sha_transform" to="call_ln165" fromId="188" toId="51">
 </dataflow>
-<dataflow id="204" from="sha_info_data" to="call_ln165" fromId="68" toId="51">
+<dataflow id="205" from="sha_info_data" to="call_ln165" fromId="68" toId="51">
 </dataflow>
-<dataflow id="205" from="sha_info_digest" to="call_ln165" fromId="69" toId="51">
+<dataflow id="206" from="sha_info_digest" to="call_ln165" fromId="69" toId="51">
 </dataflow>
-<dataflow id="206" from="local_memcpy" to="call_ln169" fromId="139" toId="53">
+<dataflow id="207" from="local_memcpy" to="call_ln169" fromId="139" toId="53">
 </dataflow>
-<dataflow id="207" from="buffer_r" to="call_ln169" fromId="63" toId="53">
+<dataflow id="208" from="buffer_r" to="call_ln169" fromId="63" toId="53">
 </dataflow>
-<dataflow id="208" from="buffer_offset_read" to="call_ln169" fromId="11" toId="53">
+<dataflow id="209" from="buffer_offset_read" to="call_ln169" fromId="11" toId="53">
 </dataflow>
-<dataflow id="209" from="select_ln169" to="call_ln169" fromId="44" toId="53">
+<dataflow id="210" from="select_ln169" to="call_ln169" fromId="44" toId="53">
 </dataflow>
-<dataflow id="210" from="select_ln169_1" to="call_ln169" fromId="45" toId="53">
+<dataflow id="211" from="select_ln169_1" to="call_ln169" fromId="45" toId="53">
 </dataflow>
-<dataflow id="211" from="sha_info_data" to="call_ln169" fromId="68" toId="53">
+<dataflow id="212" from="sha_info_data" to="call_ln169" fromId="68" toId="53">
 </dataflow>
-<dataflow id="212" from="icmp_ln162_1" to="StgValue_2" fromId="31" toId="2">
+<dataflow id="213" from="icmp_ln162_1" to="StgValue_2" fromId="31" toId="2">
 </dataflow>
-<dataflow id="213" from="icmp_ln162" to="StgValue_2" fromId="24" toId="2">
+<dataflow id="214" from="icmp_ln162" to="StgValue_2" fromId="24" toId="2">
 </dataflow>
 </dataflows>
 

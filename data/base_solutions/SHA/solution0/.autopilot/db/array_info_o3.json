@@ -20,9 +20,9 @@
       "NumDimensions": 1,
       "BaseType": 11,
       "Dimensions": [16],
-      "Stores": [{ "FunctionName": "local_memcpy", "Index": 2 }, { "FunctionName": "local_memset", "Index": 1 }, { "FunctionName": "sha_final", "Index": 0 }],
+      "Stores": [{ "FunctionName": "local_memcpy", "Index": 2 }, { "FunctionName": "local_memset_Pipeline_local_memset_label1", "Index": 1 }, { "FunctionName": "sha_stream", "Index": 9 }],
       "Loads": [{ "FunctionName": "sha_transform", "Name": "sha_info_data_load" }],
-      "GEPs": [{ "FunctionName": "local_memcpy", "Name": "p1" }, { "FunctionName": "local_memset", "Name": "p" }, { "FunctionName": "sha_final", "Name": "sha_info_data_addr" }, { "FunctionName": "sha_transform", "Name": "sha_info_data_addr" }]
+      "GEPs": [{ "FunctionName": "local_memcpy", "Name": "p1" }, { "FunctionName": "local_memset_Pipeline_local_memset_label1", "Name": "p" }, { "FunctionName": "sha_stream", "Name": "sha_info_data_addr" }, { "FunctionName": "sha_transform", "Name": "sha_info_data_addr" }]
     },
     "sha_info_digest": {
       "Name": "sha_info_digest",
@@ -33,8 +33,8 @@
       "BaseType": 11,
       "Dimensions": [5],
       "Stores": [],
-      "Loads": [{ "FunctionName": "sha_stream", "Name": "sha_info_digest_load" }],
-      "GEPs": [{ "FunctionName": "sha_stream", "Name": "sha_info_digest_addr" }]
+      "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "Name": "sha_info_digest_load" }],
+      "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "Name": "sha_info_digest_addr" }]
     },
     "sha_stream_label1_VITIS_LOOP_207_1_str": {
       "Name": "sha_stream_label1_VITIS_LOOP_207_1_str",
@@ -72,9 +72,9 @@
       "NumDimensions": 1,
       "BaseType": 11,
       "Dimensions": [5],
-      "Stores": [{ "FunctionName": "sha_stream", "Index": 3 }],
+      "Stores": [],
       "Loads": [],
-      "GEPs": [{ "FunctionName": "sha_stream", "Name": "outdata_addr" }]
+      "GEPs": []
     },
     "sha_stream/indata": {
       "Name": "indata",
@@ -127,6 +127,19 @@
       "Stores": [],
       "Loads": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "indata_load" }],
       "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1", "Name": "indata_addr" }]
+    },
+    "sha_stream_Pipeline_sha_stream_label2/outdata": {
+      "Name": "outdata",
+      "FunctionName": "sha_stream_Pipeline_sha_stream_label2",
+      "Param": 1,
+      "TotalSize": 5,
+      "BaseBitwidth": 32,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [5],
+      "Stores": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "Index": 1 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "sha_stream_Pipeline_sha_stream_label2", "Name": "outdata_addr" }]
     },
     "sha_update/buffer": {
       "Name": "buffer",

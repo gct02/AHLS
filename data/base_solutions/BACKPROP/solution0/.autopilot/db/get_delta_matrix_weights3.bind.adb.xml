@@ -85,10 +85,10 @@ entry:0 %i = alloca i32 1
 
 <Node id="7" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:1 %specpipeline_ln52 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
+entry:1 %specpipeline_ln42 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln52"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln42"/></StgValue>
 </operation>
 
 <operation id="10" st_id="1" stage="1" lat="1">
@@ -130,10 +130,10 @@ entry:3 %p_read17 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read1
 
 <Node id="10" bw="64" op_0_bw="64" op_1_bw="64">
 <![CDATA[
-entry:4 %p_read_14 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read
+entry:4 %p_read_9 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read
 
 ]]></Node>
-<StgValue><ssdm name="p_read_14"/></StgValue>
+<StgValue><ssdm name="p_read_9"/></StgValue>
 </operation>
 
 <operation id="13" st_id="1" stage="1" lat="1">
@@ -178,10 +178,10 @@ entry:6 %br_ln125 = br void %get_delta_matrix_weights3_loop1_1
 
 <Node id="14" bw="7" op_0_bw="7" op_1_bw="0">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1:0 %i_30 = load i7 %i
+get_delta_matrix_weights3_loop1_1:0 %i_29 = load i7 %i
 
 ]]></Node>
-<StgValue><ssdm name="i_30"/></StgValue>
+<StgValue><ssdm name="i_29"/></StgValue>
 </operation>
 
 <operation id="16" st_id="2" stage="1" lat="1">
@@ -193,7 +193,7 @@ get_delta_matrix_weights3_loop1_1:0 %i_30 = load i7 %i
 
 <Node id="15" bw="1" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1:1 %icmp_ln125 = icmp_eq  i7 %i_30, i7 64
+get_delta_matrix_weights3_loop1_1:1 %icmp_ln125 = icmp_eq  i7 %i_29, i7 64
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln125"/></StgValue>
@@ -208,7 +208,7 @@ get_delta_matrix_weights3_loop1_1:1 %icmp_ln125 = icmp_eq  i7 %i_30, i7 64
 
 <Node id="16" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1:2 %add_ln125 = add i7 %i_30, i7 1
+get_delta_matrix_weights3_loop1_1:2 %add_ln125 = add i7 %i_29, i7 1
 
 ]]></Node>
 <StgValue><ssdm name="add_ln125"/></StgValue>
@@ -239,7 +239,7 @@ get_delta_matrix_weights3_loop1_1:3 %br_ln125 = br i1 %icmp_ln125, void %get_del
 
 <Node id="19" bw="64" op_0_bw="7">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1.split:0 %zext_ln125 = zext i7 %i_30
+get_delta_matrix_weights3_loop1_1.split:0 %zext_ln125 = zext i7 %i_29
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln125"/></StgValue>
@@ -305,7 +305,7 @@ for.end11:0 %ret_ln133 = ret
 
 <Node id="20" bw="8" op_0_bw="7">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1.split:1 %zext_ln125_1 = zext i7 %i_30
+get_delta_matrix_weights3_loop1_1.split:1 %zext_ln125_1 = zext i7 %i_29
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln125_1"/></StgValue>
@@ -335,7 +335,7 @@ get_delta_matrix_weights3_loop1_1.split:2 %speclooptripcount_ln126 = speclooptri
 
 <Node id="22" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1.split:3 %specloopname_ln132 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6
+get_delta_matrix_weights3_loop1_1.split:3 %specloopname_ln132 = specloopname void @_ssdm_op_SpecLoopName, void @empty_30
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln132"/></StgValue>
@@ -365,7 +365,7 @@ get_delta_matrix_weights3_loop1_1.split:5 %last_activations_load = load i6 %last
 
 <Node id="25" bw="6" op_0_bw="7">
 <![CDATA[
-get_delta_matrix_weights3_loop1_1.split:6 %empty = trunc i7 %i_30
+get_delta_matrix_weights3_loop1_1.split:6 %empty = trunc i7 %i_29
 
 ]]></Node>
 <StgValue><ssdm name="empty"/></StgValue>
@@ -505,7 +505,7 @@ for.inc.split:0 %zext_ln128 = zext i2 %j
 
 <Node id="38" bw="64" op_0_bw="64" op_1_bw="64" op_2_bw="64" op_3_bw="64" op_4_bw="2">
 <![CDATA[
-for.inc.split:3 %tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %p_read_14, i64 %p_read17, i64 %p_read28, i2 %j
+for.inc.split:3 %tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %p_read_9, i64 %p_read17, i64 %p_read28, i2 %j
 
 ]]></Node>
 <StgValue><ssdm name="tmp"/></StgValue>
@@ -638,7 +638,7 @@ for.inc.split:1 %speclooptripcount_ln129 = speclooptripcount void @_ssdm_op_Spec
 
 <Node id="37" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.inc.split:2 %specloopname_ln131 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5
+for.inc.split:2 %specloopname_ln131 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln131"/></StgValue>
@@ -746,17 +746,17 @@ for.inc.split:9 %br_ln128 = br void %for.inc
 <dataflows>
 <dataflow id="66" from="StgValue_65" to="i" fromId="65" toId="8">
 </dataflow>
-<dataflow id="68" from="_ssdm_op_SpecPipeline" to="specpipeline_ln52" fromId="67" toId="9">
+<dataflow id="68" from="_ssdm_op_SpecPipeline" to="specpipeline_ln42" fromId="67" toId="9">
 </dataflow>
-<dataflow id="70" from="StgValue_69" to="specpipeline_ln52" fromId="69" toId="9">
+<dataflow id="70" from="StgValue_69" to="specpipeline_ln42" fromId="69" toId="9">
 </dataflow>
-<dataflow id="71" from="StgValue_69" to="specpipeline_ln52" fromId="69" toId="9">
+<dataflow id="71" from="StgValue_69" to="specpipeline_ln42" fromId="69" toId="9">
 </dataflow>
-<dataflow id="72" from="StgValue_65" to="specpipeline_ln52" fromId="65" toId="9">
+<dataflow id="72" from="StgValue_65" to="specpipeline_ln42" fromId="65" toId="9">
 </dataflow>
-<dataflow id="73" from="StgValue_69" to="specpipeline_ln52" fromId="69" toId="9">
+<dataflow id="73" from="StgValue_69" to="specpipeline_ln42" fromId="69" toId="9">
 </dataflow>
-<dataflow id="75" from="empty_42" to="specpipeline_ln52" fromId="74" toId="9">
+<dataflow id="75" from="empty_42" to="specpipeline_ln42" fromId="74" toId="9">
 </dataflow>
 <dataflow id="77" from="_ssdm_op_Read.ap_auto.double" to="p_read28" fromId="76" toId="10">
 </dataflow>
@@ -766,27 +766,27 @@ for.inc.split:9 %br_ln128 = br void %for.inc
 </dataflow>
 <dataflow id="80" from="p_read1" to="p_read17" fromId="62" toId="11">
 </dataflow>
-<dataflow id="81" from="_ssdm_op_Read.ap_auto.double" to="p_read_14" fromId="76" toId="12">
+<dataflow id="81" from="_ssdm_op_Read.ap_auto.double" to="p_read_9" fromId="76" toId="12">
 </dataflow>
-<dataflow id="82" from="p_read" to="p_read_14" fromId="61" toId="12">
+<dataflow id="82" from="p_read" to="p_read_9" fromId="61" toId="12">
 </dataflow>
 <dataflow id="84" from="StgValue_83" to="store_ln123" fromId="83" toId="13">
 </dataflow>
 <dataflow id="85" from="i" to="store_ln123" fromId="8" toId="13">
 </dataflow>
-<dataflow id="86" from="i" to="i_30" fromId="8" toId="15">
+<dataflow id="86" from="i" to="i_29" fromId="8" toId="15">
 </dataflow>
-<dataflow id="87" from="i_30" to="icmp_ln125" fromId="15" toId="16">
+<dataflow id="87" from="i_29" to="icmp_ln125" fromId="15" toId="16">
 </dataflow>
 <dataflow id="89" from="StgValue_88" to="icmp_ln125" fromId="88" toId="16">
 </dataflow>
-<dataflow id="90" from="i_30" to="add_ln125" fromId="15" toId="17">
+<dataflow id="90" from="i_29" to="add_ln125" fromId="15" toId="17">
 </dataflow>
 <dataflow id="92" from="StgValue_91" to="add_ln125" fromId="91" toId="17">
 </dataflow>
 <dataflow id="93" from="icmp_ln125" to="br_ln125" fromId="16" toId="18">
 </dataflow>
-<dataflow id="94" from="i_30" to="zext_ln125" fromId="15" toId="19">
+<dataflow id="94" from="i_29" to="zext_ln125" fromId="15" toId="19">
 </dataflow>
 <dataflow id="95" from="last_activations" to="last_activations_addr" fromId="64" toId="20">
 </dataflow>
@@ -796,7 +796,7 @@ for.inc.split:9 %br_ln128 = br void %for.inc
 </dataflow>
 <dataflow id="99" from="last_activations_addr" to="last_activations_load" fromId="20" toId="21">
 </dataflow>
-<dataflow id="100" from="i_30" to="zext_ln125_1" fromId="15" toId="23">
+<dataflow id="100" from="i_29" to="zext_ln125_1" fromId="15" toId="23">
 </dataflow>
 <dataflow id="102" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln126" fromId="101" toId="24">
 </dataflow>
@@ -808,11 +808,11 @@ for.inc.split:9 %br_ln128 = br void %for.inc
 </dataflow>
 <dataflow id="108" from="_ssdm_op_SpecLoopName" to="specloopname_ln132" fromId="107" toId="25">
 </dataflow>
-<dataflow id="110" from="empty_6" to="specloopname_ln132" fromId="109" toId="25">
+<dataflow id="110" from="empty_30" to="specloopname_ln132" fromId="109" toId="25">
 </dataflow>
 <dataflow id="111" from="last_activations_addr" to="last_activations_load" fromId="20" toId="26">
 </dataflow>
-<dataflow id="112" from="i_30" to="empty" fromId="15" toId="27">
+<dataflow id="112" from="i_29" to="empty" fromId="15" toId="27">
 </dataflow>
 <dataflow id="114" from="_ssdm_op_BitConcatenate.i8.i6.i2" to="p_shl" fromId="113" toId="28">
 </dataflow>
@@ -854,7 +854,7 @@ for.inc.split:9 %br_ln128 = br void %for.inc
 </dataflow>
 <dataflow id="133" from="_ssdm_op_Mux.ap_auto.3double.i2" to="tmp" fromId="132" toId="36">
 </dataflow>
-<dataflow id="134" from="p_read_14" to="tmp" fromId="12" toId="36">
+<dataflow id="134" from="p_read_9" to="tmp" fromId="12" toId="36">
 </dataflow>
 <dataflow id="135" from="p_read17" to="tmp" fromId="11" toId="36">
 </dataflow>
@@ -892,7 +892,7 @@ for.inc.split:9 %br_ln128 = br void %for.inc
 </dataflow>
 <dataflow id="153" from="_ssdm_op_SpecLoopName" to="specloopname_ln131" fromId="107" toId="44">
 </dataflow>
-<dataflow id="155" from="empty_5" to="specloopname_ln131" fromId="154" toId="44">
+<dataflow id="155" from="empty_6" to="specloopname_ln131" fromId="154" toId="44">
 </dataflow>
 <dataflow id="156" from="last_activations_load" to="mul" fromId="26" toId="45">
 </dataflow>

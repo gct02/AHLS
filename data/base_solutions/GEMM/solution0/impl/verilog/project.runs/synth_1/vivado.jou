@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Jul  9 03:46:44 2025
-# Process ID: 189393
+# Start of session at: Wed Aug  6 20:58:51 2025
+# Process ID: 833313
 # Current directory: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/synth_1
 # Command line: vivado -log bd_0_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_wrapper.tcl
 # Log file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/synth_1/bd_0_wrapper.vds
 # Journal file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/GEMM/solution0/impl/verilog/project.runs/synth_1/vivado.jou
-# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 3900.000 MHz, CPU Physical cores: 4, Host memory: 16492 MB
+# Running On: gabriel-Inspiron-15-3511, OS: Linux, CPU Frequency: 400.000 MHz, CPU Physical cores: 4, Host memory: 16492 MB
 #-----------------------------------------------------------
 source bd_0_wrapper.tcl -notrace

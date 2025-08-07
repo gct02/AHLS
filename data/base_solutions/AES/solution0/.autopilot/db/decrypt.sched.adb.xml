@@ -433,10 +433,10 @@ for.inc.split:3 %call_ln119 = call void @InversShiftRow_ByteSub, i32 %statemt, i
 
 <Node id="21" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.inc.split:0 %speclooptripcount_ln67 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9
+for.inc.split:0 %speclooptripcount_ln117 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln67"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln117"/></StgValue>
 </operation>
 
 <operation id="34" st_id="10" stage="1" lat="1">

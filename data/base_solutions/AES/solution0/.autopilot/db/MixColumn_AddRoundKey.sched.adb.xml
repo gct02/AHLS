@@ -2033,10 +2033,10 @@ for.body.split:108 %xor_ln359_2 = xor i32 %xor_ln359_3, i32 %xor_ln359
 
 <Node id="19" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.body.split:1 %speclooptripcount_ln320 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
+for.body.split:1 %speclooptripcount_ln325 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln320"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln325"/></StgValue>
 </operation>
 
 <operation id="138" st_id="5" stage="1" lat="1">
@@ -2593,10 +2593,10 @@ for.inc266.split:24 %ret_load_3 = load i5 %ret_addr_7
 
 <Node id="140" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.inc266.split:0 %speclooptripcount_ln320 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
+for.inc266.split:0 %speclooptripcount_ln365 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln320"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln365"/></StgValue>
 </operation>
 
 <operation id="174" st_id="8" stage="1" lat="1">

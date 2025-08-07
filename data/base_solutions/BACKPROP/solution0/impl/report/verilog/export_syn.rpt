@@ -2,7 +2,7 @@
 == Vivado RTL Synthesis Results
 ================================================================
 + General Information:
-    * Date:            Wed Jul 09 03:44:52 -03 2025
+    * Date:            Wed Aug 06 20:34:30 -03 2025
     * Version:         2023.2 (Build 4023990 on Oct 11 2023)
     * Project:         BACKPROP
     * Solution:        solution0 (Vivado IP Flow Target)
@@ -30,12 +30,12 @@
 ================================================================
 == RTL Synthesis Resource Summary
 ================================================================
-LUT:              20704
-FF:               15241
-DSP:              88
+LUT:              15066
+FF:               11433
+DSP:              48
 BRAM:             6
 URAM:             1
-SRL:              194
+SRL:              298
 
 
 ================================================================
@@ -56,55 +56,55 @@ SRL:              194
 +-----------------------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
 | Name                                                            | LUT   | FF    | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable | Source |
 +-----------------------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
-| inst                                                            | 20704 | 15241 | 88  | 6    | 1    |     |        |      |         |          |        |
-|   (inst)                                                        | 133   | 2253  |     |      |      |     |        |      |         |          |        |
-|   activations1_U                                                | 66    | 64    |     |      |      |     |        |      |         |          |        |
-|   activations2_U                                                | 160   | 64    |     |      |      |     |        |      |         |          |        |
+| inst                                                            | 15066 | 11433 | 48  | 6    | 1    |     |        |      |         |          |        |
+|   (inst)                                                        | 20    | 1088  |     |      |      |     |        |      |         |          |        |
+|   activations1_U                                                | 128   | 128   |     |      |      |     |        |      |         |          |        |
+|   activations2_U                                                | 256   | 128   |     |      |      |     |        |      |         |          |        |
 |   dactivations1_U                                               | 64    | 64    |     |      |      |     |        |      |         |          |        |
-|   dactivations2_U                                               | 96    | 64    |     |      |      |     |        |      |         |          |        |
-|   dadddsub_64ns_64ns_64_4_full_dsp_1_U129                       | 723   | 370   | 3   |      |      |     |        |      |         |          |        |
-|   ddiv_64ns_64ns_64_14_no_dsp_1_U131                            | 3215  | 1392  |     |      |      |     |        |      |         |          |        |
-|     (ddiv_64ns_64ns_64_14_no_dsp_1_U131)                        |       | 128   |     |      |      |     |        |      |         |          |        |
+|   dactivations2_U                                               | 128   | 64    |     |      |      |     |        |      |         |          |        |
+|   dadd_64ns_64ns_64_4_full_dsp_1_U168                           | 717   | 369   | 3   |      |      |     |        |      |         |          |        |
+|     (dadd_64ns_64ns_64_4_full_dsp_1_U168)                       | 1     | 128   |     |      |      |     |        |      |         |          |        |
+|   dadddsub_64ns_64ns_64_4_full_dsp_1_U166                       | 720   | 370   | 3   |      |      |     |        |      |         |          |        |
+|   ddiv_64ns_64ns_64_14_no_dsp_1_U169                            | 3311  | 1392  |     |      |      |     |        |      |         |          |        |
+|     (ddiv_64ns_64ns_64_14_no_dsp_1_U169)                        |       | 128   |     |      |      |     |        |      |         |          |        |
 |   delta_weights1_U                                              |       |       |     | 4    |      |     |        |      |         |          |        |
 |   delta_weights2_U                                              |       |       |     |      | 1    |     |        |      |         |          |        |
 |   delta_weights3_U                                              |       |       |     | 2    |      |     |        |      |         |          |        |
-|   dexp_64ns_64ns_64_10_full_dsp_1_U132                          | 1844  | 777   | 26  |      |      |     |        |      |         |          |        |
-|     (dexp_64ns_64ns_64_10_full_dsp_1_U132)                      |       | 64    |     |      |      |     |        |      |         |          |        |
-|   dmul_64ns_64ns_64_4_max_dsp_1_U130                            | 106   | 213   | 8   |      |      |     |        |      |         |          |        |
-|   grp_RELU_clone_fu_366                                         | 538   | 621   |     |      |      |     |        |      |         |          |        |
-|   grp_RELU_fu_335                                               | 5860  | 2858  | 37  |      |      |     |        |      |         |          |        |
-|     (grp_RELU_fu_335)                                           | 32    | 300   |     |      |      |     |        |      |         |          |        |
-|     dadddsub_64ns_64ns_64_4_full_dsp_1_U12                      | 699   | 367   | 3   |      |      |     |        |      |         |          |        |
-|     ddiv_64ns_64ns_64_14_no_dsp_1_U14                           | 3180  | 1264  |     |      |      |     |        |      |         |          |        |
-|     dexp_64ns_64ns_64_10_full_dsp_1_U15                         | 1845  | 714   | 26  |      |      |     |        |      |         |          |        |
-|     dmul_64ns_64ns_64_4_max_dsp_1_U13                           | 104   | 213   | 8   |      |      |     |        |      |         |          |        |
-|   grp_get_delta_matrix_weights1_1_fu_438                        | 37    | 108   |     |      |      |     |        |      |         |          |        |
-|   grp_get_delta_matrix_weights2_fu_422                          | 150   | 189   |     |      |      |     |        |      |         |          |        |
-|   grp_get_delta_matrix_weights3_fu_402                          | 228   | 105   |     |      |      |     |        |      |         |          |        |
-|   grp_get_oracle_activations1_1_fu_429                          | 300   | 242   |     |      |      |     |        |      |         |          |        |
-|   grp_get_oracle_activations2_1_fu_411                          | 240   | 451   | 8   |      |      |     |        |      |         |          |        |
-|     (grp_get_oracle_activations2_1_fu_411)                      | 104   | 238   |     |      |      |     |        |      |         |          |        |
-|     dmul_64ns_64ns_64_4_max_dsp_1_U86                           | 136   | 213   | 8   |      |      |     |        |      |         |          |        |
-|   grp_matrix_vector_product_with_bias_input_layer_1_fu_323      | 853   | 648   | 3   |      |      |     |        |      |         |          |        |
-|     (grp_matrix_vector_product_with_bias_input_layer_1_fu_323)  | 36    | 260   |     |      |      |     |        |      |         |          |        |
-|     grp_add_bias_to_activations_clone_1_fu_136                  | 817   | 388   | 3   |      |      |     |        |      |         |          |        |
-|       (grp_add_bias_to_activations_clone_1_fu_136)              | 36    | 19    |     |      |      |     |        |      |         |          |        |
-|       dadd_64ns_64ns_64_4_full_dsp_1_U1                         | 781   | 369   | 3   |      |      |     |        |      |         |          |        |
-|   grp_matrix_vector_product_with_bias_output_layer_1_fu_351     | 758   | 749   |     |      |      |     |        |      |         |          |        |
-|     (grp_matrix_vector_product_with_bias_output_layer_1_fu_351) | 309   | 543   |     |      |      |     |        |      |         |          |        |
-|     grp_add_bias_to_activations_1_fu_145                        | 449   | 206   |     |      |      |     |        |      |         |          |        |
-|   grp_matrix_vector_product_with_bias_second_layer_1_fu_341     | 970   | 624   | 3   |      |      |     |        |      |         |          |        |
-|     (grp_matrix_vector_product_with_bias_second_layer_1_fu_341) | 153   | 236   |     |      |      |     |        |      |         |          |        |
-|     grp_add_bias_to_activations_clone_1_fu_115                  | 817   | 388   | 3   |      |      |     |        |      |         |          |        |
-|       (grp_add_bias_to_activations_clone_1_fu_115)              | 36    | 19    |     |      |      |     |        |      |         |          |        |
-|       dadd_64ns_64ns_64_4_full_dsp_1_U1                         | 781   | 369   | 3   |      |      |     |        |      |         |          |        |
-|   grp_soft_max_fu_376                                           | 438   | 483   |     |      |      |     |        |      |         |          |        |
-|   grp_take_difference_1_fu_386                                  | 246   | 403   |     |      |      |     |        |      |         |          |        |
-|   grp_update_weights_1_fu_447                                   | 3423  | 2371  |     |      |      |     |        |      |         |          |        |
-|     (grp_update_weights_1_fu_447)                               | 1545  | 1594  |     |      |      |     |        |      |         |          |        |
-|     dsqrt_64ns_64ns_64_12_no_dsp_1_U112                         | 1878  | 777   |     |      |      |     |        |      |         |          |        |
-|   oracle_activations1_U                                         | 64    | 64    |     |      |      |     |        |      |         |          |        |
-|   oracle_activations2_U                                         | 192   | 64    |     |      |      |     |        |      |         |          |        |
+|   dexp_64ns_64ns_64_10_full_dsp_1_U170                          | 1847  | 777   | 26  |      |      |     |        |      |         |          |        |
+|     (dexp_64ns_64ns_64_10_full_dsp_1_U170)                      |       | 64    |     |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U167                            | 203   | 213   | 8   |      |      |     |        |      |         |          |        |
+|   dmul_64ns_64ns_64_4_max_dsp_1_U171                            | 104   | 213   | 8   |      |      |     |        |      |         |          |        |
+|     (dmul_64ns_64ns_64_4_max_dsp_1_U171)                        |       | 128   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_RELU_loop11_fu_288                      | 103   | 160   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_RELU_loop11_fu_288)                  | 87    | 158   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_RELU_loop12_fu_306                      | 1043  | 679   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_RELU_loop12_fu_306)                  | 650   | 677   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_RELU_loop1_fu_272                       | 429   | 334   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_RELU_loop1_fu_272)                   | 415   | 332   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_backprop_loop1_1_fu_248                 | 44    | 201   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_backprop_loop1_1_fu_248)             | 1     | 199   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_soft_max_loop1_fu_322                   | 150   | 205   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_soft_max_loop1_fu_322)               | 74    | 203   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_soft_max_loop2_fu_330                   | 143   | 351   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_soft_max_loop2_fu_330)               | 132   | 349   |     |      |      |     |        |      |         |          |        |
+|   grp_backprop_Pipeline_take_difference_loop1_fu_344            | 275   | 223   |     |      |      |     |        |      |         |          |        |
+|     (grp_backprop_Pipeline_take_difference_loop1_fu_344)        | 190   | 221   |     |      |      |     |        |      |         |          |        |
+|   grp_get_delta_matrix_weights1_1_fu_399                        | 31    | 108   |     |      |      |     |        |      |         |          |        |
+|   grp_get_delta_matrix_weights2_fu_383                          | 86    | 189   |     |      |      |     |        |      |         |          |        |
+|   grp_get_delta_matrix_weights3_fu_363                          | 28    | 105   |     |      |      |     |        |      |         |          |        |
+|   grp_get_oracle_activations1_1_fu_390                          | 296   | 242   |     |      |      |     |        |      |         |          |        |
+|   grp_get_oracle_activations2_1_fu_372                          | 112   | 238   |     |      |      |     |        |      |         |          |        |
+|   grp_matrix_vector_product_with_bias_input_layer_1_fu_260      | 274   | 280   |     |      |      |     |        |      |         |          |        |
+|     (grp_matrix_vector_product_with_bias_input_layer_1_fu_260)  | 232   | 260   |     |      |      |     |        |      |         |          |        |
+|   grp_matrix_vector_product_with_bias_output_layer_1_fu_294     | 671   | 559   |     |      |      |     |        |      |         |          |        |
+|     (grp_matrix_vector_product_with_bias_output_layer_1_fu_294) | 267   | 353   |     |      |      |     |        |      |         |          |        |
+|   grp_matrix_vector_product_with_bias_second_layer_1_fu_278     | 230   | 254   |     |      |      |     |        |      |         |          |        |
+|     (grp_matrix_vector_product_with_bias_second_layer_1_fu_278) | 183   | 236   |     |      |      |     |        |      |         |          |        |
+|   grp_update_weights_1_fu_408                                   | 3461  | 2371  |     |      |      |     |        |      |         |          |        |
+|     (grp_update_weights_1_fu_408)                               | 1583  | 1594  |     |      |      |     |        |      |         |          |        |
+|     dsqrt_64ns_64ns_64_12_no_dsp_1_U149                         | 1878  | 777   |     |      |      |     |        |      |         |          |        |
+|   oracle_activations1_U                                         | 128   | 64    |     |      |      |     |        |      |         |          |        |
+|   oracle_activations2_U                                         | 64    | 64    |     |      |      |     |        |      |         |          |        |
 +-----------------------------------------------------------------+-------+-------+-----+------+------+-----+--------+------+---------+----------+--------+
 
 
@@ -114,20 +114,20 @@ SRL:              194
 +-----------------------------------------------------------+-----------+--------+--------+
 | Criteria                                                  | Guideline | Actual | Status |
 +-----------------------------------------------------------+-----------+--------+--------+
-| LUT                                                       | 70%       | 2.38%  | OK     |
-| FD                                                        | 50%       | 0.87%  | OK     |
-| LUTRAM+SRL                                                | 25%       | 0.14%  | OK     |
-| CARRY8                                                    | 25%       | 1.17%  | OK     |
-| MUXF7                                                     | 15%       | 0.20%  | OK     |
-| DSP                                                       | 80%       | 1.48%  | OK     |
+| LUT                                                       | 70%       | 1.73%  | OK     |
+| FD                                                        | 50%       | 0.66%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.20%  | OK     |
+| CARRY8                                                    | 25%       | 0.71%  | OK     |
+| MUXF7                                                     | 15%       | 0.10%  | OK     |
+| DSP                                                       | 80%       | 0.81%  | OK     |
 | RAMB/FIFO                                                 | 80%       | 0.22%  | OK     |
 | URAM                                                      | 80%       | 0.16%  | OK     |
-| DSP+RAMB+URAM (Avg)                                       | 70%       | 0.62%  | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 0.40%  | OK     |
 | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
 | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
 | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
-| Control Sets                                              | 16344     | 200    | OK     |
-| Average Fanout for modules > 100k cells                   | 4         | 1.67   | OK     |
+| Control Sets                                              | 16344     | 174    | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 1.84   | OK     |
 | Max Average Fanout for modules > 100k cells               | 4         | 0      | OK     |
 | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
 +-----------------------------------------------------------+-----------+--------+--------+

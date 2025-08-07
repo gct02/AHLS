@@ -1,7 +1,7 @@
 
 import os
 import json
-from typing import Optional, Union, List, Tuple
+from typing import Optional, Union, List, Tuple, Any
 
 import numpy as np
 import pandas as pd
@@ -13,7 +13,13 @@ from sklearn.metrics import (
 )
 
 from estimators.common.parsers import (
-    parse_tcl_directives, parse_directive_cmd, extract_metrics
+    parse_tcl_directives, 
+    parse_directive_cmd, 
+    extract_metrics
+)
+from estimators.area.graph import (
+    find_array_node,
+    find_region_node
 )
 
 
@@ -124,21 +130,25 @@ def collate_data_for_analysis(
 def encode_directives(
     dct_config_path, 
     solution_dct_tcl_path,
+    kernel_graph: Any,
     return_feat_names: bool = False,
-    default_partition_factor: int = 16,
-    default_unroll_factor: int = 16,
     max_array_size: int = 2 # In our dataset, this is the max size
 ) -> Union[NDArray[np.int_], Tuple[NDArray[np.int_], List[str]]]:
-    def encode_ap_dct_info(ap_dct_args):
-        ap_factor = int(ap_dct_args.get("factor", 0))
-        if ap_factor == 0:
-            ap_factor = default_partition_factor
+    def encode_ap_dct_info(args):
+        variable = args.get("variable", "")
+        function = args.get("function", "")
+        if not variable:
+            return None
 
-        ap_dim_idx = int(ap_dct_args.get("dim", 0))
+        array_node = find_array_node(kernel_graph, variable, function)
+        if array_node is None:
+            return None
+
+        ap_factor = int(args.get("factor", array_node.array_size))
         ap_dim = [0] * (max_array_size + 1)
-        ap_dim[ap_dim_idx] = 1
+        ap_dim[int(args.get("dim", 0))] = 1
 
-        ap_type = ap_dct_args.get("type", "complete")
+        ap_type = args.get("type", "complete")
         if ap_type == "complete":
             ap_type = [1, 0, 0]
         elif ap_type == "block":
@@ -172,8 +182,7 @@ def encode_directives(
     
     dct_dict = dct_json.get("directives")
     if dct_dict is None:
-        raise ValueError(f"Directives not found in "
-                         f"{dct_config_path}")
+        raise ValueError(f"Directives not found in {dct_config_path}")
 
     available_dcts = {
         "pipeline", "unroll", "loop_merge", 
@@ -224,10 +233,15 @@ def encode_directives(
                     if dct_type == "array_partition":
                         enc_dct = encode_ap_dct_info(dct_args)
                     elif dct_type == "unroll":
+                        label = sol_dct_args.get("label", "")
+                        function = sol_dct_args.get("function", "")
+                        node = find_region_node(kernel_graph, label, function)
                         factor = int(dct_args.get("factor", 0))
                         if factor == 0:
-                            factor = default_unroll_factor
-                        enc_dct = [1, factor]
+                            if node is not None:
+                                enc_dct = [1, node.feature_dict.get("trip_count", 0)]
+                        else:
+                            enc_dct = [1, factor]
                     elif "off" not in dct_args:
                         enc_dct = [1]
                     break
@@ -243,7 +257,7 @@ def encode_directives(
         encoded_dcts.extend(enc_dct)
         feat_names.extend(get_dct_feat_name(dct_type, label))
 
-    encoded_dcts = np.array(encoded_dcts, dtype=np.int_)
+    # encoded_dcts = np.array(encoded_dcts, dtype=np.int_)
     if return_feat_names:
         return encoded_dcts, feat_names
     return encoded_dcts

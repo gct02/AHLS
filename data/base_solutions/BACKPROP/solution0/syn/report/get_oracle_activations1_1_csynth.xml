@@ -157,7 +157,7 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_din0</name>
+<name>grp_fu_988_p_din0</name>
 <Object>get_oracle_activations1.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -168,7 +168,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_din1</name>
+<name>grp_fu_988_p_din1</name>
 <Object>get_oracle_activations1.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -179,29 +179,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_opcode</name>
-<Object>get_oracle_activations1.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_990_p_dout0</name>
-<Object>get_oracle_activations1.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>64</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_990_p_ce</name>
+<name>grp_fu_988_p_opcode</name>
 <Object>get_oracle_activations1.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -212,29 +190,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_din0</name>
-<Object>get_oracle_activations1.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>64</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_994_p_din1</name>
-<Object>get_oracle_activations1.1</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>64</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>grp_fu_994_p_dout0</name>
+<name>grp_fu_988_p_dout0</name>
 <Object>get_oracle_activations1.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -245,7 +201,51 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_994_p_ce</name>
+<name>grp_fu_988_p_ce</name>
+<Object>get_oracle_activations1.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_992_p_din0</name>
+<Object>get_oracle_activations1.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_992_p_din1</name>
+<Object>get_oracle_activations1.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_992_p_dout0</name>
+<Object>get_oracle_activations1.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_992_p_ce</name>
 <Object>get_oracle_activations1.1</Object>
 <Type>return value</Type>
 <Scope></Scope>

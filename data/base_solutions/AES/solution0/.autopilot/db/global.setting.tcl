@@ -42,7 +42,7 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xcu50:-fsvh2104:-2-e
-set SourceFiles {sc {} c {../../../benchmarks/aes/aes_dec.c ../../../benchmarks/aes/aes_enc.c ../../../benchmarks/aes/aes.c ../../../benchmarks/aes/aes_key.c}}
+set SourceFiles {sc {} c {../../../benchmarks/aes/aes_dec.c ../../../benchmarks/aes/aes_enc.c ../../../benchmarks/aes/aes_key.c ../../../benchmarks/aes/aes.c}}
 set SourceFlags {sc {} c {{} {} {} {}}}
 set DirectiveFile {}
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

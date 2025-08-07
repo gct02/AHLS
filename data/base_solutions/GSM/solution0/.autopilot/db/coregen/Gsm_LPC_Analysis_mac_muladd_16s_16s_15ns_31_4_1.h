@@ -7,7 +7,7 @@
 // ==============================================================
 #ifndef __Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1__HH__
 #define __Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1__HH__
-#include "Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0.h"
+#include "Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6.h"
 
 template<
     int ID,
@@ -27,16 +27,16 @@ SC_MODULE(Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1) {
 
 
 
-    Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0 Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U;
+    Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6 Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U;
 
-    SC_CTOR(Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1):  Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U ("Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U") {
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.clk(clk);
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.rst(reset);
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.ce(ce);
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.in0(din0);
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.in1(din1);
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.in2(din2);
-        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U.dout(dout);
+    SC_CTOR(Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1):  Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U ("Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U") {
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.clk(clk);
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.rst(reset);
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.ce(ce);
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.in0(din0);
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.in1(din1);
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.in2(din2);
+        Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U.dout(dout);
 
     }
 

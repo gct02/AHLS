@@ -90,11 +90,6 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="InversShiftRow_ByteSub" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
         <directive functionName="encrypt" label="" functionLabel="">
             <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
@@ -106,11 +101,6 @@
             </pragma>
         </directive>
         <directive functionName="KeySchedule" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="ByteSub_ShiftRow" label="" functionLabel="">
             <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
@@ -160,11 +150,6 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="InversShiftRow_ByteSub" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
         <directive functionName="encrypt" label="" functionLabel="">
             <pragma name="INLINE">
                 <option name="off" value="true" positionalBoolean="1"/>
@@ -176,11 +161,6 @@
             </pragma>
         </directive>
         <directive functionName="KeySchedule" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="ByteSub_ShiftRow" label="" functionLabel="">
             <pragma name="INLINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>

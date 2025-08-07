@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'sha_update'" level="0">
-<item name = "Date">Wed Jul  9 04:09:34 2025
+<item name = "Date">Thu Aug  7 00:38:44 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">SHA</item>
@@ -24,20 +24,20 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">50803, 57395, 0.406 ms, 0.459 ms, 50803, 57395, no</column>
+<column name="">3, 57395, 24.000 ns, 0.459 ms, 3, 57395, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_local_memcpy_fu_88">local_memcpy, 1, 49, 8.000 ns, 0.392 us, 1, 49, no</column>
-<column name="grp_sha_transform_fu_100">sha_transform, 395, 395, 3.160 us, 3.160 us, 395, 395, no</column>
+<column name="grp_local_memcpy_fu_90">local_memcpy, 1, 49, 8.000 ns, 0.392 us, 1, 49, no</column>
+<column name="grp_sha_transform_fu_102">sha_transform, 395, 395, 3.160 us, 3.160 us, 395, 395, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- sha_update_label4">50800, 57344, 400 ~ 448, -, -, 127 ~ 128, no</column>
+<column name="- sha_update_label4">0, 57344, 400 ~ 448, -, -, 0 ~ 128, no</column>
 </table>
 </item>
 </section>
@@ -66,8 +66,8 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_local_memcpy_fu_88">local_memcpy, 0, 0, 108, 407, 0</column>
-<column name="grp_sha_transform_fu_100">sha_transform, 0, 0, 1155, 1932, 0</column>
+<column name="grp_local_memcpy_fu_90">local_memcpy, 0, 0, 108, 407, 0</column>
+<column name="grp_sha_transform_fu_102">sha_transform, 0, 0, 1155, 1932, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -84,17 +84,17 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln155_fu_118_p2">+, 0, 0, 39, 32, 32</column>
-<column name="add_ln156_fu_134_p2">+, 0, 0, 39, 32, 1</column>
-<column name="add_ln159_fu_168_p2">+, 0, 0, 39, 32, 32</column>
-<column name="add_ln162_fu_239_p2">+, 0, 0, 39, 32, 7</column>
-<column name="add_ln167_fu_233_p2">+, 0, 0, 39, 32, 8</column>
-<column name="icmp_ln155_fu_124_p2">icmp, 0, 0, 39, 32, 32</column>
-<column name="icmp_ln162_1_fu_219_p2">icmp, 0, 0, 33, 26, 1</column>
-<column name="icmp_ln162_fu_184_p2">icmp, 0, 0, 33, 26, 1</column>
-<column name="select_ln155_fu_140_p3">select, 0, 0, 32, 1, 32</column>
-<column name="select_ln169_1_fu_286_p3">select, 0, 0, 14, 1, 14</column>
-<column name="select_ln169_fu_279_p3">select, 0, 0, 32, 1, 32</column>
+<column name="add_ln155_fu_120_p2">+, 0, 0, 39, 32, 32</column>
+<column name="add_ln156_fu_136_p2">+, 0, 0, 39, 32, 1</column>
+<column name="add_ln159_fu_170_p2">+, 0, 0, 39, 32, 32</column>
+<column name="add_ln162_fu_241_p2">+, 0, 0, 39, 32, 7</column>
+<column name="add_ln167_fu_235_p2">+, 0, 0, 39, 32, 8</column>
+<column name="icmp_ln155_fu_126_p2">icmp, 0, 0, 39, 32, 32</column>
+<column name="icmp_ln162_1_fu_221_p2">icmp, 0, 0, 33, 26, 1</column>
+<column name="icmp_ln162_fu_186_p2">icmp, 0, 0, 33, 26, 1</column>
+<column name="select_ln155_fu_142_p3">select, 0, 0, 32, 1, 32</column>
+<column name="select_ln169_1_fu_288_p3">select, 0, 0, 14, 1, 14</column>
+<column name="select_ln169_fu_281_p3">select, 0, 0, 32, 1, 32</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -102,10 +102,10 @@
 <column name="ap_NS_fsm">37, 7, 1, 7</column>
 <column name="buffer_r_ce0">9, 2, 1, 2</column>
 <column name="buffer_r_ce1">9, 2, 1, 2</column>
-<column name="count_addr_02_fu_72">9, 2, 32, 64</column>
-<column name="grp_local_memcpy_fu_88_idx1">14, 3, 14, 42</column>
-<column name="grp_local_memcpy_fu_88_n">14, 3, 32, 96</column>
-<column name="idx_fu_68">9, 2, 32, 64</column>
+<column name="count_addr_02_fu_74">9, 2, 32, 64</column>
+<column name="grp_local_memcpy_fu_90_idx1">14, 3, 14, 42</column>
+<column name="grp_local_memcpy_fu_90_n">14, 3, 32, 96</column>
+<column name="idx_fu_70">9, 2, 32, 64</column>
 <column name="sha_info_count_hi_o">9, 2, 32, 64</column>
 <column name="sha_info_count_lo_o">9, 2, 32, 64</column>
 <column name="sha_info_data_address0">14, 3, 4, 12</column>
@@ -116,14 +116,14 @@
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">6, 0, 6, 0</column>
-<column name="count_addr_02_fu_72">32, 0, 32, 0</column>
-<column name="grp_local_memcpy_fu_88_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_sha_transform_fu_100_ap_start_reg">1, 0, 1, 0</column>
-<column name="icmp_ln162_reg_320">1, 0, 1, 0</column>
-<column name="idx_fu_68">32, 0, 32, 0</column>
-<column name="select_ln169_1_reg_339">8, 0, 14, 6</column>
-<column name="select_ln169_reg_334">32, 0, 32, 0</column>
-<column name="trunc_ln162_reg_329">14, 0, 14, 0</column>
+<column name="count_addr_02_fu_74">32, 0, 32, 0</column>
+<column name="grp_local_memcpy_fu_90_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_sha_transform_fu_102_ap_start_reg">1, 0, 1, 0</column>
+<column name="icmp_ln162_reg_322">1, 0, 1, 0</column>
+<column name="idx_fu_70">32, 0, 32, 0</column>
+<column name="select_ln169_1_reg_341">8, 0, 14, 6</column>
+<column name="select_ln169_reg_336">32, 0, 32, 0</column>
+<column name="trunc_ln162_reg_331">14, 0, 14, 0</column>
 </table>
 </item>
 </section>

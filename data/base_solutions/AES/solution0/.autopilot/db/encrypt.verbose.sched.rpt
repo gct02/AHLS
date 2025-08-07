@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'encrypt'
 ================================================================
-* Date:           Wed Jul  9 03:26:54 2025
+* Date:           Wed Aug  6 19:44:44 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -123,7 +123,7 @@ State 7 <SV = 6> <Delay = 0.00>
 ST_7 : Operation 30 [2/2] (0.00ns)   --->   "%call_ln113 = call void @MixColumn_AddRoundKey, i32 %statemt, i4 %i_2, i32 %word" [data/benchmarks/aes/aes_enc.c:113]   --->   Operation 30 'call' 'call_ln113' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 8 <SV = 7> <Delay = 0.00>
-ST_8 : Operation 31 [1/1] (0.00ns)   --->   "%speclooptripcount_ln67 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9" [data/benchmarks/aes/aes_enc.c:67]   --->   Operation 31 'speclooptripcount' 'speclooptripcount_ln67' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 31 [1/1] (0.00ns)   --->   "%speclooptripcount_ln111 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 9, i64 9, i64 9" [data/benchmarks/aes/aes_enc.c:111]   --->   Operation 31 'speclooptripcount' 'speclooptripcount_ln111' <Predicate = true> <Delay = 0.00>
 ST_8 : Operation 32 [1/1] (0.00ns)   --->   "%specloopname_ln114 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [data/benchmarks/aes/aes_enc.c:114]   --->   Operation 32 'specloopname' 'specloopname_ln114' <Predicate = true> <Delay = 0.00>
 ST_8 : Operation 33 [1/2] (0.00ns)   --->   "%call_ln113 = call void @MixColumn_AddRoundKey, i32 %statemt, i4 %i_2, i32 %word" [data/benchmarks/aes/aes_enc.c:113]   --->   Operation 33 'call' 'call_ln113' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_8 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln110 = br void %for.inc" [data/benchmarks/aes/aes_enc.c:110]   --->   Operation 34 'br' 'br_ln110' <Predicate = true> <Delay = 0.00>
@@ -161,7 +161,7 @@ The critical path consists of the following:
  <State 5>: 1.095ns
 The critical path consists of the following:
 	'load' operation 4 bit ('i', data/benchmarks/aes/aes_enc.c:110) on local variable 'i', data/benchmarks/aes/aes_enc.c:67 [16]  (0.000 ns)
-	'add' operation 4 bit ('i', data/benchmarks/aes/aes_enc.c:110) [24]  (0.708 ns)
+	'icmp' operation 1 bit ('icmp_ln110', data/benchmarks/aes/aes_enc.c:110) [17]  (0.708 ns)
 	'store' operation 0 bit ('store_ln67', data/benchmarks/aes/aes_enc.c:67) of variable 'i', data/benchmarks/aes/aes_enc.c:110 on local variable 'i', data/benchmarks/aes/aes_enc.c:67 [25]  (0.387 ns)
 
  <State 6>: 0.000ns

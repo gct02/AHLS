@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:adpcm_main:1.0
-// IP Revision: 2114162960
+// IP Revision: 2114204297
 
 `timescale 1ns/1ps
 

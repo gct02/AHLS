@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'ByteSub_ShiftRow'
 ================================================================
-* Date:           Wed Jul  9 03:26:54 2025
+* Date:           Wed Aug  6 19:44:43 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -275,14 +275,13 @@ ST_15 : Operation 170 [2/2] (0.62ns)   --->   "%Sbox_1_load_14 = load i8 %Sbox_1
 
 State 16 <SV = 15> <Delay = 1.32>
 ST_16 : Operation 171 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %statemt, void @empty_11, i32 0, i32 0, void @empty, i32 4294967295, i32 0, void @empty, void @empty, void @empty, i32 0, i32 0, i32 0, i32 0, void @empty, void @empty, i32 4294967295, i32 0"   --->   Operation 171 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 172 [1/1] (0.00ns)   --->   "%specpipeline_ln102 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty" [data/benchmarks/aes/aes_key.c:102]   --->   Operation 172 'specpipeline' 'specpipeline_ln102' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 173 [1/2] (0.62ns)   --->   "%Sbox_1_load_13 = load i8 %Sbox_1_addr_14" [data/benchmarks/aes/aes_key.c:120]   --->   Operation 173 'load' 'Sbox_1_load_13' <Predicate = true> <Delay = 0.62> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.62> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
-ST_16 : Operation 174 [1/1] (0.00ns)   --->   "%zext_ln120_1 = zext i8 %Sbox_1_load_13" [data/benchmarks/aes/aes_key.c:120]   --->   Operation 174 'zext' 'zext_ln120_1' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 175 [1/1] (0.69ns)   --->   "%store_ln120 = store i32 %zext_ln120_1, i5 %statemt_addr_36" [data/benchmarks/aes/aes_key.c:120]   --->   Operation 175 'store' 'store_ln120' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
-ST_16 : Operation 176 [1/2] (0.62ns)   --->   "%Sbox_1_load_14 = load i8 %Sbox_1_addr_15" [data/benchmarks/aes/aes_key.c:121]   --->   Operation 176 'load' 'Sbox_1_load_14' <Predicate = true> <Delay = 0.62> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.62> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
-ST_16 : Operation 177 [1/1] (0.00ns)   --->   "%zext_ln121_1 = zext i8 %Sbox_1_load_14" [data/benchmarks/aes/aes_key.c:121]   --->   Operation 177 'zext' 'zext_ln121_1' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 178 [1/1] (0.69ns)   --->   "%store_ln121 = store i32 %zext_ln121_1, i5 %statemt_addr_37" [data/benchmarks/aes/aes_key.c:121]   --->   Operation 178 'store' 'store_ln121' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
-ST_16 : Operation 179 [1/1] (0.00ns)   --->   "%ret_ln196 = ret" [data/benchmarks/aes/aes_key.c:196]   --->   Operation 179 'ret' 'ret_ln196' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 172 [1/2] (0.62ns)   --->   "%Sbox_1_load_13 = load i8 %Sbox_1_addr_14" [data/benchmarks/aes/aes_key.c:120]   --->   Operation 172 'load' 'Sbox_1_load_13' <Predicate = true> <Delay = 0.62> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.62> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_16 : Operation 173 [1/1] (0.00ns)   --->   "%zext_ln120_1 = zext i8 %Sbox_1_load_13" [data/benchmarks/aes/aes_key.c:120]   --->   Operation 173 'zext' 'zext_ln120_1' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 174 [1/1] (0.69ns)   --->   "%store_ln120 = store i32 %zext_ln120_1, i5 %statemt_addr_36" [data/benchmarks/aes/aes_key.c:120]   --->   Operation 174 'store' 'store_ln120' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_16 : Operation 175 [1/2] (0.62ns)   --->   "%Sbox_1_load_14 = load i8 %Sbox_1_addr_15" [data/benchmarks/aes/aes_key.c:121]   --->   Operation 175 'load' 'Sbox_1_load_14' <Predicate = true> <Delay = 0.62> <CoreInst = "ROM">   --->   Core 101 'ROM' <Latency = 1> <II = 1> <Delay = 0.62> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_16 : Operation 176 [1/1] (0.00ns)   --->   "%zext_ln121_1 = zext i8 %Sbox_1_load_14" [data/benchmarks/aes/aes_key.c:121]   --->   Operation 176 'zext' 'zext_ln121_1' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 177 [1/1] (0.69ns)   --->   "%store_ln121 = store i32 %zext_ln121_1, i5 %statemt_addr_37" [data/benchmarks/aes/aes_key.c:121]   --->   Operation 177 'store' 'store_ln121' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
+ST_16 : Operation 178 [1/1] (0.00ns)   --->   "%ret_ln196 = ret" [data/benchmarks/aes/aes_key.c:196]   --->   Operation 178 'ret' 'ret_ln196' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -292,76 +291,76 @@ Target clock period: 8.000ns, clock uncertainty: 2.160ns.
 
  <State 1>: 0.699ns
 The critical path consists of the following:
-	'getelementptr' operation 5 bit ('statemt_addr', data/benchmarks/aes/aes_key.c:102) [5]  (0.000 ns)
-	'load' operation 32 bit ('statemt_load', data/benchmarks/aes/aes_key.c:102) on array 'statemt' [6]  (0.699 ns)
+	'getelementptr' operation 5 bit ('statemt_addr', data/benchmarks/aes/aes_key.c:102) [4]  (0.000 ns)
+	'load' operation 32 bit ('statemt_load', data/benchmarks/aes/aes_key.c:102) on array 'statemt' [5]  (0.699 ns)
 
  <State 2>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load', data/benchmarks/aes/aes_key.c:102) on array 'statemt' [6]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load', data/benchmarks/aes/aes_key.c:102) on array 'statemt' [5]  (0.699 ns)
 
  <State 3>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load_20', data/benchmarks/aes/aes_key.c:104) on array 'statemt' [21]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load_20', data/benchmarks/aes/aes_key.c:104) on array 'statemt' [20]  (0.699 ns)
 
  <State 4>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load_22', data/benchmarks/aes/aes_key.c:107) on array 'statemt' [38]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load_22', data/benchmarks/aes/aes_key.c:107) on array 'statemt' [37]  (0.699 ns)
 
  <State 5>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load_24', data/benchmarks/aes/aes_key.c:110) on array 'statemt' [54]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load_24', data/benchmarks/aes/aes_key.c:110) on array 'statemt' [53]  (0.699 ns)
 
  <State 6>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load_26', data/benchmarks/aes/aes_key.c:113) on array 'statemt' [70]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load_26', data/benchmarks/aes/aes_key.c:113) on array 'statemt' [69]  (0.699 ns)
 
  <State 7>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load_28', data/benchmarks/aes/aes_key.c:115) on array 'statemt' [85]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load_28', data/benchmarks/aes/aes_key.c:115) on array 'statemt' [84]  (0.699 ns)
 
  <State 8>: 0.699ns
 The critical path consists of the following:
-	'load' operation 32 bit ('statemt_load_30', data/benchmarks/aes/aes_key.c:118) on array 'statemt' [102]  (0.699 ns)
+	'load' operation 32 bit ('statemt_load_30', data/benchmarks/aes/aes_key.c:118) on array 'statemt' [101]  (0.699 ns)
 
  <State 9>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load', data/benchmarks/aes/aes_key.c:103) on array 'Sbox_1' [17]  (0.626 ns)
-	'store' operation 0 bit ('store_ln103', data/benchmarks/aes/aes_key.c:103) of variable 'zext_ln103_1', data/benchmarks/aes/aes_key.c:103 on array 'statemt' [19]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load', data/benchmarks/aes/aes_key.c:103) on array 'Sbox_1' [16]  (0.626 ns)
+	'store' operation 0 bit ('store_ln103', data/benchmarks/aes/aes_key.c:103) of variable 'zext_ln103_1', data/benchmarks/aes/aes_key.c:103 on array 'statemt' [18]  (0.699 ns)
 
  <State 10>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_2', data/benchmarks/aes/aes_key.c:105) on array 'Sbox_1' [33]  (0.626 ns)
-	'store' operation 0 bit ('store_ln105', data/benchmarks/aes/aes_key.c:105) of variable 'zext_ln105_1', data/benchmarks/aes/aes_key.c:105 on array 'statemt' [35]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_2', data/benchmarks/aes/aes_key.c:105) on array 'Sbox_1' [32]  (0.626 ns)
+	'store' operation 0 bit ('store_ln105', data/benchmarks/aes/aes_key.c:105) of variable 'zext_ln105_1', data/benchmarks/aes/aes_key.c:105 on array 'statemt' [34]  (0.699 ns)
 
  <State 11>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_4', data/benchmarks/aes/aes_key.c:108) on array 'Sbox_1' [49]  (0.626 ns)
-	'store' operation 0 bit ('store_ln108', data/benchmarks/aes/aes_key.c:108) of variable 'zext_ln108_1', data/benchmarks/aes/aes_key.c:108 on array 'statemt' [51]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_4', data/benchmarks/aes/aes_key.c:108) on array 'Sbox_1' [48]  (0.626 ns)
+	'store' operation 0 bit ('store_ln108', data/benchmarks/aes/aes_key.c:108) of variable 'zext_ln108_1', data/benchmarks/aes/aes_key.c:108 on array 'statemt' [50]  (0.699 ns)
 
  <State 12>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_6', data/benchmarks/aes/aes_key.c:111) on array 'Sbox_1' [65]  (0.626 ns)
-	'store' operation 0 bit ('store_ln111', data/benchmarks/aes/aes_key.c:111) of variable 'zext_ln111_1', data/benchmarks/aes/aes_key.c:111 on array 'statemt' [67]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_6', data/benchmarks/aes/aes_key.c:111) on array 'Sbox_1' [64]  (0.626 ns)
+	'store' operation 0 bit ('store_ln111', data/benchmarks/aes/aes_key.c:111) of variable 'zext_ln111_1', data/benchmarks/aes/aes_key.c:111 on array 'statemt' [66]  (0.699 ns)
 
  <State 13>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_8', data/benchmarks/aes/aes_key.c:114) on array 'Sbox_1' [81]  (0.626 ns)
-	'store' operation 0 bit ('store_ln114', data/benchmarks/aes/aes_key.c:114) of variable 'zext_ln114_1', data/benchmarks/aes/aes_key.c:114 on array 'statemt' [83]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_8', data/benchmarks/aes/aes_key.c:114) on array 'Sbox_1' [80]  (0.626 ns)
+	'store' operation 0 bit ('store_ln114', data/benchmarks/aes/aes_key.c:114) of variable 'zext_ln114_1', data/benchmarks/aes/aes_key.c:114 on array 'statemt' [82]  (0.699 ns)
 
  <State 14>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_10', data/benchmarks/aes/aes_key.c:116) on array 'Sbox_1' [97]  (0.626 ns)
-	'store' operation 0 bit ('store_ln116', data/benchmarks/aes/aes_key.c:116) of variable 'zext_ln116_1', data/benchmarks/aes/aes_key.c:116 on array 'statemt' [99]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_10', data/benchmarks/aes/aes_key.c:116) on array 'Sbox_1' [96]  (0.626 ns)
+	'store' operation 0 bit ('store_ln116', data/benchmarks/aes/aes_key.c:116) of variable 'zext_ln116_1', data/benchmarks/aes/aes_key.c:116 on array 'statemt' [98]  (0.699 ns)
 
  <State 15>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_11', data/benchmarks/aes/aes_key.c:118) on array 'Sbox_1' [106]  (0.626 ns)
-	'store' operation 0 bit ('store_ln118', data/benchmarks/aes/aes_key.c:118) of variable 'zext_ln118_1', data/benchmarks/aes/aes_key.c:118 on array 'statemt' [108]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_11', data/benchmarks/aes/aes_key.c:118) on array 'Sbox_1' [105]  (0.626 ns)
+	'store' operation 0 bit ('store_ln118', data/benchmarks/aes/aes_key.c:118) of variable 'zext_ln118_1', data/benchmarks/aes/aes_key.c:118 on array 'statemt' [107]  (0.699 ns)
 
  <State 16>: 1.325ns
 The critical path consists of the following:
-	'load' operation 8 bit ('Sbox_1_load_13', data/benchmarks/aes/aes_key.c:120) on array 'Sbox_1' [122]  (0.626 ns)
-	'store' operation 0 bit ('store_ln120', data/benchmarks/aes/aes_key.c:120) of variable 'zext_ln120_1', data/benchmarks/aes/aes_key.c:120 on array 'statemt' [124]  (0.699 ns)
+	'load' operation 8 bit ('Sbox_1_load_13', data/benchmarks/aes/aes_key.c:120) on array 'Sbox_1' [121]  (0.626 ns)
+	'store' operation 0 bit ('store_ln120', data/benchmarks/aes/aes_key.c:120) of variable 'zext_ln120_1', data/benchmarks/aes/aes_key.c:120 on array 'statemt' [123]  (0.699 ns)
 
 
 ============================================================

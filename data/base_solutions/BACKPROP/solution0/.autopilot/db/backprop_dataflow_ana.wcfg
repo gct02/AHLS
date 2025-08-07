@@ -37,261 +37,309 @@
          <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop//AESL_inst_backprop_activity.dataflowTxWaveData.Cycles</obj_property>
          <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop//AESL_inst_backprop_activity.dataflowTxWaveData.OutStanding</obj_property>
          <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop//AESL_inst_backprop_activity.dataflowTxTooltipData</obj_property>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity">
-            <obj_property name="label">grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity">
+            <obj_property name="label">grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity.dataflowTxTooltipData</obj_property>
-            <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/grp_add_bias_to_activations_clone_1_fu_136_activity">
-               <obj_property name="label">grp_add_bias_to_activations_clone_1_fu_136_activity</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity">
+            <obj_property name="label">grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity.dataflowTxTooltipData</obj_property>
+            <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity">
+               <obj_property name="label">grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_add_bias_to_activations_clone_1_fu_136_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_add_bias_to_activations_clone_1_fu_136_activity</obj_property>
+               <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/grp_add_bias_to_activations_clone_1_fu_136_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/grp_add_bias_to_activations_clone_1_fu_136_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/grp_add_bias_to_activations_clone_1_fu_136_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/grp_RELU_fu_335_activity">
-            <obj_property name="label">grp_RELU_fu_335_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/grp_backprop_Pipeline_RELU_loop1_fu_272_activity">
+            <obj_property name="label">grp_backprop_Pipeline_RELU_loop1_fu_272_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_RELU_fu_335_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_RELU_fu_335_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_RELU_loop1_fu_272_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_RELU_loop1_fu_272_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/grp_RELU_fu_335_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/grp_RELU_fu_335_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/grp_RELU_fu_335_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/grp_backprop_Pipeline_RELU_loop1_fu_272_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/grp_backprop_Pipeline_RELU_loop1_fu_272_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/grp_backprop_Pipeline_RELU_loop1_fu_272_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity">
-            <obj_property name="label">grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity">
+            <obj_property name="label">grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity</obj_property>
+            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity.dataflowTxTooltipData</obj_property>
-            <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/grp_add_bias_to_activations_clone_1_fu_115_activity">
-               <obj_property name="label">grp_add_bias_to_activations_clone_1_fu_115_activity</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity.dataflowTxTooltipData</obj_property>
+            <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity">
+               <obj_property name="label">grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_add_bias_to_activations_clone_1_fu_115_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_add_bias_to_activations_clone_1_fu_115_activity</obj_property>
+               <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/grp_add_bias_to_activations_clone_1_fu_115_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/grp_add_bias_to_activations_clone_1_fu_115_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/grp_add_bias_to_activations_clone_1_fu_115_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity">
-            <obj_property name="label">grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/grp_backprop_Pipeline_RELU_loop11_fu_288_activity">
+            <obj_property name="label">grp_backprop_Pipeline_RELU_loop11_fu_288_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_RELU_loop11_fu_288_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_RELU_loop11_fu_288_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity.dataflowTxTooltipData</obj_property>
-            <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/grp_add_bias_to_activations_1_fu_145_activity">
-               <obj_property name="label">grp_add_bias_to_activations_1_fu_145_activity</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/grp_backprop_Pipeline_RELU_loop11_fu_288_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/grp_backprop_Pipeline_RELU_loop11_fu_288_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/grp_backprop_Pipeline_RELU_loop11_fu_288_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity">
+            <obj_property name="label">grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity.dataflowTxTooltipData</obj_property>
+            <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity">
+               <obj_property name="label">grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity</obj_property>
                <obj_property name="DisplayName">label</obj_property>
                <obj_property name="UseFullPath">true</obj_property>
-               <obj_property name="ElementShortName">grp_add_bias_to_activations_1_fu_145_activity</obj_property>
-               <obj_property name="ObjectShortName">grp_add_bias_to_activations_1_fu_145_activity</obj_property>
+               <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
                <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
                <obj_property name="CustomSignalColor">turquoise</obj_property>
                <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-               <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/grp_add_bias_to_activations_1_fu_145_activity.dataflowTxWaveData.Cycles</obj_property>
-               <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/grp_add_bias_to_activations_1_fu_145_activity.dataflowTxWaveData.OutStanding</obj_property>
-               <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/grp_add_bias_to_activations_1_fu_145_activity.dataflowTxTooltipData</obj_property>
+               <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity.dataflowTxTooltipData</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/grp_RELU_clone_fu_366_activity">
-            <obj_property name="label">grp_RELU_clone_fu_366_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/grp_backprop_Pipeline_RELU_loop12_fu_306_activity">
+            <obj_property name="label">grp_backprop_Pipeline_RELU_loop12_fu_306_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_RELU_clone_fu_366_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_RELU_clone_fu_366_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_RELU_loop12_fu_306_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_RELU_loop12_fu_306_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/grp_RELU_clone_fu_366_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/grp_RELU_clone_fu_366_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/grp_RELU_clone_fu_366_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/grp_backprop_Pipeline_RELU_loop12_fu_306_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/grp_backprop_Pipeline_RELU_loop12_fu_306_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/grp_backprop_Pipeline_RELU_loop12_fu_306_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/grp_soft_max_fu_376_activity">
-            <obj_property name="label">grp_soft_max_fu_376_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/grp_backprop_Pipeline_soft_max_loop1_fu_322_activity">
+            <obj_property name="label">grp_backprop_Pipeline_soft_max_loop1_fu_322_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_soft_max_fu_376_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_soft_max_fu_376_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_soft_max_loop1_fu_322_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_soft_max_loop1_fu_322_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/grp_soft_max_fu_376_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/grp_soft_max_fu_376_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/grp_soft_max_fu_376_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/grp_backprop_Pipeline_soft_max_loop1_fu_322_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/grp_backprop_Pipeline_soft_max_loop1_fu_322_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/grp_backprop_Pipeline_soft_max_loop1_fu_322_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/grp_take_difference_1_fu_386_activity">
-            <obj_property name="label">grp_take_difference_1_fu_386_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/grp_backprop_Pipeline_soft_max_loop2_fu_330_activity">
+            <obj_property name="label">grp_backprop_Pipeline_soft_max_loop2_fu_330_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_take_difference_1_fu_386_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_take_difference_1_fu_386_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_soft_max_loop2_fu_330_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_soft_max_loop2_fu_330_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/grp_take_difference_1_fu_386_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/grp_take_difference_1_fu_386_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/grp_take_difference_1_fu_386_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/grp_backprop_Pipeline_soft_max_loop2_fu_330_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/grp_backprop_Pipeline_soft_max_loop2_fu_330_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/grp_backprop_Pipeline_soft_max_loop2_fu_330_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/grp_get_delta_matrix_weights3_fu_402_activity">
-            <obj_property name="label">grp_get_delta_matrix_weights3_fu_402_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/grp_backprop_Pipeline_take_difference_loop1_fu_344_activity">
+            <obj_property name="label">grp_backprop_Pipeline_take_difference_loop1_fu_344_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_get_delta_matrix_weights3_fu_402_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_get_delta_matrix_weights3_fu_402_activity</obj_property>
+            <obj_property name="ElementShortName">grp_backprop_Pipeline_take_difference_loop1_fu_344_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_backprop_Pipeline_take_difference_loop1_fu_344_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/grp_get_delta_matrix_weights3_fu_402_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/grp_get_delta_matrix_weights3_fu_402_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/grp_get_delta_matrix_weights3_fu_402_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/grp_backprop_Pipeline_take_difference_loop1_fu_344_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/grp_backprop_Pipeline_take_difference_loop1_fu_344_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/grp_backprop_Pipeline_take_difference_loop1_fu_344_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/grp_get_oracle_activations2_1_fu_411_activity">
-            <obj_property name="label">grp_get_oracle_activations2_1_fu_411_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/grp_get_delta_matrix_weights3_fu_363_activity">
+            <obj_property name="label">grp_get_delta_matrix_weights3_fu_363_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_get_oracle_activations2_1_fu_411_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_get_oracle_activations2_1_fu_411_activity</obj_property>
+            <obj_property name="ElementShortName">grp_get_delta_matrix_weights3_fu_363_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_get_delta_matrix_weights3_fu_363_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/grp_get_oracle_activations2_1_fu_411_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/grp_get_oracle_activations2_1_fu_411_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/grp_get_oracle_activations2_1_fu_411_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/grp_get_delta_matrix_weights3_fu_363_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/grp_get_delta_matrix_weights3_fu_363_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/grp_get_delta_matrix_weights3_fu_363_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/grp_get_delta_matrix_weights2_fu_422_activity">
-            <obj_property name="label">grp_get_delta_matrix_weights2_fu_422_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/grp_get_oracle_activations2_1_fu_372_activity">
+            <obj_property name="label">grp_get_oracle_activations2_1_fu_372_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_get_delta_matrix_weights2_fu_422_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_get_delta_matrix_weights2_fu_422_activity</obj_property>
+            <obj_property name="ElementShortName">grp_get_oracle_activations2_1_fu_372_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_get_oracle_activations2_1_fu_372_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/grp_get_delta_matrix_weights2_fu_422_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/grp_get_delta_matrix_weights2_fu_422_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/grp_get_delta_matrix_weights2_fu_422_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/grp_get_oracle_activations2_1_fu_372_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/grp_get_oracle_activations2_1_fu_372_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/grp_get_oracle_activations2_1_fu_372_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/grp_get_oracle_activations1_1_fu_429_activity">
-            <obj_property name="label">grp_get_oracle_activations1_1_fu_429_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/grp_get_delta_matrix_weights2_fu_383_activity">
+            <obj_property name="label">grp_get_delta_matrix_weights2_fu_383_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_get_oracle_activations1_1_fu_429_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_get_oracle_activations1_1_fu_429_activity</obj_property>
+            <obj_property name="ElementShortName">grp_get_delta_matrix_weights2_fu_383_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_get_delta_matrix_weights2_fu_383_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/grp_get_oracle_activations1_1_fu_429_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/grp_get_oracle_activations1_1_fu_429_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/grp_get_oracle_activations1_1_fu_429_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/grp_get_delta_matrix_weights2_fu_383_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/grp_get_delta_matrix_weights2_fu_383_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/grp_get_delta_matrix_weights2_fu_383_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/grp_get_delta_matrix_weights1_1_fu_438_activity">
-            <obj_property name="label">grp_get_delta_matrix_weights1_1_fu_438_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/grp_get_oracle_activations1_1_fu_390_activity">
+            <obj_property name="label">grp_get_oracle_activations1_1_fu_390_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_get_delta_matrix_weights1_1_fu_438_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_get_delta_matrix_weights1_1_fu_438_activity</obj_property>
+            <obj_property name="ElementShortName">grp_get_oracle_activations1_1_fu_390_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_get_oracle_activations1_1_fu_390_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/grp_get_delta_matrix_weights1_1_fu_438_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/grp_get_delta_matrix_weights1_1_fu_438_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/grp_get_delta_matrix_weights1_1_fu_438_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/grp_get_oracle_activations1_1_fu_390_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/grp_get_oracle_activations1_1_fu_390_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/grp_get_oracle_activations1_1_fu_390_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/grp_update_weights_1_fu_447_activity">
-            <obj_property name="label">grp_update_weights_1_fu_447_activity</obj_property>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/grp_get_delta_matrix_weights1_1_fu_399_activity">
+            <obj_property name="label">grp_get_delta_matrix_weights1_1_fu_399_activity</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseFullPath">true</obj_property>
-            <obj_property name="ElementShortName">grp_update_weights_1_fu_447_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_update_weights_1_fu_447_activity</obj_property>
+            <obj_property name="ElementShortName">grp_get_delta_matrix_weights1_1_fu_399_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_get_delta_matrix_weights1_1_fu_399_activity</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
             <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
             <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">turquoise</obj_property>
             <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
-            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/grp_update_weights_1_fu_447_activity.dataflowTxWaveData.Cycles</obj_property>
-            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/grp_update_weights_1_fu_447_activity.dataflowTxWaveData.OutStanding</obj_property>
-            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/grp_update_weights_1_fu_447_activity.dataflowTxTooltipData</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/grp_get_delta_matrix_weights1_1_fu_399_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/grp_get_delta_matrix_weights1_1_fu_399_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/grp_get_delta_matrix_weights1_1_fu_399_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/grp_update_weights_1_fu_408_activity">
+            <obj_property name="label">grp_update_weights_1_fu_408_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_update_weights_1_fu_408_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_update_weights_1_fu_408_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/grp_update_weights_1_fu_408_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/grp_update_weights_1_fu_408_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/grp_update_weights_1_fu_408_activity.dataflowTxTooltipData</obj_property>
          </wvobject>
       </wvobject>
    </wvobject>
@@ -302,57 +350,69 @@
    <wvobject type="group" fp_name="AESL_inst_backprop_group">
       <obj_property name="label">AESL_inst_backprop</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity">
-         <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_323_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_backprop_loop1_1_fu_248_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/grp_RELU_fu_335_activity">
-         <obj_property name="ElementShortName">grp_RELU_fu_335_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_RELU_fu_335_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity">
+         <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_input_layer_1_fu_260_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity">
-         <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_341_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/grp_backprop_Pipeline_RELU_loop1_fu_272_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_RELU_loop1_fu_272_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_RELU_loop1_fu_272_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity">
-         <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_351_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity">
+         <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_second_layer_1_fu_278_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/grp_RELU_clone_fu_366_activity">
-         <obj_property name="ElementShortName">grp_RELU_clone_fu_366_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_RELU_clone_fu_366_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/grp_backprop_Pipeline_RELU_loop11_fu_288_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_RELU_loop11_fu_288_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_RELU_loop11_fu_288_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/grp_soft_max_fu_376_activity">
-         <obj_property name="ElementShortName">grp_soft_max_fu_376_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_soft_max_fu_376_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity">
+         <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_output_layer_1_fu_294_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/grp_take_difference_1_fu_386_activity">
-         <obj_property name="ElementShortName">grp_take_difference_1_fu_386_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_take_difference_1_fu_386_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/grp_backprop_Pipeline_RELU_loop12_fu_306_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_RELU_loop12_fu_306_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_RELU_loop12_fu_306_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/grp_get_delta_matrix_weights3_fu_402_activity">
-         <obj_property name="ElementShortName">grp_get_delta_matrix_weights3_fu_402_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_get_delta_matrix_weights3_fu_402_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/grp_backprop_Pipeline_soft_max_loop1_fu_322_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_soft_max_loop1_fu_322_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_soft_max_loop1_fu_322_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/grp_get_oracle_activations2_1_fu_411_activity">
-         <obj_property name="ElementShortName">grp_get_oracle_activations2_1_fu_411_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_get_oracle_activations2_1_fu_411_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/grp_backprop_Pipeline_soft_max_loop2_fu_330_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_soft_max_loop2_fu_330_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_soft_max_loop2_fu_330_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/grp_get_delta_matrix_weights2_fu_422_activity">
-         <obj_property name="ElementShortName">grp_get_delta_matrix_weights2_fu_422_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_get_delta_matrix_weights2_fu_422_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/grp_backprop_Pipeline_take_difference_loop1_fu_344_activity">
+         <obj_property name="ElementShortName">grp_backprop_Pipeline_take_difference_loop1_fu_344_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_backprop_Pipeline_take_difference_loop1_fu_344_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/grp_get_oracle_activations1_1_fu_429_activity">
-         <obj_property name="ElementShortName">grp_get_oracle_activations1_1_fu_429_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_get_oracle_activations1_1_fu_429_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/grp_get_delta_matrix_weights3_fu_363_activity">
+         <obj_property name="ElementShortName">grp_get_delta_matrix_weights3_fu_363_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_get_delta_matrix_weights3_fu_363_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/grp_get_delta_matrix_weights1_1_fu_438_activity">
-         <obj_property name="ElementShortName">grp_get_delta_matrix_weights1_1_fu_438_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_get_delta_matrix_weights1_1_fu_438_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/grp_get_oracle_activations2_1_fu_372_activity">
+         <obj_property name="ElementShortName">grp_get_oracle_activations2_1_fu_372_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_get_oracle_activations2_1_fu_372_activity</obj_property>
       </wvobject>
-      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/grp_update_weights_1_fu_447_activity">
-         <obj_property name="ElementShortName">grp_update_weights_1_fu_447_activity</obj_property>
-         <obj_property name="ObjectShortName">grp_update_weights_1_fu_447_activity</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/grp_get_delta_matrix_weights2_fu_383_activity">
+         <obj_property name="ElementShortName">grp_get_delta_matrix_weights2_fu_383_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_get_delta_matrix_weights2_fu_383_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/grp_get_oracle_activations1_1_fu_390_activity">
+         <obj_property name="ElementShortName">grp_get_oracle_activations1_1_fu_390_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_get_oracle_activations1_1_fu_390_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/grp_get_delta_matrix_weights1_1_fu_399_activity">
+         <obj_property name="ElementShortName">grp_get_delta_matrix_weights1_1_fu_399_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_get_delta_matrix_weights1_1_fu_399_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/grp_update_weights_1_fu_408_activity">
+         <obj_property name="ElementShortName">grp_update_weights_1_fu_408_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_update_weights_1_fu_408_activity</obj_property>
       </wvobject>
       <wvobject type="group" fp_name="AESL_inst_backprop_Handshake_group">
          <obj_property name="label">Block-level handshake</obj_property>
@@ -370,333 +430,393 @@
             <obj_property name="ObjectShortName">ap_done</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_input_layer_1_fu_323_group">
-         <obj_property name="label">grp_matrix_vector_product_with_bias_input_layer_1_fu_323</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_backprop_loop1_1_fu_248_group">
+         <obj_property name="label">grp_backprop_Pipeline_backprop_loop1_1_fu_248</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/grp_add_bias_to_activations_clone_1_fu_136_activity">
-            <obj_property name="ElementShortName">grp_add_bias_to_activations_clone_1_fu_136_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_add_bias_to_activations_clone_1_fu_136_activity</obj_property>
-         </wvobject>
-         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_input_layer_1_fu_323_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_backprop_loop1_1_fu_248_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_backprop_loop1_1_fu_248/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_add_bias_to_activations_clone_1_fu_136_group">
-            <obj_property name="label">grp_add_bias_to_activations_clone_1_fu_136</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_input_layer_1_fu_260_group">
+         <obj_property name="label">grp_matrix_vector_product_with_bias_input_layer_1_fu_260</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity">
+            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_activity</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_input_layer_1_fu_260_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_add_bias_to_activations_clone_1_fu_136_Handshake_group">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_group">
+            <obj_property name="label">grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/ap_start">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_323/grp_add_bias_to_activations_clone_1_fu_136/ap_done">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_input_layer_1_fu_260/grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_RELU_fu_335_group">
-         <obj_property name="label">grp_RELU_fu_335</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_RELU_loop1_fu_272_group">
+         <obj_property name="label">grp_backprop_Pipeline_RELU_loop1_fu_272</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_RELU_fu_335_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_RELU_loop1_fu_272_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_fu_335/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop1_fu_272/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_second_layer_1_fu_341_group">
-         <obj_property name="label">grp_matrix_vector_product_with_bias_second_layer_1_fu_341</obj_property>
+      <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_second_layer_1_fu_278_group">
+         <obj_property name="label">grp_matrix_vector_product_with_bias_second_layer_1_fu_278</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/grp_add_bias_to_activations_clone_1_fu_115_activity">
-            <obj_property name="ElementShortName">grp_add_bias_to_activations_clone_1_fu_115_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_add_bias_to_activations_clone_1_fu_115_activity</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity">
+            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_activity</obj_property>
          </wvobject>
-         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_second_layer_1_fu_341_Handshake_group">
+         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_second_layer_1_fu_278_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_add_bias_to_activations_clone_1_fu_115_group">
-            <obj_property name="label">grp_add_bias_to_activations_clone_1_fu_115</obj_property>
+         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_group">
+            <obj_property name="label">grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_add_bias_to_activations_clone_1_fu_115_Handshake_group">
+            <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/ap_start">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_341/grp_add_bias_to_activations_clone_1_fu_115/ap_done">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_second_layer_1_fu_278/grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_output_layer_1_fu_351_group">
-         <obj_property name="label">grp_matrix_vector_product_with_bias_output_layer_1_fu_351</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_RELU_loop11_fu_288_group">
+         <obj_property name="label">grp_backprop_Pipeline_RELU_loop11_fu_288</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/grp_add_bias_to_activations_1_fu_145_activity">
-            <obj_property name="ElementShortName">grp_add_bias_to_activations_1_fu_145_activity</obj_property>
-            <obj_property name="ObjectShortName">grp_add_bias_to_activations_1_fu_145_activity</obj_property>
-         </wvobject>
-         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_output_layer_1_fu_351_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_RELU_loop11_fu_288_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop11_fu_288/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
-         <wvobject type="group" fp_name="grp_add_bias_to_activations_1_fu_145_group">
-            <obj_property name="label">grp_add_bias_to_activations_1_fu_145</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_output_layer_1_fu_294_group">
+         <obj_property name="label">grp_matrix_vector_product_with_bias_output_layer_1_fu_294</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity">
+            <obj_property name="ElementShortName">grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_activity</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_output_layer_1_fu_294_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="group" fp_name="grp_add_bias_to_activations_1_fu_145_Handshake_group">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_group">
+            <obj_property name="label">grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161_Handshake_group">
                <obj_property name="label">Block-level handshake</obj_property>
                <obj_property name="DisplayName">label</obj_property>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/ap_start">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/ap_start">
                   <obj_property name="ElementShortName">ap_start</obj_property>
                   <obj_property name="ObjectShortName">ap_start</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/ap_ready">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/ap_ready">
                   <obj_property name="ElementShortName">ap_ready</obj_property>
                   <obj_property name="ObjectShortName">ap_ready</obj_property>
                </wvobject>
-               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_351/grp_add_bias_to_activations_1_fu_145/ap_done">
+               <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_matrix_vector_product_with_bias_output_layer_1_fu_294/grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161/ap_done">
                   <obj_property name="ElementShortName">ap_done</obj_property>
                   <obj_property name="ObjectShortName">ap_done</obj_property>
                </wvobject>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_RELU_clone_fu_366_group">
-         <obj_property name="label">grp_RELU_clone_fu_366</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_RELU_loop12_fu_306_group">
+         <obj_property name="label">grp_backprop_Pipeline_RELU_loop12_fu_306</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_RELU_clone_fu_366_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_RELU_loop12_fu_306_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_RELU_clone_fu_366/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_RELU_loop12_fu_306/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_soft_max_fu_376_group">
-         <obj_property name="label">grp_soft_max_fu_376</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_soft_max_loop1_fu_322_group">
+         <obj_property name="label">grp_backprop_Pipeline_soft_max_loop1_fu_322</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_soft_max_fu_376_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_soft_max_loop1_fu_322_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_soft_max_fu_376/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop1_fu_322/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_take_difference_1_fu_386_group">
-         <obj_property name="label">grp_take_difference_1_fu_386</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_soft_max_loop2_fu_330_group">
+         <obj_property name="label">grp_backprop_Pipeline_soft_max_loop2_fu_330</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_take_difference_1_fu_386_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_soft_max_loop2_fu_330_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_take_difference_1_fu_386/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_soft_max_loop2_fu_330/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_get_delta_matrix_weights3_fu_402_group">
-         <obj_property name="label">grp_get_delta_matrix_weights3_fu_402</obj_property>
+      <wvobject type="group" fp_name="grp_backprop_Pipeline_take_difference_loop1_fu_344_group">
+         <obj_property name="label">grp_backprop_Pipeline_take_difference_loop1_fu_344</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_get_delta_matrix_weights3_fu_402_Handshake_group">
+         <wvobject type="group" fp_name="grp_backprop_Pipeline_take_difference_loop1_fu_344_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_402/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_backprop_Pipeline_take_difference_loop1_fu_344/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_get_oracle_activations2_1_fu_411_group">
-         <obj_property name="label">grp_get_oracle_activations2_1_fu_411</obj_property>
+      <wvobject type="group" fp_name="grp_get_delta_matrix_weights3_fu_363_group">
+         <obj_property name="label">grp_get_delta_matrix_weights3_fu_363</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_get_oracle_activations2_1_fu_411_Handshake_group">
+         <wvobject type="group" fp_name="grp_get_delta_matrix_weights3_fu_363_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_411/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights3_fu_363/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_get_delta_matrix_weights2_fu_422_group">
-         <obj_property name="label">grp_get_delta_matrix_weights2_fu_422</obj_property>
+      <wvobject type="group" fp_name="grp_get_oracle_activations2_1_fu_372_group">
+         <obj_property name="label">grp_get_oracle_activations2_1_fu_372</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_get_delta_matrix_weights2_fu_422_Handshake_group">
+         <wvobject type="group" fp_name="grp_get_oracle_activations2_1_fu_372_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_422/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations2_1_fu_372/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_get_oracle_activations1_1_fu_429_group">
-         <obj_property name="label">grp_get_oracle_activations1_1_fu_429</obj_property>
+      <wvobject type="group" fp_name="grp_get_delta_matrix_weights2_fu_383_group">
+         <obj_property name="label">grp_get_delta_matrix_weights2_fu_383</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_get_oracle_activations1_1_fu_429_Handshake_group">
+         <wvobject type="group" fp_name="grp_get_delta_matrix_weights2_fu_383_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_429/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights2_fu_383/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_get_delta_matrix_weights1_1_fu_438_group">
-         <obj_property name="label">grp_get_delta_matrix_weights1_1_fu_438</obj_property>
+      <wvobject type="group" fp_name="grp_get_oracle_activations1_1_fu_390_group">
+         <obj_property name="label">grp_get_oracle_activations1_1_fu_390</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_get_delta_matrix_weights1_1_fu_438_Handshake_group">
+         <wvobject type="group" fp_name="grp_get_oracle_activations1_1_fu_390_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_438/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_oracle_activations1_1_fu_390/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
-      <wvobject type="group" fp_name="grp_update_weights_1_fu_447_group">
-         <obj_property name="label">grp_update_weights_1_fu_447</obj_property>
+      <wvobject type="group" fp_name="grp_get_delta_matrix_weights1_1_fu_399_group">
+         <obj_property name="label">grp_get_delta_matrix_weights1_1_fu_399</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject type="group" fp_name="grp_update_weights_1_fu_447_Handshake_group">
+         <wvobject type="group" fp_name="grp_get_delta_matrix_weights1_1_fu_399_Handshake_group">
             <obj_property name="label">Block-level handshake</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/ap_start">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/ap_start">
                <obj_property name="ElementShortName">ap_start</obj_property>
                <obj_property name="ObjectShortName">ap_start</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/ap_ready">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/ap_ready">
                <obj_property name="ElementShortName">ap_ready</obj_property>
                <obj_property name="ObjectShortName">ap_ready</obj_property>
             </wvobject>
-            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_447/ap_done">
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_get_delta_matrix_weights1_1_fu_399/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_update_weights_1_fu_408_group">
+         <obj_property name="label">grp_update_weights_1_fu_408</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_update_weights_1_fu_408_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_backprop_top/AESL_inst_backprop/grp_update_weights_1_fu_408/ap_done">
                <obj_property name="ElementShortName">ap_done</obj_property>
                <obj_property name="ObjectShortName">ap_done</obj_property>
             </wvobject>

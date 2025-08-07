@@ -4,7 +4,7 @@
     "xci_name": "bd_0_hls_inst_0",
     "cell_name": "hls_inst",
     "component_reference": "xilinx.com:hls:backprop:1.0",
-    "ip_revision": "2114162973",
+    "ip_revision": "2114204304",
     "gen_directory": "../../../../../../project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0",
     "parameters": {
       "component_parameters": {
@@ -12,7 +12,7 @@
         "clk_period": [ { "value": "8", "enabled": false, "usage": "all" } ],
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
-        "latency": [ { "value": "50857142", "enabled": false, "usage": "all" } ],
+        "latency": [ { "value": "50132118", "enabled": false, "usage": "all" } ],
         "II": [ { "value": "x", "enabled": false, "usage": "all" } ]
       },
       "project_parameters": {
@@ -30,7 +30,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114162973" } ],
+        "IPREVISION": [ { "value": "2114204304" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

@@ -24,7 +24,7 @@ class GATv2JK(nn.Module):
         heads: int = 1,
         negative_slope: float = 0.2,
         dropout: float = 0.0,
-        gmt_k: int = 10,
+        gmt_k: int = 16,
         jk_mode: str = 'cat'
     ):
         super().__init__()
@@ -113,7 +113,7 @@ class HLSQoREstimator(nn.Module):
         negative_slope: float = 0.2,
         dropout_gnn: float = 0.0,
         dropout_mlp: float = 0.0,
-        gmt_k: int = 10,
+        gmt_k: int = 16,
         jk_mode: str = 'cat'
     ):
         super().__init__()
@@ -131,10 +131,10 @@ class HLSQoREstimator(nn.Module):
             jk_mode=jk_mode
         )
 
-        # Small MLP to process y_base
+        # Small MLP to process graph attributes
         self.graph_attr_mlp = nn.Sequential(
             Linear(graph_attr_dim, 64), 
-            nn.LayerNorm(64), nn.GELU(), nn.Dropout(dropout_mlp),
+            nn.PReLU(64),
             Linear(64, 64)
         )
         self.mlps = nn.ModuleList(

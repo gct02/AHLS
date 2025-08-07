@@ -145,7 +145,7 @@ adpcm_main_mul_16s_16s_32_1_1 #(
     .din0_WIDTH( 16 ),
     .din1_WIDTH( 16 ),
     .dout_WIDTH( 32 ))
-mul_16s_16s_32_1_1_U70(
+mul_16s_16s_32_1_1_U55(
     .din0(dlti_q0),
     .din1(mul_ln545_fu_231_p1),
     .dout(mul_ln545_fu_231_p2)

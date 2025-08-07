@@ -152,10 +152,10 @@ entry:2 %specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %we
 
 <Node id="8" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:3 %specpipeline_ln47 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
+entry:3 %specpipeline_ln38 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln47"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln38"/></StgValue>
 </operation>
 
 <operation id="18" st_id="1" stage="1" lat="1">
@@ -200,10 +200,10 @@ entry:5 %br_ln78 = br void %matrix_vector_product_with_bias_second_layer_loop1_1
 
 <Node id="12" bw="7" op_0_bw="7" op_1_bw="0">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1:0 %i_27 = load i7 %i
+matrix_vector_product_with_bias_second_layer_loop1_1:0 %i_24 = load i7 %i
 
 ]]></Node>
-<StgValue><ssdm name="i_27"/></StgValue>
+<StgValue><ssdm name="i_24"/></StgValue>
 </operation>
 
 <operation id="21" st_id="2" stage="1" lat="1">
@@ -215,7 +215,7 @@ matrix_vector_product_with_bias_second_layer_loop1_1:0 %i_27 = load i7 %i
 
 <Node id="13" bw="1" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1:1 %icmp_ln78 = icmp_eq  i7 %i_27, i7 64
+matrix_vector_product_with_bias_second_layer_loop1_1:1 %icmp_ln78 = icmp_eq  i7 %i_24, i7 64
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln78"/></StgValue>
@@ -230,7 +230,7 @@ matrix_vector_product_with_bias_second_layer_loop1_1:1 %icmp_ln78 = icmp_eq  i7 
 
 <Node id="14" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1:2 %add_ln78 = add i7 %i_27, i7 1
+matrix_vector_product_with_bias_second_layer_loop1_1:2 %add_ln78 = add i7 %i_24, i7 1
 
 ]]></Node>
 <StgValue><ssdm name="add_ln78"/></StgValue>
@@ -245,7 +245,7 @@ matrix_vector_product_with_bias_second_layer_loop1_1:2 %add_ln78 = add i7 %i_27,
 
 <Node id="15" bw="0" op_0_bw="1" op_1_bw="0" op_2_bw="0">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1:3 %br_ln78 = br i1 %icmp_ln78, void %matrix_vector_product_with_bias_second_layer_loop1_1.split, void %for.end14
+matrix_vector_product_with_bias_second_layer_loop1_1:3 %br_ln78 = br i1 %icmp_ln78, void %matrix_vector_product_with_bias_second_layer_loop1_1.split, void %for.inc.i.preheader
 
 ]]></Node>
 <StgValue><ssdm name="br_ln78"/></StgValue>
@@ -261,7 +261,7 @@ matrix_vector_product_with_bias_second_layer_loop1_1:3 %br_ln78 = br i1 %icmp_ln
 
 <Node id="17" bw="64" op_0_bw="7">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1.split:0 %zext_ln78 = zext i7 %i_27
+matrix_vector_product_with_bias_second_layer_loop1_1.split:0 %zext_ln78 = zext i7 %i_24
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln78"/></StgValue>
@@ -293,7 +293,7 @@ matrix_vector_product_with_bias_second_layer_loop1_1.split:1 %speclooptripcount_
 
 <Node id="19" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1.split:2 %specloopname_ln86 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12
+matrix_vector_product_with_bias_second_layer_loop1_1.split:2 %specloopname_ln86 = specloopname void @_ssdm_op_SpecLoopName, void @empty_14
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln86"/></StgValue>
@@ -325,7 +325,7 @@ matrix_vector_product_with_bias_second_layer_loop1_1.split:3 %activations_addr =
 
 <Node id="21" bw="6" op_0_bw="7">
 <![CDATA[
-matrix_vector_product_with_bias_second_layer_loop1_1.split:4 %empty = trunc i7 %i_27
+matrix_vector_product_with_bias_second_layer_loop1_1.split:4 %empty = trunc i7 %i_24
 
 ]]></Node>
 <StgValue><ssdm name="empty"/></StgValue>
@@ -373,10 +373,10 @@ matrix_vector_product_with_bias_second_layer_loop1_1.split:6 %br_ln82 = br void 
 
 <Node id="50" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-for.end14:0 %call_ln87 = call void @add_bias_to_activations.clone.1, i64 %biases2, i64 %activations
+for.inc.i.preheader:0 %call_ln0 = call void @matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, i64 %activations, i64 %biases2
 
 ]]></Node>
-<StgValue><ssdm name="call_ln87"/></StgValue>
+<StgValue><ssdm name="call_ln0"/></StgValue>
 </operation>
 </state>
 
@@ -831,7 +831,7 @@ for.inc.split:2 %speclooptripcount_ln83 = speclooptripcount void @_ssdm_op_SpecL
 
 <Node id="34" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.inc.split:3 %specloopname_ln85 = specloopname void @_ssdm_op_SpecLoopName, void @empty_11
+for.inc.split:3 %specloopname_ln85 = specloopname void @_ssdm_op_SpecLoopName, void @empty_13
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln85"/></StgValue>
@@ -879,10 +879,10 @@ for.inc.split:13 %br_ln82 = br void %for.inc
 
 <Node id="50" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64">
 <![CDATA[
-for.end14:0 %call_ln87 = call void @add_bias_to_activations.clone.1, i64 %biases2, i64 %activations
+for.inc.i.preheader:0 %call_ln0 = call void @matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_, i64 %activations, i64 %biases2
 
 ]]></Node>
-<StgValue><ssdm name="call_ln87"/></StgValue>
+<StgValue><ssdm name="call_ln0"/></StgValue>
 </operation>
 
 <operation id="63" st_id="13" stage="1" lat="1">
@@ -894,7 +894,7 @@ for.end14:0 %call_ln87 = call void @add_bias_to_activations.clone.1, i64 %biases
 
 <Node id="51" bw="0">
 <![CDATA[
-for.end14:1 %ret_ln88 = ret
+for.inc.i.preheader:1 %ret_ln88 = ret
 
 ]]></Node>
 <StgValue><ssdm name="ret_ln88"/></StgValue>
@@ -913,7 +913,7 @@ for.end14:1 %ret_ln88 = ret
 </StgValue>
 </port>
 <port id="82" name="activations" dir="2" iftype="1">
-<core>RAM</core><StgValue><ssdm name="activations"/><MemPortTyVec>2 3 </MemPortTyVec>
+<core>RAM</core><StgValue><ssdm name="activations"/><MemPortTyVec>0 1 </MemPortTyVec>
 </StgValue>
 </port>
 <port id="83" name="input_activations" dir="0" iftype="1">
@@ -1002,35 +1002,35 @@ for.end14:1 %ret_ln88 = ret
 </dataflow>
 <dataflow id="128" from="StgValue_91" to="specinterface_ln0" fromId="91" toId="16">
 </dataflow>
-<dataflow id="130" from="_ssdm_op_SpecPipeline" to="specpipeline_ln47" fromId="129" toId="17">
+<dataflow id="130" from="_ssdm_op_SpecPipeline" to="specpipeline_ln38" fromId="129" toId="17">
 </dataflow>
-<dataflow id="131" from="StgValue_91" to="specpipeline_ln47" fromId="91" toId="17">
+<dataflow id="131" from="StgValue_91" to="specpipeline_ln38" fromId="91" toId="17">
 </dataflow>
-<dataflow id="132" from="StgValue_91" to="specpipeline_ln47" fromId="91" toId="17">
+<dataflow id="132" from="StgValue_91" to="specpipeline_ln38" fromId="91" toId="17">
 </dataflow>
-<dataflow id="133" from="StgValue_84" to="specpipeline_ln47" fromId="84" toId="17">
+<dataflow id="133" from="StgValue_84" to="specpipeline_ln38" fromId="84" toId="17">
 </dataflow>
-<dataflow id="134" from="StgValue_91" to="specpipeline_ln47" fromId="91" toId="17">
+<dataflow id="134" from="StgValue_91" to="specpipeline_ln38" fromId="91" toId="17">
 </dataflow>
-<dataflow id="135" from="empty_42" to="specpipeline_ln47" fromId="94" toId="17">
+<dataflow id="135" from="empty_42" to="specpipeline_ln38" fromId="94" toId="17">
 </dataflow>
 <dataflow id="137" from="StgValue_136" to="store_ln76" fromId="136" toId="18">
 </dataflow>
 <dataflow id="138" from="i" to="store_ln76" fromId="14" toId="18">
 </dataflow>
-<dataflow id="139" from="i" to="i_27" fromId="14" toId="20">
+<dataflow id="139" from="i" to="i_24" fromId="14" toId="20">
 </dataflow>
-<dataflow id="140" from="i_27" to="icmp_ln78" fromId="20" toId="21">
+<dataflow id="140" from="i_24" to="icmp_ln78" fromId="20" toId="21">
 </dataflow>
 <dataflow id="142" from="StgValue_141" to="icmp_ln78" fromId="141" toId="21">
 </dataflow>
-<dataflow id="143" from="i_27" to="add_ln78" fromId="20" toId="22">
+<dataflow id="143" from="i_24" to="add_ln78" fromId="20" toId="22">
 </dataflow>
 <dataflow id="145" from="StgValue_144" to="add_ln78" fromId="144" toId="22">
 </dataflow>
 <dataflow id="146" from="icmp_ln78" to="br_ln78" fromId="21" toId="23">
 </dataflow>
-<dataflow id="147" from="i_27" to="zext_ln78" fromId="20" toId="24">
+<dataflow id="147" from="i_24" to="zext_ln78" fromId="20" toId="24">
 </dataflow>
 <dataflow id="149" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln79" fromId="148" toId="25">
 </dataflow>
@@ -1042,7 +1042,7 @@ for.end14:1 %ret_ln88 = ret
 </dataflow>
 <dataflow id="155" from="_ssdm_op_SpecLoopName" to="specloopname_ln86" fromId="154" toId="26">
 </dataflow>
-<dataflow id="157" from="empty_12" to="specloopname_ln86" fromId="156" toId="26">
+<dataflow id="157" from="empty_14" to="specloopname_ln86" fromId="156" toId="26">
 </dataflow>
 <dataflow id="158" from="activations" to="activations_addr" fromId="82" toId="27">
 </dataflow>
@@ -1050,7 +1050,7 @@ for.end14:1 %ret_ln88 = ret
 </dataflow>
 <dataflow id="161" from="zext_ln78" to="activations_addr" fromId="24" toId="27">
 </dataflow>
-<dataflow id="162" from="i_27" to="empty" fromId="20" toId="28">
+<dataflow id="162" from="i_24" to="empty" fromId="20" toId="28">
 </dataflow>
 <dataflow id="164" from="_ssdm_op_BitConcatenate.i12.i6.i6" to="tmp_9" fromId="163" toId="29">
 </dataflow>
@@ -1058,11 +1058,11 @@ for.end14:1 %ret_ln88 = ret
 </dataflow>
 <dataflow id="167" from="StgValue_166" to="tmp_9" fromId="166" toId="29">
 </dataflow>
-<dataflow id="169" from="add_bias_to_activations.clone.1" to="call_ln87" fromId="168" toId="31">
+<dataflow id="169" from="matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_" to="call_ln0" fromId="168" toId="31">
 </dataflow>
-<dataflow id="170" from="biases2" to="call_ln87" fromId="80" toId="31">
+<dataflow id="170" from="activations" to="call_ln0" fromId="82" toId="31">
 </dataflow>
-<dataflow id="171" from="activations" to="call_ln87" fromId="82" toId="31">
+<dataflow id="171" from="biases2" to="call_ln0" fromId="80" toId="31">
 </dataflow>
 <dataflow id="172" from="add_ln82" to="j" fromId="35" toId="32">
 <BackEdge/>
@@ -1186,17 +1186,17 @@ for.end14:1 %ret_ln88 = ret
 </dataflow>
 <dataflow id="224" from="_ssdm_op_SpecLoopName" to="specloopname_ln85" fromId="154" toId="59">
 </dataflow>
-<dataflow id="226" from="empty_11" to="specloopname_ln85" fromId="225" toId="59">
+<dataflow id="226" from="empty_13" to="specloopname_ln85" fromId="225" toId="59">
 </dataflow>
 <dataflow id="227" from="add113" to="add" fromId="33" toId="60">
 </dataflow>
 <dataflow id="228" from="mul8" to="add" fromId="54" toId="60">
 </dataflow>
-<dataflow id="229" from="add_bias_to_activations.clone.1" to="call_ln87" fromId="168" toId="62">
+<dataflow id="229" from="matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_" to="call_ln0" fromId="168" toId="62">
 </dataflow>
-<dataflow id="230" from="biases2" to="call_ln87" fromId="80" toId="62">
+<dataflow id="230" from="activations" to="call_ln0" fromId="82" toId="62">
 </dataflow>
-<dataflow id="231" from="activations" to="call_ln87" fromId="82" toId="62">
+<dataflow id="231" from="biases2" to="call_ln0" fromId="80" toId="62">
 </dataflow>
 <dataflow id="232" from="icmp_ln78" to="StgValue_2" fromId="21" toId="2">
 </dataflow>

@@ -172,7 +172,7 @@ __attribute__((sdx_kernel("aes_main", 0))) int aes_main(int statemt[32], int key
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 66 "data/benchmarks/aes/aes.c"
 
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl"
 #pragma HLSDIRECTIVE TOP name=aes_main
 # 66 "data/benchmarks/aes/aes.c"
 

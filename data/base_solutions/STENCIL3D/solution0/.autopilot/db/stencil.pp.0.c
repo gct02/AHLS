@@ -1476,7 +1476,7 @@ __attribute__((sdx_kernel("stencil3d", 0))) void stencil3d(int32_t C[2], int32_t
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 10 "data/benchmarks/stencil3d/stencil.c"
 
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl"
 #pragma HLSDIRECTIVE TOP name=stencil3d
 # 10 "data/benchmarks/stencil3d/stencil.c"
 

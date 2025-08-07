@@ -17,14 +17,16 @@ set C_modelType { void 0 }
 set C_modelArgList {
 	{ L_ACF int 64 regular {array 9 { 1 3 } 1 1 }  }
 	{ LARc int 16 regular {array 8 { 0 3 } 0 1 }  }
+	{ bitoff int 4 regular {array 256 { 1 1 1 1 } 1 1 } {global 0}  }
 }
 set hasAXIMCache 0
 set AXIMCacheInstList { }
 set C_modelArgMapList {[ 
 	{ "Name" : "L_ACF", "interface" : "memory", "bitwidth" : 64, "direction" : "READONLY"} , 
- 	{ "Name" : "LARc", "interface" : "memory", "bitwidth" : 16, "direction" : "WRITEONLY"} ]}
+ 	{ "Name" : "LARc", "interface" : "memory", "bitwidth" : 16, "direction" : "WRITEONLY"} , 
+ 	{ "Name" : "bitoff", "interface" : "memory", "bitwidth" : 4, "direction" : "READONLY", "extern" : 0} ]}
 # RTL Port declarations: 
-set portNum 37
+set portNum 25
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -39,30 +41,18 @@ set portList {
 	{ LARc_ce0 sc_out sc_logic 1 signal 1 } 
 	{ LARc_we0 sc_out sc_logic 1 signal 1 } 
 	{ LARc_d0 sc_out sc_lv 16 signal 1 } 
-	{ grp_gsm_add_fu_310_p_din1 sc_out sc_lv 16 signal -1 } 
-	{ grp_gsm_add_fu_310_p_din2 sc_out sc_lv 16 signal -1 } 
-	{ grp_gsm_add_fu_310_p_dout0 sc_in sc_lv 16 signal -1 } 
-	{ grp_gsm_add_fu_310_p_ready sc_in sc_logic 1 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_din1 sc_out sc_lv 16 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_din2 sc_out sc_lv 16 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_dout0 sc_in sc_lv 16 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_start sc_out sc_logic 1 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_ready sc_in sc_logic 1 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_done sc_in sc_logic 1 signal -1 } 
-	{ grp_gsm_mult_r_fu_300_p_idle sc_in sc_logic 1 signal -1 } 
-	{ grp_gsm_norm_fu_305_p_din1 sc_out sc_lv 64 signal -1 } 
-	{ grp_gsm_norm_fu_305_p_dout0 sc_in sc_lv 6 signal -1 } 
-	{ grp_gsm_norm_fu_305_p_start sc_out sc_logic 1 signal -1 } 
-	{ grp_gsm_norm_fu_305_p_ready sc_in sc_logic 1 signal -1 } 
-	{ grp_gsm_norm_fu_305_p_done sc_in sc_logic 1 signal -1 } 
-	{ grp_gsm_norm_fu_305_p_idle sc_in sc_logic 1 signal -1 } 
-	{ temp_37_gsm_abs_fu_120_p_din1 sc_out sc_lv 16 signal -1 } 
-	{ temp_37_gsm_abs_fu_120_p_dout0 sc_in sc_lv 16 signal -1 } 
-	{ temp_37_gsm_abs_fu_120_p_ready sc_in sc_logic 1 signal -1 } 
-	{ tmp_6_gsm_add_fu_315_p_din1 sc_out sc_lv 16 signal -1 } 
-	{ tmp_6_gsm_add_fu_315_p_din2 sc_out sc_lv 16 signal -1 } 
-	{ tmp_6_gsm_add_fu_315_p_dout0 sc_in sc_lv 16 signal -1 } 
-	{ tmp_6_gsm_add_fu_315_p_ready sc_in sc_logic 1 signal -1 } 
+	{ bitoff_address0 sc_out sc_lv 8 signal 2 } 
+	{ bitoff_ce0 sc_out sc_logic 1 signal 2 } 
+	{ bitoff_q0 sc_in sc_lv 4 signal 2 } 
+	{ bitoff_address1 sc_out sc_lv 8 signal 2 } 
+	{ bitoff_ce1 sc_out sc_logic 1 signal 2 } 
+	{ bitoff_q1 sc_in sc_lv 4 signal 2 } 
+	{ bitoff_address2 sc_out sc_lv 8 signal 2 } 
+	{ bitoff_ce2 sc_out sc_logic 1 signal 2 } 
+	{ bitoff_q2 sc_in sc_lv 4 signal 2 } 
+	{ bitoff_address3 sc_out sc_lv 8 signal 2 } 
+	{ bitoff_ce3 sc_out sc_logic 1 signal 2 } 
+	{ bitoff_q3 sc_in sc_lv 4 signal 2 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -78,39 +68,27 @@ set NewPortList {[
  	{ "name": "LARc_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "LARc", "role": "ce0" }} , 
  	{ "name": "LARc_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "LARc", "role": "we0" }} , 
  	{ "name": "LARc_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "LARc", "role": "d0" }} , 
- 	{ "name": "grp_gsm_add_fu_310_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "grp_gsm_add_fu_310_p_din1", "role": "default" }} , 
- 	{ "name": "grp_gsm_add_fu_310_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "grp_gsm_add_fu_310_p_din2", "role": "default" }} , 
- 	{ "name": "grp_gsm_add_fu_310_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "grp_gsm_add_fu_310_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_gsm_add_fu_310_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_add_fu_310_p_ready", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_din1", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_din2", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_start", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_start", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_ready", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_done", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_done", "role": "default" }} , 
- 	{ "name": "grp_gsm_mult_r_fu_300_p_idle", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_mult_r_fu_300_p_idle", "role": "default" }} , 
- 	{ "name": "grp_gsm_norm_fu_305_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":64, "type": "signal", "bundle":{"name": "grp_gsm_norm_fu_305_p_din1", "role": "default" }} , 
- 	{ "name": "grp_gsm_norm_fu_305_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "grp_gsm_norm_fu_305_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_gsm_norm_fu_305_p_start", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_norm_fu_305_p_start", "role": "default" }} , 
- 	{ "name": "grp_gsm_norm_fu_305_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_norm_fu_305_p_ready", "role": "default" }} , 
- 	{ "name": "grp_gsm_norm_fu_305_p_done", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_norm_fu_305_p_done", "role": "default" }} , 
- 	{ "name": "grp_gsm_norm_fu_305_p_idle", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_gsm_norm_fu_305_p_idle", "role": "default" }} , 
- 	{ "name": "temp_37_gsm_abs_fu_120_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "temp_37_gsm_abs_fu_120_p_din1", "role": "default" }} , 
- 	{ "name": "temp_37_gsm_abs_fu_120_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "temp_37_gsm_abs_fu_120_p_dout0", "role": "default" }} , 
- 	{ "name": "temp_37_gsm_abs_fu_120_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "temp_37_gsm_abs_fu_120_p_ready", "role": "default" }} , 
- 	{ "name": "tmp_6_gsm_add_fu_315_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "tmp_6_gsm_add_fu_315_p_din1", "role": "default" }} , 
- 	{ "name": "tmp_6_gsm_add_fu_315_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "tmp_6_gsm_add_fu_315_p_din2", "role": "default" }} , 
- 	{ "name": "tmp_6_gsm_add_fu_315_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "tmp_6_gsm_add_fu_315_p_dout0", "role": "default" }} , 
- 	{ "name": "tmp_6_gsm_add_fu_315_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "tmp_6_gsm_add_fu_315_p_ready", "role": "default" }}  ]}
+ 	{ "name": "bitoff_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "bitoff", "role": "address0" }} , 
+ 	{ "name": "bitoff_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "bitoff", "role": "ce0" }} , 
+ 	{ "name": "bitoff_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "bitoff", "role": "q0" }} , 
+ 	{ "name": "bitoff_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "bitoff", "role": "address1" }} , 
+ 	{ "name": "bitoff_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "bitoff", "role": "ce1" }} , 
+ 	{ "name": "bitoff_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "bitoff", "role": "q1" }} , 
+ 	{ "name": "bitoff_address2", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "bitoff", "role": "address2" }} , 
+ 	{ "name": "bitoff_ce2", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "bitoff", "role": "ce2" }} , 
+ 	{ "name": "bitoff_q2", "direction": "in", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "bitoff", "role": "q2" }} , 
+ 	{ "name": "bitoff_address3", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "bitoff", "role": "address3" }} , 
+ 	{ "name": "bitoff_ce3", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "bitoff", "role": "ce3" }} , 
+ 	{ "name": "bitoff_q3", "direction": "in", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "bitoff", "role": "q3" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "6", "7"],
 		"CDFG" : "Reflection_coefficients",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "11", "EstimateLatencyMax" : "588",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "11", "EstimateLatencyMax" : "532",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -124,23 +102,23 @@ set RtlHierarchyInfo {[
 			{"Name" : "bitoff", "Type" : "Memory", "Direction" : "I"}],
 		"Loop" : [
 			{"Name" : "Reflection_coefficients_label0", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state17", "LastState" : ["ap_ST_fsm_state17"], "QuitState" : ["ap_ST_fsm_state17"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state12"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state17_blk"}},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state22", "LastState" : ["ap_ST_fsm_state22"], "QuitState" : ["ap_ST_fsm_state22"], "PreState" : ["ap_ST_fsm_state2"], "PostState" : ["ap_ST_fsm_state13"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state22_blk"}},
 			{"Name" : "Reflection_coefficients_label1", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state4", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state4"], "PreState" : ["ap_ST_fsm_state3"], "PostState" : ["ap_ST_fsm_state6"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state4", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state4"], "PreState" : ["ap_ST_fsm_state3"], "PostState" : ["ap_ST_fsm_state6"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "Reflection_coefficients_label2", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state6", "LastState" : ["ap_ST_fsm_state7"], "QuitState" : ["ap_ST_fsm_state6"], "PreState" : ["ap_ST_fsm_state4"], "PostState" : ["ap_ST_fsm_state8"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state6", "LastState" : ["ap_ST_fsm_state7"], "QuitState" : ["ap_ST_fsm_state6"], "PreState" : ["ap_ST_fsm_state4"], "PostState" : ["ap_ST_fsm_state8"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "Reflection_coefficients_label3", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state8", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state8"], "PreState" : ["ap_ST_fsm_state6"], "PostState" : ["ap_ST_fsm_state10"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state8", "LastState" : ["ap_ST_fsm_state9"], "QuitState" : ["ap_ST_fsm_state8"], "PreState" : ["ap_ST_fsm_state6"], "PostState" : ["ap_ST_fsm_state10"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "Reflection_coefficients_label5", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state14", "LastState" : ["ap_ST_fsm_state16"], "QuitState" : ["ap_ST_fsm_state14"], "PreState" : ["ap_ST_fsm_state13"], "PostState" : ["ap_ST_fsm_state10"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state17", "LastState" : ["ap_ST_fsm_state21"], "QuitState" : ["ap_ST_fsm_state17"], "PreState" : ["ap_ST_fsm_state16"], "PostState" : ["ap_ST_fsm_state10"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "Reflection_coefficients_label4", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state10", "LastState" : ["ap_ST_fsm_state14"], "QuitState" : ["ap_ST_fsm_state10"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state10", "LastState" : ["ap_ST_fsm_state17"], "QuitState" : ["ap_ST_fsm_state10"], "PreState" : ["ap_ST_fsm_state8"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}},
 			{"Name" : "Reflection_coefficients_label6", "PipelineType" : "no",
-				"LoopDec" : {"FSMBitwidth" : "17", "FirstState" : "ap_ST_fsm_state12", "LastState" : ["ap_ST_fsm_state12"], "QuitState" : ["ap_ST_fsm_state12"], "PreState" : ["ap_ST_fsm_state10", "ap_ST_fsm_state11", "ap_ST_fsm_state17"], "PostState" : ["ap_ST_fsm_state13"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state12_blk"}}]},
+				"LoopDec" : {"FSMBitwidth" : "22", "FirstState" : "ap_ST_fsm_state13", "LastState" : ["ap_ST_fsm_state13"], "QuitState" : ["ap_ST_fsm_state13"], "PreState" : ["ap_ST_fsm_state10", "ap_ST_fsm_state12", "ap_ST_fsm_state22"], "PostState" : ["ap_ST_fsm_state14"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state13_blk"}}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.ACF_U", "Parent" : "0"},
 	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.P_U", "Parent" : "0"},
 	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.K_U", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_gsm_div_fu_290", "Parent" : "0",
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_gsm_div_fu_389", "Parent" : "0",
 		"CDFG" : "gsm_div",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -160,43 +138,25 @@ set RtlHierarchyInfo {[
 		"Loop" : [
 			{"Name" : "gsm_div_label0", "PipelineType" : "no",
 				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state2"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "1", "OneStateBlock": "ap_ST_fsm_state2_blk"}}]},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_gsm_mult_r_fu_305", "Parent" : "0", "Child" : ["6"],
-		"CDFG" : "gsm_mult_r",
-		"Protocol" : "ap_ctrl_hs",
-		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
-		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "3", "EstimateLatencyMax" : "3",
-		"Combinational" : "0",
-		"Datapath" : "0",
-		"ClockEnable" : "0",
-		"HasSubDataflow" : "0",
-		"InDataflowNetwork" : "0",
-		"HasNonBlockingOperation" : "0",
-		"IsBlackBox" : "0",
-		"Port" : [
-			{"Name" : "a", "Type" : "None", "Direction" : "I"},
-			{"Name" : "b", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_gsm_mult_r_fu_305.mac_muladd_16s_16s_15ns_31_4_1_U4", "Parent" : "5"}]}
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mac_muladd_16s_16s_15ns_31_4_1_U52", "Parent" : "0"},
+	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mac_muladd_16s_16s_15ns_31_4_1_U53", "Parent" : "0"},
+	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mac_muladd_16s_16s_15ns_31_4_1_U54", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	Reflection_coefficients {
 		L_ACF {Type I LastRead 3 FirstWrite -1}
 		LARc {Type O LastRead -1 FirstWrite 2}
-		bitoff {Type I LastRead -1 FirstWrite -1}}
+		bitoff {Type I LastRead 2 FirstWrite -1}}
 	gsm_div {
 		num {Type I LastRead 0 FirstWrite -1}
-		denum {Type I LastRead 0 FirstWrite -1}}
-	gsm_mult_r {
-		a {Type I LastRead 0 FirstWrite -1}
-		b {Type I LastRead 0 FirstWrite -1}}}
+		denum {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "11", "Max" : "588"}
-	, {"Name" : "Interval", "Min" : "11", "Max" : "588"}
+	{"Name" : "Latency", "Min" : "11", "Max" : "532"}
+	, {"Name" : "Interval", "Min" : "11", "Max" : "532"}
 ]}
 
 set PipelineEnableSignalInfo {[
@@ -205,4 +165,5 @@ set PipelineEnableSignalInfo {[
 set Spec2ImplPortList { 
 	L_ACF { ap_memory {  { L_ACF_address0 mem_address 1 4 }  { L_ACF_ce0 mem_ce 1 1 }  { L_ACF_q0 in_data 0 64 } } }
 	LARc { ap_memory {  { LARc_address0 mem_address 1 3 }  { LARc_ce0 mem_ce 1 1 }  { LARc_we0 mem_we 1 1 }  { LARc_d0 mem_din 1 16 } } }
+	bitoff { ap_memory {  { bitoff_address0 mem_address 1 8 }  { bitoff_ce0 mem_ce 1 1 }  { bitoff_q0 in_data 0 4 }  { bitoff_address1 MemPortADDR2 1 8 }  { bitoff_ce1 MemPortCE2 1 1 }  { bitoff_q1 in_data 0 4 }  { bitoff_address2 MemPortADDR2 1 8 }  { bitoff_ce2 MemPortCE2 1 1 }  { bitoff_q2 in_data 0 4 }  { bitoff_address3 MemPortADDR2 1 8 }  { bitoff_ce3 MemPortCE2 1 1 }  { bitoff_q3 in_data 0 4 } } }
 }

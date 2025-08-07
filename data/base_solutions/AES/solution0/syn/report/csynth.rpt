@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'aes_main'
 ================================================================
 + General Information: 
-    * Date:           Wed Jul  9 03:26:55 2025
+    * Date:           Wed Aug  6 19:44:45 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        AES
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -266,61 +266,57 @@
 == Pragma Report
 ================================================================
 * Valid Pragma Syntax
-+----------------+-----------------------+------------------------------------------------------------------+
-| Type           | Options               | Location                                                         |
-+----------------+-----------------------+------------------------------------------------------------------+
-| loop_tripcount | min=9 max=13 avg=12   | data/benchmarks/aes/aes_dec.c:117 in decrypt                     |
-| loop_tripcount | min=9 max=13 avg=11   | data/benchmarks/aes/aes_enc.c:111 in encrypt                     |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:325 in mixcolumn_addroundkey       |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:365 in mixcolumn_addroundkey       |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:381 in addroundkey_inversmixcolumn |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:390 in addroundkey_inversmixcolumn |
-| loop_tripcount | min=4 max=4 avg=4     | data/benchmarks/aes/aes_key.c:393 in addroundkey_inversmixcolumn |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:437 in addroundkey_inversmixcolumn |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:470 in addroundkey                 |
-| loop_tripcount | min=4 max=8 avg=6     | data/benchmarks/aes/aes_key.c:555 in keyschedule                 |
-| loop_tripcount | min=4 max=4 avg=4     | data/benchmarks/aes/aes_key.c:558 in keyschedule                 |
-| loop_tripcount | min=32 max=116 avg=74 | data/benchmarks/aes/aes_key.c:566 in keyschedule                 |
-| loop_tripcount | min=4 max=4 avg=4     | data/benchmarks/aes/aes_key.c:586 in keyschedule                 |
-| loop_tripcount | min=4 max=4 avg=4     | data/benchmarks/aes/aes_key.c:593 in keyschedule                 |
-| inline         | off=true              | ../base_directives/aes.tcl:38 in addroundkey                     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:7 in addroundkey                      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:24 in addroundkey                     |
-| inline         | off=true              | ../base_directives/aes.tcl:32 in addroundkey_inversmixcolumn     |
-| loop_flatten   | off=true              | ../base_directives/aes.tcl:25 in addroundkey_inversmixcolumn     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:1 in addroundkey_inversmixcolumn      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:2 in addroundkey_inversmixcolumn      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:3 in addroundkey_inversmixcolumn      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:4 in addroundkey_inversmixcolumn      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:18 in addroundkey_inversmixcolumn     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:16 in aes_main                        |
-| inline         | off=true              | ../base_directives/aes.tcl:37 in bytesub_shiftrow                |
-| pipeline       | off=true              | ../base_directives/aes.tcl:23 in bytesub_shiftrow                |
-| inline         | off=true              | ../base_directives/aes.tcl:35 in decrypt                         |
-| pipeline       | off=true              | ../base_directives/aes.tcl:15 in decrypt                         |
-| pipeline       | off=true              | ../base_directives/aes.tcl:21 in decrypt                         |
-| inline         | off=true              | ../base_directives/aes.tcl:34 in encrypt                         |
-| pipeline       | off=true              | ../base_directives/aes.tcl:14 in encrypt                         |
-| pipeline       | off=true              | ../base_directives/aes.tcl:20 in encrypt                         |
-| inline         | off=true              | ../base_directives/aes.tcl:33 in inversshiftrow_bytesub          |
-| pipeline       | off=true              | ../base_directives/aes.tcl:19 in inversshiftrow_bytesub          |
-| inline         | off=true              | ../base_directives/aes.tcl:36 in keyschedule                     |
-| loop_flatten   | off=true              | ../base_directives/aes.tcl:26 in keyschedule                     |
-| loop_flatten   | off=true              | ../base_directives/aes.tcl:27 in keyschedule                     |
-| loop_flatten   | off=true              | ../base_directives/aes.tcl:28 in keyschedule                     |
-| loop_flatten   | off=true              | ../base_directives/aes.tcl:29 in keyschedule                     |
-| loop_flatten   | off=true              | ../base_directives/aes.tcl:30 in keyschedule                     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:8 in keyschedule                      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:9 in keyschedule                      |
-| pipeline       | off=true              | ../base_directives/aes.tcl:10 in keyschedule                     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:11 in keyschedule                     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:12 in keyschedule                     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:13 in keyschedule                     |
-| pipeline       | off=true              | ../base_directives/aes.tcl:22 in keyschedule                     |
-| inline         | off=true              | ../base_directives/aes.tcl:31 in mixcolumn_addroundkey           |
-| pipeline       | off=true              | ../base_directives/aes.tcl:5 in mixcolumn_addroundkey            |
-| pipeline       | off=true              | ../base_directives/aes.tcl:6 in mixcolumn_addroundkey            |
-| pipeline       | off=true              | ../base_directives/aes.tcl:17 in mixcolumn_addroundkey           |
-+----------------+-----------------------+------------------------------------------------------------------+
++----------------+----------------------+------------------------------------------------------------------+
+| Type           | Options              | Location                                                         |
++----------------+----------------------+------------------------------------------------------------------+
+| loop_tripcount | min=9 max=9 avg=9    | data/benchmarks/aes/aes_dec.c:117 in decrypt                     |
+| loop_tripcount | min=9 max=9 avg=9    | data/benchmarks/aes/aes_enc.c:111 in encrypt                     |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:325 in mixcolumn_addroundkey       |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:365 in mixcolumn_addroundkey       |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:381 in addroundkey_inversmixcolumn |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:390 in addroundkey_inversmixcolumn |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:393 in addroundkey_inversmixcolumn |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:437 in addroundkey_inversmixcolumn |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:470 in addroundkey                 |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:555 in keyschedule                 |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:558 in keyschedule                 |
+| loop_tripcount | min=40 max=40 avg=40 | data/benchmarks/aes/aes_key.c:566 in keyschedule                 |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:586 in keyschedule                 |
+| loop_tripcount | min=4 max=4 avg=4    | data/benchmarks/aes/aes_key.c:593 in keyschedule                 |
+| inline         | off=true             | ../base_directives/aes.tcl:34 in addroundkey                     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:7 in addroundkey                      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:22 in addroundkey                     |
+| inline         | off=true             | ../base_directives/aes.tcl:30 in addroundkey_inversmixcolumn     |
+| loop_flatten   | off=true             | ../base_directives/aes.tcl:23 in addroundkey_inversmixcolumn     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:1 in addroundkey_inversmixcolumn      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:2 in addroundkey_inversmixcolumn      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:3 in addroundkey_inversmixcolumn      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:4 in addroundkey_inversmixcolumn      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:18 in addroundkey_inversmixcolumn     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:16 in aes_main                        |
+| inline         | off=true             | ../base_directives/aes.tcl:32 in decrypt                         |
+| pipeline       | off=true             | ../base_directives/aes.tcl:15 in decrypt                         |
+| pipeline       | off=true             | ../base_directives/aes.tcl:20 in decrypt                         |
+| inline         | off=true             | ../base_directives/aes.tcl:31 in encrypt                         |
+| pipeline       | off=true             | ../base_directives/aes.tcl:14 in encrypt                         |
+| pipeline       | off=true             | ../base_directives/aes.tcl:19 in encrypt                         |
+| inline         | off=true             | ../base_directives/aes.tcl:33 in keyschedule                     |
+| loop_flatten   | off=true             | ../base_directives/aes.tcl:24 in keyschedule                     |
+| loop_flatten   | off=true             | ../base_directives/aes.tcl:25 in keyschedule                     |
+| loop_flatten   | off=true             | ../base_directives/aes.tcl:26 in keyschedule                     |
+| loop_flatten   | off=true             | ../base_directives/aes.tcl:27 in keyschedule                     |
+| loop_flatten   | off=true             | ../base_directives/aes.tcl:28 in keyschedule                     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:8 in keyschedule                      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:9 in keyschedule                      |
+| pipeline       | off=true             | ../base_directives/aes.tcl:10 in keyschedule                     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:11 in keyschedule                     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:12 in keyschedule                     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:13 in keyschedule                     |
+| pipeline       | off=true             | ../base_directives/aes.tcl:21 in keyschedule                     |
+| inline         | off=true             | ../base_directives/aes.tcl:29 in mixcolumn_addroundkey           |
+| pipeline       | off=true             | ../base_directives/aes.tcl:5 in mixcolumn_addroundkey            |
+| pipeline       | off=true             | ../base_directives/aes.tcl:6 in mixcolumn_addroundkey            |
+| pipeline       | off=true             | ../base_directives/aes.tcl:17 in mixcolumn_addroundkey           |
++----------------+----------------------+------------------------------------------------------------------+
 
 

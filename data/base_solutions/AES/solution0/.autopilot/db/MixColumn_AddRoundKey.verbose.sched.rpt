@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'MixColumn_AddRoundKey'
 ================================================================
-* Date:           Wed Jul  9 03:26:54 2025
+* Date:           Wed Aug  6 19:44:43 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -224,7 +224,7 @@ ST_4 : Operation 135 [1/1] (0.00ns) (grouped into LUT with out node xor_ln359_2)
 ST_4 : Operation 136 [1/1] (0.21ns) (out node of the LUT)   --->   "%xor_ln359_2 = xor i32 %xor_ln359_3, i32 %xor_ln359" [data/benchmarks/aes/aes_key.c:359]   --->   Operation 136 'xor' 'xor_ln359_2' <Predicate = true> <Delay = 0.21> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.21> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
 
 State 5 <SV = 4> <Delay = 0.69>
-ST_5 : Operation 137 [1/1] (0.00ns)   --->   "%speclooptripcount_ln320 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4" [data/benchmarks/aes/aes_key.c:320]   --->   Operation 137 'speclooptripcount' 'speclooptripcount_ln320' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 137 [1/1] (0.00ns)   --->   "%speclooptripcount_ln325 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4" [data/benchmarks/aes/aes_key.c:325]   --->   Operation 137 'speclooptripcount' 'speclooptripcount_ln325' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 138 [1/1] (0.00ns)   --->   "%specloopname_ln361 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [data/benchmarks/aes/aes_key.c:361]   --->   Operation 138 'specloopname' 'specloopname_ln361' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 139 [1/1] (0.00ns)   --->   "%ret_addr_2 = getelementptr i32 %ret, i64 0, i64 %zext_ln333" [data/benchmarks/aes/aes_key.c:344]   --->   Operation 139 'getelementptr' 'ret_addr_2' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 140 [1/1] (0.69ns)   --->   "%store_ln350 = store i32 %xor_ln350_2, i5 %ret_addr_2" [data/benchmarks/aes/aes_key.c:350]   --->   Operation 140 'store' 'store_ln350' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
@@ -266,7 +266,7 @@ ST_7 : Operation 171 [1/1] (0.00ns)   --->   "%ret_addr_7 = getelementptr i32 %r
 ST_7 : Operation 172 [2/2] (0.69ns)   --->   "%ret_load_3 = load i5 %ret_addr_7" [data/benchmarks/aes/aes_key.c:369]   --->   Operation 172 'load' 'ret_load_3' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
 
 State 8 <SV = 4> <Delay = 1.39>
-ST_8 : Operation 173 [1/1] (0.00ns)   --->   "%speclooptripcount_ln320 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4" [data/benchmarks/aes/aes_key.c:320]   --->   Operation 173 'speclooptripcount' 'speclooptripcount_ln320' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 173 [1/1] (0.00ns)   --->   "%speclooptripcount_ln365 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4" [data/benchmarks/aes/aes_key.c:365]   --->   Operation 173 'speclooptripcount' 'speclooptripcount_ln365' <Predicate = true> <Delay = 0.00>
 ST_8 : Operation 174 [1/1] (0.00ns)   --->   "%specloopname_ln370 = specloopname void @_ssdm_op_SpecLoopName, void @empty_10" [data/benchmarks/aes/aes_key.c:370]   --->   Operation 174 'specloopname' 'specloopname_ln370' <Predicate = true> <Delay = 0.00>
 ST_8 : Operation 175 [1/2] (0.69ns)   --->   "%ret_load_2 = load i5 %ret_addr_6" [data/benchmarks/aes/aes_key.c:368]   --->   Operation 175 'load' 'ret_load_2' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
 ST_8 : Operation 176 [1/1] (0.00ns)   --->   "%statemt_addr_6 = getelementptr i32 %statemt, i64 0, i64 %zext_ln368" [data/benchmarks/aes/aes_key.c:368]   --->   Operation 176 'getelementptr' 'statemt_addr_6' <Predicate = true> <Delay = 0.00>

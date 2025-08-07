@@ -26,10 +26,10 @@ port (
     last_activations_address0 : OUT STD_LOGIC_VECTOR (5 downto 0);
     last_activations_ce0 : OUT STD_LOGIC;
     last_activations_q0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_994_p_ce : OUT STD_LOGIC );
+    grp_fu_992_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_992_p_ce : OUT STD_LOGIC );
 end;
 
 
@@ -138,7 +138,7 @@ attribute shreg_extract : string;
 
 
 begin
-    mux_3_2_64_1_1_U79 : component backprop_mux_3_2_64_1_1
+    mux_3_2_64_1_1_U116 : component backprop_mux_3_2_64_1_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,
@@ -316,7 +316,7 @@ begin
         end if; 
     end process;
 
-    delta_weights3_d0 <= grp_fu_994_p_dout0;
+    delta_weights3_d0 <= grp_fu_992_p_dout0;
 
     delta_weights3_we0_assign_proc : process(ap_CS_fsm_state7)
     begin
@@ -329,9 +329,9 @@ begin
 
     empty_52_fu_153_p2 <= std_logic_vector(unsigned(p_shl_fu_145_p3) - unsigned(zext_ln125_1_fu_139_p1));
     empty_fu_142_p1 <= i_fu_50(6 - 1 downto 0);
-    grp_fu_994_p_ce <= ap_const_logic_1;
-    grp_fu_994_p_din0 <= last_activations_load_reg_236;
-    grp_fu_994_p_din1 <= tmp_fu_175_p5;
+    grp_fu_992_p_ce <= ap_const_logic_1;
+    grp_fu_992_p_din0 <= last_activations_load_reg_236;
+    grp_fu_992_p_din1 <= tmp_fu_175_p5;
     icmp_ln125_fu_122_p2 <= "1" when (i_fu_50 = ap_const_lv7_40) else "0";
     icmp_ln128_fu_159_p2 <= "1" when (j_reg_98 = ap_const_lv2_3) else "0";
     last_activations_address0 <= zext_ln125_fu_134_p1(6 - 1 downto 0);

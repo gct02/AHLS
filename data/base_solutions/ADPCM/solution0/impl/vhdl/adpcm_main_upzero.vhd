@@ -156,7 +156,7 @@ attribute shreg_extract : string;
 
 
 begin
-    mul_16s_16s_32_1_1_U70 : component adpcm_main_mul_16s_16s_32_1_1
+    mul_16s_16s_32_1_1_U55 : component adpcm_main_mul_16s_16s_32_1_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,

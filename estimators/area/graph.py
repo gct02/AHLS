@@ -63,7 +63,8 @@ OPCODES = [
     'bitselect', 'partselect', 'insertvalue', 'extractvalue',
     'zext', 'sext', 'trunc', 'bitcast',
     'icmp', 'cttz',
-    'read', 'write'
+    'read', 'write',
+    'unknown'
 ]
 OPCODE_MAP = {op: i for i, op in enumerate(OPCODES)}
 NUM_OPCODES = len(OPCODES) 
@@ -76,9 +77,10 @@ BASE_TYPE_MAP = {
     '4': 1,
     '5': 1,
     '6': 1,
-    'unknown': 2
+    'unknown': 2,
+    'none': 3
 }
-NUM_BASE_TYPES = 3
+NUM_BASE_TYPES = len(set(BASE_TYPE_MAP.values()))
 
 CONST_TYPES = ['0', '1', '3', '5']
 CONST_TYPE_MAP = {ctype: i for i, ctype in enumerate(CONST_TYPES)}
@@ -110,54 +112,38 @@ MAX_LOOP_DEPTH = 5
 INLINE_THRESHOLD = 30
 
 DEFAULT_NODE_FEATURES = {
-    'latency': 0, 'trip_count': 0, 'loop_depth': [0] * (MAX_LOOP_DEPTH + 1),
-    'is_loop': 0, 'is_top_level_loop': 0, 'has_perfectly_nested_child': 0, 
-    'is_part_of_perfect_nest': 0,
+    'bitwidth': 0, 'opcode': [0] * NUM_OPCODES, 
+    'core_name': [0] * NUM_CORE_TYPES, 'delay': 0.0, 
+    'is_on_critical_path': 0, 'callee_size': 0,
 
-    'region_lut_sum': 0, 'region_ff_sum': 0, 'region_dsp_sum': 0, 'region_bram_sum': 0,
-    'region_num_ops': 0, 'region_num_sub_regions': 0, 'region_num_blocks': 0,
-    'region_num_mem_ops': 0, 'region_num_control_ops': 0, 
-    'region_num_arith_int_ops': 0, 'region_num_arith_fp_ops': 0,
-    'region_num_logical_ops': 0, 'region_num_data_manipulation_ops': 0,
-    'region_num_conversion_ops': 0, 'region_num_rel_spec_ops': 0, 
-    'region_num_io_ops': 0,
-    
-    'is_small_function': 0,
-    'module_lut': 0, 'module_ff': 0, 'module_dsp': 0, 'module_bram': 0,
-    'function_num_sub_regions': 0, 'function_num_blocks': 0, 'function_num_ops': 0,
-    'function_num_mem_ops': 0, 'function_num_control_ops': 0,
-    'function_num_arith_int_ops': 0, 'function_num_arith_fp_ops': 0,
-    'function_num_logical_ops': 0, 'function_num_data_manipulation_ops': 0,
-    'function_num_conversion_ops': 0, 'function_num_rel_spec_ops': 0,
-    'function_num_io_ops': 0,
+    'is_loop': 0, 'ii': 0, 'il': 0,
+    'latency': 0, 'trip_count': 0, 
+    'loop_depth': [0] * (MAX_LOOP_DEPTH + 1),
+    'has_perfectly_nested_child': 0, 'is_part_of_perfect_nest': 0,
 
-    'achieved_ii_base': 0, 'auto_pipeline': 0, 'pipeline': 0,
-    'unroll': 0, 'unroll_factor': 0, 'loop_flatten': 0, 
-    'loop_merge': 0, 'dataflow': 0, 'inline': 0,
+    'is_array': 0, 'is_large_array': 0, 'array_size': 0,
+    'original_bitwidth': 0, 'original_array_dims': [0] * MAX_ARRAY_DIM,
+    'original_base_type': [0] * NUM_BASE_TYPES,
+    'base_type': [0] * NUM_BASE_TYPES,
 
-    'bitwidth': 0, 'original_bitwidth': 0, 
-    'is_array': 0, 'direction': [0] * 3, 'is_top_level_port': 0,
-    'is_large_array': 0, 'array_size': 0, 'original_array_dims': [0] * MAX_ARRAY_DIM,
-    'original_base_type': [0] * NUM_BASE_TYPES, 'base_type': [0] * NUM_BASE_TYPES, 
+    'direction': [0] * 3, 'is_top_level_port': 0,
     'is_global_mem': 0,
 
     'array_partition': 0, 'partition_type': [0] * 3, 
     'partition_dim': [0] * (MAX_ARRAY_DIM + 1), 'partition_factor': 0,
     'is_unevenly_partitioned': 0, 'has_hybrid_impl': 0, 
 
-    'lut': 0, 'ff': 0, 'dsp': 0, 'bram': 0,
-    'opcode': [0] * NUM_OPCODES, 'core_name': [0] * NUM_CORE_TYPES,
-    'op_delay': 0.0, 'is_on_critical_path': 0, 
-    'callee_size': 0,
+    'pipeline': 0, 'unroll': 0, 'unroll_factor': 0, 
+    'loop_flatten': 0, 'loop_merge': 0, 
+    'dataflow': 0, 'inline': 0,
 
     'const_type': [0] * NUM_CONST_TYPES,
 
-    'block_lut_sum': 0, 'block_ff_sum': 0, 'block_dsp_sum': 0, 'block_bram_sum': 0,
-    'block_num_ops': 0, 'block_num_mem_ops': 0, 'block_num_control_ops': 0,
-    'block_num_arith_int_ops': 0, 'block_num_arith_fp_ops': 0,
-    'block_num_logical_ops': 0, 'block_num_data_manipulation_ops': 0,
-    'block_num_conversion_ops': 0, 'block_num_rel_spec_ops': 0,
-    'block_num_io_ops': 0
+    'num_sub_regions': 0, 'num_blocks': 0, 'num_ops': 0,
+    
+    **{metric: 0 for metric in AREA_METRICS},
+    **{f'module_{metric}': 0 for metric in AREA_METRICS},
+    **{f'num_{categ}_ops': 0 for categ in OP_CATEGS}
 }
 NODE_FEATURES = list(DEFAULT_NODE_FEATURES.keys())
 
@@ -165,93 +151,76 @@ NODE_DIM = sum([len(v) if isinstance(v, list) else 1 for v in DEFAULT_NODE_FEATU
 EDGE_DIM = 12
 
 NUMERICAL_FEATURES = [
-    'bitwidth', 'latency', 'op_delay', 'original_array_dims', 
-    'array_size', 'trip_count', 'achieved_ii_base', 'callee_size', 
-    'region_num_blocks', 'region_num_sub_regions', 'region_num_ops',
-    'region_num_mem_ops', 'region_num_control_ops',
-    'region_num_arith_int_ops', 'region_num_arith_fp_ops',
-    'region_num_logical_ops', 'region_num_data_manipulation_ops',
-    'region_num_conversion_ops', 'region_num_rel_spec_ops',
-    'region_num_io_ops',
-    'function_num_blocks', 'function_num_sub_regions', 'function_num_ops',
-    'function_num_mem_ops', 'function_num_control_ops',
-    'function_num_arith_int_ops', 'function_num_arith_fp_ops',
-    'function_num_logical_ops', 'function_num_data_manipulation_ops',
-    'function_num_conversion_ops', 'function_num_rel_spec_ops',
-    'function_num_io_ops',
-    'block_num_ops', 'block_num_mem_ops', 'block_num_control_ops',
-    'block_num_arith_int_ops', 'block_num_arith_fp_ops',
-    'block_num_logical_ops', 'block_num_data_manipulation_ops',
-    'block_num_conversion_ops', 'block_num_rel_spec_ops',
-    'block_num_io_ops',
-    'unroll_factor', 'partition_factor'
+    'bitwidth', 'delay', 'callee_size',
+    'ii', 'il', 'latency', 'trip_count',
+    'array_size', 'original_array_dims',
+    'partition_factor', 'unroll_factor',
+    'num_sub_regions', 'num_blocks', 'num_ops'
 ] + AREA_METRICS + [
-    f'block_{metric}_sum' for metric in AREA_METRICS
-] + [
-    f'region_{metric}_sum' for metric in AREA_METRICS
-] + [
     f'module_{metric}' for metric in AREA_METRICS
+] + [
+    f'num_{categ}_ops' for categ in OP_CATEGS
 ]
-NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'op_delay']
+
+NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'delay']
 
 GRAPH_ATTRS = [
-    'num_nodes', 'num_edges', 'num_ops', 'num_blocks',
-    'num_functions', 'num_loops', 'num_arrays', 'num_mem_ops',
-    'num_arith_ops', 'mem_intensity', 'num_int_ops', 'num_fp_ops',
-    'num_branch_ops', 'avg_op_bitwidth', 'avg_loop_depth', 'max_loop_depth',
-    'avg_loop_trip_count', 'max_loop_trip_count', 'avg_loop_latency',
-    'max_loop_latency', 'avg_pipelined_loop_latency',
-    'max_pipelined_loop_latency', 'num_pipelined_loops',
-    'avg_unrolled_loop_latency', 'max_unrolled_loop_latency',
-    'num_unrolled_loops', 'avg_flattened_loop_depth',
-    'max_flattened_loop_depth', 'num_flattened_loops',
-    'avg_unroll_factor', 'max_unroll_factor', 'ratio_pipelined_loops',
-    'ratio_unrolled_loops', 'avg_function_latency',
-    'max_function_latency', 'num_partitioned_arrays',
-    'avg_array_size', 'max_array_size', 'avg_partitioned_array_size',
-    'max_partitioned_array_size', 'avg_partition_factor',
-    'max_partition_factor', 'ratio_partitioned_arrays',
-    'num_loop_merges', 'num_inlines', 'num_dataflows',
-    'lut', 'ff', 'dsp', 'bram'
-]
+    'num_nodes', 'num_edges', 'num_ops',
+    'num_blocks', 'num_functions', 'num_loops',
+    'num_arrays', 'num_mem_ops', 'num_arith_ops',
+    'mem_intensity', 'num_int_ops', 'num_fp_ops',
+    'num_branch_ops', 'avg_op_bitwidth',
+    'max_loop_depth', 'max_loop_trip_count',
+    'max_loop_il', 'avg_loop_depth', 'avg_loop_trip_count',
+    'avg_loop_il', 'max_pipelined_loop_il',
+    'max_unrolled_loop_il', 'max_unroll_factor',
+    'max_flattened_loop_depth', 'avg_pipelined_loop_il',
+    'avg_unrolled_loop_il', 'avg_unroll_factor',
+    'avg_flattened_loop_depth', 'ratio_pipelined_loops',
+    'ratio_unrolled_loops', 'ratio_partitioned_arrays',
+    'max_array_size', 'max_partitioned_array_size',
+    'max_partition_factor', 'avg_array_size',
+    'avg_partitioned_array_size', 'avg_partition_factor',
+    'num_unrolled_loops', 'num_pipelined_loops',
+    'num_flattened_loops', 'num_partitioned_arrays',
+    'num_loop_merges', 'num_inlines', 'num_dataflows'
+] + AREA_METRICS
 GRAPH_ATTR_DIM = len(GRAPH_ATTRS)
 
+NO_LOG_SCALING_GRAPH_KEYS = [
+    'ratio_pipelined_loops', 'ratio_unrolled_loops',
+    'ratio_partitioned_arrays', 'avg_op_bitwidth',
+    'avg_flattened_loop_depth', 'max_flattened_loop_depth',
+    'max_loop_depth', 'avg_loop_depth', 'mem_intensity'
+]
 
-def get_default_feature_value(key: str) -> Any:
-    if key not in DEFAULT_NODE_FEATURES:
-        raise ValueError(f"Unknown feature key: {key}")
-    value = DEFAULT_NODE_FEATURES[key]
-    if isinstance(value, list):
-        return value.copy()
-    return value
+def get_homogeneous_features(node):
+    if node.node_type not in NODE_TYPE_MAP:
+        raise ValueError(f"Unknown node type: {node.node_type}")
+    
+    feat_vector = [0] * NUM_NODE_TYPES
+    feat_vector[NODE_TYPE_MAP[node.node_type]] = 1
+
+    for key in NODE_FEATURES:
+        if key not in node.feature_dict:
+            value = DEFAULT_NODE_FEATURES[key]
+        else:
+            value = node.feature_dict[key]
+
+        if isinstance(value, (list, tuple, np.ndarray)):
+            feat_vector.extend(value)
+        else:
+            feat_vector.append(value)
+
+    if len(feat_vector) != NODE_DIM:
+        raise ValueError(
+            f"Feature vector length mismatch: expected {NODE_DIM}, got {len(feat_vector)}"
+        )
+
+    return feat_vector
 
 
 class Node(ABC):
-    def get_homogeneous_features(self):
-        if self.node_type not in NODE_TYPE_MAP:
-            raise ValueError(f"Unknown node type: {self.node_type}")
-        
-        feat_vector = [0] * NUM_NODE_TYPES
-        feat_vector[NODE_TYPE_MAP[self.node_type]] = 1
-
-        for key in NODE_FEATURES:
-            if key not in self.feature_dict:
-                value = get_default_feature_value(key)
-            else:
-                value = self.feature_dict[key]
-
-            if isinstance(value, (list, tuple, np.ndarray)):
-                feat_vector.extend(value)
-            else:
-                feat_vector.append(value)
-
-        if len(feat_vector) != NODE_DIM:
-            raise ValueError(
-                f"Feature vector length mismatch: expected {NODE_DIM}, got {len(feat_vector)}"
-            )
-
-        return feat_vector
-
     @abstractmethod
     def as_dict(self):
         pass
@@ -286,7 +255,6 @@ class CDFGNode(Node):
     def as_dict(self):
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label, 
             'rtl_name': self.rtl_name,
             'feature_dict': self.feature_dict
@@ -305,19 +273,20 @@ class PortNode(CDFGNode):
         self,
         element: ET.Element,
         function_name: str,
-        is_top_level_port: bool = False,
+        is_top_level: bool = False,
         array_md: Optional[Dict[str, Any]] = None
     ):
         super().__init__(element, 'port', function_name)
 
-        self.is_top_level_port = is_top_level_port
+        self.is_top_level_port = is_top_level
 
         bitwidth = max(0, findint(element, 'Value/bitwidth', 0))
-        
+
         if array_md is not None and 'OriginalDimensions' in array_md:
             self.is_array = True
             self.array_size = array_md['TotalSize']
             self.num_dims = array_md['OriginalNumDimensions']
+
             base_type = str(array_md['BaseType'])
             original_bitwidth = array_md['OriginalBaseBitwidth']
             original_base_type = str(array_md['OriginalBaseType'])
@@ -332,8 +301,8 @@ class PortNode(CDFGNode):
                 # Pad with 1s
                 dims.extend([1] * (MAX_ARRAY_DIM - self.num_dims))
         else:
-            self.is_array = findint(element, 'if_type', 0) == 1
             self.array_size = findint(element, 'array_size', 0)
+            self.is_array = self.array_size > 0
 
             if self.is_array:
                 self.num_dims = 1
@@ -367,16 +336,16 @@ class PortNode(CDFGNode):
         ohe_direction[direction_index] = 1
 
         self.feature_dict.update({
-            'is_array': int(self.is_array),
-            'is_top_level_port': int(is_top_level_port),
-            'is_large_array': int(self.array_size >= 1024),
+            'is_top_level_port': int(is_top_level),
             'direction': ohe_direction,
+            'is_array': int(self.is_array),
+            'is_large_array': int(self.array_size >= 1024),
             'array_size': self.array_size,
+            'bitwidth': bitwidth,
+            'base_type': ohe_base_type,
             'original_array_dims': dims,
             'original_bitwidth': original_bitwidth,
             'original_base_type': ohe_orig_base_type,
-            'bitwidth': bitwidth,
-            'base_type': ohe_base_type,
             'array_partition': 0,
             'partition_type': [0] * 3,
             'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
@@ -387,11 +356,15 @@ class PortNode(CDFGNode):
         self.matching_ports = []
     
     def as_dict(self):
+        feat_dict = copy.deepcopy(self.feature_dict)
+        ap_type = feat_dict['partition_type']
+        ap_dim = feat_dict['partition_dim']
+        feat_dict['partition_type'] = ap_type.index(1) if 1 in ap_type else -1
+        feat_dict['partition_dim'] = ap_dim.index(1) if 1 in ap_dim else -1
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label,
-            'feature_dict': self.feature_dict,
+            'feature_dict': feat_dict,
             'matching_ports': self.matching_ports
         }
         return node_as_dict
@@ -424,7 +397,7 @@ class InternalMemNode(Node):
             self.name = obj.findtext('name', '')
             self.rtl_name = obj.findtext('rtlName', '')
         else:
-            self.id = node_id or random.randint(-1e9, -1)
+            self.id = node_id if node_id is not None else 0
             self.name = name
             self.rtl_name = rtl_name
 
@@ -436,6 +409,7 @@ class InternalMemNode(Node):
             self.is_array = True
             self.array_size = array_md['TotalSize']
             self.num_dims = array_md['OriginalNumDimensions']
+
             bitwidth = array_md['BaseBitwidth']
             base_type = str(array_md['BaseType'])
             original_bitwidth = array_md['OriginalBaseBitwidth']
@@ -489,11 +463,11 @@ class InternalMemNode(Node):
             'is_global_mem': int(is_global_mem),
             'is_large_array': int(self.array_size >= 1024),
             'array_size': self.array_size,
+            'bitwidth': bitwidth,
+            'base_type': ohe_base_type,
             'original_array_dims': dims,
             'original_bitwidth': original_bitwidth,
             'original_base_type': ohe_orig_base_type,
-            'bitwidth': bitwidth,
-            'base_type': ohe_base_type,
             'array_partition': 0,
             'partition_type': [0] * 3,
             'partition_dim': [0] * (MAX_ARRAY_DIM + 1),
@@ -510,13 +484,16 @@ class InternalMemNode(Node):
         self.matching_ports = []
 
     def as_dict(self):
+        feat_dict = copy.deepcopy(self.feature_dict)
+        ap_type = feat_dict['partition_type']
+        ap_dim = feat_dict['partition_dim']
+        feat_dict['partition_type'] = ap_type.index(1) if 1 in ap_type else -1
+        feat_dict['partition_dim'] = ap_dim.index(1) if 1 in ap_dim else -1
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label,
             'rtl_name': self.rtl_name,
-            'is_global_mem': self.is_global_mem,
-            'feature_dict': self.feature_dict,
+            'feature_dict': feat_dict,
             'matching_ports': self.matching_ports
         }
         return node_as_dict
@@ -561,7 +538,7 @@ class OperationNode(CDFGNode):
             'opcode': ohe_opcode,
             'core_name': ohe_core,
             'bitwidth': max(0, findint(element, 'Value/bitwidth', 0)),
-            'op_delay': findfloat(element, 'm_delay', 0.0),
+            'delay': findfloat(element, 'm_delay', 0.0),
             'is_on_critical_path': findint(element, 'm_isOnCriticalPath', 0),
             'callee_size': 0
         })
@@ -580,14 +557,12 @@ class OperationNode(CDFGNode):
     def as_dict(self):
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label,
             'rtl_name': self.rtl_name,
             'core_name': self.core_name,
             'opcode': self.opcode,
             'feature_dict': {
-                key: value 
-                for key, value in self.feature_dict.items() 
+                key: value for key, value in self.feature_dict.items() 
                 if key not in ['opcode', 'core_name']
             },
             'operand_edges': self.operand_edges
@@ -614,6 +589,19 @@ class ConstantNode(CDFGNode):
             'const_type': ohe_const_type
         })
 
+    def as_dict(self):
+        node_as_dict = {
+            'node_type': self.node_type,
+            'label': self.label,
+            'content': self.content,
+            'const_type': self.const_type,
+            'feature_dict': {
+                key: value for key, value in self.feature_dict.items()
+                if key != 'const_type'
+            }
+        }
+        return node_as_dict
+
 
 class BlockNode(CDFGNode):
     def __init__(self, element: ET.Element, function_name: str):
@@ -630,7 +618,6 @@ class BlockNode(CDFGNode):
     def as_dict(self):
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label,
             'feature_dict': self.feature_dict,
             'ops': self.ops,
@@ -661,11 +648,10 @@ class RegionNode(Node):
         latency = max(0, findint(element, 'mMaxLatency', 0))
         trip_count = max(0, findint(element, 'mMaxTripCount', 0))
         ii = max(0, findint(element, 'mII', 0))
-        auto_pipeline = ii > 0
+        il = latency // trip_count if trip_count > 0 else 0
 
         if loop_md is not None:
             self.is_loop = True
-            is_top_level_loop = loop_md.get('IsTopLevel', 0)
             has_perfectly_nested_child = loop_md.get('HasPerfectlyNestedChild', 0)
             is_part_of_perfect_nest = loop_md.get('IsPartOfPerfectNest', 0)
             loop_depth = max(1, loop_md.get('Depth', 0))
@@ -673,7 +659,6 @@ class RegionNode(Node):
                 loop_depth = MAX_LOOP_DEPTH
         else:
             self.is_loop = findint(element, 'mType', 0) == 1
-            is_top_level_loop = 0
             has_perfectly_nested_child = 0
             is_part_of_perfect_nest = 0
             loop_depth = 1 if self.is_loop else 0
@@ -683,14 +668,11 @@ class RegionNode(Node):
 
         self.feature_dict = {
             'is_loop': int(self.is_loop),
-            'latency': latency,
-            'trip_count': trip_count,
-            'is_top_level_loop': is_top_level_loop,
+            'latency': latency, 'trip_count': trip_count,
+            'ii': ii, 'il': il,
+            'loop_depth': ohe_loop_depth, 
             'has_perfectly_nested_child': has_perfectly_nested_child,
             'is_part_of_perfect_nest': is_part_of_perfect_nest,
-            'loop_depth': ohe_loop_depth, 
-            'auto_pipeline': int(auto_pipeline),
-            'achieved_ii_base': ii,
             'pipeline': 0, 'unroll': 0, 'unroll_factor': 0,
             'loop_flatten': 0, 'loop_merge': 0
         }
@@ -704,11 +686,12 @@ class RegionNode(Node):
         return [int(item.text) for item in parent_tag.findall('item')]
 
     def as_dict(self):
+        feat_dict = copy.deepcopy(self.feature_dict)
+        feat_dict['loop_depth'] = feat_dict['loop_depth'].index(1) if 1 in feat_dict['loop_depth'] else -1
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label,
-            'feature_dict': self.feature_dict,
+            'feature_dict': feat_dict,
             'sub_regions': self.sub_regions,
             'blocks': self.blocks
         }
@@ -732,13 +715,17 @@ class FunctionNode(Node):
         original_name: Optional[str] = None,
         utilization: Optional[Dict[str, int]] = None,
     ):
+        self.id = findint(element, 'mId')
+        if self.id is None:
+            raise ValueError("Element does not contain 'mId' tag")
+    
         self.node_type = 'function'
+
+        self.norm_id = f'{name}.region.{self.id - 1}'
         self.name = name
         self.original_name = original_name or name
         self.function_name = name
         self.label = name
-        self.id = 1
-        self.norm_id = f'{name}.region.0'
 
         self.latency = max(0, findint(element, 'mMaxLatency', 0))
         self.num_sub_regions = len(sub_regions)
@@ -747,28 +734,21 @@ class FunctionNode(Node):
 
         self.feature_dict = {
             'latency': self.latency,
-            'function_num_sub_regions': self.num_sub_regions,
-            'function_num_blocks': self.num_blocks,
-            'function_num_ops': self.num_ops,
-            'is_small_function': 1 if self.num_ops < INLINE_THRESHOLD else 0,
+            'num_sub_regions': self.num_sub_regions,
+            'num_blocks': self.num_blocks,
+            'num_ops': self.num_ops,
             'loop_merge': 0, 'inline': 0, 'dataflow': 0
         }
         if utilization is not None:
             for res in AREA_METRICS:
                 self.feature_dict[f'module_{res}'] = utilization.get(res, 0)
         else:
-            res_dict = {f'module_{res}': 0 for res in AREA_METRICS}
-            for op in op_nodes:
-                for res in AREA_METRICS:
-                    res_dict[f'module_{res}'] += op.feature_dict.get(res, 0)
-            self.feature_dict.update(res_dict)
+            self.feature_dict.update({f'module_{res}': 0 for res in AREA_METRICS})
 
-        self.feature_dict.update({f'function_num_{categ}_ops': 0 for categ in OP_CATEGS})
-
+        self.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
         for op in op_nodes:
             if op.opcode in OP_CATEG_MAP:
-                categ = OP_CATEG_MAP[op.opcode]
-                self.feature_dict[f'function_num_{categ}_ops'] += 1
+                self.feature_dict[f'num_{OP_CATEG_MAP[op.opcode]}_ops'] += 1
 
         self.sub_regions = sub_regions
         self.blocks = [
@@ -785,8 +765,8 @@ class FunctionNode(Node):
     def as_dict(self):
         node_as_dict = {
             'node_type': self.node_type,
-            'id': self.id,
             'label': self.label,
+            'original_name': self.original_name,
             'feature_dict': self.feature_dict,
             'sub_regions': self.sub_regions,
             'blocks': self.blocks
@@ -890,7 +870,6 @@ class CDFG:
 
     def _process_ops_and_internal_mem(self, ops_and_mem, array_md_dict, utilization_dict):
         self._allocas = []
-        self._alloca_edges = []
 
         for elem in ops_and_mem.findall('item'):
             value = elem.find('Value')
@@ -925,12 +904,11 @@ class CDFG:
                     array_md = array_md_dict[f'{self.original_name}/{name}']
 
                 internal_mem_node = InternalMemNode(
-                    element=elem, function_name=self.original_name, 
+                    element=elem, node_id=op_node.id, function_name=self.original_name, 
+                    name=name, rtl_name=rtl_name, is_global_mem=False,
                     array_md=array_md, utilization=utilization
                 )
-                internal_mem_id = op_id + '.internal_mem'
-                self.nodes[internal_mem_id] = internal_mem_node
-                self._alloca_edges.append((op_id, internal_mem_id))
+                self.nodes[f'{op_id}.internal_mem'] = internal_mem_node
 
     def _process_ports(self, ports, global_names, array_md_dict):
         for elem in ports.findall('item'):
@@ -953,7 +931,7 @@ class CDFG:
 
             node = PortNode(
                 elem, self.original_name, 
-                is_top_level_port=self.is_top_level, array_md=array_md 
+                is_top_level=self.is_top_level, array_md=array_md 
             )
             port_id = f'{self.name}.{node.id}'
             self.nodes[port_id] = node
@@ -962,8 +940,8 @@ class CDFG:
         # Note: Constant nodes with type '4' and '6' are used to represent 
         # indices for getelementptr operations and call edges, respectivelly. 
         # Those will be removed later.
-        self._const_callee_name_map = {}
         self._gep_index_consts = []
+        self._const_callee_name_map = {}
 
         for elem in consts.findall('item'):
             node = ConstantNode(elem, self.original_name)
@@ -981,27 +959,18 @@ class CDFG:
             node = BlockNode(elem, self.original_name)
             block_id = f'{self.name}.{node.id}'
 
-            node.feature_dict.update({f"block_{res}_sum": 0 for res in AREA_METRICS})
-            node.feature_dict.update({f'block_num_{categ}_ops': 0 for categ in OP_CATEGS})
+            node.ops = [
+                f'{self.name}.{op_id}' for op_id in node.ops 
+                if f'{self.name}.{op_id}' in self.nodes
+            ]
+            node.feature_dict['num_ops'] = len(node.ops)
 
-            updated_ops = []
-            for op in node.ops:
-                op_id = f'{self.name}.{op}'
-                if op_id not in self.nodes:
-                    continue
+            node.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
+            for op_id in node.ops:
+                op_categ = self.nodes[op_id].op_category
+                if op_categ != 'unknown':
+                    node.feature_dict[f'num_{op_categ}_ops'] += 1
 
-                updated_ops.append(op_id)
-                op_node = self.nodes[op_id]
-
-                for res in AREA_METRICS:
-                    res_value = op_node.feature_dict.get(res, 0)
-                    node.feature_dict[f"block_{res}_sum"] += res_value
-
-                if op_node.op_category != 'unknown':
-                    node.feature_dict[f'block_num_{op_node.op_category}_ops'] += 1
-
-            node.feature_dict['block_num_ops'] = len(updated_ops)
-            node.ops = updated_ops
             self.nodes[block_id] = node
 
     def _process_regions(self, regions, loop_md_dict, utilization_dict):
@@ -1016,7 +985,7 @@ class CDFG:
                     region_id = findint(elem, 'mId')
                     if region_id is not None:
                         sub_regions.append(f'{self.name}.region.{region_id - 1}')
-                blocks = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
+                block_nodes = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
                 op_nodes = [node for node in self.nodes.values() if node.node_type == 'op']
 
                 utilization = None
@@ -1029,7 +998,7 @@ class CDFG:
 
                 function_node = FunctionNode(
                     first_elem, self.name, 
-                    sub_regions, blocks, op_nodes,
+                    sub_regions, block_nodes, op_nodes,
                     original_name=self.original_name,
                     utilization=utilization
                 )
@@ -1038,8 +1007,8 @@ class CDFG:
             raise ValueError("CDFG does not contain a function region")
 
         self.nodes[function_node.norm_id] = function_node
-        region_nodes = {}
 
+        region_nodes = {}
         for elem in elems[1:]:
             name = elem.findtext('mTag', '')
             loop_md = None
@@ -1053,60 +1022,51 @@ class CDFG:
             node = RegionNode(elem, self.original_name, loop_md=loop_md) 
             region_id = f'{self.name}.region.{node.id - 1}'
 
-            for i in range(len(node.sub_regions)):
-                sub_region = node.sub_regions[i]
-                node.sub_regions[i] = f'{self.name}.region.{int(sub_region) - 1}'
-
-            for i in range(len(node.blocks)):
-                block = node.blocks[i]
-                node.blocks[i] = f'{self.name}.{int(block)}'
-
+            node.sub_regions = [
+                f'{self.name}.region.{int(sub_region) - 1}'
+                for sub_region in node.sub_regions
+            ]
+            node.blocks = [
+                f'{self.name}.{int(block)}' for block in node.blocks
+                if f'{self.name}.{int(block)}' in self.nodes
+            ]
             region_nodes[region_id] = node
 
-        for region_id, region_node in region_nodes.items():
-            all_sub_regions = self._get_all_sub_regions(region_nodes, region_node)
-            all_blocks = set(region_node.blocks)
+        for region_id in region_nodes:
+            region_nodes[region_id].sub_regions = [
+                sub_region for sub_region in region_nodes[region_id].sub_regions 
+                if sub_region in region_nodes
+            ]
+            
+        for region_id, node in region_nodes.items():
+            all_sub_regions = self._get_all_sub_regions(region_nodes, node)
+            all_blocks = set(node.blocks)
             for sub_region_id in all_sub_regions:
-                if sub_region_id in region_nodes:
-                    sub_region = region_nodes[sub_region_id]
-                    all_blocks.update(sub_region.blocks)
+                all_blocks.update(region_nodes[sub_region_id].blocks)
 
-            region_node.feature_dict.update({f"region_{res}_sum": 0 for res in AREA_METRICS})
-            region_node.feature_dict.update({f'region_num_{categ}_ops': 0 for categ in OP_CATEGS})
-            region_num_ops = 0
+            node.feature_dict.update({
+                'num_sub_regions': len(all_sub_regions),
+                'num_blocks': len(all_blocks),
+                'num_ops': 0
+            })
+            node.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
 
             for block_id in all_blocks:
-                if block_id not in self.nodes:
-                    continue
-
                 block_node = self.nodes[block_id]
-                if block_node.node_type != 'block':
-                    continue
-
-                for res in AREA_METRICS:
-                    res_value = block_node.feature_dict.get(f'block_{res}_sum', 0)
-                    region_node.feature_dict[f'region_{res}_sum'] += res_value
-
                 for categ in OP_CATEGS:
-                    num_ops = block_node.feature_dict.get(f'block_num_{categ}_ops', 0)
-                    region_node.feature_dict[f'region_num_{categ}_ops'] += num_ops
+                    num_ops = block_node.feature_dict.get(f'num_{categ}_ops', 0)
+                    node.feature_dict[f'num_{categ}_ops'] += num_ops
                 
-                region_num_ops += block_node.feature_dict.get('block_num_ops', 0)
-            
-            region_node.feature_dict['region_num_sub_regions'] = len(all_sub_regions)
-            region_node.feature_dict['region_num_blocks'] = len(all_blocks)
-            region_node.feature_dict['region_num_ops'] = region_num_ops
-            self.nodes[region_id] = region_node
+                node.feature_dict['num_ops'] += block_node.feature_dict.get('num_ops', 0)
+
+            self.nodes[region_id] = node
 
     def _get_all_sub_regions(self, region_nodes, region_node):
         all_sub_regions = set(region_node.sub_regions)
-        for sub_region_id in region_node.sub_regions:
-            if sub_region_id in region_nodes:
-                all_sub_regions.add(sub_region_id)
-                sub_region_node = region_nodes[sub_region_id]
-                all_sub_regions.update(
-                    self._get_all_sub_regions(region_nodes, sub_region_node)
-                )
+        for region_id in region_node.sub_regions:
+            all_sub_regions.update(
+                self._get_all_sub_regions(region_nodes, region_nodes[region_id])
+            )
         return all_sub_regions
 
     def _parse_edges(self, cdfg):
@@ -1122,7 +1082,6 @@ class CDFG:
             is_back_edge = findint(elem, 'is_back_edge', 0) == 1
             src = findint(elem, 'source_obj')
             dst = findint(elem, 'sink_obj')
-
             if src is None or dst is None:
                 continue
 
@@ -1152,7 +1111,7 @@ class CDFG:
                 continue
             
             edge_id = f'{self.name}.{edge_id}'
-            if src_id in self._allocas and etype in ['1', '3']:
+            if src_id in self._allocas and etype != '2':
                 internal_mem_id = src_id + '.internal_mem'
                 if internal_mem_id in self.nodes:
                     internal_mem_edge_id = edge_id + '.internal_mem'
@@ -1163,49 +1122,39 @@ class CDFG:
             self.edges[edge_id] = edge
 
         num_edges = len(self.edges)
-
         for src, dst_const in dst_get_index_consts:
             for src_const, op in src_gep_index_consts:
                 if src_const == dst_const:
                     self.edges[f'{self.name}.{num_edges}'] = Edge(src, op, 'get_index')
                     num_edges += 1
 
-        for src, dst in self._alloca_edges:
-            if src in self.nodes and dst in self.nodes:
-                self.edges[f'{self.name}.{num_edges}'] = Edge(src, dst, 'alloca')
-                num_edges += 1
+        for alloca_id in self._allocas:
+            self.edges[f'{self.name}.{num_edges}'] = Edge(alloca_id, f'{alloca_id}.internal_mem', 'alloca')
+            num_edges += 1
 
     def _build_hierarchy_edges(self):
-        n_edges = len(self.edges)
+        num_edges = len(self.edges)
 
         for node_id, node in self.nodes.items():
-            if node.node_type != 'block':
-                continue
-            
-            for op_id in node.ops:
-                if op_id in self.nodes:
-                    self.edges[f'{self.name}.{n_edges}'] = Edge(node_id, op_id, 'hier')
-                    n_edges += 1
+            if node.node_type == 'block':  
+                for op_id in node.ops:
+                    self.edges[f'{self.name}.{num_edges}'] = Edge(node_id, op_id, 'hier')
+                    num_edges += 1
 
-        for node_id, node in self.nodes.items():
-            if node.node_type not in ['region', 'function']:
-                continue
-            
-            for sub_region_id in node.sub_regions:
-                if sub_region_id in self.nodes:
-                    self.edges[f'{self.name}.{n_edges}'] = Edge(node_id, sub_region_id, 'hier')
-                    n_edges += 1
+            elif node.node_type in ['region', 'function']:
+                for sub_region_id in node.sub_regions:
+                    self.edges[f'{self.name}.{num_edges}'] = Edge(node_id, sub_region_id, 'hier')
+                    num_edges += 1
 
-            for block_id in node.blocks:
-                if block_id in self.nodes:
-                    self.edges[f'{self.name}.{n_edges}'] = Edge(node_id, block_id, 'hier')
-                    n_edges += 1
+                for block_id in node.blocks:
+                    self.edges[f'{self.name}.{num_edges}'] = Edge(node_id, block_id, 'hier')
+                    num_edges += 1
                     
                     for op_id in self.nodes[block_id].ops:
                         if op_id in self.nodes:
-                            self.edges[f'{self.name}.{n_edges}'] = Edge(block_id, op_id, 'hier')
-                            self.edges[f'{self.name}.{n_edges + 1}'] = Edge(node_id, op_id, 'hier')
-                            n_edges += 2
+                            self.edges[f'{self.name}.{num_edges}'] = Edge(block_id, op_id, 'hier')
+                            self.edges[f'{self.name}.{num_edges + 1}'] = Edge(node_id, op_id, 'hier')
+                            num_edges += 2
         
         rev_hier_edges = {}
         for edge_id, edge in self.edges.items():
@@ -1285,7 +1234,6 @@ class KernelGraph:
 
         num_int_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.op_category == 'arith_int')
         num_fp_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.op_category == 'arith_fp')
-
         num_branch_ops = sum(1 for node in self.nodes.values() if node.node_type == 'op' and node.opcode in ['br', 'switch'])
 
         avg_op_bitwidth = sum(
@@ -1295,69 +1243,59 @@ class KernelGraph:
 
         loop_depths = []
         loop_trip_counts = []
-        loop_latencies = []
-        pipelined_loop_latencies = []
-        unrolled_loop_latencies = []
-        flattened_loop_depths = []
+        loop_ils = []
+        pipelined_loop_ils = []
+        unrolled_loop_ils = []
         unroll_factors = []
+        flattened_loop_depths = []
 
         for node in self.nodes.values():
             if node.node_type == 'region' and node.is_loop:
-                ohe_loop_depth = node.feature_dict.get('loop_depth', [0] * (MAX_LOOP_DEPTH + 1))
-                loop_depth = ohe_loop_depth.index(1) if 1 in ohe_loop_depth else 0
-                loop_depths.append(loop_depth)
-
+                loop_depth = node.feature_dict.get('loop_depth', [0] * (MAX_LOOP_DEPTH + 1))
+                loop_depth = loop_depth.index(1) if 1 in loop_depth else 0
+                loop_il = node.feature_dict.get('il', 0)
                 loop_trip_count = node.feature_dict.get('trip_count', 0)
+
+                loop_depths.append(loop_depth)
                 loop_trip_counts.append(loop_trip_count)
+                loop_ils.append(loop_il)
 
-                loop_latency = node.feature_dict.get('latency', 0)
-                loop_latencies.append(loop_latency)
-
-                if node.feature_dict.get('auto_pipeline', 0) == 1 or node.feature_dict.get('pipeline', 0) == 1:
-                    pipelined_loop_latencies.append(loop_latency)
-
-                if node.feature_dict.get('loop_flatten', 0) == 1:
-                    flattened_loop_depths.append(loop_depth)
+                if node.feature_dict.get('pipeline', 0) == 1:
+                    pipelined_loop_ils.append(loop_il)
 
                 unroll_factor = node.feature_dict.get('unroll_factor', 0)
                 if unroll_factor > 0:
                     unroll_factors.append(unroll_factor)
-                    unrolled_loop_latencies.append(loop_latency)
+                    unrolled_loop_ils.append(loop_il)
 
-        num_pipelined_loops = len(pipelined_loop_latencies)
-        num_flattened_loops = len(flattened_loop_depths)
+                if node.feature_dict.get('loop_flatten', 0) == 1:
+                    flattened_loop_depths.append(loop_depth)
+
+        num_pipelined_loops = len(pipelined_loop_ils)
         num_unrolled_loops = len(unroll_factors)
+        num_flattened_loops = len(flattened_loop_depths)
 
-        avg_loop_depth = sum(loop_depths) / len(loop_depths) if loop_depths else 0
         max_loop_depth = max(loop_depths) if loop_depths else 0
+        max_loop_trip_count = max(loop_trip_counts) if loop_trip_counts else 0
+        max_loop_il = max(loop_ils) if loop_ils else 0
 
         avg_loop_trip_count = sum(loop_trip_counts) / len(loop_trip_counts) if loop_trip_counts else 0
-        max_loop_trip_count = max(loop_trip_counts) if loop_trip_counts else 0
+        avg_loop_il = sum(loop_ils) / len(loop_ils) if loop_ils else 0
+        avg_loop_depth = sum(loop_depths) / len(loop_depths) if loop_depths else 0
 
-        avg_loop_latency = sum(loop_latencies) / len(loop_latencies) if loop_latencies else 0
-        max_loop_latency = max(loop_latencies) if loop_latencies else 0
-
-        avg_pipelined_loop_latency = sum(pipelined_loop_latencies) / num_pipelined_loops if num_pipelined_loops > 0 else 0
-        max_pipelined_loop_latency = max(pipelined_loop_latencies) if pipelined_loop_latencies else 0
-
-        avg_unrolled_loop_latency = sum(unrolled_loop_latencies) / num_unrolled_loops if num_unrolled_loops > 0 else 0
-        max_unrolled_loop_latency = max(unrolled_loop_latencies) if unrolled_loop_latencies else 0
-
-        avg_flattened_loop_depth = sum(flattened_loop_depths) / num_flattened_loops if num_flattened_loops > 0 else 0
+        max_pipelined_loop_il = max(pipelined_loop_ils) if pipelined_loop_ils else 0
+        max_unrolled_loop_il = max(unrolled_loop_ils) if unrolled_loop_ils else 0
         max_flattened_loop_depth = max(flattened_loop_depths) if flattened_loop_depths else 0
+
+        avg_pipelined_loop_il = sum(pipelined_loop_ils) / num_pipelined_loops if num_pipelined_loops > 0 else 0
+        avg_unrolled_loop_il = sum(unrolled_loop_ils) / num_unrolled_loops if num_unrolled_loops > 0 else 0
+        avg_flattened_loop_depth = sum(flattened_loop_depths) / num_flattened_loops if num_flattened_loops > 0 else 0
 
         avg_unroll_factor = sum(unroll_factors) / num_unrolled_loops if num_unrolled_loops > 0 else 0
         max_unroll_factor = max(unroll_factors) if unroll_factors else 0
 
         ratio_pipelined_loops = num_pipelined_loops / num_loops if num_loops > 0 else 0
         ratio_unrolled_loops = num_unrolled_loops / num_loops if num_loops > 0 else 0
-
-        function_latencies = [
-            node.feature_dict.get('latency', 0) 
-            for node in self.nodes.values() if node.node_type == 'function'
-        ]
-        avg_function_latency = sum(function_latencies) / len(function_latencies) if function_latencies else 0
-        max_function_latency = max(function_latencies) if function_latencies else 0
 
         array_sizes = []
         partitioned_array_sizes = []
@@ -1374,15 +1312,14 @@ class KernelGraph:
 
         num_arrays = len(array_sizes)
         num_partitioned_arrays = len(partitioned_array_sizes)
-        
-        avg_array_size = sum(array_sizes) / num_arrays if num_arrays > 0 else 0
+
         max_array_size = max(array_sizes) if array_sizes else 0
-
-        avg_partitioned_array_size = sum(partitioned_array_sizes) / num_partitioned_arrays if num_partitioned_arrays > 0 else 0
         max_partitioned_array_size = max(partitioned_array_sizes) if partitioned_array_sizes else 0
-
-        avg_partition_factor = sum(partition_factors) / len(partition_factors) if partition_factors else 0
         max_partition_factor = max(partition_factors) if partition_factors else 0
+
+        avg_array_size = sum(array_sizes) / num_arrays if num_arrays > 0 else 0
+        avg_partitioned_array_size = sum(partitioned_array_sizes) / num_partitioned_arrays if num_partitioned_arrays > 0 else 0
+        avg_partition_factor = sum(partition_factors) / len(partition_factors) if partition_factors else 0
 
         ratio_partitioned_arrays = num_partitioned_arrays / num_arrays if num_arrays > 0 else 0
 
@@ -1413,40 +1350,43 @@ class KernelGraph:
             'num_fp_ops': num_fp_ops, 
             'num_branch_ops': num_branch_ops,
             'avg_op_bitwidth': avg_op_bitwidth,
-            'avg_loop_depth': avg_loop_depth, 
+
             'max_loop_depth': max_loop_depth,
-            'avg_loop_trip_count': avg_loop_trip_count,
             'max_loop_trip_count': max_loop_trip_count,
-            'avg_loop_latency': avg_loop_latency,
-            'max_loop_latency': max_loop_latency,
-            'avg_pipelined_loop_latency': avg_pipelined_loop_latency,
-            'max_pipelined_loop_latency': max_pipelined_loop_latency,
-            'num_pipelined_loops': num_pipelined_loops,
-            'avg_unrolled_loop_latency': avg_unrolled_loop_latency,
-            'max_unrolled_loop_latency': max_unrolled_loop_latency,
-            'num_unrolled_loops': num_unrolled_loops,
-            'avg_flattened_loop_depth': avg_flattened_loop_depth,
-            'max_flattened_loop_depth': max_flattened_loop_depth,
-            'num_flattened_loops': num_flattened_loops,
-            'avg_unroll_factor': avg_unroll_factor,
+            'max_loop_il': max_loop_il,
+            'avg_loop_depth': avg_loop_depth,
+            'avg_loop_trip_count': avg_loop_trip_count,
+            'avg_loop_il': avg_loop_il,
+
+            'max_pipelined_loop_il': max_pipelined_loop_il,
+            'max_unrolled_loop_il': max_unrolled_loop_il,
             'max_unroll_factor': max_unroll_factor,
+            'max_flattened_loop_depth': max_flattened_loop_depth,
+            'avg_pipelined_loop_il': avg_pipelined_loop_il,
+            'avg_unrolled_loop_il': avg_unrolled_loop_il,
+            'avg_unroll_factor': avg_unroll_factor,
+            'avg_flattened_loop_depth': avg_flattened_loop_depth,
+
             'ratio_pipelined_loops': ratio_pipelined_loops,
             'ratio_unrolled_loops': ratio_unrolled_loops,
-            'avg_function_latency': avg_function_latency,
-            'max_function_latency': max_function_latency,
-            'num_partitioned_arrays': num_partitioned_arrays,
-            'avg_array_size': avg_array_size,
-            'max_array_size': max_array_size,
-            'avg_partitioned_array_size': avg_partitioned_array_size,
-            'max_partitioned_array_size': max_partitioned_array_size,
-            'avg_partition_factor': avg_partition_factor,
-            'max_partition_factor': max_partition_factor,
             'ratio_partitioned_arrays': ratio_partitioned_arrays,
+
+            'max_array_size': max_array_size,
+            'max_partitioned_array_size': max_partitioned_array_size,
+            'max_partition_factor': max_partition_factor,
+            'avg_array_size': avg_array_size,
+            'avg_partitioned_array_size': avg_partitioned_array_size,
+            'avg_partition_factor': avg_partition_factor,
+
+            'num_unrolled_loops': num_unrolled_loops,
+            'num_pipelined_loops': num_pipelined_loops,
+            'num_flattened_loops': num_flattened_loops,
+            'num_partitioned_arrays': num_partitioned_arrays,
             'num_loop_merges': num_loop_merges,
             'num_inlines': num_inlines,
             'num_dataflows': num_dataflows
         }
-        graph_attrs.update(self.base_ground_truth)
+        graph_attrs.update(copy.deepcopy(self.base_ground_truth))
         return graph_attrs
 
     def _process_adb_files(self, solution_dir):
@@ -1487,7 +1427,7 @@ class KernelGraph:
             dst_node = self.nodes[edge.dst]
             if (dst_node.node_type == 'op' and dst_node.opcode == 'call' and 
                 src_node.node_type in ['internal_mem', 'port'] and src_node.is_array):
-                if dst_node.id not in operand_dict:
+                if edge.dst not in operand_dict:
                     operand_dict[edge.dst] = []
                 operand_dict[edge.dst].append(edge.src)
 
@@ -1545,12 +1485,6 @@ class KernelGraph:
 
             for store_info in array_md.get('Stores', []):
                 function_name = store_info.get('FunctionName', '')
-
-                if function_name.endswith('<double>'):
-                    function_name = function_name[:-8] + '_double_s'
-                elif re.search(r"\.[1-9]\d*$", function_name) is not None:
-                    function_name = function_name[:function_name.rfind('.')] + f'_{function_name[function_name.rfind(".") + 1:]}'
-
                 idx = store_info.get('Index', -1)
                 if not function_name or idx < 0 or function_name not in self._cdfgs:
                     print(f"Warning: Invalid store info for {array_name} in {function_name}, skipping.")
@@ -1570,12 +1504,6 @@ class KernelGraph:
                 for op_info in array_md.get(key, []):
                     inst_name = op_info.get('Name', '')
                     function_name = op_info.get('FunctionName', '')
-
-                    if function_name.endswith('<double>'):
-                        function_name = function_name[:-8] + '_double_s'
-                    elif re.search(r"\.[1-9]\d*$", function_name) is not None:
-                        function_name = function_name[:function_name.rfind('.')] + f'_{function_name[function_name.rfind(".") + 1:]}'
-
                     if not function_name or not inst_name or function_name not in self._cdfgs:
                         print(f"Warning: Invalid load info for {array_name} in {function_name}, skipping.")
                         continue
@@ -1637,7 +1565,7 @@ class KernelGraph:
         
         new_edges = {}
         for edge in self.edges.values():
-            if edge.etype not in ['1', '3']:
+            if edge.etype != '1':
                 continue
             src_node = self.nodes[edge.src]
             dst_node = self.nodes[edge.dst]
@@ -1645,7 +1573,7 @@ class KernelGraph:
                 if dst_node.opcode == 'getelementptr':
                     # Add a (Node -> Op) edge for each (Node -> GEP -> Op) path
                     for next_edge in self.edges.values():
-                        if next_edge.etype in ['1', '3'] and next_edge.src == edge.dst:
+                        if next_edge.etype == '1' and next_edge.src == edge.dst:
                             next_dst_node = self.nodes[next_edge.dst]
                             if next_dst_node.node_type == 'op':
                                 if (edge.src, next_edge.dst, '1') not in existing_edges_set:
@@ -1653,7 +1581,7 @@ class KernelGraph:
                                     num_edges += 1
 
         for edge in self.edges.values():
-            if edge.etype not in ['1', '3']:
+            if edge.etype != '1':
                 continue
             src_node = self.nodes[edge.src]
             dst_node = self.nodes[edge.dst]
@@ -1676,10 +1604,10 @@ class KernelGraph:
             for edge_id, edge in self.edges.items()
         }
         return {
-            'benchmark_name': self.benchmark_name,
-            'top_level_function': self.top_level_name,
-            'ground_truth_metrics': self.base_ground_truth,
-            'cdfgs': [cdfg.name for cdfg in self._cdfgs.values()],
+            'name': self.benchmark_name,
+            'top_level': self.top_level_name,
+            'graph_attr': self.graph_attr,
+            'modules': [cdfg.name for cdfg in self._cdfgs.values()],
             'nodes': node_dict,
             'edges': edge_dict
         }
@@ -1821,7 +1749,7 @@ def compute_graph_attr_scaling_stats(
             continue
 
         values_arr = np.array(values, dtype=np.float64)
-        if 'ratio' not in key and 'intensity' not in key and 'bitwidth' not in key:
+        if key not in NO_LOG_SCALING_GRAPH_KEYS:
             values_arr = np.log1p(values_arr)
 
         mean = np.mean(values_arr)
@@ -1852,7 +1780,7 @@ def extract_base_graphs(benchmark_info_dict: Dict[str, Dict[str, Any]]) -> Dict[
                 benchmark_name=bench_name
             )
         except Exception as e:
-            print(f"Error extracting array info for {bench_name} in {sol_dir}: {e}")
+            print(f"Error processing {bench_name}: {e}")
             continue
 
     return kernel_info_dict
@@ -1925,16 +1853,16 @@ def update_with_directives(
 
                 last_partition_dim_size = target_dim_size % ap_factor
 
-                uneven = last_partition_dim_size != 0
-                node.feature_dict["is_unevenly_partitioned"] = int(uneven)
+                is_uneven = last_partition_dim_size != 0
+                node.feature_dict["is_unevenly_partitioned"] = int(is_uneven)
 
                 if ceil_partition_size < 1024:
                     node.feature_dict["is_large_array"] = 0
-                elif uneven:
+                elif is_uneven:
                     last_partition_size = last_partition_dim_size * non_target_dim_prod
                     if last_partition_size < 1024:
-                        if (node.node_type in ["internal_mem", "port"] 
-                            and not node.is_top_level_port):
+                        if (node.node_type == "internal_mem" or 
+                            (node.node_type == "port" and not node.is_top_level_port)):
                             node.feature_dict["has_hybrid_impl"] = 1
 
             node.feature_dict["array_partition"] = 1
@@ -1952,9 +1880,11 @@ def update_with_directives(
                 port_id = matching_ports.pop()
                 port_node = kernel_graph.nodes[port_id]
 
-                for feat in ap_feats:
-                    if feat in port_node.feature_dict:
-                        port_node.feature_dict[feat] = node.feature_dict[feat]
+                for key in ap_feats:
+                    if key == "partition_dim":
+                        port_node.feature_dict[key][ap_dim] = 1
+                    else:
+                        port_node.feature_dict[key] = node.feature_dict[key]
 
                 matching_ports.extend(port_node.matching_ports)
         else:
@@ -1962,26 +1892,16 @@ def update_with_directives(
             if "/" in location:
                 function_name, target_name = location.split("/")
             else:
-                function_name = location
-                target_name = location
+                function_name, target_name = location, ''
 
-            if dct not in ["inline", "dataflow"]:
+            if target_name:
                 node = find_region_node(kernel_graph, target_name, function_name)
-                if node is None:
-                    if dct == "loop_merge":
-                        node = find_function_node(kernel_graph, function_name)
-                        if node is None:
-                            print(f"Warning: Function '{function_name}' not found in nodes.")
-                            continue
-                    else:
-                        print(f"Warning: Region '{target_name}' "
-                              f"(function '{function_name}') not found in nodes.")
-                        continue
             else:
                 node = find_function_node(kernel_graph, function_name)
-                if node is None:
-                    print(f"Warning: Function '{function_name}' not found in nodes.")
-                    continue
+
+            if node is None:
+                print(f"Warning: Target location '{location}' not found in graph.")
+                continue
 
             if dct == "pipeline":
                 node.feature_dict["pipeline"] = 1
@@ -2025,8 +1945,9 @@ def update_with_directives(
     for loop_name in auto_pipeline:
         for node in kernel_graph.nodes.values():
             if node.node_type == 'region' and node.name == loop_name:
-                node.feature_dict["auto_pipeline"] = 1
-                _unroll_pipelined_subloops(kernel_graph, node)
+                node.feature_dict["pipeline"] = 1
+                if node.is_loop:
+                    _unroll_pipelined_subloops(kernel_graph, node)
                 break
 
     for loop_name, function_name in auto_loop_flatten:
@@ -2186,6 +2107,6 @@ if __name__ == "__main__":
         graph.save_as_json(output_path)
         print(f"Saved graph for {bench_name} to {output_path}")
 
-        plot_kernel_graph(graph, output_path=None)
+        # plot_kernel_graph(graph, output_path=None)
 
     print("All kernel graphs have been generated and saved.")

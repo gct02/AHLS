@@ -32,7 +32,7 @@ from estimators.area.fine_tuning.domain import (
     PARAM_GROUPS,
     PARAM_GROUP_DICT,
     LEARNING_RATES,
-    NUM_LR_CONFIGS,
+    NUM_LEARNING_RATES,
     NUM_PARAM_GROUPS
 )
 from estimators.area.fine_tuning.utils import (
@@ -81,7 +81,7 @@ def sample_kopt_points(config, k, n_points):
             lr = new_config[idx]
             if lr == 0:
                 offset = 1
-            elif lr == NUM_LR_CONFIGS - 1:
+            elif lr == NUM_LEARNING_RATES - 1:
                 offset = -1
             else:
                 offset = np.random.choice([-1, 1])

@@ -14,12 +14,12 @@
     }
   },
   "Local": {
-    "Reflection_coefficients/ACF": {
-      "Name": "ACF",
-      "FunctionName": "Reflection_coefficients",
+    "Gsm_LPC_Analysis/L_ACF": {
+      "Name": "L_ACF",
+      "FunctionName": "Gsm_LPC_Analysis",
       "Alloca": 1,
       "TotalSize": 9,
-      "BaseBitwidth": 16,
+      "BaseBitwidth": 64,
       "NumDimensions": 1,
       "BaseType": 11,
       "Dimensions": [9],
@@ -27,8 +27,21 @@
       "Loads": [],
       "GEPs": []
     },
-    "Reflection_coefficients/P": {
-      "Name": "P",
+    "Gsm_LPC_Analysis/indata": {
+      "Name": "indata",
+      "FunctionName": "Gsm_LPC_Analysis",
+      "Param": 1,
+      "TotalSize": 160,
+      "BaseBitwidth": 16,
+      "NumDimensions": 1,
+      "BaseType": 11,
+      "Dimensions": [160],
+      "Stores": [],
+      "Loads": [],
+      "GEPs": []
+    },
+    "Reflection_coefficients/K": {
+      "Name": "K",
       "FunctionName": "Reflection_coefficients",
       "Alloca": 1,
       "TotalSize": 9,
@@ -53,8 +66,8 @@
       "Loads": [],
       "GEPs": []
     },
-    "Reflection_coefficients/K": {
-      "Name": "K",
+    "Reflection_coefficients/P": {
+      "Name": "P",
       "FunctionName": "Reflection_coefficients",
       "Alloca": 1,
       "TotalSize": 9,
@@ -66,28 +79,15 @@
       "Loads": [],
       "GEPs": []
     },
-    "Gsm_LPC_Analysis/L_ACF": {
-      "Name": "L_ACF",
-      "FunctionName": "Gsm_LPC_Analysis",
+    "Reflection_coefficients/ACF": {
+      "Name": "ACF",
+      "FunctionName": "Reflection_coefficients",
       "Alloca": 1,
       "TotalSize": 9,
-      "BaseBitwidth": 64,
-      "NumDimensions": 1,
-      "BaseType": 11,
-      "Dimensions": [9],
-      "Stores": [],
-      "Loads": [],
-      "GEPs": []
-    },
-    "Gsm_LPC_Analysis/indata": {
-      "Name": "indata",
-      "FunctionName": "Gsm_LPC_Analysis",
-      "Param": 1,
-      "TotalSize": 160,
       "BaseBitwidth": 16,
       "NumDimensions": 1,
       "BaseType": 11,
-      "Dimensions": [160],
+      "Dimensions": [9],
       "Stores": [],
       "Loads": [],
       "GEPs": []

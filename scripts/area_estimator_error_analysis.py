@@ -19,8 +19,8 @@ from estimators.common.parsers import (
     extract_area_metrics,
     extract_hls_area_estimates
 )
-from estimators.common.analysis_utils import encode_directives
 from estimators.common.losses import mape_loss
+from estimators.area.graph import GRAPH_ATTRS
 from estimators.area.data_utils import compute_snru
 
 set_visualize_provider(DashProvider.from_address(('127.0.0.1', 7001)))
@@ -40,12 +40,12 @@ def extract_errors(predictions_path):
     for line in lines:
         idx, target, pred = line.strip().split(',')
         idx, target, pred = int(idx), float(target), float(pred)
-        error_dict[idx] = abs(target - pred) / target
+        error_dict[idx] = abs(target - pred) / (abs(target) + 1e-6)
 
     return error_dict
 
 
-def extract_errors_hls(dataset_dir, filtered=False):
+def extract_errors_hls(dataset_dir):
     error_dict = {}
 
     for solution in os.listdir(dataset_dir):
@@ -85,45 +85,41 @@ def extract_errors_hls(dataset_dir, filtered=False):
     return error_dict
 
 
-def associate_directives_with_errors(error_dict, dataset_dir, dct_config_path):
-    dct_error_pairs = []
-    feat_names = None
+def associate_feats_with_errors(error_dict, dataset_dir):
+    feat_error_pairs = []
 
     for idx, error in error_dict.items():
-        dct_tcl_path = os.path.join(dataset_dir, f"solution{idx}/directives.tcl")
-        if not os.path.exists(dct_tcl_path):
+        graph_path = os.path.join(dataset_dir, f"solution{idx}/graph.pkl")
+        if not os.path.exists(graph_path):
+            print(f"Graph file does not exist for solution {idx}: {graph_path}")
             continue
-
-        if feat_names is None:
-            dct, feat_names = encode_directives(
-                dct_config_path, dct_tcl_path, return_feat_names=True
-            )
-        else:
-            dct = encode_directives(dct_config_path, dct_tcl_path)
         
-        dct_error_pairs.append((idx, dct, error))
+        with open(graph_path, 'rb') as f:
+            graph = pickle.load(f)
 
-    return dct_error_pairs, feat_names
+        graph_attr = [graph.graph_attr[key] for key in GRAPH_ATTRS]
+        graph_attr = np.array(graph_attr, dtype=np.float32)
+        feat_error_pairs.append((idx, graph_attr, error))
 
-
-def sort_by_error(dct_error_pairs):
-    """Return sorted list of tuples (solution_idx, directives, error), descending."""
-    return sorted(dct_error_pairs, key=lambda x: x[2], reverse=True)
-
-
-def process_errors_and_directives(error_dict, dataset_dir, dct_config_path):
-    """Return (solution_idx, directives, mean_error) tuples."""
-    dct_error_pairs, feat_names = associate_directives_with_errors(
-        error_dict, dataset_dir, dct_config_path
-    )
-    return sorted(dct_error_pairs, key=lambda x: x[2], reverse=True), feat_names
+    return feat_error_pairs
 
 
-def build_dataset(dct_error_pairs):
-    dcts = [entry[1] for entry in dct_error_pairs]
-    errors = [entry[2] for entry in dct_error_pairs]
-    dcts, errors = np.array(dcts), np.array(errors)
-    return dcts.reshape(dcts.shape[0], -1), errors
+def sort_by_error(feat_error_pairs):
+    """Return sorted list of tuples (solution_idx, feats, error), descending."""
+    return sorted(feat_error_pairs, key=lambda x: x[2], reverse=True)
+
+
+def process_data(error_dict, dataset_dir):
+    """Return (solution_idx, feats, error) tuples."""
+    feat_error_pairs = associate_feats_with_errors(error_dict, dataset_dir)
+    return sorted(feat_error_pairs, key=lambda x: x[2], reverse=True)
+
+
+def build_dataset(feat_error_pairs):
+    feats = [entry[1] for entry in feat_error_pairs]
+    errors = [entry[2] for entry in feat_error_pairs]
+    feats, errors = np.array(feats), np.array(errors)
+    return feats.reshape(feats.shape[0], -1), errors
 
 
 def train_model(X_dct, y_error, surrogate='xgb'):
@@ -180,10 +176,10 @@ def explain_model_with_interactions(model, X_dct):
     return shap_interaction_values
 
 
-def plot_shap_values(X_dct, shap_values, output_path, feat_names=None):
+def plot_shap_values(X_dct, shap_values, output_path):
     shap.summary_plot(
         shap_values, X_dct, 
-        feature_names=feat_names, 
+        feature_names=GRAPH_ATTRS, 
         max_display=30, alpha=0.4,
         show_values_in_legend=True,
         color=X_dct, show=False
@@ -192,10 +188,10 @@ def plot_shap_values(X_dct, shap_values, output_path, feat_names=None):
     plt.close()
 
 
-def plot_shap_interaction(shap_interaction_values, X_dct, output_path, feat_names=None):
+def plot_shap_interaction(shap_interaction_values, X_dct, output_path):
     shap.summary_plot(
         shap_interaction_values, X_dct, 
-        feature_names=feat_names, 
+        feature_names=GRAPH_ATTRS, 
         max_display=40, alpha=0.4,
         show_values_in_legend=True,
         plot_type="compact_dot",
@@ -205,8 +201,8 @@ def plot_shap_interaction(shap_interaction_values, X_dct, output_path, feat_name
     plt.close()
 
 
-def explain_model_ebm(X_dct, y_error, feat_names=None):
-    ebm_explainer = ExplainableBoostingRegressor(feature_names=feat_names)
+def explain_model_ebm(X_dct, y_error):
+    ebm_explainer = ExplainableBoostingRegressor(feature_names=GRAPH_ATTRS)
     ebm_explainer.fit(X_dct, y_error)
     ebm_results = ebm_explainer.explain_global()
     go_fig = ebm_results.visualize()
@@ -225,7 +221,6 @@ def parse_args():
     parser = argparse.ArgumentParser(description="GNN Explainer Script")
     parser.add_argument('-b', '--benchmark', type=str, required=True, help='Benchmark name')
     parser.add_argument('-d', '--dataset_dir', type=str, default=None, help='Path to dataset directory')
-    parser.add_argument('-c', '--dct_config', type=str, default=None, help='Path to directives config file')
     parser.add_argument('-p', '--predictions', type=str, default=None, help='Path to predictions file')
     parser.add_argument('-o', '--output', type=str, default=None, help='Output file for SHAP values plot')
     parser.add_argument('-ft', '--fine-tuned', action='store_true', help='Analyze fine-tuned model predictions')
@@ -242,7 +237,6 @@ if __name__ == "__main__":
 
     benchmark = args.benchmark.upper()
     dataset_dir = args.dataset_dir
-    dct_config_path = args.dct_config
     predictions_path = args.predictions
     fine_tuned = args.fine_tuned
     surrogate = args.surrogate
@@ -256,40 +250,22 @@ if __name__ == "__main__":
         print(f"Dataset directory does not exist: {dataset_dir}")
         sys.exit(1)
 
-    if not dct_config_path:
-        benchmark_name = benchmark.lower()
-        if benchmark_name == "trans_fft":
-            benchmark_name = "transposed_fft"
-        dct_config_path = f"data/directives/{benchmark_name}.json"
-
-    if not os.path.exists(dct_config_path):
-        print(f"Directives config file does not exist: {dct_config_path}")
-        sys.exit(1)
-
     if args.hls:
-        error_dict = extract_errors_hls(dataset_dir, filtered=True)
+        error_dict = extract_errors_hls(dataset_dir)
     else:
-        if not predictions_path:
-            if fine_tuned:
-                predictions_path = f"gnn/analysis/fine_tuned_models/{benchmark}/predictions.csv"
-            else:
-                predictions_path = f"gnn/analysis/pretrained_models/{benchmark}/predictions.csv"
-
         if not os.path.exists(predictions_path):
             print(f"Predictions file does not exist: {predictions_path}")
             sys.exit(1)
 
         error_dict = extract_errors(predictions_path)
 
-    dct_error_pairs, feat_names = process_errors_and_directives(
-        error_dict, dataset_dir, dct_config_path
-    )
+    feat_error_pairs = process_data(error_dict, dataset_dir)
 
-    X_dct, y_error = build_dataset(dct_error_pairs)
+    X_dct, y_error = build_dataset(feat_error_pairs)
     model = train_model(X_dct, y_error, surrogate=surrogate)
 
     if not output_path:
-        output_dir = "gnn/analysis/shap_values"
+        output_dir = "visualization/area_estimator_shap_values"
         os.makedirs(output_dir, exist_ok=True)
 
         output_path = f"{output_dir}/{benchmark}_"
@@ -311,8 +287,8 @@ if __name__ == "__main__":
             print("Interaction SHAP values are only available for XGBoost surrogate models.")
             sys.exit(1)
         shap_interaction_values = explain_model_with_interactions(model, X_dct)
-        plot_shap_interaction(shap_interaction_values, X_dct, output_path, feat_names)
+        plot_shap_interaction(shap_interaction_values, X_dct, output_path)
     else:
         shap_values = explain_model(model, X_dct, surrogate=surrogate)
-        plot_shap_values(X_dct, shap_values, output_path, feat_names)
-        explain_model_ebm(X_dct, y_error, feat_names=feat_names)
+        plot_shap_values(X_dct, shap_values, output_path)
+        explain_model_ebm(X_dct, y_error)

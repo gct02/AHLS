@@ -299,7 +299,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5a707ef1</spirit:value>
+            <spirit:value>d420bb20</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -318,7 +318,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>48369f63</spirit:value>
+            <spirit:value>029a8ae8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -337,7 +337,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c6705cc3</spirit:value>
+            <spirit:value>b268aa03</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -356,7 +356,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>b8415bba</spirit:value>
+            <spirit:value>9d8998e3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -861,14 +861,6 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_flow_control_loop_pipe_sequential_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_loady8.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/fft1D_512_mul_35ns_25ns_60_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
@@ -894,30 +886,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/fft1D_512_mul_170s_53ns_170_2_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_mux_4_2_32_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_2.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_3.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_4.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_s.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1053,16 +1021,6 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_flow_control_loop_pipe_sequential_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_loady8.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/verilog/fft1D_512_mul_35ns_25ns_60_1_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -1094,36 +1052,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/verilog/fft1D_512_mul_170s_53ns_170_2_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_mux_4_2_32_1_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_1.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_2.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_3.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_4.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/fft1D_512_scaled_fixed2ieee_63_1_s.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1326,14 +1254,6 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_loady8.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/fft1D_512_mul_35ns_25ns_60_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
@@ -1359,30 +1279,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/fft1D_512_mul_170s_53ns_170_2_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_mux_4_2_32_1_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_3.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_4.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_s.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1440,7 +1336,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/fft1D_512.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_77790a9d</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_b57e183f</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1491,16 +1387,6 @@
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_flow_control_loop_pipe_sequential_init.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_loady8.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>hdl/vhdl/fft1D_512_mul_35ns_25ns_60_1_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
@@ -1532,36 +1418,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/vhdl/fft1D_512_mul_170s_53ns_170_2_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_mux_4_2_32_1_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_3.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_Pipeline_4.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/vhdl/fft1D_512_scaled_fixed2ieee_63_1_s.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -1728,7 +1584,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">73675</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">15694</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
@@ -1745,8 +1601,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Fft1d_512</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114163019</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-07-09T07:20:04Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114204636</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-08-07T04:56:35Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -1755,9 +1611,9 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="eecb0ffe"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3315a664"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ba5aabc0"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="3acff9d8"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="112750a1"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="f5644478"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

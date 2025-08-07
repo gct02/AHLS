@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'twiddles8'" level="0">
-<item name = "Date">Wed Jul  9 04:19:50 2025
+<item name = "Date">Thu Aug  7 01:56:21 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">TRANS_FFT</item>
@@ -24,20 +24,20 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">492, 520, 3.936 us, 4.160 us, 492, 520, no</column>
+<column name="">50, 50, 0.400 us, 0.400 us, 50, 50, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_sin_or_cos_double_s_fu_109">sin_or_cos_double_s, 35, 39, 0.280 us, 0.312 us, 35, 39, no</column>
-<column name="grp_sin_or_cos_double_s_fu_128">sin_or_cos_double_s, 35, 39, 0.280 us, 0.312 us, 35, 39, no</column>
+<column name="grp_sin_or_cos_double_s_fu_119">sin_or_cos_double_s, 8, 8, 64.000 ns, 64.000 ns, 1, 1, yes</column>
+<column name="grp_sin_or_cos_double_s_fu_138">sin_or_cos_double_s, 8, 8, 64.000 ns, 64.000 ns, 1, 1, yes</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- twiddles">490, 518, 70 ~ 74, -, -, 7, no</column>
+<column name="- twiddles">47, 47, 42, 1, 1, 7, yes</column>
 </table>
 </item>
 </section>

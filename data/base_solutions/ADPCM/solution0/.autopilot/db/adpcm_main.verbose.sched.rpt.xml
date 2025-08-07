@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'adpcm_main'" level="0">
-<item name = "Date">Wed Jul  9 03:19:59 2025
+<item name = "Date">Wed Aug  6 20:17:50 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">ADPCM</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">13704, 13804, 0.110 ms, 0.110 ms, 13705, 13805, no</column>
+<column name="">13404, 13504, 0.107 ms, 0.108 ms, 13405, 13505, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,8 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- adpcm_main_label12">8550, 8650, 171 ~ 173, -, -, 50, no</column>
-<column name="- adpcm_main_label13">5100, 5100, 102, -, -, 50, no</column>
+<column name="- adpcm_main_label12">8400, 8500, 168 ~ 170, -, -, 50, no</column>
+<column name="- adpcm_main_label13">4950, 4950, 99, -, -, 50, no</column>
 </table>
 </item>
 </section>

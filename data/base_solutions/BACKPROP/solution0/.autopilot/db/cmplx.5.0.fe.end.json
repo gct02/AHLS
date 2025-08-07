@@ -1,18 +1,18 @@
 {
     "1": {
-        "name": "matrix_vector_product_with_bias_output_layer.1",
-        "file": "data\/benchmarks\/backprop\/backprop.c",
-        "fileloc": "94",
-        "instructions": "56",
-        "total_instructions": "101",
-        "calls": "8",
-        "basicblocks": "11",
+        "name": "get_delta_matrix_weights1",
+        "file": "backprop.c",
+        "fileloc": "186",
+        "instructions": "39",
+        "total_instructions": "39",
+        "calls": "",
+        "basicblocks": "7",
         "loads": {
-            "L": "5",
+            "L": "2",
             "T": "1"
         },
         "stores": {
-            "L": "8"
+            "L": "3"
         },
         "loops": {
             "L": "1",
@@ -20,9 +20,27 @@
         }
     },
     "2": {
-        "name": "RELU",
-        "file": "backprop.c",
-        "fileloc": "33",
+        "name": "backprop_Pipeline_RELU_loop12",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "372",
+        "instructions": "65",
+        "total_instructions": "65",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "10"
+        },
+        "stores": {
+            "L": "14"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "backprop_Pipeline_RELU_loop11",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "370",
         "instructions": "27",
         "total_instructions": "27",
         "calls": "",
@@ -37,7 +55,177 @@
             "L": "1"
         }
     },
-    "3": {
+    "4": {
+        "name": "matrix_vector_product_with_bias_input_layer.1_Pipeline_add_bias_to_activations_l",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "69",
+        "instructions": "22",
+        "total_instructions": "22",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "backprop_Pipeline_soft_max_loop1",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "373",
+        "instructions": "28",
+        "total_instructions": "28",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "get_oracle_activations2.1",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "139",
+        "instructions": "45",
+        "total_instructions": "45",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "7": {
+        "name": "matrix_vector_product_with_bias_second_layer.1_Pipeline_add_bias_to_activations_",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "87",
+        "instructions": "22",
+        "total_instructions": "22",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "8": {
+        "name": "matrix_vector_product_with_bias_output_layer.1",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "94",
+        "instructions": "65",
+        "total_instructions": "110",
+        "calls": "13",
+        "basicblocks": "11",
+        "loads": {
+            "L": "8",
+            "T": "1"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "0": {
+        "name": "backprop",
+        "file": "backprop.c",
+        "fileloc": "330",
+        "instructions": "135",
+        "total_instructions": "1235",
+        "calls": "11 14 10 19 3 8 2 5 18 17 15 6 16 9 1 12",
+        "basicblocks": "4",
+        "loads": {
+            "L": "30"
+        },
+        "stores": {
+            "L": "16"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "9": {
+        "name": "get_oracle_activations1",
+        "file": "backprop.c",
+        "fileloc": "168",
+        "instructions": "42",
+        "total_instructions": "42",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "3",
+            "T": "1"
+        },
+        "stores": {
+            "L": "3"
+        },
+        "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "10": {
+        "name": "backprop_Pipeline_RELU_loop1",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "368",
+        "instructions": "27",
+        "total_instructions": "27",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "11": {
+        "name": "backprop_Pipeline_backprop_loop1_1",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "338",
+        "instructions": "43",
+        "total_instructions": "43",
+        "calls": "",
+        "basicblocks": "9",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "10"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "12": {
         "name": "update_weights.1",
         "file": "data\/benchmarks\/backprop\/backprop.c",
         "fileloc": "213",
@@ -58,105 +246,10 @@
             "N": "6"
         }
     },
-    "4": {
-        "name": "RELU.clone",
+    "13": {
+        "name": "matrix_vector_product_with_bias_output_layer.1_Pipeline_add_bias_to_activations_",
         "file": "data\/benchmarks\/backprop\/backprop.c",
-        "fileloc": "34",
-        "instructions": "81",
-        "total_instructions": "81",
-        "calls": "",
-        "basicblocks": "12",
-        "loads": {
-            "L": "13"
-        },
-        "stores": {
-            "L": "17"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "5": {
-        "name": "get_delta_matrix_weights1",
-        "file": "backprop.c",
-        "fileloc": "186",
-        "instructions": "39",
-        "total_instructions": "39",
-        "calls": "",
-        "basicblocks": "7",
-        "loads": {
-            "L": "2",
-            "T": "1"
-        },
-        "stores": {
-            "L": "3"
-        },
-        "loops": {
-            "L": "1",
-            "N": "1"
-        }
-    },
-    "6": {
-        "name": "soft_max",
-        "file": "data\/benchmarks\/backprop\/backprop.c",
-        "fileloc": "17",
-        "instructions": "78",
-        "total_instructions": "78",
-        "calls": "",
-        "basicblocks": "11",
-        "loads": {
-            "L": "10"
-        },
-        "stores": {
-            "L": "15"
-        },
-        "loops": {
-            "L": "2"
-        }
-    },
-    "7": {
-        "name": "get_oracle_activations2.1",
-        "file": "data\/benchmarks\/backprop\/backprop.c",
-        "fileloc": "139",
-        "instructions": "45",
-        "total_instructions": "45",
-        "calls": "",
-        "basicblocks": "7",
-        "loads": {
-            "L": "2",
-            "T": "1"
-        },
-        "stores": {
-            "L": "3"
-        },
-        "loops": {
-            "L": "1",
-            "N": "1"
-        }
-    },
-    "0": {
-        "name": "backprop",
-        "file": "backprop.c",
-        "fileloc": "330",
-        "instructions": "138",
-        "total_instructions": "1219",
-        "calls": "14 2 13 2 1 4 6 11 10 7 9 15 5 3",
-        "basicblocks": "11",
-        "loads": {
-            "L": "14"
-        },
-        "stores": {
-            "L": "18"
-        },
-        "loops": {
-            "L": "1",
-            "N": "1"
-        }
-    },
-    "8": {
-        "name": "add_bias_to_activations.1",
-        "file": "data\/benchmarks\/backprop\/backprop.c",
-        "fileloc": "46",
+        "fileloc": "105",
         "instructions": "45",
         "total_instructions": "45",
         "calls": "",
@@ -172,26 +265,27 @@
             "L": "1"
         }
     },
-    "9": {
-        "name": "get_delta_matrix_weights2",
+    "14": {
+        "name": "matrix_vector_product_with_bias_input_layer",
         "file": "backprop.c",
-        "fileloc": "153",
-        "instructions": "35",
-        "total_instructions": "35",
-        "calls": "",
+        "fileloc": "54",
+        "instructions": "49",
+        "total_instructions": "71",
+        "calls": "4",
         "basicblocks": "7",
         "loads": {
-            "L": "3"
+            "L": "2",
+            "T": "2"
         },
         "stores": {
-            "L": "3"
+            "L": "5"
         },
         "loops": {
             "L": "1",
             "N": "1"
         }
     },
-    "10": {
+    "15": {
         "name": "get_delta_matrix_weights3",
         "file": "data\/benchmarks\/backprop\/backprop.c",
         "fileloc": "123",
@@ -210,94 +304,72 @@
             "N": "1"
         }
     },
-    "11": {
-        "name": "take_difference.1",
-        "file": "data\/benchmarks\/backprop\/backprop.c",
-        "fileloc": "112",
-        "instructions": "68",
-        "total_instructions": "68",
-        "calls": "",
-        "basicblocks": "8",
-        "loads": {
-            "L": "7",
-            "T": "1"
-        },
-        "stores": {
-            "L": "11"
-        },
-        "loops": {
-            "L": "1"
-        }
-    },
-    "12": {
-        "name": "add_bias_to_activations",
+    "16": {
+        "name": "get_delta_matrix_weights2",
         "file": "backprop.c",
-        "fileloc": "43",
-        "instructions": "22",
-        "total_instructions": "22",
+        "fileloc": "153",
+        "instructions": "35",
+        "total_instructions": "35",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "7",
         "loads": {
-            "L": "2",
-            "T": "1"
+            "L": "3"
         },
         "stores": {
             "L": "3"
         },
         "loops": {
+            "L": "1",
+            "N": "1"
+        }
+    },
+    "17": {
+        "name": "backprop_Pipeline_take_difference_loop1",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "374",
+        "instructions": "56",
+        "total_instructions": "56",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "4",
+            "T": "1"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
             "L": "1"
         }
     },
-    "13": {
+    "18": {
+        "name": "backprop_Pipeline_soft_max_loop2",
+        "file": "data\/benchmarks\/backprop\/backprop.c",
+        "fileloc": "373",
+        "instructions": "45",
+        "total_instructions": "45",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "4"
+        },
+        "stores": {
+            "L": "8"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "19": {
         "name": "matrix_vector_product_with_bias_second_layer",
         "file": "backprop.c",
         "fileloc": "72",
         "instructions": "41",
         "total_instructions": "63",
-        "calls": "12",
+        "calls": "7",
         "basicblocks": "7",
         "loads": {
             "L": "2",
-            "T": "1"
-        },
-        "stores": {
-            "L": "3"
-        },
-        "loops": {
-            "L": "1",
-            "N": "1"
-        }
-    },
-    "14": {
-        "name": "matrix_vector_product_with_bias_input_layer",
-        "file": "backprop.c",
-        "fileloc": "54",
-        "instructions": "49",
-        "total_instructions": "71",
-        "calls": "12",
-        "basicblocks": "7",
-        "loads": {
-            "L": "2",
-            "T": "2"
-        },
-        "stores": {
-            "L": "5"
-        },
-        "loops": {
-            "L": "1",
-            "N": "1"
-        }
-    },
-    "15": {
-        "name": "get_oracle_activations1",
-        "file": "backprop.c",
-        "fileloc": "168",
-        "instructions": "42",
-        "total_instructions": "42",
-        "calls": "",
-        "basicblocks": "7",
-        "loads": {
-            "L": "3",
             "T": "1"
         },
         "stores": {

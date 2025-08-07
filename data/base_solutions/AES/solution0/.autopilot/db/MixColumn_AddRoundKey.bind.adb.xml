@@ -2034,10 +2034,10 @@ for.body.split:108 %xor_ln359_2 = xor i32 %xor_ln359_3, i32 %xor_ln359
 
 <Node id="19" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.body.split:1 %speclooptripcount_ln320 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
+for.body.split:1 %speclooptripcount_ln325 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln320"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln325"/></StgValue>
 </operation>
 
 <operation id="138" st_id="5" stage="1" lat="1">
@@ -2594,10 +2594,10 @@ for.inc266.split:24 %ret_load_3 = load i5 %ret_addr_7
 
 <Node id="140" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-for.inc266.split:0 %speclooptripcount_ln320 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
+for.inc266.split:0 %speclooptripcount_ln365 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln320"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln365"/></StgValue>
 </operation>
 
 <operation id="174" st_id="8" stage="1" lat="1">
@@ -3307,13 +3307,13 @@ for.inc266.split:28 %br_ln364 = br void %for.inc266
 </dataflow>
 <dataflow id="510" from="xor_ln359" to="xor_ln359_2" fromId="133" toId="136">
 </dataflow>
-<dataflow id="512" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln320" fromId="511" toId="137">
+<dataflow id="512" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln325" fromId="511" toId="137">
 </dataflow>
-<dataflow id="514" from="StgValue_513" to="speclooptripcount_ln320" fromId="513" toId="137">
+<dataflow id="514" from="StgValue_513" to="speclooptripcount_ln325" fromId="513" toId="137">
 </dataflow>
-<dataflow id="515" from="StgValue_513" to="speclooptripcount_ln320" fromId="513" toId="137">
+<dataflow id="515" from="StgValue_513" to="speclooptripcount_ln325" fromId="513" toId="137">
 </dataflow>
-<dataflow id="516" from="StgValue_513" to="speclooptripcount_ln320" fromId="513" toId="137">
+<dataflow id="516" from="StgValue_513" to="speclooptripcount_ln325" fromId="513" toId="137">
 </dataflow>
 <dataflow id="518" from="_ssdm_op_SpecLoopName" to="specloopname_ln361" fromId="517" toId="138">
 </dataflow>
@@ -3439,13 +3439,13 @@ for.inc266.split:28 %br_ln364 = br void %for.inc266
 </dataflow>
 <dataflow id="580" from="ret_addr_7" to="ret_load_3" fromId="171" toId="172">
 </dataflow>
-<dataflow id="581" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln320" fromId="511" toId="173">
+<dataflow id="581" from="_ssdm_op_SpecLoopTripCount" to="speclooptripcount_ln365" fromId="511" toId="173">
 </dataflow>
-<dataflow id="582" from="StgValue_513" to="speclooptripcount_ln320" fromId="513" toId="173">
+<dataflow id="582" from="StgValue_513" to="speclooptripcount_ln365" fromId="513" toId="173">
 </dataflow>
-<dataflow id="583" from="StgValue_513" to="speclooptripcount_ln320" fromId="513" toId="173">
+<dataflow id="583" from="StgValue_513" to="speclooptripcount_ln365" fromId="513" toId="173">
 </dataflow>
-<dataflow id="584" from="StgValue_513" to="speclooptripcount_ln320" fromId="513" toId="173">
+<dataflow id="584" from="StgValue_513" to="speclooptripcount_ln365" fromId="513" toId="173">
 </dataflow>
 <dataflow id="585" from="_ssdm_op_SpecLoopName" to="specloopname_ln370" fromId="517" toId="174">
 </dataflow>

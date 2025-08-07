@@ -46,14 +46,14 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 77 \
+    id 48 \
     name a_x \
     reset_level 1 \
     sync_rst true \
     dir IO \
     corename a_x \
     op interface \
-    ports { a_x_address0 { O 3 vector } a_x_ce0 { O 1 bit } a_x_we0 { O 1 bit } a_x_d0 { O 64 vector } a_x_q0 { I 64 vector } } \
+    ports { a_x_address0 { O 3 vector } a_x_ce0 { O 1 bit } a_x_we0 { O 1 bit } a_x_d0 { O 64 vector } a_x_address1 { O 3 vector } a_x_ce1 { O 1 bit } a_x_q1 { I 64 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'a_x'"
@@ -65,14 +65,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 78 \
+    id 49 \
     name a_y \
     reset_level 1 \
     sync_rst true \
     dir IO \
     corename a_y \
     op interface \
-    ports { a_y_address0 { O 3 vector } a_y_ce0 { O 1 bit } a_y_we0 { O 1 bit } a_y_d0 { O 64 vector } a_y_q0 { I 64 vector } } \
+    ports { a_y_address0 { O 3 vector } a_y_ce0 { O 1 bit } a_y_we0 { O 1 bit } a_y_d0 { O 64 vector } a_y_address1 { O 3 vector } a_y_ce1 { O 1 bit } a_y_q1 { I 64 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'a_y'"
@@ -83,7 +83,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 79 \
+    id 50 \
     name i \
     type other \
     dir I \
@@ -98,7 +98,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 80 \
+    id 51 \
     name n \
     type other \
     dir I \

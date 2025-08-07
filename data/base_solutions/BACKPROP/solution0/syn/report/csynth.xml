@@ -19,31 +19,23 @@
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>50857142</Best-caseLatency>
-            <Average-caseLatency>50857142</Average-caseLatency>
-            <Worst-caseLatency>50857142</Worst-caseLatency>
-            <Best-caseRealTimeLatency>0.407 sec</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>0.407 sec</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>0.407 sec</Worst-caseRealTimeLatency>
-            <Interval-min>50857143</Interval-min>
-            <Interval-max>50857143</Interval-max>
+            <Best-caseLatency>50132118</Best-caseLatency>
+            <Average-caseLatency>50132118</Average-caseLatency>
+            <Worst-caseLatency>50132118</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.401 sec</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.401 sec</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.401 sec</Worst-caseRealTimeLatency>
+            <Interval-min>50132119</Interval-min>
+            <Interval-max>50132119</Interval-max>
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
             <backprop_loop1>
                 <Slack>5.84</Slack>
                 <TripCount>163</TripCount>
-                <Latency>50857141</Latency>
-                <AbsoluteTimeLatency>406857128</AbsoluteTimeLatency>
-                <IterationLatency>312007</IterationLatency>
+                <Latency>50132117</Latency>
+                <AbsoluteTimeLatency>401056936</AbsoluteTimeLatency>
+                <IterationLatency>307559</IterationLatency>
                 <InstanceList/>
-                <backprop_loop1_1>
-                    <Slack>5.84</Slack>
-                    <TripCount>64</TripCount>
-                    <Latency>128</Latency>
-                    <AbsoluteTimeLatency>1024</AbsoluteTimeLatency>
-                    <IterationLatency>2</IterationLatency>
-                    <InstanceList/>
-                </backprop_loop1_1>
             </backprop_loop1>
         </SummaryOfLoopLatency>
         <SummaryOfViolations>
@@ -56,12 +48,6 @@
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
                     <SourceLocation>data/benchmarks/backprop/backprop.c:356</SourceLocation>
-                    <backprop_loop1_1>
-                        <Name>backprop_loop1_1</Name>
-                        <IssueType>-</IssueType>
-                        <ViolationType>-</ViolationType>
-                        <SourceLocation>data/benchmarks/backprop/backprop.c:359</SourceLocation>
-                    </backprop_loop1_1>
                 </backprop_loop1>
             </SummaryOfLoopViolations>
         </SummaryOfViolations>
@@ -69,9 +55,9 @@
     <AreaEstimates>
         <Resources>
             <BRAM_18K>6</BRAM_18K>
-            <DSP>88</DSP>
-            <FF>12531</FF>
-            <LUT>15307</LUT>
+            <DSP>48</DSP>
+            <FF>10800</FF>
+            <LUT>12085</LUT>
             <URAM>1</URAM>
         </Resources>
         <AvailableResources>
@@ -587,130 +573,222 @@
             <ModuleName>backprop</ModuleName>
             <InstancesList>
                 <Instance>
-                    <InstName>grp_matrix_vector_product_with_bias_input_layer_1_fu_323</InstName>
+                    <InstName>grp_backprop_Pipeline_backprop_loop1_1_fu_248</InstName>
+                    <ModuleName>backprop_Pipeline_backprop_loop1_1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>248</ID>
+                    <BindInstances>add_ln359_fu_166_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_matrix_vector_product_with_bias_input_layer_1_fu_260</InstName>
                     <ModuleName>matrix_vector_product_with_bias_input_layer_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>323</ID>
+                    <ID>260</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_add_bias_to_activations_clone_1_fu_136</InstName>
-                            <ModuleName>add_bias_to_activations_clone_1</ModuleName>
+                            <InstName>grp_matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l_fu_136</InstName>
+                            <ModuleName>matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l</ModuleName>
                             <IsCompInst>true</IsCompInst>
                             <ID>136</ID>
-                            <BindInstances>add_ln48_fu_84_p2 dadd_64ns_64ns_64_4_full_dsp_1_U1</BindInstances>
+                            <BindInstances>add_ln48_fu_88_p2</BindInstances>
                         </Instance>
                     </InstancesList>
                     <BindInstances>add_ln60_1_fu_169_p2 add_ln60_fu_181_p2 add_ln64_fu_198_p2 add_ln66_fu_212_p2 add_ln66_1_fu_217_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_RELU_fu_335</InstName>
-                    <ModuleName>RELU</ModuleName>
+                    <InstName>grp_backprop_Pipeline_RELU_loop1_fu_272</InstName>
+                    <ModuleName>backprop_Pipeline_RELU_loop1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>335</ID>
-                    <BindInstances>add_ln36_fu_106_p2 dadddsub_64ns_64ns_64_4_full_dsp_1_U12 dmul_64ns_64ns_64_4_max_dsp_1_U13 dexp_64ns_64ns_64_10_full_dsp_1_U15 dadddsub_64ns_64ns_64_4_full_dsp_1_U12 ddiv_64ns_64ns_64_14_no_dsp_1_U14</BindInstances>
+                    <ID>272</ID>
+                    <BindInstances>add_ln36_fu_110_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_matrix_vector_product_with_bias_second_layer_1_fu_341</InstName>
+                    <InstName>grp_matrix_vector_product_with_bias_second_layer_1_fu_278</InstName>
                     <ModuleName>matrix_vector_product_with_bias_second_layer_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>341</ID>
+                    <ID>278</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_add_bias_to_activations_clone_1_fu_115</InstName>
-                            <ModuleName>add_bias_to_activations_clone_1</ModuleName>
+                            <InstName>grp_matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s_fu_115</InstName>
+                            <ModuleName>matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s</ModuleName>
                             <IsCompInst>true</IsCompInst>
                             <ID>115</ID>
-                            <BindInstances>add_ln48_fu_84_p2 dadd_64ns_64ns_64_4_full_dsp_1_U1</BindInstances>
+                            <BindInstances>add_ln48_fu_88_p2</BindInstances>
                         </Instance>
                     </InstancesList>
                     <BindInstances>add_ln78_fu_147_p2 add_ln82_fu_176_p2 add_ln84_fu_186_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_matrix_vector_product_with_bias_output_layer_1_fu_351</InstName>
+                    <InstName>grp_backprop_Pipeline_RELU_loop11_fu_288</InstName>
+                    <ModuleName>backprop_Pipeline_RELU_loop11</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>288</ID>
+                    <BindInstances>add_ln36_fu_110_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_matrix_vector_product_with_bias_output_layer_1_fu_294</InstName>
                     <ModuleName>matrix_vector_product_with_bias_output_layer_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>351</ID>
+                    <ID>294</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_add_bias_to_activations_1_fu_145</InstName>
-                            <ModuleName>add_bias_to_activations_1</ModuleName>
+                            <InstName>grp_matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s_fu_161</InstName>
+                            <ModuleName>matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>145</ID>
-                            <BindInstances>add_ln48_fu_133_p2</BindInstances>
+                            <ID>161</ID>
+                            <BindInstances>add_ln48_fu_151_p2</BindInstances>
                         </Instance>
                     </InstancesList>
-                    <BindInstances>add_ln96_fu_193_p2 add_ln100_fu_225_p2 add_ln102_fu_240_p2</BindInstances>
+                    <BindInstances>add_ln96_fu_212_p2 add_ln100_fu_244_p2 add_ln102_fu_259_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_RELU_clone_fu_366</InstName>
-                    <ModuleName>RELU_clone</ModuleName>
+                    <InstName>grp_backprop_Pipeline_RELU_loop12_fu_306</InstName>
+                    <ModuleName>backprop_Pipeline_RELU_loop12</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>366</ID>
-                    <BindInstances>add_ln36_fu_205_p2</BindInstances>
+                    <ID>306</ID>
+                    <BindInstances>add_ln36_fu_236_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_soft_max_fu_376</InstName>
-                    <ModuleName>soft_max</ModuleName>
+                    <InstName>grp_backprop_Pipeline_soft_max_loop1_fu_322</InstName>
+                    <ModuleName>backprop_Pipeline_soft_max_loop1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>376</ID>
-                    <BindInstances>add_ln22_fu_173_p2 add_ln27_fu_241_p2</BindInstances>
+                    <ID>322</ID>
+                    <BindInstances>add_ln22_fu_105_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_take_difference_1_fu_386</InstName>
-                    <ModuleName>take_difference_1</ModuleName>
+                    <InstName>grp_backprop_Pipeline_soft_max_loop2_fu_330</InstName>
+                    <ModuleName>backprop_Pipeline_soft_max_loop2</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>386</ID>
-                    <BindInstances>add_ln114_fu_204_p2 add_ln116_fu_223_p2</BindInstances>
+                    <ID>330</ID>
+                    <BindInstances>add_ln27_fu_171_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_get_delta_matrix_weights3_fu_402</InstName>
+                    <InstName>grp_backprop_Pipeline_take_difference_loop1_fu_344</InstName>
+                    <ModuleName>backprop_Pipeline_take_difference_loop1</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>344</ID>
+                    <BindInstances>add_ln114_fu_215_p2 add_ln116_fu_225_p2</BindInstances>
+                </Instance>
+                <Instance>
+                    <InstName>grp_get_delta_matrix_weights3_fu_363</InstName>
                     <ModuleName>get_delta_matrix_weights3</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>402</ID>
+                    <ID>363</ID>
                     <BindInstances>add_ln125_fu_128_p2 empty_52_fu_153_p2 add_ln128_fu_165_p2 add_ln130_fu_185_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_get_oracle_activations2_1_fu_411</InstName>
+                    <InstName>grp_get_oracle_activations2_1_fu_372</InstName>
                     <ModuleName>get_oracle_activations2_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>411</ID>
-                    <BindInstances>add_ln141_fu_169_p2 empty_51_fu_196_p2 add_ln145_fu_208_p2 add_ln147_fu_227_p2 dmul_64ns_64ns_64_4_max_dsp_1_U86 dmul_64ns_64ns_64_4_max_dsp_1_U86</BindInstances>
+                    <ID>372</ID>
+                    <BindInstances>add_ln141_fu_169_p2 empty_51_fu_196_p2 add_ln145_fu_208_p2 add_ln147_fu_227_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_get_delta_matrix_weights2_fu_422</InstName>
+                    <InstName>grp_get_delta_matrix_weights2_fu_383</InstName>
                     <ModuleName>get_delta_matrix_weights2</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>422</ID>
+                    <ID>383</ID>
                     <BindInstances>add_ln158_fu_109_p2 add_ln161_fu_137_p2 add_ln163_fu_152_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_get_oracle_activations1_1_fu_429</InstName>
+                    <InstName>grp_get_oracle_activations1_1_fu_390</InstName>
                     <ModuleName>get_oracle_activations1_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>429</ID>
+                    <ID>390</ID>
                     <BindInstances>add_ln174_fu_152_p2 add_ln178_fu_181_p2 add_ln180_fu_191_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_get_delta_matrix_weights1_1_fu_438</InstName>
+                    <InstName>grp_get_delta_matrix_weights1_1_fu_399</InstName>
                     <ModuleName>get_delta_matrix_weights1_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>438</ID>
+                    <ID>399</ID>
                     <BindInstances>add_ln191_fu_134_p2 p_sum_fu_144_p2 add_ln194_fu_171_p2 add_ln196_fu_186_p2</BindInstances>
                 </Instance>
                 <Instance>
-                    <InstName>grp_update_weights_1_fu_447</InstName>
+                    <InstName>grp_update_weights_1_fu_408</InstName>
                     <ModuleName>update_weights_1</ModuleName>
                     <IsCompInst>true</IsCompInst>
-                    <ID>447</ID>
-                    <BindInstances>add_ln219_fu_599_p2 add_ln222_fu_629_p2 add_ln224_fu_639_p2 add_ln229_fu_678_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U112 add_ln239_fu_724_p2 add_ln242_fu_749_p2 add_ln244_fu_759_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U112 add_ln248_fu_791_p2 add_ln257_fu_835_p2 add_ln260_fu_869_p2 add_ln262_fu_879_p2 add_ln267_fu_918_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U112 add_ln277_fu_964_p2 add_ln280_fu_993_p2 add_ln282_fu_1003_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U112 add_ln286_fu_1036_p2 add_ln295_fu_1080_p2 empty_48_fu_1102_p2 add_ln298_fu_1124_p2 add_ln300_fu_1134_p2 add_ln305_fu_1173_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U112 add_ln315_fu_1227_p2 empty_50_fu_1249_p2 add_ln318_fu_1266_p2 add_ln320_fu_1276_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U112 add_ln324_fu_1308_p2</BindInstances>
+                    <ID>408</ID>
+                    <BindInstances>add_ln219_fu_599_p2 add_ln222_fu_629_p2 add_ln224_fu_639_p2 add_ln229_fu_678_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U149 add_ln239_fu_724_p2 add_ln242_fu_749_p2 add_ln244_fu_759_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U149 add_ln248_fu_791_p2 add_ln257_fu_835_p2 add_ln260_fu_869_p2 add_ln262_fu_879_p2 add_ln267_fu_918_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U149 add_ln277_fu_964_p2 add_ln280_fu_993_p2 add_ln282_fu_1003_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U149 add_ln286_fu_1036_p2 add_ln295_fu_1080_p2 empty_48_fu_1102_p2 add_ln298_fu_1124_p2 add_ln300_fu_1134_p2 add_ln305_fu_1173_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U149 add_ln315_fu_1227_p2 empty_50_fu_1249_p2 add_ln318_fu_1266_p2 add_ln320_fu_1276_p2 dsqrt_64ns_64ns_64_12_no_dsp_1_U149 add_ln324_fu_1308_p2</BindInstances>
                 </Instance>
             </InstancesList>
-            <BindInstances>dmul_64ns_64ns_64_4_max_dsp_1_U130 dmul_64ns_64ns_64_4_max_dsp_1_U130 dadddsub_64ns_64ns_64_4_full_dsp_1_U129 dadddsub_64ns_64ns_64_4_full_dsp_1_U129 dmul_64ns_64ns_64_4_max_dsp_1_U130 delta_weights2_U dmul_64ns_64ns_64_4_max_dsp_1_U130 oracle_activations1_U oracle_activations2_U add_ln356_1_fu_496_p2 dmul_64ns_64ns_64_4_max_dsp_1_U130 add_ln359_fu_524_p2 sub_ln374_fu_557_p2</BindInstances>
+            <BindInstances>activations1_U dadddsub_64ns_64ns_64_4_full_dsp_1_U166 dactivations1_U dactivations2_U dmul_64ns_64ns_64_4_max_dsp_1_U167 dadddsub_64ns_64ns_64_4_full_dsp_1_U166 delta_weights3_U oracle_activations1_U oracle_activations2_U add_ln356_1_fu_448_p2 add_ln356_fu_460_p2 sub_ln374_fu_620_p2</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
         <Module>
-            <Name>add_bias_to_activations_clone_1</Name>
+            <Name>backprop_Pipeline_backprop_loop1_1</Name>
+            <Loops>
+                <backprop_loop1_1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>1.807</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>66</Best-caseLatency>
+                    <Average-caseLatency>66</Average-caseLatency>
+                    <Worst-caseLatency>66</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.528 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.528 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.528 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>66</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <backprop_loop1_1>
+                        <Name>backprop_loop1_1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>64</Latency>
+                        <AbsoluteTimeLatency>0.512 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </backprop_loop1_1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:338</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <backprop_loop1_1>
+                            <Name>backprop_loop1_1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:364</SourceLocation>
+                        </backprop_loop1_1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>201</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>103</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln359_fu_166_p2" SOURCE="data/benchmarks/backprop/backprop.c:359" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln359"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>matrix_vector_product_with_bias_input_layer_1_Pipeline_add_bias_to_activations_l</Name>
             <Loops>
                 <add_bias_to_activations_loop1/>
             </Loops>
@@ -721,13 +799,13 @@
                     <EstimatedClockPeriod>5.048</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>321</Best-caseLatency>
-                    <Average-caseLatency>321</Average-caseLatency>
-                    <Worst-caseLatency>321</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>2.568 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>2.568 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>2.568 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>321</PipelineInitiationInterval>
+                    <Best-caseLatency>69</Best-caseLatency>
+                    <Average-caseLatency>69</Average-caseLatency>
+                    <Worst-caseLatency>69</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.552 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.552 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.552 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>69</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -735,50 +813,49 @@
                         <Name>add_bias_to_activations_loop1</Name>
                         <Slack>5.84</Slack>
                         <TripCount>64</TripCount>
-                        <Latency>320</Latency>
-                        <AbsoluteTimeLatency>2.560 us</AbsoluteTimeLatency>
-                        <IterationLatency>5</IterationLatency>
+                        <Latency>67</Latency>
+                        <AbsoluteTimeLatency>0.536 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
                         <PipelineDepth>5</PipelineDepth>
-                        <PipelineType>no</PipelineType>
+                        <PipelineType>yes</PipelineType>
                         <InstanceList/>
                     </add_bias_to_activations_loop1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/backprop/backprop.c:46</SourceLocation>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:46~data/benchmarks/backprop/backprop.c:69</SourceLocation>
                     <SummaryOfLoopViolations>
                         <add_bias_to_activations_loop1>
                             <Name>add_bias_to_activations_loop1</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:48</SourceLocation>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:69</SourceLocation>
                         </add_bias_to_activations_loop1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <DSP>3</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>449</FF>
+                    <FF>86</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>797</LUT>
+                    <LUT>99</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_84_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dadd" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="add_bias_to_activations_loop1" OPTYPE="dadd" PRAGMA="" RTLNAME="dadd_64ns_64ns_64_4_full_dsp_1_U1" SOURCE="data/benchmarks/backprop/backprop.c:50" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_88_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
             </BindNodes>
         </Module>
         <Module>
@@ -795,13 +872,13 @@
                     <EstimatedClockPeriod>5.703</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>8771</Best-caseLatency>
-                    <Average-caseLatency>8771</Average-caseLatency>
-                    <Worst-caseLatency>8771</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>70.168 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>70.168 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>70.168 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>8771</PipelineInitiationInterval>
+                    <Best-caseLatency>8519</Best-caseLatency>
+                    <Average-caseLatency>8519</Average-caseLatency>
+                    <Worst-caseLatency>8519</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>68.152 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>68.152 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>68.152 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>8519</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -850,18 +927,18 @@
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <DSP>3</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>713</FF>
+                    <FF>350</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>1060</LUT>
+                    <LUT>422</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
@@ -876,7 +953,7 @@
             </BindNodes>
         </Module>
         <Module>
-            <Name>RELU</Name>
+            <Name>backprop_Pipeline_RELU_loop1</Name>
             <Loops>
                 <RELU_loop1/>
             </Loops>
@@ -887,13 +964,13 @@
                     <EstimatedClockPeriod>5.531</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>1985</Best-caseLatency>
-                    <Average-caseLatency>1985</Average-caseLatency>
-                    <Worst-caseLatency>1985</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>15.880 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>15.880 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>15.880 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>1985</PipelineInitiationInterval>
+                    <Best-caseLatency>95</Best-caseLatency>
+                    <Average-caseLatency>95</Average-caseLatency>
+                    <Worst-caseLatency>95</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.760 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.760 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.760 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>95</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -901,54 +978,120 @@
                         <Name>RELU_loop1</Name>
                         <Slack>5.84</Slack>
                         <TripCount>64</TripCount>
-                        <Latency>1984</Latency>
-                        <AbsoluteTimeLatency>15.872 us</AbsoluteTimeLatency>
-                        <IterationLatency>31</IterationLatency>
+                        <Latency>93</Latency>
+                        <AbsoluteTimeLatency>0.744 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
                         <PipelineDepth>31</PipelineDepth>
-                        <PipelineType>no</PipelineType>
+                        <PipelineType>yes</PipelineType>
                         <InstanceList/>
                     </RELU_loop1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/backprop/backprop.c:34</SourceLocation>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:34~data/benchmarks/backprop/backprop.c:368</SourceLocation>
                     <SummaryOfLoopViolations>
                         <RELU_loop1>
                             <Name>RELU_loop1</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:36</SourceLocation>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:368</SourceLocation>
                         </RELU_loop1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <DSP>37</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>1851</FF>
+                    <FF>593</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>2971</LUT>
+                    <LUT>228</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_106_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U12" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="sub"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U13" SOURCE="data/benchmarks/backprop/backprop.c:38" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dexp" DSP="26" ID="" IMPL="fulldsp" LATENCY="9" LOOP="RELU_loop1" OPTYPE="dexp" PRAGMA="" RTLNAME="dexp_64ns_64ns_64_10_full_dsp_1_U15" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="tmp"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsub" DSP="3" ID="" IMPL="fulldsp" LATENCY="3" LOOP="RELU_loop1" OPTYPE="dsub" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U12" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="add"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op ddiv" DSP="0" ID="" IMPL="fabric" LATENCY="13" LOOP="RELU_loop1" OPTYPE="ddiv" PRAGMA="" RTLNAME="ddiv_64ns_64ns_64_14_no_dsp_1_U14" SOURCE="data/benchmarks/backprop/backprop.c:39" STORAGESUBTYPE="" URAM="0" VARIABLE="div"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_110_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>matrix_vector_product_with_bias_second_layer_1_Pipeline_add_bias_to_activations_s</Name>
+            <Loops>
+                <add_bias_to_activations_loop1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.048</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>69</Best-caseLatency>
+                    <Average-caseLatency>69</Average-caseLatency>
+                    <Worst-caseLatency>69</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.552 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.552 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.552 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>69</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <add_bias_to_activations_loop1>
+                        <Name>add_bias_to_activations_loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>67</Latency>
+                        <AbsoluteTimeLatency>0.536 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>5</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </add_bias_to_activations_loop1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:46~data/benchmarks/backprop/backprop.c:87</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <add_bias_to_activations_loop1>
+                            <Name>add_bias_to_activations_loop1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:87</SourceLocation>
+                        </add_bias_to_activations_loop1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>86</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>99</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_88_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
             </BindNodes>
         </Module>
         <Module>
@@ -965,13 +1108,13 @@
                     <EstimatedClockPeriod>5.217</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>41411</Best-caseLatency>
-                    <Average-caseLatency>41411</Average-caseLatency>
-                    <Worst-caseLatency>41411</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.331 ms</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.331 ms</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.331 ms</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>41411</PipelineInitiationInterval>
+                    <Best-caseLatency>41159</Best-caseLatency>
+                    <Average-caseLatency>41159</Average-caseLatency>
+                    <Worst-caseLatency>41159</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.329 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.329 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.329 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>41159</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1020,83 +1163,10 @@
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <DSP>3</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>695</FF>
+                    <FF>332</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>1022</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln78_fu_147_p2" SOURCE="data/benchmarks/backprop/backprop.c:78" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln78"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_fu_176_p2" SOURCE="data/benchmarks/backprop/backprop.c:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln84_fu_186_p2" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln84"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>add_bias_to_activations_1</Name>
-            <Loops>
-                <add_bias_to_activations_loop1/>
-            </Loops>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>5.048</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>16</Best-caseLatency>
-                    <Average-caseLatency>16</Average-caseLatency>
-                    <Worst-caseLatency>16</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.128 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.128 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.128 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>16</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfLoopLatency>
-                    <add_bias_to_activations_loop1>
-                        <Name>add_bias_to_activations_loop1</Name>
-                        <Slack>5.84</Slack>
-                        <TripCount>3</TripCount>
-                        <Latency>15</Latency>
-                        <AbsoluteTimeLatency>0.120 us</AbsoluteTimeLatency>
-                        <IterationLatency>5</IterationLatency>
-                        <PipelineDepth>5</PipelineDepth>
-                        <PipelineType>no</PipelineType>
-                        <InstanceList/>
-                    </add_bias_to_activations_loop1>
-                </SummaryOfLoopLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/backprop/backprop.c:46</SourceLocation>
-                    <SummaryOfLoopViolations>
-                        <add_bias_to_activations_loop1>
-                            <Name>add_bias_to_activations_loop1</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:48</SourceLocation>
-                        </add_bias_to_activations_loop1>
-                    </SummaryOfLoopViolations>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <FF>204</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>105</LUT>
+                    <LUT>384</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -1111,7 +1181,152 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_133_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln78_fu_147_p2" SOURCE="data/benchmarks/backprop/backprop.c:78" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln78"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln82_fu_176_p2" SOURCE="data/benchmarks/backprop/backprop.c:82" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln82"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_second_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln84_fu_186_p2" SOURCE="data/benchmarks/backprop/backprop.c:84" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln84"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>backprop_Pipeline_RELU_loop11</Name>
+            <Loops>
+                <RELU_loop1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.531</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>95</Best-caseLatency>
+                    <Average-caseLatency>95</Average-caseLatency>
+                    <Worst-caseLatency>95</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.760 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.760 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.760 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>95</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <RELU_loop1>
+                        <Name>RELU_loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>64</TripCount>
+                        <Latency>93</Latency>
+                        <AbsoluteTimeLatency>0.744 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>31</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </RELU_loop1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:34~data/benchmarks/backprop/backprop.c:370</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <RELU_loop1>
+                            <Name>RELU_loop1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:370</SourceLocation>
+                        </RELU_loop1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>593</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>228</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_110_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>matrix_vector_product_with_bias_output_layer_1_Pipeline_add_bias_to_activations_s</Name>
+            <Loops>
+                <add_bias_to_activations_loop1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.048</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12</Best-caseLatency>
+                    <Average-caseLatency>12</Average-caseLatency>
+                    <Worst-caseLatency>12</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>96.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>96.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>96.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <add_bias_to_activations_loop1>
+                        <Name>add_bias_to_activations_loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>10</Latency>
+                        <AbsoluteTimeLatency>80.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>3</PipelineII>
+                        <PipelineDepth>5</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </add_bias_to_activations_loop1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:46~data/benchmarks/backprop/backprop.c:105</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <add_bias_to_activations_loop1>
+                            <Name>add_bias_to_activations_loop1</Name>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:48~data/benchmarks/backprop/backprop.c:105</SourceLocation>
+                        </add_bias_to_activations_loop1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>205</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>162</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="add_bias_to_activations_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln48_fu_151_p2" SOURCE="data/benchmarks/backprop/backprop.c:48" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln48"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1128,13 +1343,13 @@
                     <EstimatedClockPeriod>5.703</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>1752</Best-caseLatency>
-                    <Average-caseLatency>1752</Average-caseLatency>
-                    <Worst-caseLatency>1752</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>14.016 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>14.016 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>14.016 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>1752</PipelineInitiationInterval>
+                    <Best-caseLatency>1749</Best-caseLatency>
+                    <Average-caseLatency>1749</Average-caseLatency>
+                    <Worst-caseLatency>1749</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>13.992 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>13.992 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>13.992 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>1749</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1183,10 +1398,10 @@
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>751</FF>
+                    <FF>561</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>364</LUT>
+                    <LUT>380</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -1201,13 +1416,13 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln96_fu_193_p2" SOURCE="data/benchmarks/backprop/backprop.c:96" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln96"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln100_fu_225_p2" SOURCE="data/benchmarks/backprop/backprop.c:100" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln100"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln102_fu_240_p2" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln102"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln96_fu_212_p2" SOURCE="data/benchmarks/backprop/backprop.c:96" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln96"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln100_fu_244_p2" SOURCE="data/benchmarks/backprop/backprop.c:100" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln100"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="matrix_vector_product_with_bias_output_layer_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln102_fu_259_p2" SOURCE="data/benchmarks/backprop/backprop.c:102" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln102"/>
             </BindNodes>
         </Module>
         <Module>
-            <Name>RELU_clone</Name>
+            <Name>backprop_Pipeline_RELU_loop12</Name>
             <Loops>
                 <RELU_loop1/>
             </Loops>
@@ -1218,13 +1433,13 @@
                     <EstimatedClockPeriod>5.609</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>106</Best-caseLatency>
-                    <Average-caseLatency>106</Average-caseLatency>
-                    <Worst-caseLatency>106</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.848 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.848 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.848 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>106</PipelineInitiationInterval>
+                    <Best-caseLatency>89</Best-caseLatency>
+                    <Average-caseLatency>89</Average-caseLatency>
+                    <Worst-caseLatency>89</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.712 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.712 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.712 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>89</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1232,34 +1447,35 @@
                         <Name>RELU_loop1</Name>
                         <Slack>5.84</Slack>
                         <TripCount>3</TripCount>
-                        <Latency>105</Latency>
-                        <AbsoluteTimeLatency>0.840 us</AbsoluteTimeLatency>
-                        <IterationLatency>35</IterationLatency>
-                        <PipelineDepth>35</PipelineDepth>
-                        <PipelineType>no</PipelineType>
+                        <Latency>87</Latency>
+                        <AbsoluteTimeLatency>0.696 us</AbsoluteTimeLatency>
+                        <PipelineII>29</PipelineII>
+                        <PipelineDepth>29</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
                         <InstanceList/>
                     </RELU_loop1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/backprop/backprop.c:34</SourceLocation>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:34~data/benchmarks/backprop/backprop.c:372</SourceLocation>
                     <SummaryOfLoopViolations>
                         <RELU_loop1>
                             <Name>RELU_loop1</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:36</SourceLocation>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:36~data/benchmarks/backprop/backprop.c:372</SourceLocation>
                         </RELU_loop1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>621</FF>
+                    <FF>742</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>530</LUT>
+                    <LUT>389</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -1274,14 +1490,13 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_205_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="RELU_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln36_fu_236_p2" SOURCE="data/benchmarks/backprop/backprop.c:36" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln36"/>
             </BindNodes>
         </Module>
         <Module>
-            <Name>soft_max</Name>
+            <Name>backprop_Pipeline_soft_max_loop1</Name>
             <Loops>
                 <soft_max_loop1/>
-                <soft_max_loop2/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
@@ -1290,13 +1505,13 @@
                     <EstimatedClockPeriod>5.531</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>122</Best-caseLatency>
-                    <Average-caseLatency>122</Average-caseLatency>
-                    <Worst-caseLatency>122</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.976 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.976 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.976 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>122</PipelineInitiationInterval>
+                    <Best-caseLatency>22</Best-caseLatency>
+                    <Average-caseLatency>22</Average-caseLatency>
+                    <Worst-caseLatency>22</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.176 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.176 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.176 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>22</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1304,51 +1519,35 @@
                         <Name>soft_max_loop1</Name>
                         <Slack>5.84</Slack>
                         <TripCount>3</TripCount>
-                        <Latency>45</Latency>
-                        <AbsoluteTimeLatency>0.360 us</AbsoluteTimeLatency>
-                        <IterationLatency>15</IterationLatency>
+                        <Latency>20</Latency>
+                        <AbsoluteTimeLatency>0.160 us</AbsoluteTimeLatency>
+                        <PipelineII>3</PipelineII>
                         <PipelineDepth>15</PipelineDepth>
-                        <PipelineType>no</PipelineType>
+                        <PipelineType>yes</PipelineType>
                         <InstanceList/>
                     </soft_max_loop1>
-                    <soft_max_loop2>
-                        <Name>soft_max_loop2</Name>
-                        <Slack>5.84</Slack>
-                        <TripCount>3</TripCount>
-                        <Latency>75</Latency>
-                        <AbsoluteTimeLatency>0.600 us</AbsoluteTimeLatency>
-                        <IterationLatency>25</IterationLatency>
-                        <PipelineDepth>25</PipelineDepth>
-                        <PipelineType>no</PipelineType>
-                        <InstanceList/>
-                    </soft_max_loop2>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/backprop/backprop.c:18</SourceLocation>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:18~data/benchmarks/backprop/backprop.c:373</SourceLocation>
                     <SummaryOfLoopViolations>
                         <soft_max_loop1>
                             <Name>soft_max_loop1</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:22</SourceLocation>
+                            <IssueType>II Violation</IssueType>
+                            <ViolationType>Memory Dependency</ViolationType>
+                            <IterationDistance>1</IterationDistance>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:22~data/benchmarks/backprop/backprop.c:373</SourceLocation>
                         </soft_max_loop1>
-                        <soft_max_loop2>
-                            <Name>soft_max_loop2</Name>
-                            <IssueType>-</IssueType>
-                            <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:27</SourceLocation>
-                        </soft_max_loop2>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>500</FF>
+                    <FF>271</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>609</LUT>
+                    <LUT>214</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -1363,20 +1562,19 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="soft_max_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln22_fu_173_p2" SOURCE="data/benchmarks/backprop/backprop.c:22" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln22"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="soft_max_loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln27_fu_241_p2" SOURCE="data/benchmarks/backprop/backprop.c:27" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln27"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="soft_max_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln22_fu_105_p2" SOURCE="data/benchmarks/backprop/backprop.c:22" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln22"/>
             </BindNodes>
         </Module>
         <Module>
-            <Name>take_difference_1</Name>
+            <Name>backprop_Pipeline_soft_max_loop2</Name>
             <Loops>
-                <take_difference_loop1/>
+                <soft_max_loop2/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>8.00</TargetClockPeriod>
                     <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>5.534</EstimatedClockPeriod>
+                    <EstimatedClockPeriod>5.609</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
                     <Best-caseLatency>28</Best-caseLatency>
@@ -1389,38 +1587,38 @@
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <take_difference_loop1>
-                        <Name>take_difference_loop1</Name>
+                    <soft_max_loop2>
+                        <Name>soft_max_loop2</Name>
                         <Slack>5.84</Slack>
                         <TripCount>3</TripCount>
-                        <Latency>27</Latency>
-                        <AbsoluteTimeLatency>0.216 us</AbsoluteTimeLatency>
-                        <IterationLatency>9</IterationLatency>
-                        <PipelineDepth>9</PipelineDepth>
-                        <PipelineType>no</PipelineType>
+                        <Latency>26</Latency>
+                        <AbsoluteTimeLatency>0.208 us</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>25</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
                         <InstanceList/>
-                    </take_difference_loop1>
+                    </soft_max_loop2>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>data/benchmarks/backprop/backprop.c:112</SourceLocation>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:17~data/benchmarks/backprop/backprop.c:373</SourceLocation>
                     <SummaryOfLoopViolations>
-                        <take_difference_loop1>
-                            <Name>take_difference_loop1</Name>
+                        <soft_max_loop2>
+                            <Name>soft_max_loop2</Name>
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
-                            <SourceLocation>data/benchmarks/backprop/backprop.c:114</SourceLocation>
-                        </take_difference_loop1>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:27~data/benchmarks/backprop/backprop.c:373</SourceLocation>
+                        </soft_max_loop2>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <FF>403</FF>
+                    <FF>502</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>384</LUT>
+                    <LUT>228</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
@@ -1435,8 +1633,79 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="take_difference_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln114_fu_204_p2" SOURCE="data/benchmarks/backprop/backprop.c:114" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln114"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="take_difference_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln116_fu_223_p2" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln116"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="soft_max_loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln27_fu_171_p2" SOURCE="data/benchmarks/backprop/backprop.c:27" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln27"/>
+            </BindNodes>
+        </Module>
+        <Module>
+            <Name>backprop_Pipeline_take_difference_loop1</Name>
+            <Loops>
+                <take_difference_loop1/>
+            </Loops>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>8.00</TargetClockPeriod>
+                    <ClockUncertainty>2.16</ClockUncertainty>
+                    <EstimatedClockPeriod>5.534</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12</Best-caseLatency>
+                    <Average-caseLatency>12</Average-caseLatency>
+                    <Worst-caseLatency>12</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>96.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>96.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>96.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12</PipelineInitiationInterval>
+                    <PipelineType>no</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <take_difference_loop1>
+                        <Name>take_difference_loop1</Name>
+                        <Slack>5.84</Slack>
+                        <TripCount>3</TripCount>
+                        <Latency>10</Latency>
+                        <AbsoluteTimeLatency>80.000 ns</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>9</PipelineDepth>
+                        <PipelineType>yes</PipelineType>
+                        <InstanceList/>
+                    </take_difference_loop1>
+                </SummaryOfLoopLatency>
+                <SummaryOfViolations>
+                    <IssueType>-</IssueType>
+                    <ViolationType>-</ViolationType>
+                    <SourceLocation>data/benchmarks/backprop/backprop.c:112~data/benchmarks/backprop/backprop.c:374</SourceLocation>
+                    <SummaryOfLoopViolations>
+                        <take_difference_loop1>
+                            <Name>take_difference_loop1</Name>
+                            <IssueType>-</IssueType>
+                            <ViolationType>-</ViolationType>
+                            <SourceLocation>data/benchmarks/backprop/backprop.c:114~data/benchmarks/backprop/backprop.c:374</SourceLocation>
+                        </take_difference_loop1>
+                    </SummaryOfLoopViolations>
+                </SummaryOfViolations>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <FF>406</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>258</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <BindNodes>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="take_difference_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln114_fu_215_p2" SOURCE="data/benchmarks/backprop/backprop.c:114" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln114"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="take_difference_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln116_fu_225_p2" SOURCE="data/benchmarks/backprop/backprop.c:116" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln116"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1601,18 +1870,18 @@
             </PerformanceEstimates>
             <AreaEstimates>
                 <Resources>
-                    <DSP>8</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>521</FF>
+                    <FF>246</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>319</LUT>
+                    <LUT>211</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>0</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>0</UTIL_DSP>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
@@ -1623,8 +1892,6 @@
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1" OPTYPE="sub" PRAGMA="" RTLNAME="empty_51_fu_196_p2" SOURCE="data/benchmarks/backprop/backprop.c:141" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_51"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln145_fu_208_p2" SOURCE="data/benchmarks/backprop/backprop.c:145" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln145"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="get_oracle_activations2_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln147_fu_227_p2" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln147"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations2_loop1_1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U86" SOURCE="data/benchmarks/backprop/backprop.c:147" STORAGESUBTYPE="" URAM="0" VARIABLE="mul8"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dmul" DSP="8" ID="" IMPL="maxdsp" LATENCY="3" LOOP="get_oracle_activations2_loop1" OPTYPE="dmul" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U86" SOURCE="data/benchmarks/backprop/backprop.c:149" STORAGESUBTYPE="" URAM="0" VARIABLE="mul"/>
             </BindNodes>
         </Module>
         <Module>
@@ -2288,42 +2555,40 @@
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln222_fu_629_p2" SOURCE="data/benchmarks/backprop/backprop.c:222" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln222"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln224_fu_639_p2" SOURCE="data/benchmarks/backprop/backprop.c:224" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln224"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln229_fu_678_p2" SOURCE="data/benchmarks/backprop/backprop.c:229" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln229"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U112" SOURCE="data/benchmarks/backprop/backprop.c:235" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U149" SOURCE="data/benchmarks/backprop/backprop.c:235" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_1"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln239_fu_724_p2" SOURCE="data/benchmarks/backprop/backprop.c:239" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln239"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop3_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln242_fu_749_p2" SOURCE="data/benchmarks/backprop/backprop.c:242" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln242"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop3_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln244_fu_759_p2" SOURCE="data/benchmarks/backprop/backprop.c:244" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln244"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U112" SOURCE="data/benchmarks/backprop/backprop.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U149" SOURCE="data/benchmarks/backprop/backprop.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln248_fu_791_p2" SOURCE="data/benchmarks/backprop/backprop.c:248" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln248"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln257_fu_835_p2" SOURCE="data/benchmarks/backprop/backprop.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln257"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop5_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln260_fu_869_p2" SOURCE="data/benchmarks/backprop/backprop.c:260" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln260"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop5_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln262_fu_879_p2" SOURCE="data/benchmarks/backprop/backprop.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln262"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop6" OPTYPE="add" PRAGMA="" RTLNAME="add_ln267_fu_918_p2" SOURCE="data/benchmarks/backprop/backprop.c:267" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln267"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U112" SOURCE="data/benchmarks/backprop/backprop.c:273" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U149" SOURCE="data/benchmarks/backprop/backprop.c:273" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_4"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop7" OPTYPE="add" PRAGMA="" RTLNAME="add_ln277_fu_964_p2" SOURCE="data/benchmarks/backprop/backprop.c:277" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln277"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop7_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln280_fu_993_p2" SOURCE="data/benchmarks/backprop/backprop.c:280" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln280"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop7_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln282_fu_1003_p2" SOURCE="data/benchmarks/backprop/backprop.c:282" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln282"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U112" SOURCE="data/benchmarks/backprop/backprop.c:274" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U149" SOURCE="data/benchmarks/backprop/backprop.c:274" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_3"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop8" OPTYPE="add" PRAGMA="" RTLNAME="add_ln286_fu_1036_p2" SOURCE="data/benchmarks/backprop/backprop.c:286" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln286"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln295_fu_1080_p2" SOURCE="data/benchmarks/backprop/backprop.c:295" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln295"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9" OPTYPE="sub" PRAGMA="" RTLNAME="empty_48_fu_1102_p2" SOURCE="data/benchmarks/backprop/backprop.c:295" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_48"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln298_fu_1124_p2" SOURCE="data/benchmarks/backprop/backprop.c:298" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln298"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop9_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln300_fu_1134_p2" SOURCE="data/benchmarks/backprop/backprop.c:300" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln300"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop10" OPTYPE="add" PRAGMA="" RTLNAME="add_ln305_fu_1173_p2" SOURCE="data/benchmarks/backprop/backprop.c:305" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln305"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U112" SOURCE="data/benchmarks/backprop/backprop.c:311" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_7"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U149" SOURCE="data/benchmarks/backprop/backprop.c:311" STORAGESUBTYPE="" URAM="0" VARIABLE="norm_7"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln315_fu_1227_p2" SOURCE="data/benchmarks/backprop/backprop.c:315" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln315"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11" OPTYPE="sub" PRAGMA="" RTLNAME="empty_50_fu_1249_p2" SOURCE="data/benchmarks/backprop/backprop.c:315" STORAGESUBTYPE="" URAM="0" VARIABLE="empty_50"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln318_fu_1266_p2" SOURCE="data/benchmarks/backprop/backprop.c:318" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln318"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop11_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln320_fu_1276_p2" SOURCE="data/benchmarks/backprop/backprop.c:320" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln320"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U112" SOURCE="data/benchmarks/backprop/backprop.c:312" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op dsqrt" DSP="0" ID="" IMPL="fabric" LATENCY="11" LOOP="" OPTYPE="dsqrt" PRAGMA="" RTLNAME="dsqrt_64ns_64ns_64_12_no_dsp_1_U149" SOURCE="data/benchmarks/backprop/backprop.c:312" STORAGESUBTYPE="" URAM="0" VARIABLE="bias_norm_6"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="update_weights_loop12" OPTYPE="add" PRAGMA="" RTLNAME="add_ln324_fu_1308_p2" SOURCE="data/benchmarks/backprop/backprop.c:324" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln324"/>
             </BindNodes>
         </Module>
         <Module>
             <Name>backprop</Name>
             <Loops>
-                <backprop_loop1>
-                    <backprop_loop1_1/>
-                </backprop_loop1>
+                <backprop_loop1/>
             </Loops>
             <PerformanceEstimates>
                 <SummaryOfTimingAnalysis>
@@ -2332,13 +2597,13 @@
                     <EstimatedClockPeriod>5.975</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>50857142</Best-caseLatency>
-                    <Average-caseLatency>50857142</Average-caseLatency>
-                    <Worst-caseLatency>50857142</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.407 sec</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.407 sec</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.407 sec</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>50857143</PipelineInitiationInterval>
+                    <Best-caseLatency>50132118</Best-caseLatency>
+                    <Average-caseLatency>50132118</Average-caseLatency>
+                    <Worst-caseLatency>50132118</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.401 sec</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.401 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.401 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>50132119</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -2346,37 +2611,29 @@
                         <Name>backprop_loop1</Name>
                         <Slack>5.84</Slack>
                         <TripCount>163</TripCount>
-                        <Latency>50857141</Latency>
-                        <AbsoluteTimeLatency>0.407 sec</AbsoluteTimeLatency>
-                        <IterationLatency>312007</IterationLatency>
-                        <PipelineDepth>312007</PipelineDepth>
+                        <Latency>50132117</Latency>
+                        <AbsoluteTimeLatency>0.401 sec</AbsoluteTimeLatency>
+                        <IterationLatency>307559</IterationLatency>
+                        <PipelineDepth>307559</PipelineDepth>
                         <PipelineType>no</PipelineType>
                         <InstanceList>
-                            <Instance>grp_matrix_vector_product_with_bias_input_layer_1_fu_323</Instance>
-                            <Instance>grp_RELU_fu_335</Instance>
-                            <Instance>grp_matrix_vector_product_with_bias_second_layer_1_fu_341</Instance>
-                            <Instance>grp_matrix_vector_product_with_bias_output_layer_1_fu_351</Instance>
-                            <Instance>grp_RELU_clone_fu_366</Instance>
-                            <Instance>grp_soft_max_fu_376</Instance>
-                            <Instance>grp_take_difference_1_fu_386</Instance>
-                            <Instance>grp_get_delta_matrix_weights3_fu_402</Instance>
-                            <Instance>grp_get_oracle_activations2_1_fu_411</Instance>
-                            <Instance>grp_get_delta_matrix_weights2_fu_422</Instance>
-                            <Instance>grp_get_oracle_activations1_1_fu_429</Instance>
-                            <Instance>grp_get_delta_matrix_weights1_1_fu_438</Instance>
-                            <Instance>grp_update_weights_1_fu_447</Instance>
+                            <Instance>grp_backprop_Pipeline_backprop_loop1_1_fu_248</Instance>
+                            <Instance>grp_matrix_vector_product_with_bias_input_layer_1_fu_260</Instance>
+                            <Instance>grp_backprop_Pipeline_RELU_loop1_fu_272</Instance>
+                            <Instance>grp_matrix_vector_product_with_bias_second_layer_1_fu_278</Instance>
+                            <Instance>grp_backprop_Pipeline_RELU_loop11_fu_288</Instance>
+                            <Instance>grp_matrix_vector_product_with_bias_output_layer_1_fu_294</Instance>
+                            <Instance>grp_backprop_Pipeline_RELU_loop12_fu_306</Instance>
+                            <Instance>grp_backprop_Pipeline_soft_max_loop1_fu_322</Instance>
+                            <Instance>grp_backprop_Pipeline_soft_max_loop2_fu_330</Instance>
+                            <Instance>grp_backprop_Pipeline_take_difference_loop1_fu_344</Instance>
+                            <Instance>grp_get_delta_matrix_weights3_fu_363</Instance>
+                            <Instance>grp_get_oracle_activations2_1_fu_372</Instance>
+                            <Instance>grp_get_delta_matrix_weights2_fu_383</Instance>
+                            <Instance>grp_get_oracle_activations1_1_fu_390</Instance>
+                            <Instance>grp_get_delta_matrix_weights1_1_fu_399</Instance>
+                            <Instance>grp_update_weights_1_fu_408</Instance>
                         </InstanceList>
-                        <backprop_loop1_1>
-                            <Name>backprop_loop1_1</Name>
-                            <Slack>5.84</Slack>
-                            <TripCount>64</TripCount>
-                            <Latency>128</Latency>
-                            <AbsoluteTimeLatency>1.024 us</AbsoluteTimeLatency>
-                            <IterationLatency>2</IterationLatency>
-                            <PipelineDepth>2</PipelineDepth>
-                            <PipelineType>no</PipelineType>
-                            <InstanceList/>
-                        </backprop_loop1_1>
                     </backprop_loop1>
                 </SummaryOfLoopLatency>
                 <SummaryOfViolations>
@@ -2389,12 +2646,6 @@
                             <IssueType>-</IssueType>
                             <ViolationType>-</ViolationType>
                             <SourceLocation>data/benchmarks/backprop/backprop.c:356</SourceLocation>
-                            <backprop_loop1_1>
-                                <Name>backprop_loop1_1</Name>
-                                <IssueType>-</IssueType>
-                                <ViolationType>-</ViolationType>
-                                <SourceLocation>data/benchmarks/backprop/backprop.c:359</SourceLocation>
-                            </backprop_loop1_1>
                         </backprop_loop1>
                     </SummaryOfLoopViolations>
                 </SummaryOfViolations>
@@ -2404,13 +2655,13 @@
                     <BRAM_18K>6</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>~0</UTIL_BRAM>
-                    <DSP>88</DSP>
+                    <DSP>48</DSP>
                     <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>1</UTIL_DSP>
-                    <FF>12531</FF>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>10800</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>15307</LUT>
+                    <LUT>12085</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>1</UTIL_LUT>
                     <URAM>1</URAM>
@@ -2419,19 +2670,18 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U130" SOURCE="data/benchmarks/backprop/backprop.c:340" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="activations1"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U130" SOURCE="data/benchmarks/backprop/backprop.c:341" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="activations2"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U129" SOURCE="data/benchmarks/backprop/backprop.c:343" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations1"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U129" SOURCE="data/benchmarks/backprop/backprop.c:344" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations2"/>
-                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U130" SOURCE="data/benchmarks/backprop/backprop.c:349" STORAGESIZE="64 832 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights1"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights2_U" SOURCE="data/benchmarks/backprop/backprop.c:350" STORAGESIZE="64 4096 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="1" VARIABLE="delta_weights2"/>
-                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U130" SOURCE="data/benchmarks/backprop/backprop.c:351" STORAGESIZE="64 192 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights3"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="activations1_U" SOURCE="data/benchmarks/backprop/backprop.c:340" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="activations1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_s2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U166" SOURCE="data/benchmarks/backprop/backprop.c:341" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_s2p array" URAM="0" VARIABLE="activations2"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dactivations1_U" SOURCE="data/benchmarks/backprop/backprop.c:343" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dactivations2_U" SOURCE="data/benchmarks/backprop/backprop.c:344" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="dactivations2"/>
+                <BindNode BINDTYPE="storage" BRAM="4" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U167" SOURCE="data/benchmarks/backprop/backprop.c:349" STORAGESIZE="64 832 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights1"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="dadddsub_64ns_64ns_64_4_full_dsp_1_U166" SOURCE="data/benchmarks/backprop/backprop.c:350" STORAGESIZE="64 4096 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="1" VARIABLE="delta_weights2"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="delta_weights3_U" SOURCE="data/benchmarks/backprop/backprop.c:351" STORAGESIZE="64 192 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="delta_weights3"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="oracle_activations1_U" SOURCE="data/benchmarks/backprop/backprop.c:352" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="oracle_activations1"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="oracle_activations2_U" SOURCE="data/benchmarks/backprop/backprop.c:353" STORAGESIZE="64 64 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p array" URAM="0" VARIABLE="oracle_activations2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln356_1_fu_496_p2" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="dmul_64ns_64ns_64_4_max_dsp_1_U130" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln359_fu_524_p2" SOURCE="data/benchmarks/backprop/backprop.c:359" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln359"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln374_fu_557_p2" SOURCE="data/benchmarks/backprop/backprop.c:374" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln374"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln356_1_fu_448_p2" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln356_fu_460_p2" SOURCE="data/benchmarks/backprop/backprop.c:356" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln356"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="backprop_loop1" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln374_fu_620_p2" SOURCE="data/benchmarks/backprop/backprop.c:374" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln374"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
@@ -2929,71 +3179,56 @@
         <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:325" status="valid" parentFunction="update_weights" variable="" isDirective="0" options="min=3 max=3 avg=3"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:357" status="valid" parentFunction="backprop" variable="" isDirective="0" options="min=163 max=163 avg=163"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/backprop/backprop.c:360" status="valid" parentFunction="backprop" variable="" isDirective="0" options="min=64 max=64 avg=64"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:59" status="valid" parentFunction="add_bias_to_activations" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:40" status="valid" parentFunction="add_bias_to_activations" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:45" status="valid" parentFunction="add_bias_to_activations" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:56" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:84" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:69" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:35" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:36" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:42" status="valid" parentFunction="backprop" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:65" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:75" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:50" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:60" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:11" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:12" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:50" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:66" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:76" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:40" status="valid" parentFunction="get_delta_matrix_weights1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:51" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:61" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:13" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:14" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:51" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:67" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:77" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:41" status="valid" parentFunction="get_delta_matrix_weights2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:52" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:62" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:15" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:16" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:52" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:68" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:73" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:42" status="valid" parentFunction="get_delta_matrix_weights3" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:53" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:58" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:7" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:8" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:53" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:69" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:74" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:43" status="valid" parentFunction="get_oracle_activations1" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:54" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:59" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:9" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:10" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:54" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:62" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:70" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:44" status="valid" parentFunction="get_oracle_activations2" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:47" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:55" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:1" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:2" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:46" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:64" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:72" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:37" status="valid" parentFunction="matrix_vector_product_with_bias_input_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:49" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:57" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:5" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:6" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:48" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:63" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:71" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:39" status="valid" parentFunction="matrix_vector_product_with_bias_output_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:48" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:56" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:3" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:4" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:47" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:58" status="valid" parentFunction="relu" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:39" status="valid" parentFunction="relu" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:44" status="valid" parentFunction="relu" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:57" status="valid" parentFunction="soft_max" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:37" status="valid" parentFunction="soft_max" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:38" status="valid" parentFunction="soft_max" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:43" status="valid" parentFunction="soft_max" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:60" status="valid" parentFunction="take_difference" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:41" status="valid" parentFunction="take_difference" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:49" status="valid" parentFunction="take_difference" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/backprop.tcl:61" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:78" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:79" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:80" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:81" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:82" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:83" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:38" status="valid" parentFunction="matrix_vector_product_with_bias_second_layer" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/backprop.tcl:46" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:63" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:64" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:65" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:66" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:67" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="loop_flatten" location="../base_directives/backprop.tcl:68" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:17" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:18" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:19" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
@@ -3012,7 +3247,7 @@
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:32" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:33" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/backprop.tcl:34" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/backprop.tcl:55" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/backprop.tcl:45" status="valid" parentFunction="update_weights" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

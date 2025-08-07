@@ -193,11 +193,11 @@ void Autocorrelation(
     longword *L_ACF
 )
 {
-#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 38 "data/benchmarks/gsm/gsm_lpc.c"
 
-#line 32 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 38 "data/benchmarks/gsm/gsm_lpc.c"
 
@@ -351,11 +351,11 @@ void Reflection_coefficients(
     register word *r
 )
 {
-#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 164 "data/benchmarks/gsm/gsm_lpc.c"
 
-#line 33 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 23 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 164 "data/benchmarks/gsm/gsm_lpc.c"
 
@@ -425,7 +425,7 @@ void Reflection_coefficients(
         if (P[0] < temp) {
             Reflection_coefficients_label6:
             for (i = n; i <= 8; i++) {
-#line 25 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 210 "data/benchmarks/gsm/gsm_lpc.c"
 
@@ -452,7 +452,7 @@ void Reflection_coefficients(
 
         Reflection_coefficients_label5:
         for (m = 1; m <= 8 - n; m++) {
-#line 24 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE LOOP_FLATTEN off=true
 # 229 "data/benchmarks/gsm/gsm_lpc.c"
 

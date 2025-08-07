@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_oracle_activations1_1'
 ================================================================
-* Date:           Wed Jul  9 03:32:57 2025
+* Date:           Wed Aug  6 20:24:18 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -147,15 +147,15 @@
 |ap_done                      |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
 |ap_idle                      |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
 |ap_ready                     |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_990_p_din0            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_990_p_din1            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_990_p_opcode          |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_990_p_dout0           |   in|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_990_p_ce              |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_994_p_din0            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_994_p_din1            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_994_p_dout0           |   in|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
-|grp_fu_994_p_ce              |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_din0            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_din1            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_opcode          |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_dout0           |   in|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_988_p_ce              |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_din0            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_din1            |  out|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_dout0           |   in|   64|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
+|grp_fu_992_p_ce              |  out|    1|  ap_ctrl_hs|  get_oracle_activations1.1|  return value|
 |weights2_address0            |  out|   12|   ap_memory|                   weights2|         array|
 |weights2_ce0                 |  out|    1|   ap_memory|                   weights2|         array|
 |weights2_q0                  |   in|   64|   ap_memory|                   weights2|         array|

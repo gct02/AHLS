@@ -402,11 +402,11 @@ int aes_main (int statemt[32], int key[32]);
 # 65 "data/benchmarks/aes/aes_enc.c" 2
 
 int encrypt(int statemt[32], int key[32], int type) {
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 66 "data/benchmarks/aes/aes_enc.c"
 
-#line 34 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
+#line 31 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/aes.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 66 "data/benchmarks/aes/aes_enc.c"
 
@@ -458,7 +458,7 @@ int encrypt(int statemt[32], int key[32], int type) {
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 110 "data/benchmarks/aes/aes_enc.c"
 
-#pragma HLS LOOP_TRIPCOUNT min=9 max=13 avg=11
+#pragma HLS LOOP_TRIPCOUNT min=9 max=9 avg=9
  ByteSub_ShiftRow(statemt, nb);
         MixColumn_AddRoundKey(statemt, nb, i);
     }

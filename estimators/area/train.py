@@ -65,10 +65,10 @@ def evaluate(
 
     print(f"\nMAPE at epoch {epoch + 1}: {mape:.4f}")
 
-    if checkpoint_manager.check_improvement(mape, epoch, update=True):
+    if checkpoint_manager.check_improvement(mape, epoch + 1, update=True):
         indices = [data.solution_index for data in loader.dataset]
         checkpoint_manager.save_checkpoint(
-            model=model, epoch=epoch, mape=mape, 
+            model=model, epoch=epoch + 1, mape=mape, 
             preds=preds, targets=targets, indices=indices,
             check_for_improvement=False
         )
@@ -188,7 +188,7 @@ def main(args: Dict[str, Any]):
         'negative_slope': 0.2,
         'dropout_gnn': 0.1,
         'dropout_mlp': 0.1,
-        'gmt_k': 10,
+        'gmt_k': 16,
         'jk_mode': 'lstm'
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
@@ -299,7 +299,7 @@ def main(args: Dict[str, Any]):
         preds=preds,
         indices=indices, 
         benchmark=test_bench, 
-        metric='Area', 
+        metric='area', 
         output_path=f"{output_dir}/predictions.png", 
         mape=min_mape
     )

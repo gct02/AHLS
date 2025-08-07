@@ -1,4 +1,4 @@
-INFO-FLOW: Workspace /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0 opened at Wed Jul 09 04:14:48 -03 2025
+INFO-FLOW: Workspace /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0 opened at Thu Aug 07 00:47:38 -03 2025
 Execute       send_msg_by_id INFO @200-1505@%s%s default  vivado 
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Execute     config_array_partition -throughput_driven off 
@@ -10,7 +10,7 @@ DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2023.2/lib
 DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2023.2/data/parts/arch.xml
 DBG:HLSDevice: init success
 INFO: [HLS 200-1611] Setting target device to 'xcu50-fsvh2104-2-e'
-Command       create_platform done; 0.47 sec.
+Command       create_platform done; 0.53 sec.
 Execute       source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
 Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
 Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
@@ -25,7 +25,7 @@ Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/i
 Execute         source /tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
 Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
 Execute       config_compile -quiet -complex-mul-dsp=0 
-Command     set_part done; 0.54 sec.
+Command     set_part done; 0.61 sec.
 Execute     create_clock -period 8 -name default 
 INFO: [HLS 200-1510] Running: create_clock -period 8 -name default 
 Execute       ap_set_clock -name default -period 8 -default=false 
@@ -65,7 +65,7 @@ Execute     csynth_design
 INFO: [HLS 200-1510] Running: csynth_design 
 INFO-FLOW: Running SLX 'csynth' proc: ::SLX::run_csynth
 Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 226.629 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 226.633 MB.
 Execute         set_directive_top stencil3d -name=stencil3d 
 Execute         source /tools/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
 Execute         source /tools/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
@@ -94,7 +94,7 @@ INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-
 Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info 
 INFO-FLOW: compiling source code to llvm bc
 INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil.pp.0.c.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing -hls-emit-hint-scope /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil.pp.0.c -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=8 -std=gnu99 -fgnu89-inline -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /tools/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I /tools/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil.bc -hls-platform-db-name=/tools/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/platform.db -hls-platform-name=virtexuplus_medium -device-resource-info=BRAM_2688.000000_DSP_5952.000000_FF_1743360.000000_LUT_871680.000000_SLICE_108960.000000_SLR_2.000000_URAM_640.000000 -device-name-info=xcu50-fsvh2104-2-e > /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil.pp.0.c.clang.out.log 2> /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil.pp.0.c.clang.err.log
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.24 seconds. CPU system time: 0.21 seconds. Elapsed time: 0.45 seconds; current allocated memory: 228.809 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.22 seconds. CPU system time: 0.19 seconds. Elapsed time: 0.41 seconds; current allocated memory: 228.812 MB.
 INFO-FLOW: Linking Debug ...
 INFO-FLOW: Linking dut bc code.
 Execute         run_link_or_opt -out /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.0.bc -args  "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil.g.bc"  
@@ -109,13 +109,13 @@ INFO-FLOW: Linking math bc lib
 Execute         run_link_or_opt -out /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.2.m1.bc -args /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.1.lower.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsm_39.bc /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsmc++_39.bc 
 INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.1.lower.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsm_39.bc /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libhlsmc++_39.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.2.m1.bc > /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.out.log 2> /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.err.log
 INFO-FLOW: 
-Command         run_link_or_opt done; 1.08 sec.
+Command         run_link_or_opt done; 1.13 sec.
 Execute         run_link_or_opt -opt -out /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc -args /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=stencil3d -reflow-float-conversion 
 INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc.opt.diag.yml /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=stencil3d -reflow-float-conversion -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc > /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc.opt.out.log 2> /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc.opt.err.log
 INFO-FLOW: 
 INFO-FLOW: Running: gen_design_size_report post-opt
 INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
-Command         run_link_or_opt done; 0.44 sec.
+Command         run_link_or_opt done; 0.49 sec.
 Execute         run_link_or_opt -out /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.4.m2.bc -args /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libfloatconversion_39.bc 
 INFO-FLOW: run_clang exec: /tools/Xilinx/Vitis_HLS/2023.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.3.fpc.bc -only-needed /tools/Xilinx/Vitis_HLS/2023.2/lnx64/lib/libfloatconversion_39.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.4.m2.bc > /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.out.log 2> /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.err.log
 INFO-FLOW: 
@@ -160,20 +160,20 @@ INFO: [HLS 200-1995] There were 142 instructions in the design after the 'HW Tra
 Execute         send_msg_by_id INFO @200-1995@%s%s%s 174 HW Transforms (step 2) /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/syn/report/csynth_design_size.rpt 
 INFO: [HLS 200-1995] There were 174 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/syn/report/csynth_design_size.rpt
 INFO-FLOW: DBG:PUTS: copy_raw_kernel_xml ap_link_39: kernel.xml not generated: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/kernel.internal.xml
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.61 seconds. CPU system time: 0.23 seconds. Elapsed time: 6.62 seconds; current allocated memory: 230.043 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 230.043 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.71 seconds. CPU system time: 0.22 seconds. Elapsed time: 6.73 seconds; current allocated memory: 230.070 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 230.070 MB.
 Execute         opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
 Execute           cleanup_all_models 
 INFO: [HLS 200-10] Starting code transformations ...
 INFO-FLOW: Running Standard Transforms...
 Execute           transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top stencil3d -deadargelim -mem2reg -instcombine -dce -presyn-prepare -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -auto-shift-reg-idiom -promote-dbg-pointer -norm-name /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.0.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.1.bc -f -phase std-opt 
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 230.379 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 230.395 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
 INFO-FLOW: Checking Synthesizability 1/2..
 Execute           transform -hls -syn-check -check-rec-only -scalarrepl -norm-name -dce -mem2reg -instcombine -directive-preproc -mem2reg -dse -dce -dce -pag -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -data-pack -instcombine -dce -inst-simplify -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -directive-preproc -mem2reg -dse -dce -globaldce /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.1.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.2.prechk.bc -f 
 INFO-FLOW: Checking Synthesizability 2/2..
 Execute           transform -syn-check /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.2.prechk.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.2.bc -f -phase syn-check 
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 230.445 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 230.457 MB.
 INFO-FLOW: Compiler optimizing ...
 INFO-FLOW: Share syncheck's 1.bc for syn flow: copy /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.g.1.bc to /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.o.1.bc
 INFO-FLOW: Presyn 1...
@@ -181,13 +181,14 @@ Execute           transform -hls -tmp /home/gabriel/Documents/UFRGS/RAISE/AHLS/A
 INFO-FLOW: Presyn 2...
 Execute           transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin2 -bitwidthmin2 -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -barrier -norm-name /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.o.1.tmp.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.o.2.bc -f -phase presyn 
 INFO: [XFORM 203-11] Balancing expressions in function 'stencil3d' (data/benchmarks/stencil3d/stencil.c:10:13)...5 expression(s) balanced.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 252.859 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 252.840 MB.
 INFO-FLOW: Building ssdm...
 Execute           transform -hls -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -aggr-aa -licm -loop-dep -loop-bound -licm -loop-simplify -loop-sink-hoist -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg-lite -loop-simplify -array-burst -promote-global-argument -dce -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg-lite -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -deadargelim -dce -canonicalize-dataflow -dce -deadargelim -globaldce -mem2reg -bram-byte-enable -inst-simplify -inst-rectify -instcombine -adce -deadargelim -load-elim -read-loop-dep -loop-simplify -loop-extract-inner -directive-preproc -bitwidthmin2 -bitwidthmin2 -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable-spec-prop -deadargelim -inst-simplify -dce -mem2reg -instcombine -gvn -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg-lite -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -float-op-raise -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg-lite -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg-lite -loop-simplify -mergereturn -inst-simplify -inst-rectify -globaldce -dce -load-elim -bitop-lower -float-op-raise -fma-raise -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -dyn-mem-reuse -dce -recurrence-min -dce -share-scalar-alloca -deadargelim -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dce -dump-loop-dep-to-ir -check-all-ssdm -dump-complexity-metric -cdfg-build /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.o.2.bc -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
 Execute             auto_get_db
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 252.859 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 252.840 MB.
 INFO-FLOW: Finish building internal data model.
-Command       elaborate done; 7.18 sec.
+Command         opt_and_import_c done; 0.13 sec.
+Command       elaborate done; 7.28 sec.
 Execute       ap_eval exec zip -j /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/dut.hcp $dbDir/a.o.3.bc $dbDir/${topname}.rtl_wrap.cfg.tcl $dbDir/apatb_${topname}.cpp $dbDir/apatb_${topname}_util.cpp $dbDir/apatb_${topname}_ir.ll $dbDir/mapper_${topname}.cpp $dbDir/top-io-fe.xml $dbDir/kernel.internal.xml $workdir/../hls.app 
 Execute       autosyn -from_csynth_design=1 
 INFO: [HLS 200-10] Starting hardware synthesis ...
@@ -214,7 +215,7 @@ Execute         set_default_model stencil3d
 Execute         schedule -model stencil3d 
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.1 seconds; current allocated memory: 252.859 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.11 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.12 seconds; current allocated memory: 252.840 MB.
 Execute         syn_report -verbosereport -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil3d.verbose.sched.rpt 
 Execute           list_part -family xcu50-fsvh2104-2-e 
 Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
@@ -228,7 +229,7 @@ INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 252.859 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 252.840 MB.
 Execute         syn_report -verbosereport -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil3d.verbose.bind.rpt 
 Execute           list_part -family xcu50-fsvh2104-2-e 
 Execute             ap_family_info -name xcu50-fsvh2104-2-e -data names 
@@ -249,7 +250,7 @@ INFO: [RTGEN 206-500] Setting interface mode on port 'stencil3d/sol' to 'ap_memo
 INFO: [RTGEN 206-500] Setting interface mode on function 'stencil3d' to 'ap_ctrl_hs'.
 INFO: [RTGEN 206-100] Generating core module 'mul_32s_32s_32_1_1': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'stencil3d'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 252.859 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 252.840 MB.
 Execute         source /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil3d.rtl_wrap.cfg.tcl 
 Execute         gen_rtl stencil3d -istop -style xilinx -f -lang vhdl -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/syn/vhdl/stencil3d 
 Execute         gen_rtl stencil3d -istop -style xilinx -f -lang vlog -o /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/syn/verilog/stencil3d 
@@ -326,7 +327,7 @@ Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info -quiet
 Execute         source /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/global.setting.tcl 
 Execute         source /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/global.setting.tcl 
 Execute         source /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil3d.compgen.tcl 
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.12 seconds. CPU system time: 0 seconds. Elapsed time: 0.13 seconds; current allocated memory: 252.859 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.15 seconds; current allocated memory: 252.840 MB.
 INFO-FLOW: DBG:PROC: ::HLSREPORTS::create_csynth_xml bind_info_var='bind_info' RtlSubPrefix='stencil3d_' outfile=''
 INFO-FLOW: Running: create_csynth_xml read xml data
 INFO-FLOW: Done: create_csynth_xml read xml data time: 0 seconds per iteration
@@ -359,15 +360,15 @@ INFO-FLOW: Running: gen_csynth_sec_pragma
 INFO-FLOW: Done: gen_csynth_sec_pragma time: 0 seconds per iteration
 INFO-FLOW: DBG:PUTS:      update_csynth_reports wrote xml
 INFO-FLOW: DBG:PUTS:      update_csynth_reports appended to csynth rpt file
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.21 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.22 seconds; current allocated memory: 255.703 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.24 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.26 seconds; current allocated memory: 255.613 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for stencil3d.
 INFO: [VLOG 209-307] Generating Verilog RTL for stencil3d.
 Execute         syn_report -model stencil3d -printsummary 
 INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
 INFO: [HLS 200-789] **** Estimated Fmax: 171.38 MHz
-Command       autosyn done; 0.48 sec.
-Command     csynth_design done; 7.73 sec.
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.46 seconds. CPU system time: 0.49 seconds. Elapsed time: 7.73 seconds; current allocated memory: 29.125 MB.
+Command       autosyn done; 0.58 sec.
+Command     csynth_design done; 7.94 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.67 seconds. CPU system time: 0.46 seconds. Elapsed time: 7.94 seconds; current allocated memory: 29.098 MB.
 Execute     export_design -flow impl -format syn_dcp -rtl verilog 
 INFO: [HLS 200-1510] Running: export_design -flow impl -format syn_dcp -rtl verilog 
 Execute       config_export -flow=impl -format=syn_dcp -rtl=verilog 
@@ -554,18 +555,18 @@ INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report topinfo_dict='RtlTopPrefix {
 INFO-FLOW: DBG:PUTS:     auto_impl_report: impl processing xml
 Execute       ap_part_info -quiet -data family -name xcu50-fsvh2104-2-e 
 INFO-FLOW: DBG:PUTS:     writing export xml file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/impl/report/verilog/export_impl.xml
-INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report_txt xml_root='domNode0x734edbca35a8' export_design_flow='impl' export_rpt='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/impl/report/verilog/export_impl.rpt' rpt_txt_var=''
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report_txt xml_root='domNode0x6ffbdfd74898' export_design_flow='impl' export_rpt='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/impl/report/verilog/export_impl.rpt' rpt_txt_var=''
 INFO-FLOW: DBG:PUTS:     wrote export rpt file: export_impl.rpt
 INFO-FLOW: DBG:PUTS:     auto_impl_report: syn processing xml
 Execute       ap_part_info -quiet -data family -name xcu50-fsvh2104-2-e 
 INFO-FLOW: DBG:PUTS:     writing export xml file: /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/impl/report/verilog/export_syn.xml
-INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report_txt xml_root='domNode0x734edbd3b9e8' export_design_flow='syn' export_rpt='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/impl/report/verilog/export_syn.rpt' rpt_txt_var=''
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::auto_impl_report_txt xml_root='domNode0x6ffbdfe232d8' export_design_flow='syn' export_rpt='/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/impl/report/verilog/export_syn.rpt' rpt_txt_var=''
 INFO-FLOW: DBG:PUTS:     wrote export rpt file: export_syn.rpt
 Execute       send_msg_by_id INFO @200-802@%s data/base_solutions/STENCIL3D/solution0/impl/export.dcp 
 INFO: [HLS 200-802] Generated output file data/base_solutions/STENCIL3D/solution0/impl/export.dcp
 Execute       source /home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_solutions/STENCIL3D/solution0/.autopilot/db/stencil3d.tbgen.tcl 
 Execute       send_msg_by_id INFO @200-802@%s data/base_solutions/STENCIL3D/solution0/impl/export.veo 
 INFO: [HLS 200-802] Generated output file data/base_solutions/STENCIL3D/solution0/impl/export.veo
-Command     export_design done; 282.63 sec.
-INFO: [HLS 200-111] Finished Command export_design CPU user time: 141.31 seconds. CPU system time: 7.88 seconds. Elapsed time: 282.63 seconds; current allocated memory: 6.215 MB.
+Command     export_design done; 282.72 sec.
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 143.05 seconds. CPU system time: 7.38 seconds. Elapsed time: 282.72 seconds; current allocated memory: 6.336 MB.
 Execute     cleanup_all 

@@ -20,7 +20,7 @@ def get_layerwise_decay_params(model, initial_lr, weight_decay, decay_rate=0.9):
     params = []
 
     # Add the head MLPs with the highest learning rate
-    head_prefixes = ['mlps.', 'y_base_mlp.']
+    head_prefixes = ['mlps.', 'graph_attr_mlp.']
     params.append({
         'params': [p for n, p in model.named_parameters() if any(n.startswith(prefix) for prefix in head_prefixes)],
         'lr': initial_lr,

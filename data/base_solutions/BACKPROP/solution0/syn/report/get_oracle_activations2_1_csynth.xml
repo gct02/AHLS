@@ -74,10 +74,10 @@
 
 <AreaEstimates>
 <Resources>
-<DSP>8</DSP>
-<FF>521</FF>
-<LUT>319</LUT>
+<FF>246</FF>
+<LUT>211</LUT>
 <BRAM_18K>0</BRAM_18K>
+<DSP>0</DSP>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
@@ -157,7 +157,7 @@
 <Attribute>control</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_din0</name>
+<name>grp_fu_988_p_din0</name>
 <Object>get_oracle_activations2.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -168,7 +168,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_din1</name>
+<name>grp_fu_988_p_din1</name>
 <Object>get_oracle_activations2.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -179,7 +179,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_opcode</name>
+<name>grp_fu_988_p_opcode</name>
 <Object>get_oracle_activations2.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -190,7 +190,7 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_dout0</name>
+<name>grp_fu_988_p_dout0</name>
 <Object>get_oracle_activations2.1</Object>
 <Type>return value</Type>
 <Scope></Scope>
@@ -201,7 +201,51 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>grp_fu_990_p_ce</name>
+<name>grp_fu_988_p_ce</name>
+<Object>get_oracle_activations2.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_1008_p_din0</name>
+<Object>get_oracle_activations2.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_1008_p_din1</name>
+<Object>get_oracle_activations2.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_1008_p_dout0</name>
+<Object>get_oracle_activations2.1</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>64</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>grp_fu_1008_p_ce</name>
 <Object>get_oracle_activations2.1</Object>
 <Type>return value</Type>
 <Scope></Scope>

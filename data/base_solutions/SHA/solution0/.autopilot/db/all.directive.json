@@ -22,11 +22,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "local_memset",
+    "functionName": "local_memcpy",
     "id": 1,
     "ifcond": "",
     "insert_position": "",
-    "label": "local_memset_label1",
+    "label": "local_memcpy_label3",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -43,11 +43,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "local_memcpy",
+    "functionName": "sha_update",
     "id": 2,
     "ifcond": "",
     "insert_position": "",
-    "label": "local_memcpy_label3",
+    "label": "sha_update_label4",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -64,11 +64,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_update",
+    "functionName": "sha_transform",
     "id": 3,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_update_label4",
+    "label": "sha_transform_label1",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -89,7 +89,7 @@
     "id": 4,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_transform_label1",
+    "label": "sha_transform_label2",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -110,7 +110,7 @@
     "id": 5,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_transform_label2",
+    "label": "sha_transform_label3",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -131,7 +131,7 @@
     "id": 6,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_transform_label3",
+    "label": "sha_transform_label4",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -152,7 +152,7 @@
     "id": 7,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_transform_label4",
+    "label": "sha_transform_label5",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -173,7 +173,7 @@
     "id": 8,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_transform_label5",
+    "label": "sha_transform_label6",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -190,11 +190,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_transform",
+    "functionName": "sha_stream",
     "id": 9,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_transform_label6",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -211,11 +211,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_stream",
+    "functionName": "local_memset",
     "id": 10,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_stream_label0",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -232,11 +232,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_stream",
+    "functionName": "local_memcpy",
     "id": 11,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_stream_label1",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -253,11 +253,11 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_stream",
+    "functionName": "sha_transform",
     "id": 12,
     "ifcond": "",
     "insert_position": "",
-    "label": "sha_stream_label2",
+    "label": "",
     "pragma": {
       "name": "PIPELINE",
       "option": [
@@ -274,7 +274,7 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_stream",
+    "functionName": "sha_update",
     "id": 13,
     "ifcond": "",
     "insert_position": "",
@@ -301,7 +301,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -322,7 +322,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -343,7 +343,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -364,7 +364,7 @@
     "insert_position": "",
     "label": "",
     "pragma": {
-      "name": "PIPELINE",
+      "name": "INLINE",
       "option": [
         {
           "name": "off",
@@ -379,197 +379,8 @@
   },
   {
     "functionLabel": "",
-    "functionName": "sha_init",
-    "id": 18,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "PIPELINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 19,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "sha_final",
-    "id": 19,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "PIPELINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 20,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "local_memset",
-    "id": 20,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 21,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "local_memcpy",
-    "id": 21,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 22,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "local_memset",
-    "id": 22,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 23,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "sha_transform",
-    "id": 23,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 24,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "sha_update",
-    "id": 24,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 25,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "sha_init",
-    "id": 25,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 26,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "sha_final",
-    "id": 26,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "INLINE",
-      "option": [
-        {
-          "name": "off",
-          "value": "true"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl",
-    "sourceLine": 27,
-    "success": true
-  },
-  {
-    "functionLabel": "",
     "functionName": "sha_stream",
-    "id": 27,
+    "id": 18,
     "ifcond": "",
     "insert_position": "",
     "label": "",
@@ -583,7 +394,7 @@
       ]
     },
     "slx": false,
-    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl",
+    "sourceFile": "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl",
     "sourceLine": 9,
     "success": true
   }

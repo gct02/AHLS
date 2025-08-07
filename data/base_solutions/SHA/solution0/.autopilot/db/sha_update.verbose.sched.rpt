@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'sha_update'
 ================================================================
-* Date:           Wed Jul  9 04:09:34 2025
+* Date:           Thu Aug  7 00:38:44 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        SHA
@@ -25,24 +25,24 @@
 
 + Latency: 
     * Summary: 
-    +---------+---------+----------+----------+-------+-------+---------+
-    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
-    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
-    +---------+---------+----------+----------+-------+-------+---------+
-    |    50803|    57395|  0.406 ms|  0.459 ms|  50803|  57395|       no|
-    +---------+---------+----------+----------+-------+-------+---------+
+    +---------+---------+-----------+----------+-----+-------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max   | min |  max  |   Type  |
+    +---------+---------+-----------+----------+-----+-------+---------+
+    |        3|    57395|  24.000 ns|  0.459 ms|    3|  57395|       no|
+    +---------+---------+-----------+----------+-----+-------+---------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        +---------------------+---------+---------+-----------+-----------+-----------+-----------+----------+
-        |                     |  Latency (cycles) | Iteration |  Initiation Interval  |    Trip   |          |
-        |      Loop Name      |   min   |   max   |  Latency  |  achieved |   target  |   Count   | Pipelined|
-        +---------------------+---------+---------+-----------+-----------+-----------+-----------+----------+
-        |- sha_update_label4  |    50800|    57344|  400 ~ 448|          -|          -|  127 ~ 128|        no|
-        +---------------------+---------+---------+-----------+-----------+-----------+-----------+----------+
+        +---------------------+---------+---------+-----------+-----------+-----------+---------+----------+
+        |                     |  Latency (cycles) | Iteration |  Initiation Interval  |   Trip  |          |
+        |      Loop Name      |   min   |   max   |  Latency  |  achieved |   target  |  Count  | Pipelined|
+        +---------------------+---------+---------+-----------+-----------+-----------+---------+----------+
+        |- sha_update_label4  |        0|    57344|  400 ~ 448|          -|          -|  0 ~ 128|        no|
+        +---------------------+---------+---------+-----------+-----------+-----------+---------+----------+
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -87,7 +87,7 @@ IsGatedGlobalClock: 0
 State 1 <SV = 0> <Delay = 2.64>
 ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%idx = alloca i32 1"   --->   Operation 7 'alloca' 'idx' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%count_addr_02 = alloca i32 1"   --->   Operation 8 'alloca' 'count_addr_02' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specpipeline_ln18 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:18]   --->   Operation 9 'specpipeline' 'specpipeline_ln18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specpipeline_ln14 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:14]   --->   Operation 9 'specpipeline' 'specpipeline_ln14' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%count_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %count" [data/benchmarks/sha/sha.c:155]   --->   Operation 10 'read' 'count_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%buffer_offset_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %buffer_offset" [data/benchmarks/sha/sha.c:155]   --->   Operation 11 'read' 'buffer_offset_read' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%sha_info_count_lo_load = load i32 %sha_info_count_lo" [data/benchmarks/sha/sha.c:155]   --->   Operation 12 'load' 'sha_info_count_lo_load' <Predicate = true> <Delay = 0.00>
@@ -135,7 +135,7 @@ State 4 <SV = 3> <Delay = 0.00>
 ST_4 : Operation 48 [2/2] (0.00ns)   --->   "%call_ln165 = call void @sha_transform, i32 %sha_info_data, i32 %sha_info_digest" [data/benchmarks/sha/sha.c:165]   --->   Operation 48 'call' 'call_ln165' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 5 <SV = 4> <Delay = 0.00>
-ST_5 : Operation 49 [1/1] (0.00ns)   --->   "%speclooptripcount_ln163 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 127, i64 128, i64 127" [data/benchmarks/sha/sha.c:163]   --->   Operation 49 'speclooptripcount' 'speclooptripcount_ln163' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 49 [1/1] (0.00ns)   --->   "%speclooptripcount_ln163 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 128, i64 64" [data/benchmarks/sha/sha.c:163]   --->   Operation 49 'speclooptripcount' 'speclooptripcount_ln163' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 50 [1/1] (0.00ns)   --->   "%specloopname_ln168 = specloopname void @_ssdm_op_SpecLoopName, void @empty_11" [data/benchmarks/sha/sha.c:168]   --->   Operation 50 'specloopname' 'specloopname_ln168' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 51 [1/2] (0.00ns)   --->   "%call_ln165 = call void @sha_transform, i32 %sha_info_data, i32 %sha_info_digest" [data/benchmarks/sha/sha.c:165]   --->   Operation 51 'call' 'call_ln165' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_5 : Operation 52 [1/1] (0.00ns)   --->   "%br_ln162 = br void %while.body" [data/benchmarks/sha/sha.c:162]   --->   Operation 52 'br' 'br_ln162' <Predicate = true> <Delay = 0.00>

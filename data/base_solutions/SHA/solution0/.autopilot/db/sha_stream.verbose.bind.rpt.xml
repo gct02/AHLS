@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'sha_stream'" level="0">
-<item name = "Date">Wed Jul  9 04:09:34 2025
+<item name = "Date">Thu Aug  7 00:38:44 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">SHA</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 3.507 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 4.810 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,23 +24,23 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">118414, 132025, 0.947 ms, 1.056 ms, 118415, 132026, no</column>
+<column name="">16814, 132031, 0.135 ms, 1.056 ms, 16815, 132032, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_118">sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1, 16386, 16386, 0.131 ms, 0.131 ms, 16386, 16386, no</column>
-<column name="grp_sha_init_fu_126">sha_init, 2, 2, 16.000 ns, 16.000 ns, 2, 2, no</column>
-<column name="grp_sha_final_fu_136">sha_final, 402, 829, 3.216 us, 6.632 us, 402, 829, no</column>
-<column name="grp_sha_update_fu_148">sha_update, 50803, 57395, 0.406 ms, 0.459 ms, 50803, 57395, no</column>
+<column name="grp_sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1_fu_160">sha_stream_Pipeline_sha_stream_label1_VITIS_LOOP_207_1, 16386, 16386, 0.131 ms, 0.131 ms, 16386, 16386, no</column>
+<column name="grp_sha_update_fu_168">sha_update, 3, 57395, 24.000 ns, 0.459 ms, 3, 57395, no</column>
+<column name="grp_local_memset_fu_185">local_memset, 3, 19, 24.000 ns, 0.152 us, 3, 19, no</column>
+<column name="grp_sha_transform_fu_195">sha_transform, 395, 395, 3.160 us, 3.160 us, 395, 395, no</column>
+<column name="grp_sha_stream_Pipeline_sha_stream_label2_fu_203">sha_stream_Pipeline_sha_stream_label2, 7, 7, 56.000 ns, 56.000 ns, 7, 7, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- sha_stream_label0">101612, 114796, 50806 ~ 57398, -, -, 2, no</column>
-<column name="- sha_stream_label2">10, 10, 2, -, -, 5, no</column>
+<column name="- sha_stream_label0">12, 114796, 6 ~ 57398, -, -, 2, no</column>
 </table>
 </item>
 </section>

@@ -49,44 +49,45 @@ wire   [5:0] quant26bt_pos_q0;
 wire   [4:0] quant26bt_neg_address0;
 reg    quant26bt_neg_ce0;
 wire   [5:0] quant26bt_neg_q0;
-wire   [31:0] wd_abs_r_fu_116_ap_return;
-reg   [31:0] wd_reg_215;
-wire   [29:0] zext_ln493_fu_122_p1;
-reg   [29:0] zext_ln493_reg_220;
-wire   [0:0] icmp_ln493_fu_134_p2;
-reg   [0:0] icmp_ln493_reg_228;
+wire   [0:0] tmp_fu_114_p3;
+reg   [0:0] tmp_reg_217;
+wire   [31:0] m_2_fu_128_p3;
+reg   [31:0] m_2_reg_222;
+wire   [29:0] zext_ln493_fu_136_p1;
+reg   [29:0] zext_ln493_reg_227;
+wire   [0:0] icmp_ln493_fu_148_p2;
+reg   [0:0] icmp_ln493_reg_235;
 wire    ap_CS_fsm_state2;
-wire   [4:0] add_ln493_fu_140_p2;
-reg   [4:0] add_ln493_reg_232;
-reg   [0:0] tmp_reg_245;
+wire   [4:0] add_ln493_fu_154_p2;
+reg   [4:0] add_ln493_reg_239;
 wire    ap_CS_fsm_state3;
-wire    wd_abs_r_fu_116_ap_ready;
-reg   [4:0] ap_phi_mux_mil_02_phi_fu_109_p4;
-reg   [4:0] mil_02_reg_105;
-wire   [0:0] icmp_ln496_fu_174_p2;
-wire   [63:0] zext_ln493_1_fu_146_p1;
-wire   [63:0] zext_ln502_fu_190_p1;
-reg   [4:0] mil_fu_50;
-wire   [14:0] mul_ln495_fu_155_p0;
-wire   [14:0] mul_ln495_fu_155_p1;
-wire   [29:0] mul_ln495_fu_155_p2;
-wire   [14:0] decis_fu_160_p4;
-wire   [31:0] zext_ln486_fu_170_p1;
+reg   [4:0] ap_phi_mux_mil_02_phi_fu_107_p4;
+reg   [4:0] mil_02_reg_103;
+wire   [0:0] icmp_ln496_fu_188_p2;
+wire   [63:0] zext_ln493_1_fu_160_p1;
+wire   [63:0] zext_ln502_fu_197_p1;
+reg   [4:0] mil_fu_48;
+wire   [31:0] m_fu_122_p2;
+wire   [14:0] mul_ln495_fu_169_p0;
+wire   [14:0] mul_ln495_fu_169_p1;
+wire   [29:0] mul_ln495_fu_169_p2;
+wire   [14:0] decis_fu_174_p4;
+wire   [31:0] zext_ln486_fu_184_p1;
 wire    ap_CS_fsm_state4;
-wire   [5:0] ril_2_fu_196_p3;
+wire   [5:0] ril_2_fu_203_p3;
 reg   [5:0] ap_return_preg;
 reg   [3:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
 wire    ap_ST_fsm_state3_blk;
 wire    ap_ST_fsm_state4_blk;
-wire   [29:0] mul_ln495_fu_155_p00;
+wire   [29:0] mul_ln495_fu_169_p00;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 4'd1;
-#0 mil_fu_50 = 5'd0;
+#0 mil_fu_48 = 5'd0;
 #0 ap_return_preg = 6'd0;
 end
 
@@ -126,22 +127,16 @@ quant26bt_neg_U(
     .q0(quant26bt_neg_q0)
 );
 
-adpcm_main_abs_r wd_abs_r_fu_116(
-    .ap_ready(wd_abs_r_fu_116_ap_ready),
-    .n(el),
-    .ap_return(wd_abs_r_fu_116_ap_return)
-);
-
 adpcm_main_mul_15ns_15ns_30_1_1 #(
     .ID( 1 ),
     .NUM_STAGE( 1 ),
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 15 ),
     .dout_WIDTH( 30 ))
-mul_15ns_15ns_30_1_1_U57(
-    .din0(mul_ln495_fu_155_p0),
-    .din1(mul_ln495_fu_155_p1),
-    .dout(mul_ln495_fu_155_p2)
+mul_15ns_15ns_30_1_1_U48(
+    .din0(mul_ln495_fu_169_p0),
+    .din1(mul_ln495_fu_169_p1),
+    .dout(mul_ln495_fu_169_p2)
 );
 
 always @ (posedge ap_clk) begin
@@ -157,44 +152,39 @@ always @ (posedge ap_clk) begin
         ap_return_preg <= 6'd0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state4)) begin
-            ap_return_preg <= ril_2_fu_196_p3;
+            ap_return_preg <= ril_2_fu_203_p3;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln493_fu_134_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
-        mil_02_reg_105 <= 5'd30;
-    end else if (((icmp_ln496_fu_174_p2 == 1'd0) & (icmp_ln493_reg_228 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
-        mil_02_reg_105 <= mil_fu_50;
+    if (((icmp_ln493_fu_148_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
+        mil_02_reg_103 <= 5'd30;
+    end else if (((icmp_ln496_fu_188_p2 == 1'd0) & (icmp_ln493_reg_235 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        mil_02_reg_103 <= mil_fu_48;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
-        mil_fu_50 <= 5'd0;
-    end else if (((icmp_ln496_fu_174_p2 == 1'd1) & (icmp_ln493_reg_228 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
-        mil_fu_50 <= add_ln493_reg_232;
+        mil_fu_48 <= 5'd0;
+    end else if (((icmp_ln496_fu_188_p2 == 1'd1) & (icmp_ln493_reg_235 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        mil_fu_48 <= add_ln493_reg_239;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        add_ln493_reg_232 <= add_ln493_fu_140_p2;
-        icmp_ln493_reg_228 <= icmp_ln493_fu_134_p2;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state3)) begin
-        tmp_reg_245 <= el[32'd31];
+        add_ln493_reg_239 <= add_ln493_fu_154_p2;
+        icmp_ln493_reg_235 <= icmp_ln493_fu_148_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state1)) begin
-        wd_reg_215 <= wd_abs_r_fu_116_ap_return;
-        zext_ln493_reg_220[14 : 0] <= zext_ln493_fu_122_p1[14 : 0];
+        m_2_reg_222 <= m_2_fu_128_p3;
+        tmp_reg_217 <= el[32'd31];
+        zext_ln493_reg_227[14 : 0] <= zext_ln493_fu_136_p1[14 : 0];
     end
 end
 
@@ -229,10 +219,10 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln496_fu_174_p2 == 1'd0) & (icmp_ln493_reg_228 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
-        ap_phi_mux_mil_02_phi_fu_109_p4 = mil_fu_50;
+    if (((icmp_ln496_fu_188_p2 == 1'd0) & (icmp_ln493_reg_235 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+        ap_phi_mux_mil_02_phi_fu_107_p4 = mil_fu_48;
     end else begin
-        ap_phi_mux_mil_02_phi_fu_109_p4 = mil_02_reg_105;
+        ap_phi_mux_mil_02_phi_fu_107_p4 = mil_02_reg_103;
     end
 end
 
@@ -246,7 +236,7 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        ap_return = ril_2_fu_196_p3;
+        ap_return = ril_2_fu_203_p3;
     end else begin
         ap_return = ap_return_preg;
     end
@@ -289,7 +279,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state3;
         end
         ap_ST_fsm_state3 : begin
-            if (((icmp_ln496_fu_174_p2 == 1'd1) & (icmp_ln493_reg_228 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
+            if (((icmp_ln496_fu_188_p2 == 1'd1) & (icmp_ln493_reg_235 == 1'd0) & (1'b1 == ap_CS_fsm_state3))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state4;
@@ -304,7 +294,7 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln493_fu_140_p2 = (mil_fu_50 + 5'd1);
+assign add_ln493_fu_154_p2 = (mil_fu_48 + 5'd1);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -314,36 +304,42 @@ assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
 
 assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
-assign decis_fu_160_p4 = {{mul_ln495_fu_155_p2[29:15]}};
+assign decis_fu_174_p4 = {{mul_ln495_fu_169_p2[29:15]}};
 
-assign decis_levl_address0 = zext_ln493_1_fu_146_p1;
+assign decis_levl_address0 = zext_ln493_1_fu_160_p1;
 
-assign icmp_ln493_fu_134_p2 = ((mil_fu_50 == 5'd30) ? 1'b1 : 1'b0);
+assign icmp_ln493_fu_148_p2 = ((mil_fu_48 == 5'd30) ? 1'b1 : 1'b0);
 
-assign icmp_ln496_fu_174_p2 = (($signed(zext_ln486_fu_170_p1) < $signed(wd_reg_215)) ? 1'b1 : 1'b0);
+assign icmp_ln496_fu_188_p2 = (($signed(zext_ln486_fu_184_p1) < $signed(m_2_reg_222)) ? 1'b1 : 1'b0);
 
-assign mul_ln495_fu_155_p0 = mul_ln495_fu_155_p00;
+assign m_2_fu_128_p3 = ((tmp_fu_114_p3[0:0] == 1'b1) ? m_fu_122_p2 : el);
 
-assign mul_ln495_fu_155_p00 = decis_levl_q0;
+assign m_fu_122_p2 = (32'd0 - el);
 
-assign mul_ln495_fu_155_p1 = zext_ln493_reg_220;
+assign mul_ln495_fu_169_p0 = mul_ln495_fu_169_p00;
 
-assign quant26bt_neg_address0 = zext_ln502_fu_190_p1;
+assign mul_ln495_fu_169_p00 = decis_levl_q0;
 
-assign quant26bt_pos_address0 = zext_ln502_fu_190_p1;
+assign mul_ln495_fu_169_p1 = zext_ln493_reg_227;
 
-assign ril_2_fu_196_p3 = ((tmp_reg_245[0:0] == 1'b1) ? quant26bt_neg_q0 : quant26bt_pos_q0);
+assign quant26bt_neg_address0 = zext_ln502_fu_197_p1;
 
-assign zext_ln486_fu_170_p1 = decis_fu_160_p4;
+assign quant26bt_pos_address0 = zext_ln502_fu_197_p1;
 
-assign zext_ln493_1_fu_146_p1 = mil_fu_50;
+assign ril_2_fu_203_p3 = ((tmp_reg_217[0:0] == 1'b1) ? quant26bt_neg_q0 : quant26bt_pos_q0);
 
-assign zext_ln493_fu_122_p1 = detl;
+assign tmp_fu_114_p3 = el[32'd31];
 
-assign zext_ln502_fu_190_p1 = ap_phi_mux_mil_02_phi_fu_109_p4;
+assign zext_ln486_fu_184_p1 = decis_fu_174_p4;
+
+assign zext_ln493_1_fu_160_p1 = mil_fu_48;
+
+assign zext_ln493_fu_136_p1 = detl;
+
+assign zext_ln502_fu_197_p1 = ap_phi_mux_mil_02_phi_fu_107_p4;
 
 always @ (posedge ap_clk) begin
-    zext_ln493_reg_220[29:15] <= 15'b000000000000000;
+    zext_ln493_reg_227[29:15] <= 15'b000000000000000;
 end
 
 endmodule //adpcm_main_quantl

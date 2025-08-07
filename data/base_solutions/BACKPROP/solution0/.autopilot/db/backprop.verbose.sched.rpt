@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'backprop'
 ================================================================
-* Date:           Wed Jul  9 03:32:57 2025
+* Date:           Wed Aug  6 20:24:17 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -29,7 +29,7 @@
     |   Latency (cycles)  |   Latency (absolute)  |       Interval      | Pipeline|
     |    min   |    max   |    min    |    max    |    min   |    max   |   Type  |
     +----------+----------+-----------+-----------+----------+----------+---------+
-    |  50857142|  50857142|  0.407 sec|  0.407 sec|  50857143|  50857143|       no|
+    |  50132118|  50132118|  0.401 sec|  0.401 sec|  50132119|  50132119|       no|
     +----------+----------+-----------+-----------+----------+----------+---------+
 
     + Detail: 
@@ -37,13 +37,12 @@
         N/A
 
         * Loop: 
-        +---------------------+----------+----------+----------+-----------+-----------+------+----------+
-        |                     |   Latency (cycles)  | Iteration|  Initiation Interval  | Trip |          |
-        |      Loop Name      |    min   |    max   |  Latency |  achieved |   target  | Count| Pipelined|
-        +---------------------+----------+----------+----------+-----------+-----------+------+----------+
-        |- backprop_loop1     |  50857141|  50857141|    312007|          -|          -|   163|        no|
-        | + backprop_loop1_1  |       128|       128|         2|          -|          -|    64|        no|
-        +---------------------+----------+----------+----------+-----------+-----------+------+----------+
+        +------------------+----------+----------+----------+-----------+-----------+------+----------+
+        |                  |   Latency (cycles)  | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name    |    min   |    max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------------+----------+----------+----------+-----------+-----------+------+----------+
+        |- backprop_loop1  |  50132117|  50132117|    307559|          -|          -|   163|        no|
+        +------------------+----------+----------+----------+-----------+-----------+------+----------+
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -71,15 +70,15 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states : 25
+* Number of FSM states : 30
 * Pipeline : 0
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
 1 --> 2 
 2 --> 3 
-3 --> 5 4 
-4 --> 3 
+3 --> 4 
+4 --> 5 
 5 --> 6 
 6 --> 7 
 7 --> 8 
@@ -100,211 +99,225 @@ IsGatedGlobalClock: 0
 22 --> 23 
 23 --> 24 
 24 --> 25 
-25 --> 2 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 2 
 
 * FSM state operations: 
 
 State 1 <SV = 0> <Delay = 0.38>
-ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%phi_mul = alloca i32 1"   --->   Operation 26 'alloca' 'phi_mul' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/backprop/backprop.c:338]   --->   Operation 27 'alloca' 'i' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%dactivations3_020 = alloca i32 1"   --->   Operation 28 'alloca' 'dactivations3_020' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%dactivations3_121 = alloca i32 1"   --->   Operation 29 'alloca' 'dactivations3_121' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%dactivations3_222 = alloca i32 1"   --->   Operation 30 'alloca' 'dactivations3_222' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%net_outputs_023 = alloca i32 1"   --->   Operation 31 'alloca' 'net_outputs_023' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%net_outputs_124 = alloca i32 1"   --->   Operation 32 'alloca' 'net_outputs_124' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%net_outputs_225 = alloca i32 1"   --->   Operation 33 'alloca' 'net_outputs_225' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%output_difference_2_032 = alloca i32 1"   --->   Operation 34 'alloca' 'output_difference_2_032' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%output_difference_1_033 = alloca i32 1"   --->   Operation 35 'alloca' 'output_difference_1_033' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%output_difference_0_034 = alloca i32 1"   --->   Operation 36 'alloca' 'output_difference_0_034' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%activations3_0_0 = alloca i32 1"   --->   Operation 37 'alloca' 'activations3_0_0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%activations3_1_0 = alloca i32 1"   --->   Operation 38 'alloca' 'activations3_1_0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%activations3_2_0 = alloca i32 1"   --->   Operation 39 'alloca' 'activations3_2_0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%specpipeline_ln42 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:42]   --->   Operation 40 'specpipeline' 'specpipeline_ln42' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%spectopmodule_ln330 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_10" [data/benchmarks/backprop/backprop.c:330]   --->   Operation 41 'spectopmodule' 'spectopmodule_ln330' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights1, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 42 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %weights1"   --->   Operation 43 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights2, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 44 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %weights2"   --->   Operation 45 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights3, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 46 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %weights3"   --->   Operation 47 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases1, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 48 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %biases1"   --->   Operation 49 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases2, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 50 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %biases2"   --->   Operation 51 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases3, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 52 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %biases3"   --->   Operation 53 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %training_data, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 54 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %training_data"   --->   Operation 55 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %training_targets, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 56 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %training_targets"   --->   Operation 57 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%activations1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:340]   --->   Operation 58 'alloca' 'activations1' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
-ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%activations2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:341]   --->   Operation 59 'alloca' 'activations2' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
-ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%dactivations1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:343]   --->   Operation 60 'alloca' 'dactivations1' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%dactivations2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:344]   --->   Operation 61 'alloca' 'dactivations2' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%delta_weights1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:349]   --->   Operation 62 'alloca' 'delta_weights1' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%delta_weights2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:350]   --->   Operation 63 'alloca' 'delta_weights2' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%delta_weights3 = alloca i64 1" [data/benchmarks/backprop/backprop.c:351]   --->   Operation 64 'alloca' 'delta_weights3' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%oracle_activations1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:352]   --->   Operation 65 'alloca' 'oracle_activations1' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%oracle_activations2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:353]   --->   Operation 66 'alloca' 'oracle_activations2' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 67 [1/1] (0.38ns)   --->   "%store_ln338 = store i8 0, i8 %i" [data/benchmarks/backprop/backprop.c:338]   --->   Operation 67 'store' 'store_ln338' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 68 [1/1] (0.38ns)   --->   "%store_ln0 = store i12 0, i12 %phi_mul"   --->   Operation 68 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
-ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%br_ln356 = br void %backprop_loop1_1" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 69 'br' 'br_ln356' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%phi_mul = alloca i32 1"   --->   Operation 31 'alloca' 'phi_mul' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/backprop/backprop.c:338]   --->   Operation 32 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%dactivations3_0_01 = alloca i32 1"   --->   Operation 33 'alloca' 'dactivations3_0_01' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%dactivations3_1_02 = alloca i32 1"   --->   Operation 34 'alloca' 'dactivations3_1_02' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%dactivations3_2_03 = alloca i32 1"   --->   Operation 35 'alloca' 'dactivations3_2_03' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%net_outputs_0_04 = alloca i32 1"   --->   Operation 36 'alloca' 'net_outputs_0_04' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%net_outputs_1_05 = alloca i32 1"   --->   Operation 37 'alloca' 'net_outputs_1_05' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%net_outputs_2_06 = alloca i32 1"   --->   Operation 38 'alloca' 'net_outputs_2_06' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%activations3_0_0 = alloca i32 1"   --->   Operation 39 'alloca' 'activations3_0_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%activations3_1_0 = alloca i32 1"   --->   Operation 40 'alloca' 'activations3_1_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%activations3_2_0 = alloca i32 1"   --->   Operation 41 'alloca' 'activations3_2_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%output_difference_0_020 = alloca i32 1"   --->   Operation 42 'alloca' 'output_difference_0_020' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%output_difference_1_021 = alloca i32 1"   --->   Operation 43 'alloca' 'output_difference_1_021' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%output_difference_2_022 = alloca i32 1"   --->   Operation 44 'alloca' 'output_difference_2_022' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%output_difference_0_1_loc = alloca i64 1"   --->   Operation 45 'alloca' 'output_difference_0_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%output_difference_1_1_loc = alloca i64 1"   --->   Operation 46 'alloca' 'output_difference_1_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%output_difference_2_1_loc = alloca i64 1"   --->   Operation 47 'alloca' 'output_difference_2_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%net_outputs_0_1_loc = alloca i64 1"   --->   Operation 48 'alloca' 'net_outputs_0_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%net_outputs_1_1_loc = alloca i64 1"   --->   Operation 49 'alloca' 'net_outputs_1_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%net_outputs_2_1_loc = alloca i64 1"   --->   Operation 50 'alloca' 'net_outputs_2_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%sum_loc = alloca i64 1"   --->   Operation 51 'alloca' 'sum_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%dactivations3_0_1_loc = alloca i64 1"   --->   Operation 52 'alloca' 'dactivations3_0_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%dactivations3_1_1_loc = alloca i64 1"   --->   Operation 53 'alloca' 'dactivations3_1_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%dactivations3_2_1_loc = alloca i64 1"   --->   Operation 54 'alloca' 'dactivations3_2_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%activations3_0_4_loc = alloca i64 1"   --->   Operation 55 'alloca' 'activations3_0_4_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%activations3_1_4_loc = alloca i64 1"   --->   Operation 56 'alloca' 'activations3_1_4_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%activations3_2_4_loc = alloca i64 1"   --->   Operation 57 'alloca' 'activations3_2_4_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%activations3_0_1_loc = alloca i64 1"   --->   Operation 58 'alloca' 'activations3_0_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%activations3_1_1_loc = alloca i64 1"   --->   Operation 59 'alloca' 'activations3_1_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%activations3_2_1_loc = alloca i64 1"   --->   Operation 60 'alloca' 'activations3_2_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%specpipeline_ln36 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:36]   --->   Operation 61 'specpipeline' 'specpipeline_ln36' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%spectopmodule_ln330 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_10" [data/benchmarks/backprop/backprop.c:330]   --->   Operation 62 'spectopmodule' 'spectopmodule_ln330' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights1, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 63 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %weights1"   --->   Operation 64 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights2, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 65 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %weights2"   --->   Operation 66 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %weights3, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 67 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %weights3"   --->   Operation 68 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases1, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 69 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %biases1"   --->   Operation 70 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases2, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 71 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %biases2"   --->   Operation 72 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %biases3, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 73 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %biases3"   --->   Operation 74 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 75 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %training_data, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 75 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 76 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %training_data"   --->   Operation 76 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %training_targets, void @empty_8, i32 0, i32 0, void @empty_42, i32 4294967295, i32 0, void @empty_42, void @empty_42, void @empty_42, i32 0, i32 0, i32 0, i32 0, void @empty_42, void @empty_42, i32 4294967295, i32 0"   --->   Operation 77 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %training_targets"   --->   Operation 78 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 79 [1/1] (0.00ns)   --->   "%activations1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:340]   --->   Operation 79 'alloca' 'activations1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 80 [1/1] (0.00ns)   --->   "%activations2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:341]   --->   Operation 80 'alloca' 'activations2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 81 [1/1] (0.00ns)   --->   "%dactivations1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:343]   --->   Operation 81 'alloca' 'dactivations1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%dactivations2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:344]   --->   Operation 82 'alloca' 'dactivations2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 83 [1/1] (0.00ns)   --->   "%delta_weights1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:349]   --->   Operation 83 'alloca' 'delta_weights1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 84 [1/1] (0.00ns)   --->   "%delta_weights2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:350]   --->   Operation 84 'alloca' 'delta_weights2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%delta_weights3 = alloca i64 1" [data/benchmarks/backprop/backprop.c:351]   --->   Operation 85 'alloca' 'delta_weights3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.00ns)   --->   "%oracle_activations1 = alloca i64 1" [data/benchmarks/backprop/backprop.c:352]   --->   Operation 86 'alloca' 'oracle_activations1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 87 [1/1] (0.00ns)   --->   "%oracle_activations2 = alloca i64 1" [data/benchmarks/backprop/backprop.c:353]   --->   Operation 87 'alloca' 'oracle_activations2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 88 [1/1] (0.38ns)   --->   "%store_ln338 = store i8 0, i8 %i" [data/benchmarks/backprop/backprop.c:338]   --->   Operation 88 'store' 'store_ln338' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 89 [1/1] (0.38ns)   --->   "%store_ln0 = store i12 0, i12 %phi_mul"   --->   Operation 89 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 90 [1/1] (0.00ns)   --->   "%br_ln356 = br void %backprop_loop1_1" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 90 'br' 'br_ln356' <Predicate = true> <Delay = 0.00>
 
-State 2 <SV = 1> <Delay = 0.74>
-ST_2 : Operation 70 [1/1] (0.00ns)   --->   "%phi_mul_load = load i12 %phi_mul" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 70 'load' 'phi_mul_load' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 71 [1/1] (0.00ns)   --->   "%i_33 = load i8 %i" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 71 'load' 'i_33' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 72 [1/1] (0.00ns)   --->   "%activations3_0_0_load = load i64 %activations3_0_0"   --->   Operation 72 'load' 'activations3_0_0_load' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 73 [1/1] (0.00ns)   --->   "%activations3_1_0_load = load i64 %activations3_1_0"   --->   Operation 73 'load' 'activations3_1_0_load' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 74 [1/1] (0.00ns)   --->   "%activations3_2_0_load = load i64 %activations3_2_0"   --->   Operation 74 'load' 'activations3_2_0_load' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 75 [1/1] (0.74ns)   --->   "%add_ln356_1 = add i12 %phi_mul_load, i12 13" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 75 'add' 'add_ln356_1' <Predicate = true> <Delay = 0.74> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 76 [1/1] (0.70ns)   --->   "%icmp_ln356 = icmp_eq  i8 %i_33, i8 163" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 76 'icmp' 'icmp_ln356' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 77 [1/1] (0.70ns)   --->   "%add_ln356 = add i8 %i_33, i8 1" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 77 'add' 'add_ln356' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 78 [1/1] (0.00ns)   --->   "%br_ln356 = br i1 %icmp_ln356, void %backprop_loop1_1.split, void %for.end54" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 78 'br' 'br_ln356' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 79 [1/1] (0.00ns)   --->   "%zext_ln356 = zext i8 %i_33" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 79 'zext' 'zext_ln356' <Predicate = (!icmp_ln356)> <Delay = 0.00>
-ST_2 : Operation 80 [1/1] (0.00ns)   --->   "%speclooptripcount_ln357 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 163, i64 163, i64 163" [data/benchmarks/backprop/backprop.c:357]   --->   Operation 80 'speclooptripcount' 'speclooptripcount_ln357' <Predicate = (!icmp_ln356)> <Delay = 0.00>
-ST_2 : Operation 81 [1/1] (0.00ns)   --->   "%specloopname_ln382 = specloopname void @_ssdm_op_SpecLoopName, void @empty_1" [data/benchmarks/backprop/backprop.c:382]   --->   Operation 81 'specloopname' 'specloopname_ln382' <Predicate = (!icmp_ln356)> <Delay = 0.00>
-ST_2 : Operation 82 [1/1] (0.38ns)   --->   "%br_ln359 = br void %for.body3" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 82 'br' 'br_ln359' <Predicate = (!icmp_ln356)> <Delay = 0.38>
-ST_2 : Operation 83 [1/1] (0.00ns)   --->   "%ret_ln383 = ret" [data/benchmarks/backprop/backprop.c:383]   --->   Operation 83 'ret' 'ret_ln383' <Predicate = (icmp_ln356)> <Delay = 0.00>
+State 2 <SV = 1> <Delay = 1.13>
+ST_2 : Operation 91 [1/1] (0.00ns)   --->   "%phi_mul_load = load i12 %phi_mul" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 91 'load' 'phi_mul_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 92 [1/1] (0.00ns)   --->   "%i_32 = load i8 %i" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 92 'load' 'i_32' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 93 [1/1] (0.74ns)   --->   "%add_ln356_1 = add i12 %phi_mul_load, i12 13" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 93 'add' 'add_ln356_1' <Predicate = true> <Delay = 0.74> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 94 [1/1] (0.70ns)   --->   "%icmp_ln356 = icmp_eq  i8 %i_32, i8 163" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 94 'icmp' 'icmp_ln356' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 95 [1/1] (0.70ns)   --->   "%add_ln356 = add i8 %i_32, i8 1" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 95 'add' 'add_ln356' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 96 [1/1] (0.00ns)   --->   "%br_ln356 = br i1 %icmp_ln356, void %backprop_loop1_1.split, void %for.end54" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 96 'br' 'br_ln356' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 97 [1/1] (0.00ns)   --->   "%activations3_0_0_load = load i64 %activations3_0_0"   --->   Operation 97 'load' 'activations3_0_0_load' <Predicate = (!icmp_ln356)> <Delay = 0.00>
+ST_2 : Operation 98 [1/1] (0.00ns)   --->   "%activations3_1_0_load = load i64 %activations3_1_0"   --->   Operation 98 'load' 'activations3_1_0_load' <Predicate = (!icmp_ln356)> <Delay = 0.00>
+ST_2 : Operation 99 [1/1] (0.00ns)   --->   "%activations3_2_0_load = load i64 %activations3_2_0"   --->   Operation 99 'load' 'activations3_2_0_load' <Predicate = (!icmp_ln356)> <Delay = 0.00>
+ST_2 : Operation 100 [2/2] (0.38ns)   --->   "%call_ln0 = call void @backprop_Pipeline_backprop_loop1_1, i64 %activations3_2_0_load, i64 %activations3_1_0_load, i64 %activations3_0_0_load, i64 %activations1, i64 %activations2, i64 %activations3_2_1_loc, i64 %activations3_1_1_loc, i64 %activations3_0_1_loc"   --->   Operation 100 'call' 'call_ln0' <Predicate = (!icmp_ln356)> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 101 [1/1] (0.38ns)   --->   "%store_ln338 = store i8 %add_ln356, i8 %i" [data/benchmarks/backprop/backprop.c:338]   --->   Operation 101 'store' 'store_ln338' <Predicate = (!icmp_ln356)> <Delay = 0.38>
+ST_2 : Operation 102 [1/1] (0.38ns)   --->   "%store_ln356 = store i12 %add_ln356_1, i12 %phi_mul" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 102 'store' 'store_ln356' <Predicate = (!icmp_ln356)> <Delay = 0.38>
+ST_2 : Operation 103 [1/1] (0.00ns)   --->   "%ret_ln383 = ret" [data/benchmarks/backprop/backprop.c:383]   --->   Operation 103 'ret' 'ret_ln383' <Predicate = (icmp_ln356)> <Delay = 0.00>
 
-State 3 <SV = 2> <Delay = 1.41>
-ST_3 : Operation 84 [1/1] (0.00ns)   --->   "%activations3_2_1 = phi i64 %activations3_2_0_load, void %backprop_loop1_1.split, i64 %activations3_2_3, void %for.inc"   --->   Operation 84 'phi' 'activations3_2_1' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 85 [1/1] (0.00ns)   --->   "%activations3_1_1 = phi i64 %activations3_1_0_load, void %backprop_loop1_1.split, i64 %activations3_1_3, void %for.inc"   --->   Operation 85 'phi' 'activations3_1_1' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%activations3_0_1 = phi i64 %activations3_0_0_load, void %backprop_loop1_1.split, i64 %activations3_0_3, void %for.inc"   --->   Operation 86 'phi' 'activations3_0_1' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 87 [1/1] (0.00ns)   --->   "%j = phi i7 0, void %backprop_loop1_1.split, i7 %add_ln359, void %for.inc" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 87 'phi' 'j' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 88 [1/1] (0.70ns)   --->   "%icmp_ln359 = icmp_eq  i7 %j, i7 64" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 88 'icmp' 'icmp_ln359' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 89 [1/1] (0.70ns)   --->   "%add_ln359 = add i7 %j, i7 1" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 89 'add' 'add_ln359' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 90 [1/1] (0.00ns)   --->   "%br_ln359 = br i1 %icmp_ln359, void %for.body3.split, void %for.inc52" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 90 'br' 'br_ln359' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 91 [1/1] (0.00ns)   --->   "%zext_ln359 = zext i7 %j" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 91 'zext' 'zext_ln359' <Predicate = (!icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 92 [1/1] (0.00ns)   --->   "%speclooptripcount_ln360 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/backprop/backprop.c:360]   --->   Operation 92 'speclooptripcount' 'speclooptripcount_ln360' <Predicate = (!icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 93 [1/1] (0.00ns)   --->   "%specloopname_ln366 = specloopname void @_ssdm_op_SpecLoopName, void @empty_0" [data/benchmarks/backprop/backprop.c:366]   --->   Operation 93 'specloopname' 'specloopname_ln366' <Predicate = (!icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 94 [1/1] (0.00ns)   --->   "%activations1_addr = getelementptr i64 %activations1, i64 0, i64 %zext_ln359" [data/benchmarks/backprop/backprop.c:361]   --->   Operation 94 'getelementptr' 'activations1_addr' <Predicate = (!icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 95 [1/1] (0.71ns)   --->   "%store_ln361 = store i64 0, i6 %activations1_addr" [data/benchmarks/backprop/backprop.c:361]   --->   Operation 95 'store' 'store_ln361' <Predicate = (!icmp_ln359)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
-ST_3 : Operation 96 [1/1] (0.00ns)   --->   "%activations2_addr = getelementptr i64 %activations2, i64 0, i64 %zext_ln359" [data/benchmarks/backprop/backprop.c:362]   --->   Operation 96 'getelementptr' 'activations2_addr' <Predicate = (!icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 97 [1/1] (0.71ns)   --->   "%store_ln362 = store i64 0, i6 %activations2_addr" [data/benchmarks/backprop/backprop.c:362]   --->   Operation 97 'store' 'store_ln362' <Predicate = (!icmp_ln359)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
-ST_3 : Operation 98 [1/1] (0.70ns)   --->   "%icmp_ln363 = icmp_ult  i7 %j, i7 3" [data/benchmarks/backprop/backprop.c:363]   --->   Operation 98 'icmp' 'icmp_ln363' <Predicate = (!icmp_ln359)> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 99 [1/1] (0.38ns)   --->   "%br_ln363 = br i1 %icmp_ln363, void %for.inc, void %if.then" [data/benchmarks/backprop/backprop.c:363]   --->   Operation 99 'br' 'br_ln363' <Predicate = (!icmp_ln359)> <Delay = 0.38>
-ST_3 : Operation 100 [1/1] (0.00ns)   --->   "%trunc_ln364 = trunc i7 %j" [data/benchmarks/backprop/backprop.c:364]   --->   Operation 100 'trunc' 'trunc_ln364' <Predicate = (!icmp_ln359 & icmp_ln363)> <Delay = 0.00>
-ST_3 : Operation 101 [1/1] (0.66ns)   --->   "%switch_ln364 = switch i2 %trunc_ln364, void %branch2, i2 0, void %for.inc, i2 1, void %branch1" [data/benchmarks/backprop/backprop.c:364]   --->   Operation 101 'switch' 'switch_ln364' <Predicate = (!icmp_ln359 & icmp_ln363)> <Delay = 0.66>
-ST_3 : Operation 102 [1/1] (0.38ns)   --->   "%br_ln364 = br void %for.inc" [data/benchmarks/backprop/backprop.c:364]   --->   Operation 102 'br' 'br_ln364' <Predicate = (!icmp_ln359 & icmp_ln363 & trunc_ln364 == 1)> <Delay = 0.38>
-ST_3 : Operation 103 [1/1] (0.38ns)   --->   "%br_ln364 = br void %for.inc" [data/benchmarks/backprop/backprop.c:364]   --->   Operation 103 'br' 'br_ln364' <Predicate = (!icmp_ln359 & icmp_ln363 & trunc_ln364 != 0 & trunc_ln364 != 1)> <Delay = 0.38>
-ST_3 : Operation 104 [2/2] (0.00ns)   --->   "%call_ln367 = call void @matrix_vector_product_with_bias_input_layer.1, i64 %biases1, i64 %weights1, i64 %activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:367]   --->   Operation 104 'call' 'call_ln367' <Predicate = (icmp_ln359)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_3 : Operation 105 [1/1] (0.00ns)   --->   "%trunc_ln374 = trunc i8 %i_33" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 105 'trunc' 'trunc_ln374' <Predicate = (icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 106 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i7.i2, i7 %trunc_ln374, i2 0" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 106 'bitconcatenate' 'shl_ln' <Predicate = (icmp_ln359)> <Delay = 0.00>
-ST_3 : Operation 107 [1/1] (0.71ns)   --->   "%sub_ln374 = sub i9 %shl_ln, i9 %zext_ln356" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 107 'sub' 'sub_ln374' <Predicate = (icmp_ln359)> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.71> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 108 [1/1] (0.38ns)   --->   "%store_ln338 = store i8 %add_ln356, i8 %i" [data/benchmarks/backprop/backprop.c:338]   --->   Operation 108 'store' 'store_ln338' <Predicate = (icmp_ln359)> <Delay = 0.38>
-ST_3 : Operation 109 [1/1] (0.38ns)   --->   "%store_ln356 = store i12 %add_ln356_1, i12 %phi_mul" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 109 'store' 'store_ln356' <Predicate = (icmp_ln359)> <Delay = 0.38>
+State 3 <SV = 2> <Delay = 1.09>
+ST_3 : Operation 104 [1/2] (1.09ns)   --->   "%call_ln0 = call void @backprop_Pipeline_backprop_loop1_1, i64 %activations3_2_0_load, i64 %activations3_1_0_load, i64 %activations3_0_0_load, i64 %activations1, i64 %activations2, i64 %activations3_2_1_loc, i64 %activations3_1_1_loc, i64 %activations3_0_1_loc"   --->   Operation 104 'call' 'call_ln0' <Predicate = true> <Delay = 1.09> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
 State 4 <SV = 3> <Delay = 0.00>
-ST_4 : Operation 110 [1/1] (0.00ns)   --->   "%activations3_2_3 = phi i64 %activations3_2_1, void %for.body3.split, i64 0, void %branch2, i64 %activations3_2_1, void %branch1, i64 %activations3_2_1, void %if.then"   --->   Operation 110 'phi' 'activations3_2_3' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 111 [1/1] (0.00ns)   --->   "%activations3_1_3 = phi i64 %activations3_1_1, void %for.body3.split, i64 %activations3_1_1, void %branch2, i64 0, void %branch1, i64 %activations3_1_1, void %if.then"   --->   Operation 111 'phi' 'activations3_1_3' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 112 [1/1] (0.00ns)   --->   "%activations3_0_3 = phi i64 %activations3_0_1, void %for.body3.split, i64 %activations3_0_1, void %branch2, i64 %activations3_0_1, void %branch1, i64 0, void %if.then"   --->   Operation 112 'phi' 'activations3_0_3' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 113 [1/1] (0.00ns)   --->   "%br_ln359 = br void %for.body3" [data/benchmarks/backprop/backprop.c:359]   --->   Operation 113 'br' 'br_ln359' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 105 [2/2] (0.00ns)   --->   "%call_ln367 = call void @matrix_vector_product_with_bias_input_layer.1, i64 %biases1, i64 %weights1, i64 %activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:367]   --->   Operation 105 'call' 'call_ln367' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 5 <SV = 3> <Delay = 0.00>
-ST_5 : Operation 114 [1/2] (0.00ns)   --->   "%call_ln367 = call void @matrix_vector_product_with_bias_input_layer.1, i64 %biases1, i64 %weights1, i64 %activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:367]   --->   Operation 114 'call' 'call_ln367' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 106 [1/2] (0.00ns)   --->   "%call_ln367 = call void @matrix_vector_product_with_bias_input_layer.1, i64 %biases1, i64 %weights1, i64 %activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:367]   --->   Operation 106 'call' 'call_ln367' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 6 <SV = 4> <Delay = 0.00>
-ST_6 : Operation 115 [2/2] (0.00ns)   --->   "%call_ln368 = call void @RELU, i64 %activations1, i64 %dactivations1" [data/benchmarks/backprop/backprop.c:368]   --->   Operation 115 'call' 'call_ln368' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 107 [2/2] (0.00ns)   --->   "%call_ln0 = call void @backprop_Pipeline_RELU_loop1, i64 %activations1, i64 %dactivations1"   --->   Operation 107 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 7 <SV = 5> <Delay = 0.00>
-ST_7 : Operation 116 [1/2] (0.00ns)   --->   "%call_ln368 = call void @RELU, i64 %activations1, i64 %dactivations1" [data/benchmarks/backprop/backprop.c:368]   --->   Operation 116 'call' 'call_ln368' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 7 <SV = 6> <Delay = 0.00>
+ST_7 : Operation 108 [1/2] (0.00ns)   --->   "%call_ln0 = call void @backprop_Pipeline_RELU_loop1, i64 %activations1, i64 %dactivations1"   --->   Operation 108 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 8 <SV = 6> <Delay = 0.00>
-ST_8 : Operation 117 [2/2] (0.00ns)   --->   "%call_ln369 = call void @matrix_vector_product_with_bias_second_layer.1, i64 %biases2, i64 %weights2, i64 %activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:369]   --->   Operation 117 'call' 'call_ln369' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 8 <SV = 7> <Delay = 0.00>
+ST_8 : Operation 109 [2/2] (0.00ns)   --->   "%call_ln369 = call void @matrix_vector_product_with_bias_second_layer.1, i64 %biases2, i64 %weights2, i64 %activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:369]   --->   Operation 109 'call' 'call_ln369' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 9 <SV = 7> <Delay = 0.00>
-ST_9 : Operation 118 [1/2] (0.00ns)   --->   "%call_ln369 = call void @matrix_vector_product_with_bias_second_layer.1, i64 %biases2, i64 %weights2, i64 %activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:369]   --->   Operation 118 'call' 'call_ln369' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 9 <SV = 8> <Delay = 0.00>
+ST_9 : Operation 110 [1/2] (0.00ns)   --->   "%call_ln369 = call void @matrix_vector_product_with_bias_second_layer.1, i64 %biases2, i64 %weights2, i64 %activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:369]   --->   Operation 110 'call' 'call_ln369' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 10 <SV = 8> <Delay = 0.00>
-ST_10 : Operation 119 [2/2] (0.00ns)   --->   "%call_ln370 = call void @RELU, i64 %activations2, i64 %dactivations2" [data/benchmarks/backprop/backprop.c:370]   --->   Operation 119 'call' 'call_ln370' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 10 <SV = 9> <Delay = 0.00>
+ST_10 : Operation 111 [2/2] (0.00ns)   --->   "%call_ln0 = call void @backprop_Pipeline_RELU_loop11, i64 %activations2, i64 %dactivations2"   --->   Operation 111 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 11 <SV = 9> <Delay = 0.00>
-ST_11 : Operation 120 [1/2] (0.00ns)   --->   "%call_ln370 = call void @RELU, i64 %activations2, i64 %dactivations2" [data/benchmarks/backprop/backprop.c:370]   --->   Operation 120 'call' 'call_ln370' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 11 <SV = 10> <Delay = 0.00>
+ST_11 : Operation 112 [1/2] (0.00ns)   --->   "%call_ln0 = call void @backprop_Pipeline_RELU_loop11, i64 %activations2, i64 %dactivations2"   --->   Operation 112 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 12 <SV = 10> <Delay = 0.38>
-ST_12 : Operation 121 [2/2] (0.38ns)   --->   "%call_ret1 = call i192 @matrix_vector_product_with_bias_output_layer.1, i64 %biases3, i64 %weights3, i64 %activations3_0_1, i64 %activations3_1_1, i64 %activations3_2_1, i64 %activations2" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 121 'call' 'call_ret1' <Predicate = true> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 12 <SV = 11> <Delay = 0.38>
+ST_12 : Operation 113 [1/1] (0.00ns)   --->   "%activations3_2_1_loc_load = load i64 %activations3_2_1_loc"   --->   Operation 113 'load' 'activations3_2_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 114 [1/1] (0.00ns)   --->   "%activations3_1_1_loc_load = load i64 %activations3_1_1_loc"   --->   Operation 114 'load' 'activations3_1_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 115 [1/1] (0.00ns)   --->   "%activations3_0_1_loc_load = load i64 %activations3_0_1_loc"   --->   Operation 115 'load' 'activations3_0_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 116 [2/2] (0.38ns)   --->   "%call_ret = call i192 @matrix_vector_product_with_bias_output_layer.1, i64 %biases3, i64 %weights3, i64 %activations3_0_1_loc_load, i64 %activations3_1_1_loc_load, i64 %activations3_2_1_loc_load, i64 %activations2" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 116 'call' 'call_ret' <Predicate = true> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 13 <SV = 11> <Delay = 0.38>
-ST_13 : Operation 122 [1/1] (0.00ns)   --->   "%dactivations3_020_load = load i64 %dactivations3_020" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 122 'load' 'dactivations3_020_load' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 123 [1/1] (0.00ns)   --->   "%dactivations3_121_load = load i64 %dactivations3_121" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 123 'load' 'dactivations3_121_load' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 124 [1/1] (0.00ns)   --->   "%dactivations3_222_load = load i64 %dactivations3_222" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 124 'load' 'dactivations3_222_load' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 125 [1/2] (0.00ns)   --->   "%call_ret1 = call i192 @matrix_vector_product_with_bias_output_layer.1, i64 %biases3, i64 %weights3, i64 %activations3_0_1, i64 %activations3_1_1, i64 %activations3_2_1, i64 %activations2" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 125 'call' 'call_ret1' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_13 : Operation 126 [1/1] (0.00ns)   --->   "%activations3_0 = extractvalue i192 %call_ret1" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 126 'extractvalue' 'activations3_0' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 127 [1/1] (0.00ns)   --->   "%activations3_1 = extractvalue i192 %call_ret1" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 127 'extractvalue' 'activations3_1' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 128 [1/1] (0.00ns)   --->   "%activations3_2 = extractvalue i192 %call_ret1" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 128 'extractvalue' 'activations3_2' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 129 [2/2] (0.38ns)   --->   "%call_ret = call i384 @RELU.clone, i64 %activations3_0, i64 %activations3_1, i64 %activations3_2, i64 %dactivations3_020_load, i64 %dactivations3_121_load, i64 %dactivations3_222_load" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 129 'call' 'call_ret' <Predicate = true> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 13 <SV = 12> <Delay = 0.38>
+ST_13 : Operation 117 [1/1] (0.00ns)   --->   "%dactivations3_0_01_load = load i64 %dactivations3_0_01"   --->   Operation 117 'load' 'dactivations3_0_01_load' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 118 [1/1] (0.00ns)   --->   "%dactivations3_1_02_load = load i64 %dactivations3_1_02"   --->   Operation 118 'load' 'dactivations3_1_02_load' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 119 [1/1] (0.00ns)   --->   "%dactivations3_2_03_load = load i64 %dactivations3_2_03"   --->   Operation 119 'load' 'dactivations3_2_03_load' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 120 [1/2] (0.00ns)   --->   "%call_ret = call i192 @matrix_vector_product_with_bias_output_layer.1, i64 %biases3, i64 %weights3, i64 %activations3_0_1_loc_load, i64 %activations3_1_1_loc_load, i64 %activations3_2_1_loc_load, i64 %activations2" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 120 'call' 'call_ret' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_13 : Operation 121 [1/1] (0.00ns)   --->   "%activations3_0 = extractvalue i192 %call_ret" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 121 'extractvalue' 'activations3_0' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 122 [1/1] (0.00ns)   --->   "%activations3_1 = extractvalue i192 %call_ret" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 122 'extractvalue' 'activations3_1' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 123 [1/1] (0.00ns)   --->   "%activations3_2 = extractvalue i192 %call_ret" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 123 'extractvalue' 'activations3_2' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 124 [2/2] (0.38ns)   --->   "%call_ln371 = call void @backprop_Pipeline_RELU_loop12, i64 %activations3_2, i64 %activations3_1, i64 %activations3_0, i64 %dactivations3_2_03_load, i64 %dactivations3_1_02_load, i64 %dactivations3_0_01_load, i64 %activations3_2_4_loc, i64 %activations3_1_4_loc, i64 %activations3_0_4_loc, i64 %dactivations3_2_1_loc, i64 %dactivations3_1_1_loc, i64 %dactivations3_0_1_loc" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 124 'call' 'call_ln371' <Predicate = true> <Delay = 0.38> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 14 <SV = 12> <Delay = 0.41>
-ST_14 : Operation 130 [1/1] (0.00ns)   --->   "%net_outputs_023_load = load i64 %net_outputs_023" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 130 'load' 'net_outputs_023_load' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 131 [1/1] (0.00ns)   --->   "%net_outputs_124_load = load i64 %net_outputs_124" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 131 'load' 'net_outputs_124_load' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 132 [1/1] (0.00ns)   --->   "%net_outputs_225_load = load i64 %net_outputs_225" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 132 'load' 'net_outputs_225_load' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 133 [1/2] (0.41ns)   --->   "%call_ret = call i384 @RELU.clone, i64 %activations3_0, i64 %activations3_1, i64 %activations3_2, i64 %dactivations3_020_load, i64 %dactivations3_121_load, i64 %dactivations3_222_load" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 133 'call' 'call_ret' <Predicate = true> <Delay = 0.41> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_14 : Operation 134 [1/1] (0.00ns)   --->   "%dactivations3_2 = extractvalue i384 %call_ret" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 134 'extractvalue' 'dactivations3_2' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 135 [1/1] (0.00ns)   --->   "%dactivations3_1 = extractvalue i384 %call_ret" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 135 'extractvalue' 'dactivations3_1' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 136 [1/1] (0.00ns)   --->   "%dactivations3_0 = extractvalue i384 %call_ret" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 136 'extractvalue' 'dactivations3_0' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 137 [1/1] (0.00ns)   --->   "%activations3_0_2 = extractvalue i384 %call_ret" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 137 'extractvalue' 'activations3_0_2' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 138 [1/1] (0.00ns)   --->   "%activations3_1_2 = extractvalue i384 %call_ret" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 138 'extractvalue' 'activations3_1_2' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 139 [1/1] (0.00ns)   --->   "%activations3_2_2 = extractvalue i384 %call_ret" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 139 'extractvalue' 'activations3_2_2' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 140 [2/2] (0.00ns)   --->   "%call_ret2 = call i192 @soft_max, i64 %net_outputs_023_load, i64 %net_outputs_124_load, i64 %net_outputs_225_load, i64 %activations3_0_2, i64 %activations3_1_2, i64 %activations3_2_2" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 140 'call' 'call_ret2' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_14 : Operation 141 [1/1] (0.00ns)   --->   "%store_ln372 = store i64 %activations3_2_2, i64 %activations3_2_0" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 141 'store' 'store_ln372' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 142 [1/1] (0.00ns)   --->   "%store_ln372 = store i64 %activations3_1_2, i64 %activations3_1_0" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 142 'store' 'store_ln372' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 143 [1/1] (0.00ns)   --->   "%store_ln372 = store i64 %activations3_0_2, i64 %activations3_0_0" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 143 'store' 'store_ln372' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 144 [1/1] (0.00ns)   --->   "%store_ln372 = store i64 %dactivations3_2, i64 %dactivations3_222" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 144 'store' 'store_ln372' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 145 [1/1] (0.00ns)   --->   "%store_ln372 = store i64 %dactivations3_1, i64 %dactivations3_121" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 145 'store' 'store_ln372' <Predicate = true> <Delay = 0.00>
-ST_14 : Operation 146 [1/1] (0.00ns)   --->   "%store_ln372 = store i64 %dactivations3_0, i64 %dactivations3_020" [data/benchmarks/backprop/backprop.c:372]   --->   Operation 146 'store' 'store_ln372' <Predicate = true> <Delay = 0.00>
+State 14 <SV = 13> <Delay = 0.43>
+ST_14 : Operation 125 [1/2] (0.43ns)   --->   "%call_ln371 = call void @backprop_Pipeline_RELU_loop12, i64 %activations3_2, i64 %activations3_1, i64 %activations3_0, i64 %dactivations3_2_03_load, i64 %dactivations3_1_02_load, i64 %dactivations3_0_01_load, i64 %activations3_2_4_loc, i64 %activations3_1_4_loc, i64 %activations3_0_4_loc, i64 %dactivations3_2_1_loc, i64 %dactivations3_1_1_loc, i64 %dactivations3_0_1_loc" [data/benchmarks/backprop/backprop.c:371]   --->   Operation 125 'call' 'call_ln371' <Predicate = true> <Delay = 0.43> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 15 <SV = 13> <Delay = 0.41>
-ST_15 : Operation 147 [1/1] (0.00ns)   --->   "%output_difference_2_032_load = load i64 %output_difference_2_032" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 147 'load' 'output_difference_2_032_load' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 148 [1/1] (0.00ns)   --->   "%output_difference_1_033_load = load i64 %output_difference_1_033" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 148 'load' 'output_difference_1_033_load' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 149 [1/1] (0.00ns)   --->   "%output_difference_0_034_load = load i64 %output_difference_0_034" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 149 'load' 'output_difference_0_034_load' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 150 [1/2] (0.41ns)   --->   "%call_ret2 = call i192 @soft_max, i64 %net_outputs_023_load, i64 %net_outputs_124_load, i64 %net_outputs_225_load, i64 %activations3_0_2, i64 %activations3_1_2, i64 %activations3_2_2" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 150 'call' 'call_ret2' <Predicate = true> <Delay = 0.41> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_15 : Operation 151 [1/1] (0.00ns)   --->   "%net_outputs_0 = extractvalue i192 %call_ret2" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 151 'extractvalue' 'net_outputs_0' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 152 [1/1] (0.00ns)   --->   "%net_outputs_1 = extractvalue i192 %call_ret2" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 152 'extractvalue' 'net_outputs_1' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 153 [1/1] (0.00ns)   --->   "%net_outputs_2 = extractvalue i192 %call_ret2" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 153 'extractvalue' 'net_outputs_2' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 154 [2/2] (0.00ns)   --->   "%call_ret3 = call i192 @take_difference.1, i64 %net_outputs_0, i64 %net_outputs_1, i64 %net_outputs_2, i64 %training_targets, i64 %output_difference_0_034_load, i64 %output_difference_1_033_load, i64 %output_difference_2_032_load, i64 %dactivations3_0, i64 %dactivations3_1, i64 %dactivations3_2, i9 %sub_ln374" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 154 'call' 'call_ret3' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_15 : Operation 155 [1/1] (0.00ns)   --->   "%store_ln373 = store i64 %net_outputs_2, i64 %net_outputs_225" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 155 'store' 'store_ln373' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 156 [1/1] (0.00ns)   --->   "%store_ln373 = store i64 %net_outputs_1, i64 %net_outputs_124" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 156 'store' 'store_ln373' <Predicate = true> <Delay = 0.00>
-ST_15 : Operation 157 [1/1] (0.00ns)   --->   "%store_ln373 = store i64 %net_outputs_0, i64 %net_outputs_023" [data/benchmarks/backprop/backprop.c:373]   --->   Operation 157 'store' 'store_ln373' <Predicate = true> <Delay = 0.00>
+State 15 <SV = 14> <Delay = 0.41>
+ST_15 : Operation 126 [1/1] (0.00ns)   --->   "%activations3_2_4_loc_load = load i64 %activations3_2_4_loc"   --->   Operation 126 'load' 'activations3_2_4_loc_load' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 127 [1/1] (0.00ns)   --->   "%activations3_1_4_loc_load = load i64 %activations3_1_4_loc"   --->   Operation 127 'load' 'activations3_1_4_loc_load' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 128 [1/1] (0.00ns)   --->   "%activations3_0_4_loc_load = load i64 %activations3_0_4_loc"   --->   Operation 128 'load' 'activations3_0_4_loc_load' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 129 [2/2] (0.41ns)   --->   "%call_ln0 = call void @backprop_Pipeline_soft_max_loop1, i64 %activations3_0_4_loc_load, i64 %activations3_1_4_loc_load, i64 %activations3_2_4_loc_load, i64 %sum_loc"   --->   Operation 129 'call' 'call_ln0' <Predicate = true> <Delay = 0.41> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_15 : Operation 130 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %activations3_2_4_loc_load, i64 %activations3_2_0"   --->   Operation 130 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 131 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %activations3_1_4_loc_load, i64 %activations3_1_0"   --->   Operation 131 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 132 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %activations3_0_4_loc_load, i64 %activations3_0_0"   --->   Operation 132 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
 
-State 16 <SV = 14> <Delay = 0.41>
-ST_16 : Operation 158 [1/2] (0.41ns)   --->   "%call_ret3 = call i192 @take_difference.1, i64 %net_outputs_0, i64 %net_outputs_1, i64 %net_outputs_2, i64 %training_targets, i64 %output_difference_0_034_load, i64 %output_difference_1_033_load, i64 %output_difference_2_032_load, i64 %dactivations3_0, i64 %dactivations3_1, i64 %dactivations3_2, i9 %sub_ln374" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 158 'call' 'call_ret3' <Predicate = true> <Delay = 0.41> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_16 : Operation 159 [1/1] (0.00ns)   --->   "%output_difference_0 = extractvalue i192 %call_ret3" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 159 'extractvalue' 'output_difference_0' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 160 [1/1] (0.00ns)   --->   "%output_difference_1 = extractvalue i192 %call_ret3" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 160 'extractvalue' 'output_difference_1' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 161 [1/1] (0.00ns)   --->   "%output_difference_2 = extractvalue i192 %call_ret3" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 161 'extractvalue' 'output_difference_2' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 162 [2/2] (0.00ns)   --->   "%call_ln375 = call void @get_delta_matrix_weights3, i64 %delta_weights3, i64 %output_difference_0, i64 %output_difference_1, i64 %output_difference_2, i64 %activations2" [data/benchmarks/backprop/backprop.c:375]   --->   Operation 162 'call' 'call_ln375' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_16 : Operation 163 [2/2] (0.00ns)   --->   "%call_ln376 = call void @get_oracle_activations2.1, i64 %weights3, i64 %output_difference_0, i64 %output_difference_1, i64 %output_difference_2, i64 %oracle_activations2, i64 %dactivations2" [data/benchmarks/backprop/backprop.c:376]   --->   Operation 163 'call' 'call_ln376' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_16 : Operation 164 [1/1] (0.00ns)   --->   "%store_ln374 = store i64 %output_difference_0, i64 %output_difference_0_034" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 164 'store' 'store_ln374' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 165 [1/1] (0.00ns)   --->   "%store_ln374 = store i64 %output_difference_1, i64 %output_difference_1_033" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 165 'store' 'store_ln374' <Predicate = true> <Delay = 0.00>
-ST_16 : Operation 166 [1/1] (0.00ns)   --->   "%store_ln374 = store i64 %output_difference_2, i64 %output_difference_2_032" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 166 'store' 'store_ln374' <Predicate = true> <Delay = 0.00>
+State 16 <SV = 15> <Delay = 0.00>
+ST_16 : Operation 133 [1/2] (0.00ns)   --->   "%call_ln0 = call void @backprop_Pipeline_soft_max_loop1, i64 %activations3_0_4_loc_load, i64 %activations3_1_4_loc_load, i64 %activations3_2_4_loc_load, i64 %sum_loc"   --->   Operation 133 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 17 <SV = 15> <Delay = 0.00>
-ST_17 : Operation 167 [1/2] (0.00ns)   --->   "%call_ln375 = call void @get_delta_matrix_weights3, i64 %delta_weights3, i64 %output_difference_0, i64 %output_difference_1, i64 %output_difference_2, i64 %activations2" [data/benchmarks/backprop/backprop.c:375]   --->   Operation 167 'call' 'call_ln375' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_17 : Operation 168 [1/2] (0.00ns)   --->   "%call_ln376 = call void @get_oracle_activations2.1, i64 %weights3, i64 %output_difference_0, i64 %output_difference_1, i64 %output_difference_2, i64 %oracle_activations2, i64 %dactivations2" [data/benchmarks/backprop/backprop.c:376]   --->   Operation 168 'call' 'call_ln376' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 17 <SV = 16> <Delay = 0.41>
+ST_17 : Operation 134 [1/1] (0.00ns)   --->   "%net_outputs_0_04_load = load i64 %net_outputs_0_04"   --->   Operation 134 'load' 'net_outputs_0_04_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 135 [1/1] (0.00ns)   --->   "%net_outputs_1_05_load = load i64 %net_outputs_1_05"   --->   Operation 135 'load' 'net_outputs_1_05_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 136 [1/1] (0.00ns)   --->   "%net_outputs_2_06_load = load i64 %net_outputs_2_06"   --->   Operation 136 'load' 'net_outputs_2_06_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 137 [1/1] (0.00ns)   --->   "%sum_loc_load = load i64 %sum_loc"   --->   Operation 137 'load' 'sum_loc_load' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 138 [2/2] (0.41ns)   --->   "%call_ln0 = call void @backprop_Pipeline_soft_max_loop2, i64 %net_outputs_2_06_load, i64 %net_outputs_1_05_load, i64 %net_outputs_0_04_load, i64 %activations3_0_4_loc_load, i64 %activations3_1_4_loc_load, i64 %activations3_2_4_loc_load, i64 %sum_loc_load, i64 %net_outputs_2_1_loc, i64 %net_outputs_1_1_loc, i64 %net_outputs_0_1_loc"   --->   Operation 138 'call' 'call_ln0' <Predicate = true> <Delay = 0.41> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 18 <SV = 16> <Delay = 0.00>
-ST_18 : Operation 169 [2/2] (0.00ns)   --->   "%call_ln377 = call void @get_delta_matrix_weights2, i64 %delta_weights2, i64 %oracle_activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:377]   --->   Operation 169 'call' 'call_ln377' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 18 <SV = 17> <Delay = 0.00>
+ST_18 : Operation 139 [1/2] (0.00ns)   --->   "%call_ln0 = call void @backprop_Pipeline_soft_max_loop2, i64 %net_outputs_2_06_load, i64 %net_outputs_1_05_load, i64 %net_outputs_0_04_load, i64 %activations3_0_4_loc_load, i64 %activations3_1_4_loc_load, i64 %activations3_2_4_loc_load, i64 %sum_loc_load, i64 %net_outputs_2_1_loc, i64 %net_outputs_1_1_loc, i64 %net_outputs_0_1_loc"   --->   Operation 139 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 19 <SV = 17> <Delay = 0.00>
-ST_19 : Operation 170 [1/2] (0.00ns)   --->   "%call_ln377 = call void @get_delta_matrix_weights2, i64 %delta_weights2, i64 %oracle_activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:377]   --->   Operation 170 'call' 'call_ln377' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 19 <SV = 18> <Delay = 2.63>
+ST_19 : Operation 140 [1/1] (0.00ns)   --->   "%output_difference_0_020_load = load i64 %output_difference_0_020"   --->   Operation 140 'load' 'output_difference_0_020_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 141 [1/1] (0.00ns)   --->   "%output_difference_1_021_load = load i64 %output_difference_1_021"   --->   Operation 141 'load' 'output_difference_1_021_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 142 [1/1] (0.00ns)   --->   "%output_difference_2_022_load = load i64 %output_difference_2_022"   --->   Operation 142 'load' 'output_difference_2_022_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 143 [1/1] (0.00ns)   --->   "%zext_ln356 = zext i8 %i_32" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 143 'zext' 'zext_ln356' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 144 [1/1] (0.00ns)   --->   "%dactivations3_2_1_loc_load = load i64 %dactivations3_2_1_loc"   --->   Operation 144 'load' 'dactivations3_2_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 145 [1/1] (0.00ns)   --->   "%dactivations3_1_1_loc_load = load i64 %dactivations3_1_1_loc"   --->   Operation 145 'load' 'dactivations3_1_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 146 [1/1] (0.00ns)   --->   "%dactivations3_0_1_loc_load = load i64 %dactivations3_0_1_loc"   --->   Operation 146 'load' 'dactivations3_0_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 147 [1/1] (0.00ns)   --->   "%net_outputs_2_1_loc_load = load i64 %net_outputs_2_1_loc"   --->   Operation 147 'load' 'net_outputs_2_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 148 [1/1] (0.00ns)   --->   "%net_outputs_1_1_loc_load = load i64 %net_outputs_1_1_loc"   --->   Operation 148 'load' 'net_outputs_1_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 149 [1/1] (0.00ns)   --->   "%net_outputs_0_1_loc_load = load i64 %net_outputs_0_1_loc"   --->   Operation 149 'load' 'net_outputs_0_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 150 [1/1] (0.00ns)   --->   "%trunc_ln374 = trunc i8 %i_32" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 150 'trunc' 'trunc_ln374' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 151 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i7.i2, i7 %trunc_ln374, i2 0" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 151 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 152 [1/1] (0.71ns)   --->   "%sub_ln374 = sub i9 %shl_ln, i9 %zext_ln356" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 152 'sub' 'sub_ln374' <Predicate = true> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.71> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 153 [2/2] (1.91ns)   --->   "%call_ln374 = call void @backprop_Pipeline_take_difference_loop1, i64 %output_difference_2_022_load, i64 %output_difference_1_021_load, i64 %output_difference_0_020_load, i64 %net_outputs_0_1_loc_load, i64 %net_outputs_1_1_loc_load, i64 %net_outputs_2_1_loc_load, i9 %sub_ln374, i64 %training_targets, i64 %dactivations3_0_1_loc_load, i64 %dactivations3_1_1_loc_load, i64 %dactivations3_2_1_loc_load, i64 %output_difference_2_1_loc, i64 %output_difference_1_1_loc, i64 %output_difference_0_1_loc" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 153 'call' 'call_ln374' <Predicate = true> <Delay = 1.91> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_19 : Operation 154 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %net_outputs_2_1_loc_load, i64 %net_outputs_2_06"   --->   Operation 154 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 155 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %net_outputs_1_1_loc_load, i64 %net_outputs_1_05"   --->   Operation 155 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 156 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %net_outputs_0_1_loc_load, i64 %net_outputs_0_04"   --->   Operation 156 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 157 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %dactivations3_2_1_loc_load, i64 %dactivations3_2_03"   --->   Operation 157 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 158 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %dactivations3_1_1_loc_load, i64 %dactivations3_1_02"   --->   Operation 158 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 159 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %dactivations3_0_1_loc_load, i64 %dactivations3_0_01"   --->   Operation 159 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
 
-State 20 <SV = 18> <Delay = 0.00>
-ST_20 : Operation 171 [2/2] (0.00ns)   --->   "%call_ln378 = call void @get_oracle_activations1.1, i64 %weights2, i64 %oracle_activations2, i64 %oracle_activations1, i64 %dactivations1" [data/benchmarks/backprop/backprop.c:378]   --->   Operation 171 'call' 'call_ln378' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 20 <SV = 19> <Delay = 0.00>
+ST_20 : Operation 160 [1/2] (0.00ns)   --->   "%call_ln374 = call void @backprop_Pipeline_take_difference_loop1, i64 %output_difference_2_022_load, i64 %output_difference_1_021_load, i64 %output_difference_0_020_load, i64 %net_outputs_0_1_loc_load, i64 %net_outputs_1_1_loc_load, i64 %net_outputs_2_1_loc_load, i9 %sub_ln374, i64 %training_targets, i64 %dactivations3_0_1_loc_load, i64 %dactivations3_1_1_loc_load, i64 %dactivations3_2_1_loc_load, i64 %output_difference_2_1_loc, i64 %output_difference_1_1_loc, i64 %output_difference_0_1_loc" [data/benchmarks/backprop/backprop.c:374]   --->   Operation 160 'call' 'call_ln374' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 21 <SV = 19> <Delay = 0.00>
-ST_21 : Operation 172 [1/2] (0.00ns)   --->   "%call_ln378 = call void @get_oracle_activations1.1, i64 %weights2, i64 %oracle_activations2, i64 %oracle_activations1, i64 %dactivations1" [data/benchmarks/backprop/backprop.c:378]   --->   Operation 172 'call' 'call_ln378' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 21 <SV = 20> <Delay = 0.00>
+ST_21 : Operation 161 [1/1] (0.00ns)   --->   "%output_difference_2_1_loc_load = load i64 %output_difference_2_1_loc"   --->   Operation 161 'load' 'output_difference_2_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 162 [1/1] (0.00ns)   --->   "%output_difference_1_1_loc_load = load i64 %output_difference_1_1_loc"   --->   Operation 162 'load' 'output_difference_1_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 163 [1/1] (0.00ns)   --->   "%output_difference_0_1_loc_load = load i64 %output_difference_0_1_loc"   --->   Operation 163 'load' 'output_difference_0_1_loc_load' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 164 [2/2] (0.00ns)   --->   "%call_ln375 = call void @get_delta_matrix_weights3, i64 %delta_weights3, i64 %output_difference_0_1_loc_load, i64 %output_difference_1_1_loc_load, i64 %output_difference_2_1_loc_load, i64 %activations2" [data/benchmarks/backprop/backprop.c:375]   --->   Operation 164 'call' 'call_ln375' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_21 : Operation 165 [2/2] (0.00ns)   --->   "%call_ln376 = call void @get_oracle_activations2.1, i64 %weights3, i64 %output_difference_0_1_loc_load, i64 %output_difference_1_1_loc_load, i64 %output_difference_2_1_loc_load, i64 %oracle_activations2, i64 %dactivations2" [data/benchmarks/backprop/backprop.c:376]   --->   Operation 165 'call' 'call_ln376' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_21 : Operation 166 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %output_difference_2_1_loc_load, i64 %output_difference_2_022"   --->   Operation 166 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 167 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %output_difference_1_1_loc_load, i64 %output_difference_1_021"   --->   Operation 167 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 168 [1/1] (0.00ns)   --->   "%store_ln0 = store i64 %output_difference_0_1_loc_load, i64 %output_difference_0_020"   --->   Operation 168 'store' 'store_ln0' <Predicate = true> <Delay = 0.00>
 
-State 22 <SV = 20> <Delay = 0.00>
-ST_22 : Operation 173 [2/2] (0.00ns)   --->   "%call_ln379 = call void @get_delta_matrix_weights1.1, i64 %delta_weights1, i64 %oracle_activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:379]   --->   Operation 173 'call' 'call_ln379' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 22 <SV = 21> <Delay = 0.00>
+ST_22 : Operation 169 [1/2] (0.00ns)   --->   "%call_ln375 = call void @get_delta_matrix_weights3, i64 %delta_weights3, i64 %output_difference_0_1_loc_load, i64 %output_difference_1_1_loc_load, i64 %output_difference_2_1_loc_load, i64 %activations2" [data/benchmarks/backprop/backprop.c:375]   --->   Operation 169 'call' 'call_ln375' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_22 : Operation 170 [1/2] (0.00ns)   --->   "%call_ln376 = call void @get_oracle_activations2.1, i64 %weights3, i64 %output_difference_0_1_loc_load, i64 %output_difference_1_1_loc_load, i64 %output_difference_2_1_loc_load, i64 %oracle_activations2, i64 %dactivations2" [data/benchmarks/backprop/backprop.c:376]   --->   Operation 170 'call' 'call_ln376' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 23 <SV = 21> <Delay = 0.00>
-ST_23 : Operation 174 [1/2] (0.00ns)   --->   "%call_ln379 = call void @get_delta_matrix_weights1.1, i64 %delta_weights1, i64 %oracle_activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:379]   --->   Operation 174 'call' 'call_ln379' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 23 <SV = 22> <Delay = 0.00>
+ST_23 : Operation 171 [2/2] (0.00ns)   --->   "%call_ln377 = call void @get_delta_matrix_weights2, i64 %delta_weights2, i64 %oracle_activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:377]   --->   Operation 171 'call' 'call_ln377' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 24 <SV = 22> <Delay = 0.00>
-ST_24 : Operation 175 [2/2] (0.00ns)   --->   "%call_ln380 = call void @update_weights.1, i64 %weights1, i64 %weights2, i64 %weights3, i64 %delta_weights1, i64 %delta_weights2, i64 %delta_weights3, i64 %biases1, i64 %biases2, i64 %biases3, i64 %oracle_activations1, i64 %oracle_activations2, i64 %output_difference_0, i64 %output_difference_1, i64 %output_difference_2" [data/benchmarks/backprop/backprop.c:380]   --->   Operation 175 'call' 'call_ln380' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+State 24 <SV = 23> <Delay = 0.00>
+ST_24 : Operation 172 [1/2] (0.00ns)   --->   "%call_ln377 = call void @get_delta_matrix_weights2, i64 %delta_weights2, i64 %oracle_activations2, i64 %activations1" [data/benchmarks/backprop/backprop.c:377]   --->   Operation 172 'call' 'call_ln377' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 
-State 25 <SV = 23> <Delay = 0.00>
-ST_25 : Operation 176 [1/2] (0.00ns)   --->   "%call_ln380 = call void @update_weights.1, i64 %weights1, i64 %weights2, i64 %weights3, i64 %delta_weights1, i64 %delta_weights2, i64 %delta_weights3, i64 %biases1, i64 %biases2, i64 %biases3, i64 %oracle_activations1, i64 %oracle_activations2, i64 %output_difference_0, i64 %output_difference_1, i64 %output_difference_2" [data/benchmarks/backprop/backprop.c:380]   --->   Operation 176 'call' 'call_ln380' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_25 : Operation 177 [1/1] (0.00ns)   --->   "%br_ln356 = br void %backprop_loop1_1" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 177 'br' 'br_ln356' <Predicate = true> <Delay = 0.00>
+State 25 <SV = 24> <Delay = 0.00>
+ST_25 : Operation 173 [2/2] (0.00ns)   --->   "%call_ln378 = call void @get_oracle_activations1.1, i64 %weights2, i64 %oracle_activations2, i64 %oracle_activations1, i64 %dactivations1" [data/benchmarks/backprop/backprop.c:378]   --->   Operation 173 'call' 'call_ln378' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 26 <SV = 25> <Delay = 0.00>
+ST_26 : Operation 174 [1/2] (0.00ns)   --->   "%call_ln378 = call void @get_oracle_activations1.1, i64 %weights2, i64 %oracle_activations2, i64 %oracle_activations1, i64 %dactivations1" [data/benchmarks/backprop/backprop.c:378]   --->   Operation 174 'call' 'call_ln378' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 27 <SV = 26> <Delay = 0.00>
+ST_27 : Operation 175 [2/2] (0.00ns)   --->   "%call_ln379 = call void @get_delta_matrix_weights1.1, i64 %delta_weights1, i64 %oracle_activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:379]   --->   Operation 175 'call' 'call_ln379' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 28 <SV = 27> <Delay = 0.00>
+ST_28 : Operation 176 [1/2] (0.00ns)   --->   "%call_ln379 = call void @get_delta_matrix_weights1.1, i64 %delta_weights1, i64 %oracle_activations1, i64 %training_data, i12 %phi_mul_load" [data/benchmarks/backprop/backprop.c:379]   --->   Operation 176 'call' 'call_ln379' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 29 <SV = 28> <Delay = 0.00>
+ST_29 : Operation 177 [2/2] (0.00ns)   --->   "%call_ln380 = call void @update_weights.1, i64 %weights1, i64 %weights2, i64 %weights3, i64 %delta_weights1, i64 %delta_weights2, i64 %delta_weights3, i64 %biases1, i64 %biases2, i64 %biases3, i64 %oracle_activations1, i64 %oracle_activations2, i64 %output_difference_0_1_loc_load, i64 %output_difference_1_1_loc_load, i64 %output_difference_2_1_loc_load" [data/benchmarks/backprop/backprop.c:380]   --->   Operation 177 'call' 'call_ln380' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 30 <SV = 29> <Delay = 0.00>
+ST_30 : Operation 178 [1/1] (0.00ns)   --->   "%speclooptripcount_ln357 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 163, i64 163, i64 163" [data/benchmarks/backprop/backprop.c:357]   --->   Operation 178 'speclooptripcount' 'speclooptripcount_ln357' <Predicate = true> <Delay = 0.00>
+ST_30 : Operation 179 [1/1] (0.00ns)   --->   "%specloopname_ln382 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/backprop/backprop.c:382]   --->   Operation 179 'specloopname' 'specloopname_ln382' <Predicate = true> <Delay = 0.00>
+ST_30 : Operation 180 [1/2] (0.00ns)   --->   "%call_ln380 = call void @update_weights.1, i64 %weights1, i64 %weights2, i64 %weights3, i64 %delta_weights1, i64 %delta_weights2, i64 %delta_weights3, i64 %biases1, i64 %biases2, i64 %biases3, i64 %oracle_activations1, i64 %oracle_activations2, i64 %output_difference_0_1_loc_load, i64 %output_difference_1_1_loc_load, i64 %output_difference_2_1_loc_load" [data/benchmarks/backprop/backprop.c:380]   --->   Operation 180 'call' 'call_ln380' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_30 : Operation 181 [1/1] (0.00ns)   --->   "%br_ln356 = br void %backprop_loop1_1" [data/benchmarks/backprop/backprop.c:356]   --->   Operation 181 'br' 'br_ln356' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -315,18 +328,17 @@ Target clock period: 8.000ns, clock uncertainty: 2.160ns.
  <State 1>: 0.387ns
 The critical path consists of the following:
 	'alloca' operation 8 bit ('i', data/benchmarks/backprop/backprop.c:338) [10]  (0.000 ns)
-	'store' operation 0 bit ('store_ln338', data/benchmarks/backprop/backprop.c:338) of constant 0 on local variable 'i', data/benchmarks/backprop/backprop.c:338 [50]  (0.387 ns)
+	'store' operation 0 bit ('store_ln338', data/benchmarks/backprop/backprop.c:338) of constant 0 on local variable 'i', data/benchmarks/backprop/backprop.c:338 [66]  (0.387 ns)
 
- <State 2>: 0.745ns
+ <State 2>: 1.132ns
 The critical path consists of the following:
-	'load' operation 12 bit ('phi_mul_load', data/benchmarks/backprop/backprop.c:356) on local variable 'phi_mul' [54]  (0.000 ns)
-	'add' operation 12 bit ('add_ln356_1', data/benchmarks/backprop/backprop.c:356) [59]  (0.745 ns)
+	'load' operation 12 bit ('phi_mul_load', data/benchmarks/backprop/backprop.c:356) on local variable 'phi_mul' [70]  (0.000 ns)
+	'add' operation 12 bit ('add_ln356_1', data/benchmarks/backprop/backprop.c:356) [72]  (0.745 ns)
+	'store' operation 0 bit ('store_ln356', data/benchmarks/backprop/backprop.c:356) of variable 'add_ln356_1', data/benchmarks/backprop/backprop.c:356 on local variable 'phi_mul' [143]  (0.387 ns)
 
- <State 3>: 1.420ns
+ <State 3>: 1.093ns
 The critical path consists of the following:
-	'phi' operation 7 bit ('j', data/benchmarks/backprop/backprop.c:359) with incoming values : ('add_ln359', data/benchmarks/backprop/backprop.c:359) [72]  (0.000 ns)
-	'icmp' operation 1 bit ('icmp_ln359', data/benchmarks/backprop/backprop.c:359) [73]  (0.706 ns)
-	'store' operation 0 bit ('store_ln361', data/benchmarks/backprop/backprop.c:361) of constant 0 on array 'activations1', data/benchmarks/backprop/backprop.c:340 [81]  (0.714 ns)
+	'call' operation 0 bit ('call_ln0') to 'backprop_Pipeline_backprop_loop1_1' [92]  (1.093 ns)
 
  <State 4>: 0.000ns
 The critical path consists of the following:
@@ -354,33 +366,38 @@ The critical path consists of the following:
 
  <State 12>: 0.387ns
 The critical path consists of the following:
-	'call' operation 192 bit ('call_ret1', data/benchmarks/backprop/backprop.c:371) to 'matrix_vector_product_with_bias_output_layer.1' [112]  (0.387 ns)
+	'load' operation 64 bit ('activations3_2_1_loc_load') on local variable 'activations3_2_1_loc' [93]  (0.000 ns)
+	'call' operation 192 bit ('call_ret', data/benchmarks/backprop/backprop.c:371) to 'matrix_vector_product_with_bias_output_layer.1' [100]  (0.387 ns)
 
  <State 13>: 0.387ns
 The critical path consists of the following:
-	'load' operation 64 bit ('dactivations3_020_load', data/benchmarks/backprop/backprop.c:372) on local variable 'dactivations3_020' [99]  (0.000 ns)
-	'call' operation 384 bit ('call_ret', data/benchmarks/backprop/backprop.c:372) to 'RELU.clone' [116]  (0.387 ns)
+	'load' operation 64 bit ('dactivations3_0_01_load') on local variable 'dactivations3_0_01' [77]  (0.000 ns)
+	'call' operation 0 bit ('call_ln371', data/benchmarks/backprop/backprop.c:371) to 'backprop_Pipeline_RELU_loop12' [104]  (0.387 ns)
 
- <State 14>: 0.411ns
+ <State 14>: 0.436ns
 The critical path consists of the following:
-	'call' operation 384 bit ('call_ret', data/benchmarks/backprop/backprop.c:372) to 'RELU.clone' [116]  (0.411 ns)
+	'call' operation 0 bit ('call_ln371', data/benchmarks/backprop/backprop.c:371) to 'backprop_Pipeline_RELU_loop12' [104]  (0.436 ns)
 
- <State 15>: 0.411ns
+ <State 15>: 0.420ns
 The critical path consists of the following:
-	'call' operation 192 bit ('call_ret2', data/benchmarks/backprop/backprop.c:373) to 'soft_max' [123]  (0.411 ns)
+	'load' operation 64 bit ('activations3_2_4_loc_load') on local variable 'activations3_2_4_loc' [105]  (0.000 ns)
+	'call' operation 0 bit ('call_ln0') to 'backprop_Pipeline_soft_max_loop1' [111]  (0.420 ns)
 
- <State 16>: 0.411ns
+ <State 16>: 0.000ns
 The critical path consists of the following:
-	'call' operation 192 bit ('call_ret3', data/benchmarks/backprop/backprop.c:374) to 'take_difference.1' [130]  (0.411 ns)
 
- <State 17>: 0.000ns
+ <State 17>: 0.420ns
 The critical path consists of the following:
+	'load' operation 64 bit ('net_outputs_0_04_load') on local variable 'net_outputs_0_04' [80]  (0.000 ns)
+	'call' operation 0 bit ('call_ln0') to 'backprop_Pipeline_soft_max_loop2' [113]  (0.420 ns)
 
  <State 18>: 0.000ns
 The critical path consists of the following:
 
- <State 19>: 0.000ns
+ <State 19>: 2.630ns
 The critical path consists of the following:
+	'sub' operation 9 bit ('sub_ln374', data/benchmarks/backprop/backprop.c:374) [119]  (0.715 ns)
+	'call' operation 0 bit ('call_ln374', data/benchmarks/backprop/backprop.c:374) to 'backprop_Pipeline_take_difference_loop1' [120]  (1.915 ns)
 
  <State 20>: 0.000ns
 The critical path consists of the following:
@@ -398,6 +415,21 @@ The critical path consists of the following:
 The critical path consists of the following:
 
  <State 25>: 0.000ns
+The critical path consists of the following:
+
+ <State 26>: 0.000ns
+The critical path consists of the following:
+
+ <State 27>: 0.000ns
+The critical path consists of the following:
+
+ <State 28>: 0.000ns
+The critical path consists of the following:
+
+ <State 29>: 0.000ns
+The critical path consists of the following:
+
+ <State 30>: 0.000ns
 The critical path consists of the following:
 
 
@@ -434,6 +466,11 @@ N/A
 	State 23
 	State 24
 	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
 
 
 ============================================================

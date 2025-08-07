@@ -322,7 +322,7 @@ int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
 
     MixColumn_AddRoundKey_label0:
     for (j = 0; j < nb; ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         ret[j * 4] = (statemt[j * 4] << 1);
         if ((ret[j * 4] >> 8) == 1) ret[j * 4] ^= 283;
         x = statemt[1 + j * 4];
@@ -362,7 +362,7 @@ int MixColumn_AddRoundKey (int statemt[32], int nb, int n) {
 
     MixColumn_AddRoundKey_label1:
     for (j = 0; j < nb; ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         statemt[j * 4] = ret[j * 4];
         statemt[1 + j * 4] = ret[1 + j * 4];
         statemt[2 + j * 4] = ret[2 + j * 4];
@@ -378,7 +378,7 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 
     AddRoundKey_InversMixColumn_label2:
     for (j = 0; j < nb; ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         statemt[j * 4] ^= word[0][j + nb * n];
         statemt[1 + j * 4] ^= word[1][j + nb * n];
         statemt[2 + j * 4] ^= word[2][j + nb * n];
@@ -387,7 +387,7 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 
     AddRoundKey_InversMixColumn_label0: 
     for (j = 0; j < nb; ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         AddRoundKey_InversMixColumn_label1:
         for (i = 0; i < 4; ++i) {
             #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
@@ -434,7 +434,7 @@ int AddRoundKey_InversMixColumn (int statemt[32], int nb, int n) {
 
     AddRoundKey_InversMixColumn_label3:
     for (i = 0; i < nb; ++i) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         statemt[i * 4] = ret[i * 4];
         statemt[1 + i * 4] = ret[1 + i * 4];
         statemt[2 + i * 4] = ret[2 + i * 4];
@@ -467,7 +467,7 @@ int AddRoundKey (int statemt[32], int type, int n) {
 
     AddRoundKey_label0:
     for (j = 0; j < nb; ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         statemt[j * 4] ^= word[0][j + nb * n];
         statemt[1 + j * 4] ^= word[1][j + nb * n];
         statemt[2 + j * 4] ^= word[2][j + nb * n];
@@ -552,7 +552,7 @@ int KeySchedule (int type, int key[32]) {
 
     KeySchedule_label4:
     for (j = 0; j < nk; ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=4 max=8 avg=6
+        #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
         KeySchedule_label5:
         for (i = 0; i < 4; ++i) {
             #pragma HLS LOOP_TRIPCOUNT min=4 max=4 avg=4
@@ -563,7 +563,7 @@ int KeySchedule (int type, int key[32]) {
     /* expanded key is generated */
     KeySchedule_label6:
     for (j = nk; j < nb * (round_val + 1); ++j) {
-        #pragma HLS LOOP_TRIPCOUNT min=32 max=116 avg=74
+        #pragma HLS LOOP_TRIPCOUNT min=40 max=40 avg=40
         KeySchedule_label7: 
 
         /* RotByte */

@@ -75,32 +75,7 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="gsm_norm" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
         <directive functionName="gsm_div" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_add" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_mult" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_mult_r" label="" functionLabel="">
-            <pragma name="PIPELINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_abs" label="" functionLabel="">
             <pragma name="PIPELINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
@@ -125,32 +100,7 @@
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>
         </directive>
-        <directive functionName="gsm_norm" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
         <directive functionName="gsm_div" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_add" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_mult" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_mult_r" label="" functionLabel="">
-            <pragma name="INLINE">
-                <option name="off" value="true" positionalBoolean="1"/>
-            </pragma>
-        </directive>
-        <directive functionName="gsm_abs" label="" functionLabel="">
             <pragma name="INLINE">
                 <option name="off" value="true" positionalBoolean="1"/>
             </pragma>

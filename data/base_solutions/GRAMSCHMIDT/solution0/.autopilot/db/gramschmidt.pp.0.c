@@ -3306,7 +3306,7 @@ __attribute__((sdx_kernel("kernel_gramschmidt", 0))) void kernel_gramschmidt(int
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 79 "data/benchmarks/gramschmidt/gramschmidt.c"
 
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl"
 #pragma HLSDIRECTIVE TOP name=kernel_gramschmidt
 # 79 "data/benchmarks/gramschmidt/gramschmidt.c"
 

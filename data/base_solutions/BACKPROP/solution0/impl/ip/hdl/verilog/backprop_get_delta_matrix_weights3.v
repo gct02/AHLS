@@ -23,10 +23,10 @@ module backprop_get_delta_matrix_weights3 (
         last_activations_address0,
         last_activations_ce0,
         last_activations_q0,
-        grp_fu_994_p_din0,
-        grp_fu_994_p_din1,
-        grp_fu_994_p_dout0,
-        grp_fu_994_p_ce
+        grp_fu_992_p_din0,
+        grp_fu_992_p_din1,
+        grp_fu_992_p_dout0,
+        grp_fu_992_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 7'd1;
@@ -53,10 +53,10 @@ input  [63:0] p_read2;
 output  [5:0] last_activations_address0;
 output   last_activations_ce0;
 input  [63:0] last_activations_q0;
-output  [63:0] grp_fu_994_p_din0;
-output  [63:0] grp_fu_994_p_din1;
-input  [63:0] grp_fu_994_p_dout0;
-output   grp_fu_994_p_ce;
+output  [63:0] grp_fu_992_p_din0;
+output  [63:0] grp_fu_992_p_din1;
+input  [63:0] grp_fu_992_p_dout0;
+output   grp_fu_992_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -115,7 +115,7 @@ backprop_mux_3_2_64_1_1 #(
     .din2_WIDTH( 64 ),
     .din3_WIDTH( 2 ),
     .dout_WIDTH( 64 ))
-mux_3_2_64_1_1_U79(
+mux_3_2_64_1_1_U116(
     .din0(p_read),
     .din1(p_read1),
     .din2(p_read2),
@@ -294,17 +294,17 @@ assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
 
 assign delta_weights3_address0 = zext_ln130_fu_194_p1;
 
-assign delta_weights3_d0 = grp_fu_994_p_dout0;
+assign delta_weights3_d0 = grp_fu_992_p_dout0;
 
 assign empty_52_fu_153_p2 = (p_shl_fu_145_p3 - zext_ln125_1_fu_139_p1);
 
 assign empty_fu_142_p1 = i_fu_50[5:0];
 
-assign grp_fu_994_p_ce = 1'b1;
+assign grp_fu_992_p_ce = 1'b1;
 
-assign grp_fu_994_p_din0 = last_activations_load_reg_236;
+assign grp_fu_992_p_din0 = last_activations_load_reg_236;
 
-assign grp_fu_994_p_din1 = tmp_fu_175_p5;
+assign grp_fu_992_p_din1 = tmp_fu_175_p5;
 
 assign icmp_ln125_fu_122_p2 = ((i_fu_50 == 7'd64) ? 1'b1 : 1'b0);
 

@@ -2830,11 +2830,11 @@ __attribute__((sdx_kernel("fft1D_512", 0))) void fft1D_512(double work_x[512], d
 # 7 "data/benchmarks/transposed_fft/transposed_fft.c" 2
 # 23 "data/benchmarks/transposed_fft/transposed_fft.c"
 void twiddles8(double a_x[8], double a_y[8], int i, int n){
-#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
+#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 23 "data/benchmarks/transposed_fft/transposed_fft.c"
 
-#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
+#line 14 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 23 "data/benchmarks/transposed_fft/transposed_fft.c"
 
@@ -2843,10 +2843,6 @@ void twiddles8(double a_x[8], double a_y[8], int i, int n){
     double phi, tmp, phi_x, phi_y;
 
     twiddles:for(j=1; j < 8; j++){
-#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 28 "data/benchmarks/transposed_fft/transposed_fft.c"
-
 #pragma HLS LOOP_TRIPCOUNT min=7 max=7 avg=7
  phi = ((-2*3.1415926535*reversed8[j]/n)*i);
         phi_x = cos(phi);
@@ -2858,14 +2854,6 @@ void twiddles8(double a_x[8], double a_y[8], int i, int n){
 }
 # 92 "data/benchmarks/transposed_fft/transposed_fft.c"
 void loadx8(double a_x[], double x[], int offset, int sx){
-#line 15 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 92 "data/benchmarks/transposed_fft/transposed_fft.c"
-
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 92 "data/benchmarks/transposed_fft/transposed_fft.c"
-
     a_x[0] = x[0*sx+offset];
     a_x[1] = x[1*sx+offset];
     a_x[2] = x[2*sx+offset];
@@ -2877,14 +2865,6 @@ void loadx8(double a_x[], double x[], int offset, int sx){
 }
 
 void loady8(double a_y[], double x[], int offset, int sx){
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 103 "data/benchmarks/transposed_fft/transposed_fft.c"
-
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 103 "data/benchmarks/transposed_fft/transposed_fft.c"
-
     a_y[0] = x[0*sx+offset];
     a_y[1] = x[1*sx+offset];
     a_y[2] = x[2*sx+offset];
@@ -2896,33 +2876,21 @@ void loady8(double a_y[], double x[], int offset, int sx){
 }
 
 __attribute__((sdx_kernel("fft1D_512", 0))) void fft1D_512(double work_x[512], double work_y[512]){
-#line 13 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
+#line 12 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 114 "data/benchmarks/transposed_fft/transposed_fft.c"
 
-#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls/hls_config.tcl"
+#line 9 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/hls_utils/script.tcl"
 #pragma HLSDIRECTIVE TOP name=fft1D_512
 # 114 "data/benchmarks/transposed_fft/transposed_fft.c"
 
     int tid, hi, lo, stride;
-    const int reversed[] = {0,4,2,6,1,5,3,7};
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE ARRAY_PARTITION off=true variable=reversed
-# 116 "data/benchmarks/transposed_fft/transposed_fft.c"
-
+    int reversed[] = {0,4,2,6,1,5,3,7};
     double DATA_x[64*8];
     double DATA_y[64*8];
 
     double data_x[ 8 ];
-#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE ARRAY_PARTITION off=true variable=data_x
-# 120 "data/benchmarks/transposed_fft/transposed_fft.c"
-
     double data_y[ 8 ];
-#line 22 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/transposed_fft.tcl"
-#pragma HLSDIRECTIVE ARRAY_PARTITION off=true variable=data_y
-# 121 "data/benchmarks/transposed_fft/transposed_fft.c"
-
 
     double smem[8*8*9];
 

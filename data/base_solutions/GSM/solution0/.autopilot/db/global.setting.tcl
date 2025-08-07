@@ -42,7 +42,7 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xcu50:-fsvh2104:-2-e
-set SourceFiles {sc {} c {../../../benchmarks/gsm/gsm_add.c ../../../benchmarks/gsm/gsm.c ../../../benchmarks/gsm/gsm_lpc.c}}
+set SourceFiles {sc {} c {../../../benchmarks/gsm/gsm_add.c ../../../benchmarks/gsm/gsm_lpc.c ../../../benchmarks/gsm/gsm.c}}
 set SourceFlags {sc {} c {{} {} {}}}
 set DirectiveFile {}
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

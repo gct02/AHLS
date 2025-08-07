@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Autocorrelation'" level="0">
-<item name = "Date">Wed Jul  9 03:57:16 2025
+<item name = "Date">Wed Aug  6 20:41:47 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 4.768 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 4.651 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1278, 2559, 10.224 us, 20.472 us, 1278, 2559, no</column>
+<column name="">1278, 2398, 10.224 us, 19.184 us, 1278, 2398, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -36,7 +36,7 @@
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- Autocorrelation_label0">320, 320, 2, -, -, 160, no</column>
-<column name="- Autocorrelation_label1">960, 960, 6, -, -, 160, no</column>
+<column name="- Autocorrelation_label1">800, 800, 5, -, -, 160, no</column>
 <column name="- Autocorrelation_label2">9, 9, 1, -, -, 9, no</column>
 <column name="- Autocorrelation_label3">912, 912, 6, -, -, 152, no</column>
 <column name="- Autocorrelation_label4">18, 18, 2, -, -, 9, no</column>

@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'bbgemm'
 ================================================================
 + General Information: 
-    * Date:           Wed Jul  9 03:45:05 2025
+    * Date:           Wed Aug  6 20:57:24 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        GEMM
     * Solution:       solution0 (Vivado IP Flow Target)

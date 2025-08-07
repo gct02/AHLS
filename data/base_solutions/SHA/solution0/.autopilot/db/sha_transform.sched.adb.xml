@@ -190,10 +190,10 @@ entry:0 %i = alloca i32 1
 
 <Node id="3" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:1 %specpipeline_ln17 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
+entry:1 %specpipeline_ln13 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln17"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln13"/></StgValue>
 </operation>
 
 <operation id="22" st_id="1" stage="1" lat="1">

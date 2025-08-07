@@ -963,10 +963,10 @@ for.inc18.split:7 %xout1_load = load i32 %xout1
 
 <Node id="111" bw="7" op_0_bw="7" op_1_bw="6" op_2_bw="1">
 <![CDATA[
-for.inc18.split:8 %shl_ln4 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %i_19, i1 0
+for.inc18.split:8 %shl_ln5 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %i_19, i1 0
 
 ]]></Node>
-<StgValue><ssdm name="shl_ln4"/></StgValue>
+<StgValue><ssdm name="shl_ln5"/></StgValue>
 </operation>
 
 <operation id="67" st_id="9" stage="1" lat="1">
@@ -978,7 +978,7 @@ for.inc18.split:8 %shl_ln4 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1
 
 <Node id="112" bw="64" op_0_bw="7">
 <![CDATA[
-for.inc18.split:9 %zext_ln226 = zext i7 %shl_ln4
+for.inc18.split:9 %zext_ln226 = zext i7 %shl_ln5
 
 ]]></Node>
 <StgValue><ssdm name="zext_ln226"/></StgValue>
@@ -1038,7 +1038,7 @@ for.inc18.split:12 %xout2_load = load i32 %xout2
 
 <Node id="116" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-for.inc18.split:13 %or_ln227 = or i7 %shl_ln4, i7 1
+for.inc18.split:13 %or_ln227 = or i7 %shl_ln5, i7 1
 
 ]]></Node>
 <StgValue><ssdm name="or_ln227"/></StgValue>

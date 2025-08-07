@@ -917,8 +917,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Stencil3d</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2114163014</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-07-09T07:15:05Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2114204567</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2025-08-07T03:47:56Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>

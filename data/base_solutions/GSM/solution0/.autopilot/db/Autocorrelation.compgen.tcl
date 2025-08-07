@@ -6,7 +6,66 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set id 31
+set id 24
+set name Gsm_LPC_Analysis_mac_muladd_16s_15ns_15ns_31_4_1
+set corename simcore_mac
+set op mac
+set stage_num 4
+set clk_width 1
+set clk_signed 0
+set reset_width 1
+set reset_signed 0
+set in0_width 16
+set in0_signed 1
+set in1_width 15
+set in1_signed 0
+set in2_width 15
+set in2_signed 0
+set ce_width 1
+set ce_signed 0
+set out_width 31
+set arg_lists {i0 {16 1 +} i1 {15 0 +} m {31 1 +} i2 {15 0 +} p {31 0 +} c_reg {1} rnd {0} acc {0} }
+set TrueReset 0
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {all} IMPL {dsp_slice} LATENCY 3 ALLOW_PRAGMA 1
+}
+
+
+set op mac
+set corename DSP48
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_dsp48] == "::AESL_LIB_VIRTEX::xil_gen_dsp48"} {
+eval "::AESL_LIB_VIRTEX::xil_gen_dsp48 { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    true_reset ${TrueReset} \
+    stage_num ${stage_num} \
+    clk_width ${clk_width} \
+    clk_signed ${clk_signed} \
+    reset_width ${reset_width} \
+    reset_signed ${reset_signed} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    in1_width ${in1_width} \
+    in1_signed ${in1_signed} \
+    in2_width ${in2_width} \
+    in2_signed ${in2_signed} \
+    ce_width ${ce_width} \
+    ce_signed ${ce_signed} \
+    out_width ${out_width} \
+    arg_lists {${arg_lists}} \
+}"
+} else {
+puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your platform lib"
+}
+}
+
+
+set id 25
 set name Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_32s_33_4_1
 set corename simcore_ama
 set op ama
@@ -69,7 +128,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 33
+set id 27
 set name Gsm_LPC_Analysis_am_addmul_16s_16s_16s_33_4_1
 set corename simcore_am
 set op am
@@ -128,7 +187,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 34
+set id 28
 set name Gsm_LPC_Analysis_mac_muladd_16s_16s_32s_33_4_1
 set corename simcore_mac
 set op mac
@@ -187,7 +246,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 39
+set id 33
 set name Gsm_LPC_Analysis_mac_muladd_16s_16s_33s_33_4_1
 set corename simcore_mac
 set op mac
@@ -246,7 +305,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_dsp48, check your p
 }
 
 
-set id 41
+set id 35
 set name Gsm_LPC_Analysis_ama_addmuladd_16s_16s_16s_33s_34_4_1
 set corename simcore_ama
 set op ama
@@ -320,7 +379,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 52 \
+    id 47 \
     name indata \
     reset_level 1 \
     sync_rst true \
@@ -339,7 +398,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 53 \
+    id 48 \
     name L_ACF \
     reset_level 1 \
     sync_rst true \
@@ -350,6 +409,25 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'L_ACF'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 49 \
+    name bitoff \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename bitoff \
+    op interface \
+    ports { bitoff_address0 { O 8 vector } bitoff_ce0 { O 1 bit } bitoff_q0 { I 4 vector } bitoff_address1 { O 8 vector } bitoff_ce1 { O 1 bit } bitoff_q1 { I 4 vector } bitoff_address2 { O 8 vector } bitoff_ce2 { O 1 bit } bitoff_q2 { I 4 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'bitoff'"
 }
 }
 

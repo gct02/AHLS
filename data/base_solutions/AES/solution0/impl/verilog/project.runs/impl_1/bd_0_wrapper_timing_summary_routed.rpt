@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Wed Jul  9 03:32:15 2025
+| Date              : Wed Aug  6 19:49:36 2025
 | Host              : gabriel-Inspiron-15-3511 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -max_paths 10 -report_unconstrained -file bd_0_wrapper_timing_summary_routed.rpt -pb bd_0_wrapper_timing_summary_routed.pb -rpx bd_0_wrapper_timing_summary_routed.rpx -warn_on_violation
 | Design            : bd_0_wrapper
@@ -2549,7 +2549,7 @@ Slack:                    inf
 Slack:                    inf
   Source:                 statemt_q1[2]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_558_reg[2]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_554_reg[2]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2564,18 +2564,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q1[2] (IN)
                          net (fo=27, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q1[2]
-    SLICE_X65Y35         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_558_reg[2]/D
+    SLICE_X65Y35         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_554_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X65Y35         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_558_reg[2]/C
+    SLICE_X65Y35         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_554_reg[2]/C
 
 Slack:                    inf
   Source:                 statemt_q1[6]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_558_reg[6]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_554_reg[6]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2590,18 +2590,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q1[6] (IN)
                          net (fo=32, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q1[6]
-    SLICE_X65Y38         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_558_reg[6]/D
+    SLICE_X65Y38         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_554_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X65Y38         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_558_reg[6]/C
+    SLICE_X65Y38         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln222_reg_554_reg[6]/C
 
 Slack:                    inf
   Source:                 statemt_q1[0]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_578_reg[0]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_574_reg[0]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2616,18 +2616,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q1[0] (IN)
                          net (fo=27, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q1[0]
-    SLICE_X65Y36         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_578_reg[0]/D
+    SLICE_X65Y36         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_574_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X65Y36         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_578_reg[0]/C
+    SLICE_X65Y36         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_574_reg[0]/C
 
 Slack:                    inf
   Source:                 statemt_q1[6]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_578_reg[6]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_574_reg[6]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2642,18 +2642,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q1[6] (IN)
                          net (fo=32, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q1[6]
-    SLICE_X65Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_578_reg[6]/D
+    SLICE_X65Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_574_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.019     0.019    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X65Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_578_reg[6]/C
+    SLICE_X65Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln224_reg_574_reg[6]/C
 
 Slack:                    inf
   Source:                 statemt_q0[2]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_603_reg[2]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_599_reg[2]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2668,18 +2668,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q0[2] (IN)
                          net (fo=25, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q0[2]
-    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_603_reg[2]/D
+    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_599_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.018     0.018    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_603_reg[2]/C
+    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_599_reg[2]/C
 
 Slack:                    inf
   Source:                 statemt_q0[3]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_603_reg[3]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_599_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2694,18 +2694,18 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q0[3] (IN)
                          net (fo=27, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q0[3]
-    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_603_reg[3]/D
+    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_599_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.018     0.018    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_603_reg[3]/C
+    SLICE_X64Y40         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln228_reg_599_reg[3]/C
 
 Slack:                    inf
   Source:                 statemt_q1[3]
                             (input port)
-  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln230_reg_618_reg[3]/D
+  Destination:            bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln230_reg_614_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
@@ -2720,13 +2720,13 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
                                                       0.000     0.000 r  statemt_q1[3] (IN)
                          net (fo=25, unset)           0.007     0.007    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/statemt_q1[3]
-    SLICE_X64Y37         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln230_reg_618_reg[3]/D
+    SLICE_X64Y37         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln230_reg_614_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
                                                       0.000     0.000 r  ap_clk (IN)
                          net (fo=1632, unset)         0.018     0.018    bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/ap_clk
-    SLICE_X64Y37         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln230_reg_618_reg[3]/C
+    SLICE_X64Y37         FDRE                                         r  bd_0_i/hls_inst/inst/grp_decrypt_fu_54/grp_InversShiftRow_ByteSub_fu_77/trunc_ln230_reg_614_reg[3]/C
 
 
 

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'get_delta_matrix_weights3'
 ================================================================
-* Date:           Wed Jul  9 03:32:56 2025
+* Date:           Wed Aug  6 20:24:16 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        BACKPROP
@@ -88,29 +88,29 @@ IsGatedGlobalClock: 0
 
 State 1 <SV = 0> <Delay = 0.38>
 ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/backprop/backprop.c:123]   --->   Operation 8 'alloca' 'i' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specpipeline_ln52 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:52]   --->   Operation 9 'specpipeline' 'specpipeline_ln52' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specpipeline_ln42 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_42" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/backprop.tcl:42]   --->   Operation 9 'specpipeline' 'specpipeline_ln42' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_read28 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read2" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 10 'read' 'p_read28' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%p_read17 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read1" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 11 'read' 'p_read17' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%p_read_14 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 12 'read' 'p_read_14' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%p_read_9 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 12 'read' 'p_read_9' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 13 [1/1] (0.38ns)   --->   "%store_ln123 = store i7 0, i7 %i" [data/benchmarks/backprop/backprop.c:123]   --->   Operation 13 'store' 'store_ln123' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln125 = br void %get_delta_matrix_weights3_loop1_1" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 14 'br' 'br_ln125' <Predicate = true> <Delay = 0.00>
 
 State 2 <SV = 1> <Delay = 0.71>
-ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%i_30 = load i7 %i"   --->   Operation 15 'load' 'i_30' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 16 [1/1] (0.70ns)   --->   "%icmp_ln125 = icmp_eq  i7 %i_30, i7 64" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 16 'icmp' 'icmp_ln125' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 17 [1/1] (0.70ns)   --->   "%add_ln125 = add i7 %i_30, i7 1" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 17 'add' 'add_ln125' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%i_29 = load i7 %i"   --->   Operation 15 'load' 'i_29' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.70ns)   --->   "%icmp_ln125 = icmp_eq  i7 %i_29, i7 64" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 16 'icmp' 'icmp_ln125' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 17 [1/1] (0.70ns)   --->   "%add_ln125 = add i7 %i_29, i7 1" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 17 'add' 'add_ln125' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln125 = br i1 %icmp_ln125, void %get_delta_matrix_weights3_loop1_1.split, void %for.end11" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 18 'br' 'br_ln125' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln125 = zext i7 %i_30" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 19 'zext' 'zext_ln125' <Predicate = (!icmp_ln125)> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln125 = zext i7 %i_29" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 19 'zext' 'zext_ln125' <Predicate = (!icmp_ln125)> <Delay = 0.00>
 ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%last_activations_addr = getelementptr i64 %last_activations, i64 0, i64 %zext_ln125" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 20 'getelementptr' 'last_activations_addr' <Predicate = (!icmp_ln125)> <Delay = 0.00>
 ST_2 : Operation 21 [2/2] (0.71ns)   --->   "%last_activations_load = load i6 %last_activations_addr" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 21 'load' 'last_activations_load' <Predicate = (!icmp_ln125)> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
 ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%ret_ln133 = ret" [data/benchmarks/backprop/backprop.c:133]   --->   Operation 22 'ret' 'ret_ln133' <Predicate = (icmp_ln125)> <Delay = 0.00>
 
 State 3 <SV = 2> <Delay = 0.71>
-ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln125_1 = zext i7 %i_30" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 23 'zext' 'zext_ln125_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln125_1 = zext i7 %i_29" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 23 'zext' 'zext_ln125_1' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%speclooptripcount_ln126 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [data/benchmarks/backprop/backprop.c:126]   --->   Operation 24 'speclooptripcount' 'speclooptripcount_ln126' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 25 [1/1] (0.00ns)   --->   "%specloopname_ln132 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [data/benchmarks/backprop/backprop.c:132]   --->   Operation 25 'specloopname' 'specloopname_ln132' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [1/1] (0.00ns)   --->   "%specloopname_ln132 = specloopname void @_ssdm_op_SpecLoopName, void @empty_30" [data/benchmarks/backprop/backprop.c:132]   --->   Operation 25 'specloopname' 'specloopname_ln132' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 26 [1/2] (0.71ns)   --->   "%last_activations_load = load i6 %last_activations_addr" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 26 'load' 'last_activations_load' <Predicate = true> <Delay = 0.71> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.71> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 64> <RAM>
-ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%empty = trunc i7 %i_30"   --->   Operation 27 'trunc' 'empty' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%empty = trunc i7 %i_29"   --->   Operation 27 'trunc' 'empty' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 28 [1/1] (0.00ns)   --->   "%p_shl = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i6.i2, i6 %empty, i2 0"   --->   Operation 28 'bitconcatenate' 'p_shl' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 29 [1/1] (0.70ns)   --->   "%empty_52 = sub i8 %p_shl, i8 %zext_ln125_1" [data/benchmarks/backprop/backprop.c:125]   --->   Operation 29 'sub' 'empty_52' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_3 : Operation 30 [1/1] (0.38ns)   --->   "%br_ln128 = br void %for.inc" [data/benchmarks/backprop/backprop.c:128]   --->   Operation 30 'br' 'br_ln128' <Predicate = true> <Delay = 0.38>
@@ -121,7 +121,7 @@ ST_4 : Operation 32 [1/1] (0.43ns)   --->   "%icmp_ln128 = icmp_eq  i2 %j, i2 3"
 ST_4 : Operation 33 [1/1] (0.43ns)   --->   "%add_ln128 = add i2 %j, i2 1" [data/benchmarks/backprop/backprop.c:128]   --->   Operation 33 'add' 'add_ln128' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.43> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln128 = br i1 %icmp_ln128, void %for.inc.split, void %for.inc9" [data/benchmarks/backprop/backprop.c:128]   --->   Operation 34 'br' 'br_ln128' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 35 [1/1] (0.00ns)   --->   "%zext_ln128 = zext i2 %j" [data/benchmarks/backprop/backprop.c:128]   --->   Operation 35 'zext' 'zext_ln128' <Predicate = (!icmp_ln128)> <Delay = 0.00>
-ST_4 : Operation 36 [1/1] (0.41ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %p_read_14, i64 %p_read17, i64 %p_read28, i2 %j" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 36 'mux' 'tmp' <Predicate = (!icmp_ln128)> <Delay = 0.41> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 36 [1/1] (0.41ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.3double.i2, i64 %p_read_9, i64 %p_read17, i64 %p_read28, i2 %j" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 36 'mux' 'tmp' <Predicate = (!icmp_ln128)> <Delay = 0.41> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 37 [4/4] (4.50ns)   --->   "%mul = dmul i64 %last_activations_load, i64 %tmp" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 37 'dmul' 'mul' <Predicate = (!icmp_ln128)> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 38 [1/1] (0.70ns)   --->   "%add_ln130 = add i8 %zext_ln128, i8 %empty_52" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 38 'add' 'add_ln130' <Predicate = (!icmp_ln128)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 39 [1/1] (0.38ns)   --->   "%store_ln123 = store i7 %add_ln125, i7 %i" [data/benchmarks/backprop/backprop.c:123]   --->   Operation 39 'store' 'store_ln123' <Predicate = (icmp_ln128)> <Delay = 0.38>
@@ -135,7 +135,7 @@ ST_6 : Operation 42 [2/4] (4.50ns)   --->   "%mul = dmul i64 %last_activations_l
 
 State 7 <SV = 6> <Delay = 5.70>
 ST_7 : Operation 43 [1/1] (0.00ns)   --->   "%speclooptripcount_ln129 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 3, i64 3, i64 3" [data/benchmarks/backprop/backprop.c:129]   --->   Operation 43 'speclooptripcount' 'speclooptripcount_ln129' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 44 [1/1] (0.00ns)   --->   "%specloopname_ln131 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/backprop/backprop.c:131]   --->   Operation 44 'specloopname' 'specloopname_ln131' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 44 [1/1] (0.00ns)   --->   "%specloopname_ln131 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [data/benchmarks/backprop/backprop.c:131]   --->   Operation 44 'specloopname' 'specloopname_ln131' <Predicate = true> <Delay = 0.00>
 ST_7 : Operation 45 [1/4] (4.50ns)   --->   "%mul = dmul i64 %last_activations_load, i64 %tmp" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 45 'dmul' 'mul' <Predicate = true> <Delay = 4.50> <CoreInst = "DMul_maxdsp">   --->   Core 49 'DMul_maxdsp' <Latency = 3> <II = 1> <Delay = 4.50> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
 ST_7 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln130 = zext i8 %add_ln130" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 46 'zext' 'zext_ln130' <Predicate = true> <Delay = 0.00>
 ST_7 : Operation 47 [1/1] (0.00ns)   --->   "%delta_weights3_addr = getelementptr i64 %delta_weights3, i64 0, i64 %zext_ln130" [data/benchmarks/backprop/backprop.c:130]   --->   Operation 47 'getelementptr' 'delta_weights3_addr' <Predicate = true> <Delay = 0.00>

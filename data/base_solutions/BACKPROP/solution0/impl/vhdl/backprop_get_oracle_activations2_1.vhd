@@ -29,11 +29,15 @@ port (
     dactivations_address0 : OUT STD_LOGIC_VECTOR (5 downto 0);
     dactivations_ce0 : OUT STD_LOGIC;
     dactivations_q0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_opcode : OUT STD_LOGIC_VECTOR (0 downto 0);
-    grp_fu_990_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
-    grp_fu_990_p_ce : OUT STD_LOGIC );
+    grp_fu_988_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_988_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_988_p_opcode : OUT STD_LOGIC_VECTOR (0 downto 0);
+    grp_fu_988_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_988_p_ce : OUT STD_LOGIC;
+    grp_fu_1008_p_din0 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_1008_p_din1 : OUT STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_1008_p_dout0 : IN STD_LOGIC_VECTOR (63 downto 0);
+    grp_fu_1008_p_ce : OUT STD_LOGIC );
 end;
 
 
@@ -98,7 +102,6 @@ attribute shreg_extract : string;
     signal bitcast_ln147_fu_241_p1 : STD_LOGIC_VECTOR (63 downto 0);
     signal ap_CS_fsm_state4 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state4 : signal is "none";
-    signal grp_fu_148_p2 : STD_LOGIC_VECTOR (63 downto 0);
     signal mul8_reg_319 : STD_LOGIC_VECTOR (63 downto 0);
     signal ap_CS_fsm_state7 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state7 : signal is "none";
@@ -194,22 +197,7 @@ attribute shreg_extract : string;
 
 
 begin
-    dmul_64ns_64ns_64_4_max_dsp_1_U86 : component backprop_dmul_64ns_64ns_64_4_max_dsp_1
-    generic map (
-        ID => 1,
-        NUM_STAGE => 4,
-        din0_WIDTH => 64,
-        din1_WIDTH => 64,
-        dout_WIDTH => 64)
-    port map (
-        clk => ap_clk,
-        reset => ap_rst,
-        din0 => grp_fu_148_p0,
-        din1 => grp_fu_148_p1,
-        ce => ap_const_logic_1,
-        dout => grp_fu_148_p2);
-
-    mux_3_2_64_1_1_U87 : component backprop_mux_3_2_64_1_1
+    mux_3_2_64_1_1_U124 : component backprop_mux_3_2_64_1_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,
@@ -247,7 +235,7 @@ begin
             if (((ap_const_logic_1 = ap_CS_fsm_state2) and (icmp_ln141_fu_163_p2 = ap_const_lv1_0))) then 
                 add113_reg_131 <= ap_const_lv64_0;
             elsif ((ap_const_logic_1 = ap_CS_fsm_state11)) then 
-                add113_reg_131 <= grp_fu_990_p_dout0;
+                add113_reg_131 <= grp_fu_988_p_dout0;
             end if; 
         end if;
     end process;
@@ -297,7 +285,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_CS_fsm_state7)) then
-                mul8_reg_319 <= grp_fu_148_p2;
+                mul8_reg_319 <= grp_fu_1008_p_dout0;
             end if;
         end if;
     end process;
@@ -431,6 +419,9 @@ begin
 
     empty_51_fu_196_p2 <= std_logic_vector(unsigned(p_shl_fu_188_p3) - unsigned(zext_ln141_1_fu_180_p1));
     empty_fu_184_p1 <= i_fu_60(6 - 1 downto 0);
+    grp_fu_1008_p_ce <= ap_const_logic_1;
+    grp_fu_1008_p_din0 <= grp_fu_148_p0;
+    grp_fu_1008_p_din1 <= grp_fu_148_p1;
 
     grp_fu_148_p0_assign_proc : process(tmp_reg_299, ap_CS_fsm_state4, ap_CS_fsm_state12, add113_reg_131)
     begin
@@ -455,10 +446,10 @@ begin
         end if; 
     end process;
 
-    grp_fu_990_p_ce <= ap_const_logic_1;
-    grp_fu_990_p_din0 <= add113_reg_131;
-    grp_fu_990_p_din1 <= mul8_reg_319;
-    grp_fu_990_p_opcode <= ap_const_lv2_0(1 - 1 downto 0);
+    grp_fu_988_p_ce <= ap_const_logic_1;
+    grp_fu_988_p_din0 <= add113_reg_131;
+    grp_fu_988_p_din1 <= mul8_reg_319;
+    grp_fu_988_p_opcode <= ap_const_lv2_0(1 - 1 downto 0);
     icmp_ln141_fu_163_p2 <= "1" when (i_fu_60 = ap_const_lv7_40) else "0";
     icmp_ln145_fu_202_p2 <= "1" when (j_reg_120 = ap_const_lv2_3) else "0";
     oracle_activations_address0 <= oracle_activations_addr_reg_281;
@@ -472,7 +463,7 @@ begin
         end if; 
     end process;
 
-    oracle_activations_d0 <= grp_fu_148_p2;
+    oracle_activations_d0 <= grp_fu_1008_p_dout0;
 
     oracle_activations_we0_assign_proc : process(ap_CS_fsm_state15)
     begin

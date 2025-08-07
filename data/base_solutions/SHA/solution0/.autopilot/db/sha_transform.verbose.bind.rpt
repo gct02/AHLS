@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'sha_transform'
 ================================================================
-* Date:           Wed Jul  9 04:09:34 2025
+* Date:           Thu Aug  7 00:38:44 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        SHA
@@ -104,7 +104,7 @@ IsGatedGlobalClock: 0
 
 State 1 <SV = 0> <Delay = 0.60>
 ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [data/benchmarks/sha/sha.c:93]   --->   Operation 20 'alloca' 'i' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%specpipeline_ln17 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:17]   --->   Operation 21 'specpipeline' 'specpipeline_ln17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%specpipeline_ln13 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/sha.tcl:13]   --->   Operation 21 'specpipeline' 'specpipeline_ln13' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 22 [1/1] (0.60ns)   --->   "%W = alloca i64 1" [data/benchmarks/sha/sha.c:94]   --->   Operation 22 'alloca' 'W' <Predicate = true> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 80> <RAM>
 ST_1 : Operation 23 [1/1] (0.38ns)   --->   "%store_ln93 = store i5 0, i5 %i" [data/benchmarks/sha/sha.c:93]   --->   Operation 23 'store' 'store_ln93' <Predicate = true> <Delay = 0.38>
 ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%br_ln98 = br void %for.inc" [data/benchmarks/sha/sha.c:98]   --->   Operation 24 'br' 'br_ln98' <Predicate = true> <Delay = 0.00>
@@ -414,7 +414,7 @@ Port [ sha_info_digest]:  wired=1; compound=1; hidden=0; nouse=0; global=1; stat
 <LifeTime>
 <method=bitvector/>
 i                       (alloca           ) [ 01110000000000000000]
-specpipeline_ln17       (specpipeline     ) [ 00000000000000000000]
+specpipeline_ln13       (specpipeline     ) [ 00000000000000000000]
 W                       (alloca           ) [ 00111111111111111100]
 store_ln93              (store            ) [ 00000000000000000000]
 br_ln98                 (br               ) [ 00000000000000000000]

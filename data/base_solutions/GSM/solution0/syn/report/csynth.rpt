@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'Gsm_LPC_Analysis'
 ================================================================
 + General Information: 
-    * Date:           Wed Jul  9 03:57:17 2025
+    * Date:           Wed Aug  6 20:41:48 2025
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        GSM
     * Solution:       solution0 (Vivado IP Flow Target)
@@ -19,42 +19,26 @@
     |                   Modules                   | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |      |          |            |            |     |
     |                   & Loops                   | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM |    DSP   |     FF     |     LUT    | URAM|
     +---------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
-    |+ Gsm_LPC_Analysis                           |     -|  1.07|     3168|  2.534e+04|         -|     3169|     -|        no|     -|  42 (~0%)|  2576 (~0%)|  6765 (~0%)|    -|
-    | + Autocorrelation                           |     -|  1.07|     2559|  2.047e+04|         -|     2559|     -|        no|     -|  38 (~0%)|  1749 (~0%)|  2953 (~0%)|    -|
-    |  + gsm_norm                                 |     -|  3.97|        1|      8.000|         -|        1|     -|        no|     -|         -|    20 (~0%)|   389 (~0%)|    -|
+    |+ Gsm_LPC_Analysis                           |     -|  0.17|     2951|  2.361e+04|         -|     2952|     -|        no|     -|  45 (~0%)|  2427 (~0%)|  7658 (~0%)|    -|
+    | + Autocorrelation                           |     -|  1.19|     2398|  1.918e+04|         -|     2398|     -|        no|     -|  39 (~0%)|  1706 (~0%)|  3230 (~0%)|    -|
     |  o Autocorrelation_label0                   |     -|  5.84|      320|  2.560e+03|         2|        -|   160|        no|     -|         -|           -|           -|    -|
-    |   + gsm_abs                                 |    II|  4.81|        0|      0.000|         -|        1|     -|       yes|     -|         -|           -|    79 (~0%)|    -|
-    |  o Autocorrelation_label1                   |     -|  5.84|      960|  7.680e+03|         6|        -|   160|        no|     -|         -|           -|           -|    -|
-    |   + gsm_mult_r                              |     -|  4.84|        3|     24.000|         -|        3|     -|        no|     -|   1 (~0%)|    22 (~0%)|   101 (~0%)|    -|
+    |  o Autocorrelation_label1                   |     -|  5.84|      800|  6.400e+03|         5|        -|   160|        no|     -|         -|           -|           -|    -|
     |  o Autocorrelation_label2                   |     -|  5.84|        9|     72.000|         1|        -|     9|        no|     -|         -|           -|           -|    -|
     |  o Autocorrelation_label3                   |     -|  5.84|      912|  7.296e+03|         6|        -|   152|        no|     -|         -|           -|           -|    -|
     |  o Autocorrelation_label4                   |     -|  5.84|       18|    144.000|         2|        -|     9|        no|     -|         -|           -|           -|    -|
     |  o Autocorrelation_label5                   |     -|  5.84|      320|  2.560e+03|         2|        -|   160|        no|     -|         -|           -|           -|    -|
-    | + Reflection_coefficients                   |     -|  1.92|      588|  4.704e+03|         -|      588|     -|        no|     -|   1 (~0%)|   601 (~0%)|  1399 (~0%)|    -|
-    |  + gsm_norm                                 |     -|  3.97|        1|      8.000|         -|        1|     -|        no|     -|         -|    20 (~0%)|   389 (~0%)|    -|
+    | + Reflection_coefficients                   |     -|  1.92|      532|  4.256e+03|         -|      532|     -|        no|     -|   3 (~0%)|   538 (~0%)|  2203 (~0%)|    -|
     |  o Reflection_coefficients_label0           |     -|  5.84|        8|     64.000|         1|        -|     8|        no|     -|         -|           -|           -|    -|
     |  o Reflection_coefficients_label1           |     -|  5.84|       18|    144.000|         2|        -|     9|        no|     -|         -|           -|           -|    -|
     |  o Reflection_coefficients_label2           |     -|  5.84|       14|    112.000|         2|        -|     7|        no|     -|         -|           -|           -|    -|
     |  o Reflection_coefficients_label3           |     -|  5.84|       18|    144.000|         2|        -|     9|        no|     -|         -|           -|           -|    -|
-    |  o Reflection_coefficients_label4           |     -|  5.84|      522|  4.176e+03|        65|        -|     8|        no|     -|         -|           -|           -|    -|
-    |   + gsm_abs                                 |    II|  4.81|        0|      0.000|         -|        1|     -|       yes|     -|         -|           -|    79 (~0%)|    -|
+    |  o Reflection_coefficients_label4           |     -|  5.84|      467|  3.736e+03|        58|        -|     8|        no|     -|         -|           -|           -|    -|
     |   + gsm_div                                 |     -|  3.79|       15|    120.000|         -|       15|     -|        no|     -|         -|   244 (~0%)|   352 (~0%)|    -|
     |    o gsm_div_label0                         |     -|  5.84|       14|    112.000|         1|        -|    15|        no|     -|         -|           -|           -|    -|
-    |   + gsm_mult_r                              |     -|  4.84|        3|     24.000|         -|        3|     -|        no|     -|   1 (~0%)|    22 (~0%)|   101 (~0%)|    -|
-    |   + gsm_add                                 |     -|  4.02|        0|      0.000|         -|        0|     -|        no|     -|         -|           -|   115 (~0%)|    -|
-    |   o Reflection_coefficients_label5          |     -|  5.84|       42|    336.000|         6|        -|     7|        no|     -|         -|           -|           -|    -|
-    |    + gsm_mult_r                             |     -|  4.84|        3|     24.000|         -|        3|     -|        no|     -|   1 (~0%)|    22 (~0%)|   101 (~0%)|    -|
-    |    + gsm_add                                |     -|  4.02|        0|      0.000|         -|        0|     -|        no|     -|         -|           -|   115 (~0%)|    -|
+    |   o Reflection_coefficients_label5          |     -|  5.84|       35|    280.000|         5|        -|     7|        no|     -|         -|           -|           -|    -|
     |  o Reflection_coefficients_label6           |     -|  5.84|        8|     64.000|         1|        -|     8|        no|     -|         -|           -|           -|    -|
-    | + Quantization_and_coding                   |     -|  1.14|        7|     56.000|         -|        7|     -|        no|     -|   2 (~0%)|    96 (~0%)|   949 (~0%)|    -|
-    |  + gsm_mult                                 |     -|  3.90|        0|      0.000|         -|        0|     -|        no|     -|   1 (~0%)|           -|     5 (~0%)|    -|
-    |  + gsm_mult                                 |     -|  3.90|        0|      0.000|         -|        0|     -|        no|     -|   1 (~0%)|           -|     5 (~0%)|    -|
-    |  + gsm_add                                  |     -|  4.02|        0|      0.000|         -|        0|     -|        no|     -|         -|           -|   115 (~0%)|    -|
-    |  + gsm_add                                  |     -|  4.02|        0|      0.000|         -|        0|     -|        no|     -|         -|           -|   115 (~0%)|    -|
-    |  + gsm_add                                  |     -|  4.02|        0|      0.000|         -|        0|     -|        no|     -|         -|           -|   115 (~0%)|    -|
-    |  + gsm_add                                  |     -|  4.02|        0|      0.000|         -|        0|     -|        no|     -|         -|           -|   115 (~0%)|    -|
+    | + Quantization_and_coding                   |     -|  0.17|        7|     56.000|         -|        7|     -|        no|     -|   3 (~0%)|    88 (~0%)|  1500 (~0%)|    -|
     | o Transformation_to_Log_Area_Ratios_label0  |     -|  5.84|        8|     64.000|         2|        1|     8|       yes|     -|         -|           -|           -|    -|
-    |  + gsm_abs                                  |    II|  4.81|        0|      0.000|         -|        1|     -|       yes|     -|         -|           -|    79 (~0%)|    -|
     +---------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+------+----------+------------+------------+-----+
 
 
@@ -133,194 +117,190 @@
 +---------------------------------------------+-----+--------+-------------+-----+-----------+---------+
 | Name                                        | DSP | Pragma | Variable    | Op  | Impl      | Latency |
 +---------------------------------------------+-----+--------+-------------+-----+-----------+---------+
-| + Gsm_LPC_Analysis                          | 42  |        |             |     |           |         |
-|   add_ln248_fu_154_p2                       |     |        | add_ln248   | add | fabric    | 0       |
-|   temp_39_fu_207_p2                         |     |        | temp_39     | add | fabric    | 0       |
-|   temp_40_fu_219_p2                         |     |        | temp_40     | add | fabric    | 0       |
-|   sub_ln262_fu_261_p2                       |     |        | sub_ln262   | sub | fabric    | 0       |
-|   i_9_fu_165_p2                             |     |        | i_9         | add | fabric    | 0       |
-|  + Autocorrelation                          | 38  |        |             |     |           |         |
-|    add_ln49_fu_577_p2                       |     |        | add_ln49    | add | fabric    | 0       |
-|    scalauto_fu_635_p2                       |     |        | scalauto    | sub | fabric    | 0       |
-|    add_ln62_fu_648_p2                       |     |        | add_ln62    | add | fabric    | 0       |
-|    add_ln65_fu_698_p2                       |     |        | add_ln65    | add | fabric    | 0       |
-|    add_ln79_fu_735_p2                       |     |        | add_ln79    | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U13                   | 1   |        | mul_ln84    | mul | auto      | 0       |
-|    mul_16s_16s_32_1_1_U14                   | 1   |        | mul_ln86    | mul | auto      | 0       |
-|    mac_muladd_16s_16s_32s_33_4_1_U37        | 1   |        | mul_ln89    | mul | dsp_slice | 3       |
-|    mul_16s_16s_32_1_1_U15                   | 1   |        | mul_ln91    | mul | auto      | 0       |
-|    mul_16s_16s_32_1_1_U16                   | 1   |        | mul_ln93    | mul | auto      | 0       |
-|    mac_muladd_16s_16s_32s_33_4_1_U38        | 1   |        | mul_ln98    | mul | dsp_slice | 3       |
-|    mul_16s_16s_32_1_1_U17                   | 1   |        | mul_ln102   | mul | auto      | 0       |
-|    mac_muladd_16s_16s_33s_33_4_1_U39        | 1   |        | mul_ln104   | mul | dsp_slice | 3       |
-|    mul_16s_16s_32_1_1_U18                   | 1   |        | mul_ln107   | mul | auto      | 0       |
-|    mac_muladd_16s_16s_33s_33_4_1_U40        | 1   |        | mul_ln108   | mul | dsp_slice | 3       |
-|    mul_16s_16s_32_1_1_U19                   | 1   |        | mul_ln109   | mul | auto      | 0       |
-|    mul_16s_16s_32_1_1_U8                    | 1   |        | mul_ln111   | mul | auto      | 0       |
-|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U31 | 1   |        | tmp         | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U31 | 1   |        | tmp18       | mul | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U41 | 1   |        | tmp19       | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U41 | 1   |        | tmp20       | mul | dsp_slice | 3       |
-|    am_addmul_16s_16s_16s_33_4_1_U42         | 1   |        | tmp21       | add | dsp_slice | 3       |
-|    am_addmul_16s_16s_16s_33_4_1_U42         | 1   |        | tmp22       | mul | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U32 | 1   |        | tmp23       | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U32 | 1   |        | tmp24       | mul | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U43 | 1   |        | tmp25       | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U43 | 1   |        | tmp26       | mul | dsp_slice | 3       |
-|    am_addmul_16s_16s_16s_33_4_1_U33         | 1   |        | tmp27       | add | dsp_slice | 3       |
-|    am_addmul_16s_16s_16s_33_4_1_U33         | 1   |        | tmp28       | mul | dsp_slice | 3       |
-|    mul_16s_16s_32_1_1_U9                    | 1   |        | mul_ln115   | mul | auto      | 0       |
-|    mul_16s_16s_32_1_1_U10                   | 1   |        | mul_ln116   | mul | auto      | 0       |
-|    mul_16s_16s_32_1_1_U20                   | 1   |        | mul_ln117   | mul | auto      | 0       |
-|    mac_muladd_16s_16s_32s_33_4_1_U34        | 1   |        | mul_ln119   | mul | dsp_slice | 3       |
-|    add_ln119_1_fu_932_p2                    |     |        | add_ln119_1 | add | fabric    | 0       |
-|    mac_muladd_16s_16s_32s_33_4_1_U37        | 1   |        | add_ln119_2 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U38        | 1   |        | add_ln119_4 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U34        | 1   |        | add_ln119_5 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_33s_33_4_1_U39        | 1   |        | add_ln119_6 | add | dsp_slice | 3       |
-|    add_ln119_7_fu_995_p2                    |     |        | add_ln119_7 | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U11                   | 1   |        | mul_ln120   | mul | auto      | 0       |
-|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U31 | 1   |        | add_ln120_2 | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U41 | 1   |        | add_ln120_3 | add | dsp_slice | 3       |
-|    mul_16s_16s_32_1_1_U12                   | 1   |        | mul_ln121   | mul | auto      | 0       |
-|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U32 | 1   |        | add_ln121_2 | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U43 | 1   |        | add_ln121_3 | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U44 | 1   |        | tmp29       | add | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U44 | 1   |        | tmp30       | mul | dsp_slice | 3       |
-|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U44 | 1   |        | add_ln122_2 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U35        | 1   |        | mul_ln123   | mul | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U35        | 1   |        | add_ln123_2 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_33s_33_4_1_U40        | 1   |        | add_ln123_3 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U36        | 1   |        | mul_ln124   | mul | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U36        | 1   |        | add_ln124_2 | add | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U45        | 1   |        | mul_ln125   | mul | dsp_slice | 3       |
-|    mac_muladd_16s_16s_32s_33_4_1_U45        | 1   |        | add_ln125_1 | add | dsp_slice | 3       |
-|    add_ln125_fu_1070_p2                     |     |        | add_ln125   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U21                   | 1   |        | mul_ln126   | mul | auto      | 0       |
-|    add_ln126_fu_1079_p2                     |     |        | add_ln126   | add | fabric    | 0       |
-|    add_ln139_fu_1137_p2                     |     |        | add_ln139   | add | fabric    | 0       |
-|    add_ln43_fu_1175_p2                      |     |        | add_ln43    | add | fabric    | 0       |
-|    add_ln131_fu_1143_p2                     |     |        | add_ln131   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U22                   | 1   |        | mul_ln132   | mul | auto      | 0       |
-|    add_ln132_fu_1209_p2                     |     |        | add_ln132   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U23                   | 1   |        | mul_ln133   | mul | auto      | 0       |
-|    add_ln133_fu_1229_p2                     |     |        | add_ln133   | add | fabric    | 0       |
-|    add_ln134_fu_1185_p2                     |     |        | add_ln134   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U24                   | 1   |        | mul_ln134   | mul | auto      | 0       |
-|    add_ln134_1_fu_1249_p2                   |     |        | add_ln134_1 | add | fabric    | 0       |
-|    add_ln135_fu_1255_p2                     |     |        | add_ln135   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U25                   | 1   |        | mul_ln135   | mul | auto      | 0       |
-|    add_ln135_1_fu_1303_p2                   |     |        | add_ln135_1 | add | fabric    | 0       |
-|    add_ln136_fu_1265_p2                     |     |        | add_ln136   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U26                   | 1   |        | mul_ln136   | mul | auto      | 0       |
-|    add_ln136_1_fu_1322_p2                   |     |        | add_ln136_1 | add | fabric    | 0       |
-|    add_ln137_fu_1328_p2                     |     |        | add_ln137   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U27                   | 1   |        | mul_ln137   | mul | auto      | 0       |
-|    add_ln137_1_fu_1375_p2                   |     |        | add_ln137_1 | add | fabric    | 0       |
-|    add_ln138_fu_1338_p2                     |     |        | add_ln138   | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U28                   | 1   |        | mul_ln138   | mul | auto      | 0       |
-|    add_ln138_1_fu_1394_p2                   |     |        | add_ln138_1 | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U29                   | 1   |        | mul_ln139   | mul | auto      | 0       |
-|    add_ln139_1_fu_1427_p2                   |     |        | add_ln139_1 | add | fabric    | 0       |
-|    mul_16s_16s_32_1_1_U30                   | 1   |        | mul_ln140   | mul | auto      | 0       |
-|    add_ln140_fu_1446_p2                     |     |        | add_ln140   | add | fabric    | 0       |
-|    i_11_fu_1154_p2                          |     |        | i_11        | add | fabric    | 0       |
-|    add_ln144_fu_1478_p2                     |     |        | add_ln144   | add | fabric    | 0       |
-|    add_ln152_fu_1510_p2                     |     |        | add_ln152   | add | fabric    | 0       |
-|   + gsm_norm (grp_gsm_norm_fu_477)          | 0   |        |             |     |           |         |
-|     add_ln112_fu_357_p2                     |     |        | add_ln112   | add | fabric    | 0       |
-|     add_ln112_1_fu_367_p2                   |     |        | add_ln112_1 | add | fabric    | 0       |
-|     add_ln112_2_fu_373_p2                   |     |        | add_ln112_2 | add | fabric    | 0       |
-|     add_ln112_3_fu_383_p2                   |     |        | add_ln112_3 | add | fabric    | 0       |
-|   + gsm_abs (temp_gsm_abs_fu_484)           | 0   |        |             |     |           |         |
-|     sub_ln67_fu_42_p2                       |     |        | sub_ln67    | sub | fabric    | 0       |
-|   + gsm_mult_r (grp_gsm_mult_r_fu_490)      | 1   |        |             |     |           |         |
-|     mac_muladd_16s_16s_15ns_31_4_1_U4       | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
-|     mac_muladd_16s_16s_15ns_31_4_1_U4       | 1   |        | prod        | add | dsp_slice | 3       |
-|  + Reflection_coefficients                  | 1   |        |             |     |           |         |
-|    grp_fu_331_p2                            |     |        | add_ln184   | add | fabric    | 0       |
-|    add_ln191_fu_415_p2                      |     |        | add_ln191   | add | fabric    | 0       |
-|    add_ln197_fu_440_p2                      |     |        | add_ln197   | add | fabric    | 0       |
-|    add_ln204_1_fu_488_p2                    |     |        | add_ln204_1 | add | fabric    | 0       |
-|    sub_ln220_fu_516_p2                      |     |        | sub_ln220   | sub | fabric    | 0       |
-|    add_ln232_fu_585_p2                      |     |        | add_ln232   | add | fabric    | 0       |
-|    add_ln204_fu_596_p2                      |     |        | add_ln204   | add | fabric    | 0       |
-|    add_ln204_2_fu_601_p2                    |     |        | add_ln204_2 | add | fabric    | 0       |
-|    add_ln204_3_fu_607_p2                    |     |        | add_ln204_3 | add | fabric    | 0       |
-|    add_ln210_fu_546_p2                      |     |        | add_ln210   | add | fabric    | 0       |
-|    add_ln165_fu_556_p2                      |     |        | add_ln165   | add | fabric    | 0       |
-|    grp_fu_331_p2                            |     |        | add_ln174   | add | fabric    | 0       |
-|   + gsm_norm (grp_gsm_norm_fu_276)          | 0   |        |             |     |           |         |
-|     add_ln112_fu_357_p2                     |     |        | add_ln112   | add | fabric    | 0       |
-|     add_ln112_1_fu_367_p2                   |     |        | add_ln112_1 | add | fabric    | 0       |
-|     add_ln112_2_fu_373_p2                   |     |        | add_ln112_2 | add | fabric    | 0       |
-|     add_ln112_3_fu_383_p2                   |     |        | add_ln112_3 | add | fabric    | 0       |
-|   + gsm_abs (temp_2_gsm_abs_fu_284)         | 0   |        |             |     |           |         |
-|     sub_ln67_fu_42_p2                       |     |        | sub_ln67    | sub | fabric    | 0       |
+| + Gsm_LPC_Analysis                          | 45  |        |             |     |           |         |
+|   add_ln248_fu_150_p2                       |     |        | add_ln248   | add | fabric    | 0       |
+|   sub_ln67_fu_191_p2                        |     |        | sub_ln67    | sub | fabric    | 0       |
+|   temp_29_fu_239_p2                         |     |        | temp_29     | add | fabric    | 0       |
+|   temp_30_fu_251_p2                         |     |        | temp_30     | add | fabric    | 0       |
+|   sub_ln262_fu_285_p2                       |     |        | sub_ln262   | sub | fabric    | 0       |
+|   i_9_fu_161_p2                             |     |        | i_9         | add | fabric    | 0       |
+|  + Autocorrelation                          | 39  |        |             |     |           |         |
+|    add_ln49_fu_628_p2                       |     |        | add_ln49    | add | fabric    | 0       |
+|    sub_ln67_fu_851_p2                       |     |        | sub_ln67    | sub | fabric    | 0       |
+|    add_ln112_fu_896_p2                      |     |        | add_ln112   | add | fabric    | 0       |
+|    add_ln112_4_fu_902_p2                    |     |        | add_ln112_4 | add | fabric    | 0       |
+|    add_ln112_5_fu_908_p2                    |     |        | add_ln112_5 | add | fabric    | 0       |
+|    add_ln112_6_fu_918_p2                    |     |        | add_ln112_6 | add | fabric    | 0       |
+|    scalauto_fu_970_p2                       |     |        | scalauto    | sub | fabric    | 0       |
+|    add_ln62_fu_989_p2                       |     |        | add_ln62    | add | fabric    | 0       |
+|    add_ln65_fu_1043_p2                      |     |        | add_ln65    | add | fabric    | 0       |
+|    mac_muladd_16s_15ns_15ns_31_4_1_U24      | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
+|    mac_muladd_16s_15ns_15ns_31_4_1_U24      | 1   |        | prod        | add | dsp_slice | 3       |
+|    add_ln79_fu_1094_p2                      |     |        | add_ln79    | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U6                    | 1   |        | mul_ln84    | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U7                    | 1   |        | mul_ln86    | mul | auto      | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U31        | 1   |        | mul_ln89    | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U8                    | 1   |        | mul_ln91    | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U9                    | 1   |        | mul_ln93    | mul | auto      | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U32        | 1   |        | mul_ln98    | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U10                   | 1   |        | mul_ln102   | mul | auto      | 0       |
+|    mac_muladd_16s_16s_33s_33_4_1_U33        | 1   |        | mul_ln104   | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U11                   | 1   |        | mul_ln107   | mul | auto      | 0       |
+|    mac_muladd_16s_16s_33s_33_4_1_U34        | 1   |        | mul_ln108   | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U12                   | 1   |        | mul_ln109   | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U1                    | 1   |        | mul_ln111   | mul | auto      | 0       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U25 | 1   |        | tmp         | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U25 | 1   |        | tmp18       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U35 | 1   |        | tmp19       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U35 | 1   |        | tmp20       | mul | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U36         | 1   |        | tmp21       | add | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U36         | 1   |        | tmp22       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U26 | 1   |        | tmp23       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U26 | 1   |        | tmp24       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U37 | 1   |        | tmp25       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U37 | 1   |        | tmp26       | mul | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U27         | 1   |        | tmp27       | add | dsp_slice | 3       |
+|    am_addmul_16s_16s_16s_33_4_1_U27         | 1   |        | tmp28       | mul | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U2                    | 1   |        | mul_ln115   | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U3                    | 1   |        | mul_ln116   | mul | auto      | 0       |
+|    mul_16s_16s_32_1_1_U13                   | 1   |        | mul_ln117   | mul | auto      | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U28        | 1   |        | mul_ln119   | mul | dsp_slice | 3       |
+|    add_ln119_1_fu_1291_p2                   |     |        | add_ln119_1 | add | fabric    | 0       |
+|    mac_muladd_16s_16s_32s_33_4_1_U31        | 1   |        | add_ln119_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U32        | 1   |        | add_ln119_4 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U28        | 1   |        | add_ln119_5 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_33s_33_4_1_U33        | 1   |        | add_ln119_6 | add | dsp_slice | 3       |
+|    add_ln119_7_fu_1354_p2                   |     |        | add_ln119_7 | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U4                    | 1   |        | mul_ln120   | mul | auto      | 0       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U25 | 1   |        | add_ln120_2 | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U35 | 1   |        | add_ln120_3 | add | dsp_slice | 3       |
+|    mul_16s_16s_32_1_1_U5                    | 1   |        | mul_ln121   | mul | auto      | 0       |
+|    ama_addmuladd_16s_16s_16s_32s_33_4_1_U26 | 1   |        | add_ln121_2 | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U37 | 1   |        | add_ln121_3 | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U38 | 1   |        | tmp29       | add | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U38 | 1   |        | tmp30       | mul | dsp_slice | 3       |
+|    ama_addmuladd_16s_16s_16s_33s_34_4_1_U38 | 1   |        | add_ln122_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U29        | 1   |        | mul_ln123   | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U29        | 1   |        | add_ln123_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_33s_33_4_1_U34        | 1   |        | add_ln123_3 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U30        | 1   |        | mul_ln124   | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U30        | 1   |        | add_ln124_2 | add | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U39        | 1   |        | mul_ln125   | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_32s_33_4_1_U39        | 1   |        | add_ln125_1 | add | dsp_slice | 3       |
+|    add_ln125_fu_1429_p2                     |     |        | add_ln125   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U14                   | 1   |        | mul_ln126   | mul | auto      | 0       |
+|    add_ln126_fu_1438_p2                     |     |        | add_ln126   | add | fabric    | 0       |
+|    add_ln139_fu_1496_p2                     |     |        | add_ln139   | add | fabric    | 0       |
+|    add_ln43_fu_1534_p2                      |     |        | add_ln43    | add | fabric    | 0       |
+|    add_ln131_fu_1502_p2                     |     |        | add_ln131   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U15                   | 1   |        | mul_ln132   | mul | auto      | 0       |
+|    add_ln132_fu_1568_p2                     |     |        | add_ln132   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U16                   | 1   |        | mul_ln133   | mul | auto      | 0       |
+|    add_ln133_fu_1588_p2                     |     |        | add_ln133   | add | fabric    | 0       |
+|    add_ln134_fu_1544_p2                     |     |        | add_ln134   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U17                   | 1   |        | mul_ln134   | mul | auto      | 0       |
+|    add_ln134_1_fu_1608_p2                   |     |        | add_ln134_1 | add | fabric    | 0       |
+|    add_ln135_fu_1614_p2                     |     |        | add_ln135   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U18                   | 1   |        | mul_ln135   | mul | auto      | 0       |
+|    add_ln135_1_fu_1662_p2                   |     |        | add_ln135_1 | add | fabric    | 0       |
+|    add_ln136_fu_1624_p2                     |     |        | add_ln136   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U19                   | 1   |        | mul_ln136   | mul | auto      | 0       |
+|    add_ln136_1_fu_1681_p2                   |     |        | add_ln136_1 | add | fabric    | 0       |
+|    add_ln137_fu_1687_p2                     |     |        | add_ln137   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U20                   | 1   |        | mul_ln137   | mul | auto      | 0       |
+|    add_ln137_1_fu_1734_p2                   |     |        | add_ln137_1 | add | fabric    | 0       |
+|    add_ln138_fu_1697_p2                     |     |        | add_ln138   | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U21                   | 1   |        | mul_ln138   | mul | auto      | 0       |
+|    add_ln138_1_fu_1753_p2                   |     |        | add_ln138_1 | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U22                   | 1   |        | mul_ln139   | mul | auto      | 0       |
+|    add_ln139_1_fu_1786_p2                   |     |        | add_ln139_1 | add | fabric    | 0       |
+|    mul_16s_16s_32_1_1_U23                   | 1   |        | mul_ln140   | mul | auto      | 0       |
+|    add_ln140_fu_1805_p2                     |     |        | add_ln140   | add | fabric    | 0       |
+|    i_11_fu_1513_p2                          |     |        | i_11        | add | fabric    | 0       |
+|    add_ln144_fu_1837_p2                     |     |        | add_ln144   | add | fabric    | 0       |
+|    add_ln152_fu_1876_p2                     |     |        | add_ln152   | add | fabric    | 0       |
+|  + Reflection_coefficients                  | 3   |        |             |     |           |         |
+|    add_ln112_fu_657_p2                      |     |        | add_ln112   | add | fabric    | 0       |
+|    add_ln112_1_fu_667_p2                    |     |        | add_ln112_1 | add | fabric    | 0       |
+|    add_ln112_2_fu_673_p2                    |     |        | add_ln112_2 | add | fabric    | 0       |
+|    add_ln112_3_fu_683_p2                    |     |        | add_ln112_3 | add | fabric    | 0       |
+|    grp_fu_400_p2                            |     |        | add_ln184   | add | fabric    | 0       |
+|    add_ln191_fu_794_p2                      |     |        | add_ln191   | add | fabric    | 0       |
+|    add_ln197_fu_819_p2                      |     |        | add_ln197   | add | fabric    | 0       |
+|    add_ln204_1_fu_867_p2                    |     |        | add_ln204_1 | add | fabric    | 0       |
+|    sub_ln67_fu_894_p2                       |     |        | sub_ln67    | sub | fabric    | 0       |
+|    sub_ln220_fu_931_p2                      |     |        | sub_ln220   | sub | fabric    | 0       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U52       | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U52       | 1   |        | prod        | add | dsp_slice | 3       |
+|    add_ln39_fu_1031_p2                      |     |        | add_ln39    | add | fabric    | 0       |
+|    sum_fu_1036_p2                           |     |        | sum         | add | fabric    | 0       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U53       | 1   |        | mul_ln59_1  | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U53       | 1   |        | prod_1      | add | dsp_slice | 3       |
+|    add_ln232_fu_1101_p2                     |     |        | add_ln232   | add | fabric    | 0       |
+|    add_ln39_2_fu_1193_p2                    |     |        | add_ln39_2  | add | fabric    | 0       |
+|    sum_1_fu_1198_p2                         |     |        | sum_1       | add | fabric    | 0       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U54       | 1   |        | mul_ln59_2  | mul | dsp_slice | 3       |
+|    mac_muladd_16s_16s_15ns_31_4_1_U54       | 1   |        | prod_2      | add | dsp_slice | 3       |
+|    add_ln39_4_fu_1280_p2                    |     |        | add_ln39_4  | add | fabric    | 0       |
+|    sum_2_fu_1285_p2                         |     |        | sum_2       | add | fabric    | 0       |
+|    add_ln204_fu_1112_p2                     |     |        | add_ln204   | add | fabric    | 0       |
+|    add_ln204_2_fu_1117_p2                   |     |        | add_ln204_2 | add | fabric    | 0       |
+|    add_ln204_3_fu_1123_p2                   |     |        | add_ln204_3 | add | fabric    | 0       |
+|    add_ln210_fu_978_p2                      |     |        | add_ln210   | add | fabric    | 0       |
+|    add_ln165_fu_988_p2                      |     |        | add_ln165   | add | fabric    | 0       |
+|    grp_fu_400_p2                            |     |        | add_ln174   | add | fabric    | 0       |
 |   + gsm_div                                 | 0   |        |             |     |           |         |
 |     L_num_5_fu_154_p2                       |     |        | L_num_5     | sub | fabric    | 0       |
 |     k_3_fu_186_p2                           |     |        | k_3         | add | fabric    | 0       |
-|   + gsm_mult_r (grp_gsm_mult_r_fu_298)      | 1   |        |             |     |           |         |
-|     mac_muladd_16s_16s_15ns_31_4_1_U4       | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
-|     mac_muladd_16s_16s_15ns_31_4_1_U4       | 1   |        | prod        | add | dsp_slice | 3       |
-|   + gsm_add (grp_gsm_add_fu_312)            | 0   |        |             |     |           |         |
-|     add_ln39_fu_48_p2                       |     |        | add_ln39    | add | fabric    | 0       |
-|     sum_fu_54_p2                            |     |        | sum         | add | fabric    | 0       |
-|   + gsm_mult_r (grp_gsm_mult_r_fu_305)      | 1   |        |             |     |           |         |
-|     mac_muladd_16s_16s_15ns_31_4_1_U4       | 1   |        | mul_ln59    | mul | dsp_slice | 3       |
-|     mac_muladd_16s_16s_15ns_31_4_1_U4       | 1   |        | prod        | add | dsp_slice | 3       |
-|   + gsm_add (tmp_6_gsm_add_fu_320)          | 0   |        |             |     |           |         |
-|     add_ln39_fu_48_p2                       |     |        | add_ln39    | add | fabric    | 0       |
-|     sum_fu_54_p2                            |     |        | sum         | add | fabric    | 0       |
-|  + gsm_abs (temp_37_gsm_abs_fu_120)         | 0   |        |             |     |           |         |
-|    sub_ln67_fu_42_p2                        |     |        | sub_ln67    | sub | fabric    | 0       |
-|  + Quantization_and_coding                  | 2   |        |             |     |           |         |
-|    add_ln289_fu_303_p2                      |     |        | add_ln289   | add | fabric    | 0       |
-|    add_ln290_fu_353_p2                      |     |        | add_ln290   | add | fabric    | 0       |
-|    add_ln291_fu_403_p2                      |     |        | add_ln291   | add | fabric    | 0       |
-|    add_ln292_fu_453_p2                      |     |        | add_ln292   | add | fabric    | 0       |
-|    add_ln294_fu_511_p2                      |     |        | add_ln294   | add | fabric    | 0       |
-|    add_ln295_fu_561_p2                      |     |        | add_ln295   | add | fabric    | 0       |
-|    add_ln296_fu_619_p2                      |     |        | add_ln296   | add | fabric    | 0       |
-|    add_ln297_fu_669_p2                      |     |        | add_ln297   | add | fabric    | 0       |
-|   + gsm_mult (grp_gsm_mult_fu_195)          | 1   |        |             |     |           |         |
-|     mul_16s_15ns_31_1_1_U62                 | 1   |        | mul_ln48    | mul | auto      | 0       |
-|   + gsm_mult (grp_gsm_mult_fu_203)          | 1   |        |             |     |           |         |
-|     mul_16s_15ns_31_1_1_U62                 | 1   |        | mul_ln48    | mul | auto      | 0       |
-|   + gsm_add (grp_gsm_add_fu_215)            | 0   |        |             |     |           |         |
-|     add_ln39_fu_48_p2                       |     |        | add_ln39    | add | fabric    | 0       |
-|     sum_fu_54_p2                            |     |        | sum         | add | fabric    | 0       |
-|   + gsm_add (grp_gsm_add_fu_222)            | 0   |        |             |     |           |         |
-|     add_ln39_fu_48_p2                       |     |        | add_ln39    | add | fabric    | 0       |
-|     sum_fu_54_p2                            |     |        | sum         | add | fabric    | 0       |
-|   + gsm_add (grp_gsm_add_fu_230)            | 0   |        |             |     |           |         |
-|     add_ln39_fu_48_p2                       |     |        | add_ln39    | add | fabric    | 0       |
-|     sum_fu_54_p2                            |     |        | sum         | add | fabric    | 0       |
-|   + gsm_add (grp_gsm_add_fu_237)            | 0   |        |             |     |           |         |
-|     add_ln39_fu_48_p2                       |     |        | add_ln39    | add | fabric    | 0       |
-|     sum_fu_54_p2                            |     |        | sum         | add | fabric    | 0       |
+|  + Quantization_and_coding                  | 3   |        |             |     |           |         |
+|    add_ln48_fu_237_p2                       |     |        | add_ln48    | add | fabric    | 0       |
+|    sum_fu_257_p2                            |     |        | sum         | add | fabric    | 0       |
+|    add_ln289_fu_319_p2                      |     |        | add_ln289   | add | fabric    | 0       |
+|    add_ln48_1_fu_371_p2                     |     |        | add_ln48_1  | add | fabric    | 0       |
+|    sum_3_fu_391_p2                          |     |        | sum_3       | add | fabric    | 0       |
+|    add_ln290_fu_453_p2                      |     |        | add_ln290   | add | fabric    | 0       |
+|    add_ln48_2_fu_505_p2                     |     |        | add_ln48_2  | add | fabric    | 0       |
+|    sum_4_fu_525_p2                          |     |        | sum_4       | add | fabric    | 0       |
+|    sum_5_fu_563_p2                          |     |        | sum_5       | add | fabric    | 0       |
+|    add_ln291_fu_625_p2                      |     |        | add_ln291   | add | fabric    | 0       |
+|    add_ln48_3_fu_677_p2                     |     |        | add_ln48_3  | add | fabric    | 0       |
+|    sum_6_fu_697_p2                          |     |        | sum_6       | add | fabric    | 0       |
+|    sum_7_fu_725_p2                          |     |        | sum_7       | add | fabric    | 0       |
+|    add_ln292_fu_787_p2                      |     |        | add_ln292   | add | fabric    | 0       |
+|    mul_16s_15ns_31_1_1_U60                  | 1   |        | mul_ln48    | mul | auto      | 0       |
+|    sum_8_fu_839_p2                          |     |        | sum_8       | add | fabric    | 0       |
+|    sum_9_fu_877_p2                          |     |        | sum_9       | add | fabric    | 0       |
+|    add_ln294_fu_1107_p2                     |     |        | add_ln294   | add | fabric    | 0       |
+|    sub_ln48_fu_933_p2                       |     |        | sub_ln48    | sub | fabric    | 0       |
+|    sum_10_fu_953_p2                         |     |        | sum_10      | add | fabric    | 0       |
+|    sum_11_fu_981_p2                         |     |        | sum_11      | add | fabric    | 0       |
+|    add_ln295_fu_1043_p2                     |     |        | add_ln295   | add | fabric    | 0       |
+|    mul_16s_15ns_31_1_1_U61                  | 1   |        | mul_ln48_1  | mul | auto      | 0       |
+|    sum_12_fu_1159_p2                        |     |        | sum_12      | add | fabric    | 0       |
+|    sum_13_fu_1187_p2                        |     |        | sum_13      | add | fabric    | 0       |
+|    add_ln296_fu_1339_p2                     |     |        | add_ln296   | add | fabric    | 0       |
+|    mul_16s_15ns_31_1_1_U62                  | 1   |        | mul_ln48_2  | mul | auto      | 0       |
+|    sum_14_fu_1243_p2                        |     |        | sum_14      | add | fabric    | 0       |
+|    sum_15_fu_1271_p2                        |     |        | sum_15      | add | fabric    | 0       |
+|    add_ln297_fu_1395_p2                     |     |        | add_ln297   | add | fabric    | 0       |
 +---------------------------------------------+-----+--------+-------------+-----+-----------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-+------------------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
-| Name                               | Usage         | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
-|                                    |               |      |      |      |        |          |      |         | Banks            |
-+------------------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
-| + Gsm_LPC_Analysis                 |               |      | 0    | 0    |        |          |      |         |                  |
-|   L_ACF_U                          | ram_t2p array |      |      |      |        | L_ACF    | auto | 1       | 64, 9, 1         |
-|  + Autocorrelation                 |               |      | 0    | 0    |        |          |      |         |                  |
-|   + gsm_norm (grp_gsm_norm_fu_477) |               |      | 0    | 0    |        |          |      |         |                  |
-|     bitoff_U                       | rom_np        |      |      |      |        | bitoff   | auto | 1       | 4, 256, 1        |
-|  + Reflection_coefficients         |               |      | 0    | 0    |        |          |      |         |                  |
-|    ACF_U                           | ram_1p array  |      |      |      |        | ACF      | auto | 1       | 16, 9, 1         |
-|    P_U                             | ram_t2p array |      |      |      |        | P        | auto | 1       | 16, 9, 1         |
-|    K_U                             | ram_1p array  |      |      |      |        | K        | auto | 1       | 16, 9, 1         |
-|   + gsm_norm (grp_gsm_norm_fu_276) |               |      | 0    | 0    |        |          |      |         |                  |
-|     bitoff_U                       | rom_np        |      |      |      |        | bitoff   | auto | 1       | 4, 256, 1        |
-+------------------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
++----------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
+| Name                       | Usage         | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                            |               |      |      |      |        |          |      |         | Banks            |
++----------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
+| + Gsm_LPC_Analysis         |               |      | 0    | 0    |        |          |      |         |                  |
+|   L_ACF_U                  | ram_t2p array |      |      |      |        | L_ACF    | auto | 1       | 64, 9, 1         |
+|   bitoff_U                 | rom_np        |      |      |      |        | bitoff   | auto | 1       | 4, 256, 1        |
+|  + Reflection_coefficients |               |      | 0    | 0    |        |          |      |         |                  |
+|    ACF_U                   | ram_1p array  |      |      |      |        | ACF      | auto | 1       | 16, 9, 1         |
+|    P_U                     | ram_1p array  |      |      |      |        | P        | auto | 1       | 16, 9, 1         |
+|    K_U                     | ram_1p array  |      |      |      |        | K        | auto | 1       | 16, 9, 1         |
++----------------------------+---------------+------+------+------+--------+----------+------+---------+------------------+
 
 
 ================================================================
@@ -345,31 +325,21 @@
 | loop_tripcount | min=1 max=8             | data/benchmarks/gsm/gsm_lpc.c:211 in reflection_coefficients           |
 | loop_tripcount | min=1 max=7             | data/benchmarks/gsm/gsm_lpc.c:230 in reflection_coefficients           |
 | loop_tripcount | min=8 max=8 avg=8       | data/benchmarks/gsm/gsm_lpc.c:249 in transformation_to_log_area_ratios |
-| inline         | off=true                | ../base_directives/gsm.tcl:32 in autocorrelation                       |
+| inline         | off=true                | ../base_directives/gsm.tcl:22 in autocorrelation                       |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:8 in autocorrelation                        |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:9 in autocorrelation                        |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:10 in autocorrelation                       |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:11 in autocorrelation                       |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:12 in autocorrelation                       |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:13 in autocorrelation                       |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:22 in autocorrelation                       |
-| inline         | off=true                | ../base_directives/gsm.tcl:31 in gsm_abs                               |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:21 in gsm_abs                               |
-| inline         | off=true                | ../base_directives/gsm.tcl:28 in gsm_add                               |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:18 in gsm_add                               |
-| inline         | off=true                | ../base_directives/gsm.tcl:27 in gsm_div                               |
+| pipeline       | off=true                | ../base_directives/gsm.tcl:17 in autocorrelation                       |
+| inline         | off=true                | ../base_directives/gsm.tcl:21 in gsm_div                               |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:14 in gsm_div                               |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:17 in gsm_div                               |
+| pipeline       | off=true                | ../base_directives/gsm.tcl:16 in gsm_div                               |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:15 in gsm_lpc_analysis                      |
-| inline         | off=true                | ../base_directives/gsm.tcl:29 in gsm_mult                              |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:19 in gsm_mult                              |
-| inline         | off=true                | ../base_directives/gsm.tcl:30 in gsm_mult_r                            |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:20 in gsm_mult_r                            |
-| inline         | off=true                | ../base_directives/gsm.tcl:26 in gsm_norm                              |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:16 in gsm_norm                              |
-| inline         | off=true                | ../base_directives/gsm.tcl:33 in reflection_coefficients               |
-| loop_flatten   | off=true                | ../base_directives/gsm.tcl:24 in reflection_coefficients               |
-| loop_flatten   | off=true                | ../base_directives/gsm.tcl:25 in reflection_coefficients               |
+| inline         | off=true                | ../base_directives/gsm.tcl:23 in reflection_coefficients               |
+| loop_flatten   | off=true                | ../base_directives/gsm.tcl:19 in reflection_coefficients               |
+| loop_flatten   | off=true                | ../base_directives/gsm.tcl:20 in reflection_coefficients               |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:1 in reflection_coefficients                |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:2 in reflection_coefficients                |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:3 in reflection_coefficients                |
@@ -377,7 +347,7 @@
 | pipeline       | off=true                | ../base_directives/gsm.tcl:5 in reflection_coefficients                |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:6 in reflection_coefficients                |
 | pipeline       | off=true                | ../base_directives/gsm.tcl:7 in reflection_coefficients                |
-| pipeline       | off=true                | ../base_directives/gsm.tcl:23 in reflection_coefficients               |
+| pipeline       | off=true                | ../base_directives/gsm.tcl:18 in reflection_coefficients               |
 +----------------+-------------------------+------------------------------------------------------------------------+
 
 

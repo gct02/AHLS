@@ -61,19 +61,19 @@ module backprop_update_weights_1 (
         p_read,
         p_read1,
         p_read2,
-        grp_fu_990_p_din0,
-        grp_fu_990_p_din1,
-        grp_fu_990_p_opcode,
-        grp_fu_990_p_dout0,
-        grp_fu_990_p_ce,
-        grp_fu_994_p_din0,
-        grp_fu_994_p_din1,
-        grp_fu_994_p_dout0,
-        grp_fu_994_p_ce,
-        grp_fu_998_p_din0,
-        grp_fu_998_p_din1,
-        grp_fu_998_p_dout0,
-        grp_fu_998_p_ce
+        grp_fu_988_p_din0,
+        grp_fu_988_p_din1,
+        grp_fu_988_p_opcode,
+        grp_fu_988_p_dout0,
+        grp_fu_988_p_ce,
+        grp_fu_992_p_din0,
+        grp_fu_992_p_din1,
+        grp_fu_992_p_dout0,
+        grp_fu_992_p_ce,
+        grp_fu_1000_p_din0,
+        grp_fu_1000_p_din1,
+        grp_fu_1000_p_dout0,
+        grp_fu_1000_p_ce
 );
 
 parameter    ap_ST_fsm_state1 = 277'd1;
@@ -408,19 +408,19 @@ input  [63:0] d_biases2_q0;
 input  [63:0] p_read;
 input  [63:0] p_read1;
 input  [63:0] p_read2;
-output  [63:0] grp_fu_990_p_din0;
-output  [63:0] grp_fu_990_p_din1;
-output  [1:0] grp_fu_990_p_opcode;
-input  [63:0] grp_fu_990_p_dout0;
-output   grp_fu_990_p_ce;
-output  [63:0] grp_fu_994_p_din0;
-output  [63:0] grp_fu_994_p_din1;
-input  [63:0] grp_fu_994_p_dout0;
-output   grp_fu_994_p_ce;
-output  [63:0] grp_fu_998_p_din0;
-output  [63:0] grp_fu_998_p_din1;
-input  [63:0] grp_fu_998_p_dout0;
-output   grp_fu_998_p_ce;
+output  [63:0] grp_fu_988_p_din0;
+output  [63:0] grp_fu_988_p_din1;
+output  [1:0] grp_fu_988_p_opcode;
+input  [63:0] grp_fu_988_p_dout0;
+output   grp_fu_988_p_ce;
+output  [63:0] grp_fu_992_p_din0;
+output  [63:0] grp_fu_992_p_din1;
+input  [63:0] grp_fu_992_p_dout0;
+output   grp_fu_992_p_ce;
+output  [63:0] grp_fu_1000_p_din0;
+output  [63:0] grp_fu_1000_p_din1;
+input  [63:0] grp_fu_1000_p_dout0;
+output   grp_fu_1000_p_ce;
 
 reg ap_done;
 reg ap_idle;
@@ -1035,7 +1035,7 @@ backprop_dsqrt_64ns_64ns_64_12_no_dsp_1 #(
     .din0_WIDTH( 64 ),
     .din1_WIDTH( 64 ),
     .dout_WIDTH( 64 ))
-dsqrt_64ns_64ns_64_12_no_dsp_1_U112(
+dsqrt_64ns_64ns_64_12_no_dsp_1_U149(
     .clk(ap_clk),
     .reset(ap_rst),
     .din0(64'd0),
@@ -1052,7 +1052,7 @@ backprop_mux_3_2_64_1_1 #(
     .din2_WIDTH( 64 ),
     .din3_WIDTH( 2 ),
     .dout_WIDTH( 64 ))
-mux_3_2_64_1_1_U113(
+mux_3_2_64_1_1_U150(
     .din0(p_read),
     .din1(p_read1),
     .din2(p_read2),
@@ -1072,7 +1072,7 @@ always @ (posedge ap_clk) begin
     if (((icmp_ln219_fu_593_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state2))) begin
         bias_norm_1_fu_134 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state36)) begin
-        bias_norm_1_fu_134 <= grp_fu_990_p_dout0;
+        bias_norm_1_fu_134 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1080,7 +1080,7 @@ always @ (posedge ap_clk) begin
     if (((icmp_ln257_fu_829_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state94))) begin
         bias_norm_4_fu_158 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state129)) begin
-        bias_norm_4_fu_158 <= grp_fu_990_p_dout0;
+        bias_norm_4_fu_158 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1088,7 +1088,7 @@ always @ (posedge ap_clk) begin
     if (((icmp_ln295_fu_1074_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state187))) begin
         bias_norm_7_fu_182 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state220)) begin
-        bias_norm_7_fu_182 <= grp_fu_990_p_dout0;
+        bias_norm_7_fu_182 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1240,7 +1240,7 @@ always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state77) & (icmp_ln248_fu_785_p2 == 1'd1))) begin
         norm_3_fu_154 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state112)) begin
-        norm_3_fu_154 <= grp_fu_990_p_dout0;
+        norm_3_fu_154 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1248,7 +1248,7 @@ always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state170) & (icmp_ln286_fu_1030_p2 == 1'd1))) begin
         norm_6_fu_178 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state204)) begin
-        norm_6_fu_178 <= grp_fu_990_p_dout0;
+        norm_6_fu_178 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1256,7 +1256,7 @@ always @ (posedge ap_clk) begin
     if (((ap_start == 1'b1) & (1'b1 == ap_CS_fsm_state1))) begin
         norm_fu_130 <= 64'd0;
     end else if ((1'b1 == ap_CS_fsm_state19)) begin
-        norm_fu_130 <= grp_fu_990_p_dout0;
+        norm_fu_130 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1412,13 +1412,13 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state216) | (1'b1 == ap_CS_fsm_state208) | (1'b1 == ap_CS_fsm_state200) | (1'b1 == ap_CS_fsm_state192) | (1'b1 == ap_CS_fsm_state125) | (1'b1 == ap_CS_fsm_state117) | (1'b1 == ap_CS_fsm_state108) | (1'b1 == ap_CS_fsm_state100) | (1'b1 == ap_CS_fsm_state32) | (1'b1 == ap_CS_fsm_state24) | (1'b1 == ap_CS_fsm_state15) | (1'b1 == ap_CS_fsm_state7))) begin
-        reg_520 <= grp_fu_994_p_dout0;
+        reg_520 <= grp_fu_992_p_dout0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state212) | (1'b1 == ap_CS_fsm_state196) | (1'b1 == ap_CS_fsm_state121) | (1'b1 == ap_CS_fsm_state104) | (1'b1 == ap_CS_fsm_state28) | (1'b1 == ap_CS_fsm_state11))) begin
-        reg_525 <= grp_fu_990_p_dout0;
+        reg_525 <= grp_fu_988_p_dout0;
     end
 end
 
@@ -1430,7 +1430,7 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state276) | (1'b1 == ap_CS_fsm_state248) | (1'b1 == ap_CS_fsm_state185) | (1'b1 == ap_CS_fsm_state157) | (1'b1 == ap_CS_fsm_state92) | (1'b1 == ap_CS_fsm_state64))) begin
-        reg_548 <= grp_fu_998_p_dout0;
+        reg_548 <= grp_fu_1000_p_dout0;
     end
 end
 
@@ -3571,11 +3571,11 @@ assign ap_CS_fsm_state97 = ap_CS_fsm[32'd96];
 
 assign ap_CS_fsm_state99 = ap_CS_fsm[32'd98];
 
-assign bitcast_ln224_1_fu_659_p1 = grp_fu_990_p_dout0;
+assign bitcast_ln224_1_fu_659_p1 = grp_fu_988_p_dout0;
 
 assign bitcast_ln224_fu_654_p1 = weights1_q0;
 
-assign bitcast_ln231_1_fu_705_p1 = grp_fu_990_p_dout0;
+assign bitcast_ln231_1_fu_705_p1 = grp_fu_988_p_dout0;
 
 assign bitcast_ln231_fu_700_p1 = biases1_q0;
 
@@ -3591,7 +3591,7 @@ assign bitcast_ln262_1_fu_899_p1 = reg_525;
 
 assign bitcast_ln262_fu_894_p1 = reg_552;
 
-assign bitcast_ln269_1_fu_945_p1 = grp_fu_990_p_dout0;
+assign bitcast_ln269_1_fu_945_p1 = grp_fu_988_p_dout0;
 
 assign bitcast_ln269_fu_940_p1 = biases2_q0;
 
@@ -3603,11 +3603,11 @@ assign bitcast_ln288_1_fu_1066_p1 = reg_548;
 
 assign bitcast_ln288_fu_1062_p1 = biases2_load_1_reg_1667;
 
-assign bitcast_ln300_1_fu_1154_p1 = grp_fu_990_p_dout0;
+assign bitcast_ln300_1_fu_1154_p1 = grp_fu_988_p_dout0;
 
 assign bitcast_ln300_fu_1149_p1 = weights3_q0;
 
-assign bitcast_ln307_1_fu_1208_p1 = grp_fu_990_p_dout0;
+assign bitcast_ln307_1_fu_1208_p1 = grp_fu_988_p_dout0;
 
 assign bitcast_ln307_fu_1203_p1 = biases3_q0;
 
@@ -3641,25 +3641,25 @@ assign empty_50_fu_1249_p2 = (p_shl1_fu_1241_p3 - zext_ln315_fu_1233_p1);
 
 assign empty_fu_841_p1 = i_4_fu_150[5:0];
 
-assign grp_fu_990_p_ce = 1'b1;
+assign grp_fu_1000_p_ce = 1'b1;
 
-assign grp_fu_990_p_din0 = grp_fu_468_p0;
+assign grp_fu_1000_p_din0 = grp_fu_481_p0;
 
-assign grp_fu_990_p_din1 = reg_520;
+assign grp_fu_1000_p_din1 = reg_543;
 
-assign grp_fu_990_p_opcode = grp_fu_468_opcode;
+assign grp_fu_988_p_ce = 1'b1;
 
-assign grp_fu_994_p_ce = 1'b1;
+assign grp_fu_988_p_din0 = grp_fu_468_p0;
 
-assign grp_fu_994_p_din0 = grp_fu_472_p0;
+assign grp_fu_988_p_din1 = reg_520;
 
-assign grp_fu_994_p_din1 = grp_fu_472_p1;
+assign grp_fu_988_p_opcode = grp_fu_468_opcode;
 
-assign grp_fu_998_p_ce = 1'b1;
+assign grp_fu_992_p_ce = 1'b1;
 
-assign grp_fu_998_p_din0 = grp_fu_481_p0;
+assign grp_fu_992_p_din0 = grp_fu_472_p0;
 
-assign grp_fu_998_p_din1 = reg_543;
+assign grp_fu_992_p_din1 = grp_fu_472_p1;
 
 assign icmp_ln219_fu_593_p2 = ((i_fu_126 == 4'd13) ? 1'b1 : 1'b0);
 

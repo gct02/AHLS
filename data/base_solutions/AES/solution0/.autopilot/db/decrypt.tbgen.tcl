@@ -103,17 +103,17 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "statemt", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
+					{"ID" : "8", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_85", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "8"},
 					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_66", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "11"},
-					{"ID" : "6", "SubInstance" : "grp_InversShiftRow_ByteSub_fu_77", "Port" : "statemt", "Inst_start_state" : "9", "Inst_end_state" : "10"},
-					{"ID" : "8", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_85", "Port" : "statemt", "Inst_start_state" : "7", "Inst_end_state" : "8"}]},
+					{"ID" : "6", "SubInstance" : "grp_InversShiftRow_ByteSub_fu_77", "Port" : "statemt", "Inst_start_state" : "9", "Inst_end_state" : "10"}]},
 			{"Name" : "key", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
 					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_54", "Port" : "key", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},
 			{"Name" : "word", "Type" : "Memory", "Direction" : "IO",
 				"SubConnect" : [
+					{"ID" : "8", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_85", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "8"},
 					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_54", "Port" : "word", "Inst_start_state" : "1", "Inst_end_state" : "2"},
-					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_66", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "11"},
-					{"ID" : "8", "SubInstance" : "grp_AddRoundKey_InversMixColumn_fu_85", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "8"}]},
+					{"ID" : "5", "SubInstance" : "grp_AddRoundKey_fu_66", "Port" : "word", "Inst_start_state" : "7", "Inst_end_state" : "11"}]},
 			{"Name" : "Sbox", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
 					{"ID" : "1", "SubInstance" : "grp_KeySchedule_fu_54", "Port" : "Sbox", "Inst_start_state" : "1", "Inst_end_state" : "2"}]},

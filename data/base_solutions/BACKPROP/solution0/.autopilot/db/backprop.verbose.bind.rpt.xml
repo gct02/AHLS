@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'backprop'" level="0">
-<item name = "Date">Wed Jul  9 03:32:57 2025
+<item name = "Date">Wed Aug  6 20:24:17 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">BACKPROP</item>
@@ -24,32 +24,34 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">50857142, 50857142, 0.407 sec, 0.407 sec, 50857143, 50857143, no</column>
+<column name="">50132118, 50132118, 0.401 sec, 0.401 sec, 50132119, 50132119, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_matrix_vector_product_with_bias_input_layer_1_fu_323">matrix_vector_product_with_bias_input_layer_1, 8771, 8771, 70.168 us, 70.168 us, 8771, 8771, no</column>
-<column name="grp_RELU_fu_335">RELU, 1985, 1985, 15.880 us, 15.880 us, 1985, 1985, no</column>
-<column name="grp_matrix_vector_product_with_bias_second_layer_1_fu_341">matrix_vector_product_with_bias_second_layer_1, 41411, 41411, 0.331 ms, 0.331 ms, 41411, 41411, no</column>
-<column name="grp_matrix_vector_product_with_bias_output_layer_1_fu_351">matrix_vector_product_with_bias_output_layer_1, 1752, 1752, 14.016 us, 14.016 us, 1752, 1752, no</column>
-<column name="grp_RELU_clone_fu_366">RELU_clone, 106, 106, 0.848 us, 0.848 us, 106, 106, no</column>
-<column name="grp_soft_max_fu_376">soft_max, 122, 122, 0.976 us, 0.976 us, 122, 122, no</column>
-<column name="grp_take_difference_1_fu_386">take_difference_1, 28, 28, 0.224 us, 0.224 us, 28, 28, no</column>
-<column name="grp_get_delta_matrix_weights3_fu_402">get_delta_matrix_weights3, 961, 961, 7.688 us, 7.688 us, 961, 961, no</column>
-<column name="grp_get_oracle_activations2_1_fu_411">get_oracle_activations2_1, 2113, 2113, 16.904 us, 16.904 us, 2113, 2113, no</column>
-<column name="grp_get_delta_matrix_weights2_fu_422">get_delta_matrix_weights2, 24769, 24769, 0.198 ms, 0.198 ms, 24769, 24769, no</column>
-<column name="grp_get_oracle_activations1_1_fu_429">get_oracle_activations1_1, 41345, 41345, 0.331 ms, 0.331 ms, 41345, 41345, no</column>
-<column name="grp_get_delta_matrix_weights1_1_fu_438">get_delta_matrix_weights1_1, 4200, 4200, 33.600 us, 33.600 us, 4200, 4200, no</column>
-<column name="grp_update_weights_1_fu_447">update_weights_1, 183269, 183269, 1.466 ms, 1.466 ms, 183269, 183269, no</column>
+<column name="grp_backprop_Pipeline_backprop_loop1_1_fu_248">backprop_Pipeline_backprop_loop1_1, 66, 66, 0.528 us, 0.528 us, 66, 66, no</column>
+<column name="grp_matrix_vector_product_with_bias_input_layer_1_fu_260">matrix_vector_product_with_bias_input_layer_1, 8519, 8519, 68.152 us, 68.152 us, 8519, 8519, no</column>
+<column name="grp_backprop_Pipeline_RELU_loop1_fu_272">backprop_Pipeline_RELU_loop1, 95, 95, 0.760 us, 0.760 us, 95, 95, no</column>
+<column name="grp_matrix_vector_product_with_bias_second_layer_1_fu_278">matrix_vector_product_with_bias_second_layer_1, 41159, 41159, 0.329 ms, 0.329 ms, 41159, 41159, no</column>
+<column name="grp_backprop_Pipeline_RELU_loop11_fu_288">backprop_Pipeline_RELU_loop11, 95, 95, 0.760 us, 0.760 us, 95, 95, no</column>
+<column name="grp_matrix_vector_product_with_bias_output_layer_1_fu_294">matrix_vector_product_with_bias_output_layer_1, 1749, 1749, 13.992 us, 13.992 us, 1749, 1749, no</column>
+<column name="grp_backprop_Pipeline_RELU_loop12_fu_306">backprop_Pipeline_RELU_loop12, 89, 89, 0.712 us, 0.712 us, 89, 89, no</column>
+<column name="grp_backprop_Pipeline_soft_max_loop1_fu_322">backprop_Pipeline_soft_max_loop1, 22, 22, 0.176 us, 0.176 us, 22, 22, no</column>
+<column name="grp_backprop_Pipeline_soft_max_loop2_fu_330">backprop_Pipeline_soft_max_loop2, 28, 28, 0.224 us, 0.224 us, 28, 28, no</column>
+<column name="grp_backprop_Pipeline_take_difference_loop1_fu_344">backprop_Pipeline_take_difference_loop1, 12, 12, 96.000 ns, 96.000 ns, 12, 12, no</column>
+<column name="grp_get_delta_matrix_weights3_fu_363">get_delta_matrix_weights3, 961, 961, 7.688 us, 7.688 us, 961, 961, no</column>
+<column name="grp_get_oracle_activations2_1_fu_372">get_oracle_activations2_1, 2113, 2113, 16.904 us, 16.904 us, 2113, 2113, no</column>
+<column name="grp_get_delta_matrix_weights2_fu_383">get_delta_matrix_weights2, 24769, 24769, 0.198 ms, 0.198 ms, 24769, 24769, no</column>
+<column name="grp_get_oracle_activations1_1_fu_390">get_oracle_activations1_1, 41345, 41345, 0.331 ms, 0.331 ms, 41345, 41345, no</column>
+<column name="grp_get_delta_matrix_weights1_1_fu_399">get_delta_matrix_weights1_1, 4200, 4200, 33.600 us, 33.600 us, 4200, 4200, no</column>
+<column name="grp_update_weights_1_fu_408">update_weights_1, 183269, 183269, 1.466 ms, 1.466 ms, 183269, 183269, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- backprop_loop1">50857141, 50857141, 312007, -, -, 163, no</column>
-<column name=" + backprop_loop1_1">128, 128, 2, -, -, 64, no</column>
+<column name="- backprop_loop1">50132117, 50132117, 307559, -, -, 163, no</column>
 </table>
 </item>
 </section>

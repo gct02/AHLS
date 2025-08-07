@@ -101,8 +101,8 @@ wire   [31:0] temp_1_2_fu_982_p3;
 reg   [31:0] temp_1_2_reg_1235;
 wire   [31:0] temp_0_2_fu_990_p3;
 reg   [31:0] temp_0_2_reg_1240;
-wire   [8:0] zext_ln501_fu_998_p1;
-reg   [8:0] zext_ln501_reg_1245;
+wire   [8:0] zext_ln566_fu_998_p1;
+reg   [8:0] zext_ln566_reg_1245;
 wire    ap_CS_fsm_state8;
 wire   [31:0] temp_2_2_fu_1009_p3;
 reg   [31:0] temp_2_2_reg_1250;
@@ -401,7 +401,7 @@ always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
         temp_2_2_reg_1250 <= temp_2_2_fu_1009_p3;
         temp_3_reg_1255 <= temp_3_fu_1015_p3;
-        zext_ln501_reg_1245[5 : 0] <= zext_ln501_fu_998_p1[5 : 0];
+        zext_ln566_reg_1245[5 : 0] <= zext_ln566_fu_998_p1[5 : 0];
         zext_ln592_reg_1260[5 : 0] <= zext_ln592_fu_1027_p1[5 : 0];
     end
 end
@@ -656,7 +656,7 @@ assign add_ln574_fu_971_p2 = ($signed(tmp_12_fu_911_p3) + $signed(sext_ln574_fu_
 
 assign add_ln592_fu_1041_p2 = (i_2_reg_269 + 3'd1);
 
-assign add_ln594_1_fu_1083_p2 = (sub_ln594_fu_1067_p2 + zext_ln501_reg_1245);
+assign add_ln594_1_fu_1083_p2 = (sub_ln594_fu_1067_p2 + zext_ln566_reg_1245);
 
 assign add_ln594_fu_1073_p2 = (sub_ln594_fu_1067_p2 + zext_ln592_reg_1260);
 
@@ -848,8 +848,6 @@ assign trunc_ln592_fu_1031_p1 = i_2_reg_269[1:0];
 
 assign xor_ln594_fu_1112_p2 = (word_q1 ^ tmp_reg_1283);
 
-assign zext_ln501_fu_998_p1 = j_2_fu_120;
-
 assign zext_ln557_fu_350_p1 = i_reg_257;
 
 assign zext_ln559_1_fu_376_p1 = tmp_13_fu_368_p3;
@@ -859,6 +857,8 @@ assign zext_ln559_2_fu_388_p1 = tmp_14_fu_380_p3;
 assign zext_ln559_3_fu_415_p1 = tmp_15_fu_408_p3;
 
 assign zext_ln559_fu_359_p1 = add_ln559_fu_354_p2;
+
+assign zext_ln566_fu_998_p1 = j_2_fu_120;
 
 assign zext_ln571_1_fu_465_p1 = add_ln571_reg_1169;
 
@@ -917,7 +917,7 @@ assign zext_ln594_fu_1063_p1 = tmp_17_fu_1055_p3;
 always @ (posedge ap_clk) begin
     tmp_s_reg_1138[1:0] <= 2'b00;
     zext_ln571_2_reg_1174[8:6] <= 3'b000;
-    zext_ln501_reg_1245[8:6] <= 3'b000;
+    zext_ln566_reg_1245[8:6] <= 3'b000;
     zext_ln592_reg_1260[8:6] <= 3'b000;
 end
 

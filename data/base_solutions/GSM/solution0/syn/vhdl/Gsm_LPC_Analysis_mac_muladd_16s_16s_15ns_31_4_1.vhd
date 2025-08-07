@@ -9,7 +9,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0 is
+entity Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6 is
 port (
     clk: in  std_logic;
     rst: in  std_logic;
@@ -21,7 +21,7 @@ port (
 
 end entity;
 
-architecture behav of Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0 is
+architecture behav of Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6 is
     signal a       : signed(27-1 downto 0);
     signal b       : signed(18-1 downto 0);
     signal c       : signed(48-1 downto 0);
@@ -75,7 +75,7 @@ entity Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1 is
 end entity;
 
 architecture arch of Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1 is
-    component Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0 is
+    component Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6 is
         port (
             clk : IN STD_LOGIC;
             rst : IN STD_LOGIC;
@@ -89,7 +89,7 @@ architecture arch of Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1 is
 
 
 begin
-    Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0_U :  component Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_0
+    Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6_U :  component Gsm_LPC_Analysis_mac_muladd_16s_16s_15ns_31_4_1_DSP48_6
     port map (
         clk => clk,
         rst => reset,

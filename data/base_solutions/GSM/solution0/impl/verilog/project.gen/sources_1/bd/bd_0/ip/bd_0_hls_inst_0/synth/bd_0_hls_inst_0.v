@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:hls:Gsm_LPC_Analysis:1.0
-// IP Revision: 2114162997
+// IP Revision: 2114204321
 
 (* X_CORE_INFO = "Gsm_LPC_Analysis,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "bd_0_hls_inst_0,Gsm_LPC_Analysis,{}" *)
-(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,Gsm_LPC_Analysis,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=Gsm_LPC_Analysis,x_ipVersion=1.0,x_ipCoreRevision=2114162997,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "bd_0_hls_inst_0,Gsm_LPC_Analysis,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=Gsm_LPC_Analysis,x_ipVersion=1.0,x_ipCoreRevision=2114204321,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "HLS" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_0_hls_inst_0 (

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'AddRoundKey'
 ================================================================
-* Date:           Wed Jul  9 03:26:54 2025
+* Date:           Wed Aug  6 19:44:43 2025
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        AES
@@ -155,7 +155,7 @@ ST_4 : Operation 67 [1/2] (0.69ns)   --->   "%statemt_load_43 = load i5 %statemt
 ST_4 : Operation 68 [1/1] (0.21ns)   --->   "%xor_ln474 = xor i32 %statemt_load_43, i32 %word_load_12" [data/benchmarks/aes/aes_key.c:474]   --->   Operation 68 'xor' 'xor_ln474' <Predicate = true> <Delay = 0.21> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.21> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
 
 State 5 <SV = 4> <Delay = 0.69>
-ST_5 : Operation 69 [1/1] (0.00ns)   --->   "%speclooptripcount_ln448 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4" [data/benchmarks/aes/aes_key.c:448]   --->   Operation 69 'speclooptripcount' 'speclooptripcount_ln448' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 69 [1/1] (0.00ns)   --->   "%speclooptripcount_ln470 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4" [data/benchmarks/aes/aes_key.c:470]   --->   Operation 69 'speclooptripcount' 'speclooptripcount_ln470' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 70 [1/1] (0.00ns)   --->   "%specloopname_ln475 = specloopname void @_ssdm_op_SpecLoopName, void @empty_5" [data/benchmarks/aes/aes_key.c:475]   --->   Operation 70 'specloopname' 'specloopname_ln475' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 71 [1/1] (0.69ns)   --->   "%store_ln473 = store i32 %xor_ln473, i5 %statemt_addr_50" [data/benchmarks/aes/aes_key.c:473]   --->   Operation 71 'store' 'store_ln473' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>
 ST_5 : Operation 72 [1/1] (0.69ns)   --->   "%store_ln474 = store i32 %xor_ln474, i5 %statemt_addr_51" [data/benchmarks/aes/aes_key.c:474]   --->   Operation 72 'store' 'store_ln474' <Predicate = true> <Delay = 0.69> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.69> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 32> <RAM>

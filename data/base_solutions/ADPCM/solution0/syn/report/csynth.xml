@@ -19,14 +19,14 @@
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>13704</Best-caseLatency>
-            <Average-caseLatency>13804</Average-caseLatency>
-            <Worst-caseLatency>13804</Worst-caseLatency>
-            <Best-caseRealTimeLatency>0.110 ms</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>0.110 ms</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>0.110 ms</Worst-caseRealTimeLatency>
-            <Interval-min>13705</Interval-min>
-            <Interval-max>13805</Interval-max>
+            <Best-caseLatency>13404</Best-caseLatency>
+            <Average-caseLatency>13504</Average-caseLatency>
+            <Worst-caseLatency>13504</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.107 ms</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.108 ms</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.108 ms</Worst-caseRealTimeLatency>
+            <Interval-min>13405</Interval-min>
+            <Interval-max>13505</Interval-max>
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
             <adpcm_main_label12>
@@ -34,20 +34,20 @@
                 <TripCount>50</TripCount>
                 <Latency>
                     <range>
-                        <min>8550</min>
-                        <max>8650</max>
+                        <min>8400</min>
+                        <max>8500</max>
                     </range>
                 </Latency>
                 <AbsoluteTimeLatency>
                     <range>
-                        <min>68400</min>
-                        <max>69200</max>
+                        <min>67200</min>
+                        <max>68000</max>
                     </range>
                 </AbsoluteTimeLatency>
                 <IterationLatency>
                     <range>
-                        <min>171</min>
-                        <max>173</max>
+                        <min>168</min>
+                        <max>170</max>
                     </range>
                 </IterationLatency>
                 <InstanceList/>
@@ -55,9 +55,9 @@
             <adpcm_main_label13>
                 <Slack>5.84</Slack>
                 <TripCount>50</TripCount>
-                <Latency>5100</Latency>
-                <AbsoluteTimeLatency>40800</AbsoluteTimeLatency>
-                <IterationLatency>102</IterationLatency>
+                <Latency>4950</Latency>
+                <AbsoluteTimeLatency>39600</AbsoluteTimeLatency>
+                <IterationLatency>99</IterationLatency>
                 <InstanceList/>
             </adpcm_main_label13>
         </SummaryOfLoopLatency>
@@ -85,8 +85,8 @@
         <Resources>
             <BRAM_18K>0</BRAM_18K>
             <DSP>54</DSP>
-            <FF>3505</FF>
-            <LUT>8653</LUT>
+            <FF>3025</FF>
+            <LUT>9339</LUT>
             <URAM>0</URAM>
         </Resources>
         <AvailableResources>
@@ -394,7 +394,7 @@
         </RtlPorts>
     </InterfaceSummary>
     <RTLDesignHierarchy>
-        <TopModule MAX_DEPTH="5">
+        <TopModule MAX_DEPTH="4">
             <ModuleName>adpcm_main</ModuleName>
             <InstancesList>
                 <Instance>
@@ -411,107 +411,35 @@
                     <ID>333</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_filtez_fu_318</InstName>
+                            <InstName>grp_filtez_fu_430</InstName>
                             <ModuleName>filtez</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>318</ID>
+                            <ID>430</ID>
                             <BindInstances>mul_16s_32s_48_1_1_U44 mul_16s_32s_48_1_1_U44 zl_2_fu_188_p2 i_fu_142_p2 add_ln464_fu_148_p2</BindInstances>
                         </Instance>
                         <Instance>
-                            <InstName>grp_filtep_fu_328</InstName>
-                            <ModuleName>filtep</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>328</ID>
-                            <BindInstances>mul_16s_32s_47_1_1_U49 mul_15s_32s_47_1_1_U48 pl_2_fu_100_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_quantl_fu_336</InstName>
+                            <InstName>grp_quantl_fu_440</InstName>
                             <ModuleName>quantl</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>336</ID>
-                            <InstancesList>
-                                <Instance>
-                                    <InstName>wd_abs_r_fu_116</InstName>
-                                    <ModuleName>abs_r</ModuleName>
-                                    <IsCompInst>true</IsCompInst>
-                                    <ID>116</ID>
-                                    <BindInstances>m_fu_30_p2</BindInstances>
-                                </Instance>
-                            </InstancesList>
-                            <BindInstances>add_ln493_fu_140_p2 mul_15ns_15ns_30_1_1_U57 decis_levl_U quant26bt_pos_U quant26bt_neg_U</BindInstances>
+                            <ID>440</ID>
+                            <BindInstances>m_fu_122_p2 add_ln493_fu_154_p2 mul_15ns_15ns_30_1_1_U48 decis_levl_U quant26bt_pos_U quant26bt_neg_U</BindInstances>
                         </Instance>
                         <Instance>
-                            <InstName>tmp_9_abs_r_fu_348</InstName>
-                            <ModuleName>abs_r</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>348</ID>
-                            <BindInstances>m_fu_30_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_logscl_fu_353</InstName>
-                            <ModuleName>logscl</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>353</ID>
-                            <BindInstances>sub_ln511_fu_102_p2 add_ln512_fu_126_p2 wl_code_table_U</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_upzero_fu_361</InstName>
+                            <InstName>grp_upzero_fu_452</InstName>
                             <ModuleName>upzero</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>361</ID>
-                            <BindInstances>grp_fu_174_p2 mul_16s_16s_32_1_1_U70 sub_ln549_fu_268_p2 add_ln550_fu_284_p2 grp_fu_174_p2 sub_ln539_fu_303_p2</BindInstances>
+                            <ID>452</ID>
+                            <BindInstances>grp_fu_174_p2 mul_16s_16s_32_1_1_U55 sub_ln549_fu_268_p2 add_ln550_fu_284_p2 grp_fu_174_p2 sub_ln539_fu_303_p2</BindInstances>
                         </Instance>
                         <Instance>
-                            <InstName>grp_uppol2_fu_379</InstName>
-                            <ModuleName>uppol2</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>379</ID>
-                            <BindInstances>mul_32s_32s_64_1_1_U75 sub_ln571_fu_146_p2 mul_32s_32s_64_1_1_U76 sub_ln580_fu_203_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>tmp_s_logsch_fu_397</InstName>
-                            <ModuleName>logsch</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>397</ID>
-                            <BindInstances>sub_ln620_fu_70_p2 add_ln621_fu_108_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_scalel_fu_403</InstName>
-                            <ModuleName>scalel</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>403</ID>
-                            <BindInstances>add_ln525_fu_91_p2 sub_ln525_fu_101_p2 ilb_table_U</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_upzero_fu_370</InstName>
+                            <InstName>grp_upzero_fu_461</InstName>
                             <ModuleName>upzero</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>370</ID>
-                            <BindInstances>grp_fu_174_p2 mul_16s_16s_32_1_1_U70 sub_ln549_fu_268_p2 add_ln550_fu_284_p2 grp_fu_174_p2 sub_ln539_fu_303_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_uppol2_fu_388</InstName>
-                            <ModuleName>uppol2</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>388</ID>
-                            <BindInstances>mul_32s_32s_64_1_1_U75 sub_ln571_fu_146_p2 mul_32s_32s_64_1_1_U76 sub_ln580_fu_203_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_uppol1_fu_414</InstName>
-                            <ModuleName>uppol1</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>414</ID>
-                            <BindInstances>sub_ln597_fu_88_p2 mul_32s_32s_64_1_1_U83 apl1_fu_134_p2 wd3_fu_144_p2 apl1_2_fu_170_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_uppol1_fu_422</InstName>
-                            <ModuleName>uppol1</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>422</ID>
-                            <BindInstances>sub_ln597_fu_88_p2 mul_32s_32s_64_1_1_U83 apl1_fu_134_p2 wd3_fu_144_p2 apl1_2_fu_170_p2</BindInstances>
+                            <ID>461</ID>
+                            <BindInstances>grp_fu_174_p2 mul_16s_16s_32_1_1_U55 sub_ln549_fu_268_p2 add_ln550_fu_284_p2 grp_fu_174_p2 sub_ln539_fu_303_p2</BindInstances>
                         </Instance>
                     </InstancesList>
-                    <BindInstances>xa_fu_493_p2 mul_32s_7s_39_1_1_U94 i_11_fu_531_p2 add_ln243_fu_540_p2 add_ln257_fu_552_p2 mul_15s_32s_47_1_1_U92 xa_3_fu_598_p2 mul_15s_32s_47_1_1_U93 xb_3_fu_618_p2 i_13_fu_651_p2 add_ln243_1_fu_664_p2 add_ln243_2_fu_799_p2 add_ln269_fu_675_p2 mul_32s_7s_39_1_1_U94 sub_ln263_fu_721_p2 xa_4_fu_731_p2 xb_4_fu_736_p2 add_ln278_fu_741_p2 sub_ln279_fu_757_p2 grp_fu_453_p2 sub_ln285_fu_813_p2 mul_16s_15ns_31_1_1_U96 add_ln290_fu_1042_p2 add_ln294_fu_972_p2 grp_fu_453_p2 sub_ln304_fu_875_p2 mul_15ns_11ns_25_1_1_U95 add_ln314_fu_939_p2 mul_14s_15ns_29_1_1_U98 add_ln317_fu_1088_p2 add_ln321_fu_1023_p2</BindInstances>
+                    <BindInstances>xa_fu_569_p2 mul_32s_7s_39_1_1_U67 i_11_fu_607_p2 add_ln243_fu_616_p2 add_ln257_fu_628_p2 mul_15s_32s_47_1_1_U60 xa_3_fu_674_p2 mul_15s_32s_47_1_1_U61 xb_3_fu_694_p2 i_13_fu_727_p2 add_ln243_1_fu_740_p2 add_ln243_2_fu_917_p2 add_ln269_fu_751_p2 mul_32s_7s_39_1_1_U67 sub_ln263_fu_797_p2 xa_4_fu_807_p2 xb_4_fu_812_p2 add_ln278_fu_817_p2 sub_ln279_fu_833_p2 mul_16s_32s_47_1_1_U62 mul_15s_32s_47_1_1_U60 grp_fu_509_p2 grp_fu_529_p2 sub_ln285_fu_931_p2 mul_16s_15ns_31_1_1_U69 sub_ln511_fu_1149_p2 add_ln512_fu_1173_p2 sub_ln525_fu_1486_p2 add_ln290_fu_1248_p2 mul_32s_32s_64_1_1_U63 sub_ln571_fu_1552_p2 mul_32s_32s_64_1_1_U64 sub_ln580_fu_1607_p2 sub_ln597_fu_1883_p2 apl1_fu_1910_p2 wd3_1_fu_1916_p2 apl1_2_fu_1948_p2 add_ln294_fu_1253_p2 mul_16s_32s_47_1_1_U62 mul_15s_32s_47_1_1_U60 grp_fu_509_p2 grp_fu_529_p2 sub_ln304_fu_1036_p2 mul_15ns_11ns_25_1_1_U68 m_fu_1077_p2 add_ln314_fu_1281_p2 mul_14s_15ns_29_1_1_U71 sub_ln620_fu_1354_p2 add_ln621_fu_1392_p2 sub_ln525_1_fu_1661_p2 add_ln317_fu_1467_p2 mul_32s_32s_64_1_1_U65 sub_ln571_1_fu_1727_p2 mul_32s_32s_64_1_1_U66 sub_ln580_1_fu_1782_p2 sub_ln597_1_fu_2028_p2 apl1_4_fu_2055_p2 wd3_3_fu_2061_p2 apl1_6_fu_2093_p2 add_ln321_fu_1472_p2</BindInstances>
                 </Instance>
                 <Instance>
                     <InstName>grp_decode_fu_399</InstName>
@@ -520,66 +448,24 @@
                     <ID>399</ID>
                     <InstancesList>
                         <Instance>
-                            <InstName>grp_filtez_fu_317</InstName>
+                            <InstName>grp_filtez_fu_433</InstName>
                             <ModuleName>filtez</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>317</ID>
+                            <ID>433</ID>
                             <BindInstances>mul_16s_32s_48_1_1_U44 mul_16s_32s_48_1_1_U44 zl_2_fu_188_p2 i_fu_142_p2 add_ln464_fu_148_p2</BindInstances>
                         </Instance>
                         <Instance>
-                            <InstName>grp_logscl_fu_327</InstName>
-                            <ModuleName>logscl</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>327</ID>
-                            <BindInstances>sub_ln511_fu_102_p2 add_ln512_fu_126_p2 wl_code_table_U</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>tmp_19_logsch_fu_335</InstName>
-                            <ModuleName>logsch</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>335</ID>
-                            <BindInstances>sub_ln620_fu_70_p2 add_ln621_fu_108_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_scalel_fu_341</InstName>
-                            <ModuleName>scalel</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>341</ID>
-                            <BindInstances>add_ln525_fu_91_p2 sub_ln525_fu_101_p2 ilb_table_U</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_upzero_fu_352</InstName>
+                            <InstName>grp_upzero_fu_443</InstName>
                             <ModuleName>upzero</ModuleName>
                             <IsCompInst>true</IsCompInst>
-                            <ID>352</ID>
-                            <BindInstances>grp_fu_174_p2 mul_16s_16s_32_1_1_U70 sub_ln549_fu_268_p2 add_ln550_fu_284_p2 grp_fu_174_p2 sub_ln539_fu_303_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_uppol2_fu_363</InstName>
-                            <ModuleName>uppol2</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>363</ID>
-                            <BindInstances>mul_32s_32s_64_1_1_U75 sub_ln571_fu_146_p2 mul_32s_32s_64_1_1_U76 sub_ln580_fu_203_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_filtep_fu_372</InstName>
-                            <ModuleName>filtep</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>372</ID>
-                            <BindInstances>mul_16s_32s_47_1_1_U49 mul_15s_32s_47_1_1_U48 pl_2_fu_100_p2</BindInstances>
-                        </Instance>
-                        <Instance>
-                            <InstName>grp_uppol1_fu_380</InstName>
-                            <ModuleName>uppol1</ModuleName>
-                            <IsCompInst>true</IsCompInst>
-                            <ID>380</ID>
-                            <BindInstances>sub_ln597_fu_88_p2 mul_32s_32s_64_1_1_U83 apl1_fu_134_p2 wd3_fu_144_p2 apl1_2_fu_170_p2</BindInstances>
+                            <ID>443</ID>
+                            <BindInstances>grp_fu_174_p2 mul_16s_16s_32_1_1_U55 sub_ln549_fu_268_p2 add_ln550_fu_284_p2 grp_fu_174_p2 sub_ln539_fu_303_p2</BindInstances>
                         </Instance>
                     </InstancesList>
-                    <BindInstances>add_ln344_fu_654_p2 mul_16s_15ns_31_1_1_U135 mul_16s_15ns_31_1_1_U136 add_ln347_fu_671_p2 add_ln350_fu_677_p2 add_ln354_fu_693_p2 mul_14s_15ns_29_1_1_U134 add_ln367_fu_492_p2 add_ln371_fu_727_p2 sub_ln378_fu_772_p2 add_ln379_fu_776_p2 xa1_fu_804_p2 mul_32s_7s_39_1_1_U132 i_15_fu_842_p2 add_ln335_fu_857_p2 add_ln391_fu_868_p2 mul_15s_32s_47_1_1_U130 xa1_5_fu_913_p2 mul_15s_32s_47_1_1_U131 xa2_5_fu_933_p2 mul_32s_7s_39_1_1_U132 xa1_4_fu_966_p2 sub_ln396_fu_996_p2 xa2_4_fu_1006_p2 i_17_fu_1053_p2 add_ln335_1_fu_1094_p2 add_ln335_2_fu_1066_p2 add_ln405_fu_1078_p2 qq6_code6_table_U</BindInstances>
+                    <BindInstances>mul_16s_32s_47_1_1_U112 mul_15s_32s_47_1_1_U110 grp_fu_479_p2 add_ln344_fu_930_p2 mul_16s_15ns_31_1_1_U116 mul_16s_15ns_31_1_1_U117 add_ln347_fu_1197_p2 sub_ln511_fu_643_p2 add_ln512_fu_667_p2 sub_ln525_fu_943_p2 add_ln350_fu_972_p2 mul_32s_32s_64_1_1_U113 sub_ln571_fu_1009_p2 mul_32s_32s_64_1_1_U114 sub_ln580_fu_1068_p2 sub_ln597_fu_1249_p2 apl1_fu_1276_p2 wd3_4_fu_1282_p2 apl1_9_fu_1314_p2 add_ln354_fu_1344_p2 mul_16s_32s_47_1_1_U112 mul_15s_32s_47_1_1_U110 grp_fu_479_p2 mul_14s_15ns_29_1_1_U120 sub_ln620_fu_762_p2 add_ln621_fu_799_p2 sub_ln525_2_fu_1159_p2 add_ln367_fu_1418_p2 mul_32s_32s_64_1_1_U113 sub_ln571_2_fu_1455_p2 mul_32s_32s_64_1_1_U114 sub_ln580_2_fu_1514_p2 sub_ln597_2_fu_1630_p2 apl1_11_fu_1657_p2 wd3_6_fu_1663_p2 apl1_13_fu_1695_p2 add_ln371_fu_1546_p2 sub_ln378_fu_1725_p2 add_ln379_fu_1729_p2 xa1_fu_1757_p2 mul_32s_7s_39_1_1_U115 i_15_fu_1795_p2 add_ln335_fu_1810_p2 add_ln391_fu_1821_p2 mul_15s_32s_47_1_1_U110 xa1_5_fu_1866_p2 mul_15s_32s_47_1_1_U111 xa2_5_fu_1886_p2 mul_32s_7s_39_1_1_U115 xa1_4_fu_1919_p2 sub_ln396_fu_1949_p2 xa2_4_fu_1959_p2 i_17_fu_2006_p2 add_ln335_1_fu_2047_p2 add_ln335_2_fu_2019_p2 add_ln405_fu_2031_p2 qq6_code6_table_U</BindInstances>
                 </Instance>
             </InstancesList>
-            <BindInstances>add_ln217_fu_478_p2 add_ln223_fu_536_p2 delay_dltx_U delay_dhx_U dec_del_dltx_U dec_del_dhx_U delay_bpl_U delay_bph_U dec_del_bpl_U dec_del_bph_U tqmf_U accumc_U accumd_U h_U qq4_code4_table_U</BindInstances>
+            <BindInstances>add_ln217_fu_478_p2 add_ln223_fu_536_p2 delay_dltx_U delay_dhx_U dec_del_dltx_U dec_del_dhx_U delay_bpl_U delay_bph_U dec_del_bpl_U dec_del_bph_U tqmf_U accumc_U accumd_U h_U qq4_code4_table_U wl_code_table_U ilb_table_U</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -787,102 +673,6 @@
             </BindNodes>
         </Module>
         <Module>
-            <Name>filtep</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>4.129</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>0</Best-caseLatency>
-                    <Average-caseLatency>0</Average-caseLatency>
-                    <Worst-caseLatency>0</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>0</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:26</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <DSP>4</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>0</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>0</UTIL_FF>
-                    <LUT>94</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U49" SOURCE="data/benchmarks/adpcm/adpcm.c:477" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U48" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="pl_2_fu_100_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_2"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>abs_r</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>1.107</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>0</Best-caseLatency>
-                    <Average-caseLatency>0</Average-caseLatency>
-                    <Worst-caseLatency>0</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>0</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:16</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <FF>0</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>0</UTIL_FF>
-                    <LUT>71</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="m_fu_30_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="m"/>
-            </BindNodes>
-        </Module>
-        <Module>
             <Name>quantl</Name>
             <Loops>
                 <quantl_label9/>
@@ -950,109 +740,12 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="quantl_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln493_fu_140_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:493" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln493"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="quantl_label9" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_30_1_1_U57" SOURCE="data/benchmarks/adpcm/adpcm.c:495" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln495"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="m_fu_122_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="m"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="quantl_label9" OPTYPE="add" PRAGMA="" RTLNAME="add_ln493_fu_154_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:493" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln493"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="quantl_label9" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_15ns_30_1_1_U48" SOURCE="data/benchmarks/adpcm/adpcm.c:495" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln495"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="decis_levl_U" SOURCE="" STORAGESIZE="15 30 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="decis_levl"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="quant26bt_pos_U" SOURCE="" STORAGESIZE="6 31 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="quant26bt_pos"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="quant26bt_neg_U" SOURCE="" STORAGESIZE="6 31 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="quant26bt_neg"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>logscl</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>2.957</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>1</Best-caseLatency>
-                    <Average-caseLatency>1</Average-caseLatency>
-                    <Worst-caseLatency>1</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:17</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <FF>33</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>150</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln511_fu_102_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:511" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln511"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln512_fu_126_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:512" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln512"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="wl_code_table_U" SOURCE="" STORAGESIZE="13 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="wl_code_table"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>scalel</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>2.191</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>1</Best-caseLatency>
-                    <Average-caseLatency>1</Average-caseLatency>
-                    <Worst-caseLatency>1</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:18</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <FF>34</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>89</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln525_fu_91_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:525" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln525"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln525_fu_101_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:525" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln525"/>
-                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="ilb_table_U" SOURCE="" STORAGESIZE="12 32 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="ilb_table"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1142,160 +835,11 @@
             </AreaEstimates>
             <BindNodes>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="upzero_label11" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_174_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:543" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln543"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U70" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="upzero_label11" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_16s_32_1_1_U55" SOURCE="data/benchmarks/adpcm/adpcm.c:545" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln545"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="upzero_label11" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln549_fu_268_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:549" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln549"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="upzero_label11" OPTYPE="add" PRAGMA="" RTLNAME="add_ln550_fu_284_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:550" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln550"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="upzero_label10" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_174_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:537" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln537"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="upzero_label10" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln539_fu_303_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:539" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln539"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>uppol2</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>3.917</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>1</Best-caseLatency>
-                    <Average-caseLatency>1</Average-caseLatency>
-                    <Worst-caseLatency>1</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:19</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <DSP>8</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>19</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>254</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U75" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_fu_146_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U76" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln580_fu_203_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:580" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln580"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>uppol1</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>3.961</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>1</Best-caseLatency>
-                    <Average-caseLatency>1</Average-caseLatency>
-                    <Worst-caseLatency>1</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>1</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:20</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <DSP>4</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>36</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>~0</UTIL_FF>
-                    <LUT>239</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln597_fu_88_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:597" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln597"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U83" SOURCE="data/benchmarks/adpcm/adpcm.c:599" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln599"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_fu_134_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:599" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_fu_144_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:606" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_2_fu_170_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:609" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_2"/>
-            </BindNodes>
-        </Module>
-        <Module>
-            <Name>logsch</Name>
-            <PerformanceEstimates>
-                <SummaryOfTimingAnalysis>
-                    <TargetClockPeriod>8.00</TargetClockPeriod>
-                    <ClockUncertainty>2.16</ClockUncertainty>
-                    <EstimatedClockPeriod>2.957</EstimatedClockPeriod>
-                </SummaryOfTimingAnalysis>
-                <SummaryOfOverallLatency>
-                    <Best-caseLatency>0</Best-caseLatency>
-                    <Average-caseLatency>0</Average-caseLatency>
-                    <Worst-caseLatency>0</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>0</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
-                </SummaryOfOverallLatency>
-                <SummaryOfViolations>
-                    <IssueType>-</IssueType>
-                    <ViolationType>-</ViolationType>
-                    <SourceLocation>/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/adpcm.tcl:21</SourceLocation>
-                </SummaryOfViolations>
-            </PerformanceEstimates>
-            <AreaEstimates>
-                <Resources>
-                    <FF>0</FF>
-                    <AVAIL_FF>1743360</AVAIL_FF>
-                    <UTIL_FF>0</UTIL_FF>
-                    <LUT>130</LUT>
-                    <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
-                    <BRAM_18K>0</BRAM_18K>
-                    <AVAIL_BRAM>2688</AVAIL_BRAM>
-                    <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>0</DSP>
-                    <AVAIL_DSP>5952</AVAIL_DSP>
-                    <UTIL_DSP>0</UTIL_DSP>
-                    <URAM>0</URAM>
-                    <AVAIL_URAM>640</AVAIL_URAM>
-                    <UTIL_URAM>0</UTIL_URAM>
-                </Resources>
-            </AreaEstimates>
-            <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln620_fu_70_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln620"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln621_fu_108_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:621" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln621"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1311,13 +855,13 @@
                     <EstimatedClockPeriod>5.213</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>168</Best-caseLatency>
-                    <Average-caseLatency>170</Average-caseLatency>
-                    <Worst-caseLatency>170</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>1.344 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>1.360 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>1.360 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>168 ~ 170</PipelineInitiationInterval>
+                    <Best-caseLatency>165</Best-caseLatency>
+                    <Average-caseLatency>167</Average-caseLatency>
+                    <Worst-caseLatency>167</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>1.320 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>1.336 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>1.336 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>165 ~ 167</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1369,13 +913,13 @@
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>26</DSP>
+                    <DSP>32</DSP>
                     <AVAIL_DSP>5952</AVAIL_DSP>
                     <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>1284</FF>
+                    <FF>1087</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>3385</LUT>
+                    <LUT>4114</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <URAM>0</URAM>
@@ -1384,37 +928,66 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="xa_fu_493_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:250" STORAGESUBTYPE="" URAM="0" VARIABLE="xa"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U94" SOURCE="data/benchmarks/adpcm/adpcm.c:251" STORAGESUBTYPE="" URAM="0" VARIABLE="xb"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="i_11_fu_531_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:255" STORAGESUBTYPE="" URAM="0" VARIABLE="i_11"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln243_fu_540_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:243" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln243"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln257_fu_552_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln257"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U92" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln257"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="xa_3_fu_598_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="xa_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U93" SOURCE="data/benchmarks/adpcm/adpcm.c:258" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln258"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="xb_3_fu_618_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:258" STORAGESUBTYPE="" URAM="0" VARIABLE="xb_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="i_13_fu_651_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:269" STORAGESUBTYPE="" URAM="0" VARIABLE="i_13"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln243_1_fu_664_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:243" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln243_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln243_2_fu_799_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:243" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln243_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln269_fu_675_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:269" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln269"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U94" SOURCE="data/benchmarks/adpcm/adpcm.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln262"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln263_fu_721_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:263" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln263"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xa_4_fu_731_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="xa_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xb_4_fu_736_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:263" STORAGESUBTYPE="" URAM="0" VARIABLE="xb_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln278_fu_741_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:278" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln278"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln279_fu_757_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:279" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln279"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_453_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:284" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln284"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln285_fu_813_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:285" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln285"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U96" SOURCE="data/benchmarks/adpcm/adpcm.c:287" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln287"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln290_fu_1042_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:290" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln290"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln294_fu_972_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:294" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln294"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_453_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:303" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln303"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln304_fu_875_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:304" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln304"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_11ns_25_1_1_U95" SOURCE="data/benchmarks/adpcm/adpcm.c:310" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln310"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln314_fu_939_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:314" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln314"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U98" SOURCE="data/benchmarks/adpcm/adpcm.c:314" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln314"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln317_fu_1088_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:317" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln317"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln321_fu_1023_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:321" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln321"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="xa_fu_569_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:250" STORAGESUBTYPE="" URAM="0" VARIABLE="xa"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U67" SOURCE="data/benchmarks/adpcm/adpcm.c:251" STORAGESUBTYPE="" URAM="0" VARIABLE="xb"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="i_11_fu_607_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:255" STORAGESUBTYPE="" URAM="0" VARIABLE="i_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln243_fu_616_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:243" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln243"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln257_fu_628_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln257"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U60" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln257"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="xa_3_fu_674_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:257" STORAGESUBTYPE="" URAM="0" VARIABLE="xa_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="encode_label0" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U61" SOURCE="data/benchmarks/adpcm/adpcm.c:258" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln258"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label0" OPTYPE="add" PRAGMA="" RTLNAME="xb_3_fu_694_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:258" STORAGESUBTYPE="" URAM="0" VARIABLE="xb_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="i_13_fu_727_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:269" STORAGESUBTYPE="" URAM="0" VARIABLE="i_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln243_1_fu_740_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:243" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln243_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln243_2_fu_917_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:243" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln243_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="encode_label1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln269_fu_751_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:269" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln269"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U67" SOURCE="data/benchmarks/adpcm/adpcm.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln262"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln263_fu_797_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:263" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln263"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xa_4_fu_807_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:262" STORAGESUBTYPE="" URAM="0" VARIABLE="xa_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xb_4_fu_812_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:263" STORAGESUBTYPE="" URAM="0" VARIABLE="xb_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln278_fu_817_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:278" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln278"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln279_fu_833_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:279" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln279"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U62" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U60" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_509_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_529_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:284" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln284"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln285_fu_931_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:285" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln285"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U69" SOURCE="data/benchmarks/adpcm/adpcm.c:287" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln287"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln511_fu_1149_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:511" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln511"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln512_fu_1173_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:512" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln512"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln525_fu_1486_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:525" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln525"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln290_fu_1248_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:290" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln290"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U63" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_fu_1552_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U64" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln580_fu_1607_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:580" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln580"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln597_fu_1883_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:597" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln597"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_fu_1910_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:599" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_1_fu_1916_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:606" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_2_fu_1948_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:609" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln294_fu_1253_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:294" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln294"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U62" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U60" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_509_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_529_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:303" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln303"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln304_fu_1036_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:304" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln304"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15ns_11ns_25_1_1_U68" SOURCE="data/benchmarks/adpcm/adpcm.c:310" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln310"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="m_fu_1077_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:236" STORAGESUBTYPE="" URAM="0" VARIABLE="m"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln314_fu_1281_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:314" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln314"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U71" SOURCE="data/benchmarks/adpcm/adpcm.c:314" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln314"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln620_fu_1354_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln620"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln621_fu_1392_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:621" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln621"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln525_1_fu_1661_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:525" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln525_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln317_fu_1467_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:317" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln317"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U65" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_1_fu_1727_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U66" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln580_1_fu_1782_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:580" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln580_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln597_1_fu_2028_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:597" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln597_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_4_fu_2055_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:599" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_3_fu_2061_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:606" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_6_fu_2093_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:609" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln321_fu_1472_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:321" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln321"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1430,13 +1003,13 @@
                     <EstimatedClockPeriod>5.213</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>98</Best-caseLatency>
-                    <Average-caseLatency>98</Average-caseLatency>
-                    <Worst-caseLatency>98</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.784 us</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.784 us</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.784 us</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>98</PipelineInitiationInterval>
+                    <Best-caseLatency>95</Best-caseLatency>
+                    <Average-caseLatency>95</Average-caseLatency>
+                    <Worst-caseLatency>95</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.760 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.760 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.760 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>95</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1488,13 +1061,13 @@
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>2688</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>12</DSP>
+                    <DSP>22</DSP>
                     <AVAIL_DSP>5952</AVAIL_DSP>
                     <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>833</FF>
+                    <FF>640</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>2272</LUT>
+                    <LUT>3389</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <URAM>0</URAM>
@@ -1503,34 +1076,62 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln344_fu_654_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:344" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln344"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U135" SOURCE="data/benchmarks/adpcm/adpcm.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln345"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U136" SOURCE="data/benchmarks/adpcm/adpcm.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln346"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln347_fu_671_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:347" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln347"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln350_fu_677_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:350" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln350"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln354_fu_693_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:354" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln354"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U134" SOURCE="data/benchmarks/adpcm/adpcm.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln364"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln367_fu_492_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:367" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln367"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln371_fu_727_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:371" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln371"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln378_fu_772_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:378" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln378"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln379_fu_776_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:379" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln379"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="xa1_fu_804_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:385" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U132" SOURCE="data/benchmarks/adpcm/adpcm.c:386" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="i_15_fu_842_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:389" STORAGESUBTYPE="" URAM="0" VARIABLE="i_15"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln335_fu_857_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:335" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln335"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln391_fu_868_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln391"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U130" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln391"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="xa1_5_fu_913_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1_5"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U131" SOURCE="data/benchmarks/adpcm/adpcm.c:392" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln392"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="xa2_5_fu_933_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:392" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2_5"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U132" SOURCE="data/benchmarks/adpcm/adpcm.c:395" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln395"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xa1_4_fu_966_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:395" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln396_fu_996_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:396" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln396"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xa2_4_fu_1006_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:396" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2_4"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="i_17_fu_1053_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:405" STORAGESUBTYPE="" URAM="0" VARIABLE="i_17"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln335_1_fu_1094_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:335" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln335_1"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln335_2_fu_1066_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:335" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln335_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln405_fu_1078_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:405" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln405"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U112" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U110" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_479_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln344_fu_930_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:344" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln344"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U116" SOURCE="data/benchmarks/adpcm/adpcm.c:345" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln345"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_15ns_31_1_1_U117" SOURCE="data/benchmarks/adpcm/adpcm.c:346" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln346"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln347_fu_1197_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:347" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln347"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln511_fu_643_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:511" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln511"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln512_fu_667_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:512" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln512"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln525_fu_943_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:525" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln525"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln350_fu_972_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:350" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln350"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U113" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_fu_1009_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U114" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln580_fu_1068_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:580" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln580"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln597_fu_1249_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:597" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln597"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_fu_1276_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:599" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_4_fu_1282_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:606" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_9_fu_1314_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:609" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_9"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln354_fu_1344_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:354" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln354"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_16s_32s_47_1_1_U112" SOURCE="data/benchmarks/adpcm/adpcm.c:475" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln475_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U110" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln479_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="grp_fu_479_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:479" STORAGESUBTYPE="" URAM="0" VARIABLE="pl_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_14s_15ns_29_1_1_U120" SOURCE="data/benchmarks/adpcm/adpcm.c:364" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln364"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln620_fu_762_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:620" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln620"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln621_fu_799_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:621" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln621"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln525_2_fu_1159_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:525" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln525_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln367_fu_1418_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:367" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln367"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U113" SOURCE="data/benchmarks/adpcm/adpcm.c:570" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln570_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln571_2_fu_1455_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:571" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln571_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_32s_64_1_1_U114" SOURCE="data/benchmarks/adpcm/adpcm.c:574" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln574_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln580_2_fu_1514_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:580" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln580_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln597_2_fu_1630_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:597" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln597_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="apl1_11_fu_1657_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:599" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_11"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="wd3_6_fu_1663_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:606" STORAGESUBTYPE="" URAM="0" VARIABLE="wd3_6"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="apl1_13_fu_1695_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:609" STORAGESUBTYPE="" URAM="0" VARIABLE="apl1_13"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln371_fu_1546_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:371" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln371"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln378_fu_1725_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:378" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln378"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln379_fu_1729_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:379" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln379"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="xa1_fu_1757_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:385" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U115" SOURCE="data/benchmarks/adpcm/adpcm.c:386" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="i_15_fu_1795_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:389" STORAGESUBTYPE="" URAM="0" VARIABLE="i_15"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln335_fu_1810_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:335" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln335"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln391_fu_1821_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln391"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U110" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln391"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="xa1_5_fu_1866_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:391" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="decode_label2" OPTYPE="mul" PRAGMA="" RTLNAME="mul_15s_32s_47_1_1_U111" SOURCE="data/benchmarks/adpcm/adpcm.c:392" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln392"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label2" OPTYPE="add" PRAGMA="" RTLNAME="xa2_5_fu_1886_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:392" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2_5"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_7s_39_1_1_U115" SOURCE="data/benchmarks/adpcm/adpcm.c:395" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln395"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xa1_4_fu_1919_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:395" STORAGESUBTYPE="" URAM="0" VARIABLE="xa1_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="sub" PRAGMA="" RTLNAME="sub_ln396_fu_1949_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:396" STORAGESUBTYPE="" URAM="0" VARIABLE="sub_ln396"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="xa2_4_fu_1959_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:396" STORAGESUBTYPE="" URAM="0" VARIABLE="xa2_4"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="i_17_fu_2006_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:405" STORAGESUBTYPE="" URAM="0" VARIABLE="i_17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln335_1_fu_2047_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:335" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln335_1"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln335_2_fu_2019_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:335" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln335_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="decode_label3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln405_fu_2031_p2" SOURCE="data/benchmarks/adpcm/adpcm.c:405" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln405"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="qq6_code6_table_U" SOURCE="" STORAGESIZE="16 64 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="qq6_code6_table"/>
             </BindNodes>
         </Module>
@@ -1547,13 +1148,13 @@
                     <EstimatedClockPeriod>5.213</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>13704</Best-caseLatency>
-                    <Average-caseLatency>13804</Average-caseLatency>
-                    <Worst-caseLatency>13804</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>0.110 ms</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>0.110 ms</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>0.110 ms</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>13705 ~ 13805</PipelineInitiationInterval>
+                    <Best-caseLatency>13404</Best-caseLatency>
+                    <Average-caseLatency>13504</Average-caseLatency>
+                    <Worst-caseLatency>13504</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.107 ms</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.108 ms</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.108 ms</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>13405 ~ 13505</PipelineInitiationInterval>
                     <PipelineType>no</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
@@ -1561,15 +1162,15 @@
                         <Name>adpcm_main_label12</Name>
                         <Slack>5.84</Slack>
                         <TripCount>50</TripCount>
-                        <Latency>8550 ~ 8650</Latency>
-                        <AbsoluteTimeLatency>68.400 us ~ 69.200 us</AbsoluteTimeLatency>
+                        <Latency>8400 ~ 8500</Latency>
+                        <AbsoluteTimeLatency>67.200 us ~ 68.000 us</AbsoluteTimeLatency>
                         <IterationLatency>
                             <range>
-                                <min>171</min>
-                                <max>173</max>
+                                <min>168</min>
+                                <max>170</max>
                             </range>
                         </IterationLatency>
-                        <PipelineDepth>171 ~ 173</PipelineDepth>
+                        <PipelineDepth>168 ~ 170</PipelineDepth>
                         <PipelineType>no</PipelineType>
                         <InstanceList>
                             <Instance>grp_encode_fu_333</Instance>
@@ -1579,10 +1180,10 @@
                         <Name>adpcm_main_label13</Name>
                         <Slack>5.84</Slack>
                         <TripCount>50</TripCount>
-                        <Latency>5100</Latency>
-                        <AbsoluteTimeLatency>40.800 us</AbsoluteTimeLatency>
-                        <IterationLatency>102</IterationLatency>
-                        <PipelineDepth>102</PipelineDepth>
+                        <Latency>4950</Latency>
+                        <AbsoluteTimeLatency>39.600 us</AbsoluteTimeLatency>
+                        <IterationLatency>99</IterationLatency>
+                        <PipelineDepth>99</PipelineDepth>
                         <PipelineType>no</PipelineType>
                         <InstanceList>
                             <Instance>grp_decode_fu_399</Instance>
@@ -1617,12 +1218,12 @@
                     <DSP>54</DSP>
                     <AVAIL_DSP>5952</AVAIL_DSP>
                     <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>3505</FF>
+                    <FF>3025</FF>
                     <AVAIL_FF>1743360</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>8653</LUT>
+                    <LUT>9339</LUT>
                     <AVAIL_LUT>871680</AVAIL_LUT>
-                    <UTIL_LUT>~0</UTIL_LUT>
+                    <UTIL_LUT>1</UTIL_LUT>
                     <URAM>0</URAM>
                     <AVAIL_URAM>640</AVAIL_URAM>
                     <UTIL_URAM>0</UTIL_URAM>
@@ -1644,6 +1245,8 @@
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="accumd_U" SOURCE="" STORAGESIZE="32 11 1" STORAGESUBTYPE="" STORAGEUSAGE="ram_1p" URAM="0" VARIABLE="accumd"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="h_U" SOURCE="" STORAGESIZE="15 24 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="h"/>
                 <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="qq4_code4_table_U" SOURCE="" STORAGESIZE="16 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="qq4_code4_table"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="" RTLNAME="wl_code_table_U" SOURCE="" STORAGESIZE="13 16 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_1p" URAM="0" VARIABLE="wl_code_table"/>
+                <BindNode BINDTYPE="storage" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_storage rom_2p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="rom_2p" PRAGMA="" RTLNAME="ilb_table_U" SOURCE="" STORAGESIZE="12 32 1" STORAGESUBTYPE="" STORAGEUSAGE="rom_2p" URAM="0" VARIABLE="ilb_table"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
@@ -1923,47 +1526,33 @@
         <Pragma type="loop_tripcount" location="data/benchmarks/adpcm/adpcm.c:494" status="valid" parentFunction="quantl" variable="" isDirective="0" options="min=30 max=30 avg=30"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/adpcm/adpcm.c:538" status="valid" parentFunction="upzero" variable="" isDirective="0" options="min=6 max=6 avg=6"/>
         <Pragma type="loop_tripcount" location="data/benchmarks/adpcm/adpcm.c:544" status="valid" parentFunction="upzero" variable="" isDirective="0" options="min=6 max=6 avg=6"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:29" status="valid" parentFunction="abs" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:16" status="valid" parentFunction="abs" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:13" status="valid" parentFunction="adpcm_main" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:14" status="valid" parentFunction="adpcm_main" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:15" status="valid" parentFunction="adpcm_main" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:36" status="valid" parentFunction="decode" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/adpcm.tcl:23" status="valid" parentFunction="decode" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:3" status="valid" parentFunction="decode" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:4" status="valid" parentFunction="decode" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:23" status="valid" parentFunction="decode" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:35" status="valid" parentFunction="encode" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:17" status="valid" parentFunction="decode" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/adpcm.tcl:22" status="valid" parentFunction="encode" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:1" status="valid" parentFunction="encode" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:2" status="valid" parentFunction="encode" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:22" status="valid" parentFunction="encode" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:39" status="valid" parentFunction="filtep" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:26" status="valid" parentFunction="filtep" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:38" status="valid" parentFunction="filtez" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:16" status="valid" parentFunction="encode" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/adpcm.tcl:25" status="valid" parentFunction="filtez" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:9" status="valid" parentFunction="filtez" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:25" status="valid" parentFunction="filtez" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:34" status="valid" parentFunction="logsch" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:21" status="valid" parentFunction="logsch" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:30" status="valid" parentFunction="logscl" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:17" status="valid" parentFunction="logscl" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:40" status="valid" parentFunction="quantl" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:19" status="valid" parentFunction="filtez" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/adpcm.tcl:26" status="valid" parentFunction="quantl" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:10" status="valid" parentFunction="quantl" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:27" status="valid" parentFunction="quantl" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:37" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:20" status="valid" parentFunction="quantl" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/adpcm.tcl:24" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:5" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:6" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:7" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:8" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:24" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:31" status="valid" parentFunction="scalel" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:18" status="valid" parentFunction="scalel" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:33" status="valid" parentFunction="uppol1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:20" status="valid" parentFunction="uppol1" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:32" status="valid" parentFunction="uppol2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:19" status="valid" parentFunction="uppol2" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="inline" location="../base_directives/adpcm.tcl:41" status="valid" parentFunction="upzero" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:18" status="valid" parentFunction="reset" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="inline" location="../base_directives/adpcm.tcl:27" status="valid" parentFunction="upzero" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:11" status="valid" parentFunction="upzero" variable="" isDirective="1" options="off=true"/>
         <Pragma type="pipeline" location="../base_directives/adpcm.tcl:12" status="valid" parentFunction="upzero" variable="" isDirective="1" options="off=true"/>
-        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:28" status="valid" parentFunction="upzero" variable="" isDirective="1" options="off=true"/>
+        <Pragma type="pipeline" location="../base_directives/adpcm.tcl:21" status="valid" parentFunction="upzero" variable="" isDirective="1" options="off=true"/>
     </PragmaReport>
 </profile>
 

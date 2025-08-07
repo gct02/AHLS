@@ -49,7 +49,7 @@ set NewPortList {[
  	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4"],
 		"CDFG" : "quantl",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
@@ -75,23 +75,7 @@ set RtlHierarchyInfo {[
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.decis_levl_U", "Parent" : "0"},
 	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.quant26bt_pos_U", "Parent" : "0"},
 	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.quant26bt_neg_U", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.wd_abs_r_fu_116", "Parent" : "0",
-		"CDFG" : "abs_r",
-		"Protocol" : "ap_ctrl_hs",
-		"ControlExist" : "0", "ap_start" : "0", "ap_ready" : "1", "ap_done" : "0", "ap_continue" : "0", "ap_idle" : "0", "real_start" : "0",
-		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"II" : "1",
-		"VariableLatency" : "0", "ExactLatency" : "0", "EstimateLatencyMin" : "0", "EstimateLatencyMax" : "0",
-		"Combinational" : "1",
-		"Datapath" : "0",
-		"ClockEnable" : "0",
-		"HasSubDataflow" : "0",
-		"InDataflowNetwork" : "0",
-		"HasNonBlockingOperation" : "0",
-		"IsBlackBox" : "0",
-		"Port" : [
-			{"Name" : "n", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_15ns_15ns_30_1_1_U57", "Parent" : "0"}]}
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_15ns_15ns_30_1_1_U48", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
@@ -100,9 +84,7 @@ set ArgLastReadFirstWriteLatency {
 		detl {Type I LastRead 0 FirstWrite -1}
 		decis_levl {Type I LastRead -1 FirstWrite -1}
 		quant26bt_pos {Type I LastRead -1 FirstWrite -1}
-		quant26bt_neg {Type I LastRead -1 FirstWrite -1}}
-	abs_r {
-		n {Type I LastRead 0 FirstWrite -1}}}
+		quant26bt_neg {Type I LastRead -1 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 

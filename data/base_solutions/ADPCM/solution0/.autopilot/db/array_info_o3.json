@@ -117,8 +117,8 @@
       "BaseType": 11,
       "Dimensions": [16],
       "Stores": [],
-      "Loads": [{ "FunctionName": "logscl", "Name": "wl_code_table_load" }],
-      "GEPs": [{ "FunctionName": "logscl", "Name": "wl_code_table_addr" }]
+      "Loads": [{ "FunctionName": "decode", "Name": "wl_code_table_load" }, { "FunctionName": "encode", "Name": "wl_code_table_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "wl_code_table_addr" }, { "FunctionName": "encode", "Name": "wl_code_table_addr" }]
     },
     "delay_dltx": {
       "Name": "delay_dltx",
@@ -189,8 +189,8 @@
       "BaseType": 11,
       "Dimensions": [32],
       "Stores": [],
-      "Loads": [{ "FunctionName": "scalel", "Name": "ilb_table_load" }],
-      "GEPs": [{ "FunctionName": "scalel", "Name": "ilb_table_addr" }]
+      "Loads": [{ "FunctionName": "decode", "Name": "ilb_table_load_2" }, { "FunctionName": "decode", "Name": "ilb_table_load" }, { "FunctionName": "encode", "Name": "ilb_table_load_1" }, { "FunctionName": "encode", "Name": "ilb_table_load" }],
+      "GEPs": [{ "FunctionName": "decode", "Name": "ilb_table_addr_2" }, { "FunctionName": "decode", "Name": "ilb_table_addr" }, { "FunctionName": "encode", "Name": "ilb_table_addr_1" }, { "FunctionName": "encode", "Name": "ilb_table_addr" }]
     },
     "qq6_code6_table": {
       "Name": "qq6_code6_table",

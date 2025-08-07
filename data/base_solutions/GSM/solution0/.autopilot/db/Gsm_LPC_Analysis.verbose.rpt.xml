@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Gsm_LPC_Analysis'" level="0">
-<item name = "Date">Wed Jul  9 03:57:17 2025
+<item name = "Date">Wed Aug  6 20:41:48 2025
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">GSM</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 4.768 ns, 2.16 ns</column>
+<column name="ap_clk">8.00 ns, 5.672 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,17 +24,16 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1310, 3168, 10.480 us, 25.344 us, 1311, 3169, no</column>
+<column name="">1310, 2951, 10.480 us, 23.608 us, 1311, 2952, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_Autocorrelation_fu_101">Autocorrelation, 1278, 2559, 10.224 us, 20.472 us, 1278, 2559, no</column>
-<column name="grp_Reflection_coefficients_fu_111">Reflection_coefficients, 11, 588, 88.000 ns, 4.704 us, 11, 588, no</column>
-<column name="temp_37_gsm_abs_fu_120">gsm_abs, 0, 0, 0 ns, 0 ns, 1, 1, yes</column>
-<column name="grp_Quantization_and_coding_fu_126">Quantization_and_coding, 7, 7, 56.000 ns, 56.000 ns, 7, 7, no</column>
+<column name="grp_Autocorrelation_fu_103">Autocorrelation, 1278, 2398, 10.224 us, 19.184 us, 1278, 2398, no</column>
+<column name="grp_Reflection_coefficients_fu_113">Reflection_coefficients, 11, 532, 88.000 ns, 4.256 us, 11, 532, no</column>
+<column name="grp_Quantization_and_coding_fu_122">Quantization_and_coding, 7, 7, 56.000 ns, 56.000 ns, 7, 7, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -52,12 +51,12 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 207, -</column>
+<column name="Expression">-, -, 0, 286, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">0, 42, 2488, 6100, 0</column>
-<column name="Memory">0, -, 64, 65, 0</column>
-<column name="Multiplexer">-, -, -, 393, -</column>
-<column name="Register">-, -, 24, -, -</column>
+<column name="Instance">0, 45, 2332, 6933, 0</column>
+<column name="Memory">0, -, 72, 99, 0</column>
+<column name="Multiplexer">-, -, -, 340, -</column>
+<column name="Register">-, -, 23, -, -</column>
 <specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
 <specialColumn name="Utilization SLR (%)">0, 1, ~0, 1, 0</specialColumn>
 <specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
@@ -68,14 +67,9 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_Autocorrelation_fu_101">Autocorrelation, 0, 38, 1749, 2953, 0</column>
-<column name="grp_Quantization_and_coding_fu_126">Quantization_and_coding, 0, 2, 96, 949, 0</column>
-<column name="grp_Reflection_coefficients_fu_111">Reflection_coefficients, 0, 1, 601, 1399, 0</column>
-<column name="temp_37_gsm_abs_fu_120">gsm_abs, 0, 0, 0, 79, 0</column>
-<column name="grp_gsm_add_fu_310">gsm_add, 0, 0, 0, 115, 0</column>
-<column name="tmp_6_gsm_add_fu_315">gsm_add, 0, 0, 0, 115, 0</column>
-<column name="grp_gsm_mult_r_fu_300">gsm_mult_r, 0, 1, 22, 101, 0</column>
-<column name="grp_gsm_norm_fu_305">gsm_norm, 0, 0, 20, 389, 0</column>
+<column name="grp_Autocorrelation_fu_103">Autocorrelation, 0, 39, 1706, 3230, 0</column>
+<column name="grp_Quantization_and_coding_fu_122">Quantization_and_coding, 0, 3, 88, 1500, 0</column>
+<column name="grp_Reflection_coefficients_fu_113">Reflection_coefficients, 0, 3, 538, 2203, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -85,6 +79,7 @@
 <item name = "Memory"><table name="" hasTotal="1">
 <keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
 <column name="L_ACF_U">L_ACF_RAM_AUTO_1R1W, 0, 64, 65, 0, 9, 64, 1, 576</column>
+<column name="bitoff_U">bitoff_ROM_AUTO_1R, 0, 8, 34, 0, 256, 4, 1, 1024</column>
 </table>
 </item>
 <item name = "FIFO"><table name="" hasTotal="1">
@@ -93,21 +88,25 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln248_fu_154_p2">+, 0, 0, 12, 4, 1</column>
-<column name="i_9_fu_165_p2">+, 0, 0, 12, 4, 1</column>
-<column name="temp_39_fu_207_p2">+, 0, 0, 23, 16, 15</column>
-<column name="temp_40_fu_219_p2">+, 0, 0, 23, 16, 15</column>
-<column name="sub_ln262_fu_261_p2">-, 0, 0, 23, 1, 16</column>
-<column name="and_ln255_fu_239_p2">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln248_fu_148_p2">icmp, 0, 0, 12, 4, 4</column>
-<column name="icmp_ln253_fu_181_p2">icmp, 0, 0, 23, 16, 15</column>
-<column name="icmp_ln255_fu_201_p2">icmp, 0, 0, 23, 16, 15</column>
-<column name="select_ln262_fu_267_p3">select, 0, 0, 16, 1, 16</column>
-<column name="temp_41_fu_225_p3">select, 0, 0, 16, 1, 16</column>
-<column name="temp_42_fu_245_p3">select, 0, 0, 16, 1, 16</column>
+<column name="add_ln248_fu_150_p2">+, 0, 0, 12, 4, 1</column>
+<column name="i_9_fu_161_p2">+, 0, 0, 12, 4, 1</column>
+<column name="temp_29_fu_239_p2">+, 0, 0, 23, 16, 15</column>
+<column name="temp_30_fu_251_p2">+, 0, 0, 23, 16, 15</column>
+<column name="sub_ln262_fu_285_p2">-, 0, 0, 23, 1, 16</column>
+<column name="sub_ln67_fu_191_p2">-, 0, 0, 23, 1, 16</column>
+<column name="and_ln255_fu_271_p2">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln248_fu_144_p2">icmp, 0, 0, 12, 4, 4</column>
+<column name="icmp_ln253_fu_213_p2">icmp, 0, 0, 23, 16, 15</column>
+<column name="icmp_ln255_fu_233_p2">icmp, 0, 0, 23, 16, 15</column>
+<column name="icmp_ln67_fu_185_p2">icmp, 0, 0, 24, 16, 17</column>
+<column name="select_ln262_fu_291_p3">select, 0, 0, 16, 1, 16</column>
+<column name="select_ln67_fu_197_p3">select, 0, 0, 16, 1, 15</column>
+<column name="temp_31_fu_257_p3">select, 0, 0, 16, 1, 16</column>
+<column name="temp_32_fu_277_p3">select, 0, 0, 16, 1, 16</column>
+<column name="temp_fu_205_p3">select, 0, 0, 16, 1, 16</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 <column name="ap_enable_reg_pp0_iter1">xor, 0, 0, 2, 2, 1</column>
-<column name="xor_ln253_fu_233_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="xor_ln253_fu_265_p2">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -126,32 +125,28 @@
 <column name="L_ACF_we1">9, 2, 1, 2</column>
 <column name="ap_NS_fsm">43, 8, 1, 8</column>
 <column name="ap_enable_reg_pp0_iter1">14, 3, 1, 3</column>
-<column name="grp_gsm_add_fu_310_a">14, 3, 16, 48</column>
-<column name="grp_gsm_add_fu_310_b">14, 3, 16, 48</column>
-<column name="grp_gsm_mult_r_fu_300_a">14, 3, 16, 48</column>
-<column name="grp_gsm_mult_r_fu_300_ap_start">14, 3, 1, 3</column>
-<column name="grp_gsm_mult_r_fu_300_b">14, 3, 16, 48</column>
-<column name="grp_gsm_norm_fu_305_a">14, 3, 64, 192</column>
-<column name="grp_gsm_norm_fu_305_ap_start">14, 3, 1, 3</column>
-<column name="i_fu_76">9, 2, 4, 8</column>
-<column name="idx_fu_72">9, 2, 4, 8</column>
-<column name="temp_37_gsm_abs_fu_120_a">20, 4, 16, 64</column>
-<column name="tmp_6_gsm_add_fu_315_a">14, 3, 16, 48</column>
-<column name="tmp_6_gsm_add_fu_315_b">14, 3, 16, 48</column>
+<column name="bitoff_address0">14, 3, 8, 24</column>
+<column name="bitoff_address1">14, 3, 8, 24</column>
+<column name="bitoff_address2">14, 3, 8, 24</column>
+<column name="bitoff_ce0">14, 3, 1, 3</column>
+<column name="bitoff_ce1">14, 3, 1, 3</column>
+<column name="bitoff_ce2">14, 3, 1, 3</column>
+<column name="bitoff_ce3">9, 2, 1, 2</column>
+<column name="i_fu_78">9, 2, 4, 8</column>
+<column name="idx_fu_74">9, 2, 4, 8</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="LARc_addr_reg_294">3, 0, 3, 0</column>
+<column name="LARc_addr_reg_317">3, 0, 3, 0</column>
 <column name="ap_CS_fsm">7, 0, 7, 0</column>
 <column name="ap_enable_reg_pp0_iter0">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
-<column name="grp_Autocorrelation_fu_101_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_Quantization_and_coding_fu_126_ap_start_reg">1, 0, 1, 0</column>
-<column name="grp_Reflection_coefficients_fu_111_ap_start_reg">1, 0, 1, 0</column>
-<column name="i_fu_76">4, 0, 4, 0</column>
-<column name="icmp_ln248_reg_290">1, 0, 1, 0</column>
-<column name="idx_fu_72">4, 0, 4, 0</column>
+<column name="grp_Autocorrelation_fu_103_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_Quantization_and_coding_fu_122_ap_start_reg">1, 0, 1, 0</column>
+<column name="grp_Reflection_coefficients_fu_113_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_fu_78">4, 0, 4, 0</column>
+<column name="idx_fu_74">4, 0, 4, 0</column>
 </table>
 </item>
 </section>

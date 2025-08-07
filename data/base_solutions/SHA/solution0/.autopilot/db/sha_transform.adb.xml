@@ -190,10 +190,10 @@ entry:0 %i = alloca i32 1
 
 <Node id="3" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:1 %specpipeline_ln17 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
+entry:1 %specpipeline_ln13 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_7
 
 ]]></Node>
-<StgValue><ssdm name="specpipeline_ln17"/></StgValue>
+<StgValue><ssdm name="specpipeline_ln13"/></StgValue>
 </operation>
 
 <operation id="22" st_id="1" stage="1" lat="1">
@@ -4161,17 +4161,17 @@ for.end109:12 %ret_ln140 = ret
 <dataflows>
 <dataflow id="308" from="StgValue_307" to="i" fromId="307" toId="20">
 </dataflow>
-<dataflow id="310" from="_ssdm_op_SpecPipeline" to="specpipeline_ln17" fromId="309" toId="21">
+<dataflow id="310" from="_ssdm_op_SpecPipeline" to="specpipeline_ln13" fromId="309" toId="21">
 </dataflow>
-<dataflow id="312" from="StgValue_311" to="specpipeline_ln17" fromId="311" toId="21">
+<dataflow id="312" from="StgValue_311" to="specpipeline_ln13" fromId="311" toId="21">
 </dataflow>
-<dataflow id="313" from="StgValue_311" to="specpipeline_ln17" fromId="311" toId="21">
+<dataflow id="313" from="StgValue_311" to="specpipeline_ln13" fromId="311" toId="21">
 </dataflow>
-<dataflow id="314" from="StgValue_307" to="specpipeline_ln17" fromId="307" toId="21">
+<dataflow id="314" from="StgValue_307" to="specpipeline_ln13" fromId="307" toId="21">
 </dataflow>
-<dataflow id="315" from="StgValue_311" to="specpipeline_ln17" fromId="311" toId="21">
+<dataflow id="315" from="StgValue_311" to="specpipeline_ln13" fromId="311" toId="21">
 </dataflow>
-<dataflow id="317" from="empty_7" to="specpipeline_ln17" fromId="316" toId="21">
+<dataflow id="317" from="empty_7" to="specpipeline_ln13" fromId="316" toId="21">
 </dataflow>
 <dataflow id="319" from="StgValue_318" to="W" fromId="318" toId="22">
 </dataflow>

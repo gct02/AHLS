@@ -167,14 +167,6 @@ word gsm_div(word num, word denum);
 
 word gsm_add(word a, word b)
 {
-#line 18 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 37 "data/benchmarks/gsm/gsm_add.c"
-
-#line 28 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 37 "data/benchmarks/gsm/gsm_add.c"
-
     longword sum;
     sum = (longword) a + (longword) b;
     return ((sum) < ((-32767)-1) ? ((-32767)-1) : (sum) > ( 32767) ? ( 32767) : (sum));
@@ -182,14 +174,6 @@ word gsm_add(word a, word b)
 
 word gsm_mult(word a, word b)
 {
-#line 19 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 44 "data/benchmarks/gsm/gsm_add.c"
-
-#line 29 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 44 "data/benchmarks/gsm/gsm_add.c"
-
     if (a == ((-32767)-1) && b == ((-32767)-1))
         return ( 32767);
     else
@@ -198,14 +182,6 @@ word gsm_mult(word a, word b)
 
 word gsm_mult_r(word a, word b)
 {
-#line 20 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 52 "data/benchmarks/gsm/gsm_add.c"
-
-#line 30 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 52 "data/benchmarks/gsm/gsm_add.c"
-
     longword prod;
 
     if (b == ((-32767)-1) && a == ((-32767)-1))
@@ -220,27 +196,11 @@ word gsm_mult_r(word a, word b)
 
 word gsm_abs(word a)
 {
-#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 66 "data/benchmarks/gsm/gsm_add.c"
-
-#line 31 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 66 "data/benchmarks/gsm/gsm_add.c"
-
     return a < 0 ? (a == ((-32767)-1) ? ( 32767) : -a) : a;
 }
 
 word gsm_norm(longword a)
 {
-#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE PIPELINE off=true
-# 71 "data/benchmarks/gsm/gsm_add.c"
-
-#line 26 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
-#pragma HLSDIRECTIVE INLINE off=true
-# 71 "data/benchmarks/gsm/gsm_add.c"
-
     const unsigned char bitoff[256] = {
         8, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,
         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
@@ -273,11 +233,11 @@ word gsm_norm(longword a)
 
 word gsm_div(word num, word denum)
 {
-#line 17 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 16 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE PIPELINE off=true
 # 119 "data/benchmarks/gsm/gsm_add.c"
 
-#line 27 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
+#line 21 "/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/data/base_directives/gsm.tcl"
 #pragma HLSDIRECTIVE INLINE off=true
 # 119 "data/benchmarks/gsm/gsm_add.c"
 

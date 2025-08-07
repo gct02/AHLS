@@ -243,10 +243,10 @@ KeySchedule_label5:3 %br_ln554 = br i1 %icmp_ln554, void %KeySchedule_label5.spl
 
 <Node id="16" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-KeySchedule_label5.split:0 %speclooptripcount_ln501 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
+KeySchedule_label5.split:0 %speclooptripcount_ln555 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln501"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln555"/></StgValue>
 </operation>
 
 <operation id="21" st_id="2" stage="1" lat="1">
@@ -2657,10 +2657,10 @@ KeySchedule_label7.split_ifconv:119 %temp_0_2 = select i1 %icmp_ln570, i32 %zext
 
 <Node id="57" bw="9" op_0_bw="6">
 <![CDATA[
-KeySchedule_label7.split_ifconv:0 %zext_ln501 = zext i6 %j_5
+KeySchedule_label7.split_ifconv:0 %zext_ln566 = zext i6 %j_5
 
 ]]></Node>
-<StgValue><ssdm name="zext_ln501"/></StgValue>
+<StgValue><ssdm name="zext_ln566"/></StgValue>
 </operation>
 
 <operation id="179" st_id="8" stage="1" lat="1">
@@ -2672,10 +2672,10 @@ KeySchedule_label7.split_ifconv:0 %zext_ln501 = zext i6 %j_5
 
 <Node id="58" bw="0" op_0_bw="0" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-KeySchedule_label7.split_ifconv:1 %speclooptripcount_ln501 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 40, i64 40, i64 40
+KeySchedule_label7.split_ifconv:1 %speclooptripcount_ln566 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 40, i64 40, i64 40
 
 ]]></Node>
-<StgValue><ssdm name="speclooptripcount_ln501"/></StgValue>
+<StgValue><ssdm name="speclooptripcount_ln566"/></StgValue>
 </operation>
 
 <operation id="180" st_id="8" stage="1" lat="1">
@@ -3030,7 +3030,7 @@ for.inc133.split:6 %word_addr_8 = getelementptr i32 %word, i64 0, i64 %zext_ln59
 
 <Node id="195" bw="9" op_0_bw="9" op_1_bw="9">
 <![CDATA[
-for.inc133.split:7 %add_ln594_1 = add i9 %sub_ln594, i9 %zext_ln501
+for.inc133.split:7 %add_ln594_1 = add i9 %sub_ln594, i9 %zext_ln566
 
 ]]></Node>
 <StgValue><ssdm name="add_ln594_1"/></StgValue>
