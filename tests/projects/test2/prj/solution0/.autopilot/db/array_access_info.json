@@ -1,0 +1,102 @@
+{
+  "ArrayAccessInfo": [
+    {
+      "Name": "empty",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": []
+    },
+    {
+      "Name": "empty_0",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": []
+    },
+    {
+      "Name": "empty_1",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": []
+    },
+    {
+      "Name": "empty_2",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": []
+    },
+    {
+      "Name": "empty_3",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": []
+    },
+    {
+      "Name": "empty_4",
+      "FunctionName": "",
+      "Stores": [],
+      "Loads": []
+    },
+    {
+      "Name": "in_arr",
+      "FunctionName": "top_fn",
+      "Stores": [],
+      "Loads": [
+        {
+          "FunctionName": "top_fn",
+          "LoadInstName": "in_arr_load"
+        },
+        {
+          "FunctionName": "top_fn",
+          "LoadInstName": "in_arr_addr"
+        }
+      ]
+    },
+    {
+      "Name": "out_arr",
+      "FunctionName": "top_fn",
+      "Stores": [
+        {
+          "FunctionName": "top_fn",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "top_fn",
+          "LoadInstName": "out_arr_load"
+        },
+        {
+          "FunctionName": "top_fn",
+          "LoadInstName": "out_arr_addr"
+        }
+      ]
+    },
+    {
+      "Name": "out_arr",
+      "FunctionName": "init_arr",
+      "Stores": [
+        {
+          "FunctionName": "init_arr",
+          "StoreInstIndex": 1
+        }
+      ],
+      "Loads": [
+        {
+          "FunctionName": "init_arr",
+          "LoadInstName": "out_arr_addr"
+        }
+      ]
+    },
+    {
+      "Name": "arr",
+      "FunctionName": "init_arr",
+      "Stores": [
+        {
+          "FunctionName": "init_arr",
+          "StoreInstIndex": 0
+        }
+      ],
+      "Loads": []
+    }
+  ]
+}

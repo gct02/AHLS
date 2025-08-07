@@ -1,0 +1,137 @@
+
+
+================================================================
+== Vitis HLS Report for 'init_arr'
+================================================================
+* Date:           Sat Jul 19 17:14:19 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        prj
+* Solution:       solution0 (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  1.306 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      101|      101|  0.808 us|  0.808 us|  101|  101|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                  |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name    |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- init_arr_loop1  |      100|      100|         1|          -|          -|   100|        no|
+        +------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%i = alloca i32 1" [gnn/test/test2/kernel.c:5]   --->   Operation 3 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %out_arr, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 4 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%specpipeline_ln5 = specpipeline void @_ssdm_op_SpecPipeline, i32 0, i32 0, i32 1, i32 0, void @empty_0" [/home/gabriel/Documents/UFRGS/RAISE/AHLS/AHLS/gnn/test/test2/dct0.tcl:5]   --->   Operation 5 'specpipeline' 'specpipeline_ln5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.38ns)   --->   "%store_ln5 = store i7 0, i7 %i" [gnn/test/test2/kernel.c:5]   --->   Operation 6 'store' 'store_ln5' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%br_ln8 = br void %for.inc" [gnn/test/test2/kernel.c:8]   --->   Operation 7 'br' 'br_ln8' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 1.30>
+ST_2 : Operation 8 [1/1] (0.00ns)   --->   "%i_2 = load i7 %i" [gnn/test/test2/kernel.c:8]   --->   Operation 8 'load' 'i_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 9 [1/1] (0.70ns)   --->   "%icmp_ln8 = icmp_eq  i7 %i_2, i7 100" [gnn/test/test2/kernel.c:8]   --->   Operation 9 'icmp' 'icmp_ln8' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 10 [1/1] (0.70ns)   --->   "%add_ln8 = add i7 %i_2, i7 1" [gnn/test/test2/kernel.c:8]   --->   Operation 10 'add' 'add_ln8' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%br_ln8 = br i1 %icmp_ln8, void %for.inc.split, void %for.end" [gnn/test/test2/kernel.c:8]   --->   Operation 11 'br' 'br_ln8' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%zext_ln8 = zext i7 %i_2" [gnn/test/test2/kernel.c:8]   --->   Operation 12 'zext' 'zext_ln8' <Predicate = (!icmp_ln8)> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%speclooptripcount_ln9 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 100, i64 100, i64 100" [gnn/test/test2/kernel.c:9]   --->   Operation 13 'speclooptripcount' 'speclooptripcount_ln9' <Predicate = (!icmp_ln8)> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%specloopname_ln11 = specloopname void @_ssdm_op_SpecLoopName, void @empty_4" [gnn/test/test2/kernel.c:11]   --->   Operation 14 'specloopname' 'specloopname_ln11' <Predicate = (!icmp_ln8)> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%out_arr_addr = getelementptr i32 %out_arr, i64 0, i64 %zext_ln8" [gnn/test/test2/kernel.c:10]   --->   Operation 15 'getelementptr' 'out_arr_addr' <Predicate = (!icmp_ln8)> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.60ns)   --->   "%store_ln10 = store i32 0, i7 %out_arr_addr" [gnn/test/test2/kernel.c:10]   --->   Operation 16 'store' 'store_ln10' <Predicate = (!icmp_ln8)> <Delay = 0.60> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.60> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 100> <RAM>
+ST_2 : Operation 17 [1/1] (0.38ns)   --->   "%store_ln5 = store i7 %add_ln8, i7 %i" [gnn/test/test2/kernel.c:5]   --->   Operation 17 'store' 'store_ln5' <Predicate = (!icmp_ln8)> <Delay = 0.38>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln8 = br void %for.inc" [gnn/test/test2/kernel.c:8]   --->   Operation 18 'br' 'br_ln8' <Predicate = (!icmp_ln8)> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%ret_ln12 = ret" [gnn/test/test2/kernel.c:12]   --->   Operation 19 'ret' 'ret_ln12' <Predicate = (icmp_ln8)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	'alloca' operation 7 bit ('i', gnn/test/test2/kernel.c:5) [2]  (0.000 ns)
+	'store' operation 0 bit ('store_ln5', gnn/test/test2/kernel.c:5) of constant 0 on local variable 'i', gnn/test/test2/kernel.c:5 [5]  (0.387 ns)
+
+ <State 2>: 1.306ns
+The critical path consists of the following:
+	'load' operation 7 bit ('i', gnn/test/test2/kernel.c:8) on local variable 'i', gnn/test/test2/kernel.c:5 [8]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln8', gnn/test/test2/kernel.c:8) [9]  (0.706 ns)
+	'store' operation 0 bit ('store_ln10', gnn/test/test2/kernel.c:10) of constant 0 on array 'out_arr' [17]  (0.600 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,7 @@
+set_directive_pipeline -off top_fn/top_fn_loop1
+set_directive_pipeline -off top_fn/top_fn_loop1_1
+set_directive_pipeline -off init_arr/init_arr_loop1
+set_directive_pipeline -off top_fn
+set_directive_pipeline -off init_arr
+set_directive_loop_flatten -off top_fn/top_fn_loop1_1
+set_directive_inline -off init_arr

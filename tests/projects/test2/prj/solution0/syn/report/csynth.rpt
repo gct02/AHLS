@@ -1,0 +1,119 @@
+
+
+================================================================
+== Synthesis Summary Report of 'top_fn'
+================================================================
++ General Information: 
+    * Date:           Sat Jul 19 17:14:19 2025
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        prj
+    * Solution:       solution0 (Vivado IP Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcu50-fsvh2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------+------+------+---------+-----------+----------+---------+------+----------+------+----+----------+-----------+-----+
+    |       Modules      | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |      |    |          |           |     |
+    |       & Loops      | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM | DSP|    FF    |    LUT    | URAM|
+    +--------------------+------+------+---------+-----------+----------+---------+------+----------+------+----+----------+-----------+-----+
+    |+ top_fn            |     -|  4.36|    20403|  1.632e+05|         -|    20404|     -|        no|     -|   -|  83 (~0%)|  272 (~0%)|    -|
+    | + init_arr         |     -|  4.53|      101|    808.000|         -|      101|     -|        no|     -|   -|   9 (~0%)|   51 (~0%)|    -|
+    |  o init_arr_loop1  |     -|  5.84|      100|    800.000|         1|        -|   100|        no|     -|   -|         -|          -|    -|
+    | o top_fn_loop1     |     -|  5.84|    20300|  1.624e+05|       203|        -|   100|        no|     -|   -|         -|          -|    -|
+    |  o top_fn_loop1_1  |     -|  5.84|      200|  1.600e+03|         2|        -|   100|        no|     -|   -|         -|          -|    -|
+    +--------------------+------+------+---------+-----------+----------+---------+------+----------+------+----+----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++------------------+-----------+----------+
+| Port             | Direction | Bitwidth |
++------------------+-----------+----------+
+| in_arr_address0  | out       | 7        |
+| in_arr_q0        | in        | 32       |
+| out_arr_address0 | out       | 7        |
+| out_arr_d0       | out       | 32       |
+| out_arr_q0       | in        | 32       |
++------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| in_arr   | in        | int*     |
+| out_arr  | inout     | int*     |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+------------------+---------+----------+
+| Argument | HW Interface     | HW Type | HW Usage |
++----------+------------------+---------+----------+
+| in_arr   | in_arr_address0  | port    | offset   |
+| in_arr   | in_arr_ce0       | port    |          |
+| in_arr   | in_arr_q0        | port    |          |
+| out_arr  | out_arr_address0 | port    | offset   |
+| out_arr  | out_arr_ce0      | port    |          |
+| out_arr  | out_arr_we0      | port    |          |
+| out_arr  | out_arr_d0       | port    |          |
+| out_arr  | out_arr_q0       | port    |          |
++----------+------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------+-----+--------+----------+-----+--------+---------+
+| Name                 | DSP | Pragma | Variable | Op  | Impl   | Latency |
++----------------------+-----+--------+----------+-----+--------+---------+
+| + top_fn             | 0   |        |          |     |        |         |
+|   add_ln20_fu_116_p2 |     |        | add_ln20 | add | fabric | 0       |
+|   add_ln24_fu_133_p2 |     |        | add_ln24 | add | fabric | 0       |
+|   add_ln26_fu_148_p2 |     |        | add_ln26 | add | fabric | 0       |
+|  + init_arr          | 0   |        |          |     |        |         |
+|    add_ln8_fu_64_p2  |     |        | add_ln8  | add | fabric | 0       |
++----------------------+-----+--------+----------+-----+--------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------------+-------------------------+---------------------------------------+
+| Type           | Options                 | Location                              |
++----------------+-------------------------+---------------------------------------+
+| loop_tripcount | min=100 max=100 avg=100 | gnn/test/test2/kernel.c:9 in init_arr |
+| loop_tripcount | min=100 max=100 avg=100 | gnn/test/test2/kernel.c:21 in top_fn  |
+| loop_tripcount | min=100 max=100 avg=100 | gnn/test/test2/kernel.c:25 in top_fn  |
+| inline         | off=true                | dct0.tcl:7 in init_arr                |
+| pipeline       | off=true                | dct0.tcl:3 in init_arr                |
+| pipeline       | off=true                | dct0.tcl:5 in init_arr                |
+| loop_flatten   | off=true                | dct0.tcl:6 in top_fn                  |
+| pipeline       | off=true                | dct0.tcl:1 in top_fn                  |
+| pipeline       | off=true                | dct0.tcl:2 in top_fn                  |
+| pipeline       | off=true                | dct0.tcl:4 in top_fn                  |
++----------------+-------------------------+---------------------------------------+
+
+

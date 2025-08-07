@@ -1,0 +1,4739 @@
+{
+  "name": "GEMM",
+  "top_level": "bbgemm",
+  "graph_attr": {
+    "num_nodes": 110,
+    "num_edges": 509,
+    "num_ops": 62,
+    "num_blocks": 16,
+    "num_functions": 1,
+    "num_loops": 5,
+    "num_arrays": 3,
+    "num_mem_ops": 7,
+    "num_arith_ops": 9,
+    "mem_intensity": 0.7777776913580343,
+    "num_int_ops": 7,
+    "num_fp_ops": 2,
+    "num_branch_ops": 15,
+    "avg_op_bitwidth": 15.451612903225806,
+    "avg_loop_depth": 3.0,
+    "max_loop_depth": 5,
+    "avg_loop_trip_count": 19.2,
+    "max_loop_trip_count": 64,
+    "avg_loop_latency": 682307.2,
+    "max_loop_latency": 2990224,
+    "avg_pipelined_loop_latency": 0,
+    "max_pipelined_loop_latency": 0,
+    "num_pipelined_loops": 0,
+    "avg_unrolled_loop_latency": 0,
+    "max_unrolled_loop_latency": 0,
+    "num_unrolled_loops": 0,
+    "avg_flattened_loop_depth": 0,
+    "max_flattened_loop_depth": 0,
+    "num_flattened_loops": 0,
+    "avg_unroll_factor": 0,
+    "max_unroll_factor": 0,
+    "ratio_pipelined_loops": 0.0,
+    "ratio_unrolled_loops": 0.0,
+    "avg_function_latency": 2990225.0,
+    "max_function_latency": 2990225,
+    "num_partitioned_arrays": 0,
+    "avg_array_size": 4096.0,
+    "max_array_size": 4096,
+    "avg_partitioned_array_size": 0,
+    "max_partitioned_array_size": 0,
+    "avg_partition_factor": 0,
+    "max_partition_factor": 0,
+    "ratio_partitioned_arrays": 0.0,
+    "num_loop_merges": 0,
+    "num_inlines": 0,
+    "num_dataflows": 0,
+    "lut": 847,
+    "bram": 0,
+    "ff": 988,
+    "dsp": 11
+  },
+  "modules": [
+    "bbgemm"
+  ],
+  "nodes": {
+    "bbgemm.4": {
+      "node_type": "op",
+      "label": "bbgemm/jj",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "alloca",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        101
+      ]
+    },
+    "bbgemm.4.internal_mem": {
+      "node_type": "internal_mem",
+      "label": "bbgemm/jj",
+      "rtl_name": "",
+      "feature_dict": {
+        "is_array": 0,
+        "is_global_mem": 0,
+        "is_large_array": 0,
+        "array_size": 0,
+        "original_array_dims": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "original_bitwidth": 7,
+        "original_base_type": [
+          0,
+          0,
+          0
+        ],
+        "bitwidth": 7,
+        "base_type": [
+          0,
+          0,
+          0
+        ],
+        "array_partition": 0,
+        "partition_type": -1,
+        "partition_dim": -1,
+        "partition_factor": 0,
+        "is_unevenly_partitioned": 0,
+        "has_hybrid_impl": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "matching_ports": []
+    },
+    "bbgemm.13": {
+      "node_type": "op",
+      "label": "bbgemm/jj_write_ln11",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "store",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.38,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        103,
+        104
+      ]
+    },
+    "bbgemm.14": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln15",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        105
+      ]
+    },
+    "bbgemm.16": {
+      "node_type": "op",
+      "label": "bbgemm/jj_1",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "load",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        106,
+        374
+      ]
+    },
+    "bbgemm.17": {
+      "node_type": "op",
+      "label": "bbgemm/tmp",
+      "rtl_name": "tmp_fu_179_p3",
+      "core_name": "none",
+      "opcode": "bitselect",
+      "feature_dict": {
+        "bitwidth": 1,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        108,
+        109,
+        111
+      ]
+    },
+    "bbgemm.18": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln15",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        112,
+        113,
+        114
+      ]
+    },
+    "bbgemm.20": {
+      "node_type": "op",
+      "label": "bbgemm/trunc_ln15",
+      "rtl_name": "trunc_ln15_fu_187_p1",
+      "core_name": "none",
+      "opcode": "trunc",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        115
+      ]
+    },
+    "bbgemm.23": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln17",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.38,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        116
+      ]
+    },
+    "bbgemm.25": {
+      "node_type": "op",
+      "label": "bbgemm/kk",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "phi",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        117,
+        118,
+        119,
+        120
+      ]
+    },
+    "bbgemm.26": {
+      "node_type": "op",
+      "label": "bbgemm/tmp_2",
+      "rtl_name": "tmp_2_fu_191_p3",
+      "core_name": "none",
+      "opcode": "bitselect",
+      "feature_dict": {
+        "bitwidth": 1,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        121,
+        122,
+        123
+      ]
+    },
+    "bbgemm.27": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln17",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        124,
+        125,
+        126
+      ]
+    },
+    "bbgemm.29": {
+      "node_type": "op",
+      "label": "bbgemm/trunc_ln17",
+      "rtl_name": "trunc_ln17_fu_199_p1",
+      "core_name": "none",
+      "opcode": "trunc",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        127
+      ]
+    },
+    "bbgemm.32": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln19",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.38,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        128
+      ]
+    },
+    "bbgemm.34": {
+      "node_type": "op",
+      "label": "bbgemm/i",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "phi",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        129,
+        130,
+        131,
+        132
+      ]
+    },
+    "bbgemm.35": {
+      "node_type": "op",
+      "label": "bbgemm/icmp_ln19",
+      "rtl_name": "icmp_ln19_fu_213_p2",
+      "core_name": "Cmp",
+      "opcode": "icmp",
+      "feature_dict": {
+        "bitwidth": 1,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        133,
+        135
+      ]
+    },
+    "bbgemm.36": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln19",
+      "rtl_name": "add_ln19_fu_219_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        136,
+        138
+      ]
+    },
+    "bbgemm.37": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln19",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        139,
+        140,
+        141
+      ]
+    },
+    "bbgemm.41": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln21",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.38,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        142
+      ]
+    },
+    "bbgemm.43": {
+      "node_type": "op",
+      "label": "bbgemm/k",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "phi",
+      "feature_dict": {
+        "bitwidth": 4,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        143,
+        144,
+        146,
+        147
+      ]
+    },
+    "bbgemm.44": {
+      "node_type": "op",
+      "label": "bbgemm/icmp_ln21",
+      "rtl_name": "icmp_ln21_fu_231_p2",
+      "core_name": "Cmp",
+      "opcode": "icmp",
+      "feature_dict": {
+        "bitwidth": 1,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        148,
+        150
+      ]
+    },
+    "bbgemm.45": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln21",
+      "rtl_name": "add_ln21_fu_237_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 4,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        151,
+        153
+      ]
+    },
+    "bbgemm.46": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln21",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        154,
+        155,
+        156
+      ]
+    },
+    "bbgemm.48": {
+      "node_type": "op",
+      "label": "bbgemm/zext_ln21",
+      "rtl_name": "zext_ln21_fu_243_p1",
+      "core_name": "none",
+      "opcode": "zext",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        157
+      ]
+    },
+    "bbgemm.51": {
+      "node_type": "op",
+      "label": "bbgemm/trunc_ln24",
+      "rtl_name": "trunc_ln24_fu_247_p1",
+      "core_name": "none",
+      "opcode": "trunc",
+      "feature_dict": {
+        "bitwidth": 3,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        158
+      ]
+    },
+    "bbgemm.52": {
+      "node_type": "op",
+      "label": "bbgemm/tmp_1",
+      "rtl_name": "tmp_1_reg_396",
+      "core_name": "none",
+      "opcode": "partselect",
+      "feature_dict": {
+        "bitwidth": 3,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        160,
+        161,
+        163,
+        165
+      ]
+    },
+    "bbgemm.53": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln25",
+      "rtl_name": "add_ln25_fu_261_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        166,
+        167
+      ]
+    },
+    "bbgemm.54": {
+      "node_type": "op",
+      "label": "bbgemm/trunc_ln25",
+      "rtl_name": "trunc_ln25_fu_266_p1",
+      "core_name": "none",
+      "opcode": "trunc",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        168
+      ]
+    },
+    "bbgemm.55": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln25_1",
+      "rtl_name": "add_ln25_1_fu_270_p3",
+      "core_name": "none",
+      "opcode": "bitconcatenate",
+      "feature_dict": {
+        "bitwidth": 12,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        170,
+        171,
+        172
+      ]
+    },
+    "bbgemm.56": {
+      "node_type": "op",
+      "label": "bbgemm/zext_ln25",
+      "rtl_name": "zext_ln25_fu_278_p1",
+      "core_name": "none",
+      "opcode": "zext",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        173
+      ]
+    },
+    "bbgemm.57": {
+      "node_type": "op",
+      "label": "bbgemm/m1_addr",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "getelementptr",
+      "feature_dict": {
+        "bitwidth": 12,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        174,
+        176,
+        177
+      ]
+    },
+    "bbgemm.58": {
+      "node_type": "op",
+      "label": "bbgemm/m1_load",
+      "rtl_name": "",
+      "core_name": "RAM",
+      "opcode": "load",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 1.64,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        178
+      ]
+    },
+    "bbgemm.59": {
+      "node_type": "op",
+      "label": "bbgemm/temp_x",
+      "rtl_name": "temp_x_fu_283_p1",
+      "core_name": "none",
+      "opcode": "bitcast",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        179
+      ]
+    },
+    "bbgemm.60": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln26",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.38,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        180
+      ]
+    },
+    "bbgemm.62": {
+      "node_type": "op",
+      "label": "bbgemm/j",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "phi",
+      "feature_dict": {
+        "bitwidth": 4,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        181,
+        182,
+        183,
+        184
+      ]
+    },
+    "bbgemm.63": {
+      "node_type": "op",
+      "label": "bbgemm/icmp_ln26",
+      "rtl_name": "icmp_ln26_fu_287_p2",
+      "core_name": "Cmp",
+      "opcode": "icmp",
+      "feature_dict": {
+        "bitwidth": 1,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        185,
+        186
+      ]
+    },
+    "bbgemm.64": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln26",
+      "rtl_name": "add_ln26_fu_293_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 4,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        187,
+        188
+      ]
+    },
+    "bbgemm.65": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln26",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        189,
+        190,
+        191
+      ]
+    },
+    "bbgemm.67": {
+      "node_type": "op",
+      "label": "bbgemm/zext_ln26",
+      "rtl_name": "zext_ln26_fu_299_p1",
+      "core_name": "none",
+      "opcode": "zext",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        192
+      ]
+    },
+    "bbgemm.70": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln28",
+      "rtl_name": "add_ln28_fu_303_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 6,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        193,
+        194
+      ]
+    },
+    "bbgemm.71": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln28_1",
+      "rtl_name": "add_ln28_1_fu_308_p4",
+      "core_name": "none",
+      "opcode": "bitconcatenate",
+      "feature_dict": {
+        "bitwidth": 12,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        196,
+        197,
+        198,
+        199
+      ]
+    },
+    "bbgemm.72": {
+      "node_type": "op",
+      "label": "bbgemm/zext_ln28",
+      "rtl_name": "zext_ln28_fu_316_p1",
+      "core_name": "none",
+      "opcode": "zext",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        200
+      ]
+    },
+    "bbgemm.73": {
+      "node_type": "op",
+      "label": "bbgemm/m2_addr",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "getelementptr",
+      "feature_dict": {
+        "bitwidth": 12,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        201,
+        202,
+        203
+      ]
+    },
+    "bbgemm.74": {
+      "node_type": "op",
+      "label": "bbgemm/m2_load",
+      "rtl_name": "",
+      "core_name": "RAM",
+      "opcode": "load",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 1.64,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        204
+      ]
+    },
+    "bbgemm.75": {
+      "node_type": "op",
+      "label": "bbgemm/bitcast_ln28",
+      "rtl_name": "grp_fu_167_p1",
+      "core_name": "none",
+      "opcode": "bitcast",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        205
+      ]
+    },
+    "bbgemm.76": {
+      "node_type": "op",
+      "label": "bbgemm/mul",
+      "rtl_name": "dmul_64ns_64ns_64_4_max_dsp_1_U2",
+      "core_name": "DMul_maxdsp",
+      "opcode": "dmul",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 4.5,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 100,
+        "ff": 211,
+        "dsp": 8,
+        "bram": 0
+      },
+      "operand_edges": [
+        206,
+        207
+      ]
+    },
+    "bbgemm.77": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln29_1",
+      "rtl_name": "add_ln29_1_fu_325_p3",
+      "core_name": "none",
+      "opcode": "bitconcatenate",
+      "feature_dict": {
+        "bitwidth": 12,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        208,
+        209,
+        210
+      ]
+    },
+    "bbgemm.78": {
+      "node_type": "op",
+      "label": "bbgemm/zext_ln29",
+      "rtl_name": "zext_ln29_fu_331_p1",
+      "core_name": "none",
+      "opcode": "zext",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        211
+      ]
+    },
+    "bbgemm.79": {
+      "node_type": "op",
+      "label": "bbgemm/prod_addr",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "getelementptr",
+      "feature_dict": {
+        "bitwidth": 12,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        212,
+        213,
+        214
+      ]
+    },
+    "bbgemm.80": {
+      "node_type": "op",
+      "label": "bbgemm/prod_load",
+      "rtl_name": "",
+      "core_name": "RAM",
+      "opcode": "load",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 1.64,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        215
+      ]
+    },
+    "bbgemm.81": {
+      "node_type": "op",
+      "label": "bbgemm/bitcast_ln29",
+      "rtl_name": "grp_fu_163_p0",
+      "core_name": "none",
+      "opcode": "bitcast",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        216
+      ]
+    },
+    "bbgemm.82": {
+      "node_type": "op",
+      "label": "bbgemm/add",
+      "rtl_name": "dadd_64ns_64ns_64_4_full_dsp_1_U1",
+      "core_name": "DAddSub_fulldsp",
+      "opcode": "dadd",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 4.33,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 707,
+        "ff": 366,
+        "dsp": 3,
+        "bram": 0
+      },
+      "operand_edges": [
+        217,
+        218
+      ]
+    },
+    "bbgemm.83": {
+      "node_type": "op",
+      "label": "bbgemm/bitcast_ln29_1",
+      "rtl_name": "prod_d0",
+      "core_name": "none",
+      "opcode": "bitcast",
+      "feature_dict": {
+        "bitwidth": 64,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        219
+      ]
+    },
+    "bbgemm.84": {
+      "node_type": "op",
+      "label": "bbgemm/prod_addr_write_ln29",
+      "rtl_name": "",
+      "core_name": "RAM",
+      "opcode": "store",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 1.64,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        220,
+        221,
+        373
+      ]
+    },
+    "bbgemm.85": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln26",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        222
+      ]
+    },
+    "bbgemm.87": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln21",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        223
+      ]
+    },
+    "bbgemm.89": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln19",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        224
+      ]
+    },
+    "bbgemm.91": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln17",
+      "rtl_name": "add_ln17_fu_225_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        225,
+        227
+      ]
+    },
+    "bbgemm.92": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln17",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        228
+      ]
+    },
+    "bbgemm.94": {
+      "node_type": "op",
+      "label": "bbgemm/add_ln15",
+      "rtl_name": "add_ln15_fu_203_p2",
+      "core_name": "Adder",
+      "opcode": "add",
+      "feature_dict": {
+        "bitwidth": 7,
+        "op_delay": 0.7,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        229,
+        230
+      ]
+    },
+    "bbgemm.95": {
+      "node_type": "op",
+      "label": "bbgemm/jj_write_ln11",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "store",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.38,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        231,
+        232,
+        375,
+        376
+      ]
+    },
+    "bbgemm.96": {
+      "node_type": "op",
+      "label": "bbgemm/br_ln15",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "br",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": [
+        233
+      ]
+    },
+    "bbgemm.98": {
+      "node_type": "op",
+      "label": "bbgemm/_ln35",
+      "rtl_name": "",
+      "core_name": "none",
+      "opcode": "ret",
+      "feature_dict": {
+        "bitwidth": 0,
+        "op_delay": 0.0,
+        "is_on_critical_path": 0,
+        "callee_size": 0,
+        "lut": 0,
+        "ff": 0,
+        "dsp": 0,
+        "bram": 0
+      },
+      "operand_edges": []
+    },
+    "bbgemm.1": {
+      "node_type": "port",
+      "label": "bbgemm/m1",
+      "feature_dict": {
+        "is_array": 1,
+        "is_top_level_port": 1,
+        "is_large_array": 1,
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "array_size": 4096,
+        "original_array_dims": [
+          4096,
+          1,
+          1,
+          1
+        ],
+        "original_bitwidth": 64,
+        "original_base_type": [
+          0,
+          1,
+          0
+        ],
+        "bitwidth": 64,
+        "base_type": [
+          1,
+          0,
+          0
+        ],
+        "array_partition": 0,
+        "partition_type": -1,
+        "partition_dim": -1,
+        "partition_factor": 0,
+        "is_unevenly_partitioned": 0,
+        "has_hybrid_impl": 0
+      },
+      "matching_ports": []
+    },
+    "bbgemm.2": {
+      "node_type": "port",
+      "label": "bbgemm/m2",
+      "feature_dict": {
+        "is_array": 1,
+        "is_top_level_port": 1,
+        "is_large_array": 1,
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "array_size": 4096,
+        "original_array_dims": [
+          4096,
+          1,
+          1,
+          1
+        ],
+        "original_bitwidth": 64,
+        "original_base_type": [
+          0,
+          1,
+          0
+        ],
+        "bitwidth": 64,
+        "base_type": [
+          1,
+          0,
+          0
+        ],
+        "array_partition": 0,
+        "partition_type": -1,
+        "partition_dim": -1,
+        "partition_factor": 0,
+        "is_unevenly_partitioned": 0,
+        "has_hybrid_impl": 0
+      },
+      "matching_ports": []
+    },
+    "bbgemm.3": {
+      "node_type": "port",
+      "label": "bbgemm/prod",
+      "feature_dict": {
+        "is_array": 1,
+        "is_top_level_port": 1,
+        "is_large_array": 1,
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "array_size": 4096,
+        "original_array_dims": [
+          4096,
+          1,
+          1,
+          1
+        ],
+        "original_bitwidth": 64,
+        "original_base_type": [
+          0,
+          1,
+          0
+        ],
+        "bitwidth": 64,
+        "base_type": [
+          1,
+          0,
+          0
+        ],
+        "array_partition": 0,
+        "partition_type": -1,
+        "partition_dim": -1,
+        "partition_factor": 0,
+        "is_unevenly_partitioned": 0,
+        "has_hybrid_impl": 0
+      },
+      "matching_ports": []
+    },
+    "bbgemm.100": {
+      "node_type": "const",
+      "label": "bbgemm/empty (1)",
+      "content": "1",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 32
+      }
+    },
+    "bbgemm.102": {
+      "node_type": "const",
+      "label": "bbgemm/empty (0)",
+      "content": "0",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 7
+      }
+    },
+    "bbgemm.110": {
+      "node_type": "const",
+      "label": "bbgemm/empty (6)",
+      "content": "6",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 32
+      }
+    },
+    "bbgemm.134": {
+      "node_type": "const",
+      "label": "bbgemm/empty (64)",
+      "content": "64",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 7
+      }
+    },
+    "bbgemm.137": {
+      "node_type": "const",
+      "label": "bbgemm/empty (1)",
+      "content": "1",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 7
+      }
+    },
+    "bbgemm.145": {
+      "node_type": "const",
+      "label": "bbgemm/empty (0)",
+      "content": "0",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 4
+      }
+    },
+    "bbgemm.149": {
+      "node_type": "const",
+      "label": "bbgemm/empty (8)",
+      "content": "8",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 4
+      }
+    },
+    "bbgemm.152": {
+      "node_type": "const",
+      "label": "bbgemm/empty (1)",
+      "content": "1",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 4
+      }
+    },
+    "bbgemm.162": {
+      "node_type": "const",
+      "label": "bbgemm/empty (3)",
+      "content": "3",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 32
+      }
+    },
+    "bbgemm.164": {
+      "node_type": "const",
+      "label": "bbgemm/empty (5)",
+      "content": "5",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 32
+      }
+    },
+    "bbgemm.175": {
+      "node_type": "const",
+      "label": "bbgemm/empty (0)",
+      "content": "0",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 64
+      }
+    },
+    "bbgemm.226": {
+      "node_type": "const",
+      "label": "bbgemm/empty (8)",
+      "content": "8",
+      "const_type": "0",
+      "feature_dict": {
+        "bitwidth": 7
+      }
+    },
+    "bbgemm.15": {
+      "node_type": "block",
+      "label": "bbgemm/entry",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 2,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 3
+      },
+      "ops": [
+        "bbgemm.4",
+        "bbgemm.13",
+        "bbgemm.14"
+      ]
+    },
+    "bbgemm.19": {
+      "node_type": "block",
+      "label": "bbgemm/loopkk",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 1,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 1,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 3
+      },
+      "ops": [
+        "bbgemm.16",
+        "bbgemm.17",
+        "bbgemm.18"
+      ]
+    },
+    "bbgemm.24": {
+      "node_type": "block",
+      "label": "bbgemm/loopkk.split",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 1,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 2
+      },
+      "ops": [
+        "bbgemm.20",
+        "bbgemm.23"
+      ]
+    },
+    "bbgemm.28": {
+      "node_type": "block",
+      "label": "bbgemm/loopi",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 2,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 3
+      },
+      "ops": [
+        "bbgemm.25",
+        "bbgemm.26",
+        "bbgemm.27"
+      ]
+    },
+    "bbgemm.33": {
+      "node_type": "block",
+      "label": "bbgemm/loopi.split",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 1,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 2
+      },
+      "ops": [
+        "bbgemm.29",
+        "bbgemm.32"
+      ]
+    },
+    "bbgemm.38": {
+      "node_type": "block",
+      "label": "bbgemm/loopk",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 1,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 1,
+        "block_num_io_ops": 0,
+        "block_num_ops": 4
+      },
+      "ops": [
+        "bbgemm.34",
+        "bbgemm.35",
+        "bbgemm.36",
+        "bbgemm.37"
+      ]
+    },
+    "bbgemm.42": {
+      "node_type": "block",
+      "label": "bbgemm/loopk.split",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 1
+      },
+      "ops": [
+        "bbgemm.41"
+      ]
+    },
+    "bbgemm.47": {
+      "node_type": "block",
+      "label": "bbgemm/loopj",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 1,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 1,
+        "block_num_io_ops": 0,
+        "block_num_ops": 4
+      },
+      "ops": [
+        "bbgemm.43",
+        "bbgemm.44",
+        "bbgemm.45",
+        "bbgemm.46"
+      ]
+    },
+    "bbgemm.61": {
+      "node_type": "block",
+      "label": "bbgemm/loopj.split",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 2,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 2,
+        "block_num_conversion_ops": 5,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 11
+      },
+      "ops": [
+        "bbgemm.48",
+        "bbgemm.51",
+        "bbgemm.52",
+        "bbgemm.53",
+        "bbgemm.54",
+        "bbgemm.55",
+        "bbgemm.56",
+        "bbgemm.57",
+        "bbgemm.58",
+        "bbgemm.59",
+        "bbgemm.60"
+      ]
+    },
+    "bbgemm.66": {
+      "node_type": "block",
+      "label": "bbgemm/for.inc",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 1,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 1,
+        "block_num_io_ops": 0,
+        "block_num_ops": 4
+      },
+      "ops": [
+        "bbgemm.62",
+        "bbgemm.63",
+        "bbgemm.64",
+        "bbgemm.65"
+      ]
+    },
+    "bbgemm.86": {
+      "node_type": "block",
+      "label": "bbgemm/for.inc.split",
+      "feature_dict": {
+        "block_lut_sum": 807,
+        "block_ff_sum": 577,
+        "block_dsp_sum": 11,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 5,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 2,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 2,
+        "block_num_conversion_ops": 6,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 17
+      },
+      "ops": [
+        "bbgemm.67",
+        "bbgemm.70",
+        "bbgemm.71",
+        "bbgemm.72",
+        "bbgemm.73",
+        "bbgemm.74",
+        "bbgemm.75",
+        "bbgemm.76",
+        "bbgemm.77",
+        "bbgemm.78",
+        "bbgemm.79",
+        "bbgemm.80",
+        "bbgemm.81",
+        "bbgemm.82",
+        "bbgemm.83",
+        "bbgemm.84",
+        "bbgemm.85"
+      ]
+    },
+    "bbgemm.88": {
+      "node_type": "block",
+      "label": "bbgemm/for.inc27",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 1
+      },
+      "ops": [
+        "bbgemm.87"
+      ]
+    },
+    "bbgemm.90": {
+      "node_type": "block",
+      "label": "bbgemm/for.inc30",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 1
+      },
+      "ops": [
+        "bbgemm.89"
+      ]
+    },
+    "bbgemm.93": {
+      "node_type": "block",
+      "label": "bbgemm/for.inc33",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 2
+      },
+      "ops": [
+        "bbgemm.91",
+        "bbgemm.92"
+      ]
+    },
+    "bbgemm.97": {
+      "node_type": "block",
+      "label": "bbgemm/for.inc36",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 1,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 1,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 3
+      },
+      "ops": [
+        "bbgemm.94",
+        "bbgemm.95",
+        "bbgemm.96"
+      ]
+    },
+    "bbgemm.99": {
+      "node_type": "block",
+      "label": "bbgemm/for.end38",
+      "feature_dict": {
+        "block_lut_sum": 0,
+        "block_ff_sum": 0,
+        "block_dsp_sum": 0,
+        "block_bram_sum": 0,
+        "block_num_mem_ops": 0,
+        "block_num_control_ops": 1,
+        "block_num_arith_int_ops": 0,
+        "block_num_arith_fp_ops": 0,
+        "block_num_logical_ops": 0,
+        "block_num_data_manipulation_ops": 0,
+        "block_num_conversion_ops": 0,
+        "block_num_rel_spec_ops": 0,
+        "block_num_io_ops": 0,
+        "block_num_ops": 1
+      },
+      "ops": [
+        "bbgemm.98"
+      ]
+    },
+    "bbgemm.region.0": {
+      "node_type": "function",
+      "label": "bbgemm",
+      "original_name": "bbgemm",
+      "feature_dict": {
+        "latency": 2990225,
+        "function_num_sub_regions": 15,
+        "function_num_blocks": 16,
+        "function_num_ops": 62,
+        "is_small_function": 0,
+        "loop_merge": 0,
+        "inline": 0,
+        "dataflow": 0,
+        "module_lut": 847,
+        "module_ff": 988,
+        "module_dsp": 11,
+        "module_bram": 0,
+        "function_num_mem_ops": 11,
+        "function_num_control_ops": 16,
+        "function_num_arith_int_ops": 7,
+        "function_num_arith_fp_ops": 2,
+        "function_num_logical_ops": 0,
+        "function_num_data_manipulation_ops": 10,
+        "function_num_conversion_ops": 13,
+        "function_num_rel_spec_ops": 3,
+        "function_num_io_ops": 0
+      },
+      "sub_regions": [
+        "bbgemm.region.1",
+        "bbgemm.region.2",
+        "bbgemm.region.3",
+        "bbgemm.region.4",
+        "bbgemm.region.5",
+        "bbgemm.region.6",
+        "bbgemm.region.7",
+        "bbgemm.region.8",
+        "bbgemm.region.9",
+        "bbgemm.region.10",
+        "bbgemm.region.11",
+        "bbgemm.region.12",
+        "bbgemm.region.13",
+        "bbgemm.region.14",
+        "bbgemm.region.15"
+      ],
+      "blocks": []
+    },
+    "bbgemm.region.1": {
+      "node_type": "region",
+      "label": "bbgemm/Entry",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 2,
+        "region_num_control_ops": 1,
+        "region_num_arith_int_ops": 0,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 0,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 1,
+        "region_num_ops": 3
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.15"
+      ]
+    },
+    "bbgemm.region.2": {
+      "node_type": "region",
+      "label": "bbgemm/loopjj",
+      "feature_dict": {
+        "is_loop": 1,
+        "latency": 2990224,
+        "trip_count": 8,
+        "is_top_level_loop": 1,
+        "has_perfectly_nested_child": 1,
+        "is_part_of_perfect_nest": 1,
+        "loop_depth": 1,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 807,
+        "region_ff_sum": 577,
+        "region_dsp_sum": 11,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 9,
+        "region_num_control_ops": 14,
+        "region_num_arith_int_ops": 7,
+        "region_num_arith_fp_ops": 2,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 10,
+        "region_num_conversion_ops": 13,
+        "region_num_rel_spec_ops": 3,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 12,
+        "region_num_blocks": 14,
+        "region_num_ops": 58
+      },
+      "sub_regions": [
+        "bbgemm.region.3",
+        "bbgemm.region.4",
+        "bbgemm.region.14"
+      ],
+      "blocks": []
+    },
+    "bbgemm.region.3": {
+      "node_type": "region",
+      "label": "bbgemm/Region_1",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 1,
+        "region_num_control_ops": 2,
+        "region_num_arith_int_ops": 0,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 1,
+        "region_num_conversion_ops": 1,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 2,
+        "region_num_ops": 5
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.19",
+        "bbgemm.24"
+      ]
+    },
+    "bbgemm.region.4": {
+      "node_type": "region",
+      "label": "bbgemm/loopkk",
+      "feature_dict": {
+        "is_loop": 1,
+        "latency": 373776,
+        "trip_count": 8,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 1,
+        "is_part_of_perfect_nest": 1,
+        "loop_depth": 2,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 807,
+        "region_ff_sum": 577,
+        "region_dsp_sum": 11,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 7,
+        "region_num_control_ops": 11,
+        "region_num_arith_int_ops": 6,
+        "region_num_arith_fp_ops": 2,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 9,
+        "region_num_conversion_ops": 12,
+        "region_num_rel_spec_ops": 3,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 9,
+        "region_num_blocks": 11,
+        "region_num_ops": 50
+      },
+      "sub_regions": [
+        "bbgemm.region.5",
+        "bbgemm.region.6",
+        "bbgemm.region.13"
+      ],
+      "blocks": []
+    },
+    "bbgemm.region.5": {
+      "node_type": "region",
+      "label": "bbgemm/Region_2",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 0,
+        "region_num_control_ops": 2,
+        "region_num_arith_int_ops": 0,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 2,
+        "region_num_conversion_ops": 1,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 2,
+        "region_num_ops": 5
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.28",
+        "bbgemm.33"
+      ]
+    },
+    "bbgemm.region.6": {
+      "node_type": "region",
+      "label": "bbgemm/loopi",
+      "feature_dict": {
+        "is_loop": 1,
+        "latency": 46720,
+        "trip_count": 64,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 1,
+        "is_part_of_perfect_nest": 1,
+        "loop_depth": 3,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 807,
+        "region_ff_sum": 577,
+        "region_dsp_sum": 11,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 7,
+        "region_num_control_ops": 8,
+        "region_num_arith_int_ops": 5,
+        "region_num_arith_fp_ops": 2,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 7,
+        "region_num_conversion_ops": 11,
+        "region_num_rel_spec_ops": 3,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 6,
+        "region_num_blocks": 8,
+        "region_num_ops": 43
+      },
+      "sub_regions": [
+        "bbgemm.region.7",
+        "bbgemm.region.8",
+        "bbgemm.region.12"
+      ],
+      "blocks": []
+    },
+    "bbgemm.region.7": {
+      "node_type": "region",
+      "label": "bbgemm/Region_3",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 0,
+        "region_num_control_ops": 2,
+        "region_num_arith_int_ops": 1,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 1,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 1,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 2,
+        "region_num_ops": 5
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.38",
+        "bbgemm.42"
+      ]
+    },
+    "bbgemm.region.8": {
+      "node_type": "region",
+      "label": "bbgemm/loopk",
+      "feature_dict": {
+        "is_loop": 1,
+        "latency": 728,
+        "trip_count": 8,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 1,
+        "loop_depth": 4,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 807,
+        "region_ff_sum": 577,
+        "region_dsp_sum": 11,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 7,
+        "region_num_control_ops": 5,
+        "region_num_arith_int_ops": 4,
+        "region_num_arith_fp_ops": 2,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 6,
+        "region_num_conversion_ops": 11,
+        "region_num_rel_spec_ops": 2,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 3,
+        "region_num_blocks": 5,
+        "region_num_ops": 37
+      },
+      "sub_regions": [
+        "bbgemm.region.9",
+        "bbgemm.region.10",
+        "bbgemm.region.11"
+      ],
+      "blocks": []
+    },
+    "bbgemm.region.9": {
+      "node_type": "region",
+      "label": "bbgemm/Region_4",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 1,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 2,
+        "region_num_control_ops": 2,
+        "region_num_arith_int_ops": 2,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 3,
+        "region_num_conversion_ops": 5,
+        "region_num_rel_spec_ops": 1,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 2,
+        "region_num_ops": 15
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.47",
+        "bbgemm.61"
+      ]
+    },
+    "bbgemm.region.10": {
+      "node_type": "region",
+      "label": "bbgemm/loopj",
+      "feature_dict": {
+        "is_loop": 1,
+        "latency": 88,
+        "trip_count": 8,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 5,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 807,
+        "region_ff_sum": 577,
+        "region_dsp_sum": 11,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 5,
+        "region_num_control_ops": 2,
+        "region_num_arith_int_ops": 2,
+        "region_num_arith_fp_ops": 2,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 3,
+        "region_num_conversion_ops": 6,
+        "region_num_rel_spec_ops": 1,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 2,
+        "region_num_ops": 21
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.66",
+        "bbgemm.86"
+      ]
+    },
+    "bbgemm.region.11": {
+      "node_type": "region",
+      "label": "bbgemm/Region_5",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 0,
+        "region_num_control_ops": 1,
+        "region_num_arith_int_ops": 0,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 0,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 1,
+        "region_num_ops": 1
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.88"
+      ]
+    },
+    "bbgemm.region.12": {
+      "node_type": "region",
+      "label": "bbgemm/Region_6",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 0,
+        "region_num_control_ops": 1,
+        "region_num_arith_int_ops": 0,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 0,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 1,
+        "region_num_ops": 1
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.90"
+      ]
+    },
+    "bbgemm.region.13": {
+      "node_type": "region",
+      "label": "bbgemm/Region_7",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 0,
+        "region_num_control_ops": 1,
+        "region_num_arith_int_ops": 1,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 0,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 1,
+        "region_num_ops": 2
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.93"
+      ]
+    },
+    "bbgemm.region.14": {
+      "node_type": "region",
+      "label": "bbgemm/Region_8",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 1,
+        "region_num_control_ops": 1,
+        "region_num_arith_int_ops": 1,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 0,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 1,
+        "region_num_ops": 3
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.97"
+      ]
+    },
+    "bbgemm.region.15": {
+      "node_type": "region",
+      "label": "bbgemm/Return",
+      "feature_dict": {
+        "is_loop": 0,
+        "latency": 0,
+        "trip_count": 0,
+        "is_top_level_loop": 0,
+        "has_perfectly_nested_child": 0,
+        "is_part_of_perfect_nest": 0,
+        "loop_depth": 0,
+        "auto_pipeline": 0,
+        "achieved_ii_base": 0,
+        "pipeline": 0,
+        "unroll": 0,
+        "unroll_factor": 0,
+        "loop_flatten": 0,
+        "loop_merge": 0,
+        "region_lut_sum": 0,
+        "region_ff_sum": 0,
+        "region_dsp_sum": 0,
+        "region_bram_sum": 0,
+        "region_num_mem_ops": 0,
+        "region_num_control_ops": 1,
+        "region_num_arith_int_ops": 0,
+        "region_num_arith_fp_ops": 0,
+        "region_num_logical_ops": 0,
+        "region_num_data_manipulation_ops": 0,
+        "region_num_conversion_ops": 0,
+        "region_num_rel_spec_ops": 0,
+        "region_num_io_ops": 0,
+        "region_num_sub_regions": 0,
+        "region_num_blocks": 1,
+        "region_num_ops": 1
+      },
+      "sub_regions": [],
+      "blocks": [
+        "bbgemm.99"
+      ]
+    }
+  },
+  "edges": {
+    "bbgemm.101": {
+      "label": "bbgemm.100 -> bbgemm.4 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.103": {
+      "label": "bbgemm.102 -> bbgemm.13 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.104.internal_mem": {
+      "label": "bbgemm.4 -> bbgemm.4.internal_mem (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.104": {
+      "label": "bbgemm.4 -> bbgemm.13 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.105": {
+      "label": "bbgemm.19 -> bbgemm.14 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.106.internal_mem": {
+      "label": "bbgemm.4 -> bbgemm.4.internal_mem (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.106": {
+      "label": "bbgemm.4 -> bbgemm.16 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.109": {
+      "label": "bbgemm.16 -> bbgemm.17 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.111": {
+      "label": "bbgemm.110 -> bbgemm.17 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.112": {
+      "label": "bbgemm.17 -> bbgemm.18 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.113": {
+      "label": "bbgemm.24 -> bbgemm.18 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.114": {
+      "label": "bbgemm.99 -> bbgemm.18 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.115": {
+      "label": "bbgemm.16 -> bbgemm.20 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.116": {
+      "label": "bbgemm.28 -> bbgemm.23 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.117": {
+      "label": "bbgemm.91 -> bbgemm.25 (1)",
+      "is_back_edge": true
+    },
+    "bbgemm.118": {
+      "label": "bbgemm.93 -> bbgemm.25 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.119": {
+      "label": "bbgemm.102 -> bbgemm.25 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.120": {
+      "label": "bbgemm.24 -> bbgemm.25 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.122": {
+      "label": "bbgemm.25 -> bbgemm.26 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.123": {
+      "label": "bbgemm.110 -> bbgemm.26 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.124": {
+      "label": "bbgemm.26 -> bbgemm.27 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.125": {
+      "label": "bbgemm.33 -> bbgemm.27 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.126": {
+      "label": "bbgemm.97 -> bbgemm.27 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.127": {
+      "label": "bbgemm.25 -> bbgemm.29 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.128": {
+      "label": "bbgemm.38 -> bbgemm.32 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.129": {
+      "label": "bbgemm.36 -> bbgemm.34 (1)",
+      "is_back_edge": true
+    },
+    "bbgemm.130": {
+      "label": "bbgemm.90 -> bbgemm.34 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.131": {
+      "label": "bbgemm.102 -> bbgemm.34 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.132": {
+      "label": "bbgemm.33 -> bbgemm.34 (2)",
+      "is_back_edge": false
+    },
+    "bbgemm.133": {
+      "label": "bbgemm.34 -> bbgemm.35 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.135": {
+      "label": "bbgemm.134 -> bbgemm.35 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.136": {
+      "label": "bbgemm.34 -> bbgemm.36 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.138": {
+      "label": "bbgemm.137 -> bbgemm.36 (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.139": {
+      "label": "bbgemm.15 -> bbgemm.4 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.140": {
+      "label": "bbgemm.15 -> bbgemm.13 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.141": {
+      "label": "bbgemm.15 -> bbgemm.14 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.142": {
+      "label": "bbgemm.19 -> bbgemm.16 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.143": {
+      "label": "bbgemm.19 -> bbgemm.17 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.144": {
+      "label": "bbgemm.19 -> bbgemm.18 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.146": {
+      "label": "bbgemm.24 -> bbgemm.23 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.147": {
+      "label": "bbgemm.28 -> bbgemm.25 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.148": {
+      "label": "bbgemm.28 -> bbgemm.26 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.150": {
+      "label": "bbgemm.33 -> bbgemm.29 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.151": {
+      "label": "bbgemm.33 -> bbgemm.32 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.153": {
+      "label": "bbgemm.38 -> bbgemm.35 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.154": {
+      "label": "bbgemm.38 -> bbgemm.36 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.155": {
+      "label": "bbgemm.38 -> bbgemm.37 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.156": {
+      "label": "bbgemm.42 -> bbgemm.41 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.157": {
+      "label": "bbgemm.47 -> bbgemm.43 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.158": {
+      "label": "bbgemm.47 -> bbgemm.44 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.161": {
+      "label": "bbgemm.61 -> bbgemm.48 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.163": {
+      "label": "bbgemm.61 -> bbgemm.52 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.165": {
+      "label": "bbgemm.61 -> bbgemm.54 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.166": {
+      "label": "bbgemm.61 -> bbgemm.55 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.167": {
+      "label": "bbgemm.61 -> bbgemm.56 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.168": {
+      "label": "bbgemm.61 -> bbgemm.57 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.171": {
+      "label": "bbgemm.61 -> bbgemm.60 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.172": {
+      "label": "bbgemm.66 -> bbgemm.62 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.173": {
+      "label": "bbgemm.66 -> bbgemm.63 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.174": {
+      "label": "bbgemm.66 -> bbgemm.64 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.176": {
+      "label": "bbgemm.86 -> bbgemm.67 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.177": {
+      "label": "bbgemm.86 -> bbgemm.70 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.178": {
+      "label": "bbgemm.86 -> bbgemm.71 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.179": {
+      "label": "bbgemm.86 -> bbgemm.72 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.180": {
+      "label": "bbgemm.86 -> bbgemm.73 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.181": {
+      "label": "bbgemm.86 -> bbgemm.74 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.182": {
+      "label": "bbgemm.86 -> bbgemm.75 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.183": {
+      "label": "bbgemm.86 -> bbgemm.76 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.184": {
+      "label": "bbgemm.86 -> bbgemm.77 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.185": {
+      "label": "bbgemm.86 -> bbgemm.78 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.186": {
+      "label": "bbgemm.86 -> bbgemm.79 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.187": {
+      "label": "bbgemm.86 -> bbgemm.80 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.188": {
+      "label": "bbgemm.86 -> bbgemm.81 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.189": {
+      "label": "bbgemm.86 -> bbgemm.82 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.190": {
+      "label": "bbgemm.86 -> bbgemm.83 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.191": {
+      "label": "bbgemm.86 -> bbgemm.84 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.192": {
+      "label": "bbgemm.86 -> bbgemm.85 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.193": {
+      "label": "bbgemm.88 -> bbgemm.87 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.194": {
+      "label": "bbgemm.90 -> bbgemm.89 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.197": {
+      "label": "bbgemm.97 -> bbgemm.94 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.198": {
+      "label": "bbgemm.97 -> bbgemm.95 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.199": {
+      "label": "bbgemm.97 -> bbgemm.96 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.200": {
+      "label": "bbgemm.99 -> bbgemm.98 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.201": {
+      "label": "bbgemm.region.0 -> bbgemm.region.1 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.202": {
+      "label": "bbgemm.region.0 -> bbgemm.region.2 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.203": {
+      "label": "bbgemm.region.0 -> bbgemm.region.3 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.204": {
+      "label": "bbgemm.region.0 -> bbgemm.region.4 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.205": {
+      "label": "bbgemm.region.0 -> bbgemm.region.5 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.206": {
+      "label": "bbgemm.region.0 -> bbgemm.region.6 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.207": {
+      "label": "bbgemm.region.0 -> bbgemm.region.7 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.209": {
+      "label": "bbgemm.region.0 -> bbgemm.region.9 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.210": {
+      "label": "bbgemm.region.0 -> bbgemm.region.10 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.211": {
+      "label": "bbgemm.region.0 -> bbgemm.region.11 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.212": {
+      "label": "bbgemm.region.0 -> bbgemm.region.12 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.213": {
+      "label": "bbgemm.region.0 -> bbgemm.region.13 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.214": {
+      "label": "bbgemm.region.0 -> bbgemm.region.14 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.215": {
+      "label": "bbgemm.region.0 -> bbgemm.region.15 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.216": {
+      "label": "bbgemm.region.1 -> bbgemm.15 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.217": {
+      "label": "bbgemm.15 -> bbgemm.4 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.218": {
+      "label": "bbgemm.region.1 -> bbgemm.4 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.219": {
+      "label": "bbgemm.15 -> bbgemm.13 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.220": {
+      "label": "bbgemm.region.1 -> bbgemm.13 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.221": {
+      "label": "bbgemm.15 -> bbgemm.14 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.222": {
+      "label": "bbgemm.region.1 -> bbgemm.14 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.223": {
+      "label": "bbgemm.region.2 -> bbgemm.region.3 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.224": {
+      "label": "bbgemm.region.2 -> bbgemm.region.4 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.225": {
+      "label": "bbgemm.region.2 -> bbgemm.region.14 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.227": {
+      "label": "bbgemm.19 -> bbgemm.16 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.228": {
+      "label": "bbgemm.region.3 -> bbgemm.16 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.229": {
+      "label": "bbgemm.19 -> bbgemm.17 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.230": {
+      "label": "bbgemm.region.3 -> bbgemm.17 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.231": {
+      "label": "bbgemm.19 -> bbgemm.18 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.232.internal_mem": {
+      "label": "bbgemm.4 -> bbgemm.4.internal_mem (1)",
+      "is_back_edge": false
+    },
+    "bbgemm.232": {
+      "label": "bbgemm.region.3 -> bbgemm.18 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.233": {
+      "label": "bbgemm.region.3 -> bbgemm.24 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.353": {
+      "label": "bbgemm.region.13 -> bbgemm.93 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.354": {
+      "label": "bbgemm.93 -> bbgemm.91 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.355": {
+      "label": "bbgemm.region.13 -> bbgemm.91 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.356": {
+      "label": "bbgemm.93 -> bbgemm.92 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.357": {
+      "label": "bbgemm.region.13 -> bbgemm.92 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.358": {
+      "label": "bbgemm.region.14 -> bbgemm.97 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.359": {
+      "label": "bbgemm.97 -> bbgemm.94 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.360": {
+      "label": "bbgemm.region.14 -> bbgemm.94 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.361": {
+      "label": "bbgemm.97 -> bbgemm.95 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.362": {
+      "label": "bbgemm.region.14 -> bbgemm.95 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.363": {
+      "label": "bbgemm.97 -> bbgemm.96 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.364": {
+      "label": "bbgemm.region.14 -> bbgemm.96 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.365": {
+      "label": "bbgemm.region.15 -> bbgemm.99 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.366": {
+      "label": "bbgemm.99 -> bbgemm.98 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.367": {
+      "label": "bbgemm.region.15 -> bbgemm.98 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.368": {
+      "label": "bbgemm.86 -> bbgemm.66 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.369": {
+      "label": "bbgemm.88 -> bbgemm.47 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.370": {
+      "label": "bbgemm.90 -> bbgemm.38 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.371": {
+      "label": "bbgemm.93 -> bbgemm.28 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.372": {
+      "label": "bbgemm.97 -> bbgemm.19 (2)",
+      "is_back_edge": true
+    },
+    "bbgemm.373": {
+      "label": "bbgemm.80 -> bbgemm.84 (4)",
+      "is_back_edge": false
+    },
+    "bbgemm.374": {
+      "label": "bbgemm.13 -> bbgemm.16 (4)",
+      "is_back_edge": false
+    },
+    "bbgemm.375": {
+      "label": "bbgemm.13 -> bbgemm.95 (4)",
+      "is_back_edge": false
+    },
+    "bbgemm.376": {
+      "label": "bbgemm.16 -> bbgemm.95 (4)",
+      "is_back_edge": false
+    },
+    "bbgemm.145": {
+      "label": "bbgemm.24 -> bbgemm.20 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.149": {
+      "label": "bbgemm.28 -> bbgemm.27 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.152": {
+      "label": "bbgemm.38 -> bbgemm.34 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.159": {
+      "label": "bbgemm.47 -> bbgemm.45 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.160": {
+      "label": "bbgemm.47 -> bbgemm.46 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.162": {
+      "label": "bbgemm.61 -> bbgemm.51 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.164": {
+      "label": "bbgemm.61 -> bbgemm.53 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.169": {
+      "label": "bbgemm.61 -> bbgemm.58 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.170": {
+      "label": "bbgemm.61 -> bbgemm.59 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.175": {
+      "label": "bbgemm.66 -> bbgemm.65 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.195": {
+      "label": "bbgemm.93 -> bbgemm.91 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.196": {
+      "label": "bbgemm.93 -> bbgemm.92 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.208": {
+      "label": "bbgemm.region.0 -> bbgemm.region.8 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.226": {
+      "label": "bbgemm.region.3 -> bbgemm.19 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.234": {
+      "label": "bbgemm.24 -> bbgemm.20 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.235": {
+      "label": "bbgemm.region.3 -> bbgemm.20 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.236": {
+      "label": "bbgemm.24 -> bbgemm.23 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.237": {
+      "label": "bbgemm.region.3 -> bbgemm.23 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.238": {
+      "label": "bbgemm.region.4 -> bbgemm.region.5 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.239": {
+      "label": "bbgemm.region.4 -> bbgemm.region.6 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.240": {
+      "label": "bbgemm.region.4 -> bbgemm.region.13 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.241": {
+      "label": "bbgemm.region.5 -> bbgemm.28 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.242": {
+      "label": "bbgemm.28 -> bbgemm.25 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.243": {
+      "label": "bbgemm.region.5 -> bbgemm.25 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.244": {
+      "label": "bbgemm.28 -> bbgemm.26 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.245": {
+      "label": "bbgemm.region.5 -> bbgemm.26 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.246": {
+      "label": "bbgemm.28 -> bbgemm.27 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.247": {
+      "label": "bbgemm.region.5 -> bbgemm.27 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.248": {
+      "label": "bbgemm.region.5 -> bbgemm.33 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.249": {
+      "label": "bbgemm.33 -> bbgemm.29 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.250": {
+      "label": "bbgemm.region.5 -> bbgemm.29 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.251": {
+      "label": "bbgemm.33 -> bbgemm.32 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.252": {
+      "label": "bbgemm.region.5 -> bbgemm.32 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.253": {
+      "label": "bbgemm.region.6 -> bbgemm.region.7 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.254": {
+      "label": "bbgemm.region.6 -> bbgemm.region.8 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.255": {
+      "label": "bbgemm.region.6 -> bbgemm.region.12 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.256": {
+      "label": "bbgemm.region.7 -> bbgemm.38 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.257": {
+      "label": "bbgemm.38 -> bbgemm.34 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.258": {
+      "label": "bbgemm.region.7 -> bbgemm.34 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.259": {
+      "label": "bbgemm.38 -> bbgemm.35 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.260": {
+      "label": "bbgemm.region.7 -> bbgemm.35 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.261": {
+      "label": "bbgemm.38 -> bbgemm.36 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.262": {
+      "label": "bbgemm.region.7 -> bbgemm.36 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.263": {
+      "label": "bbgemm.38 -> bbgemm.37 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.264": {
+      "label": "bbgemm.region.7 -> bbgemm.37 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.265": {
+      "label": "bbgemm.region.7 -> bbgemm.42 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.266": {
+      "label": "bbgemm.42 -> bbgemm.41 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.267": {
+      "label": "bbgemm.region.7 -> bbgemm.41 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.268": {
+      "label": "bbgemm.region.8 -> bbgemm.region.9 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.269": {
+      "label": "bbgemm.region.8 -> bbgemm.region.10 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.270": {
+      "label": "bbgemm.region.8 -> bbgemm.region.11 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.271": {
+      "label": "bbgemm.region.9 -> bbgemm.47 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.272": {
+      "label": "bbgemm.47 -> bbgemm.43 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.273": {
+      "label": "bbgemm.region.9 -> bbgemm.43 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.274": {
+      "label": "bbgemm.47 -> bbgemm.44 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.275": {
+      "label": "bbgemm.region.9 -> bbgemm.44 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.276": {
+      "label": "bbgemm.47 -> bbgemm.45 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.277": {
+      "label": "bbgemm.region.9 -> bbgemm.45 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.278": {
+      "label": "bbgemm.47 -> bbgemm.46 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.279": {
+      "label": "bbgemm.region.9 -> bbgemm.46 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.280": {
+      "label": "bbgemm.region.9 -> bbgemm.61 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.281": {
+      "label": "bbgemm.61 -> bbgemm.48 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.282": {
+      "label": "bbgemm.region.9 -> bbgemm.48 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.283": {
+      "label": "bbgemm.61 -> bbgemm.51 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.284": {
+      "label": "bbgemm.region.9 -> bbgemm.51 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.285": {
+      "label": "bbgemm.61 -> bbgemm.52 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.286": {
+      "label": "bbgemm.region.9 -> bbgemm.52 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.287": {
+      "label": "bbgemm.61 -> bbgemm.53 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.288": {
+      "label": "bbgemm.region.9 -> bbgemm.53 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.289": {
+      "label": "bbgemm.61 -> bbgemm.54 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.290": {
+      "label": "bbgemm.region.9 -> bbgemm.54 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.291": {
+      "label": "bbgemm.61 -> bbgemm.55 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.292": {
+      "label": "bbgemm.region.9 -> bbgemm.55 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.293": {
+      "label": "bbgemm.61 -> bbgemm.56 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.294": {
+      "label": "bbgemm.region.9 -> bbgemm.56 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.295": {
+      "label": "bbgemm.61 -> bbgemm.57 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.296": {
+      "label": "bbgemm.region.9 -> bbgemm.57 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.297": {
+      "label": "bbgemm.61 -> bbgemm.58 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.298": {
+      "label": "bbgemm.region.9 -> bbgemm.58 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.299": {
+      "label": "bbgemm.61 -> bbgemm.59 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.300": {
+      "label": "bbgemm.region.9 -> bbgemm.59 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.301": {
+      "label": "bbgemm.61 -> bbgemm.60 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.302": {
+      "label": "bbgemm.region.9 -> bbgemm.60 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.303": {
+      "label": "bbgemm.region.10 -> bbgemm.66 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.304": {
+      "label": "bbgemm.66 -> bbgemm.62 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.305": {
+      "label": "bbgemm.region.10 -> bbgemm.62 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.306": {
+      "label": "bbgemm.66 -> bbgemm.63 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.307": {
+      "label": "bbgemm.region.10 -> bbgemm.63 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.308": {
+      "label": "bbgemm.66 -> bbgemm.64 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.309": {
+      "label": "bbgemm.region.10 -> bbgemm.64 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.310": {
+      "label": "bbgemm.66 -> bbgemm.65 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.311": {
+      "label": "bbgemm.region.10 -> bbgemm.65 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.312": {
+      "label": "bbgemm.region.10 -> bbgemm.86 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.313": {
+      "label": "bbgemm.86 -> bbgemm.67 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.314": {
+      "label": "bbgemm.region.10 -> bbgemm.67 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.315": {
+      "label": "bbgemm.86 -> bbgemm.70 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.316": {
+      "label": "bbgemm.region.10 -> bbgemm.70 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.317": {
+      "label": "bbgemm.86 -> bbgemm.71 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.318": {
+      "label": "bbgemm.region.10 -> bbgemm.71 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.319": {
+      "label": "bbgemm.86 -> bbgemm.72 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.320": {
+      "label": "bbgemm.region.10 -> bbgemm.72 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.321": {
+      "label": "bbgemm.86 -> bbgemm.73 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.322": {
+      "label": "bbgemm.region.10 -> bbgemm.73 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.323": {
+      "label": "bbgemm.86 -> bbgemm.74 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.324": {
+      "label": "bbgemm.region.10 -> bbgemm.74 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.325": {
+      "label": "bbgemm.86 -> bbgemm.75 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.326": {
+      "label": "bbgemm.region.10 -> bbgemm.75 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.327": {
+      "label": "bbgemm.86 -> bbgemm.76 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.328": {
+      "label": "bbgemm.region.10 -> bbgemm.76 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.329": {
+      "label": "bbgemm.86 -> bbgemm.77 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.330": {
+      "label": "bbgemm.region.10 -> bbgemm.77 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.331": {
+      "label": "bbgemm.86 -> bbgemm.78 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.332": {
+      "label": "bbgemm.region.10 -> bbgemm.78 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.333": {
+      "label": "bbgemm.86 -> bbgemm.79 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.334": {
+      "label": "bbgemm.region.10 -> bbgemm.79 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.335": {
+      "label": "bbgemm.86 -> bbgemm.80 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.336": {
+      "label": "bbgemm.region.10 -> bbgemm.80 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.337": {
+      "label": "bbgemm.86 -> bbgemm.81 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.338": {
+      "label": "bbgemm.region.10 -> bbgemm.81 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.339": {
+      "label": "bbgemm.86 -> bbgemm.82 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.340": {
+      "label": "bbgemm.region.10 -> bbgemm.82 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.341": {
+      "label": "bbgemm.86 -> bbgemm.83 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.342": {
+      "label": "bbgemm.region.10 -> bbgemm.83 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.343": {
+      "label": "bbgemm.86 -> bbgemm.84 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.344": {
+      "label": "bbgemm.region.10 -> bbgemm.84 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.345": {
+      "label": "bbgemm.86 -> bbgemm.85 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.346": {
+      "label": "bbgemm.region.10 -> bbgemm.85 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.347": {
+      "label": "bbgemm.region.11 -> bbgemm.88 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.348": {
+      "label": "bbgemm.88 -> bbgemm.87 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.349": {
+      "label": "bbgemm.region.11 -> bbgemm.87 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.350": {
+      "label": "bbgemm.region.12 -> bbgemm.90 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.351": {
+      "label": "bbgemm.90 -> bbgemm.89 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.352": {
+      "label": "bbgemm.region.12 -> bbgemm.89 (hier)",
+      "is_back_edge": false
+    },
+    "bbgemm.139.rev": {
+      "label": "bbgemm.4 -> bbgemm.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.140.rev": {
+      "label": "bbgemm.13 -> bbgemm.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.141.rev": {
+      "label": "bbgemm.14 -> bbgemm.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.142.rev": {
+      "label": "bbgemm.16 -> bbgemm.19 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.143.rev": {
+      "label": "bbgemm.17 -> bbgemm.19 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.144.rev": {
+      "label": "bbgemm.18 -> bbgemm.19 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.146.rev": {
+      "label": "bbgemm.23 -> bbgemm.24 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.147.rev": {
+      "label": "bbgemm.25 -> bbgemm.28 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.148.rev": {
+      "label": "bbgemm.26 -> bbgemm.28 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.150.rev": {
+      "label": "bbgemm.29 -> bbgemm.33 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.151.rev": {
+      "label": "bbgemm.32 -> bbgemm.33 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.153.rev": {
+      "label": "bbgemm.35 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.154.rev": {
+      "label": "bbgemm.36 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.155.rev": {
+      "label": "bbgemm.37 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.156.rev": {
+      "label": "bbgemm.41 -> bbgemm.42 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.157.rev": {
+      "label": "bbgemm.43 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.158.rev": {
+      "label": "bbgemm.44 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.161.rev": {
+      "label": "bbgemm.48 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.163.rev": {
+      "label": "bbgemm.52 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.165.rev": {
+      "label": "bbgemm.54 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.166.rev": {
+      "label": "bbgemm.55 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.167.rev": {
+      "label": "bbgemm.56 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.168.rev": {
+      "label": "bbgemm.57 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.171.rev": {
+      "label": "bbgemm.60 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.172.rev": {
+      "label": "bbgemm.62 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.173.rev": {
+      "label": "bbgemm.63 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.174.rev": {
+      "label": "bbgemm.64 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.176.rev": {
+      "label": "bbgemm.67 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.177.rev": {
+      "label": "bbgemm.70 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.178.rev": {
+      "label": "bbgemm.71 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.179.rev": {
+      "label": "bbgemm.72 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.180.rev": {
+      "label": "bbgemm.73 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.181.rev": {
+      "label": "bbgemm.74 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.182.rev": {
+      "label": "bbgemm.75 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.183.rev": {
+      "label": "bbgemm.76 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.184.rev": {
+      "label": "bbgemm.77 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.185.rev": {
+      "label": "bbgemm.78 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.186.rev": {
+      "label": "bbgemm.79 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.187.rev": {
+      "label": "bbgemm.80 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.188.rev": {
+      "label": "bbgemm.81 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.189.rev": {
+      "label": "bbgemm.82 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.190.rev": {
+      "label": "bbgemm.83 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.191.rev": {
+      "label": "bbgemm.84 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.192.rev": {
+      "label": "bbgemm.85 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.193.rev": {
+      "label": "bbgemm.87 -> bbgemm.88 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.194.rev": {
+      "label": "bbgemm.89 -> bbgemm.90 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.197.rev": {
+      "label": "bbgemm.94 -> bbgemm.97 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.198.rev": {
+      "label": "bbgemm.95 -> bbgemm.97 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.199.rev": {
+      "label": "bbgemm.96 -> bbgemm.97 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.200.rev": {
+      "label": "bbgemm.98 -> bbgemm.99 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.201.rev": {
+      "label": "bbgemm.region.1 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.202.rev": {
+      "label": "bbgemm.region.2 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.203.rev": {
+      "label": "bbgemm.region.3 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.204.rev": {
+      "label": "bbgemm.region.4 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.205.rev": {
+      "label": "bbgemm.region.5 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.206.rev": {
+      "label": "bbgemm.region.6 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.207.rev": {
+      "label": "bbgemm.region.7 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.209.rev": {
+      "label": "bbgemm.region.9 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.210.rev": {
+      "label": "bbgemm.region.10 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.211.rev": {
+      "label": "bbgemm.region.11 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.212.rev": {
+      "label": "bbgemm.region.12 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.213.rev": {
+      "label": "bbgemm.region.13 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.214.rev": {
+      "label": "bbgemm.region.14 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.215.rev": {
+      "label": "bbgemm.region.15 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.216.rev": {
+      "label": "bbgemm.15 -> bbgemm.region.1 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.217.rev": {
+      "label": "bbgemm.4 -> bbgemm.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.218.rev": {
+      "label": "bbgemm.4 -> bbgemm.region.1 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.219.rev": {
+      "label": "bbgemm.13 -> bbgemm.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.220.rev": {
+      "label": "bbgemm.13 -> bbgemm.region.1 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.221.rev": {
+      "label": "bbgemm.14 -> bbgemm.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.222.rev": {
+      "label": "bbgemm.14 -> bbgemm.region.1 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.223.rev": {
+      "label": "bbgemm.region.3 -> bbgemm.region.2 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.224.rev": {
+      "label": "bbgemm.region.4 -> bbgemm.region.2 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.225.rev": {
+      "label": "bbgemm.region.14 -> bbgemm.region.2 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.227.rev": {
+      "label": "bbgemm.16 -> bbgemm.19 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.228.rev": {
+      "label": "bbgemm.16 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.229.rev": {
+      "label": "bbgemm.17 -> bbgemm.19 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.230.rev": {
+      "label": "bbgemm.17 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.231.rev": {
+      "label": "bbgemm.18 -> bbgemm.19 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.232.rev": {
+      "label": "bbgemm.18 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.233.rev": {
+      "label": "bbgemm.24 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.353.rev": {
+      "label": "bbgemm.93 -> bbgemm.region.13 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.354.rev": {
+      "label": "bbgemm.91 -> bbgemm.93 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.355.rev": {
+      "label": "bbgemm.91 -> bbgemm.region.13 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.356.rev": {
+      "label": "bbgemm.92 -> bbgemm.93 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.357.rev": {
+      "label": "bbgemm.92 -> bbgemm.region.13 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.358.rev": {
+      "label": "bbgemm.97 -> bbgemm.region.14 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.359.rev": {
+      "label": "bbgemm.94 -> bbgemm.97 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.360.rev": {
+      "label": "bbgemm.94 -> bbgemm.region.14 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.361.rev": {
+      "label": "bbgemm.95 -> bbgemm.97 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.362.rev": {
+      "label": "bbgemm.95 -> bbgemm.region.14 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.363.rev": {
+      "label": "bbgemm.96 -> bbgemm.97 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.364.rev": {
+      "label": "bbgemm.96 -> bbgemm.region.14 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.365.rev": {
+      "label": "bbgemm.99 -> bbgemm.region.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.366.rev": {
+      "label": "bbgemm.98 -> bbgemm.99 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.367.rev": {
+      "label": "bbgemm.98 -> bbgemm.region.15 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.145.rev": {
+      "label": "bbgemm.20 -> bbgemm.24 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.149.rev": {
+      "label": "bbgemm.27 -> bbgemm.28 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.152.rev": {
+      "label": "bbgemm.34 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.159.rev": {
+      "label": "bbgemm.45 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.160.rev": {
+      "label": "bbgemm.46 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.162.rev": {
+      "label": "bbgemm.51 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.164.rev": {
+      "label": "bbgemm.53 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.169.rev": {
+      "label": "bbgemm.58 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.170.rev": {
+      "label": "bbgemm.59 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.175.rev": {
+      "label": "bbgemm.65 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.195.rev": {
+      "label": "bbgemm.91 -> bbgemm.93 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.196.rev": {
+      "label": "bbgemm.92 -> bbgemm.93 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.208.rev": {
+      "label": "bbgemm.region.8 -> bbgemm.region.0 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.226.rev": {
+      "label": "bbgemm.19 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.234.rev": {
+      "label": "bbgemm.20 -> bbgemm.24 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.235.rev": {
+      "label": "bbgemm.20 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.236.rev": {
+      "label": "bbgemm.23 -> bbgemm.24 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.237.rev": {
+      "label": "bbgemm.23 -> bbgemm.region.3 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.238.rev": {
+      "label": "bbgemm.region.5 -> bbgemm.region.4 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.239.rev": {
+      "label": "bbgemm.region.6 -> bbgemm.region.4 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.240.rev": {
+      "label": "bbgemm.region.13 -> bbgemm.region.4 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.241.rev": {
+      "label": "bbgemm.28 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.242.rev": {
+      "label": "bbgemm.25 -> bbgemm.28 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.243.rev": {
+      "label": "bbgemm.25 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.244.rev": {
+      "label": "bbgemm.26 -> bbgemm.28 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.245.rev": {
+      "label": "bbgemm.26 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.246.rev": {
+      "label": "bbgemm.27 -> bbgemm.28 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.247.rev": {
+      "label": "bbgemm.27 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.248.rev": {
+      "label": "bbgemm.33 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.249.rev": {
+      "label": "bbgemm.29 -> bbgemm.33 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.250.rev": {
+      "label": "bbgemm.29 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.251.rev": {
+      "label": "bbgemm.32 -> bbgemm.33 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.252.rev": {
+      "label": "bbgemm.32 -> bbgemm.region.5 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.253.rev": {
+      "label": "bbgemm.region.7 -> bbgemm.region.6 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.254.rev": {
+      "label": "bbgemm.region.8 -> bbgemm.region.6 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.255.rev": {
+      "label": "bbgemm.region.12 -> bbgemm.region.6 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.256.rev": {
+      "label": "bbgemm.38 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.257.rev": {
+      "label": "bbgemm.34 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.258.rev": {
+      "label": "bbgemm.34 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.259.rev": {
+      "label": "bbgemm.35 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.260.rev": {
+      "label": "bbgemm.35 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.261.rev": {
+      "label": "bbgemm.36 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.262.rev": {
+      "label": "bbgemm.36 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.263.rev": {
+      "label": "bbgemm.37 -> bbgemm.38 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.264.rev": {
+      "label": "bbgemm.37 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.265.rev": {
+      "label": "bbgemm.42 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.266.rev": {
+      "label": "bbgemm.41 -> bbgemm.42 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.267.rev": {
+      "label": "bbgemm.41 -> bbgemm.region.7 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.268.rev": {
+      "label": "bbgemm.region.9 -> bbgemm.region.8 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.269.rev": {
+      "label": "bbgemm.region.10 -> bbgemm.region.8 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.270.rev": {
+      "label": "bbgemm.region.11 -> bbgemm.region.8 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.271.rev": {
+      "label": "bbgemm.47 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.272.rev": {
+      "label": "bbgemm.43 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.273.rev": {
+      "label": "bbgemm.43 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.274.rev": {
+      "label": "bbgemm.44 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.275.rev": {
+      "label": "bbgemm.44 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.276.rev": {
+      "label": "bbgemm.45 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.277.rev": {
+      "label": "bbgemm.45 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.278.rev": {
+      "label": "bbgemm.46 -> bbgemm.47 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.279.rev": {
+      "label": "bbgemm.46 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.280.rev": {
+      "label": "bbgemm.61 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.281.rev": {
+      "label": "bbgemm.48 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.282.rev": {
+      "label": "bbgemm.48 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.283.rev": {
+      "label": "bbgemm.51 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.284.rev": {
+      "label": "bbgemm.51 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.285.rev": {
+      "label": "bbgemm.52 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.286.rev": {
+      "label": "bbgemm.52 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.287.rev": {
+      "label": "bbgemm.53 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.288.rev": {
+      "label": "bbgemm.53 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.289.rev": {
+      "label": "bbgemm.54 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.290.rev": {
+      "label": "bbgemm.54 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.291.rev": {
+      "label": "bbgemm.55 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.292.rev": {
+      "label": "bbgemm.55 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.293.rev": {
+      "label": "bbgemm.56 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.294.rev": {
+      "label": "bbgemm.56 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.295.rev": {
+      "label": "bbgemm.57 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.296.rev": {
+      "label": "bbgemm.57 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.297.rev": {
+      "label": "bbgemm.58 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.298.rev": {
+      "label": "bbgemm.58 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.299.rev": {
+      "label": "bbgemm.59 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.300.rev": {
+      "label": "bbgemm.59 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.301.rev": {
+      "label": "bbgemm.60 -> bbgemm.61 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.302.rev": {
+      "label": "bbgemm.60 -> bbgemm.region.9 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.303.rev": {
+      "label": "bbgemm.66 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.304.rev": {
+      "label": "bbgemm.62 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.305.rev": {
+      "label": "bbgemm.62 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.306.rev": {
+      "label": "bbgemm.63 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.307.rev": {
+      "label": "bbgemm.63 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.308.rev": {
+      "label": "bbgemm.64 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.309.rev": {
+      "label": "bbgemm.64 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.310.rev": {
+      "label": "bbgemm.65 -> bbgemm.66 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.311.rev": {
+      "label": "bbgemm.65 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.312.rev": {
+      "label": "bbgemm.86 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.313.rev": {
+      "label": "bbgemm.67 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.314.rev": {
+      "label": "bbgemm.67 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.315.rev": {
+      "label": "bbgemm.70 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.316.rev": {
+      "label": "bbgemm.70 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.317.rev": {
+      "label": "bbgemm.71 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.318.rev": {
+      "label": "bbgemm.71 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.319.rev": {
+      "label": "bbgemm.72 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.320.rev": {
+      "label": "bbgemm.72 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.321.rev": {
+      "label": "bbgemm.73 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.322.rev": {
+      "label": "bbgemm.73 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.323.rev": {
+      "label": "bbgemm.74 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.324.rev": {
+      "label": "bbgemm.74 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.325.rev": {
+      "label": "bbgemm.75 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.326.rev": {
+      "label": "bbgemm.75 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.327.rev": {
+      "label": "bbgemm.76 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.328.rev": {
+      "label": "bbgemm.76 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.329.rev": {
+      "label": "bbgemm.77 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.330.rev": {
+      "label": "bbgemm.77 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.331.rev": {
+      "label": "bbgemm.78 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.332.rev": {
+      "label": "bbgemm.78 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.333.rev": {
+      "label": "bbgemm.79 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.334.rev": {
+      "label": "bbgemm.79 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.335.rev": {
+      "label": "bbgemm.80 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.336.rev": {
+      "label": "bbgemm.80 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.337.rev": {
+      "label": "bbgemm.81 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.338.rev": {
+      "label": "bbgemm.81 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.339.rev": {
+      "label": "bbgemm.82 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.340.rev": {
+      "label": "bbgemm.82 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.341.rev": {
+      "label": "bbgemm.83 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.342.rev": {
+      "label": "bbgemm.83 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.343.rev": {
+      "label": "bbgemm.84 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.344.rev": {
+      "label": "bbgemm.84 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.345.rev": {
+      "label": "bbgemm.85 -> bbgemm.86 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.346.rev": {
+      "label": "bbgemm.85 -> bbgemm.region.10 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.347.rev": {
+      "label": "bbgemm.88 -> bbgemm.region.11 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.348.rev": {
+      "label": "bbgemm.87 -> bbgemm.88 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.349.rev": {
+      "label": "bbgemm.87 -> bbgemm.region.11 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.350.rev": {
+      "label": "bbgemm.90 -> bbgemm.region.12 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.351.rev": {
+      "label": "bbgemm.89 -> bbgemm.90 (hier_rev)",
+      "is_back_edge": false
+    },
+    "bbgemm.352.rev": {
+      "label": "bbgemm.89 -> bbgemm.region.12 (hier_rev)",
+      "is_back_edge": false
+    },
+    "global.501": {
+      "label": "bbgemm.3 -> bbgemm.84 (1)",
+      "is_back_edge": false
+    },
+    "global.502": {
+      "label": "bbgemm.3 -> bbgemm.80 (1)",
+      "is_back_edge": false
+    },
+    "global.503": {
+      "label": "bbgemm.3 -> bbgemm.79 (1)",
+      "is_back_edge": false
+    },
+    "global.504": {
+      "label": "bbgemm.2 -> bbgemm.74 (1)",
+      "is_back_edge": false
+    },
+    "global.505": {
+      "label": "bbgemm.2 -> bbgemm.73 (1)",
+      "is_back_edge": false
+    },
+    "global.506": {
+      "label": "bbgemm.1 -> bbgemm.58 (1)",
+      "is_back_edge": false
+    },
+    "global.507": {
+      "label": "bbgemm.1 -> bbgemm.57 (1)",
+      "is_back_edge": false
+    },
+    "additional.508": {
+      "label": "bbgemm.84 -> bbgemm.3 (store)",
+      "is_back_edge": false
+    }
+  }
+}

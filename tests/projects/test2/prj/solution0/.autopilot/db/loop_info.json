@@ -1,0 +1,19 @@
+{
+  "init_arr/init_arr_loop1": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 0,
+    "IsTopLevel": 1
+  },
+  "top_fn/top_fn_loop1": {
+    "Depth": 1,
+    "HasPerfectlyNestedChild": 1,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 1
+  },
+  "top_fn/top_fn_loop1_1": {
+    "Depth": 2,
+    "HasPerfectlyNestedChild": 0,
+    "IsPartOfPerfectNest": 1,
+    "IsTopLevel": 0
+  }}

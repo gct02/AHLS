@@ -1,0 +1,29 @@
+{
+  "0": {
+    "basicblocks": 11,
+    "calls": "1",
+    "file": "kernel.c",
+    "fileloc": 14,
+    "instructions": 28,
+    "loads": {
+      "T": 2
+    },
+    "name": "top_fn",
+    "stores": {
+      "T": 1
+    },
+    "total_instructions": 40
+  },
+  "1": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "kernel.c",
+    "fileloc": 4,
+    "instructions": 12,
+    "name": "init_arr",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 12
+  }
+}

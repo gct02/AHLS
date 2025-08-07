@@ -1,0 +1,28 @@
+{
+  "LoopMetadata": [
+    {
+      "Name": "init_arr_loop1",
+      "FunctionName": "init_arr",
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 0,
+      "IsTopLevel": 1
+    },
+    {
+      "Name": "top_fn_loop1",
+      "FunctionName": "top_fn",
+      "Depth": 1,
+      "HasPerfectlyNestedChild": 1,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 1
+    },
+    {
+      "Name": "top_fn_loop1_1",
+      "FunctionName": "top_fn",
+      "Depth": 2,
+      "HasPerfectlyNestedChild": 0,
+      "IsPartOfPerfectNest": 1,
+      "IsTopLevel": 0
+    }
+  ]
+}

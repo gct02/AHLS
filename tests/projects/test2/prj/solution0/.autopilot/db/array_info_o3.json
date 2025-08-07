@@ -1,0 +1,40 @@
+{
+  "Global": {
+
+  },
+  "Local": {
+    "top_fn/in_arr": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [],
+      "Loads": [{ "FunctionName": "top_fn", "Name": "in_arr_load" }],
+      "GEPs": [{ "FunctionName": "top_fn", "Name": "in_arr_addr" }]
+    },
+    "top_fn/out_arr": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [{ "FunctionName": "top_fn", "Index": 1 }],
+      "Loads": [{ "FunctionName": "top_fn", "Name": "out_arr_load" }],
+      "GEPs": [{ "FunctionName": "top_fn", "Name": "out_arr_addr" }]
+    },
+    "init_arr/out_arr": {
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "NumDimensions": 1,
+      "Param": 1,
+      "TotalSize": 100,
+      "Dimensions": [100],
+      "Stores": [{ "FunctionName": "init_arr", "Index": 1 }],
+      "Loads": [],
+      "GEPs": [{ "FunctionName": "init_arr", "Name": "out_arr_addr" }]
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "ArrayMetadata": [
+    {
+      "Name": "empty",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 10,
+      "Dimensions": [
+        10
+      ]
+    },
+    {
+      "Name": "empty_0",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 1,
+      "Dimensions": [
+        1
+      ]
+    },
+    {
+      "Name": "empty_1",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 7,
+      "Dimensions": [
+        7
+      ]
+    },
+    {
+      "Name": "empty_2",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 15,
+      "Dimensions": [
+        15
+      ]
+    },
+    {
+      "Name": "empty_3",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 13,
+      "Dimensions": [
+        13
+      ]
+    },
+    {
+      "Name": "empty_4",
+      "FunctionName": "",
+      "BaseBitwidth": 8,
+      "BaseType": 11,
+      "IsGlobal": 1,
+      "IsInternalConst": 0,
+      "NumDimensions": 1,
+      "TotalSize": 15,
+      "Dimensions": [
+        15
+      ]
+    },
+    {
+      "Name": "in_arr",
+      "FunctionName": "top_fn",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 100,
+      "Dimensions": [
+        100
+      ]
+    },
+    {
+      "Name": "out_arr",
+      "FunctionName": "top_fn",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 100,
+      "Dimensions": [
+        100
+      ]
+    },
+    {
+      "Name": "out_arr",
+      "FunctionName": "init_arr",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 100,
+      "Dimensions": [
+        100
+      ]
+    },
+    {
+      "Name": "arr",
+      "FunctionName": "init_arr",
+      "BaseBitwidth": 32,
+      "BaseType": 11,
+      "IsParam": 1,
+      "NumDimensions": 1,
+      "TotalSize": 100,
+      "Dimensions": [
+        100
+      ]
+    }
+  ]
+}
