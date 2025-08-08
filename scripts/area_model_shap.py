@@ -14,7 +14,7 @@ from estimators.area.graph import GRAPH_ATTRS
 
 set_visualize_provider(DashProvider.from_address(('127.0.0.1', 7001)))
 
-LOOP_TRIP_COUNT_DICT = {
+LOOP_DICT = {
     'ADPCM': {
         'adpcm_main_label12', 'adpcm_main_label13',
         'encode_label0', 'encode_label1',
@@ -89,12 +89,12 @@ LOOP_TRIP_COUNT_DICT = {
         'loop6', 'loop7', 'loop8', 'loop9', 'loop10', 'loop11'
     }
 }
-ARRAY_SIZE_DICT = {
+ARRAY_DICT = {
     'ADPCM': {
         'encoded'
     },
     'AES': {
-        'Sbox', 'InvSbox', 'statemt'
+        'Sbox', 'invSbox', 'statemt'
     },
     'BACKPROP': {
         'weights1', 'weights2', 'weights3', 
@@ -210,8 +210,8 @@ def process_data(benchmark, predictions_path):
 
 
 def extract_dct_features(kernel_graph):
-    target_arrays = ARRAY_SIZE_DICT[kernel_graph.benchmark_name]
-    target_loops = LOOP_TRIP_COUNT_DICT[kernel_graph.benchmark_name]
+    target_arrays = ARRAY_DICT[kernel_graph.benchmark_name]
+    target_loops = LOOP_DICT[kernel_graph.benchmark_name]
     dct_feat_dict = {}
     processed_nodes = set()
 

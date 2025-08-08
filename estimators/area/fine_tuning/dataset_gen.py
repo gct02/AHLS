@@ -7,9 +7,7 @@ from pathlib import Path
 from random import randint
 
 from estimators.common.parsers import parse_directive_cmd
-from estimators.area.graph import find_array_node, find_region_node
 from hls_utils.tcl_script import gen_script
-
 
 NUM_INITIAL_BASE_POINTS = 3
 NUM_INITIAL_FULL_POINTS = 2
@@ -80,6 +78,7 @@ class DatasetGenerator:
             'directives': directive_groups,
             'nested_loops': domain.get('nested_loops', [])
         }
+        self._select_prominent_directives()
 
     def run(self, clear_previous_runs: bool = False):
         if clear_previous_runs:
@@ -196,6 +195,31 @@ class DatasetGenerator:
         util_rpt_file = run_dir / 'bd_0_wrapper_utilization_placed.rpt'
         time_rpt_file = run_dir / 'bd_0_wrapper_timing_summary_routed.rpt'
         return power_rpt_file.exists() and util_rpt_file.exists() and time_rpt_file.exists()
+    
+    def _gen_base_config(self):
+        if not hasattr(self, '_base_groups') or not hasattr(self, '_base_directives'):
+            self._select_prominent_directives()
+            
+        node = self.control_tree
+        dct_config = {}
+        is_new = False
+
+        for group_label, group_data in self.domain['directives'].items():
+            directives = group_data['possible_directives']
+
+            if group_label not in self._base_groups or group_label in self._processed_base_groups:
+                idx = 0
+            else:
+                idx = directives.index(self._base_directives[group_label])
+
+            dct_config[group_label] = directives[idx]
+
+            if idx not in node:
+                is_new = True
+                node[idx] = {}
+            node = node[idx]
+
+        return dct_config if is_new else None
     
     def _gen_random_config(self):
         node = self.control_tree
@@ -347,38 +371,102 @@ class DatasetGenerator:
         return label_dct_dict
     
     def _select_prominent_directives(self):
-        loop_targets = {}
-        array_targets = {}
+        unroll_targets = self._get_unroll_targets(sort=True)
+        pipeline_targets = self._get_pipeline_targets(sort=True)
+        partition_targets = self._get_array_partition_targets(sort=True)
 
-        loop_latency_pairs = [
-            (node.name, node.feature_dict.get('latency', 0)) 
-            for node in self.kernel_graph.nodes 
-            if node.node_type == 'region' and node.is_loop and node.name in loop_targets
+        partition_targets = [
+            target for target in partition_targets
+            if self.kernel_graph.nodes[target[1]].node_type == 'internal_mem'
+            and self.kernel_graph.nodes[target[1]].is_global_mem
         ]
-        loop_latency_pairs = sorted(loop_latency_pairs, key=lambda x: x[1], reverse=True)
-        if loop_latency_pairs > 3:
-            loop_latency_pairs = loop_latency_pairs[:3]
+        if partition_targets:
+            selected_groups = [
+                f'array_partition {partition_targets[0][0]} {partition_targets[0][1]}', 
+                f'unroll {unroll_targets[0]}', 
+                f'pipeline {pipeline_targets[0]}'
+            ]
+        else:
+            selected_groups = [
+                f'unroll {unroll_targets[0]}', 
+                f'pipeline {pipeline_targets[0]}'
+            ]
+            if len(pipeline_targets) > 1:
+                selected_groups.append(f'pipeline {pipeline_targets[1]}')
+            elif len(unroll_targets) > 1:
+                selected_groups.append(f'unroll {unroll_targets[1]}')
 
-        selected_loops = [loop[0] for loop in loop_latency_pairs]
+        selected_directives = {}
+        for group_key in selected_groups:
+            group_directives = self.domain['directives'][group_key]['possible_directives']
+            selected_directives[group_key] = group_directives[-1]
 
-        array_dim_pair = [
-            (node.name, node.num_dims) for node in self.kernel_graph.nodes
-            if node.node_type in ['port', 'internal_mem'] 
-            and node.is_array and node.num_dims > 1
+        self._base_directives = selected_directives
+        self._base_groups = selected_groups
+        self._processed_base_groups = []
+    
+    def _get_pipeline_targets(self, sort=False):
+        pipeline_targets = [
+            key.split(' ')[-1]
+            for key in self.domain['directives']
+            if self.domain['directives'][key]['directive_type'] == 'pipeline'
         ]
-        # arrays = [
-        #     node for node in self.kernel_graph.nodes
-        #     if node.node_type == 'internal_mem' and node.is_array
-        # ] + [
-        #     node for node in self.kernel_graph.nodes
-        #     if node.node_type == 'port' and node.is_array and node.is_top_level_port
-        # ]
+        if sort:
+            pipeline_target_set = set(pipeline_targets)
+            pipeline_target_tuples = [
+                (node.name, node.feature_dict.get('latency', 0))
+                for node in self.kernel_graph.nodes.values()
+                if node.node_type == 'region' and node.name in pipeline_target_set
+            ]
+            pipeline_target_tuples.sort(key=lambda x: x[1], reverse=True)
+            pipeline_targets = [name for name, _ in pipeline_target_tuples]
 
-         
+        return pipeline_targets
+    
+    def _get_unroll_targets(self, sort=False):
+        unroll_targets = [
+            key.split(' ')[-1]
+            for key in self.domain['directives']
+            if self.domain['directives'][key]['directive_type'] == 'unroll'
+        ]
+        if sort:
+            unroll_target_set = set(unroll_targets)
+            unroll_target_tuples = [
+                (node.name, node.feature_dict.get('latency', 0))
+                for node in self.kernel_graph.nodes.values()
+                if node.node_type == 'region' and node.is_loop and node.name in unroll_target_set
+            ]
+            unroll_target_tuples.sort(key=lambda x: x[1], reverse=True)
+            unroll_targets = [name for name, _ in unroll_target_tuples]
 
-        loop_latency_pairs = sorted(loop_latency_pairs, key=lambda x: x[1], reverse=True)
-        if loop_latency_pairs > 3:
-            loop_latency_pairs = loop_latency_pairs[:3]
+        return unroll_targets
+    
+    def _get_array_partition_targets(self, sort=False):
+        array_partition_targets = [
+            (key.split(' ')[-2], key.split(' ')[-1])
+            for key in self.domain['directives']
+            if self.domain['directives'][key]['directive_type'] == 'array_partition'
+        ]
+        if sort:
+            array_partition_target_map = {
+                array_name: (function_name, array_name)
+                for function_name, array_name in array_partition_targets
+            }
+            array_partition_target_tuples = [
+                (node.name, node.feature_dict.get('array_size', 0), node.num_dims)
+                for node in self.kernel_graph.nodes.values()
+                if node.node_type in {'port', 'internal_mem'}
+                and node.is_array and node.name in array_partition_target_map
+            ]
+            # Sort by the number of dimensions and then by the size of the array
+            array_partition_target_tuples.sort(
+                key=lambda x: (x[2], x[1]), reverse=True
+            )
+            array_partition_targets = [
+                array_partition_target_map[name] for name, _, _ in array_partition_target_tuples
+            ]
+
+        return array_partition_targets
 
     def _config_prj_state_from_previous_runs(self):
         invalid_runs, successful_runs = [], []

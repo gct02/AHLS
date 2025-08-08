@@ -139,11 +139,17 @@ DEFAULT_NODE_FEATURES = {
 
     'const_type': [0] * NUM_CONST_TYPES,
 
-    'num_sub_regions': 0, 'num_blocks': 0, 'num_ops': 0,
+    'block_num_ops': 0,
+    'region_num_ops': 0, 'function_num_ops': 0,
+    'region_num_sub_regions': 0, 'region_num_blocks': 0,
+    'function_num_sub_regions': 0, 'function_num_blocks': 0,
+    'num_array_ports': 0, 'num_internal_arrays': 0,
     
     **{metric: 0 for metric in AREA_METRICS},
     **{f'module_{metric}': 0 for metric in AREA_METRICS},
-    **{f'num_{categ}_ops': 0 for categ in OP_CATEGS}
+    **{f'block_num_{categ}_ops': 0 for categ in OP_CATEGS},
+    **{f'region_num_{categ}_ops': 0 for categ in OP_CATEGS},
+    **{f'function_num_{categ}_ops': 0 for categ in OP_CATEGS}
 }
 NODE_FEATURES = list(DEFAULT_NODE_FEATURES.keys())
 
@@ -155,11 +161,18 @@ NUMERICAL_FEATURES = [
     'ii', 'il', 'latency', 'trip_count',
     'array_size', 'original_array_dims',
     'partition_factor', 'unroll_factor',
-    'num_sub_regions', 'num_blocks', 'num_ops'
+    'block_num_ops', 'region_num_ops', 'function_num_ops',
+    'region_num_sub_regions', 'region_num_blocks',
+    'function_num_sub_regions', 'function_num_blocks',
+    'num_array_ports', 'num_internal_arrays'
 ] + AREA_METRICS + [
     f'module_{metric}' for metric in AREA_METRICS
 ] + [
-    f'num_{categ}_ops' for categ in OP_CATEGS
+    f'block_num_{categ}_ops' for categ in OP_CATEGS
+] + [
+    f'region_num_{categ}_ops' for categ in OP_CATEGS
+] + [
+    f'function_num_{categ}_ops' for categ in OP_CATEGS
 ]
 
 NO_LOG_SCALING_KEYS = ['original_bitwidth', 'bitwidth', 'delay']
@@ -709,6 +722,10 @@ class FunctionNode(Node):
         self, 
         element: ET.Element, 
         name: str,
+        is_top_level: bool,
+        ret_bitwidth: int,
+        num_array_ports: int,
+        num_internal_arrays: int,
         sub_regions: List[str],
         blocks: List[str],
         op_nodes: List[OperationNode],
@@ -727,17 +744,22 @@ class FunctionNode(Node):
         self.function_name = name
         self.label = name
 
+        self.is_top_level = is_top_level
         self.latency = max(0, findint(element, 'mMaxLatency', 0))
         self.num_sub_regions = len(sub_regions)
         self.num_blocks = len(blocks)
         self.num_ops = len(op_nodes)
 
         self.feature_dict = {
+            'is_top_level': int(is_top_level),
+            'bitwidth': ret_bitwidth,
+            'num_array_ports': num_array_ports,
+            'num_internal_arrays': num_internal_arrays,
             'latency': self.latency,
-            'num_sub_regions': self.num_sub_regions,
-            'num_blocks': self.num_blocks,
-            'num_ops': self.num_ops,
-            'loop_merge': 0, 'inline': 0, 'dataflow': 0
+            'function_num_sub_regions': self.num_sub_regions,
+            'function_num_blocks': self.num_blocks,
+            'function_num_ops': self.num_ops,
+            'function_loop_merge': 0, 'inline': 0, 'dataflow': 0
         }
         if utilization is not None:
             for res in AREA_METRICS:
@@ -745,10 +767,10 @@ class FunctionNode(Node):
         else:
             self.feature_dict.update({f'module_{res}': 0 for res in AREA_METRICS})
 
-        self.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
+        self.feature_dict.update({f'function_num_{categ}_ops': 0 for categ in OP_CATEGS})
         for op in op_nodes:
             if op.opcode in OP_CATEG_MAP:
-                self.feature_dict[f'num_{OP_CATEG_MAP[op.opcode]}_ops'] += 1
+                self.feature_dict[f'function_num_{OP_CATEG_MAP[op.opcode]}_ops'] += 1
 
         self.sub_regions = sub_regions
         self.blocks = [
@@ -963,13 +985,13 @@ class CDFG:
                 f'{self.name}.{op_id}' for op_id in node.ops 
                 if f'{self.name}.{op_id}' in self.nodes
             ]
-            node.feature_dict['num_ops'] = len(node.ops)
+            node.feature_dict['block_num_ops'] = len(node.ops)
 
-            node.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
+            node.feature_dict.update({f'block_num_{categ}_ops': 0 for categ in OP_CATEGS})
             for op_id in node.ops:
                 op_categ = self.nodes[op_id].op_category
                 if op_categ != 'unknown':
-                    node.feature_dict[f'num_{op_categ}_ops'] += 1
+                    node.feature_dict[f'block_num_{op_categ}_ops'] += 1
 
             self.nodes[block_id] = node
 
@@ -985,9 +1007,15 @@ class CDFG:
                     region_id = findint(elem, 'mId')
                     if region_id is not None:
                         sub_regions.append(f'{self.name}.region.{region_id - 1}')
-                block_nodes = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
+                blocks = [node_id for node_id, node in self.nodes.items() if node.node_type == 'block']
                 op_nodes = [node for node in self.nodes.values() if node.node_type == 'op']
 
+                num_array_ports = sum(
+                    1 for node in self.nodes.values() if node.node_type == 'port' and node.is_array
+                )
+                num_internal_arrays = sum(
+                    1 for node in self.nodes.values() if node.node_type == 'internal_mem' and node.is_array
+                )
                 utilization = None
                 if self.name in utilization_dict:
                     utilization = utilization_dict[self.name]
@@ -998,7 +1026,9 @@ class CDFG:
 
                 function_node = FunctionNode(
                     first_elem, self.name, 
-                    sub_regions, block_nodes, op_nodes,
+                    self.is_top_level, self.ret_bitwidth,
+                    num_array_ports, num_internal_arrays,
+                    sub_regions, blocks, op_nodes,
                     original_name=self.original_name,
                     utilization=utilization
                 )
@@ -1045,19 +1075,19 @@ class CDFG:
                 all_blocks.update(region_nodes[sub_region_id].blocks)
 
             node.feature_dict.update({
-                'num_sub_regions': len(all_sub_regions),
-                'num_blocks': len(all_blocks),
-                'num_ops': 0
+                'region_num_sub_regions': len(all_sub_regions),
+                'region_num_blocks': len(all_blocks),
+                'region_num_ops': 0
             })
-            node.feature_dict.update({f'num_{categ}_ops': 0 for categ in OP_CATEGS})
+            node.feature_dict.update({f'region_num_{categ}_ops': 0 for categ in OP_CATEGS})
 
             for block_id in all_blocks:
                 block_node = self.nodes[block_id]
                 for categ in OP_CATEGS:
-                    num_ops = block_node.feature_dict.get(f'num_{categ}_ops', 0)
-                    node.feature_dict[f'num_{categ}_ops'] += num_ops
+                    num_ops = block_node.feature_dict.get(f'block_num_{categ}_ops', 0)
+                    node.feature_dict[f'region_num_{categ}_ops'] += num_ops
                 
-                node.feature_dict['num_ops'] += block_node.feature_dict.get('num_ops', 0)
+                node.feature_dict['region_num_ops'] += block_node.feature_dict.get('block_num_ops', 0)
 
             self.nodes[region_id] = node
 
@@ -1593,6 +1623,15 @@ class KernelGraph:
                         num_edges += 1
 
         self.edges.update(new_edges)
+
+    def to_homogeneous_graph(self):
+        for node_id, node in self.nodes.items():
+            for key, value in DEFAULT_NODE_FEATURES.items():
+                if key not in node.feature_dict:
+                    if isinstance(value, list):
+                        self.nodes[node_id].feature_dict[key] = value.copy()
+                    else:
+                        self.nodes[node_id].feature_dict[key] = value
     
     def as_dict(self):
         node_dict = {
@@ -1883,6 +1922,8 @@ def update_with_directives(
                 for key in ap_feats:
                     if key == "partition_dim":
                         port_node.feature_dict[key][ap_dim] = 1
+                    elif key == "partition_type":
+                        port_node.feature_dict[key] = node.feature_dict[key].copy()
                     else:
                         port_node.feature_dict[key] = node.feature_dict[key]
 

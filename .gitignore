@@ -25,7 +25,11 @@ data/kernel_graphs/
 
 estimators/*/models
 estimators/*/dataset
+estimators/*/fine_tuning/dataset
+estimators/*/fine_tuning/models
 fine_tuning/dataset
+
+graph_feature_analysis.py
 
 hls_utils/*.tcl
 /*.sh

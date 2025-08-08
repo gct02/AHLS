@@ -12,11 +12,11 @@ from estimators.area.fine_tuning.utils import (
     load_model_args,
     prepare_data_loader,
     get_layerwise_decay_params,
+    mape_loss,
     evaluate
 )
 from estimators.common.training_utils import set_random_seeds
 from estimators.common.parsers import AVAILABLE_RESOURCES, AREA_METRICS
-
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
@@ -182,16 +182,31 @@ def main(args: Dict[str, str]):
         dtype=torch.float32,
         device=DEVICE
     )
-    preds, targets, mape = evaluate(
+    preds, targets, _ = evaluate(
         model, eval_loader, mean_target, std_target, 
         available_resources=available_resources, device=DEVICE
     )
     indices = [data.solution_index for data in eval_loader.dataset]
 
+    fine_tuning_indices = [data.solution_index for data in ft_loader.dataset]
+    eval_results = [
+        (idx, target, pred) for idx, target, pred in zip(indices, targets, preds)
+        if idx not in fine_tuning_indices
+    ]
+
+    preds = [pred for _, _, pred in eval_results]
+    targets = [target for _, target, _ in eval_results]
+    indices = [idx for idx, _, _ in eval_results]
+
     with open(os.path.join(output_dir, f"predictions.csv"), 'w') as f:
         f.write("index,target,prediction\n")
         for idx, target, pred in zip(indices, targets, preds):
             f.write(f"{idx},{target},{pred}\n")
+
+    mape = mape_loss(
+        torch.tensor(preds, dtype=torch.float32, device=DEVICE),
+        torch.tensor(targets, dtype=torch.float32, device=DEVICE)
+    ).item()
 
     plot_prediction_bars(
         targets=targets,

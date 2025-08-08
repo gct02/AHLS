@@ -185,6 +185,7 @@ class HLSDataset(Dataset):
                 with open(graph_path, 'rb') as f:
                     graph = pickle.load(f)
 
+                graph.to_homogeneous_graph()
                 self._standardize_features(graph)
 
                 graph_attr_dict = graph.graph_attr
