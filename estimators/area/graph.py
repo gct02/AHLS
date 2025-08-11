@@ -96,11 +96,13 @@ CORE_TYPE_MAP = {name: i for i, name in enumerate(CORE_TYPES)}
 NUM_CORE_TYPES = len(CORE_TYPES)
 
 EDGE_TYPES = [
-    '1', '2', '3', '4', 
-    'control', 'hier', 'hier_rev', 
-    'call', 'ret', 'arg',
+    'data', 'control'
+    'memory', 'branch',
+    'hier', 'hier_rev', 
     'store', 'alloca',
-    'port', 'internal_mem'
+    'port', 'internal_mem',
+    'call', 'ret', 'arg'
+    'module_hier', 'module_hier_rev',
 ]
 EDGE_TYPE_MAP = {etype: i for i, etype in enumerate(EDGE_TYPES)}
 NUM_EDGE_TYPES = len(EDGE_TYPES)
@@ -1103,7 +1105,7 @@ class CDFG:
 
     def _parse_edges(self, cdfg):
         src_gep_index_consts = []
-        dst_get_index_consts = []
+        dst_gep_index_consts = []
 
         for elem in cdfg.find('edges').findall('item'):
             etype = elem.findtext('edge_type', '')
@@ -1135,29 +1137,40 @@ class CDFG:
                 if src_id in self.nodes:
                     if src_id in self._allocas:
                         internal_mem_id = src_id + '.internal_mem'
-                        dst_get_index_consts.append((internal_mem_id, dst_id))
-                    dst_get_index_consts.append((src_id, dst_id))
+                        dst_gep_index_consts.append((internal_mem_id, dst_id))
+                    dst_gep_index_consts.append((src_id, dst_id))
                 continue
 
             if src_id not in self.nodes or dst_id not in self.nodes:
                 continue
             
             edge_id = f'{self.name}.{edge_id}'
-            if src_id in self._allocas and etype != '2':
+            if src_id in self._allocas and etype in ['1', '3']:
                 internal_mem_id = src_id + '.internal_mem'
                 if internal_mem_id in self.nodes:
                     internal_mem_edge_id = edge_id + '.internal_mem'
-                    internal_mem_edge = Edge(src_id, internal_mem_id, etype, is_back_edge)
+                    internal_mem_edge = Edge(src_id, internal_mem_id, 'data', is_back_edge)
                     self.edges[internal_mem_edge_id] = internal_mem_edge
 
+            if etype == '2':
+                dst_node = self.nodes[dst_id]
+                if dst_node.node_type == 'op':
+                    etype = 'branch'
+                else:
+                    etype = 'control'
+            elif etype in ['1', '3']:
+                etype = 'data'
+            elif etype == '4':
+                etype = 'memory'
+                
             edge = Edge(src_id, dst_id, etype, is_back_edge)
             self.edges[edge_id] = edge
 
         num_edges = len(self.edges)
-        for src, dst_const in dst_get_index_consts:
+        for src, dst_const in dst_gep_index_consts:
             for src_const, op in src_gep_index_consts:
                 if src_const == dst_const:
-                    self.edges[f'{self.name}.{num_edges}'] = Edge(src, op, 'get_index')
+                    self.edges[f'{self.name}.{num_edges}'] = Edge(src, op, 'data')
                     num_edges += 1
 
         for alloca_id in self._allocas:
@@ -1184,7 +1197,7 @@ class CDFG:
                 block_id = f'{self.name}.{block_node.id}'
                 next_blocks = []
                 for edge in self.edges.values():
-                    if edge.src == block_id and edge.etype == '2':
+                    if edge.src == block_id and edge.etype == 'control':
                         next_block_id = edge.dst
                         if next_block_id in self.nodes and self.nodes[next_block_id].node_type == 'block':
                             next_blocks.append(self.nodes[next_block_id])
@@ -1200,7 +1213,7 @@ class CDFG:
                     
                 prev_blocks = []
                 for edge in self.edges.values():
-                    if edge.dst == block_id and edge.etype == '2':
+                    if edge.dst == block_id and edge.etype == 'control':
                         prev_block_id = edge.src
                         if prev_block_id in self.nodes and self.nodes[prev_block_id].node_type == 'block':
                             prev_blocks.append(self.nodes[prev_block_id])  
@@ -1214,17 +1227,22 @@ class CDFG:
                         self.edges[f'{self.name}.{num_edges}'] = Edge(prev_op, first_op, 'control')
                         num_edges += 1
 
+                existing_control_edges = {(edge.src, edge.dst) for edge in self.edges.values() if edge.etype == 'control'}
                 new_edges = {}
                 for edge in self.edges.values():
-                    if edge.src == block_id and edge.etype == '2':
+                    if edge.src == block_id and edge.etype == 'branch':
                         dst_node = self.nodes.get(edge.dst)
-                        if dst_node and dst_node.node_type == 'op' and dst_node.opcode in ['br', 'switch']:
+                        if dst_node and dst_node.node_type == 'op':
                             # Find block containing the operation
-                            for next_block_id, next_block_node in self.nodes.items():
-                                if next_block_node.node_type == 'block' and edge.dst in next_block_node.ops:
-                                    new_edges[f'{self.name}.{num_edges}'] = Edge(edge.dst, first_op, 'control')
-                                    new_edges[f'{self.name}.{num_edges + 1}'] = Edge(next_block_id, block_id, 'control')
-                                    num_edges += 2
+                            if not (edge.dst, first_op) in existing_control_edges:
+                                new_edges[f'{self.name}.{num_edges}'] = Edge(edge.dst, first_op, 'control')
+                                num_edges += 1
+
+                            for prev_block_id, prev_block_node in self.nodes.items():
+                                if prev_block_node.node_type == 'block' and edge.dst in prev_block_node.ops:
+                                    if not (prev_block_id, block_id) in existing_control_edges:
+                                        new_edges[f'{self.name}.{num_edges}'] = Edge(prev_block_id, block_id, 'control')
+                                        num_edges += 1
                                     break
                 self.edges.update(new_edges)
 
@@ -1558,8 +1576,9 @@ class KernelGraph:
                 self.nodes[call_op_id].feature_dict['callee_size'] = callee_node.num_ops
                 self.edges[f'call_flow.{num_edges}'] = Edge(call_op_id, callee_id, 'call')
                 self.edges[f'call_flow.{num_edges + 1}'] = Edge(callee_id, call_op_id, 'ret')
-                self.edges[f'call_flow.{num_edges + 2}'] = Edge(caller_id, callee_id, 'hier')
-                num_edges += 3
+                self.edges[f'call_flow.{num_edges + 2}'] = Edge(caller_id, callee_id, 'module_hier')
+                self.edges[f'call_flow.{num_edges + 3}'] = Edge(callee_id, caller_id, 'module_hier_rev')
+                num_edges += 4
 
     def _update_array_info(self):
         num_nodes = len(self.nodes)
@@ -1598,7 +1617,7 @@ class KernelGraph:
                 for op_id, op_node in cdfg.nodes.items():
                     if op_node.node_type == 'op' and op_node.opcode == 'store':
                         if count == idx:
-                            self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, '1')
+                            self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, 'data')
                             num_edges += 1
                             break
                         count += 1
@@ -1614,7 +1633,7 @@ class KernelGraph:
                     cdfg = self._cdfgs[function_name]
                     for op_id, op_node in cdfg.nodes.items():
                         if op_node.node_type == 'op' and op_node.name == inst_name:
-                            self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, '1')
+                            self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, 'data')
                             num_edges += 1
                             break
 
@@ -1645,9 +1664,9 @@ class KernelGraph:
                 for op_id, op_node in cdfg.nodes.items():
                     if op_node.node_type == 'op' and op_node.opcode == 'store':
                         if count == idx:
-                            if (array_id, op_id, '1') not in existing_edges_set:
-                                self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, '1')
-                                existing_edges_set.add((array_id, op_id, '1'))
+                            if (array_id, op_id, 'data') not in existing_edges_set:
+                                self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, 'data')
+                                existing_edges_set.add((array_id, op_id, 'data'))
                                 num_edges += 1
                             break
                         count += 1
@@ -1660,15 +1679,15 @@ class KernelGraph:
 
                     for op_id, op_node in cdfg.nodes.items():
                         if op_node.node_type == 'op' and op_node.name == inst_name:
-                            if (array_id, op_id, '1') not in existing_edges_set:
-                                self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, '1')
-                                existing_edges_set.add((array_id, op_id, '1'))
+                            if (array_id, op_id, 'data') not in existing_edges_set:
+                                self.edges[f'global.{num_edges}'] = Edge(array_id, op_id, 'data')
+                                existing_edges_set.add((array_id, op_id, 'data'))
                                 num_edges += 1
                             break
         
         new_edges = {}
         for edge in self.edges.values():
-            if edge.etype != '1':
+            if edge.etype != 'data':
                 continue
             src_node = self.nodes[edge.src]
             dst_node = self.nodes[edge.dst]
@@ -1679,12 +1698,12 @@ class KernelGraph:
                         if next_edge.etype == '1' and next_edge.src == edge.dst:
                             next_dst_node = self.nodes[next_edge.dst]
                             if next_dst_node.node_type == 'op':
-                                if (edge.src, next_edge.dst, '1') not in existing_edges_set:
-                                    new_edges[f'additional.{num_edges}'] = Edge(edge.src, next_edge.dst, '1')
+                                if (edge.src, next_edge.dst, 'data') not in existing_edges_set:
+                                    new_edges[f'additional.{num_edges}'] = Edge(edge.src, next_edge.dst, 'data')
                                     num_edges += 1
 
         for edge in self.edges.values():
-            if edge.etype != '1':
+            if edge.etype != 'data':
                 continue
             src_node = self.nodes[edge.src]
             dst_node = self.nodes[edge.dst]
