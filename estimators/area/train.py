@@ -49,13 +49,7 @@ def evaluate(
     targets, preds = [], []
     for data in loader:
         data = data.to(DEVICE)
-        pred = model(
-            data.x, 
-            data.edge_index,
-            data.edge_attr,
-            data.batch,
-            data.graph_attr
-        )
+        pred = model(data)
         targets.append(data.original_y)
         preds.append(torch.expm1(pred * std_target + mean_target))
 
@@ -105,13 +99,7 @@ def train_model(
         for data in train_loader:
             optimizer.zero_grad()
             data = data.to(DEVICE)
-            pred = model(
-                data.x, 
-                data.edge_index,
-                data.edge_attr,
-                data.batch,
-                data.graph_attr
-            )
+            pred = model(data)
             loss = loss_fn(pred, data.y)
             loss.backward()
             clip_grad_norm_(model.parameters(), max_norm=max_norm)
@@ -180,16 +168,16 @@ def main(args: Dict[str, Any]):
 
     model_args = {
         'in_channels': NODE_DIM,
-        'hidden_channels': 160,
-        'num_layers': 3,
+        'hidden_channels': 100,
         'edge_dim': EDGE_DIM,
         'graph_attr_dim': GRAPH_ATTR_DIM,
+        'num_layers_fg': 2,
+        'num_layers_cg': 2,
         'heads': 4,
         'negative_slope': 0.2,
         'dropout_gnn': 0.1,
-        'dropout_mlp': 0.1,
-        'gmt_k': 16,
-        'jk_mode': 'lstm'
+        'dropout_mlp': 0.2,
+        'jk_mode': 'cat'
     }
     model = HLSQoREstimator(**model_args).to(DEVICE)
 
@@ -229,7 +217,7 @@ def main(args: Dict[str, Any]):
         json.dump(model_args, f, indent=2)
     
     train_loader, test_loader, scaling_stats, \
-        graph_attr_scaling_stats, target_scaling_stats = prepare_data_loaders(
+        graph_attr_stats, target_stats = prepare_data_loaders(
         dataset_dir=dataset_dir, 
         test_benches=test_bench, 
         train_benches=train_benches, 
@@ -238,9 +226,9 @@ def main(args: Dict[str, Any]):
     with open(f"{output_dir}/scaling_stats.json", 'w') as f:
         json.dump(scaling_stats, f, indent=2)
     with open(f"{output_dir}/graph_attr_scaling_stats.json", 'w') as f:
-        json.dump(graph_attr_scaling_stats, f, indent=2)
+        json.dump(graph_attr_stats, f, indent=2)
     with open(f"{output_dir}/target_scaling_stats.json", 'w') as f:
-        json.dump(target_scaling_stats, f, indent=2)
+        json.dump(target_stats, f, indent=2)
 
     grouped_params = group_params_for_weight_decay(
         model=model,
@@ -275,7 +263,7 @@ def main(args: Dict[str, Any]):
     train_errors, test_errors = train_model(
         model, loss_fn, optimizer, 
         train_loader, test_loader, epochs, 
-        target_scaling_stats,
+        target_scaling_stats=target_stats,
         scheduler=scheduler, 
         max_norm=max_norm,
         available_resources=available_resources

@@ -19,5 +19,8 @@ export CLANG="${HLS_LLVM_BUILD_DIR}/bin/clang"
 export CLANGXX="${HLS_LLVM_BUILD_DIR}/bin/clang++"
 export LLVM_CMAKE_DIR="${HLS_LLVM_DIR}/llvm/cmake/modules"
 
+# LLVM environment variables for baseline projects
+export HARP_LIB="${HLS_LLVM_BUILD_DIR}/lib/libHARP.so"
+
 # Set PYTHONPATH to the root of the project
 export PYTHONPATH=.

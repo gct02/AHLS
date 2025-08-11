@@ -2,7 +2,6 @@ import os
 import json
 import copy
 import math
-import random
 import re
 import pickle
 import xml.etree.ElementTree as ET
@@ -97,8 +96,11 @@ CORE_TYPE_MAP = {name: i for i, name in enumerate(CORE_TYPES)}
 NUM_CORE_TYPES = len(CORE_TYPES)
 
 EDGE_TYPES = [
-    '1', '2', '3', '4', 'hier', 'hier_rev',
-    'call', 'ret', 'store', 'alloca', 'arg'
+    '1', '2', '3', '4', 
+    'control', 'hier', 'hier_rev', 
+    'call', 'ret', 'arg',
+    'store', 'alloca',
+    'port', 'internal_mem'
 ]
 EDGE_TYPE_MAP = {etype: i for i, etype in enumerate(EDGE_TYPES)}
 NUM_EDGE_TYPES = len(EDGE_TYPES)
@@ -1162,6 +1164,75 @@ class CDFG:
             self.edges[f'{self.name}.{num_edges}'] = Edge(alloca_id, f'{alloca_id}.internal_mem', 'alloca')
             num_edges += 1
 
+        for block_node in self.nodes.values():
+            if block_node.node_type == 'block' and block_node.ops:
+                block_ops = block_node.ops.copy()
+                sorted_ops = sorted(block_ops, key=lambda op: self.nodes[op].id)
+                control_edges = [
+                    Edge(sorted_ops[i], sorted_ops[i + 1], 'control')
+                    for i in range(len(sorted_ops) - 1)
+                ]
+                for edge in control_edges:
+                    edge_id = f'{self.name}.{num_edges}'
+                    self.edges[edge_id] = edge
+                    num_edges += 1
+
+                first_op = sorted_ops[0]
+                last_op = sorted_ops[-1]
+
+                # Find the next block in the control flow
+                block_id = f'{self.name}.{block_node.id}'
+                next_blocks = []
+                for edge in self.edges.values():
+                    if edge.src == block_id and edge.etype == '2':
+                        next_block_id = edge.dst
+                        if next_block_id in self.nodes and self.nodes[next_block_id].node_type == 'block':
+                            next_blocks.append(self.nodes[next_block_id])
+
+                for next_block in next_blocks:
+                    if not next_block.ops:
+                        continue
+                    sorted_next_ops = sorted(next_block.ops, key=lambda op: self.nodes[op].id)
+                    next_op = sorted_next_ops[0]
+                    if next_op in self.nodes:
+                        self.edges[f'{self.name}.{num_edges}'] = Edge(last_op, next_op, 'control')
+                        num_edges += 1
+                    
+                prev_blocks = []
+                for edge in self.edges.values():
+                    if edge.dst == block_id and edge.etype == '2':
+                        prev_block_id = edge.src
+                        if prev_block_id in self.nodes and self.nodes[prev_block_id].node_type == 'block':
+                            prev_blocks.append(self.nodes[prev_block_id])  
+
+                for prev_block in prev_blocks:
+                    if not prev_block.ops:
+                        continue
+                    sorted_prev_ops = sorted(prev_block.ops, key=lambda op: self.nodes[op].id)
+                    prev_op = sorted_prev_ops[-1]
+                    if prev_op in self.nodes:
+                        self.edges[f'{self.name}.{num_edges}'] = Edge(prev_op, first_op, 'control')
+                        num_edges += 1
+
+                new_edges = {}
+                for edge in self.edges.values():
+                    if edge.src == block_id and edge.etype == '2':
+                        dst_node = self.nodes.get(edge.dst)
+                        if dst_node and dst_node.node_type == 'op' and dst_node.opcode in ['br', 'switch']:
+                            # Find block containing the operation
+                            for next_block_id, next_block_node in self.nodes.items():
+                                if next_block_node.node_type == 'block' and edge.dst in next_block_node.ops:
+                                    new_edges[f'{self.name}.{num_edges}'] = Edge(edge.dst, first_op, 'control')
+                                    new_edges[f'{self.name}.{num_edges + 1}'] = Edge(next_block_id, block_id, 'control')
+                                    num_edges += 2
+                                    break
+                self.edges.update(new_edges)
+
+        function_id = f'{self.name}.region.0'
+        for node_id, node in self.nodes.items():
+            if node.node_type in ['port', 'internal_mem']:
+                self.edges[f'{self.name}.{num_edges}'] = Edge(function_id, node_id, node.node_type)
+
     def _build_hierarchy_edges(self):
         num_edges = len(self.edges)
 
@@ -1466,11 +1537,11 @@ class KernelGraph:
                 if callee not in self._cdfgs:
                     print(f"Warning: Callee {callee} not found in CDFGs, skipping call flow.")
                     continue
-
-                callee_cdfg = self._cdfgs[callee]
-                callee_id = f'{callee_cdfg.name}.region.0'
-                callee_node = callee_cdfg.nodes[callee_id]
                 num_edges = len(self.edges)
+                callee_cdfg = self._cdfgs[callee]
+
+                caller_id = f'{cdfg.name}.region.0'
+                callee_id = f'{callee_cdfg.name}.region.0'
 
                 for src_id in operand_dict.get(call_op_id, []):
                     src_node = self.nodes[src_id]
@@ -1479,14 +1550,16 @@ class KernelGraph:
                     for callee_port_id, callee_port in callee_cdfg.nodes.items():
                         if callee_port.node_type == 'port' and callee_port.name == src_node.name:
                             self.nodes[src_id].matching_ports.append(callee_port_id)
-                            self.edges[f'callflow.{num_edges}'] = Edge(src_id, callee_port_id, 'arg')
+                            self.edges[f'call_flow.{num_edges}'] = Edge(src_id, callee_port_id, 'arg')
                             num_edges += 1
                             break
-                
+                        
+                callee_node = callee_cdfg.nodes[callee_id]
                 self.nodes[call_op_id].feature_dict['callee_size'] = callee_node.num_ops
-                self.edges[f'callflow.{num_edges}'] = Edge(call_op_id, callee_id, 'call')
-                self.edges[f'callflow.{num_edges + 1}'] = Edge(callee_id, call_op_id, 'ret')
-                num_edges += 2
+                self.edges[f'call_flow.{num_edges}'] = Edge(call_op_id, callee_id, 'call')
+                self.edges[f'call_flow.{num_edges + 1}'] = Edge(callee_id, call_op_id, 'ret')
+                self.edges[f'call_flow.{num_edges + 2}'] = Edge(caller_id, callee_id, 'hier')
+                num_edges += 3
 
     def _update_array_info(self):
         num_nodes = len(self.nodes)

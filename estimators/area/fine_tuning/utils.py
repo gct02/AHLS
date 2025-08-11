@@ -9,46 +9,113 @@ from torch import Tensor
 from torch_geometric.loader import DataLoader
 
 from estimators.common.parsers import AREA_METRICS, AVAILABLE_RESOURCES
+from estimators.common.losses import mape_loss
+from estimators.common.training_utils import get_no_decay_param_names
 from estimators.area.models import HLSQoREstimator
 from estimators.area.dataset import HLSDataset, StatsDict
 from estimators.area.data_utils import compute_snru
-from estimators.common.losses import mape_loss
-
 
 def get_layerwise_decay_params(model, initial_lr, weight_decay, decay_rate=0.9):
     """Creates parameter groups with a decaying learning rate for each GNN layer."""
     params = []
+    no_decay_param_names = get_no_decay_param_names(model)
 
     # Add the head MLPs with the highest learning rate
     head_prefixes = ['mlps.', 'graph_attr_mlp.']
     params.append({
-        'params': [p for n, p in model.named_parameters() if any(n.startswith(prefix) for prefix in head_prefixes)],
+        'params': [
+            p for n, p in model.named_parameters() 
+            if any(n.startswith(prefix) for prefix in head_prefixes)
+            and n not in no_decay_param_names
+        ],
         'lr': initial_lr,
         'weight_decay': weight_decay
     })
+    params.append({
+        'params': [
+            p for n, p in model.named_parameters() 
+            if any(n.startswith(prefix) for prefix in head_prefixes)
+            and n in no_decay_param_names
+        ],
+        'lr': initial_lr,
+        'weight_decay': 0.0
+    })
 
-    # Add each GNN layer with a successively smaller LR
+    # Add each GNN layer with a successively larger LR
     num_gnn_layers = model.gnn.num_layers
     for i in range(num_gnn_layers):
         layer_lr = initial_lr * (decay_rate ** (num_gnn_layers - i))
         layer_prefixes = [f'gnn.convs.{i}.', f'gnn.norms.{i}.']
         params.append({
-            'params': [p for n, p in model.named_parameters() if any(n.startswith(prefix) for prefix in layer_prefixes)],
+            'params': [
+                p for n, p in model.named_parameters() 
+                if any(n.startswith(prefix) for prefix in layer_prefixes)
+                and n not in no_decay_param_names
+            ],
             'lr': layer_lr,
             'weight_decay': weight_decay
         })
+        params.append({
+            'params': [
+                p for n, p in model.named_parameters() 
+                if any(n.startswith(prefix) for prefix in layer_prefixes)
+                and n in no_decay_param_names
+            ],
+            'lr': layer_lr,
+            'weight_decay': 0.0
+        })
 
-    # Add the remaining parameters (e.g., projection, GNN out_lin) with a small LR
-    remaining_params = [
-        p for n, p in model.named_parameters() 
-        if not any(n.startswith(pfx) for pfx in head_prefixes) and 
-           not any(n.startswith(f'gnn.convs.{i}.') or n.startswith(f'gnn.norms.{i}.') for i in range(num_gnn_layers))
-    ]
+    # For JK and readout layers (GMT + out_lin), use a LR that is slightly lower than the head MLPs
+    jk_readout_prefixes = ['jk.', 'gmt.', 'gnn.out_lin']
     params.append({
-        'params': remaining_params,
+        'params': [
+            p for n, p in model.named_parameters() 
+            if any(n.startswith(prefix) for prefix in jk_readout_prefixes)
+            and n not in no_decay_param_names
+        ],
+        'lr': initial_lr * decay_rate,
+        'weight_decay': weight_decay
+    })
+    params.append({
+        'params': [
+            p for n, p in model.named_parameters() 
+            if any(n.startswith(prefix) for prefix in jk_readout_prefixes)
+            and n in no_decay_param_names
+        ],
+        'lr': initial_lr * decay_rate,
+        'weight_decay': 0.0
+    })
+
+    # Add the remaining parameters (e.g., projection) with a small LR
+    prefixes = head_prefixes + jk_readout_prefixes + ['gnn.convs.', 'gnn.norms.']
+    params.append({
+        'params': [
+            p for n, p in model.named_parameters() 
+            if not any(n.startswith(pfx) for pfx in prefixes)
+            and n not in no_decay_param_names
+        ],
         'lr': initial_lr * (decay_rate ** (num_gnn_layers + 1)),
         'weight_decay': weight_decay
     })
+    params.append({
+        'params': [
+            p for n, p in model.named_parameters() 
+            if not any(n.startswith(pfx) for pfx in prefixes)
+            and n in no_decay_param_names
+        ],
+        'lr': initial_lr * (decay_rate ** (num_gnn_layers + 1)),
+        'weight_decay': 0.0
+    })
+
+    # Filter out any empty parameter groups
+    params = [p for p in params if p['params']]
+
+    # Ensure all parameters are included
+    all_params = set(p for group in params for p in group['params'])
+    missing_params = set(model.parameters()) - all_params
+    if missing_params:
+        raise ValueError(f"Some model parameters are not included in the parameter groups: {missing_params}")
+
     return params
 
 
@@ -57,8 +124,8 @@ def prepare_data_loader(
     benchmark: str,
     scaling_stats: StatsDict,
     target_scaling_stats: StatsDict,
-    base_target_scaling_stats: StatsDict,
-    batch_size: int = 10,
+    graph_attr_scaling_stats: StatsDict,
+    batch_size: int = 6,
     mode: str = "fine_tune"
 ) -> DataLoader:
     if not isinstance(benchmark, list):
@@ -69,7 +136,7 @@ def prepare_data_loader(
         benchmarks=benchmark,
         scaling_stats=scaling_stats,
         target_scaling_stats=target_scaling_stats,
-        base_target_scaling_stats=base_target_scaling_stats
+        graph_attr_scaling_stats=graph_attr_scaling_stats
     )
     loader = DataLoader(
         dataset, 
@@ -109,7 +176,7 @@ def evaluate(
                 data.edge_index,
                 data.edge_attr,
                 data.batch,
-                data.y_base
+                data.graph_attr
             )
             targets.append(data.original_y)
             preds.append(torch.expm1(pred * std_target + mean_target))

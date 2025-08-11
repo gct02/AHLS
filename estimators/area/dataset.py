@@ -200,27 +200,55 @@ class HLSDataset(Dataset):
                     else:
                         graph_attr.append(float(value))
 
+                connected_nodes = set()
+                for edge in graph.edges.values():
+                    connected_nodes.add(edge.src)
+                    connected_nodes.add(edge.dst)
+
+                node_ids = [node_id for node_id in graph.nodes.keys() if node_id in connected_nodes]
+                node_id_map = {node_id: i for i, node_id in enumerate(node_ids)}
+
+                edge_indices, edge_attrs = [], []
+                for edge in graph.edges.values():
+                    if edge.src not in node_id_map or edge.dst not in node_id_map:
+                        continue
+                    src = node_id_map[edge.src]
+                    dst = node_id_map[edge.dst]
+                    edge_indices.append([src, dst])
+                    attr = edge.one_hot_etype + [int(edge.is_back_edge)]
+                    edge_attrs.append(torch.tensor(attr, dtype=torch.float32))
+
+                xs = [None] * len(node_id_map)
+                coarse_x_indices = []
+                for node_id, node in graph.nodes.items():
+                    if node_id not in node_id_map:
+                        continue
+                    xs[node_id_map[node_id]] = torch.tensor(
+                        get_homogeneous_features(node), dtype=torch.float32
+                    )
+                    if (node.node_type in ['function', 'region', 'block'] or 
+                        (node.node_type in ['internal_mem', 'port'] and node.is_array)):
+                        coarse_x_indices.append(node_id_map[node_id])
+
+                xs = [x for x in xs if x is not None]
+                if not xs:
+                    print(f"Skipping {benchmark} {idx} (no valid nodes found)")
+                    continue
+
+                # Convert to PyTorch Geometric Data object
+                xs = torch.stack(xs, dim=0)
+                edge_indices = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+                edge_attrs = torch.stack(edge_attrs, dim=0) if edge_attrs else torch.empty((0, 0))
                 graph_attr = torch.tensor(graph_attr, dtype=torch.float32).unsqueeze(0)
 
-                node_id_map = {node_id: i for i, node_id in enumerate(graph.nodes.keys())}
-                xs = [None] * len(node_id_map)
-                for node_id, node in graph.nodes.items():
-                    xs[node_id_map[node_id]] = torch.tensor(get_homogeneous_features(node), dtype=torch.float32)
-
-                edge_indices = []
-                edge_attrs = []
-                for edge in graph.edges.values():
-                    src_idx = node_id_map.get(edge.src)
-                    dst_idx = node_id_map.get(edge.dst)
-                    if src_idx is not None and dst_idx is not None:
-                        edge_indices.append([src_idx, dst_idx])
-                        edge_attrs.append(torch.tensor(edge.one_hot_etype + [int(edge.is_back_edge)], dtype=torch.float32))
+                coarse_x_indices = torch.tensor(coarse_x_indices, dtype=torch.long) if coarse_x_indices else torch.empty((0,), dtype=torch.long)
 
                 data = {
-                    'x': torch.stack(xs, dim=0),
-                    'edge_attr': torch.stack(edge_attrs, dim=0),
-                    'edge_index': torch.tensor(edge_indices, dtype=torch.long).t().contiguous(),
+                    'x': xs,
+                    'edge_attr': edge_attrs,
+                    'edge_index': edge_indices,
                     'graph_attr': graph_attr,
+                    'coarse_x_index': coarse_x_indices,
                     'y': target,
                     'original_y': original_target,
                     'benchmark': benchmark,

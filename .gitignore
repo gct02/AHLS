@@ -19,6 +19,8 @@ llvm/profiler/
 llvm/utils/
 llvm/clang_plugins/
 
+baselines/
+
 /tests/
 old_area_models/
 data/kernel_graphs/

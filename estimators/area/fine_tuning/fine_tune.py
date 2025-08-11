@@ -23,8 +23,8 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 def main(args: Dict[str, str]):
     dataset_dir = args.get("dataset_dir")
-    model_dir = args.get("model")
-    batch_size = int(args.get("batch_size", 10))
+    model_dir = args.get("model_dir")
+    batch_size = int(args.get("batch_size", 6))
     epochs = int(args.get("epochs", 15))
     output_dir = args.get("output_dir", "")
     lr = float(args.get("learning_rate", 1e-5))
@@ -43,12 +43,12 @@ def main(args: Dict[str, str]):
     pretraining_args_path = os.path.join(model_dir, 'pretraining_args.json')
     scaling_stats_path = os.path.join(model_dir, 'scaling_stats.json')
     target_scaling_stats_path = os.path.join(model_dir, 'target_scaling_stats.json')
-    base_target_scaling_stats_path = os.path.join(model_dir, 'base_target_scaling_stats.json')
+    graph_attr_scaling_stats_path = os.path.join(model_dir, 'graph_attr_scaling_stats.json')
 
     required_paths = [
         dataset_dir, model_path, model_args_path, 
         pretraining_args_path, scaling_stats_path,
-        target_scaling_stats_path, base_target_scaling_stats_path
+        target_scaling_stats_path, graph_attr_scaling_stats_path
     ]
     if not all(os.path.exists(path) for path in required_paths):
         raise FileNotFoundError("One or more required paths do not exist.")
@@ -65,8 +65,8 @@ def main(args: Dict[str, str]):
     with open(target_scaling_stats_path, 'r') as f:
         target_scaling_stats = json.load(f)
 
-    with open(base_target_scaling_stats_path, 'r') as f:
-        base_target_scaling_stats = json.load(f)
+    with open(graph_attr_scaling_stats_path, 'r') as f:
+        graph_attr_scaling_stats = json.load(f)
 
     model_args = load_model_args(model_args_path)
     model = load_pretrained_model(
@@ -95,9 +95,12 @@ def main(args: Dict[str, str]):
 
     ft_loader = prepare_data_loader(
         dataset_dir, benchmark, scaling_stats,
-        target_scaling_stats, base_target_scaling_stats,
+        target_scaling_stats, graph_attr_scaling_stats,
         batch_size=batch_size, mode=f"fine_tune_{benchmark}"
     )
+    
+    for param in model.parameters():
+        param.requires_grad = True
 
     # Prepare the optimizer
     grouped_params = get_layerwise_decay_params(
@@ -114,8 +117,8 @@ def main(args: Dict[str, str]):
     output_dir = f"{output_dir}/run_{run_number}"
     os.makedirs(output_dir, exist_ok=True)
 
-    with open(os.path.join(output_dir, 'grouped_params.json'), 'w') as f:
-        json.dump(grouped_params, f, indent=2)
+    # with open(os.path.join(output_dir, 'grouped_params.json'), 'w') as f:
+    #     json.dump(grouped_params, f, indent=2)
 
     with open(os.path.join(output_dir, 'model_args.json'), 'w') as f:
         json.dump(model_args, f, indent=2)
@@ -143,7 +146,7 @@ def main(args: Dict[str, str]):
                 data.edge_index,
                 data.edge_attr,
                 data.batch,
-                data.y_base
+                data.graph_attr
             )
             loss = loss_fn(pred, data.y)
             loss.backward()
@@ -165,7 +168,7 @@ def main(args: Dict[str, str]):
 
     eval_loader = prepare_data_loader(
         pretraining_dataset_dir, benchmark, scaling_stats,
-        target_scaling_stats, base_target_scaling_stats,
+        target_scaling_stats, graph_attr_scaling_stats,
         batch_size=batch_size, mode=f"eval_{benchmark}"
     )
 
@@ -213,7 +216,7 @@ def main(args: Dict[str, str]):
         preds=preds,
         indices=indices,
         benchmark=benchmark,
-        metric="Area",
+        metric="area",
         output_path=os.path.join(output_dir, f"predictions.png"),
         mape=mape
     )
@@ -231,7 +234,7 @@ if __name__ == "__main__":
                         help="Path to dataset directory.")
     parser.add_argument("-e", "--epochs", type=int, default=15, 
                         help="Number of epochs for fine-tuning.")
-    parser.add_argument("-b", "--batch_size", type=int, default=10,
+    parser.add_argument("-b", "--batch_size", type=int, default=6,
                         help="Batch size for fine-tuning.")
     parser.add_argument("-o", "--output_dir", type=str, default="", 
                         help="Directory to save the fine-tuned model.")

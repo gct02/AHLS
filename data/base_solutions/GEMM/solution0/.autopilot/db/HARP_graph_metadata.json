@@ -1,0 +1,933 @@
+{
+  "instruction": [
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 1,
+      "opcode": 54
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 2,
+      "opcode": 54
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 3,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 4,
+      "opcode": 2
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 5,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 6,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv18",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 7,
+      "opcode": 53
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 8,
+      "opcode": 54
+    },
+    {
+      "name": "cmp",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 9,
+      "opcode": 51
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 10,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 11,
+      "opcode": 2
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 12,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 13,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv16",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 14,
+      "opcode": 53
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 15,
+      "opcode": 54
+    },
+    {
+      "name": "cmp2",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 16,
+      "opcode": 51
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 17,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 18,
+      "opcode": 2
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 19,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 20,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv12",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 21,
+      "opcode": 53
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 22,
+      "opcode": 54
+    },
+    {
+      "name": "exitcond15",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 23,
+      "opcode": 51
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 24,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 25,
+      "opcode": 2
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 26,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 27,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv5",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 28,
+      "opcode": 53
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 29,
+      "opcode": 54
+    },
+    {
+      "name": "exitcond11",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 30,
+      "opcode": 51
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 31,
+      "opcode": 2
+    },
+    {
+      "name": "mul",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 32,
+      "opcode": 15
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 33,
+      "opcode": 54
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 34,
+      "opcode": 11
+    },
+    {
+      "name": "mul",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 35,
+      "opcode": 15
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 36,
+      "opcode": 54
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 37,
+      "opcode": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 38,
+      "opcode": 11
+    },
+    {
+      "name": "arrayidx",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 39,
+      "opcode": 32
+    },
+    {
+      "name": "load",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 40,
+      "opcode": 30
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 41,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 42,
+      "opcode": 2
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 43,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 44,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 45,
+      "opcode": 53
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 46,
+      "opcode": 54
+    },
+    {
+      "name": "exitcond",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 47,
+      "opcode": 51
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 48,
+      "opcode": 2
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 49,
+      "opcode": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 50,
+      "opcode": 11
+    },
+    {
+      "name": "arrayidx20",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 51,
+      "opcode": 32
+    },
+    {
+      "name": "load",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 52,
+      "opcode": 30
+    },
+    {
+      "name": "mul21",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 53,
+      "opcode": 16
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 54,
+      "opcode": 54
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 55,
+      "opcode": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 56,
+      "opcode": 11
+    },
+    {
+      "name": "arrayidx25",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 57,
+      "opcode": 32
+    },
+    {
+      "name": "load",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 58,
+      "opcode": 30
+    },
+    {
+      "name": "add26",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 59,
+      "opcode": 12
+    },
+    {
+      "name": "store",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 60,
+      "opcode": 31
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 61,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv.next",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 62,
+      "opcode": 11
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 63,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 64,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 65,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv.next6",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 66,
+      "opcode": 11
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 67,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 68,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 69,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv.next13",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 70,
+      "opcode": 11
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 71,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 72,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 73,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv.next17",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 74,
+      "opcode": 11
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 75,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 76,
+      "opcode": 2
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 77,
+      "opcode": 2
+    },
+    {
+      "name": "indvars.iv.next19",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 78,
+      "opcode": 11
+    },
+    {
+      "name": "call",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 79,
+      "opcode": 54
+    },
+    {
+      "name": "br",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 80,
+      "opcode": 2
+    },
+    {
+      "name": "ret",
+      "functionName": "bbgemm",
+      "functionId": 1,
+      "id": 81,
+      "opcode": 1
+    }
+  ],
+  "region": [
+    {
+      "name": "bbgemm",
+      "functionName": "bbgemm",
+      "depth": 0,
+      "id": 1,
+      "isLoop": 0,
+      "tripCount": 1,
+      "subRegions": [2],
+      "instructions": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81]
+    },
+    {
+      "name": "loopjj",
+      "functionName": "bbgemm",
+      "depth": 1,
+      "id": 2,
+      "isLoop": 1,
+      "tripCount": 9,
+      "subRegions": [3],
+      "instructions": [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80]
+    },
+    {
+      "name": "loopkk",
+      "functionName": "bbgemm",
+      "depth": 2,
+      "id": 3,
+      "isLoop": 1,
+      "tripCount": 9,
+      "subRegions": [4],
+      "instructions": [14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76]
+    },
+    {
+      "name": "loopi",
+      "functionName": "bbgemm",
+      "depth": 3,
+      "id": 4,
+      "isLoop": 1,
+      "tripCount": 65,
+      "subRegions": [5],
+      "instructions": [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
+    },
+    {
+      "name": "loopk",
+      "functionName": "bbgemm",
+      "depth": 4,
+      "id": 5,
+      "isLoop": 1,
+      "tripCount": 9,
+      "subRegions": [6],
+      "instructions": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68]
+    },
+    {
+      "name": "loopj",
+      "functionName": "bbgemm",
+      "depth": 5,
+      "id": 6,
+      "isLoop": 1,
+      "tripCount": 9,
+      "subRegions": [],
+      "instructions": [45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64]
+    }
+  ],
+  "variable": [
+    {
+      "name": "m1",
+      "functionName": "bbgemm",
+      "baseType": 3,
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 0,
+      "isArray": 1,
+      "isParam": 1,
+      "numDims": 1,
+      "totalSize": 4096,
+      "type": 15,
+      "dimensions": [4096]
+    },
+    {
+      "name": "m2",
+      "functionName": "bbgemm",
+      "baseType": 3,
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 1,
+      "isArray": 1,
+      "isParam": 1,
+      "numDims": 1,
+      "totalSize": 4096,
+      "type": 15,
+      "dimensions": [4096]
+    },
+    {
+      "name": "prod",
+      "functionName": "bbgemm",
+      "baseType": 3,
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 2,
+      "isArray": 1,
+      "isParam": 1,
+      "numDims": 1,
+      "totalSize": 4096,
+      "type": 15,
+      "dimensions": [4096]
+    },
+    {
+      "name": "indvars.iv18",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 7,
+      "type": 11
+    },
+    {
+      "name": "cmp",
+      "functionName": "bbgemm",
+      "bitwidth": 8,
+      "functionId": 1,
+      "id": 9,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv16",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 14,
+      "type": 11
+    },
+    {
+      "name": "cmp2",
+      "functionName": "bbgemm",
+      "bitwidth": 8,
+      "functionId": 1,
+      "id": 16,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv12",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 21,
+      "type": 11
+    },
+    {
+      "name": "exitcond15",
+      "functionName": "bbgemm",
+      "bitwidth": 8,
+      "functionId": 1,
+      "id": 23,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv5",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 28,
+      "type": 11
+    },
+    {
+      "name": "exitcond11",
+      "functionName": "bbgemm",
+      "bitwidth": 8,
+      "functionId": 1,
+      "id": 30,
+      "type": 11
+    },
+    {
+      "name": "mul",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 32,
+      "type": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 34,
+      "type": 11
+    },
+    {
+      "name": "mul",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 35,
+      "type": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 37,
+      "type": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 38,
+      "type": 11
+    },
+    {
+      "name": "arrayidx",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 39,
+      "type": 15
+    },
+    {
+      "name": "load",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 40,
+      "type": 3
+    },
+    {
+      "name": "indvars.iv",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 45,
+      "type": 11
+    },
+    {
+      "name": "exitcond",
+      "functionName": "bbgemm",
+      "bitwidth": 8,
+      "functionId": 1,
+      "id": 47,
+      "type": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 49,
+      "type": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 50,
+      "type": 11
+    },
+    {
+      "name": "arrayidx20",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 51,
+      "type": 15
+    },
+    {
+      "name": "load",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 52,
+      "type": 3
+    },
+    {
+      "name": "mul21",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 53,
+      "type": 3
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 55,
+      "type": 11
+    },
+    {
+      "name": "add",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 56,
+      "type": 11
+    },
+    {
+      "name": "arrayidx25",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 57,
+      "type": 15
+    },
+    {
+      "name": "load",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 58,
+      "type": 3
+    },
+    {
+      "name": "add26",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 59,
+      "type": 3
+    },
+    {
+      "name": "indvars.iv.next",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 62,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv.next6",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 66,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv.next13",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 70,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv.next17",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 74,
+      "type": 11
+    },
+    {
+      "name": "indvars.iv.next19",
+      "functionName": "bbgemm",
+      "bitwidth": 64,
+      "functionId": 1,
+      "id": 78,
+      "type": 11
+    }
+  ]
+}
